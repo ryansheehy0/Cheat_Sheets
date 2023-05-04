@@ -27,11 +27,11 @@ $\frac{df(x_1, x_2, ...)}{dx_1} , \frac{df(x_1, x_2, ...)}{dx_2}, ...$
 
 guesses: $\qquad x_1 = a_1 \qquad x_2 = b_1$
 
-$\frac{df(a_1, b_1, \ldots)}{dx_1} = slope \_ x_1, \qquad \frac{df(a_1, b_1, \ldots)}{dx_2} = slope \_ x_2, \qquad \ldots$
+$\frac{df(a_1, b_1, \ldots)}{dx_1} = slope \text{_} x_1, \qquad \frac{df(a_1, b_1, \ldots)}{dx_2} = slope \text{_} x_2, \qquad \ldots$
 
 3. Calculate the step size for each input. Where $step \_ size = slope * learning \_ rate$.
 
-$step \_ size \_ x_1 = slope \_ x_1 * learning \_ rate$
+$step \text{_} size \_ x_1 = slope \_ x_1 * learning \_ rate$
 
 $step \_ size \_ x_2 = slope \_ x_2 * learning \_ rate$
 
