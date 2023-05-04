@@ -1,6 +1,5 @@
 # Matrices
 
-
 $$
 \quad C \\
 R
@@ -152,7 +151,8 @@ A * B =
 \end{bmatrix}
 $$
 
-$$\qquad\text{ \ }
+$$
+\qquad\text{ \ }
 =\begin{bmatrix}
 	74  & 80  & 86 & 92\\
 	173 & 188 & 203 & 218\\
@@ -273,6 +273,7 @@ $$
 	\underline{\space\space} & \space\space \\
 \end{bmatrix}
 $$
+
 <ul>
 	<ul>
 		<ul>
@@ -319,6 +320,7 @@ $$
 \end{bmatrix}
 \dots
 $$
+
 <ul>
 	<ul>
 		<ul>
@@ -600,8 +602,11 @@ $$
 ### Example:
 
 $$x + y - z = -2$$
+
 $$2x - y + z = 5$$
+
 $$-x +2y +2z = 1$$
+
 $$
 \left[
 \begin{array}{c|c}
@@ -706,8 +711,11 @@ $$
 - Matrices in row echelon form can be converted back into equations to make the math easier.
 
 $$x + y - z = -2$$
+
 $$y-z=-3$$
+
 $$z=2$$
+
 $$y=-1 \text{ and } x=1$$
 
 ## Eigenvectors and Eigenvalues:
@@ -717,12 +725,17 @@ $$y=-1 \text{ and } x=1$$
 - Eigenvectors cannot be $\vec{0}$ because that would just result in $\vec{0}$ and give no valuable information.
 - Eigenvectors and Eigenvalues are so useful because they can give insight into the long term behavior of a system.
 - A matrix can have multiple Eigenvalues, but no more than its number of rows/columns.
+
 $$A \vec{v} = \lambda \vec{v}$$
+
 - Where $A$ is the matrix, $\vec{v}$ is the Eigenvector, and $\lambda$ is the Eigenvalue.
 
 ### Calculating the Eigenvectors and Eigenvalues:
+
 $$A \vec{v} - \lambda \vec{v} = \vec{0} $$
+
 - Insert the Identify matrix($I$) which is equivalent ot multiplying by 1 for matrices.
+
 $$A \vec{v} - \lambda I \vec{v} = \vec{0}$$
 
 $$(A - \lambda I) \vec{v} = \vec{0}$$
@@ -742,6 +755,7 @@ $$\text{determinant}(A - \lambda I) = 0$$
 	- This has to be done for each Eigenvalue($\lambda$) separately
 
 ### Example:
+
 $$.8(h_1) + .1(z_1) = h_2$$
 
 $$.2(h_1) + .9(z_1) = z_2$$
