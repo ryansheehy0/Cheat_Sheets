@@ -5,9 +5,9 @@ Taking non polynomial functions and finding polynomials which approximate the fu
 ## Equation:
 Polynomials: $ax^0 + bx^1 + cx^2 + ...$
 
-$f(x) = $ function wanting to approximate
+$ f(x) = $ function wanting to approximate
 
-$p(x) = $ polynomial that approximates $f(x)$
+$p(x)$ $=$ polynomial that approximates $f(x)$
 
 $p(x) = f(a) + \frac{df(a)}{dx} \frac{(x-a)}{1!} + \frac{d^2f(a)}{dx^2} \frac{(x-a)^2}{2!} + ... = \frac{d^nf(a)}{dx^n} \frac{(x-a)^n}{n!} + ...$
 
