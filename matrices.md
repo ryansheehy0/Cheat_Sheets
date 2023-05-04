@@ -2,11 +2,14 @@
 
 $\qquad\quad C$
 
-$R\begin{bmatrix}
+$
+R
+\begin{bmatrix}
 	1 & 2 & 3 \\
 	4 & 5 & 6 \\
 	7 & 8 & 9 \\
-\end{bmatrix}$
+\end{bmatrix}
+$
 
 Rows($R$) and columns($C$) all start at 1 and when specifying the size of a matrix it takes the form of $R$ x $C$.
 
@@ -160,7 +163,8 @@ $$
 
 ### Examples of scaling and rotating:
 - This matrix rotates a vector by 90 degrees counter-clockwise:
-$$\qquad\text{ \ }
+$$
+\qquad\text{ \ }
 =\begin{bmatrix}
 	0 & -1 \\
 	1 & 0 \\
@@ -168,7 +172,8 @@ $$\qquad\text{ \ }
 $$
 
 - This matrix scales a vector by 2
-$$\qquad\text{ \ }
+$$
+\qquad\text{ \ }
 =\begin{bmatrix}
 	2 & 0 \\
 	0 & 2 \\
