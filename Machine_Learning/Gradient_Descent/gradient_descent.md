@@ -27,13 +27,13 @@ $\frac{df(x_1, x_2, ...)}{dx_1} , \frac{df(x_1, x_2, ...)}{dx_2}, ...$
 
 guesses: $\qquad x_1 = a_1 \qquad x_2 = b_1$
 
-$\frac{df(a_1,b_1,...)}{dx_1} = slope\_x_1,\qquad \frac{df(a_1,b_1,...)}{dx_2} = slope\_x_2,\qquad ...$
+$\frac{df(a_1,b_1,\ldots)}{dx_1} = slope \_ x_1, \qquad \frac{df(a_1,b_1,\ldots)}{dx_2} = slope \_ x_2,\qquad \ldots$
 
-3. Calculate the step size for each input. Where $step\_size = slope * learning\_rate$.
+3. Calculate the step size for each input. Where $step \_ size = slope * learning \_ rate$.
 
-$step\_size\_x_1 = slope\_x_1 * learning\_rate$
+$step \_ size \_ x_1 = slope \_ x_1 * learning \_ rate$
 
-$step\_size\_x_2 = slope\_x_2 * learning\_rate$
+$step \_ size \_ x_2 = slope \_ x_2 * learning \_ rate$
 
 $...$
 
@@ -41,15 +41,13 @@ $...$
 - If the learning rate is set too low then it may take long to find local minimums.
 - It is advised the learning rate be set high and if the step size doesn't decrease in a reasonable amount of cycles then the learning rate can be decreased.
 
-4. Calculate the new guess for each input. Where $new\_guess = old\_guess - step\_size$.
+4. Calculate the new guess for each input. Where $new \_ guess = old \_ guess - step \_ size$.
 
-$a_2 = a_1 - step\_size\_x_1$
+$a_2 = a_1 - step \_ size \_ x_1$
 
-$b_2 = b_1 - step\_size\_x_2$
+$b_2 = b_1 - step \_ size \_ x_2$
 
 $...$
 
 5. Repeat/cycle to step 2 with the new guess.
 - If cycled for too many times or the step size is very small then end.
-
-
