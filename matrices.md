@@ -2,6 +2,9 @@
 
 $$
 \quad C \\
+$$
+
+$$
 R
 \begin{bmatrix}
 	1 & 2 & 3 \\
@@ -139,9 +142,7 @@ $$
 \end{bmatrix}
 $$
 
-$$
-A*B \ne B*A
-$$
+$$A * B \ne B * A$$
 
 $$
 A * B =
@@ -229,7 +230,10 @@ $$
 			\begin{bmatrix}
 				0 & 1 \\
 				1 & 1 \\
-			\end{bmatrix} \\
+			\end{bmatrix}
+$$
+
+$$
 			\downarrow
 $$
 
@@ -390,9 +394,7 @@ A =
 \end{bmatrix} 
 $$
 
-$$
-(1*-1) + (1*7) + (3*-5) = -9
-$$
+$$(1 * -1) + (1 * 7) + (3 * -5) = -9$$
 
 3. Plug **determinant** and **adjugate** into the equation.
 
@@ -485,9 +487,7 @@ $$
 \end{bmatrix}
 $$
 
-$$
-\text{determinant} = (1*1) + (0*1) + (1*-2) = -1
-$$
+$$\text{determinant} = (1 * 1) + (0 * 1) + (1 * -2) = -1$$
 
 $$
 A^{-1} = \frac{1}{-1} * 
