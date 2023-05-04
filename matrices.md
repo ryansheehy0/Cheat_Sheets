@@ -163,6 +163,7 @@ $$
 
 ### Examples of scaling and rotating:
 - This matrix rotates a vector by 90 degrees counter-clockwise:
+
 $$
 \qquad\text{ \ }
 =\begin{bmatrix}
@@ -172,6 +173,7 @@ $$
 $$
 
 - This matrix scales a vector by 2
+
 $$
 \qquad\text{ \ }
 =\begin{bmatrix}
