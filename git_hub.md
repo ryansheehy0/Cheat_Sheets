@@ -76,6 +76,7 @@ Settings $\rightarrow$ Developer settings $\rightarrow$ Personal access tokens $
 ## Pulling Requests/Merge
 - A pull request is a request to make changes to a branch from another branch.
 - A merge is the combining changes from one branch to another.
+
 | | |
 |-|-|
 |Create a merge commit| Combines the changes from the source branch and the target branch and makes a commit to the target branch with the changes. Preserves the history.|
