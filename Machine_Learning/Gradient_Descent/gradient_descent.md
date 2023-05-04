@@ -31,7 +31,7 @@ $\frac{df(a_1, b_1, \ldots)}{dx_1} = slope \text{_} {x_1}$
 
 $\frac{df(a_1, b_1, \ldots)}{dx_1} = slope \_ x_1$
 
-$, \qquad \frac{df(a_1, b_1, \ldots)}{dx_2} = slope \text{_} x_2, \qquad \ldots$
+$, \qquad \frac{df(a_1, b_1, \ldots)}{dx_2} = slope \text{\_} x_2, \qquad \ldots$
 
 3. Calculate the step size for each input. Where $step \_ size = slope * learning \_ rate$.
 
