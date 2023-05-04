@@ -164,23 +164,23 @@ $$
 ### Examples of scaling and rotating:
 - This matrix rotates a vector by 90 degrees counter-clockwise:
 
-$$
+$
 \qquad\text{ \ }
 =\begin{bmatrix}
 	0 & -1 \\
 	1 & 0 \\
 \end{bmatrix}
-$$
+$
 
 - This matrix scales a vector by 2
 
-$$
+$
 \qquad\text{ \ }
 =\begin{bmatrix}
 	2 & 0 \\
 	0 & 2 \\
 \end{bmatrix}
-$$
+$
 
 ## Inverse:
 $A^{-1} = \frac{1}{\text{determinant}(A)} * \text{adjugate}(A)$
