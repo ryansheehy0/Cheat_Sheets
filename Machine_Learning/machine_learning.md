@@ -1,0 +1,47 @@
+Not finished
+
+# Machine Learning
+- Feed data into an algorithms to improve the output.
+
+## Theory
+- There is a Model for Machine Learning(MML) that encompasses all possible machine learning algorithms.
+	- Specific machine learning algorithms make assumptions about parts of this model.
+
+### Components that make up the MML
+|   |                                        |
+|---|----------------------------------------|
+| F | Function approximator                  |
+| S | Simulation of the real world           |
+| R | Randomness or Noise                    |
+| C | Comparator or Error/Cost/Loss Function |
+| M | Minimizer or Optimization Algorithm    |
+| W | The real world                         |
+| G | Has reached goal?                      |
+
+
+### Function approximators
+### Simulations
+### Randomness
+### Comparators
+### Minimizers
+	- Changes hyperparameters in order to minimize the error given from the 
+### Real World
+### Goal
+	- Used to know when to brake out of the recursion
+
+
+
+
+Machine Learning
+	- Supervised learning
+		1. Function Approximation
+			- Neural Network
+		2. Error/Loss/Cost Function
+			- Least Squares
+		3. Optimization Algorithms
+			- Gradient Decent
+			- Evolutionary Algorithm
+	- Unsupervised learning
+		- Autoencoders
+		- Generative Adversaria Network
+		- Reinforcement Learning
