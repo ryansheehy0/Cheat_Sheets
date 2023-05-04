@@ -5,7 +5,7 @@ Taking non polynomial functions and finding polynomials which approximate the fu
 ## Equation:
 Polynomials: $ax^0 + bx^1 + cx^2 + ...$
 
-$ f(x) = $ function wanting to approximate
+$f(x)$ $=$ function wanting to approximate
 
 $p(x)$ $=$ polynomial that approximates $f(x)$
 
