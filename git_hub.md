@@ -73,10 +73,11 @@ Settings $\rightarrow$ Developer settings $\rightarrow$ Personal access tokens $
 |-|-|
 |git remote set-url {location} https://{username}:{personal access token}@github.com/{owner's username}/{repository}.git| Gives permissions for the location. |
 
-
-## Vocabulary
+## Pulling Requests/Merge
+- A pull request is a request to make changes to a branch from another branch.
+- A merge is the combining changes from one branch to another.
 | | |
 |-|-|
-|Pull Request|- A request to make changes to a repository that you don’t have write access to.|
-|Fork|- A new repo copied from another.|
-|Merging|- Taking charges from one branch and merging them in another.
+|Create a merge commit| Combines the changes from the source branch and the target branch and makes a commit to the target branch with the changes. Preserves the history.|
+|Squash and merge| Combines all the changes from the source branch and makes a commit to the target branch with the changes. This removes the source branch. Doesn't preserve the history.|
+|Rebase and merge| Commits all the previous commits in the source branch and adds them to the target branch. This removes the source branch. Preserves the history.|
