@@ -1,15 +1,15 @@
 # Matrices
 
-$\qquad\quad C$
 
-$
+$$
+\quad C \\
 R
 \begin{bmatrix}
 	1 & 2 & 3 \\
 	4 & 5 & 6 \\
 	7 & 8 & 9 \\
 \end{bmatrix}
-$
+$$
 
 Rows($R$) and columns($C$) all start at 1 and when specifying the size of a matrix it takes the form of $R$ x $C$.
 
@@ -20,7 +20,7 @@ Rows($R$) and columns($C$) all start at 1 and when specifying the size of a matr
 
 ### Example:
 
-$
+$$
 \begin{array}{}
 	\begin{bmatrix}
 		1 & 2 \\
@@ -42,9 +42,9 @@ $
 		10 & 12 \\
 	\end{bmatrix}
 \end{array}
-$
+$$
 
-$
+$$
 \begin{array}{}
 	\begin{bmatrix}
 		1 & 2 \\
@@ -66,7 +66,7 @@ $
 		-4 & -4 \\
 	\end{bmatrix}
 \end{array}
-$
+$$
 
 ## Multiplying:
 
@@ -98,9 +98,7 @@ $$
 	\vdots
 	\end{array}
 	\right.
-	\raisebox{10ex}{
-		\text{Columns from 2nd matrix}
-	}
+	\text{Columns from 2nd matrix}
 \end{array}
 $$
 
@@ -142,7 +140,9 @@ $$
 \end{bmatrix}
 $$
 
-$$A*B \ne B*A$$
+$$
+A*B \ne B*A
+$$
 
 $$
 A * B =
@@ -164,23 +164,23 @@ $$
 ### Examples of scaling and rotating:
 - This matrix rotates a vector by 90 degrees counter-clockwise:
 
-$
+$$
 \qquad\text{ \ }
 =\begin{bmatrix}
 	0 & -1 \\
 	1 & 0 \\
 \end{bmatrix}
-$
+$$
 
 - This matrix scales a vector by 2
 
-$
+$$
 \qquad\text{ \ }
 =\begin{bmatrix}
 	2 & 0 \\
 	0 & 2 \\
 \end{bmatrix}
-$
+$$
 
 ## Inverse:
 $A^{-1} = \frac{1}{\text{determinant}(A)} * \text{adjugate}(A)$
@@ -197,6 +197,7 @@ With $A$ being the matrix and $A^{-1}$ being the inverse.
 	1. Get the **matrix of minors**
 		1. Cross out each position's row and column and create a matrix of matrices.
 			- Ex:
+
 $$
 			\begin{bmatrix}
 				\underline{1} & 0 & 1 \\
@@ -231,6 +232,7 @@ $$
 			\end{bmatrix} \\
 			\downarrow
 $$
+
 $$
 			\begin{bmatrix}
 				\begin{bmatrix}
@@ -246,6 +248,7 @@ $$
 				\dots & \dots & \dots \\
 			\end{bmatrix}
 $$
+
 <ol>
 	<ol>
 		<ol start="2">
@@ -384,6 +387,7 @@ A =
 	-13 & 3 & 1 \\
 \end{bmatrix} 
 $$
+
 $$
 (1*-1) + (1*7) + (3*-5) = -9
 $$
@@ -441,6 +445,7 @@ $$
 	\end{bmatrix}
 \end{bmatrix}
 $$
+
 $$
 \text{Matrix of minors} = 
 \begin{bmatrix}
@@ -449,6 +454,7 @@ $$
 	-2 & 1 & 2  \\
 \end{bmatrix}
 $$
+
 $$
 \text{Matrix of cofactors} = 
 \begin{bmatrix}
@@ -467,6 +473,7 @@ $$
 	-2 & -1 & 2  \\
 \end{bmatrix}
 $$
+
 $$
 \text{adjugate} = 
 \begin{bmatrix}
@@ -475,9 +482,11 @@ $$
 	-2 & -1 & 2  \\
 \end{bmatrix}
 $$
+
 $$
 \text{determinant} = (1*1) + (0*1) + (1*-2) = -1
 $$
+
 $$
 A^{-1} = \frac{1}{-1} * 
 \begin{bmatrix}
@@ -547,9 +556,11 @@ A =
 	1 & 3 \\
 \end{bmatrix}
 $$
+
 $$
 (3*4) - (-1 * -2) = 10
 $$
+
 $$
 A^{-1} = 
 \frac{1}{10} *
@@ -562,6 +573,7 @@ A^{-1} =
 	1/10 & 3/10 \\
 \end{bmatrix}
 $$
+
 $$
 \begin{bmatrix}
 	2/5 & 1/5 \\
@@ -576,6 +588,7 @@ $$
 	1 \\
 \end{bmatrix}
 $$
+
 $$
 x = 1 \qquad y = 1
 $$
@@ -723,6 +736,7 @@ $$(A - \lambda I)^{-1} (A - \lambda I) = I \text{\quad and \quad} (A - \lambda I
 $$I \vec{v} \ne \vec{0}$$
 
 $$\text{determinant}(A - \lambda I) = 0$$
+
 - $\text{determinant}(A - \lambda I)$ is used to find the Eigenvalues($\lambda$) which can be used to calculate the Eigenvectors($\vec{v}$).
 	- Each Eigenvalue($\lambda$) is used to calculate its Eigenvector($\vec{v}$) using $(A - \lambda I) \vec{v} = 0$ and translated into its row echelon form and then translated into an equation. Assuming one of the variables is 1 the other can be calculated and the Eigenvector($\vec{v}$) can be calculated.
 	- This has to be done for each Eigenvalue($\lambda$) separately
@@ -734,6 +748,7 @@ $$.2(h_1) + .9(z_1) = z_2$$
 
 - What will $h$ and $z$ converge to as the cycles go to $\infty$?
 - In other words, what is the eigenvector for the matrix
+
 $$
 \begin{bmatrix}
 .8 & .1 \\
@@ -755,6 +770,7 @@ $$
 \end{bmatrix}
 \right) = 0
 $$
+
 - What are the eigenvalues($\lambda$)?
 
 $$
@@ -877,6 +893,7 @@ $$
 -1 \\
 \end{bmatrix}
 $$
+
 ## Dividing:
 ## Dot product:
 ## Cross product:
