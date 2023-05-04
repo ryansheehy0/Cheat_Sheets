@@ -1,17 +1,12 @@
 # Matrices
 
-$
-\qquad\quad C
-$
+$\qquad\quad C$
 
-$
-R
-\begin{bmatrix}
+$R\begin{bmatrix}
 	1 & 2 & 3 \\
 	4 & 5 & 6 \\
 	7 & 8 & 9 \\
-\end{bmatrix}
-$
+\end{bmatrix}$
 
 Rows($R$) and columns($C$) all start at 1 and when specifying the size of a matrix it takes the form of $R$ x $C$.
 
