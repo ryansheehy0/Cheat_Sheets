@@ -32,9 +32,9 @@ $Q_1 \ne Q_2 \qquad Q_3 \ne Q_4 \qquad Q_5 \ne Q_6 \qquad$ If these are equal th
 
 ## $\qquad$ Placements of hall effect sensors:
 
-There needs to be 3 hall effect sensors for A, B, and C. The number of magnets is $\frac{\#ofCoils}{3} * 4$ with the $\#ofCoils$ being a multiple of 3. The angle offset between each hall effect sensor is $\frac{360}{\#ofCoils}$.
+There needs to be 3 hall effect sensors for A, B, and C. The number of magnets is $\frac{NumOfCoils}{3} * 4$ with the $NumOfCoils$ being a multiple of 3. The angle offset between each hall effect sensor is $\frac{360}{NumOfCoils}$.
 
-### $\qquad\qquad$ Example with $\#ofCoils = 6$ :
+### $\qquad\qquad$ Example with $NumOfCoils = 6$ :
 
 | | |
 |-|-|
