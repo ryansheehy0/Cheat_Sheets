@@ -27,7 +27,7 @@ $\frac{df(x_1, x_2, ...)}{dx_1} , \frac{df(x_1, x_2, ...)}{dx_2}, ...$
 
 guesses: $\qquad x_1 = a_1 \qquad x_2 = b_1$
 
-$\frac{df(a_1, b_1, \ldots)}{dx_1} = slope \mathrm{_} {x_1}$
+$\frac{df(a_1, b_1, \ldots)}{dx_1} = slope \sb {x_1}$
 
 $\frac{df(a_1, b_1, \ldots)}{dx_1} = slope \_ x_1$
 
