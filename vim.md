@@ -94,6 +94,7 @@
 | ? + regex + enter | find on page |
 | n                 | got to next  |
 | N                 | go back one  |
+| :noh              | remove highlight |
 
 ## Macros
 |                      |                                 |

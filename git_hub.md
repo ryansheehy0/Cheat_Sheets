@@ -1,7 +1,6 @@
 # Git Hub Cheat Sheet
 
-A version control system that manages changes to files.<br>
-
+A version control system that manages changes to files.
 
 ## Cloning and Initializing
 | | |
@@ -17,14 +16,14 @@ A version control system that manages changes to files.<br>
 |git add .|- Tracks and stages all the files listed in status.|
 |git commit -m ”{Title}” -m ”{Description}”|- Commits staged files.|
 
-### $\qquad$ Reset Commits 
+### Reset Commits 
 | | |
 |-|-|
 |git reset -hard {commit hash}|- Resets to commit specified and deletes changes.|
 |git reset {commit hash}|- Resets to commit specified and unstages changes.|
 |git reset -soft {commit hash}|-Resets to commit specified, but leaves files staged.
 
-### $\qquad$ Logs of Commits
+### Logs of Commits
 | | |
 |-|-|
 |git log|- Lists commit history. This can tell you the commit hashes.|
@@ -82,3 +81,17 @@ Settings $\rightarrow$ Developer settings $\rightarrow$ Personal access tokens $
 |Create a merge commit| Combines the changes from the source branch and the target branch and makes a commit to the target branch with the changes. Preserves the history.|
 |Squash and merge| Combines all the changes from the source branch and makes a commit to the target branch with the changes. This removes the source branch. Doesn't preserve the history.|
 |Rebase and merge| Commits all the previous commits in the source branch and adds them to the target branch. This removes the source branch. Preserves the history.|
+
+## Github Markdown Notes
+- Math mode has to have a newline on the top and bottom and has to be $$ for multi-line 
+```
+text
+
+$$
+
+$$
+
+test
+```
+
+- To use underscores in math mode you have to use \textunderscore

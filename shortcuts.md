@@ -2,8 +2,7 @@
 
 - Window Manager: [Linux Mint](#linux-mint)
 - Web Browser: [Firefox](#firefox)
-- Text Editor: [VS Code](#vs-code)
-
+- Text Editor: [Neovim](#neovim)
 ## Linux Mint
 |                       |                     |
 |-----------------------|---------------------|
@@ -71,6 +70,25 @@
 | Format Selection                   | ctrl + k then ctrl + f           |
 | Open Preview                       | ctrl + shift + v                 |
 | Fold                               | ctrl + shift + [                 |
-| Open terminal                      | ctrl + shift + `                 |
+| Open terminal                      | ctrl + `                         |
 | In terminal: code -r {Folder}      | Change current root Folder       |
 | In terminal: code -n {Folder}      | Open new window with root Folder |
+
+
+## Neovim
+|                         |                |
+|-------------------------|----------------|
+| Move focus to left, down, up, or right window | ctrl + h,j,k,l |
+| Resize window | ctrl + arrow keys |
+| Toggle terminal | ctrl + t |
+| Move to left/right buffer | shift + h/l
+| Save | :w |
+| Save and close | ctrl + w |
+| Nvimtree: | |
+| Hide and un-hide nvimtree | ctrl + b |
+| Open file | enter |
+| Open file in vertical split | ctrl + v |
+| Folds: | |
+| Close folds               | zc |
+| Open folds               | zo  |
+| Format: | |
