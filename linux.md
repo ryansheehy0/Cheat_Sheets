@@ -1,0 +1,33 @@
+# Linux
+
+- ls
+    - lists the contents of a directory
+- mv
+    - Moves/Cuts a file/Directory
+- cp
+    - Copies a file/Directory
+- rm
+    - rm file
+    - rm -rf Directory
+- mkdir
+    - Make directory/folder
+- touch
+    - Make file
+- cat
+    - displays contents of a file
+- grep
+    - Searches for patterns in a file or input stream
+- sed
+    - text transformations on a file or input stream
+- awk
+    - analyzes text files or input streams
+- chmod
+- chown
+- find
+- head
+- tail
+- tar
+- gzip
+- sort
+- uniq
+- wc

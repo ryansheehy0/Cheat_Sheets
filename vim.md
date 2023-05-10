@@ -88,13 +88,14 @@
 | " + char + p | paste from char register      |
 | " + +        | clipboard register            |
 
-## Find on page
-|                   |              |
-|-------------------|--------------|
-| ? + regex + enter | find on page |
-| n                 | got to next  |
-| N                 | go back one  |
-| :noh              | remove highlight |
+## Find on page/Search
+|                         |                    |
+|-------------------------|--------------------|
+| ? + regex + enter       | find on page       |
+| n                       | got to next        |
+| N                       | go back one        |
+| :noh                    | remove highlight   |
+| :%s/ regex / replace /g | search and replace |
 
 ## Macros
 |                      |                                 |
