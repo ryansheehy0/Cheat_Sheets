@@ -72,6 +72,16 @@ Settings $\rightarrow$ Developer settings $\rightarrow$ Personal access tokens $
 |-|-|
 |git remote set-url {location} https://{username}:{personal access token}@github.com/{owner's username}/{repository}.git| Gives permissions for the location. |
 
+## First push
+1. git init
+1. git add .
+1. git commit -m {Title} -m {Description}
+1. git remote add {location} {https}
+1. git remote set-url {location} https://{username}:{personal access token}@github.com/{owner's username}/{repository}.git
+1. git checkout -b {branch}
+1. git push {location} {branch}
+- The recommended {location} is origin and the recommended {branch} is master.
+
 ## Pulling Requests/Merge
 - A pull request is a request to make changes to a branch from another branch.
 - A merge is the combining changes from one branch to another.
