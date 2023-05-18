@@ -32,3 +32,11 @@
 
 - Static typing aka types are checked before the code runs. Strongly typed language aka enforces strick rules for variables types.
 - Dynamic typing aka types are check when run.
+
+Programming is like a game where the goal is to implement a feature as fast as possible while having a minimum level of quality.
+    - All tools should be there to better achieve this goal.
+    The minimum level of quality should be decided by how well other people can read the code.
+        - No acronyms or abbreviations
+        - If you have abbreviations it would make everything much much faster. Comments can be put in to explain what that variable does.
+    - Everything in the programming language should be designed with the speed of writing in mind
+        - f for function, w for while, f for for that only work within functions, v for var

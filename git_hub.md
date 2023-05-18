@@ -92,6 +92,22 @@ Settings $\rightarrow$ Developer settings $\rightarrow$ Personal access tokens $
 |Squash and merge| Combines all the changes from the source branch and makes a commit to the target branch with the changes. This removes the source branch. Doesn't preserve the history.|
 |Rebase and merge| Commits all the previous commits in the source branch and adds them to the target branch. This removes the source branch. Preserves the history.|
 
+## Setting up with SSH
+1. ssh-keygen -t ed25519 -C {github email}
+    - Note: ed25519 is the encryption type of encryption it may change in the future
+1. eval "$(ssh-agent -s)"
+1. inside file ~/.ssh/config
+    ```
+    Host *
+        AddKeysToAgent yes
+        IdentifyFile ~/.shh/id_ed25519
+    ```
+1. ssh-add ~/.ssh/id_ed25519
+1. Go to github settings -> SSH and GPG keys -> New SSH key
+1. Paste the contents of id_ed25519.pub into github and Add Key
+1. To test if it worked run: ssh -T git@github.com and you should see Successfully Authenticated
+1. To use with SSH make sure your location is SSH(starts with git@github.com)
+
 ## Github Markdown Notes
 - Math mode has to have a newline on the top and bottom and has to be $$ for multi-line 
 ```
