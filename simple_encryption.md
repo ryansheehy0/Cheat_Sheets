@@ -40,6 +40,7 @@ A simple non secure encryption that only allows writable ASCII characters used t
 1. Print out the output character
 
 ## Example:
+
 | | |
 |:-|:-:|
 |Input:| This |
