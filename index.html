@@ -28,6 +28,7 @@
 						link.addEventListener('click', event => {
               event.preventDefault();
 							var href = link.getAttribute('href');
+							console.log(href.toString())
 							fetchAndRenderMarkdown(href.toString());
 						})
 					})
