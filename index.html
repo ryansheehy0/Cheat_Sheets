@@ -11,7 +11,6 @@
   </div>
 
   <script>
-		var baseUrl = window.location.href.replace(/\/[^/]*$/, '/');
 		var markdownFileURL = './README.md';
 
 		function fetchAndRenderMarkdown(markdownFile) {
@@ -26,9 +25,12 @@
 					// Find links to other Markdown files
 					var links = markdownElement.querySelectorAll('a[href$=".md"]');
 					links.forEach(link => {
-						var href = link.getAttribute('href');
-						var absoluteUrl = new URL(href, baseUrl).href;
-						fetchAndRenderMarkdown(absoluteUrl);
+						link.addEventListener('click', event => {
+              event.preventDefault();
+							var href = link.getAttribute('href');
+							console.log(href)
+							fetchAndRenderMarkdown(href);
+						})
 					})
 				})
 				.catch(error => {
