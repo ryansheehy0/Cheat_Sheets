@@ -2,7 +2,12 @@
 
 The purpose of these cheat sheets is to give concise explanations of the topic at hand.
 
-## Cheat Sheets To Do:
+## List of Cheat Sheets that are done
+   - [Vim](./vim.md) 
+   - [Simple Encryption](./simple_encryption.md) 
+   - 
+
+## Cheat Sheets To Do
 
 - Communication Algorithms
     - Encryption

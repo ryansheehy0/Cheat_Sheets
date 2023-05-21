@@ -1,0 +1,5 @@
+remote_theme: pages-themes/minimal@v0.2.0
+plugins:
+- jekyll-remote-theme # add this line to the plugins list if you already have one
+title: [Ryan's Cheat Sheets]
+description: [The purpose of these cheat sheets is to give concise explanations of the topic at hand.]
