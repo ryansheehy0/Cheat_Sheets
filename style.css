@@ -111,6 +111,10 @@ tr {
 	border-top: 1px solid #30363d;
 }
 
+table tr:nth-child(2n) {
+  background-color: #161b22;
+}
+
 img {
 	max-width: 100%;
 }
