@@ -8,6 +8,7 @@ Not finished
 	- Specific machine learning algorithms make assumptions about parts of this model.
 
 ### Components that make up the MML
+
 |   |                                        |
 |---|----------------------------------------|
 | F | Function approximator                  |

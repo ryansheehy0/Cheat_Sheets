@@ -5,7 +5,7 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
 ## List of Cheat Sheets that are done
    - [Vim](./vim.md) 
    - [Simple Encryption](./simple_encryption.md) 
-   - 
+   - [Matrices](./matrices.md)
 
 ## Cheat Sheets To Do
 

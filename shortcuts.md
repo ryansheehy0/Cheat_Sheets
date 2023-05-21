@@ -3,7 +3,9 @@
 - Window Manager: [Linux Mint](#linux-mint)
 - Web Browser: [Firefox](#firefox)
 - Text Editor: [VS Code](#vs-code)
+
 ## Linux Mint
+
 |                       |                     |
 |-----------------------|---------------------|
 | Move to right window  | alt + tab           |
@@ -20,6 +22,7 @@
 | Move to right monitor | super + shift + >   |
 
 ## Firefox
+
 |                           |                    |
 |---------------------------|--------------------|
 | Open new tab              | ctrl + t           |
@@ -35,6 +38,7 @@
 | Zoom out                  | ctrl + -           |
 
 ### Firefox Vim Vixen
+
 |                                                                  |                |
 |------------------------------------------------------------------|----------------|
 | Open button menu                                                 | f              |
@@ -52,6 +56,7 @@
 
 
 ### Firefox Video Speed Controller
+
 |                |   |
 |----------------|---|
 | Increase speed | d |
@@ -60,6 +65,7 @@
 
 
 ## VS Code
+
 |                                    |                                  |
 |------------------------------------|----------------------------------|
 | Move to file explorer and back out | ctrl + shift + e                 |

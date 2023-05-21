@@ -3,12 +3,14 @@
 A version control system that manages changes to files.
 
 ## Cloning and Initializing
+
 | | |
 |-|-|
 |git clone {https}|- Pulls github repository and initializes it.|
 |git init|- Creates .git file to allow for pushing.|
 
 ## Committing
+
 | | |
 |-|-|
 |git status|- Shows all files that were updated, created, or deleted and if the files are untracked, tracked, or staged. Tracked meaning Git tracks versioning of the file and staged meaning the file is ready to be committed. All staged files are tracked.|
@@ -17,6 +19,7 @@ A version control system that manages changes to files.
 |git commit -m ”{Title}” -m ”{Description}”|- Commits staged files.|
 
 ### Reset Commits 
+
 | | |
 |-|-|
 |git reset -hard {commit hash}|- Resets to commit specified and deletes changes.|
@@ -24,12 +27,14 @@ A version control system that manages changes to files.
 |git reset -soft {commit hash}|-Resets to commit specified, but leaves files staged.
 
 ### Logs of Commits
+
 | | |
 |-|-|
 |git log|- Lists commit history. This can tell you the commit hashes.|
 |git log {branch}|- Lists commit history for that branch.|
 
 ## Pushing
+
 | | |
 |-|-|
 |git push {location} {branch}|- Pushes commits to the branch at the specified location.|
@@ -38,11 +43,13 @@ A version control system that manages changes to files.
 |git remote remove {location}|- Removes a location you can push to.
 
 ## Pulling
+
 | | |
 |-|-|
 |git pull {location} {branch}|- Pulls changes made from location’s branch.|
 
 ## Branches
+
 | | |
 |-|-|
 |git checkout -b {branch}|- Creates a new branch.|
@@ -51,6 +58,7 @@ A version control system that manages changes to files.
 |git branch -d {branch}|- Deletes branch.|
 
 ## Stashing
+
 | | |
 |-|-|
 |git stash |- Saves changes to a temporary storage area.|
@@ -59,7 +67,6 @@ A version control system that manages changes to files.
 |git stash apply |- Restore changes from the stash to your current directory and keeps the last stash.|
 |git stash drop |- Removes the last stash.|
 |git stash drop {index}|- Removes the stash at the index.|
-
 
 ## Setting Personal Access Tokens
 
