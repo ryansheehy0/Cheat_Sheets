@@ -11,19 +11,32 @@
   </div>
 
   <script>
+		var baseUrl = window.location.href.replace(/\/[^/]*$/, '/');
 		var markdownFileURL = './README.md';
 
-		fetch(markdownFileURL)
-			.then(response => response.text())
-			.then(markdownContent => {
-				var converter = new showdown.Converter();
-				var htmlContent = converter.makeHtml(markdownContent);
-				var markdownElement = document.getElementById('markdown-content');
-				markdownElement.innerHTML = htmlContent;
-			})
-			.catch(error => {
-        console.error('Error fetching Markdown file:', error);
-      });
+		function fetchAndRenderMarkdown(markdownFile) {
+			fetch(markdownFileURL)
+				.then(response => response.text())
+				.then(markdownContent => {
+					var converter = new showdown.Converter();
+					var htmlContent = converter.makeHtml(markdownContent);
+					var markdownElement = document.getElementById('markdown-content');
+					markdownElement.innerHTML = htmlContent;
+
+					// Find links to other Markdown files
+					var links = markdownElement.querySelectorAll('a[href$=".md"]');
+					links.forEach(link => {
+						var href = link.getAttribute('href');
+						var absoluteUrl = new URL(href, baseUrl).href;
+						fetchAndRenderMarkdown(absoluteUrl);
+					})
+				})
+				.catch(error => {
+					console.error('Error fetching Markdown file:', error);
+				});
+		}
+
+		fetchAndRenderMarkdown(markdownFileURL);
   </script>
 </body>
 
