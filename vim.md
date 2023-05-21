@@ -2,6 +2,7 @@
 - This will only cover the commands I use the most
 
 ## Movement
+
 |            |                                           |
 |------------|-------------------------------------------|
 | h          | left                                      |
@@ -25,6 +26,7 @@
 | e          | Move to the end of a word                 |
 
 ## Save/Quit
+
 |      |                       |
 |------|-----------------------|
 | :w   | save                  |
@@ -33,6 +35,7 @@
 | :wq! | force a save and quit |
 
 ## Comment/Uncomment
+
 |           |              |
 |-----------|--------------|
 | ctrl + v  | select lines |
@@ -40,6 +43,7 @@
 | esc       |              |
 
 ## Increment numbers
+
 |                 |                                       |
 |-----------------|---------------------------------------|
 | ctrl + v        | select lines                          |
@@ -49,6 +53,7 @@
 | g then ctrl + x | progressively decrement. 4 3 2 1 etc. |
 
 ## Modes
+
 |     |                              |
 |-----|------------------------------|
 | i   | insert mode                  |
@@ -59,12 +64,14 @@
 | v   | visual mode                  |
 
 ## Delete
+
 |    |                                               |
 |----|-----------------------------------------------|
 | dd | delete line and copy line to default register |
 | x  | delete where your cursor is at                |
 
 ## Change
+
 |           |                |
 |-----------|----------------|
 | c         | change         |
@@ -72,6 +79,7 @@
 | r         | replace letter |
 
 ## Undo and redo
+
 |          |                    |
 |----------|--------------------|
 | u        | undo               |
@@ -79,6 +87,7 @@
 | .        | redo command again |
 
 ## Copy, Paste, and Cut
+
 |              |                               |
 |--------------|-------------------------------|
 | yy           | copy line to default register |
@@ -89,6 +98,7 @@
 | " + +        | clipboard register            |
 
 ## Find on page/Search
+
 |                         |                    |
 |-------------------------|--------------------|
 | ? + regex + enter       | find on page       |
@@ -98,12 +108,14 @@
 | :%s/ regex / replace /g | search and replace |
 
 ## Macros
+
 |                      |                                 |
 |----------------------|---------------------------------|
 | q + macro + keys + q | record keys and put it in macro |
 | @ + macro            | play macro                      |
 
 ## Swp files
+
 |           |                                                                                                                     |
 |-----------|---------------------------------------------------------------------------------------------------------------------|
 | (O)pen    | Read only mode                                                                                                      |

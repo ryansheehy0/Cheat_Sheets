@@ -1,3 +1,9 @@
+---
+title:
+permalink: /
+layout: default
+---
+
 # Cheat Sheets
 
 The purpose of these cheat sheets is to give concise explanations of the topic at hand.
