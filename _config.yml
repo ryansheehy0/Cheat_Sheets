@@ -1,4 +1,10 @@
 theme: minima
 minima:
-  skin: solarized-dark
-markdown: kramdown
+  skin: dark
+markdown:
+  kramdown:
+    input: GFM  # Specify the input format as GitHub-Flavored Markdown (GFM)
+    hard_wrap: false  # Disable automatic line breaks
+    syntax_highlighter: rouge  # Specify the syntax highlighter to use (e.g., Rouge)
+    smart_quotes: lsquo,rsquo,ldquo,rdquo  # Use smart quotes
+    toc_levels: 1..6  # Set the table of contents levels to include
