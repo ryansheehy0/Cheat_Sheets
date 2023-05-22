@@ -1,13 +1,24 @@
 # Cheat Sheets
-
 The purpose of these cheat sheets is to give concise explanations of the topic at hand.
+- [Vim](./vim.md) 
+- [Simple Encryption](./simple_encryption.md) 
+- [Shortcuts](./shortcuts.md)
+- [Matrices](./matrices.md)
+- [Github](./github.md)
+- [Taylor Series](./Taylor_Series/taylor_series.md)
+- [Newtons Method](./Newtons_Method/newtons_method.md)
+- [Gradient Descent](./Machine_Learning/Gradient_Descent/gradient_descent.md)
+- [Logic Gate Electronic Speed Controller](./Logic_Gate_Electronic_Speed_Controller/logic_gate_electronic_speed_controller.md)
 
-## List of Cheat Sheets that are done
-   - [Vim](./vim.md) 
-   - [Simple Encryption](./simple_encryption.md) 
-   - [Matrices](./matrices.md)
+## Cheat Sheets Todo
 
-## Cheat Sheets To Do
+### Unfinished Cheat Sheets
+- [Memory Managed Hash Table](./memory_managed_hash_table.md)
+- [Markdown](./markdown.md)
+- [Linux](./linux.md)
+- [Machine Learning](./Machine_Learning/machine_learning.md)
+
+### Unstarted Cheat Sheets
 
 - Communication Algorithms
     - Encryption
@@ -71,6 +82,8 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
     - Hydraulics
     - Triangulation and GPSs
 - Computer Science
+    - CSS
+    - HTML
     - Arm assembly
     - x86 assembly
     - CPU architecture

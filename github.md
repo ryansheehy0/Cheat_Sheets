@@ -114,17 +114,3 @@ Settings $\rightarrow$ Developer settings $\rightarrow$ Personal access tokens $
 1. Paste the contents of id_ed25519.pub into github and Add Key
 1. To test if it worked run: ssh -T git@github.com and you should see Successfully Authenticated
 1. To use with SSH make sure your location is SSH(starts with git@github.com)
-
-## Github Markdown Notes
-- Math mode has to have a newline on the top and bottom and has to be $$ for multi-line 
-```
-text
-
-$$
-
-$$
-
-test
-```
-
-- To use underscores in math mode you have to use \textunderscore
