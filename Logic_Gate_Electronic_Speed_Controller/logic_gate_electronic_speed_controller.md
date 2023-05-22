@@ -42,6 +42,7 @@ There needs to be 3 hall effect sensors for A, B, and C. The number of magnets i
 - Hall effects sensors are high(1) when the northern(N) magnetic field is greater than the southern(S) magnetic field and low(0) when the southern(S) magnetic field is greater than the northern(N) magnetic field.
 
 ### $\qquad\qquad$ Clockwise
+
 | H1 | H2 | H3 | $\rightarrow$ | Coil High/North | Coil Low/South |
 |:-: |:-: |:-: |:-:            |:-:              |:-:             |
 | 1  | 0  | 0  |               | B               | C              |
@@ -52,6 +53,7 @@ There needs to be 3 hall effect sensors for A, B, and C. The number of magnets i
 | 1  | 1  | 0  |               | B               | A              |
 
 ### $\qquad\qquad$ Counterclockwise
+
 | H1 | H2 | H3 | $\rightarrow$ | Coil High/North | Coil Low/South |
 |:-: |:-: |:-: |:-:            |:-:              |:-:             |
 | 1  | 0  | 0  |               | C               | B              |

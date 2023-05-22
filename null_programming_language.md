@@ -40,3 +40,15 @@ Programming is like a game where the goal is to implement a feature as fast as p
         - If you have abbreviations it would make everything much much faster. Comments can be put in to explain what that variable does.
     - Everything in the programming language should be designed with the speed of writing in mind
         - f for function, w for while, f for for that only work within functions, v for var
+
+- Indexes start at 0
+- All data is dynamic
+    - How can you do this while still being performant?
+
+- for loops
+    - f index name, starting value, how many times to run, increment index by _ at the end of each code execution
+        Example:
+    f i, 0, 10, 1
+        - i starts at 0, the code will run 10 times, i increments by 1
+    - functions are f. You cannot create a function inside another function
+        - for loops are f and only work inside functions

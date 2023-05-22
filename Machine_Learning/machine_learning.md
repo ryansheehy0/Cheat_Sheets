@@ -32,6 +32,9 @@ Not finished
 
 
 
+If there is no way to take the partial derivative of each variable then the evolutionary algorithm is the best optimization algorithm.
+    - Is this true?
+Therefore life is defined as machines who follow the evolutionary process.
 
 Machine Learning
 	- Supervised learning

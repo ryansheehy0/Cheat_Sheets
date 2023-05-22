@@ -4,6 +4,7 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
 - [Simple Encryption](./simple_encryption.md) 
 - [Shortcuts](./shortcuts.md)
 - [Matrices](./matrices.md)
+- [Markdown](./markdown.md)
 - [Github](./github.md)
 - [Taylor Series](./Taylor_Series/taylor_series.md)
 - [Newtons Method](./Newtons_Method/newtons_method.md)
@@ -14,7 +15,6 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
 
 ### Unfinished Cheat Sheets
 - [Memory Managed Hash Table](./memory_managed_hash_table.md)
-- [Markdown](./markdown.md)
 - [Linux](./linux.md)
 - [Machine Learning](./Machine_Learning/machine_learning.md)
 
