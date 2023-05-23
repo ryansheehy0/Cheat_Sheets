@@ -177,7 +177,6 @@ if [ "$pushing_to_branch" == "main" ] || [ "$pushing_to_branch" == "master" ]; t
 fi
 # fi
 
-
 exit 0
 ```
 
