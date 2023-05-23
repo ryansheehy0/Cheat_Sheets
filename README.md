@@ -17,6 +17,7 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
 - [Memory Managed Hash Table](./memory_managed_hash_table.md)
 - [Linux](./linux.md)
 - [Machine Learning](./Machine_Learning/machine_learning.md)
+- [HTML}(./html.md)
 
 ### Unstarted Cheat Sheets
 

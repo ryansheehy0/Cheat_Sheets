@@ -1,6 +1,8 @@
 # Null Programming Language
 
 - A very simple programming language. Any ease of use features should be handled by the IDE and not the language.
+- Can be compiled to c, javascript, and assembly
+- Can use c libraries
 
 - Anything that can be done in recursion can be done in a while loop. Never use recursion.
 - Macro like functions and function are 2 sides of the same coil. Macro like functions are faster, but if used more than once take up more memory. Functions 
@@ -31,13 +33,7 @@
 
 
 - Static typing aka types are checked before the code runs. Strongly typed language aka enforces strick rules for variables types.
-- Dynamic typing aka types are check when run.
-
-Programming is like a game where the goal is to implement a feature as fast as possible while having a minimum level of quality.
-    - All tools should be there to better achieve this goal.
-    The minimum level of quality should be decided by how well other people can read the code.
-        - No acronyms or abbreviations
-        - If you have abbreviations it would make everything much much faster. Comments can be put in to explain what that variable does.
+- Dynamic typing aka types are check when run. Programming is like a game where the goal is to implement a feature as fast as possible while having a minimum level of quality. All tools should be there to better achieve this goal. The minimum level of quality should be decided by how well other people can read the code. No acronyms or abbreviations If you have abbreviations it would make everything much much faster. Comments can be put in to explain what that variable does.
     - Everything in the programming language should be designed with the speed of writing in mind
         - f for function, w for while, f for for that only work within functions, v for var
 
@@ -52,3 +48,17 @@ Programming is like a game where the goal is to implement a feature as fast as p
         - i starts at 0, the code will run 10 times, i increments by 1
     - functions are f. You cannot create a function inside another function
         - for loops are f and only work inside functions
+
+Strings only use ' to open and close
+\ is used as the escape character
+# is used as a comment
+    - No multi-line comments. Mult-line comments should just be the single line over and over again
+    - The compile should force a space after the #
+        Ex:
+            # Comment instead of
+            #Comment
+
+To print to the terminal all you have to do is have a line that is a string
+f print()()
+    'Print to terminal'
+

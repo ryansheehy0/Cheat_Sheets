@@ -99,6 +99,46 @@ Settings $\rightarrow$ Developer settings $\rightarrow$ Personal access tokens $
 |Squash and merge| Combines all the changes from the source branch and makes a commit to the target branch with the changes. This removes the source branch. Doesn't preserve the history.|
 |Rebase and merge| Commits all the previous commits in the source branch and adds them to the target branch. This removes the source branch. Preserves the history.|
 
+### When your branch says behind main 
+- This means that there are new commits in the main branch that aren't in your branch.
+1. Ensure your changes are committed
+    - git status
+    - git add -A
+    - git commit -m "{Title}" -m "{Description}"
+1. Switch to the main branch
+    - git checkout main
+1. Pull from main
+    - git pull {location} main
+1. Switch to your branch
+    - git checkout {your branch}
+1. Merge changes from main into your branch
+    - git merge main
+1. Resolve any conflicts
+    - Git will tell you which files
+    - Inside the conflicting files
+```
+<<<<<<< HEAD
+// Your changes in the current branch
+=======
+// Changes from the branch you are merging with
+>>>>>>> branch-name
+```
+<ol start="7">
+    <li>Once resolved commit and push your update</li>
+    <ul>
+        <li>git add -A</li>
+        <li>git commit -m "{Title}" -m "{Description}"</li>
+        <ul>
+            <li>It is recommended to make the Title something like "Merged main into {your branch}"</li>
+        </ul>
+        <li>git push {location} {your branch}</li>
+    </ul>
+    <li>It should now say ahead of main</li>
+    <ul>
+        <li>This means that your branch has additional commits compared to the main branch.</li>
+    </ul>
+</ol>
+
 ## Setting up with SSH
 1. ssh-keygen -t ed25519 -C {github email}
     - Note: ed25519 is the encryption type of encryption it may change in the future
