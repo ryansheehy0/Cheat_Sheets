@@ -163,19 +163,19 @@ Settings $\rightarrow$ Developer settings $\rightarrow$ Personal access tokens $
 #!/bin/bash
 
 current_branch=$(git symbolic-ref --short HEAD)
-pushing_to_branch=$@
 
-echo "$pushing_to_branch"
-
-# if [ "$current_branch" != "main" ] || [ "$current_branch" != "master" ]; then
-if [ "$pushing_to_branch" == "main" ] || [ "$pushing_to_branch" == "master" ]; then
-    read -p "You are about to push to the main branch. Are you sure? [y/n] " -n 1 -r
-    echo
-    if [ $REPLY == "n" ] || [ $REPLY == "N" ]; then
-        exit 1
-    fi
-fi
-# fi
+while read local_ref local_oid remote_ref remote_oid
+do
+	if [[ $current_branch != "main" || $current_branch != "master" ]]; then
+		if [[ $remote_ref =~ master || $remote_ref =~ main ]]; then
+			read -p "You're about to push to main/master. Are you sure? [y/n] " -n 1 -r < /dev/tty
+    	    echo
+			if [[ $REPLY != "y" || $REPLY != "Y" ]]; then
+				exit 1
+			fi
+		fi
+	fi
+done
 
 exit 0
 ```
