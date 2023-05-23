@@ -173,6 +173,7 @@ if [ "$pushing_to_branch" == "main" ] || [ "$pushing_to_branch" == "master" ]; t
     echo
     if [ $REPLY == "n" ] || [ $REPLY == "N" ]; then
         exit 1
+    fi
 fi
 # fi
 
