@@ -154,3 +154,29 @@ Settings $\rightarrow$ Developer settings $\rightarrow$ Personal access tokens $
 1. Paste the contents of id_ed25519.pub into github and Add Key
 1. To test if it worked run: ssh -T git@github.com and you should see Successfully Authenticated
 1. To use with SSH make sure your location is SSH(starts with git@github.com)
+
+## Adding a warning when pushing to main/master from another branch
+- Put this code inside .git/hooks/pre-push
+    - Not pre-push.sample
+
+```
+#!/bin/bash
+
+current_branch=$(git symbolic-ref --short HEAD)
+pushing_to_branch=$@
+
+echo "$pushing_to_branch"
+
+# if [ "$current_branch" != "main" ] || [ "$current_branch" != "master" ]; then
+if [ "$pushing_to_branch" == "main" ] || [ "$pushing_to_branch" == "master" ]; then
+    read -p "You are about to push to the main branch. Are you sure? [y/n] " -n 1 -r
+    echo
+    if [ $REPLY == "n" ] || [ $REPLY == "N" ]; then
+        exit 1
+fi
+# fi
+
+exit 0
+```
+
+- Make it executable with ` chmod +x pre-push ` 
