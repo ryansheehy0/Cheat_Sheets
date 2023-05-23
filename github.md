@@ -166,7 +166,7 @@ current_branch=$(git symbolic-ref --short HEAD)
 
 while read local_ref local_oid remote_ref remote_oid
 do
-	if [[ $current_branch != "main" || $current_branch != "master" ]]; then
+	if [[ "$current_branch" != "main" && "$current_branch" != "master" ]]; then
 		if [[ $remote_ref =~ master || $remote_ref =~ main ]]; then
 			read -p "You're about to push to main/master. Are you sure? [y/n] " -n 1 -r < /dev/tty
     	    echo
