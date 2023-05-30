@@ -2,18 +2,19 @@
 - Markdown is a lightweight markup language that can be converted to HTML
     - Valid HTML can be used within markdown
 
-|                          |                   |
-|--------------------------|-------------------|
-| \#, ##, ###, ..., ###### | Headings          |
-| \[Link Text](URL)        | Link              |
-| \!\[Alt Text](URL)       | Video/Image       |
-| ---                      | Horizontal Line   |
-| \\                       | Escape character  |
-| \<!-- Text -->           | Comments          |
-| \` Text `                | Inline Code       |
-| \``` Text ```            | Code Block        |
-| > Text                   | Blockquote        |
-| >> Text                  | Nested Blockquote |
+|                          |                        |
+|--------------------------|------------------------|
+| \#, ##, ###, ..., ###### | Headings               |
+| \[Link Text](URL)        | Link                   |
+| \[Text](#header-name)    | Link to \# Header Name |
+| \!\[Alt Text](URL)       | Video/Image            |
+| ---                      | Horizontal Line        |
+| \\                       | Escape character       |
+| \<!-- Text -->           | Comments               |
+| \` Text `                | Inline Code            |
+| \``` Text ```            | Code Block             |
+| > Text                   | Blockquote             |
+| >> Text                  | Nested Blockquote      |
 
 ## Emphasis
 |               |                |

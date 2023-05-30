@@ -100,6 +100,7 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
     - Magnitude of complexity for common programming things. Like for loop, while loop, 2 for loops etc.
     - Common linux terminals
     - Look into Neo-Vim
+    - Multi-threading
 - Chemistry
     - Plastics
     - Electrolysis

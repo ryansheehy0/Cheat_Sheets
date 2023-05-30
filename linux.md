@@ -31,3 +31,4 @@
 - sort
 - uniq
 - wc
+- gnu Parallel

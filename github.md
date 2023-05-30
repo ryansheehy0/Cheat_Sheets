@@ -82,12 +82,11 @@ Settings $\rightarrow$ Developer settings $\rightarrow$ Personal access tokens $
 ## First push
 1. git init
 1. git add .
-1. git commit -m {Title} -m {Description}
+1. git commit -m "{Title}" -m "{Description}"
 1. git remote add {location} {https}
 1. git remote set-url {location} https://{username}:{personal access token}@github.com/{owner's username}/{repository}.git
-1. git checkout -b {branch}
 1. git push {location} {branch}
-- The recommended {location} is origin and the recommended {branch} is master.
+- The recommended {location} is origin and the recommended {branch} is master/main.
 
 ## Pulling Requests/Merge
 - A pull request is a request to make changes to a branch from another branch.
