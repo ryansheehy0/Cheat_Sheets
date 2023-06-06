@@ -3,10 +3,7 @@
 A version control system that manages changes to files.
 
 ## Cloning and Initializing
-
-| | |
-|-|-|
-|git clone {https}|- Pulls github repository and initializes it.|
+| | | |-|-| |git clone {https}|- Pulls github repository and initializes it.|
 |git init|- Creates .git file to allow for pushing.|
 
 ## Committing
@@ -16,7 +13,7 @@ A version control system that manages changes to files.
 |git status|- Shows all files that were updated, created, or deleted and if the files are untracked, tracked, or staged. Tracked meaning Git tracks versioning of the file and staged meaning the file is ready to be committed. All staged files are tracked.|
 |git add {File}|- Tells git to track and stage the file so it can be committed.|
 |git add -A|- Tracks and stages all the files and folders listed in status.|
-|git commit -m ”{Title}” -m ”{Description}”|- Commits staged files.|
+|git commit -m ”{Title}” -m ”{Description}”|- Commits staged files. It is recommended to have your Title be in the present tense. Ex: "Adds some stuff"|
 
 ### Reset Commits 
 

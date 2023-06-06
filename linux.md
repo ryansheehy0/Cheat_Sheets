@@ -6,6 +6,8 @@
     - Moves/Cuts a file/Directory
 - cp
     - Copies a file/Directory
+- pwd
+    - present working directory
 - rm
     - rm file
     - rm -rf Directory

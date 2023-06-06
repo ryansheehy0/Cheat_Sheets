@@ -10,6 +10,7 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
 - [Newtons Method](./Newtons_Method/newtons_method.md)
 - [Gradient Descent](./Machine_Learning/Gradient_Descent/gradient_descent.md)
 - [Logic Gate Electronic Speed Controller](./Logic_Gate_Electronic_Speed_Controller/logic_gate_electronic_speed_controller.md)
+- [Make Files](./make_files.md)
 
 ## Cheat Sheets Todo
 
@@ -17,7 +18,7 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
 - [Memory Managed Hash Table](./memory_managed_hash_table.md)
 - [Linux](./linux.md)
 - [Machine Learning](./Machine_Learning/machine_learning.md)
-- [HTML}(./html.md)
+- [HTML](./html.md)
 
 ### Unstarted Cheat Sheets
 
