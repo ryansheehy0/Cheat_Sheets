@@ -1,9 +1,10 @@
-# Git Hub Cheat Sheet
-
+# Git Cheat Sheet
 A version control system that manages changes to files.
 
 ## Cloning and Initializing
-| | | |-|-| |git clone {https}|- Pulls github repository and initializes it.|
+| | | 
+|-|-| 
+|git clone {https}|- Pulls github repository and initializes it.|
 |git init|- Creates .git file to allow for pushing.|
 
 ## Committing
@@ -15,15 +16,20 @@ A version control system that manages changes to files.
 |git add -A|- Tracks and stages all the files and folders listed in status.|
 |git commit -m ”{Title}” -m ”{Description}”|- Commits staged files. It is recommended to have your Title be in the present tense. Ex: "Adds some stuff"|
 
-### Reset Commits 
+### Resetting Commits 
 
 | | |
 |-|-|
-|git reset -hard {commit hash}|- Resets to commit specified and deletes changes.|
+|git reset -hard {commit hash}|- Resets to commit specified and deletes any commits after that commit.|
 |git reset {commit hash}|- Resets to commit specified and unstages changes.|
-|git reset -soft {commit hash}|-Resets to commit specified, but leaves files staged.
+|git reset -soft {commit hash}|- Resets to commit specified, but leaves files staged.|
 
-### Logs of Commits
+### Reverting Commits
+| | |
+|-|-|
+|git revert {commit hash} |- Makes a new commit that undos the changes from the commit hash. Does the opposite of the changes made in that commit hash.|
+
+### Commit Logs
 
 | | |
 |-|-|
@@ -43,7 +49,9 @@ A version control system that manages changes to files.
 
 | | |
 |-|-|
-|git pull {location} {branch}|- Pulls changes made from location’s branch.|
+|git pull {location} {branch}|- Pulls changes made from location’s branch. Pulling is the same as fetching and merging.|
+|git fetch {location}|- The metadata in the local repo is updated, but not files are downloaded.|
+|git merge {location}/{branch} |- Incorperate the changes from fetch into the specified branch. This downloads the changes from the remote repo.|
 
 ## Branches
 
@@ -51,7 +59,7 @@ A version control system that manages changes to files.
 |-|-|
 |git checkout -b {branch}|- Creates a new branch.|
 |git branch|- Shows all branches. * is for current branch.|
-|git checkout {branch}|- Switches between branches.|
+|git checkout {branch}|- Switches branch.|
 |git branch -d {branch}|- Deletes branch.|
 
 ## Stashing
@@ -78,14 +86,20 @@ Settings $\rightarrow$ Developer settings $\rightarrow$ Personal access tokens $
 
 ## First push
 1. git init
-1. git add .
+1. git add -A
 1. git commit -m "{Title}" -m "{Description}"
 1. git remote add {location} {https}
 1. git remote set-url {location} https://{username}:{personal access token}@github.com/{owner's username}/{repository}.git
 1. git push {location} {branch}
 - The recommended {location} is origin and the recommended {branch} is master/main.
 
-## Pulling Requests/Merge
+## Rebasing
+
+| | |
+|-|-|
+|git rebase {branch} |- Takes the commits from current branch and puts them ontop of the specified branch.|
+
+## Pull Requests
 - A pull request is a request to make changes to a branch from another branch.
 - A merge is the combining changes from one branch to another.
 

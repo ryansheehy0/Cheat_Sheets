@@ -5,7 +5,7 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
 - [Shortcuts](./shortcuts.md)
 - [Matrices](./matrices.md)
 - [Markdown](./markdown.md)
-- [Github](./github.md)
+- [Git](./git.md)
 - [Taylor Series](./Taylor_Series/taylor_series.md)
 - [Newtons Method](./Newtons_Method/newtons_method.md)
 - [Gradient Descent](./Machine_Learning/Gradient_Descent/gradient_descent.md)
