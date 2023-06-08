@@ -36,3 +36,5 @@
 - lists
     - ordered/unordered
 - pre
+
+For img alt text the screen reader automatically says image of. Just put what the alt image is. Ex: alt="cat" instead of alt="image of cat"

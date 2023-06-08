@@ -34,5 +34,5 @@
 - uniq
 - wc
 - gnu Parallel
-- | < >
+- | << >>
     - pipes, appending text into file or re-writing text into file

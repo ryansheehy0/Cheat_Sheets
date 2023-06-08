@@ -2,6 +2,7 @@
 A version control system that manages changes to files.
 
 ## Cloning and Initializing
+
 | | | 
 |-|-| 
 |git clone {https}|- Pulls github repository and initializes it.|
@@ -25,6 +26,7 @@ A version control system that manages changes to files.
 |git reset -soft {commit hash}|- Resets to commit specified, but leaves files staged.|
 
 ### Reverting Commits
+
 | | |
 |-|-|
 |git revert {commit hash} |- Makes a new commit that undos the changes from the commit hash. Does the opposite of the changes made in that commit hash.|
