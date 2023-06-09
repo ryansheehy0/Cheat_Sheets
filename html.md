@@ -38,3 +38,15 @@
 - pre
 
 For img alt text the screen reader automatically says image of. Just put what the alt image is. Ex: alt="cat" instead of alt="image of cat"
+
+
+## Inline elements vs block elements
+Block elements take up the whole like
+Inline elements just are inline
+
+You can force inline or block with css
+
+### Inline
+- 
+### Block
+- div

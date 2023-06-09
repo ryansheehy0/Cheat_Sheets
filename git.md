@@ -53,6 +53,7 @@ A version control system that manages changes to files.
 |-|-|
 |git pull {location} {branch}|- Pulls changes made from location’s branch. Pulling is the same as fetching and merging.|
 |git fetch {location}|- The metadata in the local repo is updated, but not files are downloaded.|
+|git fetch |- Fetches all the branches. |
 |git merge {location}/{branch} |- Incorperate the changes from fetch into the specified branch. This downloads the changes from the remote repo.|
 
 ## Branches
@@ -192,4 +193,4 @@ done
 exit 0
 ```
 
-- Make it executable with ` chmod +x pre-push ` 
+- Make it executable with `chmod +x ./.git/hooks/pre-push` 
