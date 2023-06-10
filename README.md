@@ -11,6 +11,7 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
 - [Gradient Descent](./Machine_Learning/Gradient_Descent/gradient_descent.md)
 - [Logic Gate Electronic Speed Controller](./Logic_Gate_Electronic_Speed_Controller/logic_gate_electronic_speed_controller.md)
 - [Make Files](./make_files.md)
+- [Regex](./regex.md)
 
 ## Cheat Sheets Todo
 
