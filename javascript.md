@@ -25,11 +25,17 @@
         - null. The absence of an object
         - arrays, key-value pairs, and/or dates
     - function
-
     - symbol
+        - `Symbol()` or `Symbol("description")
+        - Unique(Symbols cannot equal anything else) and immutable.
+    - bigints
+        - Support integers of arbitrary size
+        - `123n` or `BigInt(123)`
     - set
-    - map
-    - bigint
+        - Only can store unique values. If you attempt to add a duplicate it will be ignored.
+        - There is no specific ordering.
+        - `new Set()`
+        - `set.add(value)`, `set.delete(value)`, `set.has(value)`, `set.size`, `set.clear()`
 
 ## Variables
 var - Can be used through your whole program
@@ -119,6 +125,12 @@ Arrays allow you to store several pieces of data in the same place. Elements can
 - `.splice(index where new elements should be added, how many elements should be removed, new elements to be added)`
     - Elements are added before the index specified
     - Can be used to remove elements in an array
+- `.forEach(function)`
+    - Runs the function for each element in the array. 
+    - The args that forEach passes are value/element, key/index, and array
+- `.map(function)`
+    - Performs a function for each element in an array, then stores the returned values in a new array.
+    - The args that forEach passes are value/element, key/index, and array
 
 ```
 const fruits = ["Banana", "Orange", "Apple", "Mango"]
@@ -131,6 +143,7 @@ fruits.splice(1, 1)
 console.log(fruits)
 //Outputs: [ "Banana", "Apple", "Mango" ]
 ```
+
 - `.slice(start, end)` or `.slice(start)`
     - Slices out a piece of an array into a new array without modifying the existing the array.
 
@@ -180,16 +193,38 @@ func_name3 = (...args) => {
 
 ## Useful functions
 
-|                                    |                                                                                   |
-|------------------------------------|-----------------------------------------------------------------------------------|
-| console.log("x is " + x)           | Prints to the console.                                                            |
-| Math.PI                            | 3.141592653589793                                                                 |
-| Math.abs(num)                      | Absolute value                                                                    |
-| Math.random()                      | Returns a random floating point num between 0 and 1. Can return a 0, but not a 1. |
-| Math.floor(num)                    | Rounds down to the nearest whole number                                           |
-| Math.ceil(num)                     | Rounds up to the nearest whole number                                             |
-| .toFixed(number of decimal places) | Rounds to the number of decimal places.                                           |
-| parseInt(str) or parseINt(str, base num)                       | Converts a string to an int. If it can't then it returns NaN                      |
+|                                          |                                                                                                          |
+|------------------------------------------|----------------------------------------------------------------------------------------------------------|
+| console.log("x is " + x)                 | Prints to the console.                                                                                   |
+| prompt("Message")                        | Shows a pop up with message and allowing user input.                                                     |
+| Math.PI                                  | 3.141592653589793                                                                                        |
+| Math.abs(num)                            | Absolute value                                                                                           |
+| Math.random()                            | Returns a random floating point num between 0 and 1. Can return a 0, but not a 1.                        |
+| Math.floor(num)                          | Rounds down to the nearest whole number                                                                  |
+| Math.ceil(num)                           | Rounds up to the nearest whole number                                                                    |
+| .toFixed(number of decimal places)       | Rounds to the number of decimal places.                                                                  |
+| parseInt(str) or parseInt(str, base num) | Converts a string to an int. If it can't then it returns NaN                                             |
+| setTimeout(function, milliseconds)       | The function runs after the delay time in milliseconds. Other code can run while waiting for setTimeout. |
+
+### Fetch
+Used to fetch data from a server.
+
+```
+fetch("URL", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ key1: "value1", key2: "value2"})
+})
+    .then(response => response.json()) // asynchronously returns an object from the json string
+    .then(data => {
+        console.log(data)
+    })
+    .catch(error => {
+        console.log(error)
+    })
+```
 
 ## Objects
 Objects store value in a key-value pair.
@@ -216,9 +251,10 @@ console.log(testObj["A food"]) // hamburger
     - Ex: `testObj.hasOwnProperty("A food")`
 
 ### JavaScript Object Notation(JSON)
-- You cannot end key-value pairs with ,s
-- Convert an object to JSON
+- The last key-value pair cannot end with ,s
+- Convert JSON to an object
     - `JSON.parse(json)`
+    - You can convert asynchronously with `json.json()`
 
 ```
 const json = '{"first name": "Ryan", "last name": "Sheehy"}'
@@ -231,7 +267,7 @@ const obj = JSON.parse(json, (key, value) => {
 console.log(obj)
 ```
 
-- Convert JSON to an object
+- Convert an object to JSON
     - `JSON.stringify(obj)`
 
 ### Spread operator
@@ -292,5 +328,53 @@ default export x
 import Name from "./filepath"
 ```
 
-## Try Catch
-## Async/Await/fetch
+## Error handling
+Used to keep the code running even when there is an error.
+
+```
+try{
+    // Code that may throw an error
+    if( variable ){
+        throw "Custom error message." // The "Custom error message." is in error and not error.name or error.message
+    }
+}catch(error) {
+    // These are the only 2 keys in an error
+    console.log(error.name)
+    console.log(error.message)
+}finally{
+    // Code that runs after the try catch regardless of what the try catch does
+}
+```
+
+## Promises
+Used to handle asynchronous(code can be run in parallel) operations.
+
+```
+let promise = new Promise((resolve, reject) => {
+    let x = 1 + 1
+    if( x == 2 ){
+        resolve("Success")
+    }else{
+        reject("Failed")
+    }
+})
+
+promise.then((message) => {
+    // then runs if the promise returns a resolve
+    console.log(message) // "Success"
+}).catch((message) => {
+    // catch runs if the promise returns a reject
+    console.log(message) // "Failed"
+}
+```
+
+## Async/Await
+Used to make promises easier to work with. Only works with asynchronous functions.
+
+```
+async func_name = () => {
+    await promise_function()
+    // The code will wait until promise_function returns something. It just returns the resolved section and not the rejected section.
+        // To get the rejected you can use .catch{}
+}
+```
