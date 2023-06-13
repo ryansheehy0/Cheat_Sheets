@@ -50,3 +50,6 @@ You can force inline or block with css
 - 
 ### Block
 - div
+
+## Symantec Elements
+navbar, section, aside
