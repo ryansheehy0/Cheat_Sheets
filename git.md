@@ -127,7 +127,7 @@ Settings $\rightarrow$ Developer settings $\rightarrow$ Personal access tokens $
 1. Merge changes from main into your branch
     - git merge main
 1. Resolve any conflicts
-    - Git will tell you which files
+    - Git will tell you which files. If 2 or more people changed the same file then there will be conflicts..
     - Inside the conflicting files
 ```
 <<<<<<< HEAD
