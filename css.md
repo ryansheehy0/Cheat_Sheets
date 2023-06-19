@@ -14,8 +14,8 @@ selector{
 
 ## Table of contents
 - [Miscellaneous](#miscellaneous)
-- [Specificity](#specificity)
 - [Background](#background)
+    - [Linear Gradient](#linear-gradient)
 - [Text](#text)
 - [Sizing](#sizing)
     - [Box Sizing](#box-sizing)
@@ -35,16 +35,18 @@ selector{
     - [Grid](#grid)
 - [Visibility](#visibility)
 - [Units](#units)
-- [Change css based on width of the screen](#change-css-based-on-width-of-the-screen)
-- [transform](#transform)
-    - [transform functions](#transform-functions)
+- [Adaptive Screen Width](#adaptive-screen-width)
+- [Transform](#transform)
+    - [Transform Functions](#transform-functions)
 - [Pseudo classes/elements](#pseudo-classeselements)
     - [Pseudo classes](#pseudo-classes)
         - [Custom JavaScript Pseudo class](#custom-javascript-pseudo-class)
     - [Pseudo elements](#pseudo-elements)
 - [CSS reset](#css-reset)
-- [CSS combinators](#css-combinators)
-- [CSS attribute selectors](#css-attribute-selectors)
+- [CSS selectors](#css-selectors)
+    - [CSS combinators](#css-combinators)
+    - [CSS attribute selectors](#css-attribute-selectors)
+    - [Selector Specificity](#selector-specificity)
 - [Variables in CSS](#variables-in-css)
 - [Need to research](#need-to-research)
 
@@ -62,23 +64,23 @@ selector{
 - `box-shadow: h-offset v-offset blur spread color inset;`
     - inset creates and inset shadow so it appears to be inside the element.
 
-## Specificity
-- The CSS selector that is more specific will be applied last. In the order of id being the lowest, class 2nd, and element 3rd.
-    - In the order of less specificity to more specificity. Universal selector(*), 1 element(div), multiple number of elements with more elements meaning more specificity( div div), 1 class(.class), universal selector and 1 class(*.class), 
-    - http://specifishity.com/
-- If given the same specificity last CSS attribute is applied.
-
 ## Background
 
-| CSS Name                            | What it does                                                       |
-|-------------------------------------|--------------------------------------------------------------------|
-| background                          | Combination of background properties.                              |
-| background-color                    | Sets the background color.                                         |
-| background-image: url('file path'); | Sets a background image.                                           |
-| background-size                     | Sets the how the background image is shown. Usually `cover`        |
-| background-repeat                   | Sets background image repeating property. Usually `no-repeat`      |
-| background-position                 | Sets the position of the background image. Usually `center center` |
-| background: linear-gradient(        | Creates a gradient that can be between 2 or more colors.           |
+| CSS Name                                                                | What it does                                                       |
+|-------------------------------------------------------------------------|--------------------------------------------------------------------|
+| background                                                              | Combination of background properties.                              |
+| background-color                                                        | Sets the background color.                                         |
+| background-image: url('file path');                                     | Sets a background image.                                           |
+| background-size                                                         | Sets the how the background image is shown. Usually `cover`        |
+| background-repeat                                                       | Sets background image repeating property. Usually `no-repeat`      |
+| background-position                                                     | Sets the position of the background image. Usually `center center` |
+| background: linear-gradient(direction, color stop 1, color stop 2, ...) | Creates a gradient that can be between 2 or more colors.           |
+
+### Linear Gradient
+- Direction
+    - to top/right/bottom/left
+    - They can be combined. Ex: `to top right`
+    - Angles can be used.
 
 ## Text
 
@@ -192,17 +194,17 @@ Put `display: flex;` on parent.
 - On parent is referring to the element that is containing the flex elements
 - On child is referring to the element that the flex is being applied to.
 
-|                  |                                                                                                                                         | On parent or On child |
-|------------------|-----------------------------------------------------------------------------------------------------------------------------------------|-----------------------|
-| flex-wrap:       | Forces elements to the next line if they don't fit.                                                                                     | On parent             |
-| justify-content: | How content are spaced on the main axis. Applies to multiple items.                                                                     | On parent             |
-| justify-items:   | Aligns the main axis multiple lines of flex items created by flex-wrap.                                                                 | On parent             |
-| justify-self:    | Aligns self on main axis.                                                                                                               | On child              |
-| align-content:   | How items are spaced on the cross axis. Applies to multiple items.                                                                      | On parent             |
-| align-items:     | Aligns the cross axis multiple lines of flex items created by flex-wrap                                                                 | On parent             |
-| align-self:      | Align self on cross axis.                                                                                                               | On child              |
-| flex-direction:  | Change the direction which flex is. By default it is row                                                                                | On parent             |
-| order:           | Changes the ordering priority of an element. If multiple items have the same order value, their original order is maintained. On child. | On child              |
+|                  |                                                                         | On parent or On child |
+|------------------|-------------------------------------------------------------------------|-----------------------|
+| flex-wrap:       | Forces elements to the next line if they don't fit.                     | On parent             |
+| justify-content: | How content are spaced on the main axis. Applies to multiple items.     | On parent             |
+| justify-items:   | Aligns the main axis multiple lines of flex items created by flex-wrap. | On parent             |
+| justify-self:    | Aligns self on main axis.                                               | On child              |
+| align-content:   | How items are spaced on the cross axis. Applies to multiple items.      | On parent             |
+| align-items:     | Aligns the cross axis multiple lines of flex items created by flex-wrap | On parent             |
+| align-self:      | Align self on cross axis.                                               | On child              |
+| flex-direction:  | Change the direction which flex is. By default it is row                | On parent             |
+| order:           | Changes the ordering priority of an element.                            | On child              |
 
 |                                              |                                                                                           | On parent or On Child |
 |----------------------------------------------|-------------------------------------------------------------------------------------------|-----------------------|
@@ -234,28 +236,70 @@ Flex box froggy Game
     - https://flexboxfroggy.com/
 
 ### Grid
+Similar to flex-box/display flex, but for 2 dimensions instead of 1.
+
+Put `display: grid` on parent.
+
+|                        |                                                                |
+|------------------------|----------------------------------------------------------------|
+| grid-template-columns: | Sets the columns of the grid.                                  |
+| grid-template-rows:    | Sets the rows of the grid.                                     |
+| grid-auto-rows:        | Determines the size of all rows added after the template rows. |
+| grid-gap:              | Sets the size of the gaps between both rows and columns.       |
+| grid-row-gap:          | Sets the size of the gaps between rows.                        |
+| grid-columns-gap:      | Sets the size of the gaps between columns.                     |
+| grid-template-areas:   | Used to define named grid areas in a grid container.           |
+
+#### Grid Template
+- Fractional units can be used to set the grid templates to take up the available space.
+
+```
+div{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+```
+
+- The repeat command can be used instead of writing out all the lengths one at a time. `repeat(4, 100px)` is the same as `100px 100px 100px 100px`.
+- `grid-auto-rows: minmax(150px, auto)` can be used to prevent overflows.
+
+##### Grid Template Areas
+Used to define named grid areas in a grid container.
+
+```
+div{
+    grid-template-areas:
+        "header header"
+        "sidebar content"
+        "sidebar content"
+}
+
+div div{
+    grid-area: header; /*Sets the child div as the header */
+}
+
+```
 
 ## Visibility
 
 `visibility: {visibility name}`
 
-| visibility name | What it does |
-|----------|--------------|
-| hidden   |  Hides an element. Takes up space.            |
-
+| visibility name | What it does                      |
+|-----------------|-----------------------------------|
+| visible         | Default.                          |
+| hidden          | Hides an element. Takes up space. |
 
 ## Units
 
-|     |                        |
-|-----|------------------------|
-| px  | pixles                 |
-| %   | Size of parent element |
-| vw  | Screen width           |
-| vh  | Screen height          |
-| em  |                        |
-| deg |                        |
+|     |                             |
+|-----|-----------------------------|
+| px  | pixles                      |
+| %   | Size of parent element      |
+| vw  | Screen width                |
+| vh  | Screen height               |
+| rem | Relative to root font size usually defined by the browser. |
 
-## Change css based on width of the screen
+## Adaptive Screen Width
 
 ```
 // Change css when screen width is 1000px or less
@@ -270,21 +314,23 @@ or
 
 You can also do min-height or max-height
 
-## transform
+## Transform
 `transform: {function}`
 
-### transform functions
+### Transform Functions
 - skew(deg) or skew(x, y) or skewX() or skewY()
 - rotate(deg)
 - scale(x) or scale(x, y) or scaleX() or scaleY()
 - translateX() or translateY() or translate(x, y)
 
-## Pseudo classes/elements
+## Pseudo Classes/Elements
 
-### Pseudo classes
+### Pseudo Classes
 Pseudo classes allow you to style an element based on a specific state or condition.
 
 Pseudo classes take the format of {selector}:{pseudo-class}
+
+These are the most common pseudo classes.
 
 - hover
     - The mouse is over the element
@@ -301,7 +347,7 @@ Pseudo classes take the format of {selector}:{pseudo-class}
 - not()
     - Negation selector
 
-#### Custom JavaScript Pseudo class
+#### Custom JavaScript Pseudo Class
 The JavaScript is used to create a custom state or condition.
 
 ```
@@ -324,23 +370,24 @@ myClassElements.forEach((element) => {
 }
 ```
 
-### Pseudo elements
+### Pseudo Elements
 In order for the pseudo elements to show the content has to be set. Usually `content: ""`
 
 Pseudo elements have the format of {selector}::{pseudo-element-name}
+
+These are the most common pseudo element.
 
 - before
     - Inserts content before the element.
 - after
     - Inserts content after the element.
-- placeholder
 
-## CSS reset
+## CSS Reset
 The browser applies some CSS by default. The CSS reset is used to remove this default CSS so that your website will look the same on all browsers.
 
 Your custom CSS has to be applied after the CSS reset so that the custom CSS overwrites the CSS reset.
 
-## CSS selectors
+## CSS Selectors
 CSS selectors are used to select an element in order to apply styling to it.
 
 |                  |                                                 |
@@ -353,15 +400,15 @@ CSS selectors are used to select an element in order to apply styling to it.
 | element, element | Selects all elements of both elements           |
 | *                | Selects all elements of any type                |
 
-### CSS combinators
+### CSS Combinators
 CSS combinators are special characters that are used to select specific elements with relations to another element.
 
-|       |                           |
-|-------|---------------------------|
-| space | descendant selector       |
-| >     | child selector            |
+|       |                                                          |
+|-------|----------------------------------------------------------|
+| space | descendant selector                                      |
+| >     | child selector                                           |
 | \+    | selects an element that directly follows another element |
-| ~     | general sibling selector  |
+| ~     | general sibling selector                                 |
 
 ```
 /* Example */
@@ -382,10 +429,81 @@ div + p     /* Selects Par 3*/
 div ~ p     /* Selects Par 3 and Par 3*/
 ```
 
-### CSS attribute selectors
+### CSS Attribute Selectors
 CSS attribute selectors select elements based upon attributes and attribute values.
 
+|                       |                                                                                                      |
+|-----------------------|------------------------------------------------------------------------------------------------------|
+| [attribute]           | Select elements with attribute.                                                                      |
+| [attribute="value"]   | Selects elements with attribute="value"                                                              |
+| [attribute~="value"]  | Selects elements with attribute containing "value" as a stand alone word. So "value-" will not work. |
+| [attribute\|="value"] | Selects elements with attribute starting with "value-" or matching exactly "value"                   |
+| [attribute^="value"]  | Selects elements with attributes starting with "value"                                               |
+| [attribute$="value"]  | Selects elements with attributes ending with "value"                                                 |
+| [attribute*="value"]  | Selects elements with attributes containing "value"                                                  |
 
+```
+/* Example */
+    /* HTML */
+<div attribute class="div1"/>
+<div attribute="value" class="div2"/>
+<div attribute="value-test" class="div3"/>
+<div attribute="values" class="div4"/>
+
+    /* CSS */
+[attribute]{
+    /* Styles div1, div2, div3, and div4 */
+}
+[attribute="value"]{
+    /* Styles div2 */
+}
+[attribute~="value"]{
+    /* Styles div2 */
+}
+[attribute|="value"]{
+    /* Styles div2 and div3 */
+}
+[attribute^="value"]{
+    /* Styles div2, div3, and div4 */
+}
+[attribute$="value"]{
+    /* Styles div2 */
+}
+[attribute*="value"]{
+    /* Styles div2, div3, and div4 */
+}
+```
+
+### Selector Specificity
+- The CSS selector that is more specific will be applied.
+    - Specificity is calculated based upon 4 components in the order of more specificity to less specificity.
+        - !important is the most specific.
+        - Specificity 1,0,0,0: Inline styles
+        - Specificity 0,1,0,0: IDs
+        - Specificity 0,0,1,0: Classes, attributes, and pseudo-classes
+        - Specificity 0,0,0,1: Elements and pseudo-elements
+    - To calculate the specificity, assign a value to each of the four components and count the occurrences from left to right. The higher the value, the higher the specificity.
+- If given the same specificity last CSS attribute is applied.
+
+```
+/* If all the selectors target the same element then the one with the highest specificity will be applied. */
+body div#header.container {
+  /* Specificity: 0,1,1,2 */
+  /* This has the highest specificity so it will be applied. */
+}
+
+#header {
+  /* Specificity: 0,1,0,0 */
+}
+
+div.container {
+  /* Specificity: 0,0,1,1 */
+}
+
+h1 {
+  /* Specificity: 0,0,0,1 */
+}
+```
 
 ## Variables in CSS
 
@@ -405,20 +523,3 @@ var(--var);
     --hex-var: #000000;
 }
 ```
-
-## Need to research
-- Make 3d images with CSS
-- All pseudo elements
-- All pseudo classes
-- All css selectors
-    - [type="checkbox"]
-        - What does this do?
-    - [href$=".css"]
-        - $ means it ends with .css
-        - * means contains .css. [href*=".css"]
-    - * wild card selector
-        - any element
-- All Media queries
-    - tend to go at the very bottom so that they overwrite the other css
-    @media print
-        - When user wants to print you can change the css
