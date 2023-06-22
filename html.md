@@ -53,3 +53,32 @@ You can force inline or block with css
 
 ## Symantec Elements
 navbar, section, aside
+
+## Start of HTML
+
+```
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Title</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+    <body>
+    </body>
+</html>
+```
+
+## CSS in HTML
+- Put into the `<head>` of the HTML so the browser can style before it paints the page.
+
+```
+<style 
+```
+
+## JavaScript in HTML
+- Put at the very end of the HTML `<body>` so the JavaScript can interact with the HTML elements. 
+
+```
+<script src="script.js"></script>
+```

@@ -104,6 +104,8 @@ selector{
 | width         | Changes width of the content.                                            |
 | height        | Changes height of the content.                                           |
 | border-radius | Set equal width and height and border-radius to 50% to make it a circle. |
+| max-width     | Sets the maximum width an element can have. Can't go over.               |
+| min-width     | Sets the minimum width an element can have. Can't go under.              |
 
 In order for a percentage height or width to work properly, the parent container needs to have a specified height.
 
@@ -194,17 +196,21 @@ Put `display: flex;` on parent.
 - On parent is referring to the element that is containing the flex elements
 - On child is referring to the element that the flex is being applied to.
 
-|                  |                                                                         | On parent or On child |
-|------------------|-------------------------------------------------------------------------|-----------------------|
-| flex-wrap:       | Forces elements to the next line if they don't fit.                     | On parent             |
-| justify-content: | How content are spaced on the main axis. Applies to multiple items.     | On parent             |
-| justify-items:   | Aligns the main axis multiple lines of flex items created by flex-wrap. | On parent             |
-| justify-self:    | Aligns self on main axis.                                               | On child              |
-| align-content:   | How items are spaced on the cross axis. Applies to multiple items.      | On parent             |
-| align-items:     | Aligns the cross axis multiple lines of flex items created by flex-wrap | On parent             |
-| align-self:      | Align self on cross axis.                                               | On child              |
-| flex-direction:  | Change the direction which flex is. By default it is row                | On parent             |
-| order:           | Changes the ordering priority of an element.                            | On child              |
+Each wrap creates a new item. The content includes all the items/lines.
+
+- You can use margins to force a wrap without doing a width of 100%.
+
+|                  |                                                                                          | On parent or On child |
+|------------------|------------------------------------------------------------------------------------------|-----------------------|
+| flex-wrap:       | Forces elements to the next line if they don't fit.                                      | On parent             |
+| justify-content: | How content are spaced on the main axis. Applies to multiple items.                      | On parent             |
+| justify-items:   | Aligns the main axis multiple lines of flex items created by flex-wrap.                  | On parent             |
+| justify-self:    | Aligns self on main axis.                                                                | On child              |
+| align-content:   | How items are spaced on the cross axis. Applies to multiple items.                       | On parent             |
+| align-items:     | Aligns the cross axis items/lines created by flex-wrap                                   | On parent             |
+| align-self:      | Align self on cross axis.                                                                | On child              |
+| flex-direction:  | Change the direction which flex is. By default it is row                                 | On parent             |
+| order:           | Changes the ordering priority of an element.                                             | On child              |
 
 |                                              |                                                                                           | On parent or On Child |
 |----------------------------------------------|-------------------------------------------------------------------------------------------|-----------------------|
@@ -377,10 +383,13 @@ Pseudo elements have the format of {selector}::{pseudo-element-name}
 
 These are the most common pseudo element.
 
-- before
-    - Inserts content before the element.
-- after
-    - Inserts content after the element.
+- before/after
+    - Goes before or after the content. Not before or after the margin.
+    - before or after don't work on imgs.
+    - before
+        - Inserts content before the element.
+    - after
+        - Inserts content after the element.
 
 ## CSS Reset
 The browser applies some CSS by default. The CSS reset is used to remove this default CSS so that your website will look the same on all browsers.
@@ -521,5 +530,17 @@ var(--var);
 /* Sets the variable again */
 .class{
     --hex-var: #000000;
+}
+```
+
+JavaScript can be used to set variables in CSS.
+
+```
+/* JavaScript */
+document.documentElement.style.setProperty("--var", "10px")
+
+/* CSS */
+:root{
+    --var: 0;
 }
 ```

@@ -1,4 +1,9 @@
+[Home](./README.md)
+
 # JavaScript
+JavaScript is the only language that can be run in the browser.
+
+## Table of contents
 
 ## Comments
 
@@ -10,7 +15,7 @@
 */
 ```
 
-## Data types
+## Primitive Data types
 - Dynamically typed. A variable can be assigned to multiple types.
 - `typeof operand` can be used to get a string of the type
     - undefined
@@ -18,12 +23,14 @@
     - boolean
         - Includes true or false
         - Something is false if it has the values of 0, -0, On, "", null, undefined, NaN, or false.
+        - Often start with the words is, has, or should.
     - string
     - number
         - Includes ints, floats, NaN, and Infinity
     - object
-        - null. The absence of an object
-        - arrays, key-value pairs, and/or dates
+        - null. The absence of an object.
+        - key-value pairs
+        - Object types: object, date, array, string, number, boolean.
     - function
     - symbol
         - `Symbol()` or `Symbol("description")
@@ -31,11 +38,12 @@
     - bigints
         - Support integers of arbitrary size
         - `123n` or `BigInt(123)`
-    - set
-        - Only can store unique values. If you attempt to add a duplicate it will be ignored.
-        - There is no specific ordering.
-        - `new Set()`
-        - `set.add(value)`, `set.delete(value)`, `set.has(value)`, `set.size`, `set.clear()`
+
+## sets
+- Only can store unique values. If you attempt to add a duplicate it will be ignored.
+- There is no specific ordering.
+- `new Set()`
+- `set.add(value)`, `set.delete(value)`, `set.has(value)`, `set.size`, `set.clear()`
 
 ## Variables
 var - Can be used through your whole program
@@ -43,6 +51,9 @@ var - Can be used through your whole program
 let - Only used within the scope of where you declared it
 
 const - Variable that can never change
+
+- A refresh in the browser clears all variables.
+- camelCase is most commonly used
 
 ```
 function example() {
@@ -151,7 +162,8 @@ console.log(fruits)
 - `===` `!==` strict operator
     - Doesn't do the type conversion
 - `==` `!=` 
-    - Attempts to convert both values to a common type
+    - Attempts to convert both values to a common type. Allows type coercion.
+    - <, >, <=, >= attempts to convert values
 
 ```
 3 === 3 // true
@@ -201,6 +213,7 @@ func_name3 = (...args) => {
 | Math.abs(num)                            | Absolute value                                                                                           |
 | Math.random()                            | Returns a random floating point num between 0 and 1. Can return a 0, but not a 1.                        |
 | Math.floor(num)                          | Rounds down to the nearest whole number                                                                  |
+| Math.floor(Math.random() * (num + 1))    | Picks a random integer from 0 to num.
 | Math.ceil(num)                           | Rounds up to the nearest whole number                                                                    |
 | .toFixed(number of decimal places)       | Rounds to the number of decimal places.                                                                  |
 | parseInt(str) or parseInt(str, base num) | Converts a string to an int. If it can't then it returns NaN                                             |
