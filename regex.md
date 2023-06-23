@@ -1,3 +1,5 @@
+[Home](./README.md)
+
 # Regular Expressions(Regex)
 The purpose of a regex is to find character patterns. This can be used to replace them with something or to delete them.
 
@@ -7,7 +9,7 @@ The purpose of a regex is to find character patterns. This can be used to replac
 
 | Sequence  | Description                                                                      |
 |-----------|----------------------------------------------------------------------------------|
-| \char     | Esxape sequence                                                                  |
+| \char     | Escape sequence                                                                  |
 | \|        | or                                                                               |
 | [...]     | Any character in the brackets                                                    |
 | [.-.]     | Range [0-9] is any number, [A-Za-z] is any letter.                               |
@@ -25,7 +27,7 @@ The purpose of a regex is to find character patterns. This can be used to replac
 | \<        | start of word                                                                    |
 | \>        | end of word                                                                      |
 | ()        | back reference or substring                                                      |
-| $1        | 1st back reference. $2 for 2nd back reference                                    |
+| &#36;1    | 1st back reference. &#36;2 for 2nd back reference                                    |
 | \d        | Any digit. [0-9]                                                                 |
 | \w        | Any word character. [A-Za-z]                                                     |
 | \D        | Any non-digit                                                                    |

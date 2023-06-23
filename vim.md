@@ -1,3 +1,5 @@
+[Home](./README.md)
+
 # Vim commands
 - This will only cover the commands I use the most
 

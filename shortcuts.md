@@ -1,3 +1,5 @@
+[Home](./README.md)
+
 # Shortcuts
 
 - Window Manager: [Linux Mint](#linux-mint)

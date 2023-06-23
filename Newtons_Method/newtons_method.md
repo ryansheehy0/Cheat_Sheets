@@ -1,3 +1,5 @@
+[Home](../README.md)
+
 # Newton's Method
 
 Used to estimate where $f(x) = 0$

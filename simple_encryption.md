@@ -1,3 +1,5 @@
+[Home](./README.md)
+
 # Simple Encryption
 
 A simple non secure encryption that only allows writable ASCII characters used to obfuscate files.

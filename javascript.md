@@ -3,7 +3,28 @@
 # JavaScript
 JavaScript is the only language that can be run in the browser.
 
-## Table of contents
+## Table of Contents
+- [Comments](#comments)
+- [Primitive Data Types](#primitive-data-types)
+- [Sets](#sets)
+- [Variables](#variables)
+- [Strings](#strings)
+    - [String Functions](#string-functions)
+- [Arrays](#arrays)
+    - [Array Functions](#array-functions)
+- [Equality Operators](#equality-operators)
+- [Switch Block](#switch-block)
+- [Functions](#functions)
+- [Useful Functions](#useful-functions)
+    - [Fetch](#fetch)
+- [Objects](#objects)
+    - [JavaScript Object Notation(JSON)](#javascript-object-notation-json)
+    - [Spread Operator](#spread-operator)
+- [Template Literals](#template-literals)
+- [Import and Export](#import-and-export)
+- [Error Handling](#error-handling)
+- [Promises](#promises)
+- [Async/Await](#asyncawait)
 
 ## Comments
 
@@ -15,7 +36,7 @@ JavaScript is the only language that can be run in the browser.
 */
 ```
 
-## Primitive Data types
+## Primitive Data Types
 - Dynamically typed. A variable can be assigned to multiple types.
 - `typeof operand` can be used to get a string of the type
     - undefined
@@ -39,7 +60,7 @@ JavaScript is the only language that can be run in the browser.
         - Support integers of arbitrary size
         - `123n` or `BigInt(123)`
 
-## sets
+## Sets
 - Only can store unique values. If you attempt to add a duplicate it will be ignored.
 - There is no specific ordering.
 - `new Set()`
@@ -47,6 +68,7 @@ JavaScript is the only language that can be run in the browser.
 
 ## Variables
 var - Can be used through your whole program
+    - Can be declared below their use. This is called hoisting and is unique to JS.
 
 let - Only used within the scope of where you declared it
 
@@ -89,7 +111,7 @@ Escape seqences: \\", \\', \\`, \\ \\
 
 Strings are immutable. Once a string is created its value cannot be changed. If the value is changed what is happening is that a new string is being made and assigned.
 
-### String methods
+### String Functions
 - `.length`
     - Size of the string
 - `.slice(start, end)` or `.slice(start)` 
@@ -116,7 +138,7 @@ Strings are immutable. Once a string is created its value cannot be changed. If 
 ## Arrays
 Arrays allow you to store several pieces of data in the same place. Elements can be any data type and arrays are mutable.
 
-### Useful array functions
+### Array Functions
 - `.length`
 - `.join(string_separator)`
     - Converts an array to a string with the string separators between each element.
@@ -158,7 +180,7 @@ console.log(fruits)
 - `.slice(start, end)` or `.slice(start)`
     - Slices out a piece of an array into a new array without modifying the existing the array.
 
-## Equality operators
+## Equality Operators
 - `===` `!==` strict operator
     - Doesn't do the type conversion
 - `==` `!=` 
@@ -172,7 +194,7 @@ console.log(fruits)
 3 == '3' // true
 ```
 
-## Switch block
+## Switch Block
 
 ```
 let x = 10
@@ -195,15 +217,17 @@ switch(x) {
 ```
 function func_name1(arg1, arg2) {}
 
-func_name2 = (arg1, arg2) => {}
+const func_name2 = function(arg1, arg2) {}
+
+const func_name3 = (arg1, arg2) => {}
 
 // Rest operator. Used to allow a function to have a variable number of args.
-func_name3 = (...args) => {
+const func_name4 = (...args) => {
     console.log(args[0], args[1])
 }
 ```
 
-## Useful functions
+## Useful Functions
 
 |                                          |                                                                                                          |
 |------------------------------------------|----------------------------------------------------------------------------------------------------------|
@@ -283,7 +307,7 @@ console.log(obj)
 - Convert an object to JSON
     - `JSON.stringify(obj)`
 
-### Spread operator
+### Spread Operator
 - Used to spread out an array or an object
 
 ```
@@ -308,7 +332,7 @@ const obj2 = {
 const obj3 = {...obj1, ...obj2} 
 ```
 
-## Template literals
+## Template Literals
 Used to make complete string with embedded JS.
 - Starts with \`s
 - It allows you to have multi-line strings with a newline inserted.
@@ -341,7 +365,7 @@ default export x
 import Name from "./filepath"
 ```
 
-## Error handling
+## Error Handling
 Used to keep the code running even when there is an error.
 
 ```

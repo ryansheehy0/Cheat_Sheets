@@ -1,3 +1,5 @@
+[Home](../README.md)
+
 # Logic gate electronic speed controller
 
 An electronic speed controller(ESC) that uses logic gates for the control flow instead of a micro-controller. Used to operate a brushless direct current(BLDC) motor.

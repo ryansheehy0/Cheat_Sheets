@@ -1,3 +1,5 @@
+[Home](../../README.md)
+
 # Gradient Descent
 
 An algorithm used to iteratively update the input variables of a function in order to find a local minimum. Such functions can have variable number of inputs such as $f(x_1, x_2, ...)$.

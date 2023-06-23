@@ -1,3 +1,5 @@
+[Home](./README.md)
+
 # Memory Managed Hash Table
 
 - Arrays are slow to retrieve data(high computations), but take up only the memory that is needed(low memory).
