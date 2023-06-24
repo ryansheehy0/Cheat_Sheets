@@ -99,3 +99,11 @@ Text
 | x_1                           | Subscript       |
 | x^2                           | Superscript     |
 | \frac{Numerator}{Denominator} | Fractions       |
+
+## Automatically create table of contents
+
+`sudo npm install -g doctoc`
+
+`doctoc file.md`
+
+Adds table of contents to the top of the markdown file.
