@@ -3,6 +3,9 @@
 # HTML
 - The purpose of this cheat sheet is to provide an overview of the most useful HTML elements.
 
+## Miscellaneous
+- 2 elements cannot have the same id
+
 ## Head elements
 - Elements used in the &lt;head&gt; tag. Aren't displayed within the page.
 

@@ -75,3 +75,7 @@ sed 's/o/O/g' <file1.txt >file2.txt
 man sed | sed '/replace/s/the/The/g'
     The lines that have "replace" on them have the "the"s changed to "The"s.
 ```
+
+## Recursive size of folders in a directory
+
+`du --max-depth=1 -h ./`

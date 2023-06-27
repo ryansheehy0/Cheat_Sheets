@@ -18,6 +18,7 @@ JavaScript is the only language that can be run in the browser.
 - [Useful Functions](#useful-functions)
     - [Fetch](#fetch)
 - [Objects](#objects)
+    - [For In](#for-in)
     - [JavaScript Object Notation(JSON)](#javascript-object-notation-json)
     - [Spread Operator](#spread-operator)
 - [Template Literals](#template-literals)
@@ -25,6 +26,13 @@ JavaScript is the only language that can be run in the browser.
 - [Error Handling](#error-handling)
 - [Promises](#promises)
 - [Async/Await](#asyncawait)
+- [DOM Manipulation](#dom-manipulation)
+    - [Accessing Elements](#accessing-elements)
+    - [Modifying Elements](#modifying-elements)
+    - [Creating and Appending Elements](#creating-and-appending-elements)
+    - [Event Handling](#event-handling)
+    - [Traversing the DOM](#traversing-the-dom)
+- [This](#this)
 
 ## Comments
 
@@ -233,6 +241,8 @@ const func_name4 = (...args) => {
 |------------------------------------------|----------------------------------------------------------------------------------------------------------|
 | console.log("x is " + x)                 | Prints to the console.                                                                                   |
 | prompt("Message")                        | Shows a pop up with message and allowing user input.                                                     |
+| alert("Message")                         | Shows an alert to the user. No user input.                                                               |
+| confirm("Message")                       | Shows message to user and takes user input as true or false.                                             |
 | Math.PI                                  | 3.141592653589793                                                                                        |
 | Math.abs(num)                            | Absolute value                                                                                           |
 | Math.random()                            | Returns a random floating point num between 0 and 1. Can return a 0, but not a 1.                        |
@@ -264,7 +274,9 @@ fetch("URL", {
 ```
 
 ## Objects
-Objects store value in a key-value pair.
+Objects are used to store an unordered list of properties to describe one thing.
+
+Literal object notation is an object created with key-value pairs.
 
 ```
 let testObj = {
@@ -286,6 +298,23 @@ console.log(testObj["A food"]) // hamburger
     - Ex: `delete testObj.drink`
 - You can check if an object has a property with `.hasOwnProperty("property")`
     - Ex: `testObj.hasOwnProperty("A food")`
+- Objects can have functions. Methods are functions inside objects.
+- Object.values(object) converts an object to an array where the keys are replaced with indices.
+- Object.keys(object) gets an array of the keys of that object
+
+### For In
+- You need to do [] when referencing properties in a for in loop in case the property has a space in it.
+
+```
+const object = { a: 1, b: 2, c: 3 };
+
+for (const property in object) {
+  console.log(property + ": " + object[property]);
+}
+// "a: 1"
+// "b: 2"
+// "c: 3"
+```
 
 ### JavaScript Object Notation(JSON)
 - The last key-value pair cannot end with ,s
@@ -413,5 +442,71 @@ async func_name = () => {
     await promise_function()
     // The code will wait until promise_function returns something. It just returns the resolved section and not the rejected section.
         // To get the rejected you can use .catch{}
+}
+```
+
+## DOM Manipulation
+
+### Accessing Elements
+
+|                                          |                                                            |
+|------------------------------------------|------------------------------------------------------------|
+| document.getElementById('id')            | Returns element with the id                                |
+| document.getElementsByClassName('class') | Returns a collection of elements with the class            |
+| document.getElementsByTagName('tag')     | Returns a collection of elements with the tag/element name |
+| document.querySelector('selector')       | Returns the first element with the CSS selector            |
+| document.querySelectorAll('selector')    | Returns a collection of element with the CSS selector      |
+
+### Modifying Elements
+
+|                                            |                                                    |
+|--------------------------------------------|----------------------------------------------------|
+| element.textContent = 'text'               | Sets text content of the element                   |
+| element.innerHTML = 'html'                 | Sets the html content of the element               |
+| element.setAttribute('attribute', 'value') | Sets the attribute of the element                  |
+| element.style.property = 'value'           | Sets the CSS style property of the element         |
+| element.classList.add('class')             | Adds a CSS class to the element                    |
+| element.classList.remove('class')          | Removes a CSS class on the element                 |
+| element.classList.toggle('class')          | Toggles the presence of a CSS class on the element |
+
+### Creating and Appending Elements
+
+|                                                      |                                                                  |
+|------------------------------------------------------|------------------------------------------------------------------|
+| document.createElement('tag')                        | Creates a new element with the specified tag/element name        |
+| element.appendChild(newChild)                        | Appends a new child element to the given parent element          |
+| parentElement.insertBefore(newChild, referenceChild) | Inserts a new child element before a specified reference element |
+| parentElement.removeChild(childElement)              | Removes a specified child element from its parent                |
+
+### Event Handling
+
+|                                                     |                                            |
+|-----------------------------------------------------|--------------------------------------------|
+| element.addEventListener('event', eventFunction)    | Attaches an event listener to the element  |
+| element.removeEventListener('event', eventFunction) | Removes an event listener from the element |
+
+### Traversing the DOM
+
+|                         |                                                            |
+|-------------------------|------------------------------------------------------------|
+| element.parentNode      | Returns the parent element of the current element          |
+| element.childNodes      | Returns a collection of child nodes of the current element |
+| element.firstChild      | Returns the first child element of the current element     |
+| element.lastChild       | Returns the last child element of the current element      |
+| element.nextSibling     | Returns the next sibling element of the current element       |
+| element.previousSibling | Returns the previous sibling element of the current element   |
+
+## This
+The `this` keyword is used to refer to the current object.
+
+- By default the `this` keyword is in the window object.
+
+```
+console.log(this) // This will print the window
+let planet = {
+    name = "Earth",
+    printName = () => {
+        console.log(this.name)
+    },
 }
 ```
