@@ -33,6 +33,7 @@ JavaScript is the only language that can be run in the browser.
     - [Event Handling](#event-handling)
     - [Traversing the DOM](#traversing-the-dom)
 - [This](#this)
+- [Timing](#timing)
 
 ## Comments
 
@@ -251,7 +252,6 @@ const func_name4 = (...args) => {
 | Math.ceil(num)                           | Rounds up to the nearest whole number                                                                    |
 | .toFixed(number of decimal places)       | Rounds to the number of decimal places.                                                                  |
 | parseInt(str) or parseInt(str, base num) | Converts a string to an int. If it can't then it returns NaN                                             |
-| setTimeout(function, milliseconds)       | The function runs after the delay time in milliseconds. Other code can run while waiting for setTimeout. |
 
 ### Fetch
 Used to fetch data from a server.
@@ -446,6 +446,9 @@ async func_name = () => {
 ```
 
 ## DOM Manipulation
+The DOM is the Document Object Model.
+
+The `window` is an object that have internal functions and data that can be accessed. `document` is an object part of the window and is the DOM. `document` allows JavaScript to access different elements of the HTML page.
 
 ### Accessing Elements
 
@@ -493,8 +496,9 @@ async func_name = () => {
 | element.childNodes      | Returns a collection of child nodes of the current element |
 | element.firstChild      | Returns the first child element of the current element     |
 | element.lastChild       | Returns the last child element of the current element      |
-| element.nextSibling     | Returns the next sibling element of the current element       |
-| element.previousSibling | Returns the previous sibling element of the current element   |
+| element.nextSibling     | Returns the next sibling element of the current element    |
+| element.previousSibling | Returns the previous sibling element of the current element|
+| element.children[index] | Gets the child of the element at the index.                |
 
 ## This
 The `this` keyword is used to refer to the current object.
@@ -510,3 +514,13 @@ let planet = {
     },
 }
 ```
+
+## Timing
+
+|                                                    |                                                                                                          |
+|----------------------------------------------------|----------------------------------------------------------------------------------------------------------|
+| setTimeout(function, milliseconds)                 | The function runs after the delay time in milliseconds. Other code can run while waiting for setTimeout. |
+| let interval = setInterval(function, milliseconds) | Runs the function every milliseconds. Other code can run int he background.                              |
+| clearInterval(interval)                            | Stops the interval.                                                                                      |
+
+1000 Milliseconds = 1 Second
