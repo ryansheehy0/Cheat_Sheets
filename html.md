@@ -87,3 +87,7 @@ navbar, section, aside
 ```
 <script src="script.js"></script>
 ```
+- toggle switch
+- form
+- input
+    - type, name, id, placeholder

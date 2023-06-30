@@ -19,7 +19,7 @@ JavaScript is the only language that can be run in the browser.
     - [Fetch](#fetch)
 - [Objects](#objects)
     - [For In](#for-in)
-    - [JavaScript Object Notation(JSON)](#javascript-object-notation-json)
+    - [JavaScript Object Notation(JSON)](#javascript-object-notationjson)
     - [Spread Operator](#spread-operator)
 - [Template Literals](#template-literals)
 - [Import and Export](#import-and-export)
@@ -31,9 +31,12 @@ JavaScript is the only language that can be run in the browser.
     - [Modifying Elements](#modifying-elements)
     - [Creating and Appending Elements](#creating-and-appending-elements)
     - [Event Handling](#event-handling)
+        - [Commonly Used Events](#commonly-used-events)
+        - [Default Events](#default-events)
     - [Traversing the DOM](#traversing-the-dom)
 - [This](#this)
 - [Timing](#timing)
+- [Reverse Increment/Decrement](#reverse-incrementdecrement)
 
 ## Comments
 
@@ -462,15 +465,16 @@ The `window` is an object that have internal functions and data that can be acce
 
 ### Modifying Elements
 
-|                                            |                                                    |
-|--------------------------------------------|----------------------------------------------------|
-| element.textContent = 'text'               | Sets text content of the element                   |
-| element.innerHTML = 'html'                 | Sets the html content of the element               |
-| element.setAttribute('attribute', 'value') | Sets the attribute of the element                  |
-| element.style.property = 'value'           | Sets the CSS style property of the element         |
-| element.classList.add('class')             | Adds a CSS class to the element                    |
-| element.classList.remove('class')          | Removes a CSS class on the element                 |
-| element.classList.toggle('class')          | Toggles the presence of a CSS class on the element |
+|                                            |                                                                           |
+|--------------------------------------------|---------------------------------------------------------------------------|
+| element.textContent = 'text'               | Sets text content of the element                                          |
+| element.innerHTML = 'html'                 | Sets the html content of the element                                      |
+| element.setAttribute('attribute', 'value') | Sets the attribute of the element                                         |
+| element.style.property = 'value'           | Sets the CSS style property of the element                                |
+| element.classList.add('class')             | Adds a CSS class to the element                                           |
+| element.classList.remove('class')          | Removes a CSS class on the element                                        |
+| element.classList.toggle('class')          | Toggles the presence of a CSS class on the element                        |
+| element.dataset.name = "name"              | Searches the html attributes for data-name and sets its contents to name. |
 
 ### Creating and Appending Elements
 
@@ -483,10 +487,40 @@ The `window` is an object that have internal functions and data that can be acce
 
 ### Event Handling
 
-|                                                     |                                            |
-|-----------------------------------------------------|--------------------------------------------|
-| element.addEventListener('event', eventFunction)    | Attaches an event listener to the element  |
-| element.removeEventListener('event', eventFunction) | Removes an event listener from the element |
+|                                                     |                                                                                                                             |
+|-----------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| element.addEventListener('event', eventFunction)    | Attaches an event listener to the element                                                                                   |
+| element.removeEventListener('event', eventFunction) | Removes an event listener from the element                                                                                  |
+| event.preventDefault()                              | Prevents the default event for an element. Certain elements have default events.                                            |
+| event.stopPropagation()                             | Stops the propagation of an event. Only have to worry if you have clickable elements inside clickable elements in the html. |
+
+
+#### Commonly Used Events
+
+| Event         | Description                                                                                   |
+|---------------|-----------------------------------------------------------------------------------------------|
+| click         | Element is clicked.                                                                           |
+| load          | Fires when a resource and its dependent resources have finished loading.                      |
+| mouseover     | Triggered when the mouse pointer enters an element.                                           |
+| mouseout      | Triggered when the mouse pointer leaves an element.                                           |
+| keydown       | Fired when a key is pressed down. eventFunction should have an event and the key is event.key |
+| keyup         | Fired when a key is released. eventFunction should have an event and the key is event.key     |
+| submit        | Fired when a form is submitted. Button needs type="submit" Also submits with the enter key.   |
+| change        | Triggered when the value of an element changes.                                               |
+| resize        | Triggered when the browser window is resized.                                                 |
+| input         | Fired when the value of an input element changes.                                             |
+| contextmenu   | Triggered when the right mouse button is pressed.                                             |
+| transitionend | Triggered when a CSS transition ends.                                                         |
+| error         | Triggered when an error occurs during loading of an external file.                            |
+
+#### Default Events
+
+- click <a>
+    - Automatically changes the URL and goes to that URL.
+- submit <form>
+    - Refreshes the screen by sending a request to the URL specified in the action attribute of the form.
+    - Clears form inputs
+    - Changes URL
 
 ### Traversing the DOM
 
@@ -524,3 +558,10 @@ let planet = {
 | clearInterval(interval)                            | Stops the interval.                                                                                      |
 
 1000 Milliseconds = 1 Second
+
+## Reverse Increment/Decrement
+
+++variable
+--variable
+variable++
+variable--
