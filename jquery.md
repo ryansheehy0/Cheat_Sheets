@@ -5,6 +5,19 @@ A JavaScript library to make HTML document traversal and manipulation, event han
 
 ## Table of Contents
 
+- [Table of Contents](#table-of-contents)
+- [Selecting Elements](#selecting-elements)
+- [Adding HTML](#adding-html)
+- [Modifying/Getting Contents](#modifyinggetting-contents)
+- [Changing CSS](#changing-css)
+- [Manipulating Attributes](#manipulating-attributes)
+- [Handling Events](#handling-events)
+- [Traversing the DOM](#traversing-the-dom)
+- [Animations](#animations)
+    - [Optional Animation Arguments](#optional-animation-arguments)
+- [AJAX Requests](#ajax-requests)
+- [Local Storage](#local-storage)
+
 ## Selecting Elements
 
 |             |                                                                                                          |
@@ -12,14 +25,14 @@ A JavaScript library to make HTML document traversal and manipulation, event han
 | $(selector) | Gets an element from a CSS selector wrapped in "s, an element, an array of elements, or a jQuery object. |
 
 
-It is recommended to wrap any jQuery in `$(document).ready(` so that the code only executes once the DOM has fully loaded.
+It is recommended to wrap any jQuery in `$(document).ready(` or `$(function () {` so that the code only executes once the DOM has fully loaded.
 
 ## Adding HTML
 
-|            |                                           |
-|------------|-------------------------------------------|
-| $(element) | Wraps a DOM element into a jQuery object. |
-| .append()  |
+|                  |                                                             |
+|------------------|-------------------------------------------------------------|
+| $("HTML")        | Creates an element from an HTML string.                     |
+| .append(element) | Appends the element arg to the end of the selected element. |
 
 ## Modifying/Getting Contents
 

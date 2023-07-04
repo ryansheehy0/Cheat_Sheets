@@ -37,6 +37,7 @@ JavaScript is the only language that can be run in the browser.
 - [This](#this)
 - [Timing](#timing)
 - [Reverse Increment/Decrement](#reverse-incrementdecrement)
+- [Local Storage](#local-storage)
 
 ## Comments
 
@@ -565,3 +566,14 @@ let planet = {
 --variable
 variable++
 variable--
+
+## Local Storage
+
+```
+localStorage.setItem("key", "value")
+
+localStorage.getItem("key")
+    Returns null if nothing is found
+
+localStorage.removeItem("key")
+```
