@@ -26,10 +26,27 @@ List information about a directory. The current directory is default.
 ```
 ls -ltc --time-style=+"%B-%d-%Y %I:%M %p"
     list files by time of last modifications and gives the last time of modification.
+
+-rwxrwxrw- 1 user group 9999 May 22 00:01 FileName
+^|_||_||_|
+| |  |  public
+| |  group
+| user
+type of file
+
+r - read permissions
+w - write permissions
+x - execute permissions
+- - no permissions
 ```
 
 ### cd
+Change directory.
 ### mv
+```
+mv ./* {Folder path}
+    Move all the contents of the current folder to the filepath folder
+```
 ### cp
 ### rm
 - rm file
@@ -48,6 +65,18 @@ ls -ltc --time-style=+"%B-%d-%Y %I:%M %p"
 ### awk
 - analyzes text files or input streams
 
+### Types of Files
+
+|   |                            |
+|---|----------------------------|
+| - | regular file               |
+| d | directory                  |
+| l | symbolic link              |
+| c | character device file      |
+| b | block device file          |
+| s | local socket file          |
+| p | named pipe                 |
+| w | symbolic link to directory |
 
 - chmod
 - chown

@@ -5,7 +5,7 @@ A language used to customize the styling of HTML and/or XML.
 
 ```
 selector{
-    setting-name: setting value;
+    property: property value;
 }
 /* Comments */
 /*

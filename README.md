@@ -1,4 +1,4 @@
-# Null Cheat Sheets
+# Ryan Sheehy Cheat Sheets
 The purpose of these cheat sheets is to give concise explanations of the topic at hand.
 - [Vim](./vim.md) 
 - [Simple Encryption](./simple_encryption.md) 
@@ -9,6 +9,9 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
 - [Logic Gate Electronic Speed Controller](./Logic_Gate_Electronic_Speed_Controller/logic_gate_electronic_speed_controller.md)
 - [Make Files](./make_files.md)
 - [Regex](./regex.md)
+- [HTML](./html.md)
+- [JavaScript](./javascript.md)
+- [CSS](./css.md)
 
 ## Cheat Sheets Todo
 
@@ -18,10 +21,7 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
 - [Memory Managed Hash Table](./memory_managed_hash_table.md)
 - [Linux](./linux.md)
 - [Machine Learning](./Machine_Learning/machine_learning.md)
-- [HTML](./html.md)
 - [C](./c.md)
-- [JavaScript](./javascript.md)
-- [CSS](./css.md)
 
 ### Unstarted Cheat Sheets
 
