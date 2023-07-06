@@ -3,6 +3,26 @@
 # C
 This cheat sheet is not for explaining all the concepts in C, but to explain some of the concepts that are hard to remember.
 
+## Table of Contents
+
+## Standard Libraries
+
+`#include <library.h>`
+
+| Library name | Description                                                                                |
+|--------------|--------------------------------------------------------------------------------------------|
+| stdio        | Input and output functions                                                                 |
+| stdlib       | Converting strings, pseudo-random numbers, memory allocation, or process control functions |
+| math         | Math related functions                                                                     |
+| string       | String related functions                                                                   |
+| ctype        | Classify characters by their types or to convert between types.                            |
+| time         | Date and time manipulation.                                                                |
+| stdbool      | bool type and values such as true and false.                                               |
+| threads      | Managing thread functions.                                                                 |
+| stdarg       | Allows functions to accept an indefinite number of arguments.                              |
+
+## User Input
+
 ## Interacting with files
 ```
 #include <stdio.h>
@@ -45,19 +65,20 @@ Unions allow a single variable to hold different types with only one member acti
 
 ## Printf format specifiers
 
-| Specifier | Print a                                                                                                   |
-|-----------|-----------------------------------------------------------------------------------------------------------|
-| %c        | character                                                                                                 |
-| %s        | string                                                                                                    |
-| %p        | memory address of a pointer in hexadecimal                                                                |
-| %d or %i  | singed decimal int                                                                                        |
-| %u        | unsigned decimal int                                                                                      |
-| %o        | unsigned int in octal                                                                                     |
-| %x or %X  | unsigned int in hexadecimal with lowercase or uppercase letters                                           |
-| %e or %E  | float in exponential notation with lowercase or uppercase letters(3.1415e+00)                             |
-| %f        | floating point number in decimal notation                                                                 |
-| %g or %G  | float in either decimal or exponential notation depending on the value                                    |
-| %%        | % character                                                                                               |
+| Specifier | Print a                                                                       |
+|-----------|-------------------------------------------------------------------------------|
+| %c        | character                                                                     |
+| %s        | string                                                                        |
+| %p        | memory address of a pointer in hexadecimal                                    |
+| %d or %i  | singed decimal int                                                            |
+| %u        | unsigned decimal int                                                          |
+| %o        | unsigned int in octal                                                         |
+| %x or %X  | unsigned int in hexadecimal with lowercase or uppercase letters               |
+| %e or %E  | float in exponential notation with lowercase or uppercase letters(3.1415e+00) |
+| %f        | floating point number in decimal notation                                     |
+| %g or %G  | float in either decimal or exponential notation depending on the value        |
+| %lu       | unsigned long                                                                 |
+| %%        | % character                                                                   |
 
 ### Format specifiers flags
 - %.1 decimal precision with floats
@@ -76,3 +97,18 @@ printf("X is:%8.2f", x); // X is:   10.12
 ```
 
 - %- left aligned.
+
+## Pointers
+
+```
+// An array of pointers
+    int *array_of_pointers[] // init
+    *array_of_pointers[] // de-ref
+// A pointer to an array
+    int (*pointer_to_an_array)[] // init
+    (*pointer_to_an_array)[] // de-ref 
+```
+
+## Arrays
+- Get size of arrays:`sizeof(array) / sizeof(type)`
+    - Doesn't work with pass by reference.

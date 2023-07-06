@@ -37,7 +37,7 @@ JavaScript is the only language that can be run in the browser.
 - [This](#this)
 - [Timing](#timing)
 - [Reverse Increment/Decrement](#reverse-incrementdecrement)
-- [Local Storage](#local-storage)
+- [Local/Session Storage](#localsession-storage)
 
 ## Comments
 
@@ -330,11 +330,11 @@ for (const property in object) {
 const json = '{"first name": "Ryan", "last name": "Sheehy"}'
 const obj = JSON.parse(json, (key, value) => {
     if(key === "last name"){
-        return "M. " + value
+        return "Mr. " + value
     }
     return value
 })
-console.log(obj)
+console.log(obj) // "first name": "Ryan", "last name": "Mr. Sheehy"
 ```
 
 - Convert an object to JSON
@@ -567,7 +567,14 @@ let planet = {
 variable++
 variable--
 
-## Local Storage
+## Local/Session Storage
+Local storage is information stored locally on the browser.
+
+Session storage is information stored locally to that tab.
+
+In incognito/private window it creates a new localStorage and removes it when the window is deleted.
+
+5megabytes max for local storage.
 
 ```
 localStorage.setItem("key", "value")
@@ -576,4 +583,9 @@ localStorage.getItem("key")
     Returns null if nothing is found
 
 localStorage.removeItem("key")
+
+localStorage.clear()
+    Removes all local storage foryour site
+
+Never store passwords, even hashed passwords, in the local storage or session storage.
 ```

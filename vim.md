@@ -107,7 +107,7 @@
 | n                       | got to next        |
 | N                       | go back one        |
 | :noh                    | remove highlight   |
-| :%s/ regex / replace /g | search and replace |
+| :%s/regex/replace/g     | search and replace. You can also do this for selected text. |
 
 ## Macros
 
