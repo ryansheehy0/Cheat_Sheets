@@ -11,7 +11,7 @@ Example: * means a file has changed.
 
 ```
 +--------------+      +---------------+
-|  *file1.c    |      |   file2.c     |
+|  *file1.c    |      |    file2.c    |
 +--------------+      +---------------+
        |                      |
        v                      v
@@ -53,7 +53,7 @@ There is often a clean target that usually removes the .o files and the executab
 
 ```
 clean:
-    rm -f *.o math
+    rm -f *.o executable
 ```
 
 # Variables
@@ -76,6 +76,7 @@ endif
 ```
 
 ## List of ifs
+
 |        |                                     |
 |--------|-------------------------------------|
 | ifeq   | if equals                           |
