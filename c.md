@@ -112,3 +112,21 @@ printf("X is:%8.2f", x); // X is:   10.12
 ## Arrays
 - Get size of arrays:`sizeof(array) / sizeof(type)`
     - Doesn't work with pass by reference.
+
+## Header Guards
+
+```
+#pragma once
+
+// Contents of the header file
+```
+
+```
+#ifndef HEADER_NAME_H
+#define HEADER_NAME_H
+
+// The HEADER_NAME_H needs to be unique
+// Contents of the header file
+
+#enif HEADER_NAME_H
+```

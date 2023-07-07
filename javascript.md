@@ -38,6 +38,7 @@ JavaScript is the only language that can be run in the browser.
 - [Timing](#timing)
 - [Reverse Increment/Decrement](#reverse-incrementdecrement)
 - [Local/Session Storage](#localsession-storage)
+- [Common APIs](#common-apis)
 
 ## Comments
 
@@ -501,6 +502,7 @@ The `window` is an object that have internal functions and data that can be acce
 | Event         | Description                                                                                   |
 |---------------|-----------------------------------------------------------------------------------------------|
 | click         | Element is clicked.                                                                           |
+| dblclick      | Element is double clicked.                                                                    |
 | load          | Fires when a resource and its dependent resources have finished loading.                      |
 | mouseover     | Triggered when the mouse pointer enters an element.                                           |
 | mouseout      | Triggered when the mouse pointer leaves an element.                                           |
@@ -589,3 +591,11 @@ localStorage.clear()
 
 Never store passwords, even hashed passwords, in the local storage or session storage.
 ```
+
+## Common APIs
+
+|           |                                                                                                    |
+|-----------|----------------------------------------------------------------------------------------------------|
+| jQuery    | Makes HTML document traversal and manipulation, event handling, animation, and Ajax easier to use. |
+| day.js    | Calendars                                                                                          |
+| bootstrap | Front-end framework.                                                                               |
