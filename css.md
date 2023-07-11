@@ -51,6 +51,7 @@ selector{
     - [Selector Specificity](#selector-specificity)
 - [Variables in CSS](#variables-in-css)
 - [Need to research](#need-to-research)
+- [JASS](#jass)
 
 ## Miscellaneous
 - Everything in CSS is a box.
@@ -488,7 +489,7 @@ CSS attribute selectors select elements based upon attributes and attribute valu
 ### Selector Specificity
 - The CSS selector that is more specific will be applied.
     - Specificity is calculated based upon 4 components in the order of more specificity to less specificity.
-        - !important is the most specific.
+        - !important is the most specific. `property: property value !important;`
         - Specificity 1,0,0,0: Inline styles
         - Specificity 0,1,0,0: IDs
         - Specificity 0,0,1,0: Classes, attributes, and pseudo-classes
@@ -546,3 +547,7 @@ document.documentElement.style.setProperty("--var", "10px")
     --var: 0;
 }
 ```
+
+## JASS
+
+Often times a jass.css file is used which has a lot of CSS utility classes which can be added and removed with JS to apply custom CSS easily.

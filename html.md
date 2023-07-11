@@ -4,6 +4,21 @@
 - The purpose of this cheat sheet is to provide an overview of the most useful HTML elements.
 
 ## Table of Contents
+- [Table of Contents](#table-of-contents)
+- [Start of HTML](#start-of-html)
+- [Text Formatting](#text-formatting)
+- [Links and Images](#links-and-images)
+- [Lists](#lists)
+- [Tables](#tables)
+- [Forms](#forms)
+- [Grouping](#grouping)
+- [Self Closing Tags](#self-closing-tags)
+- [Comments](#comments)
+- [HTML entities](#html-entities)
+- [Attributes](#attributes)
+- [Inline elements vs block elements](#inline-elements-vs-block-elements)
+- [CSS in HTML](#css-in-html)
+- [JavaScript in HTML](#javascript-in-html)
 
 ## Start of HTML
 
@@ -111,6 +126,14 @@
 <aside>Side Content</aside>
 ```
 
+## Self Closing Tags
+
+```
+<br/>    <!-- Line break -->
+<hr/>    <!-- Horizontal rule/line -->
+<wbr/>   <!-- Word break. The browser can line wrap at that point if necessary. -->
+```
+
 ## Comments
 
 ```
@@ -129,6 +152,7 @@
 | \&apos; | '      |
 | \&copy; | &copy; |
 | \&reg;  | &reg;  |
+| \&deg;  | &deg;  |
 
 ## Attributes
 

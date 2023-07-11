@@ -12,6 +12,7 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
 - [HTML](./html.md)
 - [JavaScript](./javascript.md)
 - [CSS](./css.md)
+- [jQuery](./jquery.md)
 
 ## Cheat Sheets Todo
 
@@ -22,7 +23,7 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
 - [Linux](./linux.md)
 - [Machine Learning](./Machine_Learning/machine_learning.md)
 - [C](./c.md)
-- [jQuery](./jquery.md)
+- [Bootstrap](./bootstrap.md)
 
 ### Unstarted Cheat Sheets
 

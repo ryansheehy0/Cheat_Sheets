@@ -65,8 +65,6 @@ $(selector).css({
 })
 ```
 
-Often times a jass.css file is used which has a lot of CSS utility classes which can be added and removed with jQuery to apply custom CSS easily.
-
 ## Manipulating Attributes
 
 |                                 |                                              |
@@ -81,6 +79,15 @@ Often times a jass.css file is used which has a lot of CSS utility classes which
 | .click(handler)          | Attaches a click event handler to selected elements. |
 | .on("eventType", handlerFunction)  | Attaches an event handler function to selected elements.      |
 | .off("eventType", handlerFunction) | Removes an event handler function from selected elements.     |
+
+```
+// To dynamically add listeners to dynamically added elements.
+    // You cannot get the element when the element isn't created in the DOM
+$(Selector that is already created).on("event name", ".class", function(event){
+    // Handle event
+    // $(event.target) gets the element that gave the event in jquery.
+})
+```
 
 ## Traversing the DOM
 
