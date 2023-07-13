@@ -6,11 +6,12 @@
 
 A JavaScript library to make HTML document traversal and manipulation, event handling, animation, and Ajax(Asynchronous JavaScript and XML) easier to use.
 
-The JS should be style before your custom JS file.
+```
+// JS which tends to be put at the very end of the body tag before any custom JS
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+```
 
-Search jQuery cdn for the links to include
-
-Add jQuery links and jQuery UI links
+See [here](https://releases.jquery.com/) for any up to date links.
 
 ## Table of Contents
 
@@ -181,9 +182,12 @@ $.post("https://api.example.com/data", { name: "John", age: 25 }, function(respo
 
 [jQuery UI](https://jqueryui.com/)
 
-
-- script dependance goes after jQuery
-- css dependance goes after jQuery one
+```
+// CSS which goes in the head before any custom CSS links
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+// JS which tends to be put at the very end of the body tag before any custom JS and after the regular jQuery
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+```
 
 ### Interactions
 

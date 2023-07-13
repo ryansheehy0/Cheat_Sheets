@@ -36,7 +36,7 @@ JavaScript is the only language that can be run in the browser.
     - [Traversing the DOM](#traversing-the-dom)
 - [This](#this)
 - [Timing](#timing)
-- [Reverse Increment/Decrement](#reverse-incrementdecrement)
+- [+/-/++/-- Operators](#----operators)
 - [Local/Session Storage](#localsession-storage)
 - [Common APIs](#common-apis)
     - [DayJS](#dayjs)
@@ -472,6 +472,7 @@ The `window` is an object that have internal functions and data that can be acce
 |--------------------------------------------|---------------------------------------------------------------------------|
 | element.textContent = 'text'               | Sets text content of the element                                          |
 | element.innerHTML = 'html'                 | Sets the html content of the element                                      |
+| element.value = 'value'                    | Sets the value content of the element                                     |
 | element.setAttribute('attribute', 'value') | Sets the attribute of the element                                         |
 | element.style.property = 'value'           | Sets the CSS style property of the element                                |
 | element.classList.add('class')             | Adds a CSS class to the element                                           |
@@ -490,12 +491,12 @@ The `window` is an object that have internal functions and data that can be acce
 
 ### Event Handling
 
-|                                                     |                                                                                                                             |
-|-----------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
-| element.addEventListener('event', eventFunction)    | Attaches an event listener to the element                                                                                   |
-| element.removeEventListener('event', eventFunction) | Removes an event listener from the element                                                                                  |
-| event.preventDefault()                              | Prevents the default event for an element. Certain elements have default events.                                            |
-| event.stopPropagation()                             | Stops the propagation of an event. Only have to worry if you have clickable elements inside clickable elements in the html. |
+|                                                     |                                                                                          |
+|-----------------------------------------------------|------------------------------------------------------------------------------------------|
+| element.addEventListener('event', eventFunction)    | Attaches an event listener to the element                                                |
+| element.removeEventListener('event', eventFunction) | Removes an event listener from the element                                               |
+| event.preventDefault()                              | Prevents the default event for an element. Certain elements have default events.         |
+| event.stopPropagation()                             | Only have to worry if you have clickable elements inside clickable elements in the html. |
 
 ```
 // To dynamically add listeners to dynamically added elements.
@@ -575,15 +576,23 @@ let planet = {
 
 1000 Milliseconds = 1 Second
 
-## Reverse Increment/Decrement
+## +/-/++/-- Operators
 
-++variable
---variable
-variable++
-variable--
+```
+let variable = 5
+let result1 = ++variable // variable becomes 6 and result1 becomes 6
+let result2 = --variable // variable becomes 5 and result2 becomes 5
+let result3 = variable++ // result3 become 5 and then variable becomes 6
+let result4 = variable-- // result4 becomes 6 and then variable becomes 5
+```
 
-+ string
-- string
+```
+console.log(+"3" + +"5") // 8
+    // The +s infront of the string converts it to a num and then those numbers are added together
+console.log(-"3" - -"5") // 2
+    // The -s infront of the string converrs it to a num, but negates it and then those numbers are subtracted from one another.
+console.log(-"-3" + -"5") // -2
+```
 
 ## Local/Session Storage
 Local storage is information stored locally on the browser.
