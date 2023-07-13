@@ -1,9 +1,16 @@
 [Home](./README.md)
 
 # jQuery
+
+[jQuery](https://jquery.com/)
+
 A JavaScript library to make HTML document traversal and manipulation, event handling, animation, and Ajax(Asynchronous JavaScript and XML) easier to use.
 
-The JS should be <style> before your custom JS file.
+The JS should be style before your custom JS file.
+
+Search jQuery cdn for the links to include
+
+Add jQuery links and jQuery UI links
 
 ## Table of Contents
 
@@ -16,16 +23,21 @@ The JS should be <style> before your custom JS file.
 - [Handling Events](#handling-events)
 - [Traversing the DOM](#traversing-the-dom)
 - [Animations](#animations)
-    - [Optional Animation Arguments](#optional-animation-arguments)
+  - [Optional Animation Arguments](#optional-animation-arguments)
 - [AJAX Requests](#ajax-requests)
 - [Useful Functions](#useful-functions)
+- [jQuery UI](#jquery-ui)
+  - [Interactions](#interactions)
+    - [Droppable](#droppable)
+  - [Widgets](#widgets)
+    - [Autocomplete](#autocomplete)
+  - [Effects](#effects)
 
 ## Selecting Elements
 
 |             |                                                                        |
 |-------------|------------------------------------------------------------------------|
 | $(selector) | Gets an element from a CSS selector wrapped in "s, or a jQuery object. |
-
 
 It is recommended to wrap any jQuery in `$(document).ready(` or `$(function () {` so that the code only executes once the DOM has fully loaded.
 
@@ -164,3 +176,71 @@ $.post("https://api.example.com/data", { name: "John", age: 25 }, function(respo
 |----------------------------------------------|---------------------------------------------------|
 | $.each(element, function(index, element) {}) | Does something for each of the selected elements. |
 | location.reload()                            | Reloads the page.                                 |
+
+## jQuery UI
+
+[jQuery UI](https://jqueryui.com/)
+
+
+- script dependance goes after jQuery
+- css dependance goes after jQuery one
+
+### Interactions
+
+| Interactions  | Description                                                                         |
+|---------------|-------------------------------------------------------------------------------------|
+| .draggable()  | Can drag an element around.                                                         |
+| .droppable()  | Tends to be used with draggable. Can detect when one element is dropped on another. |
+| .resizable()  | Can resize element.                                                                 |
+| .selectable() | Can select elements individually or grouped by clicking and dragging.               |
+| .sortable()   | Can drag and drop a items in a list.                                                |
+
+#### Droppable
+
+```
+$( "#draggable" ).draggable()
+$( "#droppable" ).droppable({
+  drop: function( event, ui ) {
+    $( this ).addClass( "ui-state-highlight" )
+    // Code when dropped
+  }
+});
+```
+
+### Widgets
+
+| Widget                    | Description                                                                     |
+|---------------------------|---------------------------------------------------------------------------------|
+| .accordion()              | Makes a div a collapsible panel with header and div children being the panels.  |
+| .autocomplete()           | When typing into input it gives a dropdown menu with suggested autocompletions. |
+| .button()                 |                                                                                 |
+| .checkboxradio()          | A checkbox                                                                      |
+| .controlgroup()           | Visually group related controls.                                                |
+| .datepicker()             | Calendar to pick a date                                                         |
+| .dialog()                 | A dialog window popup.                                                          |
+| .menu()                   | Creates a menu that can be clicked through.                                     |
+| .progressbar({value: 50}) | A progress bar with some percentage completed.                                  |
+| .selectmenu()             | A menu that can be selected through                                             |
+| .slider()                 | A slide able box along a bar.                                                   |
+| .spinner()                | Can increment or decrement numerical values using up and down arrows.           |
+| .tabs()                   | Sets of tabs.                                                                   |
+| .tooltip()                | A small tooltip                                                                 |
+
+#### Autocomplete
+
+```
+var availableTags = [
+  "C",
+  "C++",
+  "Java",
+  "JavaScript",
+  "Python",
+];
+$("#tags").autocomplete({
+  source: availableTags
+});
+```
+
+### Effects
+
+A list of effects can be found [here](https://jqueryui.com/effect/).

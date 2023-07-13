@@ -193,6 +193,7 @@ Moves relative to the view port.
 | block        | Makes element a block. Puts element on a new line.                                            |
 | none         | Hides an element. Doesn't take up space.                                                      |
 | inline-block | Block of text but stuff can be on either side. Not styled the same as the other inline stuff. |
+| initial      | Reverts the display to its defualt state.                                                     |
 
 ### Flex
 Put `display: flex;` on parent.

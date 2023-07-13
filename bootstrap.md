@@ -1,18 +1,43 @@
+[Home](./README.md)
+
 # Bootstrap
 
 A front end framework that provides pre-designed CSS and JavaScript components, styles, and utilities.
 
-You add classes to html element in order to create different elements.
+Add a CSS link in the head and a JS script to the end of the body to use Bootstrap.
 
-See up to date links:
+To use bootstrap you add classes to html element in order to create different elements.
 
-```
-Add css in head
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+## Table of Contents
 
-Add JS to the end of body
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-```
+## Components
+
+| Components Name | Description                                                                  |
+|-----------------|------------------------------------------------------------------------------|
+| Alerts          | A small feedback message in a specific color.                                |
+| Badges          |                                                                              |
+| Breadcrumbs     |                                                                              |
+| Buttons         | A button.                                                                    |
+| Cards           | Flexible container to display content such as imgs, text, and buttons.       |
+| Carousel        | Slideshow for cycling through a set of items.                                |
+| Collapse        | Allows element's CSS display to be toggled easily between none and default.  |
+| Dropdowns       | A dropdown menu.                                                             |
+| List group      | A stylized ul or ol that can also include buttons and other elements.        |
+| Modal           | A dialog window that overlays ontop of the current page.                     |
+| Navbars         | A navigation bar that can collapse in a hamburger button on smaller screens. |
+| Panels          |                                                                              |
+| Paginations     | Used to navigate between pages                                               |
+| Popovers        | Small overlay that displays when an element is clicked or hovered upon.      |
+| Progress bars   | A progress bar                                                               |
+| Scrollspy       | Highlighted navigation links based upon the position in a scrolling element. |
+| Spinners        | Animated loading symbol.                                                     |
+| Toasts          | Small closable notifications at the bottom of the screen.                    |
+| Tooltips        | Like popovers but smaller, texted based, more concise info.                  |
+| Clearfix        |                                                                              |
+| Icons           | Icons from bootstrap and other common 3-rd party icon libraries.             |
+| Tables          |                                                                             |
+| Responsive Ut   |                                                                              |
+| Gutters         |                                                                              |
 
 ## Padding and Margin
 p-#
@@ -21,8 +46,6 @@ mb-# margin bottom
 my-# margin top and bottom
 mx-# margin left and right
 the # is between 1 and 5
-
-
 
 ## Layouts
 d-flex

@@ -39,6 +39,7 @@ JavaScript is the only language that can be run in the browser.
 - [Reverse Increment/Decrement](#reverse-incrementdecrement)
 - [Local/Session Storage](#localsession-storage)
 - [Common APIs](#common-apis)
+    - [DayJS](#dayjs)
 
 ## Comments
 
@@ -496,6 +497,18 @@ The `window` is an object that have internal functions and data that can be acce
 | event.preventDefault()                              | Prevents the default event for an element. Certain elements have default events.                                            |
 | event.stopPropagation()                             | Stops the propagation of an event. Only have to worry if you have clickable elements inside clickable elements in the html. |
 
+```
+// To dynamically add listeners to dynamically added elements.
+    // You cannot get the element when the element isn't created in the DOM
+  document.querySelector("element already created by the dom").addEventListener("click", function(event){
+    if(event.target.className !== "dynamically created element's class"){
+      //You can also use ids
+      return
+    }
+    //Your event code here
+  })
+```
+
 
 #### Commonly Used Events
 
@@ -569,6 +582,9 @@ let planet = {
 variable++
 variable--
 
++ string
+- string
+
 ## Local/Session Storage
 Local storage is information stored locally on the browser.
 
@@ -597,5 +613,19 @@ Never store passwords, even hashed passwords, in the local storage or session st
 |           |                                                                                                    |
 |-----------|----------------------------------------------------------------------------------------------------|
 | jQuery    | Makes HTML document traversal and manipulation, event handling, animation, and Ajax easier to use. |
-| day.js    | Calendars                                                                                          |
+| [day.js](https://day.js.org/docs/en/display/format)    | Dates and Calendars                                                                                          |
 | bootstrap | Front-end framework.                                                                               |
+| jQuery UI | Makes manipulating things easier. Can work with bootstrap. |
+
+
+### Dayjs
+
+Provides more powerful formatting than the inbuilt Date() in JS
+
+```
+var today = dayjs()
+today.format("MMM D, YYYY')
+today.format('[This is the day: ] ddd')
+```
+
+Unix time is the number of seconds from Jan 1st, 1970(epoch time).
