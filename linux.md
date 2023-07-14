@@ -133,3 +133,11 @@ man sed | sed '/replace/s/the/The/g'
 I want ls, but with recursively calculated sizes. Not just folders, but also files.
 
 `du --max-depth=1 -h ./`
+
+## Curl
+
+Used to see the return from an api calls. Makes a get request form a URL.
+
+```
+curl https://api.github.com/users
+```

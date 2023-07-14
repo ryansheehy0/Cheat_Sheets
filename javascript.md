@@ -260,7 +260,20 @@ const func_name4 = (...args) => {
 | parseInt(str) or parseInt(str, base num) | Converts a string to an int. If it can't then it returns NaN                                             |
 
 ### Fetch
-Used to fetch data from a server.
+Used to fetch data from a server. Returns a promise of the response.
+
+```
+fetch("URL")
+.then(response => response.json()) // asynchronously returns an object from the json string
+.then(data => {
+    console.log(data)
+})
+.catch(error => {
+    console.log(error)
+})
+```
+
+You can specify the headers that fetch uses.
 
 ```
 fetch("URL", {
@@ -419,7 +432,7 @@ try{
 ```
 
 ## Promises
-Used to handle asynchronous(code can be run in parallel) operations.
+Used to handle asynchronous(code can be run in parallel) operations. Can only return either a resolve or a reject.
 
 ```
 let promise = new Promise((resolve, reject) => {
@@ -445,9 +458,13 @@ Used to make promises easier to work with. Only works with asynchronous function
 
 ```
 async func_name = () => {
-    await promise_function()
-    // The code will wait until promise_function returns something. It just returns the resolved section and not the rejected section.
-        // To get the rejected you can use .catch{}
+    try{
+        let variable = await promise_function()
+        // The code will wait until the promise_function returns.
+        let variable2 = await promise_function2()
+    }catch(error){
+        // If either promise_function or promise_function2 returns an error
+    }
 }
 ```
 
@@ -482,12 +499,13 @@ The `window` is an object that have internal functions and data that can be acce
 
 ### Creating and Appending Elements
 
-|                                                      |                                                                  |
-|------------------------------------------------------|------------------------------------------------------------------|
-| document.createElement('tag')                        | Creates a new element with the specified tag/element name        |
-| element.appendChild(newChild)                        | Appends a new child element to the given parent element          |
-| parentElement.insertBefore(newChild, referenceChild) | Inserts a new child element before a specified reference element |
-| parentElement.removeChild(childElement)              | Removes a specified child element from its parent                |
+|                                                      |                                                                    |
+|------------------------------------------------------|--------------------------------------------------------------------|
+| document.createElement('tag')                        | Creates a new element with the specified tag. Tag shoudn't have <>s|
+| element.appendChild(newChild)                        | Appends a new child element to the given parent element            |
+| element.append(child)                                | Appends a new child element. Very similar to appendChild           |
+| parentElement.insertBefore(newChild, referenceChild) | Inserts a new child element before a specified reference element   |
+| parentElement.removeChild(childElement)              | Removes a specified child element from its parent                  |
 
 ### Event Handling
 
@@ -625,6 +643,7 @@ Never store passwords, even hashed passwords, in the local storage or session st
 | [day.js](https://day.js.org/docs/en/display/format)    | Dates and Calendars                                                                                          |
 | bootstrap | Front-end framework.                                                                               |
 | jQuery UI | Makes manipulating things easier. Can work with bootstrap. |
+| [Axios](https://axios-http.com/docs/intro)     | ajax in jQuery, but without the jQuery. |
 
 
 ### Dayjs

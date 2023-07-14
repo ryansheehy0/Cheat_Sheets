@@ -150,6 +150,14 @@ $(selector).animation(duration, "easing", callback)
 | $.post(url, data, success) | Performs a POST request.               |
 
 ```
+$.ajax({url: "URL"})
+.then(function (response){
+    console.log(response)
+    // Automatically converts the jsons to an object
+})
+```
+
+```
 $.ajax({
   url: "https://api.example.com/data",
   method: "GET",

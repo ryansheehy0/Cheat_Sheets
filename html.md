@@ -52,6 +52,7 @@
 
 ```
 <a href="URL/filepath">Link</a>
+<a href="URL/filepath" target="_blank">Link in new tab</a>
 <img src="URL/filepath" alt="Description">
     <!-- "Image of" is said before alt texts. -->
 ```
