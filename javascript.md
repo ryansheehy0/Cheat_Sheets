@@ -17,6 +17,7 @@ JavaScript is the only language that can be run in the browser.
 - [Functions](#functions)
 - [Useful Functions](#useful-functions)
     - [Fetch](#fetch)
+        - [Optional Fetch Argument](#optional-fetch-argument)
 - [Objects](#objects)
     - [For In](#for-in)
     - [JavaScript Object Notation(JSON)](#javascript-object-notationjson)
@@ -40,6 +41,8 @@ JavaScript is the only language that can be run in the browser.
 - [Local/Session Storage](#localsession-storage)
 - [Common APIs](#common-apis)
     - [DayJS](#dayjs)
+- [URL of Webpage](#url-of-webpage)
+    - [Redirect URL](#redirect-url)
 
 ## Comments
 
@@ -149,6 +152,7 @@ Strings are immutable. Once a string is created its value cannot be changed. If 
 - `.charAt(index)`
     - Gets the character at that index. If there is no character there then it returns an empty string.
     - Cannot take negative numbers.
+- `.includes("substring")`
 
 ## Arrays
 Arrays allow you to store several pieces of data in the same place. Elements can be any data type and arrays are mutable.
@@ -291,6 +295,43 @@ fetch("URL", {
         console.log(error)
     })
 ```
+
+#### Optional Fetch Argument
+
+| method: | Description                     |
+|---------|---------------------------------|
+| GET     | Gets data from the server.      |
+| PUT     | Updates data in the server.     |
+| POST    | Creates new data in the server. |
+| DELETE  | Deletes data in the server.     |
+
+| credentials: | Description                                                 |
+|--------------|-------------------------------------------------------------|
+| same-origin  | Cookies/credentials only in request when same origin.   |
+| include      | Cookies/credentials stored in request regardless of origin. |
+| omit         | Excludes cookies and credentials                            |
+
+Origin means the same URL, protocol, domain(.com, .net, etc), and port.
+
+| cache: | Description                                      |
+|--------|--------------------------------------------------|
+| reload | Stop cacheing of data by the browser for that fetch.|
+
+| redirect: | Description                      |
+|-----------|----------------------------------|
+| follow    | Automatically follows redirects. |
+| manual    | Can manually handle redirects.   |
+| error     | Error when there are redirects.  |
+
+
+`headers:` are used to send additional information.
+```
+headers: {
+    'Content-Type': 'application/json'
+}
+```
+
+`body:` is where the data you want to send is stored such as JSON.
 
 ## Objects
 Objects are used to store an unordered list of properties to describe one thing.
@@ -507,6 +548,16 @@ The `window` is an object that have internal functions and data that can be acce
 | parentElement.insertBefore(newChild, referenceChild) | Inserts a new child element before a specified reference element   |
 | parentElement.removeChild(childElement)              | Removes a specified child element from its parent                  |
 
+#### Insert Adjacent Element
+`element.insertAdjacentElement("position", newElement)` or `element.insertAdjacentHTML("position", "html")`
+
+| Position Name | Description    |
+|---------------|----------------|
+| afterbegin    | First child    |
+| afterend      | After element  |
+| beforebegin   | Before element |
+| beforeend     | Last child     |
+
 ### Event Handling
 
 |                                                     |                                                                                          |
@@ -520,14 +571,12 @@ The `window` is an object that have internal functions and data that can be acce
 // To dynamically add listeners to dynamically added elements.
     // You cannot get the element when the element isn't created in the DOM
   document.querySelector("element already created by the dom").addEventListener("click", function(event){
-    if(event.target.className !== "dynamically created element's class"){
+    if(event.target.className.includes("dynamically created element's class")){
       //You can also use ids
-      return
+      //Your event code here
     }
-    //Your event code here
   })
 ```
-
 
 #### Commonly Used Events
 
@@ -657,3 +706,13 @@ today.format('[This is the day: ] ddd')
 ```
 
 Unix time is the number of seconds from Jan 1st, 1970(epoch time).
+
+## URL of Webpage
+Use `document.location` to get properties of the current webpage's URL.
+
+You can get everything after the ? in the URL(query string) by doing `document.location.search`
+
+### Redirect URL
+`document.location.href = newURL`
+
+This can be used to go to another one of your pages by setting the new URL to the filepath of an html page.

@@ -105,7 +105,8 @@
   <input type="radio" name="gender" id="female">
   <label for="female">female</label>
 
-  <textarea name="message" placeholder="Message"></textarea>  <!-- Textarea -->
+  <textarea name="message" placeholder="Message"></textarea>  <!-- Textarea used for multi-line text input. -->
+
   <select name="country">  <!-- Select dropdown -->
     <option value="us">United States</option>
     <option value="ca">Canada</option>
