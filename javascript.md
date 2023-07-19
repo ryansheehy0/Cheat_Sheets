@@ -198,6 +198,18 @@ console.log(fruits)
 
 - `.slice(start, end)` or `.slice(start)`
     - Slices out a piece of an array into a new array without modifying the existing the array.
+- `.reduce((accumulator, item) => {}, startingValue)`
+    - Takes an array and reduces it to 1 value
+    - The accumulator is set to the startingValue when starting to go through the function.
+    - Whatever is returned from the function is what is set to the total for the next iteration
+    - The function uses some property of item to 
+```
+const prices = [10, 20, 30, 40]
+const totalPrice = prices.reduce((total, price) => {
+    return total + price
+}, 0)
+console.log(totalPrice)
+```
 
 ## Equality Operators
 - `===` `!==` strict operator
@@ -421,6 +433,8 @@ const obj2 = {
 const obj3 = {...obj1, ...obj2} 
 ```
 
+It can be used to create an array from something that isn't an array. `[...nonArray]`
+
 ## Template Literals
 Used to make complete string with embedded JS.
 - Starts with \`s
@@ -523,6 +537,8 @@ The `window` is an object that have internal functions and data that can be acce
 | document.getElementsByTagName('tag')     | Returns a collection of elements with the tag/element name |
 | document.querySelector('selector')       | Returns the first element with the CSS selector            |
 | document.querySelectorAll('selector')    | Returns a collection of element with the CSS selector      |
+
+The selector in querySelector cannot start with a number therefore ids and classes should preferably start with letters.
 
 ### Modifying Elements
 
