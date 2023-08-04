@@ -4,7 +4,6 @@
 - The purpose of this cheat sheet is to provide an overview of the most useful HTML elements.
 
 ## Table of Contents
-- [Table of Contents](#table-of-contents)
 - [Start of HTML](#start-of-html)
 - [Text Formatting](#text-formatting)
 - [Links and Images](#links-and-images)
@@ -175,7 +174,7 @@
 - Put into the `<head>` of the HTML so the browser can style before it paints the page.
 
 ```
-<link rel="stylesheet" type="text/css" href="CSS File Path.css" />
+<link rel="stylesheet" type="text/css" href="style.css" />
 ```
 
 ## JavaScript in HTML
@@ -183,4 +182,10 @@
 
 ```
 <script src="script.js"></script>
+```
+
+- You can also use the `defer` keyword and put in in the header where it will only be loaded after the dom is created.
+
+```
+<script src="script.js" defer></script>
 ```

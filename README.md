@@ -23,7 +23,6 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
 - [Linux](./linux.md)
 - [Machine Learning](./Machine_Learning/machine_learning.md)
 - [C](./c.md)
-- [Bootstrap](./bootstrap.md)
 - [Tailwind](./tailwind.md)
 
 ### Unstarted Cheat Sheets

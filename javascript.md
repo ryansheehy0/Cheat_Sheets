@@ -56,6 +56,7 @@ JavaScript is the only language that can be run in the browser.
 
 ## Primitive Data Types
 - Dynamically typed. A variable can be assigned to multiple types.
+- By default all objects and array are pass by reference. In order to do a pass by value you have to use the spread operator.`[...array]` 
 - `typeof operand` can be used to get a string of the type
     - undefined
         - Is an uninitialized value
@@ -85,12 +86,12 @@ JavaScript is the only language that can be run in the browser.
 - `set.add(value)`, `set.delete(value)`, `set.has(value)`, `set.size`, `set.clear()`
 
 ## Variables
-var - Can be used through your whole program
-    - Can be declared below their use. This is called hoisting and is unique to JS.
+`var` - Can be used through your whole function or program if declared outside a function.
 
-let - Only used within the scope of where you declared it
+`let` - Only used within the scope of where you declared it
 
-const - Variable that can never change
+`const` - Variable that can never change. Block-scope
+    - You can still do array functions like `.pop` or `.push`
 
 - A refresh in the browser clears all variables.
 - camelCase is most commonly used
@@ -152,7 +153,8 @@ Strings are immutable. Once a string is created its value cannot be changed. If 
 - `.charAt(index)`
     - Gets the character at that index. If there is no character there then it returns an empty string.
     - Cannot take negative numbers.
-- `.includes("substring")`
+- `.contains("substring")`
+    - Does the string contain the substring in it?
 
 ## Arrays
 Arrays allow you to store several pieces of data in the same place. Elements can be any data type and arrays are mutable.
@@ -183,6 +185,17 @@ Arrays allow you to store several pieces of data in the same place. Elements can
 - `.map(function)`
     - Performs a function for each element in an array, then stores the returned values in a new array.
     - The args that forEach passes are value/element, key/index, and array
+- `.filter(function(element))`
+    - Filter loops through and array and allows you to remove elements
+    - If the function returns false for that element then it gets removed.
+```
+// Keeps all the even numbers
+let numbers = [1, 3, 4, 5, 5, 2]
+numbers = numbers.filter((element) => {
+    return element % 2 === 0
+})
+console.log(numbers)
+```
 
 ```
 const fruits = ["Banana", "Orange", "Apple", "Mango"]
@@ -244,6 +257,13 @@ switch(x) {
 
 ## Functions
 - If you don't return anything then the return value is undefined
+    - Can be declared below their use. This is called hoisting and is unique to JS.
+```
+func() // Prints out Test
+function func() {
+    console.log("Test")
+}
+```
 
 ```
 function func_name1(arg1, arg2) {}
@@ -252,10 +272,24 @@ const func_name2 = function(arg1, arg2) {}
 
 const func_name3 = (arg1, arg2) => {}
 
+const func_name4 = arg1 => {}
+
 // Rest operator. Used to allow a function to have a variable number of args.
 const func_name4 = (...args) => {
     console.log(args[0], args[1])
 }
+```
+
+- When using the function keyword the `this` keyword is reset.
+- When using the arrow function(=>) the `this` keyword is not reset.
+    - The `this` keyword is most commonly used withing objects.
+    - Avoid using arrow functions(=>) inside objects at least on the first layer.
+
+- You can run a function immediately by doing
+```
+(function() {
+    console.log("Function that ran immediately")
+})()
 ```
 
 ## Useful Functions

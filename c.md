@@ -21,7 +21,15 @@ This cheat sheet is not for explaining all the concepts in C, but to explain som
 | threads      | Managing thread functions.                                                                 |
 | stdarg       | Allows functions to accept an indefinite number of arguments.                              |
 
-## User Input
+## Command Line Arguments
+
+```
+int main(int argc, char* argv[]){
+    // argc is the number of arguments
+    // argv is an array of strings with each element being the argument. There arguments are separated with spaces.
+    // By default the argc is 1 and the argv[0] is the name of the executable
+}
+```
 
 ## Interacting with files
 ```
@@ -130,3 +138,8 @@ printf("X is:%8.2f", x); // X is:   10.12
 
 #enif HEADER_NAME_H
 ```
+## stdlib functions
+
+|       |                              |
+|-------|------------------------------|
+| strol | Converts a string to an int. |

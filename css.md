@@ -60,7 +60,7 @@ selector{
     - Can be used to center something horizontally in the screen.
     - Doesn't work if there isn't a defined width for the parent.
 - `margin-left:` can be used to indent a list.
-- list-style-type: none; 
+- list-style-type: none;
     - Removes bullet points on list.
 - cursor:
     - Changes cursor. To get the little hand it is `pointer`.
@@ -113,9 +113,12 @@ selector{
 In order for a percentage height or width to work properly, the parent container needs to have a specified height.
 
 ### Box Sizing
-`box-sizing` is used to control how the width and height are calculated, taking into account the element's padding and border.
-- By default it is content-box. Which when specifying the width/height it changes the content.
-- With border-box the width/height changes the content, padding, and border.
+`box-sizing:` is used to control how the width and height are calculated, taking into account the element's padding and border.
+
+|             |                                                        |
+|-------------|--------------------------------------------------------|
+| content-box | The default value. width/height changes the content.   |
+| border-box  | width/height changes the content, padding, and border. |
 
 ## Margin/Padding/Border/Outline
 
@@ -140,13 +143,8 @@ In order for a percentage height or width to work properly, the parent container
 - The outline is on top and doesn't effect any elements nearby.
 
 ```
-padding: 
-border: {size} {style} {color}
+border: {size} {style} {color};
 ```
-margin block start
-margin block end
-margine inline start
-margin inline end
 
 ### Border Styles
 
