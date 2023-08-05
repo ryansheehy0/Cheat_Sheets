@@ -182,7 +182,6 @@ Settings $\rightarrow$ Developer settings $\rightarrow$ Personal access tokens $
 1. `eval "$(ssh-agent -s)"`
     - Starts the ssh-agent on your computer which makes it so that you don't have to re-enter you password each time you use git.
     - The `eval` command evaluates the output of `ssh-agent -s` and sets the necessary environment variables in the current shell session.
-    - * This command needs to be run for each new terminal session!
 1. inside file ~/.ssh/config
     ```
     Host *
@@ -196,6 +195,7 @@ Settings $\rightarrow$ Developer settings $\rightarrow$ Personal access tokens $
 1. Go to github settings -> SSH and GPG keys -> New SSH key
 1. Paste the contents of id_ed25519.pub into github and press Add Key
 1. To test if it worked run: `ssh -T git@github.com` and you should see Successfully Authenticated
+    - If this doesn't work then you may need to run `eval "$(ssh-agent -s)"` in order to start the ssh-agent
 1. To use with SSH make sure your location is SSH(starts with git@github.com)
 
 ## Adding a warning when pushing to main/master from another branch
