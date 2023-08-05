@@ -173,19 +173,29 @@ Settings $\rightarrow$ Developer settings $\rightarrow$ Personal access tokens $
 </ol>
 
 ## Setting up with SSH
-1. ssh-keygen -t ed25519 -C {github email}
-    - Note: ed25519 is the encryption type of encryption it may change in the future
-1. eval "$(ssh-agent -s)"
+1. `ssh-keygen -t ed25519 -C {github email}`
+    - Used to generate a public and private key pair.
+        - Private key is in: .ssh/id_ed25519 (Don't share with anyone)
+        - Public key is in: .ssh/id_ed25519.pub
+    - Note: ed25519 an elliptic curve type of encryption, but this type of encryption may change in the future.
+    - You usually create one ssh key per computer/device.
+1. `eval "$(ssh-agent -s)"`
+    - Starts the ssh-agent on your computer which makes it so that you don't have to re-enter you password each time you use git.
+    - The `eval` command evaluates the output of `ssh-agent -s` and sets the necessary environment variables in the current shell session.
+    - * This command needs to be run for each new terminal session!
 1. inside file ~/.ssh/config
     ```
     Host *
         AddKeysToAgent yes
-        IdentifyFile ~/.shh/id_ed25519
+        IdentityFile ~/.ssh/id_ed25519
     ```
-1. ssh-add ~/.ssh/id_ed25519
+    - `Host *` means that the variables are being applied to all the hosts.
+    - `AddKeysToAgent yes` means the private keys will be automatically added to the ssh-agent when you connect to a remote host.
+    - `IdentifyFile ~/.shh/id_ed25519` sets the default private key for all SSH connections.
+    - These settings make is so that you don't need to run `ssh-add ~/.ssh/id_ed25519` with a new terminal session.
 1. Go to github settings -> SSH and GPG keys -> New SSH key
-1. Paste the contents of id_ed25519.pub into github and Add Key
-1. To test if it worked run: ssh -T git@github.com and you should see Successfully Authenticated
+1. Paste the contents of id_ed25519.pub into github and press Add Key
+1. To test if it worked run: `ssh -T git@github.com` and you should see Successfully Authenticated
 1. To use with SSH make sure your location is SSH(starts with git@github.com)
 
 ## Adding a warning when pushing to main/master from another branch
