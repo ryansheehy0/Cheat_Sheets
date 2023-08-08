@@ -43,6 +43,7 @@ JavaScript is the only language that can be run in the browser.
     - [DayJS](#dayjs)
 - [URL of Webpage](#url-of-webpage)
     - [Redirect URL](#redirect-url)
+- [Regex](#regex)
 
 ## Comments
 
@@ -179,6 +180,17 @@ Arrays allow you to store several pieces of data in the same place. Elements can
 - `.splice(index where new elements should be added, how many elements should be removed, new elements to be added)`
     - Elements are added before the index specified
     - Can be used to remove elements in an array
+```
+const fruits = ["Banana", "Orange", "Apple", "Mango"]
+fruits.splice(2, 0, "Lemon", "Kiwi")
+console.log(fruits)
+//Outputs: [ "Banana", "Orange", "Lemon", "Kiwi", "Apple", "Mango" ]
+
+fruits = ["Banana", "Orange", "Apple", "Mango"]
+fruits.splice(1, 1)
+console.log(fruits)
+//Outputs: [ "Banana", "Apple", "Mango" ]
+```
 - `.forEach(function)`
     - Runs the function for each element in the array. 
     - The args that forEach passes are value/element, key/index, and array
@@ -196,32 +208,31 @@ numbers = numbers.filter((element) => {
 })
 console.log(numbers)
 ```
-
-```
-const fruits = ["Banana", "Orange", "Apple", "Mango"]
-fruits.splice(2, 0, "Lemon", "Kiwi")
-console.log(fruits)
-//Outputs: [ "Banana", "Orange", "Lemon", "Kiwi", "Apple", "Mango" ]
-
-fruits = ["Banana", "Orange", "Apple", "Mango"]
-fruits.splice(1, 1)
-console.log(fruits)
-//Outputs: [ "Banana", "Apple", "Mango" ]
-```
-
 - `.slice(start, end)` or `.slice(start)`
     - Slices out a piece of an array into a new array without modifying the existing the array.
 - `.reduce((accumulator, item) => {}, startingValue)`
     - Takes an array and reduces it to 1 value
     - The accumulator is set to the startingValue when starting to go through the function.
     - Whatever is returned from the function is what is set to the total for the next iteration
-    - The function uses some property of item to 
 ```
 const prices = [10, 20, 30, 40]
 const totalPrice = prices.reduce((total, price) => {
     return total + price
 }, 0)
 console.log(totalPrice)
+```
+- `.find(function)`
+    - Used to find the first element that satisfies the given function.
+- `.sort((a, b) => a - b)`
+    - If the function returns a negative number "a" is sorted before "b"
+    - If the function returns a positive number "b" is sorted before "a"
+```
+const numbers = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5];
+
+numbers.sort((a, b) => a - b);
+
+console.log(numbers); // Output: [1, 1, 2, 3, 3, 4, 5, 5, 5, 6, 9]
+
 ```
 
 ## Equality Operators
@@ -407,6 +418,30 @@ console.log(testObj["A food"]) // hamburger
 - Objects can have functions. Methods are functions inside objects.
 - Object.values(object) converts an object to an array where the keys are replaced with indices.
 - Object.keys(object) gets an array of the keys of that object
+- You can do object shorthand if the key and value are the same
+```
+const object = {
+    test1: test1,
+    test2: test2,
+}
+// Shorthand form
+const object = {
+    test1,
+    test2,
+}
+```
+- To get specific values from an object you can use this notation
+```
+const object = {
+    key1: "value1",
+    key2: "value2"
+}
+
+const { key1, key2 } = object
+
+console.log(key1) // value1
+console.log(key2) // value2
+```
 
 ### For In
 - You need to do [] when referencing properties in a for in loop in case the property has a space in it.
@@ -766,3 +801,18 @@ You can get everything after the ? in the URL(query string) by doing `document.l
 `document.location.href = newURL`
 
 This can be used to go to another one of your pages by setting the new URL to the filepath of an html page.
+
+## Regex
+Used to match patterns.
+
+```
+function validate(input){
+    // Does string start with the word regex
+        const pattern = /^(regex).*/gm
+    if(input.match(pattern)){
+        // Matches the regex
+    }else{
+        // Doesn't match the regex
+    }
+}
+```
