@@ -3,6 +3,20 @@
 # Vim commands
 - This will only cover the commands I use the most
 
+## Table of Contents
+- [Movement](#movement)
+- [Save/Quit](#savequit)
+- [Comment/Uncomment](#commentuncomment)
+- [Increment numbers](#increment-numbers)
+- [Modes](#modes)
+- [Delete](#delete)
+- [Change](#change)
+- [Undo and redo](#undo-and-redo)
+- [Copy, Paste, and Cut](#copy-paste-and-cut)
+- [Find on page/Search](#find-on-pagesearch)
+- [Macros](#macros)
+- [Swp files](#swp-files)
+
 ## Movement
 
 |            |                                           |
@@ -101,13 +115,15 @@
 
 ## Find on page/Search
 
-|                         |                    |
-|-------------------------|--------------------|
-| ? + regex + enter       | find on page       |
-| n                       | got to next        |
-| N                       | go back one        |
-| :noh                    | remove highlight   |
-| :%s/regex/replace/g     | search and replace. You can also do this for selected text. |
+|                       |                                                                  |
+|-----------------------|------------------------------------------------------------------|
+| ? + regex + enter     | find on page                                                     |
+| n                     | got to next                                                      |
+| N                     | go back one                                                      |
+| :noh                  | remove highlight                                                 |
+| :%s/regex/replace/g   | search and replace. You can also do this for selected text.      |
+| f + character         | Go to the next occurrence of that character in the current line. |
+| shift + f + character | Go to the next occurrence of that character in the current line. |
 
 ## Macros
 

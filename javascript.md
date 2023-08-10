@@ -430,17 +430,21 @@ const object = {
     test2,
 }
 ```
-- To get specific values from an object you can use this notation
+- To get specific values from an object or array you can use this notation
 ```
 const object = {
     key1: "value1",
     key2: "value2"
 }
+const array = ["ele1", "ele2"]
 
 const { key1, key2 } = object
+const [ var1, var2 ] = array
 
 console.log(key1) // value1
 console.log(key2) // value2
+console.log(var1) // ele1
+console.log(var2) // ele2
 ```
 
 ### For In
@@ -476,6 +480,8 @@ console.log(obj) // "first name": "Ryan", "last name": "Mr. Sheehy"
 
 - Convert an object to JSON
     - `JSON.stringify(obj)`
+    - stringify has optional arguments for formatting.
+        - `JSON.stringify(obj, null, 2)`
 
 ### Spread Operator
 - Used to spread out an array or an object
