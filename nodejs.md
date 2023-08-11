@@ -62,6 +62,20 @@ NPM is used to install dependencies/packages for NodeJS code.
 
 package-lock.json locks the versions of the packages so that new version don't brake your code.
 
+- devDependencies are dependencies that are only applied when developing and not in the production release of the app.
+
+### Scripts
+Inside the package.json
+```javascript
+"scripts": {
+  "start": "node index.js",
+  "test": "jest"
+}
+```
+
+Running a script
+`npm run scriptName`
+
 ### Importing
 To import the exported variable you can do `const module = require("./filepath.js")`
 
@@ -69,7 +83,7 @@ In order to import from a package you do `const package = require("packageName")
 
 ### Exporting
 To export you use the module.exports object
-```
+```javascript
 module.exports = {
     function1: aFunctionThatDoesSomething,
     variable1: "test",
@@ -121,15 +135,15 @@ Console:
 ## Events
 
 ### Emitting Events
-```
-const { EventEmitter } = require('events)
+```javascript
+const { EventEmitter } = require('events')
 const eventEmitter = new EventEmitter
 
 eventEmitter.emit("eventName")
 ```
 
 ### Receiving Events
-```
+```javascript
 eventEmitter.on("eventName", () => {
 })
 ```
@@ -139,14 +153,14 @@ eventEmitter.on("eventName", () => {
 
 ### Reading to Files
 
-```
+```javascript
 const encodingType = "utf8"
 
 // Blocking/Sync
 const file = fs.readFileSync("filepath.txt", encodingType)
 
 // Non-Blocking
-fs.readFile("filepath.txt", encodingType, (error, file) => {// function when file is loaded})
+fs.readFile("filepath.txt", encodingType, (error, file) => {/* function when file is loaded*/})
 
 // Asynchronous/Promises
 async function loadFile() {
@@ -155,12 +169,12 @@ async function loadFile() {
 ```
 
 ### Writing to Files
-```
+```javascript
 fs.writeFile("./filepath.txt", "Written data", error => {error ? console.log(error) : false})
 ```
 
 ### Appending to Files
-```
+```javascript
 fs.appendFile("./filepath.txt", "Written data", error => {error ? console.log(error) : false})
 ```
 
@@ -172,7 +186,7 @@ fs.appendFile("./filepath.txt", "Written data", error => {error ? console.log(er
 | express  | Simplifies HTTP-related tasks usually for making APIs. |
 
 ### Inquirer
-```
+```javascript
 const inquirer = require('inquirer')
 
 async function askQuestion(question, answerName, validationFunction){
@@ -192,7 +206,7 @@ async function askQuestion(question, answerName, validationFunction){
 ```
 
 ### Express
-```
+```javascript
 const express = require("express")
 const app = express()
 
@@ -217,7 +231,7 @@ Making/Receiving an http method uses the format of `app.httpMethod("path", callb
   - Ex: https://www.rscheatsheets.com/
 - The callbackFunction can take the arguments of request, response, and/or nextFunction
 
-```
+```javascript
 app.get("/", (req, res) => {})
 app.post("/", (req, res) => {})
 app.put("/", (req, res) => {})
@@ -227,7 +241,7 @@ app.patch("/", (req, res) => {})
 ```
 
 #### Express Get
-```
+```javascript
 app.get('/', (req, res) => {
   console.log("Test") // Outputs to the terminal of the server
 })
@@ -253,7 +267,7 @@ View engines allow you to change the html from he server before it is sent.
 - Inside .ejs files you can output into the html by using `<%= %>`
   - Ex: `<p>2 plus 2 equals <%= 2 + 2 %></p>`
 
-```
+```javascript
 res.render("index") // Uses the view engine to render html in the browser.
 
 res.render("index", { text: "world" })

@@ -44,10 +44,11 @@ JavaScript is the only language that can be run in the browser.
 - [URL of Webpage](#url-of-webpage)
     - [Redirect URL](#redirect-url)
 - [Regex](#regex)
+- [Object Oriented][#object-oriented]
 
 ## Comments
 
-```
+```javascript
 // Inline comment
 /*
     Multi-line comment
@@ -97,7 +98,7 @@ JavaScript is the only language that can be run in the browser.
 - A refresh in the browser clears all variables.
 - camelCase is most commonly used
 
-```
+```javascript
 function example() {
   var x = 10; // function scope
   let y = 20; // block scope
@@ -119,7 +120,7 @@ example();
 ## Strings
 Strings can start with "s, 's, or `s
 
-Escape seqences: \\", \\', \\`, \\ \\
+Escape sequences: \\", \\', \\`, \\ \\
 - \b backspaces
 - \f form feed
 - \n new line
@@ -134,7 +135,7 @@ Strings are immutable. Once a string is created its value cannot be changed. If 
 ### String Functions
 - `.length`
     - Size of the string
-- `.slice(start, end)` or `.slice(start)` 
+- `.slice(start, end)` or `.slice(start)`
     - Extracts part of a string.
     - The index of the string starts at 0.
     - The start is inclusive while the end is not.
@@ -180,7 +181,7 @@ Arrays allow you to store several pieces of data in the same place. Elements can
 - `.splice(index where new elements should be added, how many elements should be removed, new elements to be added)`
     - Elements are added before the index specified
     - Can be used to remove elements in an array
-```
+```javascript
 const fruits = ["Banana", "Orange", "Apple", "Mango"]
 fruits.splice(2, 0, "Lemon", "Kiwi")
 console.log(fruits)
@@ -200,7 +201,7 @@ console.log(fruits)
 - `.filter(function(element))`
     - Filter loops through and array and allows you to remove elements
     - If the function returns false for that element then it gets removed.
-```
+```javascript
 // Keeps all the even numbers
 let numbers = [1, 3, 4, 5, 5, 2]
 numbers = numbers.filter((element) => {
@@ -214,7 +215,7 @@ console.log(numbers)
     - Takes an array and reduces it to 1 value
     - The accumulator is set to the startingValue when starting to go through the function.
     - Whatever is returned from the function is what is set to the total for the next iteration
-```
+```javascript
 const prices = [10, 20, 30, 40]
 const totalPrice = prices.reduce((total, price) => {
     return total + price
@@ -226,23 +227,22 @@ console.log(totalPrice)
 - `.sort((a, b) => a - b)`
     - If the function returns a negative number "a" is sorted before "b"
     - If the function returns a positive number "b" is sorted before "a"
-```
+```javascript
 const numbers = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5];
 
 numbers.sort((a, b) => a - b);
 
 console.log(numbers); // Output: [1, 1, 2, 3, 3, 4, 5, 5, 5, 6, 9]
-
 ```
 
 ## Equality Operators
 - `===` `!==` strict operator
     - Doesn't do the type conversion
-- `==` `!=` 
+- `==` `!=`
     - Attempts to convert both values to a common type. Allows type coercion.
     - <, >, <=, >= attempts to convert values
 
-```
+```javascript
 3 === 3 // true
 3 === '3' // false
 3 == 3 // true
@@ -251,7 +251,7 @@ console.log(numbers); // Output: [1, 1, 2, 3, 3, 4, 5, 5, 5, 6, 9]
 
 ## Switch Block
 
-```
+```javascript
 let x = 10
 switch(x) {
     case 1:
@@ -269,14 +269,14 @@ switch(x) {
 ## Functions
 - If you don't return anything then the return value is undefined
     - Can be declared below their use. This is called hoisting and is unique to JS.
-```
+```javascript
 func() // Prints out Test
 function func() {
     console.log("Test")
 }
 ```
 
-```
+```javascript
 function func_name1(arg1, arg2) {}
 
 const func_name2 = function(arg1, arg2) {}
@@ -297,7 +297,7 @@ const func_name4 = (...args) => {
     - Avoid using arrow functions(=>) inside objects at least on the first layer.
 
 - You can run a function immediately by doing
-```
+```javascript
 (function() {
     console.log("Function that ran immediately")
 })()
@@ -305,25 +305,25 @@ const func_name4 = (...args) => {
 
 ## Useful Functions
 
-|                                          |                                                                                                          |
-|------------------------------------------|----------------------------------------------------------------------------------------------------------|
-| console.log("x is " + x)                 | Prints to the console.                                                                                   |
-| prompt("Message")                        | Shows a pop up with message and allowing user input.                                                     |
-| alert("Message")                         | Shows an alert to the user. No user input.                                                               |
-| confirm("Message")                       | Shows message to user and takes user input as true or false.                                             |
-| Math.PI                                  | 3.141592653589793                                                                                        |
-| Math.abs(num)                            | Absolute value                                                                                           |
-| Math.random()                            | Returns a random floating point num between 0 and 1. Can return a 0, but not a 1.                        |
-| Math.floor(num)                          | Rounds down to the nearest whole number                                                                  |
-| Math.floor(Math.random() * (num + 1))    | Picks a random integer from 0 to num.
-| Math.ceil(num)                           | Rounds up to the nearest whole number                                                                    |
-| .toFixed(number of decimal places)       | Rounds to the number of decimal places.                                                                  |
-| parseInt(str) or parseInt(str, base num) | Converts a string to an int. If it can't then it returns NaN                                             |
+|                                          |                                                                                   |
+|------------------------------------------|-----------------------------------------------------------------------------------|
+| console.log("x is " + x)                 | Prints to the console.                                                            |
+| prompt("Message")                        | Shows a pop up with message and allowing user input.                              |
+| alert("Message")                         | Shows an alert to the user. No user input.                                        |
+| confirm("Message")                       | Shows message to user and takes user input as true or false.                      |
+| Math.PI                                  | 3.141592653589793                                                                 |
+| Math.abs(num)                            | Absolute value                                                                    |
+| Math.random()                            | Returns a random floating point num between 0 and 1. Can return a 0, but not a 1. |
+| Math.floor(num)                          | Rounds down to the nearest whole number                                           |
+| Math.floor(Math.random() * (num + 1))    | Picks a random integer from 0 to num.                                             |
+| Math.ceil(num)                           | Rounds up to the nearest whole number                                             |
+| .toFixed(number of decimal places)       | Rounds to the number of decimal places.                                           |
+| parseInt(str) or parseInt(str, base num) | Converts a string to an int. If it can't then it returns NaN                      |
 
 ### Fetch
 Used to fetch data from a server. Returns a promise of the response.
 
-```
+```javascript
 fetch("URL")
 .then(response => response.json()) // asynchronously returns an object from the json string
 .then(data => {
@@ -336,7 +336,7 @@ fetch("URL")
 
 You can specify the headers that fetch uses.
 
-```
+```javascript
 fetch("URL", {
     method: "POST",
     headers: {
@@ -364,15 +364,15 @@ fetch("URL", {
 
 | credentials: | Description                                                 |
 |--------------|-------------------------------------------------------------|
-| same-origin  | Cookies/credentials only in request when same origin.   |
+| same-origin  | Cookies/credentials only in request when same origin.       |
 | include      | Cookies/credentials stored in request regardless of origin. |
 | omit         | Excludes cookies and credentials                            |
 
 Origin means the same URL, protocol, domain(.com, .net, etc), and port.
 
-| cache: | Description                                      |
-|--------|--------------------------------------------------|
-| reload | Stop cacheing of data by the browser for that fetch.|
+| cache: | Description                                         |
+|--------|-----------------------------------------------------|
+| reload | Stop caching of data by the browser for that fetch. |
 
 | redirect: | Description                      |
 |-----------|----------------------------------|
@@ -380,9 +380,9 @@ Origin means the same URL, protocol, domain(.com, .net, etc), and port.
 | manual    | Can manually handle redirects.   |
 | error     | Error when there are redirects.  |
 
-
 `headers:` are used to send additional information.
-```
+
+```javascript
 headers: {
     'Content-Type': 'application/json'
 }
@@ -395,7 +395,7 @@ Objects are used to store an unordered list of properties to describe one thing.
 
 Literal object notation is an object created with key-value pairs.
 
-```
+```javascript
 let testObj = {
     "A food": "hamburger",
     "drink": "water",
@@ -419,7 +419,7 @@ console.log(testObj["A food"]) // hamburger
 - Object.values(object) converts an object to an array where the keys are replaced with indices.
 - Object.keys(object) gets an array of the keys of that object
 - You can do object shorthand if the key and value are the same
-```
+```javascript
 const object = {
     test1: test1,
     test2: test2,
@@ -431,7 +431,7 @@ const object = {
 }
 ```
 - To get specific values from an object or array you can use this notation
-```
+```javascript
 const object = {
     key1: "value1",
     key2: "value2"
@@ -450,11 +450,11 @@ console.log(var2) // ele2
 ### For In
 - You need to do [] when referencing properties in a for in loop in case the property has a space in it.
 
-```
-const object = { a: 1, b: 2, c: 3 };
+```javascript
+const object = { a: 1, b: 2, c: 3 }
 
 for (const property in object) {
-  console.log(property + ": " + object[property]);
+  console.log(property + ": " + object[property])
 }
 // "a: 1"
 // "b: 2"
@@ -467,7 +467,7 @@ for (const property in object) {
     - `JSON.parse(json)`
     - You can convert asynchronously with `json.json()`
 
-```
+```javascript
 const json = '{"first name": "Ryan", "last name": "Sheehy"}'
 const obj = JSON.parse(json, (key, value) => {
     if(key === "last name"){
@@ -486,13 +486,13 @@ console.log(obj) // "first name": "Ryan", "last name": "Mr. Sheehy"
 ### Spread Operator
 - Used to spread out an array or an object
 
-```
-const numbersOne = [1, 2, 3];
-const numbersTwo = [4, 5, 6];
-const numbersCombined = [...numbersOne, ...numbersTwo]; 
+```javascript
+const numbersOne = [1, 2, 3]
+const numbersTwo = [4, 5, 6]
+const numbersCombined = [...numbersOne, ...numbersTwo]
 
-const numbers = [1, 2, 3, 4, 5, 6];
-const [one, two, ...rest] = numbers; 
+const numbers = [1, 2, 3, 4, 5, 6]
+const [one, two, ...rest] = numbers
 console.log(one) // 1
 console.log(two) // 2
 console.log(rest) // 3, 4, 5, 6
@@ -505,7 +505,7 @@ const obj2 = {
   firstName: "Ryan",
   lastName: "Sheehy",
 }
-const obj3 = {...obj1, ...obj2} 
+const obj3 = {...obj1, ...obj2}
 ```
 
 It can be used to create an array from something that isn't an array. `[...nonArray]`
@@ -515,7 +515,7 @@ Used to make complete string with embedded JS.
 - Starts with \`s
 - It allows you to have multi-line strings with a newline inserted.
 
-```
+```javascript
 let person = {
     name: "Ryan Sheehy",
     age: "21",
@@ -529,7 +529,7 @@ Use `export` to export the var/function
     - Ex: `export const name = "Ryan Sheehy"`
     - There can be a default export for a file. There can only be 1 default export.
 
-```
+```javascript
 import { name } from "./filepath"
 // If it is a .js file you don't have to put .js at the end
 
@@ -546,7 +546,7 @@ import Name from "./filepath"
 ## Error Handling
 Used to keep the code running even when there is an error.
 
-```
+```javascript
 try{
     // Code that may throw an error
     if( variable ){
@@ -564,7 +564,7 @@ try{
 ## Promises
 Used to handle asynchronous(code can be run in parallel) operations. Can only return either a resolve or a reject.
 
-```
+```javascript
 let promise = new Promise((resolve, reject) => {
     let x = 1 + 1
     if( x == 2 ){
@@ -580,13 +580,13 @@ promise.then((message) => {
 }).catch((message) => {
     // catch runs if the promise returns a reject
     console.log(message) // "Failed"
-}
+})
 ```
 
 ## Async/Await
 Used to make promises easier to work with. Only works with asynchronous functions.
 
-```
+```javascript
 async func_name = () => {
     try{
         let variable = await promise_function()
@@ -658,7 +658,7 @@ The selector in querySelector cannot start with a number therefore ids and class
 | event.preventDefault()                              | Prevents the default event for an element. Certain elements have default events.         |
 | event.stopPropagation()                             | Only have to worry if you have clickable elements inside clickable elements in the html. |
 
-```
+```javascript
 // To dynamically add listeners to dynamically added elements.
     // You cannot get the element when the element isn't created in the DOM
   document.querySelector("element already created by the dom").addEventListener("click", function(event){
@@ -714,29 +714,30 @@ The `this` keyword is used to refer to the current object.
 
 - By default the `this` keyword is in the window object.
 
-```
+```javascript
 console.log(this) // This will print the window
 let planet = {
     name = "Earth",
     printName = () => {
-        console.log(this.name)
+        console.log(this.name) // Earth
     },
 }
 ```
 
 ## Timing
 
-|                                                    |                                                                                                          |
-|----------------------------------------------------|----------------------------------------------------------------------------------------------------------|
-| setTimeout(function, milliseconds)                 | The function runs after the delay time in milliseconds. Other code can run while waiting for setTimeout. |
-| let interval = setInterval(function, milliseconds) | Runs the function every milliseconds. Other code can run int he background.                              |
-| clearInterval(interval)                            | Stops the interval.                                                                                      |
+|                                          |                                                                                               |
+|------------------------------------------|-----------------------------------------------------------------------------------------------|
+| setTimeout(function, ms)                 | The function runs after the delay time in milliseconds. Other code can run in the background. |
+| let interval = setInterval(function, ms) | Runs the function every milliseconds. Other code can run in the background.                   |
+| clearInterval(interval)                  | Stops the interval.                                                                           |
+
 
 1000 Milliseconds = 1 Second
 
 ## +/-/++/-- Operators
 
-```
+```javascript
 let variable = 5
 let result1 = ++variable // variable becomes 6 and result1 becomes 6
 let result2 = --variable // variable becomes 5 and result2 becomes 5
@@ -744,11 +745,11 @@ let result3 = variable++ // result3 become 5 and then variable becomes 6
 let result4 = variable-- // result4 becomes 6 and then variable becomes 5
 ```
 
-```
+```javascript
 console.log(+"3" + +"5") // 8
-    // The +s infront of the string converts it to a num and then those numbers are added together
+    // The +s in front of the string converts it to a num and then those numbers are added together
 console.log(-"3" - -"5") // 2
-    // The -s infront of the string converrs it to a num, but negates it and then those numbers are subtracted from one another.
+    // The -s in front of the string converts it to a num, but negates it and then those numbers are subtracted from one another.
 console.log(-"-3" + -"5") // -2
 ```
 
@@ -761,19 +762,18 @@ In incognito/private window it creates a new localStorage and removes it when th
 
 5megabytes max for local storage.
 
-```
+```javascript
 localStorage.setItem("key", "value")
 
 localStorage.getItem("key")
-    Returns null if nothing is found
+    // Returns null if nothing is found
 
 localStorage.removeItem("key")
 
 localStorage.clear()
-    Removes all local storage foryour site
-
-Never store passwords, even hashed passwords, in the local storage or session storage.
+    // Removes all local storage for your site
 ```
+- Never store passwords, even hashed passwords, in the local storage or session storage.
 
 ## Common APIs
 
@@ -785,12 +785,11 @@ Never store passwords, even hashed passwords, in the local storage or session st
 | jQuery UI | Makes manipulating things easier. Can work with bootstrap. |
 | [Axios](https://axios-http.com/docs/intro)     | ajax in jQuery, but without the jQuery. |
 
-
 ### Dayjs
 
 Provides more powerful formatting than the inbuilt Date() in JS
 
-```
+```javascript
 var today = dayjs()
 today.format("MMM D, YYYY')
 today.format('[This is the day: ] ddd')
@@ -811,7 +810,7 @@ This can be used to go to another one of your pages by setting the new URL to th
 ## Regex
 Used to match patterns.
 
-```
+```javascript
 function validate(input){
     // Does string start with the word regex
         const pattern = /^(regex).*/gm
@@ -821,4 +820,68 @@ function validate(input){
         // Doesn't match the regex
     }
 }
+```
+
+## Object Oriented
+You can create objects with object literals or using the `new` keyword on classes/constructor functions
+
+- Constructors tend to start with capital letters as JS convention.
+- Make things public through the `this` keyword
+
+```javascript
+class Vehicle {
+    constructor(name){
+        this.name = name
+    }
+}
+```
+
+Constructor functions
+```javascript
+function Car(name, model, year){
+    Vehicle.call(this, name)
+    const privateVariable = "Test"
+    this.model = model // The this.model variable is automatically created for the object
+    this.year = year
+    this.info = function () {
+        console.log(this)
+    }
+}
+```
+
+Using classes
+```javascript
+class Car extends Vehicle {
+    constructor(name, model, year){
+        super(name) // super is the contractor of the parent
+            // This will allow you to use this.vehicleConstructorArg1
+        this.model = model
+        this.year = year
+    }
+
+    getAge(){return 2023 - this.year}
+
+    static test(){
+        console.log("Test")
+    }
+}
+```
+
+### Prototype
+Adds a variable or function to a class or constructor function.
+
+`Car.prototype.moreInfo = () => {console.log("moreInfo")}`
+- All objects of Car, even the ones created in the past, get access to this method.
+
+This can be used to have inheritance with constructor functions.
+
+## Tests
+Tests are used to test your code usually before sending them towards production.
+name.test.js
+```javascript
+describe("testName", () => {
+    test("description", () => {
+        // JS code tests
+    })
+})
 ```

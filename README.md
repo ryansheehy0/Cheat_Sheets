@@ -1,13 +1,8 @@
 # Ryan Sheehy Cheat Sheets
 The purpose of these cheat sheets is to give concise explanations of the topic at hand.
-- Math
-    - [Taylor Series](./Taylor_Series/taylor_series.md)
-    - [Newtons Method](./Newtons_Method/newtons_method.md)
-- Physics/EE
-    - [Logic Gate Electronic Speed Controller](./Logic_Gate_Electronic_Speed_Controller/logic_gate_electronic_speed_controller.md)
 - Tools
-    - [Vim](./vim.md) 
-    - [Simple Encryption](./simple_encryption.md) 
+    - [Vim](./vim.md)
+    - [Simple Encryption](./simple_encryption.md)
     - [Markdown](./markdown.md)
     - [Git](./git.md)
     - [Regex](./regex.md)
@@ -19,6 +14,11 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
         - [jQuery](./jquery.md)
     - C/C++
         - [Make Files](./make_files.md)
+- Math
+    - [Taylor Series](./Taylor_Series/taylor_series.md)
+    - [Newtons Method](./Newtons_Method/newtons_method.md)
+- Physics/EE
+    - [Logic Gate Electronic Speed Controller](./Logic_Gate_Electronic_Speed_Controller/logic_gate_electronic_speed_controller.md)
 
 ## Cheat Sheets Todo
 
@@ -31,6 +31,7 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
 - [C](./c.md)
 - [Tailwind](./tailwind.md)
 - [NodeJS](./nodejs.md)
+- [OOP](./oop.md)
 
 ### Unstarted Cheat Sheets
 
