@@ -81,3 +81,21 @@ Classes are used to create objects from a template.
 An object is an unordered collection of related variables and/or functions.
 
 What is schema?
+
+## Use Builder pattern
+```javascript
+function Class({arg1, arg2}, {optionalArg1} = {}) {
+
+  this.setOptionalArg1(arg){
+    optionalArg1 = arg
+    return this
+  }
+
+  this.optionalFunction = function(){
+    if(typeof optionalArg1 === "undefined"){
+      throw new Error("optionalFunction needs optionalArg1")
+    }
+    // Run code that uses optional arguments
+  }
+}
+```
