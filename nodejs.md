@@ -9,6 +9,7 @@ Somethings work differently when using JS in NodeJS then in the browser. This ch
 - [Questions](#questions)
 - [Getting Started](#getting-started)
 - [Node Package Manager(NPM)](#node-package-managernpm)
+  - [Scripts](#scripts)
   - [Importing](#importing)
   - [Exporting](#exporting)
 - [Miscellaneous](#miscellaneous)
@@ -16,7 +17,7 @@ Somethings work differently when using JS in NodeJS then in the browser. This ch
 - [this keyword](#this-keyword)
 - [Global Variables](#global-variables)
   - [Process](#process)
-      - [Arguments from the Terminal](#arguments-from-the-terminal)
+    - [Arguments from the Terminal](#arguments-from-the-terminal)
 - [Events](#events)
   - [Emitting Events](#emitting-events)
   - [Receiving Events](#receiving-events)
@@ -26,6 +27,12 @@ Somethings work differently when using JS in NodeJS then in the browser. This ch
   - [Appending to Files](#appending-to-files)
 - [Packages](#packages)
   - [Inquirer](#inquirer)
+  - [Express](#express)
+    - [Express HTTP Methods](#express-http-methods)
+    - [Express Get](#express-get)
+    - [View Engines](#view-engines)
+      - [EJS](#ejs)
+  - [Jest](#jest)
 
 ## Questions
 <!--
@@ -57,6 +64,7 @@ NPM is used to install dependencies/packages for NodeJS code.
 | `npm init -y`             | Sets up a package.json file with the default settings.                                                      |
 | `npm install <package>`   | Installs the package for your project. Puts it in your package.json                                         |
 | `npm install <package>@8.2.4`   | Installs the package with the version 8.2.4 for your project. Puts it in your package.json            |
+| `npm i --save-dev <package>` | Installs the package as a dev package.                                                                   |
 | `npm uninstall <package>` | Uninstalls the package for your project.                                                                    |
 | `npm install`             | Installs all the dependencies if there is a package.json file and if the packages aren't already installed. |
 
@@ -184,6 +192,7 @@ fs.appendFile("./filepath.txt", "Written data", error => {error ? console.log(er
 |----------|--------------------------------------------------------|
 | inquirer | Used to simply get user input from the terminal        |
 | express  | Simplifies HTTP-related tasks usually for making APIs. |
+| jest     | Used for tests inside node.                            |
 
 ### Inquirer
 ```javascript
@@ -273,4 +282,29 @@ res.render("index") // Uses the view engine to render html in the browser.
 res.render("index", { text: "world" })
   // To access this object in your .ejs file use <%= key %>
     // Ex: <%= text %>
+```
+
+### Jest
+Tests are used to test your code usually before sending them towards production. Install jest as a dev package.
+
+Tests are usually done in small units so that if one test fails then you know where some code is broken.
+
+In your package.json add
+```javascript
+"script": {
+  "test": "jest"
+}
+```
+
+`npm test` will now run jest and thus all of your tests.
+
+In order to create tests they have to be named `fileName.test.js`
+
+```javascript
+test("description", () => {
+    // JS code tests
+    expect(/*Code to be run*/).toBe(/*Weather the output of expects ===(strictly equals) this code.*/)
+      // or
+    expect(/*Code to be run*/).toEqual(/*Checks for structural equality. Compares the contents of two objects or arrays*/)
+})
 ```

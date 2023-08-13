@@ -44,7 +44,8 @@ JavaScript is the only language that can be run in the browser.
 - [URL of Webpage](#url-of-webpage)
     - [Redirect URL](#redirect-url)
 - [Regex](#regex)
-- [Object Oriented][#object-oriented]
+- [Object Oriented](#object-oriented)
+    - [Prototype](#prototype)
 
 ## Comments
 
@@ -874,14 +875,3 @@ Adds a variable or function to a class or constructor function.
 - All objects of Car, even the ones created in the past, get access to this method.
 
 This can be used to have inheritance with constructor functions.
-
-## Tests
-Tests are used to test your code usually before sending them towards production.
-name.test.js
-```javascript
-describe("testName", () => {
-    test("description", () => {
-        // JS code tests
-    })
-})
-```
