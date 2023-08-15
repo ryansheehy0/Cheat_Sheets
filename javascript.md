@@ -24,7 +24,9 @@ JavaScript is the only language that can be run in the browser.
     - [Spread Operator](#spread-operator)
 - [Template Literals](#template-literals)
 - [Import and Export](#import-and-export)
-- [Error Handling](#error-handling)
+- [Errors](#error)
+    - [Error Handling](#error-handling)
+    - [Throwing Errors](#throwing-errors)
 - [Promises](#promises)
 - [Async/Await](#asyncawait)
 - [DOM Manipulation](#dom-manipulation)
@@ -544,8 +546,10 @@ default export x
 import Name from "./filepath"
 ```
 
-## Error Handling
-Used to keep the code running even when there is an error.
+## Errors
+
+### Error Handling
+Error handling is used to keep the code running even when there is an error.
 
 ```javascript
 try{
@@ -561,6 +565,11 @@ try{
     // Code that runs after the try catch regardless of what the try catch does
 }
 ```
+
+### Throwing Errors
+Errors stop the execution of the code. You can throw a custom error by doing
+
+`throw new Error("Name of error")`
 
 ## Promises
 Used to handle asynchronous(code can be run in parallel) operations. Can only return either a resolve or a reject.
@@ -816,6 +825,19 @@ function validate(input){
     // Does string start with the word regex
         const pattern = /^(regex).*/gm
     if(input.match(pattern)){
+        // Matches the regex
+    }else{
+        // Doesn't match the regex
+    }
+}
+```
+
+or
+
+```javascript
+function validate(input){
+    const pattern = new RegExp("^(regex).*")
+    if(pattern.test(input)){
         // Matches the regex
     }else{
         // Doesn't match the regex

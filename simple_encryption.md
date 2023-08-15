@@ -28,7 +28,7 @@ A simple non secure encryption that only allows writable ASCII characters used t
 
 ## Steps:
 1. Get input character
-1. If the input character is a tab or new line then print it out and go to next character
+1. If the input character is a tab or new line then print it out and go to next character, but don't go to the next password character
 1. Get password character
     - If the password is shorter than the input then the password wraps around to its beginning
 1. Subtract 32 from input and password character

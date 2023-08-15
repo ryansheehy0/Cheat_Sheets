@@ -1,8 +1,17 @@
+[Home](./README.md)
+
 # Android Studio
 
 ## Links
 - https://developer.android.com/
 - https://developers.google.com/android
+
+## Packages
+
+## Manifest
+AndroidManifest.xml file provides info to the Android Operating system.
+
+## Gradle
 
 ## Location
 

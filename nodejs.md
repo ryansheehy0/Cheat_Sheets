@@ -287,7 +287,7 @@ res.render("index", { text: "world" })
 ### Jest
 Tests are used to test your code usually before sending them towards production. Install jest as a dev package.
 
-Tests are usually done in small units so that if one test fails then you know where some code is broken.
+Tests are usually done in small units(Unit Testing) so that if one test fails then you know where some code is broken.
 
 In your package.json add
 ```javascript
@@ -298,13 +298,24 @@ In your package.json add
 
 `npm test` will now run jest and thus all of your tests.
 
+To run a test file individually you can run `npx jest --testPathPattern=./filePath/file.test.js`
+
 In order to create tests they have to be named `fileName.test.js`
 
 ```javascript
-test("description", () => {
-    // JS code tests
-    expect(/*Code to be run*/).toBe(/*Weather the output of expects ===(strictly equals) this code.*/)
-      // or
-    expect(/*Code to be run*/).toEqual(/*Checks for structural equality. Compares the contents of two objects or arrays*/)
+describe("test title" () => {
+  test("test description", () => {
+      // JS code tests
+      expect(/*Code to be run*/).toBe(/*Weather the output of expects ===(strictly equals) this code.*/)
+        // or
+      expect(/*Code to be run*/).toEqual(/*Checks for structural equality. Compares the contents of two objects or arrays*/)
+      expect(/*object*/).toBeInstanceOf(/*Class. Checks if the object is an instance of that Class.*/)
+  })
+  it("test description", () => {
+    // This is the same thing as test
+  })
 })
 ```
+
+- expect is used instead of if statements to make code cleaner and less lines.
+- Each test/it is run in a separate instance so if an error is thrown in one of them it will still run the other tests/its.
