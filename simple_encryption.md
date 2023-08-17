@@ -68,3 +68,49 @@ A simple non secure encryption that only allows writable ASCII characters used t
 |52 % (127-32) = 52|72 % (127-32) = 72 |73 % (127-32) = 73 |83 % (127-32) = 83|
 | 52 + 32 = 84 | 72 + 32 = 104 | 73 + 32 = 105 | 83 + 32 = 115 |
 | T | h | i | s |
+
+## Pseudocode
+
+```javascript
+const fileLocation = question("Enter your input file: ")
+const file = readFile(fileLocation)
+
+const encryptionOrDecryption = question("Enter 'e' to encrypt or 'd' to decrypt: ")
+if(encryptionOrDecryption !== 'e' && encryptionOrDecryption !== 'd'){
+    throw Error("Needs to be either 'e' or 'd'.")
+}
+
+const password = question("Enter password: ")
+
+for(var i = 0, passwordI = 0; i < file.length; i++, passwordI++){
+    const char = file[i]
+
+    if(char == "\t" || char == "\n"){
+        print(char)
+        passwordI--
+        continue
+    }
+
+    var passwordCode = ascii(password[passwordI % password.length])
+    var fileCode = ascii(char)
+
+    passwordCode -= 32
+    fileCode -= 32
+
+    var newFileCode
+    if(encryptionOrDecryption == "e"){
+        newFileCode = fileCode + passwordCode
+    }else{
+        newFileCode = (fileCode - passwordCode) + (127 - 32)
+    }
+
+    newFileCode = newFileCode % (127 - 32)
+
+    newFileCode += 32
+
+    const newFileChar = asciiToChar(newFileCode)
+
+    print(newFileChar)
+}
+
+```

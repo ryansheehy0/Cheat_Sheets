@@ -22,6 +22,7 @@ JavaScript is the only language that can be run in the browser.
     - [For In](#for-in)
     - [JavaScript Object Notation(JSON)](#javascript-object-notationjson)
     - [Spread Operator](#spread-operator)
+    - [Object to Array](#objecttoarray)
 - [Template Literals](#template-literals)
 - [Import and Export](#import-and-export)
 - [Errors](#error)
@@ -513,6 +514,9 @@ const obj3 = {...obj1, ...obj2}
 
 It can be used to create an array from something that isn't an array. `[...nonArray]`
 
+### Object to Array
+`Object.values(obj)` converts the obj to an array with their values in the array.
+
 ## Template Literals
 Used to make complete string with embedded JS.
 - Starts with \`s
@@ -573,6 +577,8 @@ Errors stop the execution of the code. You can throw a custom error by doing
 
 ## Promises
 Used to handle asynchronous(code can be run in parallel) operations. Can only return either a resolve or a reject.
+
+- You need a promise or else the function could return nothing.
 
 ```javascript
 let promise = new Promise((resolve, reject) => {

@@ -76,6 +76,8 @@ The view is getting data to G
 - The only arguments in constructors should be essential to start the object. Any optional argument should be set through Set methods and return `this` to allow for chaining.
   - Programming languages should allow you to change weather a function is private or public to allow for changing interfaces for when optional arguments are set.
 - Never use static methods. Either make it an instance method or don't use a class.
+- Minimize changes to your interface as much as possible so that you don't have to re-write other code that uses your interface.
+  - This is why you should default ot setters and getters.
 
 Classes are used to create objects from a template.
 An object is an unordered collection of related variables and/or functions.

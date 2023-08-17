@@ -146,14 +146,14 @@
 
 | Text    | Symbol |
 |---------|--------|
-| \&lt;   | <      |
-| \&gt;   | >      |
-| \&amp;  | &      |
-| \&quot; | "      |
-| \&apos; | '      |
-| \&copy; | &copy; |
-| \&reg;  | &reg;  |
-| \&deg;  | &deg;  |
+| &lt\;   | <      |
+| &gt\;   | >      |
+| &amp\;  | &      |
+| &quot\; | "      |
+| &apos\; | '      |
+| &copy\; | &copy; |
+| &reg\;  | &reg;  |
+| &deg\;  | &deg;  |
 
 ## Attributes
 
