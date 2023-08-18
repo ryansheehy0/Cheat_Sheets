@@ -89,6 +89,8 @@ To import the exported variable you can do `const module = require("./filepath.j
 
 In order to import from a package you do `const package = require("packageName")`
 
+You can import json directly `const json = require("./file.json")`
+
 ### Exporting
 To export you use the module.exports object
 ```javascript
@@ -195,6 +197,8 @@ fs.appendFile("./filepath.txt", "Written data", error => {error ? console.log(er
 | jest     | Used for tests inside node.                            |
 
 ### Inquirer
+Used to simply get user input from the terminal.
+
 ```javascript
 const inquirer = require('inquirer')
 
@@ -215,16 +219,27 @@ async function askQuestion(question, answerName, validationFunction){
 ```
 
 ### Express
+Simplifies HTTP-related tasks usually for making APIs. It's a framework for handling http requests.
+
 ```javascript
 const express = require("express")
+const path = require("path")
+
 const app = express()
 
 // Settings
 const settingName = "view engine"
 const settingValue = "ejs"
 app.set(settingName, settingValue)
+
+// Middleware. Middleware functions are functions that can intercept and process incoming requests before they reach route handlers
+
+app.use(express.json()) // Parses the body with json
+app.use(express.static('public')) // Setting for serving static files from the public folder. You can directly call the file. Ex: localhost:3000/images/image.jpg
+
 // HTTP Methods
 
+// Listen
 const port = 3000
 app.listen(port, () => {
   // Optional function that is run when connected to the port
@@ -238,31 +253,52 @@ app.listen(port, () => {
 Making/Receiving an http method uses the format of `app.httpMethod("path", callbackFunction)`
 - The path is what is after the URL. By default the path is "/".
   - Ex: https://www.rscheatsheets.com/
+  - You can also make the path "*" which will catch all other terms
+    - This has to be placed after other http methods or else the "*" will overwrite the other http methods.
 - The callbackFunction can take the arguments of request, response, and/or nextFunction
 
 ```javascript
-app.get("/", (req, res) => {})
-app.post("/", (req, res) => {})
+app.get("/", (req, res) => {
+  console.log("Test") // Outputs to the terminal of the server
+})
+app.post("/", (req, res) => {
+  const data = req.body
+})
 app.put("/", (req, res) => {})
 app.delete("/", (req, res) => {})
 app.patch("/", (req, res) => {})
 //etc.
 ```
 
-#### Express Get
+| Sending methods                                   | Description                                             |
+|---------------------------------------------------|---------------------------------------------------------|
+| res.sendStatus(statusCode)                        | Sends a HTTP status code                                |
+| res.json({ message: "error"})                     | Sends json                                              |
+| res.download("./fileToDownload.txt")              | Sends file to be downloaded.                            |
+| res.send("html")                                  | The Content-Type header is set to text/html by default. |
+| res.sendFile(path.join(__dirname, "/index.html")) | Renders html file in the browser                        |
+| res.redirect('/newURL')                           | Redirects the client to a new URL.                      |
+
+Your http methods need to return something, even an empty response, to indicate that the request was successfully handled. You can use `res.send("GET / handled successfully")`
+
+#### Parameters
+Parameters are data sent through the URL. This can include regular parameters like `/api/test/${id}` or query parameters like `/api/test?id=${id}`
+
 ```javascript
-app.get('/', (req, res) => {
-  console.log("Test") // Outputs to the terminal of the server
+// Regular parameters
+app.get("/api/test/:id", (req, res) => {
+  const id = req.params.id
 })
 ```
 
-|                                      |                              |
-|--------------------------------------|------------------------------|
-| res.sendStatus(statusCode)           | Sends a HTTP status code     |
-| res.json({ message: "error"})        | Sends json                   |
-| res.download("./fileToDownload.txt") | Sends file to be downloaded. |
-| res.send("html") | The Content-Type header is set to text/html by default. |
-| res.sendFile(__dirname + "./index.html") | Renders html file in the browser |
+```javascript
+// Query parameters
+app.get("/api/test", (req, res) => {
+  const id = req.query.id
+})
+```
+
+- Often times parameters are set to `.toLowerCase()` to make them case insensitive. .toLowerCase is used over .toUpperCase because it is slightly faster.
 
 #### View Engines
 View engines allow you to change the html from he server before it is sent.
@@ -285,6 +321,8 @@ res.render("index", { text: "world" })
 ```
 
 ### Jest
+Used for tests inside node.
+
 Tests are used to test your code usually before sending them towards production. Install jest as a dev package.
 
 Tests are usually done in small units(Unit Testing) so that if one test fails then you know where some code is broken.
@@ -319,3 +357,10 @@ describe("test title" () => {
 
 - expect is used instead of if statements to make code cleaner and less lines.
 - Each test/it is run in a separate instance so if an error is thrown in one of them it will still run the other tests/its.
+
+## Path
+`const path = require("path")`
+
+## Node-fetch
+Allows you to use the fetch function in node
+`const fetch = require('node-fetch')`

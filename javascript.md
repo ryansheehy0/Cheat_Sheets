@@ -62,7 +62,7 @@ JavaScript is the only language that can be run in the browser.
 
 ## Primitive Data Types
 - Dynamically typed. A variable can be assigned to multiple types.
-- By default all objects and array are pass by reference. In order to do a pass by value you have to use the spread operator.`[...array]` 
+- By default all objects and array are pass by reference. In order to do a pass by value you have to use the spread operator.`[...array]`
 - `typeof operand` can be used to get a string of the type
     - undefined
         - Is an uninitialized value
@@ -185,6 +185,7 @@ Arrays allow you to store several pieces of data in the same place. Elements can
 - `.splice(index where new elements should be added, how many elements should be removed, new elements to be added)`
     - Elements are added before the index specified
     - Can be used to remove elements in an array
+
 ```javascript
 const fruits = ["Banana", "Orange", "Apple", "Mango"]
 fruits.splice(2, 0, "Lemon", "Kiwi")
@@ -196,8 +197,9 @@ fruits.splice(1, 1)
 console.log(fruits)
 //Outputs: [ "Banana", "Apple", "Mango" ]
 ```
+
 - `.forEach(function)`
-    - Runs the function for each element in the array. 
+    - Runs the function for each element in the array.
     - The args that forEach passes are value/element, key/index, and array
 - `.map(function)`
     - Performs a function for each element in an array, then stores the returned values in a new array.
@@ -205,6 +207,7 @@ console.log(fruits)
 - `.filter(function(element))`
     - Filter loops through and array and allows you to remove elements
     - If the function returns false for that element then it gets removed.
+
 ```javascript
 // Keeps all the even numbers
 let numbers = [1, 3, 4, 5, 5, 2]
@@ -213,12 +216,14 @@ numbers = numbers.filter((element) => {
 })
 console.log(numbers)
 ```
+
 - `.slice(start, end)` or `.slice(start)`
     - Slices out a piece of an array into a new array without modifying the existing the array.
 - `.reduce((accumulator, item) => {}, startingValue)`
     - Takes an array and reduces it to 1 value
     - The accumulator is set to the startingValue when starting to go through the function.
     - Whatever is returned from the function is what is set to the total for the next iteration
+
 ```javascript
 const prices = [10, 20, 30, 40]
 const totalPrice = prices.reduce((total, price) => {
@@ -226,11 +231,13 @@ const totalPrice = prices.reduce((total, price) => {
 }, 0)
 console.log(totalPrice)
 ```
+
 - `.find(function)`
     - Used to find the first element that satisfies the given function.
 - `.sort((a, b) => a - b)`
     - If the function returns a negative number "a" is sorted before "b"
     - If the function returns a positive number "b" is sorted before "a"
+
 ```javascript
 const numbers = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5];
 
@@ -394,6 +401,18 @@ headers: {
 
 `body:` is where the data you want to send is stored such as JSON.
 
+Example:
+
+```javascript
+fetch('api/request', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(json),
+})
+```
+
 ## Objects
 Objects are used to store an unordered list of properties to describe one thing.
 
@@ -443,10 +462,14 @@ const object = {
 const array = ["ele1", "ele2"]
 
 const { key1, key2 } = object
+// or
+const { key1: value1, key2: value2} = object
 const [ var1, var2 ] = array
 
 console.log(key1) // value1
 console.log(key2) // value2
+console.log(value1) // value1
+console.log(value2) // value2
 console.log(var1) // ele1
 console.log(var2) // ele2
 ```
