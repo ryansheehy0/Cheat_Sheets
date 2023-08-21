@@ -240,7 +240,7 @@ app.use(express.static('public')) // Setting for serving static files from the p
 // HTTP Methods
 
 // Listen
-const port = 3000
+const port = process.env.PORT || 3000
 app.listen(port, () => {
   // Optional function that is run when connected to the port
   console.log(`Server is running on ${port}.`)

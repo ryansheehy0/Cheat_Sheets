@@ -32,6 +32,9 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
 - [Tailwind](./tailwind.md)
 - [NodeJS](./nodejs.md)
 - [OOP](./oop.md)
+- [Deploying Websites](./deploying_websites.md)
+- [XML](./xml.md)
+- [Android](./android.md)
 
 ### Unstarted Cheat Sheets
 

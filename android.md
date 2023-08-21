@@ -1,6 +1,6 @@
 [Home](./README.md)
 
-# Android Studio
+# Android
 
 ## Links
 - https://developer.android.com/
