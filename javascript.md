@@ -509,6 +509,8 @@ console.log(obj) // "first name": "Ryan", "last name": "Mr. Sheehy"
     - `JSON.stringify(obj)`
     - stringify has optional arguments for formatting.
         - `JSON.stringify(obj, null, 2)`
+        - the 2nd argument is like running a map function before making the json
+        - the 3rd argument specifies the space for indentation. In this case it is 2 spaces.
 
 ### Spread Operator
 - Used to spread out an array or an object
@@ -571,6 +573,17 @@ default export x
 
 // In order to import the default export you use
 import Name from "./filepath"
+```
+
+In the browser you can send info via the `window` global variable.
+
+```javascript
+// Exporting
+function test(){console.log("Test")}
+window.test = test
+
+// Importing
+window.test()
 ```
 
 ## Errors

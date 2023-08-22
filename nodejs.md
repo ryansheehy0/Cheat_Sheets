@@ -232,12 +232,15 @@ const settingName = "view engine"
 const settingValue = "ejs"
 app.set(settingName, settingValue)
 
-// Middleware. Middleware functions are functions that can intercept and process incoming requests before they reach route handlers
+// Middleware. Middleware functions are functions that can intercept and process incoming requests before they reach route handlers.
+  // You need to parse the data because it comes in as a stream of binary data in packets that need to be constructed together
+  // The content type header defines which middleware is triggered.
 
 app.use(express.json()) // Parses the body with json
 app.use(express.static('public')) // Setting for serving static files from the public folder. You can directly call the file. Ex: localhost:3000/images/image.jpg
+app.use(express.urlencoded({ extended: true })) // Old browsers might send json through URL encoded
 
-// HTTP Methods
+// HTTP Methods/Endpoints
 
 // Listen
 const port = process.env.PORT || 3000
@@ -259,14 +262,25 @@ Making/Receiving an http method uses the format of `app.httpMethod("path", callb
 
 ```javascript
 app.get("/", (req, res) => {
+  // Gets data from the server
   console.log("Test") // Outputs to the terminal of the server
 })
 app.post("/", (req, res) => {
+  // Creates new data in the server
+  // Used for login in
   const data = req.body
 })
-app.put("/", (req, res) => {})
-app.delete("/", (req, res) => {})
-app.patch("/", (req, res) => {})
+app.put("/", (req, res) => {
+  // Replaces a resource in the server
+})
+app.delete("/", (req, res) => {
+  // Removes data in the server
+})
+
+app.patch("/", (req, res) => {
+  // Changes some of the information in a resource in the server
+  // This is very rarely ever used
+})
 //etc.
 ```
 
@@ -320,6 +334,13 @@ res.render("index", { text: "world" })
     // Ex: <%= text %>
 ```
 
+
+#### Front end and Back end
+Usually the front end is put in the public folder.
+
+The front end should use `/` for any html links or server calls. Do not use `./`
+
+The server should send the html page when getting `/` path.
 ### Jest
 Used for tests inside node.
 

@@ -1,0 +1,16 @@
+Unit is being defined as whatever the smallest unit is in the universe.
+
+In order to observe something you have to interfere with it.
+
+When you interfere with a Unit you can only know a percentage of its momentum and/or position. This percentage is calculated from a collapse in the superposition of that Unit.
+
+All the energy in the universe has a force pushing it to become less dense. The universe is an optimization algorithms that decreases its energy density.
+
+What exactly is interference between Units?
+  If 2 or more Units give their energy to one another.
+
+Can you have a collections of Units which don't interfere?
+  Yes. Atoms and Bucky-Balls(collection of 60 carbon atoms) have quantum effects.
+
+How large can you have a collection of Units that have a superposition?
+  How large can you have a collection of Units that don't share energy?

@@ -113,6 +113,8 @@
 </form>
 ```
 
+Forms by default send a http POST request with the endpoint in action. The server responds with a html page to be loaded after the submission of the post.
+
 ## Grouping
 
 ```
