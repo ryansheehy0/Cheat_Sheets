@@ -35,3 +35,5 @@
   - This should create a new heroku location for git
 1. Run `git subtree push --prefix my-subdirectory heroku master`, but replace my-subdirectory with your root directory and replace master with your branch you want to deploy from.
   - This will make Heroku use my-subdirectory as the root directory
+
+### Using API keys

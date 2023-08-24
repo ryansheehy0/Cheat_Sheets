@@ -37,7 +37,7 @@ A version control system that manages changes to files.
 | git add -A                                 | Tracks and stages all the files and folders listed in status.                                                                                                                                                                                    |
 | git commit -m ”{Title}” -m ”{Description}” | Commits staged files. It is recommended to have your Title be in the present tense. Ex: "Adds some stuff"                                                                                                                                      |
 
-### Resetting Commits 
+### Resetting Commits
 
 |                               |                                                                       |
 |-------------------------------|-----------------------------------------------------------------------|
@@ -223,4 +223,20 @@ done
 exit 0
 ```
 
-- Make it executable with `chmod +x ./.git/hooks/pre-push` 
+- Make it executable with `chmod +x ./.git/hooks/pre-push`
+
+## Git Ignore
+A file called `.gitignore` which is used to ignore folders or files when pushed to github.
+
+Git ignores use regexes.
+
+This simply doesn't push the folder called "Folder", the file called "file", and any files that start with regex. that are in the Regex folders.
+
+```
+#titles
+Folder
+file
+Regex/regex.*
+```
+
+- Often times different passwords or api keys are stored in the `.env` file and this should always be in the `.gitignore` for security reasons.

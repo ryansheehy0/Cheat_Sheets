@@ -1,17 +1,19 @@
 # Ryan Sheehy Cheat Sheets
 The purpose of these cheat sheets is to give concise explanations of the topic at hand.
-- Tools
-    - [Vim](./vim.md)
-    - [Simple Encryption](./simple_encryption.md)
-    - [Markdown](./markdown.md)
-    - [Git](./git.md)
-    - [Regex](./regex.md)
 - Programming
+    - Tools
+        - [Vim](./vim.md)
+        - [Simple Encryption](./simple_encryption.md)
+        - [Markdown](./markdown.md)
+        - [Git](./git.md)
+        - [Regex](./regex.md)
+        - [Deploying Websites](./deploying_websites.md)
     - HTML/CSS/JS
         - [HTML](./html.md)
         - [CSS](./css.md)
         - [JavaScript](./javascript.md)
         - [jQuery](./jquery.md)
+        - [NodeJS](./nodejs.md)
     - C/C++
         - [Make Files](./make_files.md)
 - Math
@@ -30,11 +32,10 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
 - [Machine Learning](./Machine_Learning/machine_learning.md)
 - [C](./c.md)
 - [Tailwind](./tailwind.md)
-- [NodeJS](./nodejs.md)
 - [OOP](./oop.md)
-- [Deploying Websites](./deploying_websites.md)
 - [XML](./xml.md)
 - [Android](./android.md)
+- [Relational Databases](./relational_databases.md)
 
 ### Unstarted Cheat Sheets
 
@@ -50,7 +51,7 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
         - Key exchanges
             - 2 lock key exchange
             - delphi helmen key exchange
-        - Elliptic curve 
+        - Elliptic curve
         - Lattice Points encryption
             - [How Quantum Computers Break The Internet... Starting Now](https://www.youtube.com/watch?v=-UrdExQW0cs)
     - Error correction
@@ -67,6 +68,13 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
 		- Lossless
 			- [PNG](https://www.youtube.com/watch?v=EFUYNoFRHQI)
 			- [Huffman codes](https://www.youtube.com/watch?v=B3y0RsVCyrw)
+    - Serial Communications
+        - Light(AM and FM)
+        - Ti Calculators
+        - USB Serial Protocol
+        - UART
+        - I2C
+        - Can Bus
 - Math/Statistics
     - Cross Product/Dot product
     - Wavelets
@@ -95,13 +103,11 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
     - Stress/strain
     - Einstein's special relativity
     - Aerodynamics
-    - HVACs
+    - HVACs/Heat Pumps
     - Transistors. Mosfets, BJT including darlington, and JFETs
     - Hydraulics
     - Triangulation and GPSs
 - Computer Science
-    - CSS
-    - HTML
     - Arm assembly
     - x86 assembly
     - CPU architecture
@@ -110,13 +116,11 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
     - Domain Name System(DNS)
     - http and https
     - Breadth first search vs depth first
-    - Regex
     - Comparing 2 binary trees
     - Grep and other linux tools
     - Different search algorithms
     - Magnitude of complexity for common programming things. Like for loop, while loop, 2 for loops etc.
     - Common linux terminals
-    - Look into Neo-Vim
     - Multi-threading
 - Chemistry
     - Plastics

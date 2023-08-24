@@ -199,6 +199,8 @@ fs.appendFile("./filepath.txt", "Written data", error => {error ? console.log(er
 ### Inquirer
 Used to simply get user input from the terminal.
 
+Use  `npm install inquirer@8.2.4` to use require with inquirer.
+
 ```javascript
 const inquirer = require('inquirer')
 
@@ -222,6 +224,7 @@ async function askQuestion(question, answerName, validationFunction){
 Simplifies HTTP-related tasks usually for making APIs. It's a framework for handling http requests.
 
 ```javascript
+// server.js
 const express = require("express")
 const path = require("path")
 
@@ -243,7 +246,7 @@ app.use(express.urlencoded({ extended: true })) // Old browsers might send json 
 // HTTP Methods/Endpoints
 
 // Listen
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3000 // This is used when deploying on 3rd party servers. The port already defined or port 3000
 app.listen(port, () => {
   // Optional function that is run when connected to the port
   console.log(`Server is running on ${port}.`)
@@ -287,7 +290,7 @@ app.patch("/", (req, res) => {
 | Sending methods                                   | Description                                             |
 |---------------------------------------------------|---------------------------------------------------------|
 | res.sendStatus(statusCode)                        | Sends a HTTP status code                                |
-| res.json({ message: "error"})                     | Sends json                                              |
+| res.json({ message: "error"})                     | Sends json. .json only accepts an object.               |
 | res.download("./fileToDownload.txt")              | Sends file to be downloaded.                            |
 | res.send("html")                                  | The Content-Type header is set to text/html by default. |
 | res.sendFile(path.join(__dirname, "/index.html")) | Renders html file in the browser                        |
@@ -313,6 +316,53 @@ app.get("/api/test", (req, res) => {
 ```
 
 - Often times parameters are set to `.toLowerCase()` to make them case insensitive. .toLowerCase is used over .toUpperCase because it is slightly faster.
+
+#### Routers
+Routers are used to help you organize your routes and the code for those routes.
+
+In your main express file (usually server.js) you need to add:
+
+```javascript
+// In server.js. There is more to server.js
+const api = require("./routes/index.js") // The exported app from index.js.
+
+// Middleware
+app.use("/api", api) // If the route uses /api it sends the endpoint to the api variable which is a separate Router in index.js.
+```
+
+```javascript
+// In ./routes/index.js
+const express = require("express")
+const app = express()
+
+const tipsRouter = require("./tips") // The exported .Router() from tips.js
+
+// Middleware
+app.use("./tips", tipsRouter) // If the path is /api/tips send the endpoint to the tipsRouter
+
+modules.exports = app
+```
+
+```javascript
+// In ./routes/tips.js
+const tipsRouter = require("express").Router() // Endpoints that don't have any other middleware for routers use Router
+
+tipsRouter.get("/", (req, res) => {
+  res.send("The path is /api/tips")
+})
+
+module.exports = tipsRouter
+```
+
+#### Middleware Functions
+```javascript
+const middleware = (req, res, next) => {
+  console.log(`Middleware function: ${req.method} with the ${req.get('Content-Type')}`)
+  next() // Used to call the next middleware
+}
+
+app.use(middleware)
+```
 
 #### View Engines
 View engines allow you to change the html from he server before it is sent.
