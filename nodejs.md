@@ -195,6 +195,7 @@ fs.appendFile("./filepath.txt", "Written data", error => {error ? console.log(er
 | inquirer | Used to simply get user input from the terminal        |
 | express  | Simplifies HTTP-related tasks usually for making APIs. |
 | jest     | Used for tests inside node.                            |
+| mysql2   | MySQL library.                                         |
 
 ### Inquirer
 Used to simply get user input from the terminal.
@@ -295,6 +296,7 @@ app.patch("/", (req, res) => {
 | res.send("html")                                  | The Content-Type header is set to text/html by default. |
 | res.sendFile(path.join(__dirname, "/index.html")) | Renders html file in the browser                        |
 | res.redirect('/newURL')                           | Redirects the client to a new URL.                      |
+| res.end()                                         | Ends the response.                                      |
 
 Your http methods need to return something, even an empty response, to indicate that the request was successfully handled. You can use `res.send("GET / handled successfully")`
 
@@ -428,6 +430,25 @@ describe("test title" () => {
 
 - expect is used instead of if statements to make code cleaner and less lines.
 - Each test/it is run in a separate instance so if an error is thrown in one of them it will still run the other tests/its.
+
+### mysql2
+```javascript
+const mysql = require("mysql2")
+
+const db = mysql.createConnection(
+  {
+    host: 'localhost',
+    user: 'root',
+    password: 'your_password',
+    database: 'database_name'
+  },
+  console.log("Connected to the database.")
+)
+
+db.query(`SELECT * FROM table_name`, (err, results) => {
+  console.log(results)
+})
+```
 
 ## Path
 `const path = require("path")`

@@ -69,8 +69,10 @@ Attributes(columns) have various properties that define their behavior/internal 
 
 When using TEXT always run a delete or update with a select and where clause. Otherwise, it might mess the whole database.
 
+VARCHAR(255) is often used over TEXT because it takes up less space.
+
 ## Structured Query Language(SQL)
-SQL is a language used to interact with relational databases.
+SQL is a language used to interact with relational databases. Tends to retrieve data very fast.
 
 - SQL keywords are not case sensitive, however capital letters for the commands are recommended.
 - Table names and column names tend to be put in lowercase with underscores instead of spaces.
@@ -78,11 +80,29 @@ SQL is a language used to interact with relational databases.
 - Commands in SQL end in semi-columns. ;s
 - `--`s are used for comments in SQL
 
+### Database Commands
 ```SQL
-CREATE DATABASE record_company; -- Creating databases
-USE record_company; -- This tells SQL which database to use when using commands.
+-- Creating a new database
+CREATE DATABASE record_company;
 
--- Creating tables
+-- This tells SQL which database to use when using commands.
+USE record_company;
+
+-- Sees what database is in use
+SELECT DATABASE();
+
+-- List Databases
+  -- MySQL
+SHOW DATABASES;
+
+-- Deleting a databases
+DROP DATABASE record_company;
+DROP DATABASE IF EXISTS sample_db;
+```
+
+### Table Commands
+```SQL
+-- Creating 2 new table
 CREATE TABLE bands (
   id INT NOT NULL AUTO_INCREMENT, -- NOT NULL means it has to have a value
   name VARCHAR(255) NOT NULL,
@@ -98,87 +118,130 @@ CREATE TABLE albums (
   FOREIGN KEY (band_id) REFERENCES bands(id) -- Sets a foreign key for band_id from the id attribute/column in the bands table
 );
 
-```
-
-### Creating Databases
-```SQL
--- List Databases
-  -- MySQL
-SHOW DATABASES;
-
--- Deleting Databases
-DROP DATABASE record_company;
-
--- Deleting Tables
-DROP TABLE table_name;
-
--- Adding Columns to Tables
-ALTER TABLE table_name
-ADD another_column INT;
+-- Adding another column
+ALTER TABLE bands
+ADD another_column VARCHAR(255);
 
 -- Deleting columns from tables
+ALTER TABLE bands
+DROP COLUMN another_column;
 
+-- Showing tables
+  -- MySQL
+SHOW TABLES;
+
+-- Shows the different columns and their properties
+DESCRIBE table_name;
+
+-- Deleting a table
+DROP TABLE table_name;
+```
+
+### Insert Command
+```SQL
 -- Adding elements
 INSERT INTO table_name (column_1, foreign_key)
-VALUES ('1st element in column 1', 1), ('2nd element in column 1', NULL);
+VALUES
+  ('1st element in column 1', 1),
+  ('2nd element in column 1', NULL)
+;
+```
 
--- Getting elements
-  -- Select every column
+### Select Command
+```SQL
+-- Returns the whole table.
 SELECT * FROM table_name;
 
-  -- Get the first 2 bands
+-- Get the first 2 bands
 SELECT * FROM table_name LIMIT 2;
 
-  -- Get from column
+-- Gets the 2nd element
+SELECT * FROM table_name LIMIT 2,3;
+
+-- Get from column
 SELECT column_1 FROM table_name;
 
-  -- Get multiple columns with different aliases/names
+-- Returns the column with a different name for the column
 SELECT id AS 'ID', column_1 AS 'Column 1'
 FROM table_name;
 
-  -- Get elements, but ordered by a different column. If the column is a text is does by alphabetical order.
+-- Get elements, but ordered by a different column. If the column is a text is does by alphabetical order.
 SELECT * FROM table_name ORDER BY column_1;
-  -- or descending order
+-- or descending order
 SELECT * FROM table_name ORDER BY column_1 DESC;
 
-  -- Only get unique elements from a column
+-- Only get unique elements from a column
 SELECT DISTINCT column_1 FROM table_name;
 
-  -- Selecting based upon a conditional
+-- Selecting based upon a conditional
 SELECT column_1 FROM table_name
 WHERE id > 1;
 
-  -- Selecting text based upon wild cards
+-- Selecting text based upon wild cards
 SELECT column_1 FROM table_name
 WHERE column_1 LIKE '%'; -- % means any amount of characters
 
+-- INNER JOIN ON
+```
+
+### Update Command
+```SQL
 -- Updating elements
 UPDATE table_name
-SET column_1 = 'The where command is used to specify where the SQL command will be applied.'
+SET column_1 = 'The where command is used to specify where the SQL command will be applied to.'
 WHERE id = 1;
-
 ```
-
-```SQL
-```
-
-
-
-
-
-### Creating Elements
-```SQL
-INSERT INTO table_name (column_name_1, column_name_2) VALUES ('value_1', 'value_2');
-```
-
-### Reading Elements
-```SQL
-SELECT column FROM table_name;
-```
-
-### Update Elements
 
 ### Deleting Elements
+```SQL
+-- Deletes the first element from a table
+DELETE FROM table_name
+WHERE id = 1;
+
+-- Deletes all the rows in a table
+DELETE FROM table_name;
+```
+
+### Where
+Used to filter rows/elements based upon specific conditions.
+
+| Operator | Description              |
+|----------|--------------------------|
+| =        | Equal to                 |
+| <> or != | Not equal to             |
+| <        | less than                |
+| >        | greater than             |
+| <=       | Less than or equal to    |
+| >=       | Greater than or equal to |
+| AND      | Logical and              |
+| OR       | Logical or               |
+| NOT      | Logical not              |
+| IS NULL  | Is it equal to null      |
+| BETWEEN  | BETWEEN 2000 AND 2018;   |
+| LIKE     | Search for pattern.      |
+
+#### Like
+`LIKE` is used to search for a specific string pattern.
+
+`%` means zero or more characters.
+
+`_` means a single character.
+
+```SQL
+-- Selects all names starting with J
+SELECT * FROM customers
+WHERE customer_name LIKE 'J%';
+
+-- Selects all names with 5 characters or Bob
+SELECT * FROM customers
+WHERE customer_name LIKE '_____' OR customer_name = 'Bob';
+```
+
+### Join
+
+### Functions
+COUNT()
+
 
 ## Relational Database Management System(RDBMS)
 A special software program used to create and maintain a database.
@@ -186,18 +249,26 @@ A special software program used to create and maintain a database.
 Databases are usually kept on separate servers than your http endpoints(NodeJS and Express) because it is much easier to scale the database, secure the database, backup and recover the database, etc.
 
 ### MySQL
+Run  `sudo mysql -u root -p`
+Default port is 3306
+
+`SOURCE schema.sql` runs a sql file
+
+Change MySQL Password
+`ALTER USER 'root'@'localhost' IDENTIFIED WITH 'mysql_native_password' BY 'new_password';`
+then
+`FLUSH PRIVILEGES;`
+
+- For your local host MySQL it is recommended to make the password `root`
+
+`exit` to exit from mysql.
 
 Questions:
 - MySQL with NodeJS
 - CRUD functions
 - SQL commands
-- Create and delete databases
-- Create a table to store data
-- NodeJS to connect to MySQL
-- Data types for each column
 - Database schema
 - Seed a database
-- Tables with primary and foreign keys
 - SQL query that joins 2 tables together
 - ? prepared statements
   - INSERT, UPDATE, and DELETE
@@ -216,11 +287,46 @@ SQL is made up of 4 parts:
 - Data Manipulation Language(DML)
   - Used for inserting, updating, and deleting.
 
-
-### Data Query Langue(DQL)
 ```SQL
--- Gets data from the database
-SELECT employee.name, employee.age;
-FROM employee;
-WHERE employee.salary > 30000;
+CREATE DATABASE record_company;
+USE record_company;
+
+CREATE TABLE bands (
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE albums (
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  release_year INT,
+  band_id INT NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (band_id) REFERENCES bands(id)
+);
+
+INSERT INTO bands (name)
+VALUES
+  ('Iron Maiden')
+;
+
+INSERT INTO bands (name)
+VALUES
+  ('Deuce'),
+  ('Avenged Sevenfold'),
+  ('Ankor')
+;
+
+SELECT * FROM bands; -- Outputs all of the table
+
+insert into albums (name, release_year, band_id)
+values
+  ('The Number of the Beast', 1985, 1),
+  ('Power Slave', 1984, 1),
+  ('Nightmare', 2018, 2)
+  ('Nightmare', 2010, 3),
+  ('Test Album', null, 3);
+
+select * from albums;
 ```
