@@ -143,8 +143,7 @@ DROP TABLE table_name;
 INSERT INTO table_name (column_1, foreign_key)
 VALUES
   ('1st element in column 1', 1),
-  ('2nd element in column 1', NULL)
-;
+  ('2nd element in column 1', NULL);
 ```
 
 ### Select Command
@@ -156,10 +155,11 @@ SELECT * FROM table_name;
 SELECT * FROM table_name LIMIT 2;
 
 -- Gets the 2nd element
-SELECT * FROM table_name LIMIT 2,3;
+SELECT * FROM table_name LIMIT 1,1; -- Limit offset, count
 
 -- Get from column
 SELECT column_1 FROM table_name;
+SELECT column_1, column_2 FROM table_name;
 
 -- Returns the column with a different name for the column
 SELECT id AS 'ID', column_1 AS 'Column 1'
@@ -176,19 +176,13 @@ SELECT DISTINCT column_1 FROM table_name;
 -- Selecting based upon a conditional
 SELECT column_1 FROM table_name
 WHERE id > 1;
-
--- Selecting text based upon wild cards
-SELECT column_1 FROM table_name
-WHERE column_1 LIKE '%'; -- % means any amount of characters
-
--- INNER JOIN ON
 ```
 
 ### Update Command
 ```SQL
 -- Updating elements
 UPDATE table_name
-SET column_1 = 'The where command is used to specify where the SQL command will be applied to.'
+SET column_1 = 'name'
 WHERE id = 1;
 ```
 
@@ -238,9 +232,110 @@ WHERE customer_name LIKE '_____' OR customer_name = 'Bob';
 ```
 
 ### Join
+The JOIN command, when used with SELECT, returns the rows of 2 or more tables that match the conditional. The output combines/joins those rows together into one table.
+
+Ex:
+
+bands table
+
+| id | name                |
+|----|---------------------|
+| 1  | 'Iron Maiden'       |
+| 2  | 'Deuce'             |
+| 3  | 'Avenged Sevenfold' |
+| 4  | 'Ankor'             |
+
+albums table
+
+| id | name                      | release_year | band_id |
+|----|---------------------------|--------------|---------|
+| 1  | 'The Number of the Beast' | 1982         | 1       |
+| 2  | 'Power Slave'             | 1984         | 1       |
+| 3  | 'Nightmare'               | 2018         | 2       |
+| 4  | 'Nightmare'               | 2010         | 3       |
+
+#### Inner Join
+Combines data from that row if the condition matches for both the left(first) table and the right(second) table.
+Combines data from that row if the condition is true fro both the left(first) table and the right(second) table.
+
+```SQL
+SELECT * from bands
+INNER JOIN albums ON bands.id = albums.band_id;
+-- This is also the same as
+  -- JOIN albums ON bands.id = albums.band_id;
+```
+
+This returns the table:
+
+```
+[ From bands               ][ From albums                                            ]
+
+| id | name                | id | name                      | release_year | band_id |
+|----|---------------------|----|---------------------------|--------------|---------|
+| 1  | 'Iron Maiden'       | 1  | 'The Number of the Beast' | 1982         | 1       |
+| 1  | 'Iron Maiden'       | 2  | 'Power Slave'             | 1984         | 1       |
+| 2  | 'Deuce'             | 3  | 'Nightmare'               | 2018         | 2       |
+| 3  | 'Avenged Sevenfold' | 4  | 'Nightmare'               | 2010         | 3       |
+```
+
+#### Left/Right Join
+**Left join** prints out everything in the left(first) table and if the condition is true it also prints for the right(second table). If the condition is false it returns null for those values.
+
+**Right join** prints out everything in the right(second) table and if the condition is true it also prints for the left(first table). If the condition is false it returns null for those values.
+
+```SQL
+SELECT * from bands
+LEFT JOIN albums ON bands.id = albums.band_id;
+```
+
+This returns the table:
+
+```
+[ From bands               ][ From albums                                              ]
+
+| id | name                | id   | name                      | release_year | band_id |
+|----|---------------------|------|---------------------------|--------------|---------|
+| 1  | 'Iron Maiden'       | 1    | 'The Number of the Beast' | 1982         | 1       |
+| 1  | 'Iron Maiden'       | 2    | 'Power Slave'             | 1984         | 1       |
+| 2  | 'Deuce'             | 3    | 'Nightmare'               | 2018         | 2       |
+| 3  | 'Avenged Sevenfold' | 4    | 'Nightmare'               | 2010         | 3       |
+| 4  | 'Ankor'             | null | null                      | null         | null    |
+```
 
 ### Functions
-COUNT()
+
+| Name         | Type        | Description                                  |
+|--------------|-------------|----------------------------------------------|
+| CONCAT()     | String      | Concatenates 2 or more strings               |
+| UPPER()      | String      | Converts string to uppercase                 |
+| LOWER()      | String      | Converts string to lowercase                 |
+| LENGTH()     | String      | Gets the length of the string                |
+| SUM()        | Numeric     | Calculates the sum of numbers                |
+| AVG()        | Numeric     | Calculates the average of numbers            |
+| COUNT()      | Numeric     | Counts the number of rows or non-null values |
+| MIN()        | Numeric     | Finds the minimum value in a column          |
+| MAX()        | Numeric     | Finds the maximum value in a column          |
+| DATEPART()   | Date/Time   | Extracts a specific part from a date or time |
+| DATEDIFF()   | Date/Time   | Calculates the difference between two dates  |
+| CASE         | Conditional | Performs conditional logic                   |
+| COALESCE()   | Conditional | Returns the first non-null value in a list   |
+| GROUP BY     | Aggregation | Groups rows based on one or more columns     |
+| HAVING       | Aggregation | Filters aggregated results                   |
+| ORDER BY     | Aggregation | Sorts the result set                         |
+| ROW_NUMBER() | Window      | Assigns a unique row number to each row      |
+| LAG()        | Window      | Accesses the value of a previous row         |
+
+Examples:
+
+```SQL
+-- AVG
+SELECT AVG(release_year) FROM albums;
+  -- 1998.5  It doesn't count null values
+
+-- Count
+SELECT COUNT(release_year) FROM albums;
+  -- 4
+```
 
 
 ## Relational Database Management System(RDBMS)
@@ -249,84 +344,25 @@ A special software program used to create and maintain a database.
 Databases are usually kept on separate servers than your http endpoints(NodeJS and Express) because it is much easier to scale the database, secure the database, backup and recover the database, etc.
 
 ### MySQL
-Run  `sudo mysql -u root -p`
-Default port is 3306
+The default port for MySQL is 3306.
 
-`SOURCE schema.sql` runs a sql file
 
-Change MySQL Password
-`ALTER USER 'root'@'localhost' IDENTIFIED WITH 'mysql_native_password' BY 'new_password';`
-then
-`FLUSH PRIVILEGES;`
+`SOURCE schema.sql` allows you to run a sql file in MySQL.
 
-- For your local host MySQL it is recommended to make the password `root`
+#### Installation
+1. `sudo apt update`
+1. `sudo apt install mysql-server`
+1. `sudo mysql -u root -p`
+1. Change the default mysql password
+  - For your local host root it is recommended to make the password `root`
+  - `ALTER USER 'root'@'localhost' IDENTIFIED WITH 'mysql_native_password' BY 'new_password';`
+  - `FLUSH PRIVILEGES;`
+  - `exit`
+1. Now you can run `mysql -u root -p` to start you mysql server in the future
 
-`exit` to exit from mysql.
 
 Questions:
 - MySQL with NodeJS
-- CRUD functions
-- SQL commands
-- Database schema
-- Seed a database
-- SQL query that joins 2 tables together
 - ? prepared statements
   - INSERT, UPDATE, and DELETE
-- Calculation on a set of values using aggregate functions
-- What are joins?
-- What are views, stored procedures, and functions?
-
-
-SQL is made up of 4 parts:
-- Data Query Langue(DQL)
-  - Used to query the database
-- Data Definition Language(DDL)
-  - Used to define database schemas
-- Data Control Language(DCL)
-  - Controlling access to the database. Permissions.
-- Data Manipulation Language(DML)
-  - Used for inserting, updating, and deleting.
-
-```SQL
-CREATE DATABASE record_company;
-USE record_company;
-
-CREATE TABLE bands (
-  id INT NOT NULL AUTO_INCREMENT,
-  name VARCHAR(255) NOT NULL,
-  PRIMARY KEY (id)
-);
-
-CREATE TABLE albums (
-  id INT NOT NULL AUTO_INCREMENT,
-  name VARCHAR(255) NOT NULL,
-  release_year INT,
-  band_id INT NOT NULL,
-  PRIMARY KEY (id),
-  FOREIGN KEY (band_id) REFERENCES bands(id)
-);
-
-INSERT INTO bands (name)
-VALUES
-  ('Iron Maiden')
-;
-
-INSERT INTO bands (name)
-VALUES
-  ('Deuce'),
-  ('Avenged Sevenfold'),
-  ('Ankor')
-;
-
-SELECT * FROM bands; -- Outputs all of the table
-
-insert into albums (name, release_year, band_id)
-values
-  ('The Number of the Beast', 1985, 1),
-  ('Power Slave', 1984, 1),
-  ('Nightmare', 2018, 2)
-  ('Nightmare', 2010, 3),
-  ('Test Album', null, 3);
-
-select * from albums;
-```
+- What are views, stored procedures?
