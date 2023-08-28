@@ -1,5 +1,6 @@
 # Ryan Sheehy Cheat Sheets
-The purpose of these cheat sheets is to give concise explanations of the topic at hand.
+The purpose of these cheat sheets is to give concise explanations of the topic at hand. Some cheat sheets maybe unfinished.
+
 - Programming
     - Tools
         - [Vim](./vim.md)
@@ -8,34 +9,34 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
         - [Git](./git.md)
         - [Regex](./regex.md)
         - [Deploying Websites](./deploying_websites.md)
+        - [SQL](./relational_databases.md)
+        - [Linux](./linux.md)
+        - [OOP](./oop.md)
     - HTML/CSS/JS
         - [HTML](./html.md)
         - [CSS](./css.md)
+        - [Tailwind](./tailwind.md)
         - [JavaScript](./javascript.md)
         - [jQuery](./jquery.md)
         - [NodeJS](./nodejs.md)
+    - Android
+        - [XML](./xml.md)
+        - [Android](./android.md)
     - C/C++
         - [Make Files](./make_files.md)
+        - [C](./c.md)
+    - Algorithms
+        - [Machine Learning](./Machine_Learning/machine_learning.md)
+        - [Memory Managed Hash Table](./memory_managed_hash_table.md)
 - Math
     - [Taylor Series](./Taylor_Series/taylor_series.md)
     - [Newtons Method](./Newtons_Method/newtons_method.md)
+    - [Gradient Descent](./Machine_Learning/Gradient_Descent/gradient_descent.md)
+    - [Matrices](./matrices.md)
 - Physics/EE
     - [Logic Gate Electronic Speed Controller](./Logic_Gate_Electronic_Speed_Controller/logic_gate_electronic_speed_controller.md)
 
 ## Cheat Sheets Todo
-
-### Unfinished Cheat Sheets
-- [Gradient Descent](./Machine_Learning/Gradient_Descent/gradient_descent.md)
-- [Matrices](./matrices.md)
-- [Memory Managed Hash Table](./memory_managed_hash_table.md)
-- [Linux](./linux.md)
-- [Machine Learning](./Machine_Learning/machine_learning.md)
-- [C](./c.md)
-- [Tailwind](./tailwind.md)
-- [OOP](./oop.md)
-- [XML](./xml.md)
-- [Android](./android.md)
-- [Relational Databases](./relational_databases.md)
 
 ### Unstarted Cheat Sheets
 

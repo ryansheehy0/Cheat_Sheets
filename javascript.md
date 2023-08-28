@@ -246,6 +246,9 @@ numbers.sort((a, b) => a - b);
 console.log(numbers); // Output: [1, 1, 2, 3, 3, 4, 5, 5, 5, 6, 9]
 ```
 
+- `.includes(value)`
+  - If the array includes value it returns true
+
 ## Equality Operators
 - `===` `!==` strict operator
     - Doesn't do the type conversion
@@ -271,11 +274,17 @@ switch(x) {
     case 2:
         console.log("This is a 2.")
         break
+    case 3: {//New scope
+        console.log("This is a 3.")
+        break
+    }
     default:
         console.log("This is greater than 2.")
         break
 }
 ```
+
+You can create a new scope in a case block using '{}'s which will prevent variable naming conflicts.
 
 ## Functions
 - If you don't return anything then the return value is undefined
@@ -442,6 +451,7 @@ console.log(testObj["A food"]) // hamburger
 - Object.values(object) converts an object to an array where the keys are replaced with indices.
 - Object.keys(object) gets an array of the keys of that object
 - You can do object shorthand if the key and value are the same
+
 ```javascript
 const object = {
     test1: test1,
@@ -453,7 +463,9 @@ const object = {
     test2,
 }
 ```
+
 - To get specific values from an object or array you can use this notation
+
 ```javascript
 const object = {
     key1: "value1",
@@ -614,19 +626,25 @@ Errors stop the execution of the code. You can throw a custom error by doing
 ## Promises
 Used to handle asynchronous(code can be run in parallel) operations. Can only return either a resolve or a reject.
 
-- You need a promise or else the function could return nothing.
+Returning a new promise is most commonly used to convert a async callback function to an async/await.
+
+- You need a promise or else the function would return nothing.
 
 ```javascript
-let promise = new Promise((resolve, reject) => {
-    let x = 1 + 1
-    if( x == 2 ){
-        resolve("Success")
-    }else{
-        reject("Failed")
-    }
-})
+async function promise(){
+    let x = true
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {/*Callback function*/
+            if(x){
+                resolve("Success")
+            }else{
+                reject("Failed")
+            }
+        }, 1000)
+    })
+}
 
-promise.then((message) => {
+promise().then((message) => {
     // then runs if the promise returns a resolve
     console.log(message) // "Success"
 }).catch((message) => {
@@ -636,9 +654,39 @@ promise.then((message) => {
 ```
 
 ## Async/Await
-Used to make promises easier to work with. Only works with asynchronous functions.
+Used to make promises easier to work with. Only works with asynchronous functions. Await waits for the Promise to resolve.
+
+All async function return a promise. It is recommended that if you manually return a new promise then you put it in an async function.
+
+If a child function returns a promise and you are calling the parent function that you want to await then you have to make both the child and the parent async.
 
 ```javascript
+function childFunction() {
+  let x = true
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if(x){
+        resolve("Sub-function resolved");
+      }else{
+        reject("Sub-function resolved");
+      }
+    }, 1000);
+  });
+}
+
+async function parentFunction() {
+  await subFunction();
+}
+
+async function main(){
+  await parentFunction()
+}
+
+mainFunction().then(() => {
+  console.log("Main function completed");
+});
+
+
 async func_name = () => {
     try{
         let variable = await promise_function()
@@ -649,6 +697,8 @@ async func_name = () => {
     }
 }
 ```
+
+If a sub function returns a promise and you want to await it you have to make all functions async.
 
 ## DOM Manipulation
 The DOM is the Document Object Model.

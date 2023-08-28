@@ -66,12 +66,13 @@ Attributes(columns) have various properties that define their behavior/internal 
 | BOOLEAN                | Boolean value representing true or false.                          |
 | CHAR(#)                | Fixed-length character string. If shorter then padded with spaces. |
 | BLOB                   | Binary large object, for storing binary data.                      |
+| DECIMAL                | Store fixed point decimal numbers. Often used for monetary values. |
 
 When using TEXT always run a delete or update with a select and where clause. Otherwise, it might mess the whole database.
 
 VARCHAR(255) is often used over TEXT because it takes up less space.
 
-## Structured Query Language(SQL)
+# Structured Query Language(SQL)
 SQL is a language used to interact with relational databases. Tends to retrieve data very fast.
 
 - SQL keywords are not case sensitive, however capital letters for the commands are recommended.
@@ -80,7 +81,7 @@ SQL is a language used to interact with relational databases. Tends to retrieve 
 - Commands in SQL end in semi-columns. ;s
 - `--`s are used for comments in SQL
 
-### Database Commands
+## Database Commands
 ```SQL
 -- Creating a new database
 CREATE DATABASE record_company;
@@ -97,16 +98,22 @@ SHOW DATABASES;
 
 -- Deleting a databases
 DROP DATABASE record_company;
+
+-- In your schema.sql you usually run this at the beginning
 DROP DATABASE IF EXISTS sample_db;
+CREATE DATABASE sample_db;
 ```
 
-### Table Commands
+## Table Commands
 ```SQL
 -- Creating 2 new table
 CREATE TABLE bands (
   id INT NOT NULL AUTO_INCREMENT, -- NOT NULL means it has to have a value
   name VARCHAR(255) NOT NULL,
-  PRIMARY KEY (id) -- Sets the primary key for the table
+  favorite_band INT,
+  PRIMARY KEY (id), -- Sets the primary key for the table
+  FOREIGN KEY (favorite_band) REFERENCES bands(id), -- Sets an internal reference
+  UNIQUE (name) -- Enforces the name column/attribute to be unique
 );
 
 CREATE TABLE albums (
@@ -137,7 +144,7 @@ DESCRIBE table_name;
 DROP TABLE table_name;
 ```
 
-### Insert Command
+## Insert Command
 ```SQL
 -- Adding elements
 INSERT INTO table_name (column_1, foreign_key)
@@ -146,7 +153,7 @@ VALUES
   ('2nd element in column 1', NULL);
 ```
 
-### Select Command
+## Select Command
 ```SQL
 -- Returns the whole table.
 SELECT * FROM table_name;
@@ -178,7 +185,7 @@ SELECT column_1 FROM table_name
 WHERE id > 1;
 ```
 
-### Update Command
+## Update Command
 ```SQL
 -- Updating elements
 UPDATE table_name
@@ -186,7 +193,7 @@ SET column_1 = 'name'
 WHERE id = 1;
 ```
 
-### Deleting Elements
+## Deleting Elements
 ```SQL
 -- Deletes the first element from a table
 DELETE FROM table_name
@@ -196,7 +203,7 @@ WHERE id = 1;
 DELETE FROM table_name;
 ```
 
-### Where
+## Where
 Used to filter rows/elements based upon specific conditions.
 
 | Operator | Description              |
@@ -214,7 +221,7 @@ Used to filter rows/elements based upon specific conditions.
 | BETWEEN  | BETWEEN 2000 AND 2018;   |
 | LIKE     | Search for pattern.      |
 
-#### Like
+### Like
 `LIKE` is used to search for a specific string pattern.
 
 `%` means zero or more characters.
@@ -231,7 +238,7 @@ SELECT * FROM customers
 WHERE customer_name LIKE '_____' OR customer_name = 'Bob';
 ```
 
-### Join
+## Join
 The JOIN command, when used with SELECT, returns the rows of 2 or more tables that match the conditional. The output combines/joins those rows together into one table.
 
 Ex:
@@ -254,7 +261,7 @@ albums table
 | 3  | 'Nightmare'               | 2018         | 2       |
 | 4  | 'Nightmare'               | 2010         | 3       |
 
-#### Inner Join
+### Inner Join
 Combines data from that row if the condition matches for both the left(first) table and the right(second) table.
 Combines data from that row if the condition is true fro both the left(first) table and the right(second) table.
 
@@ -278,7 +285,7 @@ This returns the table:
 | 3  | 'Avenged Sevenfold' | 4  | 'Nightmare'               | 2010         | 3       |
 ```
 
-#### Left/Right Join
+### Left/Right Join
 **Left join** prints out everything in the left(first) table and if the condition is true it also prints for the right(second table). If the condition is false it returns null for those values.
 
 **Right join** prints out everything in the right(second) table and if the condition is true it also prints for the left(first table). If the condition is false it returns null for those values.
@@ -302,7 +309,27 @@ This returns the table:
 | 4  | 'Ankor'             | null | null                      | null         | null    |
 ```
 
-### Functions
+### Dereferencing
+You can use join to dereference references. Whenever you have columns with the same name for different tables you need to specify which one you are referring to.
+
+```SQL
+SELECT albums.id, albums.name, release_year AS 'release year', bands.name
+FROM albums
+JOIN bands ON albums.band_id = bands.id;
+```
+
+This returns the table:
+
+```
+| id   | name                      | release year | name                |
+|------|---------------------------|--------------|---------------------|
+| 1    | 'The Number of the Beast' | 1982         | 'Iron Maiden'       |
+| 2    | 'Power Slave'             | 1984         | 'Iron Maiden'       |
+| 3    | 'Nightmare'               | 2018         | 'Deuce'             |
+| 4    | 'Nightmare'               | 2010         | 'Avenged Sevenfold' |
+```
+
+## Functions
 
 | Name         | Type        | Description                                  |
 |--------------|-------------|----------------------------------------------|
@@ -338,18 +365,18 @@ SELECT COUNT(release_year) FROM albums;
 ```
 
 
-## Relational Database Management System(RDBMS)
+# Relational Database Management System(RDBMS)
 A special software program used to create and maintain a database.
 
 Databases are usually kept on separate servers than your http endpoints(NodeJS and Express) because it is much easier to scale the database, secure the database, backup and recover the database, etc.
 
-### MySQL
+## MySQL
 The default port for MySQL is 3306.
 
 
 `SOURCE schema.sql` allows you to run a sql file in MySQL.
 
-#### Installation
+### Installation
 1. `sudo apt update`
 1. `sudo apt install mysql-server`
 1. `sudo mysql -u root -p`

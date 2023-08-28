@@ -206,6 +206,15 @@ Use  `npm install inquirer@8.2.4` to use require with inquirer.
 const inquirer = require('inquirer')
 
 async function askQuestion(question, answerName, validationFunction){
+  // List can be an array of strings or an array of objects with name and value
+  let list = [`option 1`, `option 2`, `option 3`]
+  list = [
+    {name: `option 1`, value: 1},
+    {name: `option 2`, value: 2},
+    {name: `option 3`, value: 3},
+  ]
+    // name is what's displayed to the user
+    // value is the value that is returned if the user chooses that option
   return new Promise((resolve, reject) => {
     inquirer.prompt([
       {
@@ -213,11 +222,23 @@ async function askQuestion(question, answerName, validationFunction){
         name: answerName,
         message: question,
         validate: validationFunction,
+        choices: type === `list` ? list : undefined,
       }
     ])
     .then(answer => {resolve(answer)})
     .catch(error => {reject(error)})
   })
+}
+```
+
+The validation function should return true if the input is valid or return an error message.
+
+```javascript
+function validationFunction(input){
+  if(input === "Test"){
+    return true
+  }
+  return `The input must be "Test"`
 }
 ```
 
