@@ -68,6 +68,11 @@ Attributes(columns) have various properties that define their behavior/internal 
 | BLOB                   | Binary large object, for storing binary data.                      |
 | DECIMAL                | Store fixed point decimal numbers. Often used for monetary values. |
 
+You can specify a default value.
+```SQL
+time DATETIME DEFAULT CURRENT_TIMESTAMP,
+```
+
 When using TEXT always run a delete or update with a select and where clause. Otherwise, it might mess the whole database.
 
 VARCHAR(255) is often used over TEXT because it takes up less space.
@@ -117,12 +122,12 @@ CREATE TABLE bands (
 );
 
 CREATE TABLE albums (
-  id INT NOT NULL AUTO_INCREMENT,
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, -- You can also create a primary key inline
   name VARCHAR(255) NOT NULL,
   release_year INT, -- Can have NULL values
   band_id INT NOT NULL,
-  PRIMARY KEY (id),
-  FOREIGN KEY (band_id) REFERENCES bands(id) -- Sets a foreign key for band_id from the id attribute/column in the bands table
+  FOREIGN KEY (band_id) REFERENCES bands(id), -- Sets a foreign key for band_id from the id attribute/column in the bands table
+  ON DELETE SET NULL -- When something is deleted it is set to null
 );
 
 -- Adding another column

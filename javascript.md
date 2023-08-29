@@ -230,6 +230,13 @@ const totalPrice = prices.reduce((total, price) => {
     return total + price
 }, 0)
 console.log(totalPrice)
+
+// As apposed to using a forEach
+let totalPrice = 0
+prices.forEach(price => {
+    totalPrice += price
+})
+console.log(totalPrice)
 ```
 
 - `.find(function)`
@@ -938,6 +945,14 @@ function validate(input){
 ```
 
 ## Object Oriented
+
+### Class Constructors
+
+### Class Keyword
+- get and set keywords
+- `#` for private vars
+
+
 You can create objects with object literals or using the `new` keyword on classes/constructor functions
 
 - Constructors tend to start with capital letters as JS convention.
