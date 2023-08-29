@@ -947,12 +947,6 @@ function validate(input){
 ## Object Oriented
 
 ### Class Constructors
-
-### Class Keyword
-- get and set keywords
-- `#` for private vars
-
-
 You can create objects with object literals or using the `new` keyword on classes/constructor functions
 
 - Constructors tend to start with capital letters as JS convention.
@@ -960,8 +954,18 @@ You can create objects with object literals or using the `new` keyword on classe
 
 ```javascript
 class Vehicle {
-    constructor(name){
+    #private_var
+    constructor(name, private){
         this.name = name
+        this.#private_var = private
+    }
+
+    get private_var(){
+        return this.#private_var
+    }
+
+    set private_var(private_var){
+        this.#private_var = private_var
     }
 }
 ```

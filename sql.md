@@ -114,11 +114,10 @@ CREATE DATABASE sample_db;
 -- Creating 2 new table
 CREATE TABLE bands (
   id INT NOT NULL AUTO_INCREMENT, -- NOT NULL means it has to have a value
-  name VARCHAR(255) NOT NULL,
+  name VARCHAR(255) NOT NULL UNIQUE, -- Enforces the name column/attribute to be unique
   favorite_band INT,
   PRIMARY KEY (id), -- Sets the primary key for the table
-  FOREIGN KEY (favorite_band) REFERENCES bands(id), -- Sets an internal reference
-  UNIQUE (name) -- Enforces the name column/attribute to be unique
+  FOREIGN KEY (favorite_band) REFERENCES bands(id) -- Sets an internal reference
 );
 
 CREATE TABLE albums (
@@ -267,8 +266,9 @@ albums table
 | 4  | 'Nightmare'               | 2010         | 3       |
 
 ### Inner Join
-Combines data from that row if the condition matches for both the left(first) table and the right(second) table.
-Combines data from that row if the condition is true fro both the left(first) table and the right(second) table.
+Combines data from that row if the condition is true.
+
+This is most often used to de-reference values.
 
 ```SQL
 SELECT * from bands
@@ -369,6 +369,54 @@ SELECT COUNT(release_year) FROM albums;
   -- 4
 ```
 
+## Group By
+Takes all the rows and groups them by a single column. If there are 2 rows that have the same value in a column group by combines them.
+
+This is often used with `COUNT` in order to count how many rows are in each column.
+
+```SQL
+SELECT band_id, COUNT(band_id) from albums
+GROUP BY band_id;
+```
+
+This returns the table:
+
+```
+| band_id | COUNT(band_id) |
+|---------|----------------|
+| 1       | 2              |
+| 2       | 1              |
+| 3       | 1              |
+
+```
+
+### Having
+The `HAVING` is the same as where, but happens after the `GROUP BY` so you can use data before an aggravate function.
+
+```SQL
+-- Get the number of bands with only 1 album
+SELECT b.name band_name, COUNT(a.id) num_albums
+FROM bands b
+LEFT JOIN albums a ON b.id = a.band_id
+GROUP BY b.id
+HAVING num_albums = 1;
+```
+
+## Alias Tables
+Alias tables are temporary names given to a table or column in order to resolve naming conflicts.
+
+This is often used to de-reference an internal reference in a table.
+
+```SQL
+SELECT b.name AS band_name, COUNT(a.id) AS num_albums
+FROM bands AS b
+LEFT JOIN albums AS a;
+
+-- You can also leave out the AS
+SELECT b.name band_name, COUNT(a.id) num_albums
+FROM bands b
+LEFT JOIN albums a;
+```
 
 # Relational Database Management System(RDBMS)
 A special software program used to create and maintain a database.
@@ -391,10 +439,3 @@ The default port for MySQL is 3306.
   - `FLUSH PRIVILEGES;`
   - `exit`
 1. Now you can run `mysql -u root -p` to start you mysql server in the future
-
-
-Questions:
-- MySQL with NodeJS
-- ? prepared statements
-  - INSERT, UPDATE, and DELETE
-- What are views, stored procedures?
