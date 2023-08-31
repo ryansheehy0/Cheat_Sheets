@@ -453,6 +453,7 @@ describe("test title" () => {
 - Each test/it is run in a separate instance so if an error is thrown in one of them it will still run the other tests/its.
 
 ### mysql2
+
 ```javascript
 const mysql = require("mysql2")
 
@@ -466,9 +467,56 @@ const db = mysql.createConnection(
   console.log("Connected to the database.")
 )
 
-db.query(`SELECT * FROM table_name`, (err, results) => {
+db.query(`SELECT * FROM table_name;`, (err, results) => {
   console.log(results)
 })
+```
+
+#### mysql2 with Promises
+
+```javascript
+const mysql = require("mysql2/promise")
+
+const db = mysql.createPool(
+  {
+    host: 'localhost',
+    user: 'root',
+    password: 'your_password',
+    database: 'database_name'
+  },
+  console.log("Connected to the database.")
+)
+
+async function asyncQuery(){
+  try{
+    const [results, ] = await db.query(`SELECT * FROM table_name;`)
+    return results
+  }catch(error){
+    console.error(error)
+  }
+}
+```
+
+#### Prevent SQL Injections
+You can use the `?` in you SQL query to prevent SQL injections.
+
+```javascript
+async function unsafe(){
+  const unsafeName = "' OR 1 = 1; DROP TABLE users; --" // SQL Injection
+  const query = `SELECT * FROM users WHERE name = '${unsafeName}';`
+  const [results, ] = await db.query(query)
+  return results
+}
+```
+
+```javascript
+async function safe(){
+  const firstName = "' OR 1 = 1; DROP TABLE users; --" // SQL Injection
+  const lastName = "Sheehy"
+  const query = `SELECT * FROM users WHERE first_name = ? AND last_name = ?;`
+  const [results, ] = await db.query(query, [firstName, lastName])
+  return results
+}
 ```
 
 ## Path

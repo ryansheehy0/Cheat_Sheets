@@ -1,5 +1,31 @@
 [Home](./README.md)
 
+# Table of Contents
+
+- [Relational Databases](#relational-databases)
+  - [Atomicity Consistency Isolation Durability(ACID)](#atomicity-consistency-isolation-durabilityacid)
+  - [Attribute Properties](#attribute-properties)
+- [Structured Query Language(SQL)](#structured-query-languagesql)
+  - [Database Commands](#database-commands)
+  - [Table Commands](#table-commands)
+  - [Insert Command](#insert-command)
+  - [Select Command](#select-command)
+  - [Update Command](#update-command)
+  - [Deleting Elements](#deleting-elements)
+  - [Where](#where)
+    - [Like](#like)
+  - [Join](#join)
+    - [Inner Join](#inner-join)
+    - [Left/Right Join](#leftright-join)
+    - [Dereferencing](#dereferencing)
+  - [Functions](#functions)
+  - [Group By](#group-by)
+    - [Having](#having)
+  - [Alias Tables](#alias-tables)
+- [Relational Database Management System(RDBMS)](#relational-database-management-systemrdbms)
+  - [MySQL](#mysql)
+    - [Installation](#installation)
+
 # Relational Databases
 Relational databases organize things into tables with each element in the table having a unique id/primary key. Elements in these tables can connect to elements from other tables by having a column of that connection's unique id.
 
@@ -69,6 +95,7 @@ Attributes(columns) have various properties that define their behavior/internal 
 | DECIMAL                | Store fixed point decimal numbers. Often used for monetary values. |
 
 You can specify a default value.
+
 ```SQL
 time DATETIME DEFAULT CURRENT_TIMESTAMP,
 ```
@@ -87,6 +114,7 @@ SQL is a language used to interact with relational databases. Tends to retrieve 
 - `--`s are used for comments in SQL
 
 ## Database Commands
+
 ```SQL
 -- Creating a new database
 CREATE DATABASE record_company;
@@ -110,6 +138,7 @@ CREATE DATABASE sample_db;
 ```
 
 ## Table Commands
+
 ```SQL
 -- Creating 2 new table
 CREATE TABLE bands (
@@ -149,6 +178,7 @@ DROP TABLE table_name;
 ```
 
 ## Insert Command
+
 ```SQL
 -- Adding elements
 INSERT INTO table_name (column_1, foreign_key)
@@ -158,6 +188,7 @@ VALUES
 ```
 
 ## Select Command
+
 ```SQL
 -- Returns the whole table.
 SELECT * FROM table_name;
@@ -187,9 +218,23 @@ SELECT DISTINCT column_1 FROM table_name;
 -- Selecting based upon a conditional
 SELECT column_1 FROM table_name
 WHERE id > 1;
+
+-- Gets column1 and column2 from table_name and adds to it the dbs and the tables in those dbs
+SELECT column1, column2 FROM table_name
+UNION ( -- Adds onto another query
+  -- Gets all the dbs and the tables in those dbs
+    -- information_schema.tables is inbuilt into SQL
+  SELECT TABLE_SCHEMA AS 'databases', TABLE_NAME as 'tables' FROM information_schema.tables
+  WHERE
+    TABLE_SCHEMA != 'mysql' AND
+    TABLE_SCHEMA != 'information_schema' AND
+    TABLE_SCHEMA != 'performance_schema' AND
+    TABLE_SCHEMA != 'sys'
+);
 ```
 
 ## Update Command
+
 ```SQL
 -- Updating elements
 UPDATE table_name
@@ -198,6 +243,7 @@ WHERE id = 1;
 ```
 
 ## Deleting Elements
+
 ```SQL
 -- Deletes the first element from a table
 DELETE FROM table_name
@@ -335,6 +381,7 @@ This returns the table:
 ```
 
 ## Functions
+Functions are almost always slower than doing checks(=, !=, >, <, etc) with hard coded data values. This is because the database can quickly find the row in which the hard coded data is in.
 
 | Name         | Type        | Description                                  |
 |--------------|-------------|----------------------------------------------|
@@ -356,6 +403,7 @@ This returns the table:
 | ORDER BY     | Aggregation | Sorts the result set                         |
 | ROW_NUMBER() | Window      | Assigns a unique row number to each row      |
 | LAG()        | Window      | Accesses the value of a previous row         |
+| MONTH()      | Numeric     | Gets month between 1 and 12                  |
 
 Examples:
 
@@ -418,6 +466,15 @@ FROM bands b
 LEFT JOIN albums a;
 ```
 
+## Variables
+You can have variables(user defined values) in sql by using the `@` symbol.
+
+```SQL
+SET @var = 1;
+
+SELECT @var FROM table_name; -- Gets teh 1st column from table_name
+```
+
 # Relational Database Management System(RDBMS)
 A special software program used to create and maintain a database.
 
@@ -425,7 +482,6 @@ Databases are usually kept on separate servers than your http endpoints(NodeJS a
 
 ## MySQL
 The default port for MySQL is 3306.
-
 
 `SOURCE schema.sql` allows you to run a sql file in MySQL.
 

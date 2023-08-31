@@ -9,7 +9,7 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
         - [Git](./git.md)
         - [Regex](./regex.md)
         - [Deploying Websites](./deploying_websites.md)
-        - [SQL](./relational_databases.md)
+        - [SQL](./sql.md)
         - [Linux](./linux.md)
         - [OOP](./oop.md)
     - HTML/CSS/JS
