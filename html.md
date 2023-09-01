@@ -21,7 +21,7 @@
 
 ## Start of HTML
 
-```
+```HTML
 <!DOCTYPE html>
 <html>
     <head> <!-- Contains metadata -->
@@ -34,9 +34,15 @@
 </html>
 ```
 
+You can add an favicon in the top of the tab by adding this to the head:
+
+```HTML
+<link rel="icon" href="/favicon.svg" >
+```
+
 ## Text Formatting
 
-```
+```HTML
 <h1>Heading</h1>        <!-- Headings from 1 to 6 -->
 <p>Paragraph</p>
 <strong>Bold</strong>
@@ -49,7 +55,7 @@
 
 ## Links and Images
 
-```
+```HTML
 <a href="URL/filepath">Link</a>
 <a href="URL/filepath" target="_blank">Link in new tab</a>
 <img src="URL/filepath" alt="Description">
@@ -58,7 +64,7 @@
 
 ## Lists
 
-```
+```HTML
 <ul>                 <!-- Unordered list -->
   <li>Item 1</li>    <!-- List item -->
   <li>Item 2</li>
@@ -71,7 +77,7 @@
 
 ## Tables
 
-```
+```HTML
 <table>              <!-- Defines a table -->
   <tr>               <!-- Table row -->
     <th>Header 1</th> <!-- Table header cell -->
@@ -86,7 +92,7 @@
 
 ## Forms
 
-```
+```HTML
 <form action="/submit" method="post">  <!-- Defines a form -->
   <input type="text" name="username" placeholder="Username">  <!-- Text input -->
   <input type="password" name="password" placeholder="Password">  <!-- Password input -->
@@ -117,7 +123,7 @@ Forms by default send a http POST request with the endpoint in action. The serve
 
 ## Grouping
 
-```
+```HTML
 <div>Container</div>
 <span>Inline</span>
 <header>Header</header>
@@ -131,7 +137,7 @@ Forms by default send a http POST request with the endpoint in action. The serve
 
 ## Self Closing Tags
 
-```
+```HTML
 <br/>    <!-- Line break -->
 <hr/>    <!-- Horizontal rule/line -->
 <wbr/>   <!-- Word break. The browser can line wrap at that point if necessary. -->
@@ -139,7 +145,7 @@ Forms by default send a http POST request with the endpoint in action. The serve
 
 ## Comments
 
-```
+```HTML
 <!-- Comments -->
 ```
 
@@ -175,19 +181,19 @@ Forms by default send a http POST request with the endpoint in action. The serve
 ## CSS in HTML
 - Put into the `<head>` of the HTML so the browser can style before it paints the page.
 
-```
+```HTML
 <link rel="stylesheet" type="text/css" href="style.css" />
 ```
 
 ## JavaScript in HTML
 - Put at the very end of the HTML `<body>` so the JavaScript can interact with the HTML elements. 
 
-```
+```HTML
 <script src="script.js"></script>
 ```
 
 - You can also use the `defer` keyword and put in in the header where it will only be loaded after the dom is created.
 
-```
+```HTML
 <script src="script.js" defer></script>
 ```

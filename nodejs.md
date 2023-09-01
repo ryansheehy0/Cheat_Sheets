@@ -190,12 +190,13 @@ fs.appendFile("./filepath.txt", "Written data", error => {error ? console.log(er
 
 ## Packages
 
-|          |                                                        |
+| Package  | Description                                            |
 |----------|--------------------------------------------------------|
 | inquirer | Used to simply get user input from the terminal        |
 | express  | Simplifies HTTP-related tasks usually for making APIs. |
 | jest     | Used for tests inside node.                            |
 | mysql2   | MySQL library.                                         |
+| dotenv   | Used for working with environment variables.           |
 
 ### Inquirer
 Used to simply get user input from the terminal.
@@ -355,22 +356,21 @@ app.use("/api", api) // If the route uses /api it sends the endpoint to the api 
 
 ```javascript
 // In ./routes/index.js
-const express = require("express")
-const app = express()
+const router = require("express").Router()
 
 const tipsRouter = require("./tips") // The exported .Router() from tips.js
 
 // Middleware
-app.use("./tips", tipsRouter) // If the path is /api/tips send the endpoint to the tipsRouter
+router.use("/tips", tipsRouter) // If the path is /api/tips send the endpoint to the tipsRouter
 
-modules.exports = app
+modules.exports = router
 ```
 
 ```javascript
 // In ./routes/tips.js
-const tipsRouter = require("express").Router() // Endpoints that don't have any other middleware for routers use Router
+const tipsRouter = require("express").Router()
 
-tipsRouter.get("/", (req, res) => {
+tipsRouter.get("/", (req, res) => { // This path is /api/tips/
   res.send("The path is /api/tips")
 })
 
@@ -406,7 +406,6 @@ res.render("index", { text: "world" })
   // To access this object in your .ejs file use <%= key %>
     // Ex: <%= text %>
 ```
-
 
 #### Front end and Back end
 Usually the front end is put in the public folder.
@@ -517,6 +516,30 @@ async function safe(){
   const [results, ] = await db.query(query, [firstName, lastName])
   return results
 }
+```
+
+### dotenv
+Used to work with environment variables so that you don't have your passwords or keys stored in plane text.
+
+Environment variables are variables that are local on your server or computer. Usually environment variables are all capitalized.
+
+When deploying code on a server you can set that server to have specific environment variables.
+
+Dotenv loads environment variables from a `.env` file into `process.env`. `.env` needs to be put into `.gitignore` so that it doesn't get pushed.
+
+```javascript
+// This sets up dotenv
+require("dotenv").config()
+
+console.log(process.env.API_KEY)
+```
+
+Example of `.env` file:
+
+```
+# These are comments
+API_KEY=08fe01a78943266193fc7a23625f68fa
+DB_PASSWORD=password
 ```
 
 ## Path

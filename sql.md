@@ -475,6 +475,13 @@ SET @var = 1;
 SELECT @var FROM table_name; -- Gets teh 1st column from table_name
 ```
 
+## Indexes
+Indexes are used to speed up queries.
+
+```SQL
+CREATE INDEX index_name ON table_name (column1, column2);
+```
+
 # Relational Database Management System(RDBMS)
 A special software program used to create and maintain a database.
 
@@ -495,3 +502,170 @@ The default port for MySQL is 3306.
   - `FLUSH PRIVILEGES;`
   - `exit`
 1. Now you can run `mysql -u root -p` to start you mysql server in the future
+
+# Object Relational Mappings(ORMs)
+ORMs are used to interact with relational databases using oop.
+
+## Sequelize
+Sequelize can work with multiple different RDBMS so you need to insteall `mysql2` as well if you are using mysql.
+
+```javascript
+const Sequelize = require("sequelize")
+let sequelize
+
+if(process.env.JAWSDB_URL){
+  // Connection provided by JAWSDB_URL which is what Heroku uses
+  sequelize = Sequelize(process.env.JAWSDB_URL)
+}else{
+  // Create the db before using sequelize
+  sequelize = new Sequelize(`db_name`, `username`, `password`, {
+    // Customize connection with object
+    host: `localhost`, // This is set by default
+    port: 3306, // This is set by default
+    dialect: `mysql` // Which SQL DB Server
+  })
+}
+
+module.exports = sequelize // ./connection
+```
+
+### Syncing
+Syncing is connecting to your sql server with sequelize.
+
+In your server file:
+
+```javascript
+// Express code
+const sequelize = require(`./connection`)
+const PORT = 3000
+
+// Connect to the db before running server
+sequelize.sync().then(() => {
+  app.listen(PORT)
+})
+
+// or you can force true to drop and recreate tables on every sync based upon your modals.
+  // DO NOT use this when deploying an app. Your data in your db will be destroyed.
+sequelize.sync({force: true}).then(() => {
+  app.listen(port)
+})
+
+```
+
+### Modals
+Modals are JS classes that define a table's schema.
+
+```javascript
+const { Model, DataTypes } = require('sequelize')
+const sequelize = require('..config/connection') // Get the connection
+
+class Book extends Model{}
+
+Book.init(
+  { // First object are the columns
+    columnName: { // If you don't set a primary key sequelize will set one automatically as "id"
+      type: DataTypes.STRING, // SQL type
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    column2: {
+      type: DataTypes.INTEGER
+    },
+  },
+  {
+    sequelize, // Link to db
+    timestamps: false, // Don't set timeouts
+    underscore: true, // Converts Camel case to snake case when putting it in the db
+    modelName: `book` // table name
+  }
+)
+
+module.exports = Book
+```
+
+```javascript
+// In the server code add
+const Book = require(`./Book`) // This invokes the init method and thus connect to sequelize.
+```
+
+### Seeding data
+Seeding data is putting data into the database.
+
+```javascript
+const Book = require(`./book`)
+
+// Creating a new row
+Book.create({
+  column1: `column1`,
+  column2: `column2`
+})
+
+// Creating multiple new rows
+Book.bulkCreate([
+  {
+    column1: `column1`,
+    column2: `column2`
+  },
+  {
+    column1: `column1`,
+    column2: `column2`
+  }
+])
+```
+
+You need to `npm install sequelize-cli`
+
+Creating a new seeder file in the seeders folder.
+`npx sequelize-cli seed:generate --name seed-name`
+
+The sequelize seed file where you data is stored:
+
+```javascript
+'use strict'; // Activates strict mode for this file which throws more errors.
+
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.bulkInsert('table_name', [
+      { column1: 'value1', column2: 'value2', ... },
+      { column1: 'value3', column2: 'value4', ... },
+      // More data entries...
+    ], {});
+  },
+
+  down: (queryInterface, Sequelize) => {
+    // Removes all data from a a table
+    return queryInterface.bulkDelete('table_name', null, {});
+  }
+};
+```
+
+Seeding data: `npx sequelize-cli db:seed:all`
+
+Undoing the seeded data: `npx sequelize-cli db:seed:undo:all`
+
+### Querying data
+
+```javascript
+Book.findAll({
+  order: ['tit;e'],
+  where: {
+    is_paperbakc: true
+  },
+}).then((bookData))
+
+Book.findByPK // finds by primary key
+Book.findOne
+
+.update({
+  // info
+},{
+  where: {
+    isbn: 
+  }
+})
+.then(updatedBook => res.json(updatedBook))
+.catch(error => res.json(error))
+
+Book.destroy
+```
