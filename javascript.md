@@ -740,13 +740,14 @@ The selector in querySelector cannot start with a number therefore ids and class
 
 ### Creating and Appending Elements
 
-|                                                      |                                                                    |
-|------------------------------------------------------|--------------------------------------------------------------------|
-| document.createElement('tag')                        | Creates a new element with the specified tag. Tag shoudn't have <>s|
-| element.appendChild(newChild)                        | Appends a new child element to the given parent element            |
-| element.append(child)                                | Appends a new child element. Very similar to appendChild           |
-| parentElement.insertBefore(newChild, referenceChild) | Inserts a new child element before a specified reference element   |
-| parentElement.removeChild(childElement)              | Removes a specified child element from its parent                  |
+|                                                      |                                                                     |
+|------------------------------------------------------|---------------------------------------------------------------------|
+| document.createElement('tag')                        | Creates a new element with the specified tag. Tag shoudn't have <>s |
+| element.appendChild(newChild)                        | Appends a new child element to the given parent element             |
+| element.append(child)                                | Appends a new child element. Very similar to appendChild            |
+| parentElement.insertBefore(newChild, referenceChild) | Inserts a new child element before a specified reference element    |
+| parentElement.removeChild(childElement)              | Removes a specified child element from its parent                   |
+| element.remove()                                     | Removes that element form the dom.                                  |
 
 #### Insert Adjacent Element
 `element.insertAdjacentElement("position", newElement)` or `element.insertAdjacentHTML("position", "html")`
@@ -900,7 +901,7 @@ Provides more powerful formatting than the inbuilt Date() in JS
 
 ```javascript
 var today = dayjs()
-today.format("MMM D, YYYY')
+today.format('MMM D, YYYY')
 today.format('[This is the day: ] ddd')
 ```
 

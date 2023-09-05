@@ -1,7 +1,11 @@
 [Home](./README.md)
 
+# SQL
+A programming language to manage relational databases.
+
 # Table of Contents
 
+- [Table of Contents](#table-of-contents)
 - [Relational Databases](#relational-databases)
   - [Atomicity Consistency Isolation Durability(ACID)](#atomicity-consistency-isolation-durabilityacid)
   - [Attribute Properties](#attribute-properties)
@@ -22,9 +26,17 @@
   - [Group By](#group-by)
     - [Having](#having)
   - [Alias Tables](#alias-tables)
+  - [Variables](#variables)
+  - [Indexes](#indexes)
 - [Relational Database Management System(RDBMS)](#relational-database-management-systemrdbms)
   - [MySQL](#mysql)
     - [Installation](#installation)
+- [Object Relational Mappings(ORMs)](#object-relational-mappingsorms)
+  - [Sequelize](#sequelize)
+    - [Syncing](#syncing)
+    - [Modals](#modals)
+    - [Seeding data](#seeding-data)
+    - [Querying data](#querying-data)
 
 # Relational Databases
 Relational databases organize things into tables with each element in the table having a unique id/primary key. Elements in these tables can connect to elements from other tables by having a column of that connection's unique id.
@@ -507,26 +519,24 @@ The default port for MySQL is 3306.
 ORMs are used to interact with relational databases using oop.
 
 ## Sequelize
-Sequelize can work with multiple different RDBMS so you need to insteall `mysql2` as well if you are using mysql.
+Sequelize can work with multiple different RDBMS so you need to install `mysql2` as well if you are using mysql.
+
+./connection.js file:
 
 ```javascript
 const Sequelize = require("sequelize")
-let sequelize
 
-if(process.env.JAWSDB_URL){
-  // Connection provided by JAWSDB_URL which is what Heroku uses
-  sequelize = Sequelize(process.env.JAWSDB_URL)
-}else{
-  // Create the db before using sequelize
-  sequelize = new Sequelize(`db_name`, `username`, `password`, {
-    // Customize connection with object
-    host: `localhost`, // This is set by default
-    port: 3306, // This is set by default
-    dialect: `mysql` // Which SQL DB Server
+// Connection provided by JAWSDB_URL which is what Heroku uses
+const sequelize = process.env.JAWSDB_URL
+  ? new Sequelize(process.env.JAWSDB_URL)
+  : new Sequelize(`db_name`, `username`, `password`, {
+    host: `localhost`,
+    port: 3306,
+    dialect: `mysql`
   })
-}
 
-module.exports = sequelize // ./connection
+
+module.exports = sequelize
 ```
 
 ### Syncing
@@ -543,13 +553,14 @@ const PORT = 3000
 sequelize.sync().then(() => {
   app.listen(PORT)
 })
+```
 
+```javascript
 // or you can force true to drop and recreate tables on every sync based upon your modals.
   // DO NOT use this when deploying an app. Your data in your db will be destroyed.
 sequelize.sync({force: true}).then(() => {
   app.listen(port)
 })
-
 ```
 
 ### Modals
@@ -557,21 +568,29 @@ Modals are JS classes that define a table's schema.
 
 ```javascript
 const { Model, DataTypes } = require('sequelize')
-const sequelize = require('..config/connection') // Get the connection
+const sequelize = require('./connection') // Get the connection
 
 class Book extends Model{}
 
 Book.init(
   { // First object are the columns
-    columnName: { // If you don't set a primary key sequelize will set one automatically as "id"
-      type: DataTypes.STRING, // SQL type
+    column1: { // If you don't set a primary key sequelize will set one automatically as "id"
+      type: DataTypes.INTEGER, // SQL type
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
     column2: {
-      type: DataTypes.INTEGER
+      type: DataTypes.STRING,
+      defaultValue: 'test'
     },
+    foreign_id: {
+      type: DataTypes.INTEGER,
+      references: { // This doesn't automatically create a foreign key reference. You have to use association functions.
+        modal: 'foreign_modal',
+        key: 'id'
+      }
+    }
   },
   {
     sequelize, // Link to db
@@ -584,9 +603,93 @@ Book.init(
 module.exports = Book
 ```
 
+OR
+
+```javascript
+const { DataTypes } = require('sequelize')
+const sequelize = require('./connection') // Get the connection
+
+const ModalName = sequelize.define('modal_name', {
+  id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    primaryKey: true,
+    autoIncrement: true
+  }
+})
+```
+
 ```javascript
 // In the server code add
 const Book = require(`./Book`) // This invokes the init method and thus connect to sequelize.
+```
+
+### Associations
+When using references within a modal you have to use a function to define that reference. These functions define relationships between models.
+
+Association functions create a new column(or use an already existing column) that is a foreign key reference to another table.
+
+#### Different types of associations:
+- One-to-One
+  - One row in a table is associated with exactly one row in another table.
+  - Ex: A `User` has one `Profile` and a `Profile` belongs to one `User`
+- One-to-Many/Many-to-One
+  - One row in a table can be associated with many different rows from another column.
+  - Ex: A `User` has many `Task`s, but a `Task` belongs to only one `User`
+- Many-to-Many
+  - An intermediate table(junction table) that has columns which references both tables. This junction table is used to link the 2 tables.
+  - Ex: `Students` can belong to many `Courses` and each `Course` can have many `Students`
+
+#### Association Functions
+- Module1.hasOne(Module2)
+  - Creates a foreign key `Module1Id` inside the `Module2` table that references the primary key of the `Module1` table.
+  - `Module1Id` has to be unique inside the `Module2` table.
+- Module1.hasMany(Module2)
+  - Same as hasOne, but doesn't enforce uniqueness.
+- Module1.belongsToMany(Module2)
+  - Creates a junction table if it doesn't exist and adds the primary keys of both tables to it.
+  - Without specifying the through command, belongsToMany creates a junction table with the default name set to `Module1` concatenated to `Module2` with the order being alphabetical.
+
+`has` association functions create the foreign key and the reference.
+
+`belongsTo` association functions also define the reference, but they are mainly just used to allow Sequelize to do additional queries.
+
+Example:
+
+```javascript
+// Creating a One-to-One
+User.hasOne(Profile, {
+  foreignKey: 'user_id' // Optional argument. This is changing the name from 'UserId' to 'user_id'.
+})
+Profile.belongsTo(User, {
+  foreignKey: 'user_id' // This has to be the same as the previous foreignKey or else you create a new foreign key
+})
+
+// Creating a One-to-Many/Many-to-One
+User.hasMany(Task)
+Task.belongsTo(User)
+
+// Creating a Many-to-Many relationship
+Students.belongsToMany(Courses, {
+  through: 'Enrollments' // Optional argument. Sets the name of the junction table
+})
+Courses.belongsToMany(Students, {
+  through: 'Enrollments'
+})
+
+  // If you have already created a junction table you can set it to the through argument
+  const junction = require("./junction")
+
+  Students.belongsToMany(Courses, {
+    through: junction,
+    foreignKey: 'student_id', // For Students
+    otherKey: 'course_id', // For Courses
+  })
+  Courses.belongsToMany(Students, {
+    through: junction,
+    foreignKey: 'course_id', // For Courses
+    otherKey: 'student_id', // For Students
+  })
 ```
 
 ### Seeding data

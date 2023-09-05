@@ -1,6 +1,0 @@
-[Home](./README.md)
-
-# Tailwind
-
-
-

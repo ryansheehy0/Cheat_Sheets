@@ -15,7 +15,6 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
     - HTML/CSS/JS
         - [HTML](./html.md)
         - [CSS](./css.md)
-        - [Tailwind](./tailwind.md)
         - [JavaScript](./javascript.md)
         - [jQuery](./jquery.md)
         - [NodeJS](./nodejs.md)
