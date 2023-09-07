@@ -26,3 +26,6 @@ REST() represented
   clients. servers, resource, and requests via http
   - uniform interface between clients and server
   - can perform code on demand
+
+Representational State Transfer
+RESTful to convert http methods to changes in the db.

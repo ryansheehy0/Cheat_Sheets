@@ -9,14 +9,15 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
         - [Git](./git.md)
         - [Regex](./regex.md)
         - [Deploying Websites](./deploying_websites.md)
-        - [SQL](./sql.md)
         - [Linux](./linux.md)
+        - [SQL](./sql.md)
         - [OOP](./oop.md)
+        - [ORMs](./orm.md)
+        - [jQuery](./jquery.md)
     - HTML/CSS/JS
         - [HTML](./html.md)
         - [CSS](./css.md)
         - [JavaScript](./javascript.md)
-        - [jQuery](./jquery.md)
         - [NodeJS](./nodejs.md)
     - Android
         - [XML](./xml.md)

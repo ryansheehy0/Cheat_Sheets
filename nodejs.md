@@ -188,6 +188,16 @@ fs.writeFile("./filepath.txt", "Written data", error => {error ? console.log(err
 fs.appendFile("./filepath.txt", "Written data", error => {error ? console.log(error) : false})
 ```
 
+## Path
+Used to make working with file paths easier.
+
+`const path = require("path")`
+
+## Node-fetch
+Allows you to use the fetch function in node
+
+`const fetch = require('node-fetch')`
+
 ## Packages
 
 | Package  | Description                                            |
@@ -197,6 +207,7 @@ fs.appendFile("./filepath.txt", "Written data", error => {error ? console.log(er
 | jest     | Used for tests inside node.                            |
 | mysql2   | MySQL library.                                         |
 | dotenv   | Used for working with environment variables.           |
+| bcrypt   | Used to create hashes for passwords.                   |
 
 ### Inquirer
 Used to simply get user input from the terminal.
@@ -542,9 +553,42 @@ API_KEY=08fe01a78943266193fc7a23625f68fa
 DB_PASSWORD=password
 ```
 
-## Path
-`const path = require("path")`
+### bcrypt
+Used to hash passwords. Bcrypt automatically creates the salt.
 
-## Node-fetch
-Allows you to use the fetch function in node
-`const fetch = require('node-fetch')`
+```javascript
+const bcrypt = require('bcrypt')
+```
+
+#### Creating a Hash
+
+```javascript
+const saltRounds = 14 // Number of times the hash is applied. This sets the time to make the hash
+// The salt Rounds are exponential. 2^saltRounds.
+  // As computational power increases the salt rounds need to increase
+
+bcrypt.hash(`password`, saltRounds, (err, hash) => {
+  if(err){
+    console.error(err)
+    return
+  }
+  console.log(`Hashed password: ${hash}`)
+})
+```
+
+#### Comparing a Password
+
+```javascript
+const hash = `$2b$07$i7vcjUJXJbczMVmbiJiQBOHEtZHk/N93Sh1H862iC9iKxVqIveihG`
+// $ version of hash $ salt rounds $ 22 character salt and then 31 character hash
+const password = `password`
+
+bcrypt.compare(password, has, (err, result) => {
+  if(err){
+    console.error(err)
+    return
+  }
+  // Result is true or false
+  console.log(`Is password correct? ${result}`)
+})
+```

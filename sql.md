@@ -28,20 +28,15 @@ A programming language to manage relational databases.
   - [Alias Tables](#alias-tables)
   - [Variables](#variables)
   - [Indexes](#indexes)
+  - [Types of Relationships](#types-of-relationships)
 - [Relational Database Management System(RDBMS)](#relational-database-management-systemrdbms)
   - [MySQL](#mysql)
     - [Installation](#installation)
-- [Object Relational Mappings(ORMs)](#object-relational-mappingsorms)
-  - [Sequelize](#sequelize)
-    - [Syncing](#syncing)
-    - [Modals](#modals)
-    - [Seeding data](#seeding-data)
-    - [Querying data](#querying-data)
 
 # Relational Databases
 Relational databases organize things into tables with each element in the table having a unique id/primary key. Elements in these tables can connect to elements from other tables by having a column of that connection's unique id.
 
-Rows are elements and columns are attributes. Each cell contains one value of a specific data type.
+Rows are called elements and columns are called attributes. Each cell contains one value of a specific data type.
 
 - A **surrogate key** is a unique id that has no mapping to anything in the real world. It is just used internally in the db.
 - A **natural key** is a unique attribute that has a real world mapping to something in the real world. Like a unique email address.
@@ -83,9 +78,8 @@ One of the fundamental guarantees a transaction(Sequence of CRUD operations) mus
 Attributes(columns) have various properties that define their behavior/internal rules.
 
 - **Nullable** defines if an attribute contain NULL value or not.
-- **Primary Key**, **Unique Key**, or **None**
-  - **Primary Key** defines a unique id to each element/row. Used to link elements from one table to another. No NULL values.
-  - **Unique Key** enforces uniqueness of each value, but allows NULL values.
+- **Primary Key** defines a unique id to each element/row. Used to link elements from one table to another. No NULL values.
+- **Unique Key** enforces uniqueness of each value, but allows NULL values.
 - **Index** improves data retrieval speeds. You can query using the index directly. Like the key in a JS object.
 - **Auto Increment** allows the column to automatically generate a unique value and is often used for primary keys.
 - **Unsigned** used for numerical data types and decides if they can have signed or unsigned values.
@@ -112,8 +106,6 @@ You can specify a default value.
 time DATETIME DEFAULT CURRENT_TIMESTAMP,
 ```
 
-When using TEXT always run a delete or update with a select and where clause. Otherwise, it might mess the whole database.
-
 VARCHAR(255) is often used over TEXT because it takes up less space.
 
 # Structured Query Language(SQL)
@@ -123,7 +115,7 @@ SQL is a language used to interact with relational databases. Tends to retrieve 
 - Table names and column names tend to be put in lowercase with underscores instead of spaces.
 - Strings are put inside single quotes. 's
 - Commands in SQL end in semi-columns. ;s
-- `--`s are used for comments in SQL
+- `--`s and `/**/`s are used for comments in SQL
 
 ## Database Commands
 
@@ -301,6 +293,95 @@ WHERE customer_name LIKE '_____' OR customer_name = 'Bob';
 ```
 
 ## Join
+The JOIN command is used to get data from 2 or more tables.
+
+Types of JOIN commands:
+- INNER JOIN
+- OUTER JOIN
+  - LEFT, RIGHT, FULL
+- NATURAL JOIN
+- CROSS JOIN
+
+Ex:
+
+tableA
+
+| a_id | name     |
+|------|----------|
+| 1    | apple    |
+| 2    | orange   |
+| 3    | tomato   |
+| 4    | cucumber |
+
+tableB
+
+| b_id | name     |
+|------|----------|
+| A    | apple    |
+| B    | banana   |
+| C    | cucumber |
+| D    | dill     |
+
+### Cross Join
+For every row in tableB all rows from tableA are added.
+
+```SQL
+SELECT * FROM tableA
+CROSS JOIN tableB;
+```
+
+| a_id | name     | b_id | name     |
+|------|----------|------|----------|
+| 4    | cucumber | A    | apple    |
+| 3    | tomato   | A    | apple    |
+| 2    | orange   | A    | apple    |
+| 1    | apple    | A    | apple    |
+| 4    | cucumber | B    | banana   |
+| 3    | tomato   | B    | banana   |
+| 2    | orange   | B    | banana   |
+| 1    | apple    | B    | banana   |
+| 4    | cucumber | C    | cucumber |
+| 3    | tomato   | C    | cucumber |
+| 2    | orange   | C    | cucumber |
+| 1    | apple    | C    | cucumber |
+| 4    | cucumber | D    | dill     |
+| 3    | tomato   | D    | dill     |
+| 2    | orange   | D    | dill     |
+| 1    | apple    | D    | dill     |
+
+
+### Inner Join
+Mergers only the matching rows in both tables.
+
+By default join is an inner join.
+
+```SQL
+SELECT * FROM tableA
+INNER JOIN tableB
+ON tableA.name = tableB.name;
+
+--or
+
+SELECT * FROM tableA
+JOIN tableB
+ON tableA.name = tableB.name;
+```
+
+| a_id | name     | b_id | name     |
+|------|----------|------|----------|
+|    1 | apple    | A    | apple    |
+|    4 | cucumber | C    | cucumber |
+
+###
+
+
+
+
+
+
+
+
+
 The JOIN command, when used with SELECT, returns the rows of 2 or more tables that match the conditional. The output combines/joins those rows together into one table.
 
 Ex:
@@ -494,6 +575,17 @@ Indexes are used to speed up queries.
 CREATE INDEX index_name ON table_name (column1, column2);
 ```
 
+## Types of Relationships
+- One-to-One
+  - One row in a table is associated with exactly one row in another table. This is enforced with unique.
+  - Ex: A `User` has one `Profile` and a `Profile` belongs to one `User`
+- One-to-Many/Many-to-One
+  - One row in a table can be associated with many different rows from another column.
+  - Ex: A `User` has many `Task`s, but a `Task` belongs to only one `User`
+- Many-to-Many
+  - An intermediate table(junction table) that has columns which references both tables. This junction table is used to link the 2 tables.
+  - Ex: `Students` can belong to many `Courses` and each `Course` can have many `Students`
+
 # Relational Database Management System(RDBMS)
 A special software program used to create and maintain a database.
 
@@ -514,261 +606,3 @@ The default port for MySQL is 3306.
   - `FLUSH PRIVILEGES;`
   - `exit`
 1. Now you can run `mysql -u root -p` to start you mysql server in the future
-
-# Object Relational Mappings(ORMs)
-ORMs are used to interact with relational databases using oop.
-
-## Sequelize
-Sequelize can work with multiple different RDBMS so you need to install `mysql2` as well if you are using mysql.
-
-./connection.js file:
-
-```javascript
-const Sequelize = require("sequelize")
-
-// Connection provided by JAWSDB_URL which is what Heroku uses
-const sequelize = process.env.JAWSDB_URL
-  ? new Sequelize(process.env.JAWSDB_URL)
-  : new Sequelize(`db_name`, `username`, `password`, {
-    host: `localhost`,
-    port: 3306,
-    dialect: `mysql`
-  })
-
-
-module.exports = sequelize
-```
-
-### Syncing
-Syncing is connecting to your sql server with sequelize.
-
-In your server file:
-
-```javascript
-// Express code
-const sequelize = require(`./connection`)
-const PORT = 3000
-
-// Connect to the db before running server
-sequelize.sync().then(() => {
-  app.listen(PORT)
-})
-```
-
-```javascript
-// or you can force true to drop and recreate tables on every sync based upon your modals.
-  // DO NOT use this when deploying an app. Your data in your db will be destroyed.
-sequelize.sync({force: true}).then(() => {
-  app.listen(port)
-})
-```
-
-### Modals
-Modals are JS classes that define a table's schema.
-
-```javascript
-const { Model, DataTypes } = require('sequelize')
-const sequelize = require('./connection') // Get the connection
-
-class Book extends Model{}
-
-Book.init(
-  { // First object are the columns
-    column1: { // If you don't set a primary key sequelize will set one automatically as "id"
-      type: DataTypes.INTEGER, // SQL type
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true
-    },
-    column2: {
-      type: DataTypes.STRING,
-      defaultValue: 'test'
-    },
-    foreign_id: {
-      type: DataTypes.INTEGER,
-      references: { // This doesn't automatically create a foreign key reference. You have to use association functions.
-        modal: 'foreign_modal',
-        key: 'id'
-      }
-    }
-  },
-  {
-    sequelize, // Link to db
-    timestamps: false, // Don't set timeouts
-    underscore: true, // Converts Camel case to snake case when putting it in the db
-    modelName: `book` // table name
-  }
-)
-
-module.exports = Book
-```
-
-OR
-
-```javascript
-const { DataTypes } = require('sequelize')
-const sequelize = require('./connection') // Get the connection
-
-const ModalName = sequelize.define('modal_name', {
-  id: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    primaryKey: true,
-    autoIncrement: true
-  }
-})
-```
-
-```javascript
-// In the server code add
-const Book = require(`./Book`) // This invokes the init method and thus connect to sequelize.
-```
-
-### Associations
-When using references within a modal you have to use a function to define that reference. These functions define relationships between models.
-
-Association functions create a new column(or use an already existing column) that is a foreign key reference to another table.
-
-#### Different types of associations:
-- One-to-One
-  - One row in a table is associated with exactly one row in another table.
-  - Ex: A `User` has one `Profile` and a `Profile` belongs to one `User`
-- One-to-Many/Many-to-One
-  - One row in a table can be associated with many different rows from another column.
-  - Ex: A `User` has many `Task`s, but a `Task` belongs to only one `User`
-- Many-to-Many
-  - An intermediate table(junction table) that has columns which references both tables. This junction table is used to link the 2 tables.
-  - Ex: `Students` can belong to many `Courses` and each `Course` can have many `Students`
-
-#### Association Functions
-- Module1.hasOne(Module2)
-  - Creates a foreign key `Module1Id` inside the `Module2` table that references the primary key of the `Module1` table.
-  - `Module1Id` has to be unique inside the `Module2` table.
-- Module1.hasMany(Module2)
-  - Same as hasOne, but doesn't enforce uniqueness.
-- Module1.belongsToMany(Module2)
-  - Creates a junction table if it doesn't exist and adds the primary keys of both tables to it.
-  - Without specifying the through command, belongsToMany creates a junction table with the default name set to `Module1` concatenated to `Module2` with the order being alphabetical.
-
-`has` association functions create the foreign key and the reference.
-
-`belongsTo` association functions also define the reference, but they are mainly just used to allow Sequelize to do additional queries.
-
-Example:
-
-```javascript
-// Creating a One-to-One
-User.hasOne(Profile, {
-  foreignKey: 'user_id' // Optional argument. This is changing the name from 'UserId' to 'user_id'.
-})
-Profile.belongsTo(User, {
-  foreignKey: 'user_id' // This has to be the same as the previous foreignKey or else you create a new foreign key
-})
-
-// Creating a One-to-Many/Many-to-One
-User.hasMany(Task)
-Task.belongsTo(User)
-
-// Creating a Many-to-Many relationship
-Students.belongsToMany(Courses, {
-  through: 'Enrollments' // Optional argument. Sets the name of the junction table
-})
-Courses.belongsToMany(Students, {
-  through: 'Enrollments'
-})
-
-  // If you have already created a junction table you can set it to the through argument
-  const junction = require("./junction")
-
-  Students.belongsToMany(Courses, {
-    through: junction,
-    foreignKey: 'student_id', // For Students
-    otherKey: 'course_id', // For Courses
-  })
-  Courses.belongsToMany(Students, {
-    through: junction,
-    foreignKey: 'course_id', // For Courses
-    otherKey: 'student_id', // For Students
-  })
-```
-
-### Seeding data
-Seeding data is putting data into the database.
-
-```javascript
-const Book = require(`./book`)
-
-// Creating a new row
-Book.create({
-  column1: `column1`,
-  column2: `column2`
-})
-
-// Creating multiple new rows
-Book.bulkCreate([
-  {
-    column1: `column1`,
-    column2: `column2`
-  },
-  {
-    column1: `column1`,
-    column2: `column2`
-  }
-])
-```
-
-You need to `npm install sequelize-cli`
-
-Creating a new seeder file in the seeders folder.
-`npx sequelize-cli seed:generate --name seed-name`
-
-The sequelize seed file where you data is stored:
-
-```javascript
-'use strict'; // Activates strict mode for this file which throws more errors.
-
-module.exports = {
-  up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('table_name', [
-      { column1: 'value1', column2: 'value2', ... },
-      { column1: 'value3', column2: 'value4', ... },
-      // More data entries...
-    ], {});
-  },
-
-  down: (queryInterface, Sequelize) => {
-    // Removes all data from a a table
-    return queryInterface.bulkDelete('table_name', null, {});
-  }
-};
-```
-
-Seeding data: `npx sequelize-cli db:seed:all`
-
-Undoing the seeded data: `npx sequelize-cli db:seed:undo:all`
-
-### Querying data
-
-```javascript
-Book.findAll({
-  order: ['tit;e'],
-  where: {
-    is_paperbakc: true
-  },
-}).then((bookData))
-
-Book.findByPK // finds by primary key
-Book.findOne
-
-.update({
-  // info
-},{
-  where: {
-    isbn: 
-  }
-})
-.then(updatedBook => res.json(updatedBook))
-.catch(error => res.json(error))
-
-Book.destroy
-```
