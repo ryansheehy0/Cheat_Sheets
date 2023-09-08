@@ -1,3 +1,4 @@
+
 [Home](./README.md)
 
 # NodeJS
@@ -6,7 +7,6 @@ NodeJS is used to run JavaScript outside of the browser.
 Somethings work differently when using JS in NodeJS then in the browser. This cheat sheet will cover those differences.
 
 ## Table Of Contents
-- [Questions](#questions)
 - [Getting Started](#getting-started)
 - [Node Package Manager(NPM)](#node-package-managernpm)
   - [Scripts](#scripts)
@@ -25,30 +25,26 @@ Somethings work differently when using JS in NodeJS then in the browser. This ch
   - [Reading to Files](#reading-to-files)
   - [Writing to Files](#writing-to-files)
   - [Appending to Files](#appending-to-files)
+- [Path](#path)
+- [Node-fetch](#node-fetch)
 - [Packages](#packages)
-  - [Inquirer](#inquirer)
-  - [Express](#express)
+  - [inquirer](#inquirer)
+  - [express](#express)
     - [Express HTTP Methods](#express-http-methods)
-    - [Express Get](#express-get)
+    - [Parameters](#parameters)
+    - [Routers](#routers)
+    - [Middleware Functions](#middleware-functions)
     - [View Engines](#view-engines)
       - [EJS](#ejs)
-  - [Jest](#jest)
-
-## Questions
-<!--
-? callback functions
-? How to structure package.json files?
-? npm init
-? What is the difference between console in node and console in the browser?
-? What are environment variables?
-? What are all the different events?
-? How can you write to files or create a new file?
-? Do you have to make it a async function when returning a promise
-? Does inquire have to return a Promise
-? What are ports?
-? What is local host?
-? What is the HTTP protocol?
--->
+    - [Front end and Back end](#front-end-and-back-end)
+  - [jest](#jest)
+  - [mysql2](#mysql2)
+    - [mysql2 with Promises](#mysql2-with-promises)
+    - [Prevent SQL Injections](#prevent-sql-injections)
+  - [dotenv](#dotenv)
+  - [bcrypt](#bcrypt)
+    - [Creating a Hash](#creating-a-hash)
+    - [Comparing a Password](#comparing-a-password)
 
 ## Getting Started
 Run `node -v` to see what version of node you have. If you don't have node you can install it from [here](https://nodejs.org/en).
@@ -74,6 +70,7 @@ package-lock.json locks the versions of the packages so that new version don't b
 
 ### Scripts
 Inside the package.json
+
 ```javascript
 "scripts": {
   "start": "node index.js",
@@ -93,6 +90,7 @@ You can import json directly `const json = require("./file.json")`
 
 ### Exporting
 To export you use the module.exports object
+
 ```javascript
 module.exports = {
     function1: aFunctionThatDoesSomething,
@@ -125,7 +123,10 @@ module.exports = {
 
 ### Process
 `process.platform` get what platform the node is running on like linux.
+
 `process.env.NAME` get the environment variable called NAME
+
+`server.address().port` gets the current port the server is running on.
 
 #### Arguments from the Terminal
 process.argv is an array that contains the command-line arguments.
@@ -179,11 +180,13 @@ async function loadFile() {
 ```
 
 ### Writing to Files
+
 ```javascript
 fs.writeFile("./filepath.txt", "Written data", error => {error ? console.log(error) : false})
 ```
 
 ### Appending to Files
+
 ```javascript
 fs.appendFile("./filepath.txt", "Written data", error => {error ? console.log(error) : false})
 ```
@@ -209,7 +212,7 @@ Allows you to use the fetch function in node
 | dotenv   | Used for working with environment variables.           |
 | bcrypt   | Used to create hashes for passwords.                   |
 
-### Inquirer
+### inquirer
 Used to simply get user input from the terminal.
 
 Use  `npm install inquirer@8.2.4` to use require with inquirer.
@@ -254,7 +257,7 @@ function validationFunction(input){
 }
 ```
 
-### Express
+### express
 Simplifies HTTP-related tasks usually for making APIs. It's a framework for handling http requests.
 
 ```javascript
@@ -273,7 +276,7 @@ app.set(settingName, settingValue)
   // You need to parse the data because it comes in as a stream of binary data in packets that need to be constructed together
   // The content type header defines which middleware is triggered.
 
-app.use(express.json()) // Parses the body with json
+app.use(express.json()) // Parses the json body to an object
 app.use(express.static('public')) // Setting for serving static files from the public folder. You can directly call the file. Ex: localhost:3000/images/image.jpg
 app.use(express.urlencoded({ extended: true })) // Old browsers might send json through URL encoded
 
@@ -389,6 +392,7 @@ module.exports = tipsRouter
 ```
 
 #### Middleware Functions
+
 ```javascript
 const middleware = (req, res, next) => {
   console.log(`Middleware function: ${req.method} with the ${req.get('Content-Type')}`)
@@ -399,23 +403,73 @@ app.use(middleware)
 ```
 
 #### View Engines
-View engines allow you to change the html from he server before it is sent.
-- EJS and Pug are popular view engine libraries
+View engines allow you to change the html from the server before it is sent.
 
-`app.set("view engine", "ejs")` sets the view engine to EJS. Need to run `npm install ejs` before this can work.
+This allows you to keep your view and your controller separated.
 
-##### EJS
-- .html files need to be changed to .ejs
-- The .ejs files need to be placed in the views folder
-- Inside .ejs files you can output into the html by using `<%= %>`
-  - Ex: `<p>2 plus 2 equals <%= 2 + 2 %></p>`
+##### Handlebars
 
 ```javascript
-res.render("index") // Uses the view engine to render html in the browser.
+const handlebars = require("express-handlebars")
 
-res.render("index", { text: "world" })
-  // To access this object in your .ejs file use <%= key %>
-    // Ex: <%= text %>
+app.engine("handlebars", handlebars()) // Sets the template engine which tells express how to render templates of a specific type
+app.set("view engine", "handlebars") // Sets the default template engine defined in the first arg of app.engine()
+  // This is the default template engine when not specifying an extension.
+
+let view = './index.handlebars' // To specify which template engine to use(not the default) you have to make the extension the same name as the first arg into app.engine.
+view = './index.html' // Or to use the default view engine set
+
+const locals = {
+  title: "Page title",
+  items: [
+    {firstName: "Ryan", middleInitial: "M", lastName: "Sheehy"},
+    {firstName: "Bob", middleInitial: "B", lastName: "Bobby"},
+  ],
+  user: { // If you want to use user authentication
+    name: "John Doe"
+  }
+}
+app.render(view, locals, (err, html) => { // You use render in order to replace variables set inside your view file
+  if(err){
+    // handle error
+    return
+  }
+  // use the rendered html
+})
+
+// Or you can use render to send data
+app.get("/", (req, res) => {
+  res.render('./public/index.html', locals)
+  // This will send the rendered(with handlebars) html
+})
+```
+
+View File Example:
+
+```HTML
+<!DOCTYPE html>
+<html>
+    <head> <!-- Contains metadata -->
+        <title>{{title}}</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+    <body> <!-- Contains the visible content -->
+    {{#if user}}
+      <p>Welcome {{user.name}}</p>
+    {{/if}}
+    <p>My name is {{firstName}} {{middleInitial}}. {{lastName}}.</p>
+    <p>Here are my friends: </p>
+    <ul>
+      {{! This is a comment}}
+      {{#each items}}{{! This loops through the locals}}
+        {{#if @index 'greater' 0}}
+          <li>{{firstName}} {{middleInitial}}. {{lastName}}.</li>
+        {{/if}}
+      {{/each}}
+    </ul>
+    </body>
+</html>
 ```
 
 #### Front end and Back end
@@ -424,7 +478,7 @@ Usually the front end is put in the public folder.
 The front end should use `/` for any html links or server calls. Do not use `./`
 
 The server should send the html page when getting `/` path.
-### Jest
+### jest
 Used for tests inside node.
 
 Tests are used to test your code usually before sending them towards production. Install jest as a dev package.
@@ -574,6 +628,13 @@ bcrypt.hash(`password`, saltRounds, (err, hash) => {
   }
   console.log(`Hashed password: ${hash}`)
 })
+
+// You can also use await
+let hash = await bcrypt.hash(`password`, saltRounds)
+
+// You can also use sync
+let hash = bcrypt.hashSync(`password`, saltRounds)
+
 ```
 
 #### Comparing a Password
@@ -583,7 +644,7 @@ const hash = `$2b$07$i7vcjUJXJbczMVmbiJiQBOHEtZHk/N93Sh1H862iC9iKxVqIveihG`
 // $ version of hash $ salt rounds $ 22 character salt and then 31 character hash
 const password = `password`
 
-bcrypt.compare(password, has, (err, result) => {
+bcrypt.compare(password, hash, (err, result) => {
   if(err){
     console.error(err)
     return
@@ -591,4 +652,10 @@ bcrypt.compare(password, has, (err, result) => {
   // Result is true or false
   console.log(`Is password correct? ${result}`)
 })
+
+// You can use async/await
+let isPassword = await bcrypt.compare(password, hash)
+
+// You can use sync
+let isPassword = bcrypt.compareSync(password, hash)
 ```

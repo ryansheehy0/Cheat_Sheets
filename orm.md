@@ -55,7 +55,15 @@ Modals are JS classes that define a table's schema.
 const { Model, DataTypes } = require('sequelize')
 const sequelize = require('./connection') // Get the connection
 
-class Book extends Model{}
+class Book extends Model{
+  // Instance methods. Functions you can use for specific rows
+  isBook() {
+    if (this.numberOfPages > 0) { // Does for each row. this refers to the current row
+      return true
+    }
+    return false
+  }
+}
 
 Book.init(
   { // First object are the columns
@@ -72,6 +80,10 @@ Book.init(
         isEmail: true
       }
     },
+    numberOfPages: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
     foreign_id: {
       type: DataTypes.INTEGER,
       references: { // This doesn't automatically create a foreign key reference. You have to use association functions.
@@ -81,6 +93,9 @@ Book.init(
     }
   },
   {
+    hooks: {
+      // Put your hook functions here
+    },
     sequelize, // Link to db
     timestamps: false, // Don't set timeouts
     underscore: true, // Converts Camel case to snake case when putting it in the db
@@ -136,7 +151,8 @@ Example:
 ```javascript
 // Creating a One-to-One
 User.hasOne(Profile, {
-  foreignKey: 'user_id' // Optional argument. This is changing the name from 'UserId' to 'user_id'.
+  foreignKey: 'user_id', // Optional argument. This is changing the name from 'UserId' to 'user_id'.
+  onDelete: 'CASCADE' // When we delete a User, it also deletes the associated link. In this case it would be the user_id in profile
 })
 Profile.belongsTo(User, {
   foreignKey: 'user_id' // This has to be the same as the previous foreignKey or else you create a new foreign key
@@ -230,13 +246,18 @@ Book.bulkCreate([
 Example:
 
 ```javascript
-Book.findAll({
-  model: linkedModel,
-  through: junctionModel,
-  where: {
-    id: 1
-  }
-})
+Book.findAll(
+  include: [
+    {
+      model: linkedModel,
+      through: junctionModel,
+      where: {
+        id: 1
+      }
+    },
+    {model: secondLinkedModel}
+  ]
+)
 .then(data => console.log(data))
 .catch(error => console.error(error))
 ```
@@ -281,12 +302,17 @@ The hook is used when creating your schema.
 
 ```javascript
 hooks: {
-  beforeCreate: (newData) => {
-    newData = newData.toLowercase()
+  beforeCreate: (data) => {
+    data = data.toLowercase()
     return newData
   },
-  beforeUpdate: (newData) => {
-
+  beforeUpdate: (data) => {
+    if(data.changed("attribute")){
+      data.attribute = attribute.toLowercase()
+    }
+    return data
   }
 }
 ```
+
+If you are using bulk commands like `bulkCreate`, `update`, etc you have to set the property `individualHooks = true`

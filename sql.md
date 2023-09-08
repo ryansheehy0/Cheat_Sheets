@@ -296,11 +296,17 @@ WHERE customer_name LIKE '_____' OR customer_name = 'Bob';
 The JOIN command is used to get data from 2 or more tables.
 
 Types of JOIN commands:
-- INNER JOIN
-- OUTER JOIN
-  - LEFT, RIGHT, FULL
-- NATURAL JOIN
-- CROSS JOIN
+- [Cross Join](#cross-join)
+- [Inner Join](#inner-join)
+- [Outer Join](#outer-join)
+  - [Full Outer Join](#full-outer-join)
+  - [Left Outer Join](#left-outer-join)
+  - [Right Outer Join](#right-outer-join)
+- [Natural Join](#natural-join)
+- [Excluding Join](#excluding-join)
+  - [Outer Excluding Join](#full-outer-join)
+  - [Left Excluding Join](#left-outer-join)
+  - [Right Excluding Join](#right-outer-join)
 
 Ex:
 
@@ -372,86 +378,127 @@ ON tableA.name = tableB.name;
 |    1 | apple    | A    | apple    |
 |    4 | cucumber | C    | cucumber |
 
-###
+### Outer Join
 
-
-
-
-
-
-
-
-
-The JOIN command, when used with SELECT, returns the rows of 2 or more tables that match the conditional. The output combines/joins those rows together into one table.
-
-Ex:
-
-bands table
-
-| id | name                |
-|----|---------------------|
-| 1  | 'Iron Maiden'       |
-| 2  | 'Deuce'             |
-| 3  | 'Avenged Sevenfold' |
-| 4  | 'Ankor'             |
-
-albums table
-
-| id | name                      | release_year | band_id |
-|----|---------------------------|--------------|---------|
-| 1  | 'The Number of the Beast' | 1982         | 1       |
-| 2  | 'Power Slave'             | 1984         | 1       |
-| 3  | 'Nightmare'               | 2018         | 2       |
-| 4  | 'Nightmare'               | 2010         | 3       |
-
-### Inner Join
-Combines data from that row if the condition is true.
-
-This is most often used to de-reference values.
+#### Full Outer Join
+Returns matched and unmatched rows from both tables. If there is no match the other side will contain null.
 
 ```SQL
-SELECT * from bands
-INNER JOIN albums ON bands.id = albums.band_id;
--- This is also the same as
-  -- JOIN albums ON bands.id = albums.band_id;
+SELECT * FROM tableA
+FULL OUTER JOIN tableB
+ON tableA.name = tableB.name;
+
+-- There is no FULL OUTER JOIN in MySQL
+SELECT * FROM tableA
+LEFT JOIN tableB ON tableA.name = tableB.name
+UNION ALL
+SELECT * FROM tableA
+RIGHT JOIN tableB ON tableA.name = tableB.name
+WHERE tableA.name IS NULL;
 ```
 
-This returns the table:
+| a_id | name     | b_id | name     |
+|------|----------|------|----------|
+| 1    | apple    | A    | apple    |
+| 2    | orange   | NULL | NULL     |
+| 3    | tomato   | NULL | NULL     |
+| 4    | cucumber | C    | cucumber |
+| NULL | NULL     | B    | banana   |
+| NULL | NULL     | D    | dill     |
 
-```
-[ From bands               ][ From albums                                            ]
-
-| id | name                | id | name                      | release_year | band_id |
-|----|---------------------|----|---------------------------|--------------|---------|
-| 1  | 'Iron Maiden'       | 1  | 'The Number of the Beast' | 1982         | 1       |
-| 1  | 'Iron Maiden'       | 2  | 'Power Slave'             | 1984         | 1       |
-| 2  | 'Deuce'             | 3  | 'Nightmare'               | 2018         | 2       |
-| 3  | 'Avenged Sevenfold' | 4  | 'Nightmare'               | 2010         | 3       |
-```
-
-### Left/Right Join
-**Left join** prints out everything in the left(first) table and if the condition is true it also prints for the right(second table). If the condition is false it returns null for those values.
-
-**Right join** prints out everything in the right(second) table and if the condition is true it also prints for the left(first table). If the condition is false it returns null for those values.
+#### Left Outer Join
+Returns all rows from the left table(tableA) with the matching rows from the right table(tableB) or null.
 
 ```SQL
-SELECT * from bands
-LEFT JOIN albums ON bands.id = albums.band_id;
+SELECT * FROM tableA
+LEFT OUTER JOIN tableB
+ON tableA.name = tableB.name;
 ```
 
-This returns the table:
+| a_id | name     | b_id | name     |
+|------|----------|------|----------|
+| 1    | apple    | A    | apple    |
+| 2    | orange   | NULL | NULL     |
+| 3    | tomato   | NULL | NULL     |
+| 4    | cucumber | C    | cucumber |
 
-```
-[ From bands               ][ From albums                                              ]
+#### Right Outer Join
+Returns all rows from the right table(tableB) with the matching rows from the left table(tableA) or null.
 
-| id | name                | id   | name                      | release_year | band_id |
-|----|---------------------|------|---------------------------|--------------|---------|
-| 1  | 'Iron Maiden'       | 1    | 'The Number of the Beast' | 1982         | 1       |
-| 1  | 'Iron Maiden'       | 2    | 'Power Slave'             | 1984         | 1       |
-| 2  | 'Deuce'             | 3    | 'Nightmare'               | 2018         | 2       |
-| 3  | 'Avenged Sevenfold' | 4    | 'Nightmare'               | 2010         | 3       |
-| 4  | 'Ankor'             | null | null                      | null         | null    |
+```SQL
+SELECT * FROM tableA
+RIGHT OUTER JOIN tableB
+ON tableA.name = tableB.name;
 ```
+
+| a_id | name     | b_id | name     |
+|------|----------|------|----------|
+| 1    | apple    | A    | apple    |
+| 4    | cucumber | C    | cucumber |
+| NULL | NULL     | B    | banana   |
+| NULL | NULL     | D    | dill     |
+
+### Natural Join
+Columns with the same values appear only once.
+
+```SQL
+SELECT * FROM tableA
+NATURAL JOIN tableB;
+```
+
+| name     | a_id | b_id |
+|----------|------|------|
+| apple    |    1 | A    |
+| cucumber |    4 | C    |
+
+### Excluding Join
+
+#### Outer Excluding Join
+Returns all the rows in tableA and tableB that don't match.
+
+```SQL
+SELECT * FROM tableA
+FULL OUTER JOIN tableB
+  ON tableA.name = tableB.name
+WHERE tableA.name IS NULL tableB.name IS NULL;
+```
+
+| a_id | name     | b_id | name     |
+|------|----------|------|----------|
+| 2    | orange   | NULL | NULL     |
+| 3    | tomato   | NULL | NULL     |
+| NULL | NULL     | B    | banana   |
+| NULL | NULL     | D    | dill     |
+
+#### Left Excluding Join
+Returns all the rows in tableA that don't match any rows in tableB.
+
+```SQL
+SELECT * FROM tableA
+LEFT JOIN tableB
+  ON tableA.name = tableB.name
+WHERE tableB.name IS NULL;
+```
+
+| a_id | name     | b_id | name     |
+|------|----------|------|----------|
+| 2    | orange   | NULL | NULL     |
+| 3    | tomato   | NULL | NULL     |
+
+#### Right Excluding Join
+Returns all the rows in tableB that don't match any rows in tableA.
+
+```SQL
+SELECT * FROM tableA
+RIGHT JOIN tableB
+  ON tableA.name = tableB.name
+WHERE tableA.name IS NULL;
+```
+
+| a_id | name     | b_id | name     |
+|------|----------|------|----------|
+| NULL | NULL     | B    | banana   |
+| NULL | NULL     | D    | dill     |
 
 ### Dereferencing
 You can use join to dereference references. Whenever you have columns with the same name for different tables you need to specify which one you are referring to.
@@ -569,7 +616,9 @@ SELECT @var FROM table_name; -- Gets teh 1st column from table_name
 ```
 
 ## Indexes
-Indexes are used to speed up queries.
+Indexes are used to speed up queries in exchange for taking up more space.
+
+When you create new data in the table, the index has to be updated as well which will speed up times.
 
 ```SQL
 CREATE INDEX index_name ON table_name (column1, column2);
