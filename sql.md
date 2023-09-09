@@ -616,12 +616,46 @@ SELECT @var FROM table_name; -- Gets teh 1st column from table_name
 ```
 
 ## Indexes
-Indexes are used to speed up queries in exchange for taking up more space.
-
-When you create new data in the table, the index has to be updated as well which will speed up times.
+Indexes are used to speed up queries in exchange for taking up more memory and increasing times to create data.
 
 ```SQL
 CREATE INDEX index_name ON table_name (column1, column2);
+```
+
+When the database creates an index it aligns everything in order(numerically or alphabetically) and creates a balanced tree to speed up queries.
+
+A balanced tree is a binary tree where the left tree and the right tree cannot have a difference greater than 1.
+
+Without indexing:
+
+```
+1->2->3->4->5->6->7->8->9->10
+
+Is x == 1?
+  If no then is x == 2?
+    If no then is x == 3?
+      etc.
+```
+
+With indexing:
+
+```
+         5
+      /     \
+     3       8
+    / \     / \
+   2   4   7   9
+  /         \
+ 1           10
+
+Is x == 5?
+  If no then is x < 5?
+    If yes then is x == 3?
+      If no then is x < 3?
+        etc.
+    If no then is x == 8?
+      If no then is x < 8?
+        etc.
 ```
 
 ## Types of Relationships
