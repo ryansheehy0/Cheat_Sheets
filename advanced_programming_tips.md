@@ -2,6 +2,10 @@
 
 # Advanced Programming Tips
 
+## Formatting
+- No space between ()s and {s
+- When setting variables use spaces between the =s
+
 ## General
 - Use guard clauses in functions when possible
 
@@ -13,15 +17,7 @@ function test(arg) {
 ```
 
 - Use descriptive variable/function names
-
-- Put variables in order if you can
-
-```javascript
-let test          = 0
-let test1         = 1
-let variable_name = 2
-```
-
+- Make smaller functions with descriptive names instead of comments
 
 
 ### Organization and OOP

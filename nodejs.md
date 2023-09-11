@@ -61,6 +61,7 @@ NPM is used to install dependencies/packages for NodeJS code.
 | `npm install <package>`   | Installs the package for your project. Puts it in your package.json                                         |
 | `npm install <package>@8.2.4`   | Installs the package with the version 8.2.4 for your project. Puts it in your package.json            |
 | `npm i --save-dev <package>` | Installs the package as a dev package.                                                                   |
+| `npm i -D <package>`      | Installs the package as a dev package. Short hand for `--save-dev`                                          |
 | `npm uninstall <package>` | Uninstalls the package for your project.                                                                    |
 | `npm install`             | Installs all the dependencies if there is a package.json file and if the packages aren't already installed. |
 
@@ -203,14 +204,15 @@ Allows you to use the fetch function in node
 
 ## Packages
 
-| Package  | Description                                            |
-|----------|--------------------------------------------------------|
-| inquirer | Used to simply get user input from the terminal        |
-| express  | Simplifies HTTP-related tasks usually for making APIs. |
-| jest     | Used for tests inside node.                            |
-| mysql2   | MySQL library.                                         |
-| dotenv   | Used for working with environment variables.           |
-| bcrypt   | Used to create hashes for passwords.                   |
+| Package     | Description                                            |
+|-------------|--------------------------------------------------------|
+| inquirer    | Used to simply get user input from the terminal        |
+| express     | Simplifies HTTP-related tasks usually for making APIs. |
+| jest        | Used for tests inside node.                            |
+| mysql2      | MySQL library.                                         |
+| dotenv      | Used for working with environment variables.           |
+| bcrypt      | Used to create hashes for passwords.                   |
+| tailwindcss | Use tailwind inside nodeJS.                            |
 
 ### inquirer
 Used to simply get user input from the terminal.
@@ -659,3 +661,42 @@ let isPassword = await bcrypt.compare(password, hash)
 // You can use sync
 let isPassword = bcrypt.compareSync(password, hash)
 ```
+
+### tailwindcss
+Tailwindcss goes through all your HTM, JS, and any other files to find which tailwind classes are being used and then creates one css file which is used.
+
+`npm install -D tailwindcss`
+
+1. Initialize tailwind. Creates a tailwind.config.js file
+  - `npx tailwindcss init`
+2. Add file extensions you want tailwindcss to search through inside tailwind.config.js
+
+```javascript
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ["./src/**/*.{html,js}"],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+```
+
+- Make sure to change `src` to yor source folder.
+
+3. Add tailwind directives to your custom css file.
+  - These directives give you special functionality with tailwind
+
+```
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+4. Start tailwind-cli to build your css file
+  - `npx tailwindcss -i ./css/custom.css -o ./css/tailwind.css --watch`
+  - If you don't have a custom css you can run `npx tailwindcss build -o ./css/tailwind.css`
+  - When the input file(./css/custom.css) changes the output file(./css/tailwind.css) with automatically update
+
+5. Link the output file in your html
+  -  `<link href="/css/tailwind.css" rel="stylesheet">`
