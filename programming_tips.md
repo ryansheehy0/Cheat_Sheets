@@ -5,6 +5,7 @@
 ## Formatting
 - No space between ()s and {s
 - When setting variables use spaces between the =s
+- Use "s instead of 's
 
 ## General
 - Use guard clauses in functions when possible
@@ -27,19 +28,22 @@ It is almost always better to get started coding with bad organization and then 
   - then organize those methods into other sub classes
   - and create an object in your main class that is used to call those methods
   - and create a folder named after the main class which contains the main class
-    - and another folder named after the sub-classes which contains the sub-classes
+    - and another folder named main_subclasses which contains the sub-classes
 
 Example:
 
 ```
-
+item
+  item.js
+  item_subclasses
+    events.js
 ```
 
 - If 2 or more classes share a significant amount of code
   - then use inheritance where you create a parent class with the shared code
   - and create separate children classes with the differing code
   - and create a folder named after the parent class which contains the parent class
-    - and another folder named after the children classes which contains the children classes
+    - and another folder named main_children which contains the children classes
 
 Example:
 
@@ -56,9 +60,14 @@ item
 - Never have too many folders or subfunction in one place.
   - This means that it isn't organized
   - It is recommended to use the MVC model
-    - Model is responsible for all the data logic
-    - View is responsible for making a presentation of the data
+    - Model is responsible for all the data and data logic.
+    - View is responsible for making a presentation of the data. The user interface.
     - Controller is responsible for Take user input -> Give input to model -> Get data from model -> Give data to view -> Get presentation from view -> Give presentation to user.
+      - The controller tends to have the routes.
+
+      - You should have a controller folder with the routes
+      - views folder with layouts folder for layouts
+      - models folder for database models
 
 
 
@@ -94,3 +103,4 @@ item
 function test(arg1, {optional1 = 1, optional2 = 2} = {}) {
 }
 ```
+

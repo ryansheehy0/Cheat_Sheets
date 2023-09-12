@@ -228,6 +228,15 @@ Book.bulkCreate([
 | .distinct()        | Gets a unique rows based on the arguments.                          |
 | .raw()             | Runs a raw SQL query and returns the results as a Sequelize models. |
 
+- You can use `.get({plain: true})` to convert a sequelize object into a JS object.
+
+Example:
+
+```javascript
+const dishData = await Dish.findAll()
+cost dishes = dishData.map(dish => dish.get({plain: true}))
+```
+
 #### Arguments Querying Functions
 
 | Argument   | Description                                                                          |

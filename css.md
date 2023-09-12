@@ -25,7 +25,7 @@ selector{
     - [Border Styles](#border-styles)
 - [Positioning](#positioning)
     - [Static](#static)
-    - [Relative](#relative) 
+    - [Relative](#relative)
     - [Absolute](#absolute)
     - [Fixed](#fixed)
     - [Sticky](#sticky)
@@ -258,6 +258,20 @@ Put `display: grid` on parent.
 | grid-columns-gap:      | Sets the size of the gaps between columns.                     |
 | grid-template-areas:   | Used to define named grid areas in a grid container.           |
 
+Example:
+
+```CSS
+.container{
+    grid_template-columns: 3;
+}
+.element1{
+    grid-column: span 2;
+}
+.element1{
+    grid-column: span 1;
+}
+```
+
 #### Grid Template
 - Fractional units can be used to set the grid templates to take up the available space.
 
@@ -312,7 +326,7 @@ div div{
 ```
 // Change css when screen width is 1000px or less
 @media screen and (max-width: 1000px){}
-or 
+or
 @media screen and (width < 1001px) {}
     // <= doesn't work
 

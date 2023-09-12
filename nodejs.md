@@ -1,4 +1,3 @@
-
 [Home](./README.md)
 
 # NodeJS
@@ -407,44 +406,45 @@ app.use(middleware)
 #### View Engines
 View engines allow you to change the html from the server before it is sent.
 
+View engines offer ___ inside of html
+- placeholders for data
+- functions
+- coitional rendering and looping
+- text replacement
+
 This allows you to keep your view and your controller separated.
+
+`/views/layouts/main.handlebars` is the default location for where handlebars will look for.
 
 ##### Handlebars
 
 ```javascript
-const handlebars = require("express-handlebars")
+const exphbs = require("express-handlebars")
+const hbs = exphbs.create({})
 
-app.engine("handlebars", handlebars()) // Sets the template engine which tells express how to render templates of a specific type
-app.set("view engine", "handlebars") // Sets the default template engine defined in the first arg of app.engine()
-  // This is the default template engine when not specifying an extension.
-
-let view = './index.handlebars' // To specify which template engine to use(not the default) you have to make the extension the same name as the first arg into app.engine.
-view = './index.html' // Or to use the default view engine set
-
-const locals = {
-  title: "Page title",
-  items: [
-    {firstName: "Ryan", middleInitial: "M", lastName: "Sheehy"},
-    {firstName: "Bob", middleInitial: "B", lastName: "Bobby"},
-  ],
-  user: { // If you want to use user authentication
-    name: "John Doe"
-  }
-}
-app.render(view, locals, (err, html) => { // You use render in order to replace variables set inside your view file
-  if(err){
-    // handle error
-    return
-  }
-  // use the rendered html
-})
+app.engine("hbs", hbs.engine) // Sets the template engine which tells express how to render templates of a specific type
+app.set("view engine", "hb") // Sets the default template engine defined in the first arg of app.engine()
+  // The string is the default file extension when not specifying one. Ex. main.hbs
 
 // Or you can use render to send data
 app.get("/", (req, res) => {
-  res.render('./public/index.html', locals)
+  // res.render(template file path, locals)
+  // You could also do res.render('template') which would make the template file template.hbs
+  // locals are variables that can be put into views
+  res.render('template.html', { // the file path starts from views. views/template.html
+    layout: 'main', // views/layout/main.hbs will be used as default
+    title: 'Title',
+    name: "Ryan",
+    thisCanBeAnything: "anything",
+    array: ["Item 1", "Item 2", "Item 3"],
+    object: {item1, item2, item3},
+    boolean: true
+  })
   // This will send the rendered(with handlebars) html
 })
 ```
+
+- If you want to use multiple template engines you can, but to use the something other than the default you have to put the exact file extension set by 'view engine'
 
 View File Example:
 
@@ -457,29 +457,56 @@ View File Example:
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     </head>
     <body> <!-- Contains the visible content -->
-    {{#if user}}
-      <p>Welcome {{user.name}}</p>
+    {{#if boolean}}
+      <p>Welcome {{name}}</p>
+    {{else}}
+      <p>No name</p>
     {{/if}}
-    <p>My name is {{firstName}} {{middleInitial}}. {{lastName}}.</p>
-    <p>Here are my friends: </p>
+
+    {{#unless boolean}} {{! if not}}
+      <p>No name</p>
+    {{/unless}}
+
+    <p>I can put {{thisCanBeAnything}} into my html</p>
+    {{! This is  comment}}
     <ul>
-      {{! This is a comment}}
-      {{#each items}}{{! This loops through the locals}}
-        {{#if @index 'greater' 0}}
-          <li>{{firstName}} {{middleInitial}}. {{lastName}}.</li>
+      {{#each array}}
+        {{if @index 'greater' 1}} {{! Skips the fist element}}
+          <li>{{this}}</li> {{! this is th current item in the loop}}
         {{/if}}
       {{/each}}
     </ul>
+
+    {{! If you don't want to use this}}
+    <ul>
+      {{#each array as |item|}}
+        {{if @index 'greater' 1}} {{! Skips the fist element}}
+          <li>{{item}}</li> {{! this is th current item in the loop}}
+        {{/if}}
+      {{/each}}
+    </ul>
+
+    <p>I can also use keys in objects. {{object.item1}}</p>
+
+    {{{ body }}} {{! This is the template}}
     </body>
 </html>
 ```
 
+- {{s are treated like text
+- {{{s are rended as html
+
+#### Definitions
+
+- **Layouts** are used to make a consistent structure for multiple pages
+  - You can pass in templates into layouts by using `{{{ body }}}`
+- **Templates** contain the content unique to a particular page
+- **Particles** are reusable sections of a web page
+
+Templates and/or particles are placed into layouts in order to make a completed page.
+
 #### Front end and Back end
-Usually the front end is put in the public folder.
-
-The front end should use `/` for any html links or server calls. Do not use `./`
-
-The server should send the html page when getting `/` path.
+When using links in the font end with express you should use `/`s and then crete an express source to render that page.
 ### jest
 Used for tests inside node.
 
@@ -699,4 +726,6 @@ module.exports = {
   - When the input file(./css/custom.css) changes the output file(./css/tailwind.css) with automatically update
 
 5. Link the output file in your html
-  -  `<link href="/css/tailwind.css" rel="stylesheet">`
+  - `<link href="./css/tailwind.css" rel="stylesheet"/>`
+  - If you need to make quick changes or development it is much faster to use the CDN
+    - `<script src="https://cdn.tailwindcss.com"></script>`
