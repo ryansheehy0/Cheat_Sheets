@@ -203,15 +203,16 @@ Allows you to use the fetch function in node
 
 ## Packages
 
-| Package     | Description                                            |
-|-------------|--------------------------------------------------------|
-| inquirer    | Used to simply get user input from the terminal        |
-| express     | Simplifies HTTP-related tasks usually for making APIs. |
-| jest        | Used for tests inside node.                            |
-| mysql2      | MySQL library.                                         |
-| dotenv      | Used for working with environment variables.           |
-| bcrypt      | Used to create hashes for passwords.                   |
-| tailwindcss | Use tailwind inside nodeJS.                            |
+| Package         | Description                                                            |
+|-----------------|------------------------------------------------------------------------|
+| inquirer        | Used to simply get user input from the terminal                        |
+| express         | Simplifies HTTP-related tasks usually for making APIs.                 |
+| jest            | Used for tests inside node.                                            |
+| mysql2          | MySQL library.                                                         |
+| dotenv          | Used for working with environment variables.                           |
+| bcrypt          | Used to create hashes for passwords.                                   |
+| tailwindcss     | Use tailwind inside nodeJS.                                            |
+| express-session | Handle session which are info about the user across multiple requests. |
 
 ### inquirer
 Used to simply get user input from the terminal.
@@ -279,6 +280,7 @@ app.set(settingName, settingValue)
 
 app.use(express.json()) // Parses the json body to an object
 app.use(express.static('public')) // Setting for serving static files from the public folder. You can directly call the file. Ex: localhost:3000/images/image.jpg
+  // This is needed to use js and css files in you html. To reference them the file path should be /folderInPublicFolder/file.js
 app.use(express.urlencoded({ extended: true })) // Old browsers might send json through URL encoded
 
 // HTTP Methods/Endpoints
@@ -494,16 +496,37 @@ View File Example:
 ```
 
 - {{s are treated like text
-- {{{s are rended as html
+- {{{s are used to rended a local arg as html
 
 #### Definitions
 
 - **Layouts** are used to make a consistent structure for multiple pages
   - You can pass in templates into layouts by using `{{{ body }}}`
+  - Put in the layouts folder in the views folder
 - **Templates** contain the content unique to a particular page
-- **Particles** are reusable sections of a web page
+- **Partials** are reusable sections of a web page
+  - Put in the partials folder in he views folder
 
 Templates and/or particles are placed into layouts in order to make a completed page.
+
+- You can use `{{> handlebarFileName}}` to render any handlebar template/partial
+  - The default file path starts with views/partials/handlebarFileName
+
+#### Custom Helpers
+
+In your handlebars file: `{{custom_helper arg1}}` to use the helper function
+
+In your helper JS file:
+
+```javascript
+module.exports = {
+  custom_helper: (arg1) => {
+    return arg1 // do some stuff
+  }
+}
+```
+
+In your server JS file where you create your engine: `const hbs = exphbs.create({helperJSFile})`
 
 #### Front end and Back end
 When using links in the font end with express you should use `/`s and then crete an express source to render that page.
@@ -729,3 +752,73 @@ module.exports = {
   - `<link href="./css/tailwind.css" rel="stylesheet"/>`
   - If you need to make quick changes or development it is much faster to use the CDN
     - `<script src="https://cdn.tailwindcss.com"></script>`
+
+### express-session
+Express middleware which manges sessions which is information about a user across multiple requests.
+
+- Local Storage and Session Storage are client side storage and used by the font end.
+- Cookies are client side storage, but are used by the server. They are strings and are often used for authentication. 4kbs limit on cookies.
+  - Never store passwords on any client side storage.
+  - Not the same data as a session
+  - Cookies stay on the headers when data is send back and forth.
+
+Sessions are server side storage.
+
+```javascript
+const session = require("express-session")
+
+app.use(session({
+  secret: "secretKey", // Sign the session id. Should be in .env file
+    // Adds salt to the session hash
+  cookie: {
+    maxAge: 24 * 60 * 60 * 1000, // expires after 1 day
+    httpOnly: true,
+    secure: false,
+    sameSite: "strict"
+  }
+  resave: false, // Saveback to the session store
+  saveUninitalized: false //
+}))
+```
+
+#### Storing data
+
+```javascript
+app.get('/login', (req, res) => {
+  // Assuming user is authenticated with the db
+  req.session.username = 'john_doe';
+  res.send('Logged in successfully!');
+});
+```
+
+#### Retrieving data
+
+```javascript
+app.get('/dashboard', (req, res) => {
+  const username = req.session.username;
+  if (username) {
+    res.send(`Welcome, ${username}!`);
+  } else {
+    res.redirect('/login'); // Redirect if user is not logged in
+  }
+});
+```
+
+#### Destroying session
+
+```javascript
+app.get('/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.error(err);
+      res.send('Error logging out');
+    } else {
+      res.send('Logged out successfully');
+    }
+  });
+});
+```
+
+### cookie-parser
+
+

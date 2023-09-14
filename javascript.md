@@ -917,6 +917,15 @@ You can get everything after the ? in the URL(query string) by doing `document.l
 
 This can be used to go to another one of your pages by setting the new URL to the filepath of an html page.
 
+In order to keep the same base URL you can do
+
+```javascript
+const newPath = `/new/path`
+const baseURL = window.location.protocol + "//" + window.location.host
+
+document.location = baseURL + newPath
+```
+
 ## Regex
 Used to match patterns.
 

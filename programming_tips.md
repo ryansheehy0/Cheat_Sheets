@@ -25,7 +25,7 @@ function test(arg) {
 It is almost always better to get started coding with bad organization and then organize your code when you can clearly see the patterns.
 
 - If a class has a lot of methods
-  - then organize those methods into other sub classes
+  - then organize those methods into other sub-classes. The arguments in the sub-class come from the mai class.
   - and create an object in your main class that is used to call those methods
   - and create a folder named after the main class which contains the main class
     - and another folder named main_subclasses which contains the sub-classes

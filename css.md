@@ -112,6 +112,12 @@ selector{
 
 In order for a percentage height or width to work properly, the parent container needs to have a specified height.
 
+- `height: auto;` means the height changes based upon the content.
+    - This will expand beyond the size of its parent container.
+    - The parent's overflow property will take into effect.
+- `height: fit-content;` means the height changes based upon the content up to the size of its parent container.
+    - The element's overflow property will take into effect.
+
 ### Box Sizing
 `box-sizing:` is used to control how the width and height are calculated, taking into account the element's padding and border.
 
@@ -197,6 +203,8 @@ Moves relative to the view port.
 Put `display: flex;` on parent.
 - On parent is referring to the element that is containing the flex elements
 - On child is referring to the element that the flex is being applied to.
+
+It is recommended to use flex only when you need 1 column/row
 
 Each wrap creates a new item. The content includes all the items/lines.
 
@@ -301,6 +309,18 @@ div div{
 }
 
 ```
+
+## Overflow
+Overflow controls what happens when content overflows the boundaries. Use `overflow: property value` to set the overflow type.
+
+| property value | Description                                                                   |
+|----------------|-------------------------------------------------------------------------------|
+| visible        | Overflow the content without clipping and potentially covering other content. |
+| hidden         | Overflow hidden                                                               |
+| scroll         | Always shows the scrollbar                                                    |
+| auto           | Only shows the scroll bar when contents overflow.                             |
+
+- You can use `overflow-x:` or `overflow-y` to set the overflow property per axis.
 
 ## Visibility
 

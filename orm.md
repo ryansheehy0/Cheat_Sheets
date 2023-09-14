@@ -325,3 +325,24 @@ hooks: {
 ```
 
 If you are using bulk commands like `bulkCreate`, `update`, etc you have to set the property `individualHooks = true`
+
+
+## Sessions
+Storing sessions in a database. This is useful if you need to restart you server, but you don't want to loose your session information.
+
+```javascript
+const SequelizeStore = require("connect-session-sequelize")(session.store)
+
+app.use(session({
+  secret: 'Super secret secret',
+  cookie: {
+    // Stored in milliseconds
+    maxAge: 24 * 60 * 60 * 1000, // expires after 1 day
+  },
+  resave: false,
+  saveUninitialized: true,
+  store: new SequelizeStore({
+    db: sequelize,
+  }),
+}))
+```
