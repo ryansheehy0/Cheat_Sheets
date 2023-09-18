@@ -11,7 +11,8 @@
   - [Heroku](#heroku)
     - [Website](#website)
     - [Terminal](#terminal)
-    - [Using API keys](#using-api-keys)
+    - [Using keys](#using-keys)
+    - [MySQL](#mysql)
 
 <!-- /TOC -->
 
@@ -47,4 +48,11 @@
 1. Run `git subtree push --prefix my-subdirectory heroku master`, but replace my-subdirectory with your root directory and replace master with your branch you want to deploy from.
   - This will make Heroku use my-subdirectory as the root directory
 
-### Using API keys
+### Using keys
+- On the Heroku website go to Settings and click Show Config Vars
+- In nodeJS use the package dotenv and use the Keys that are in your Config Vars
+
+### MySQL
+1. Go to Resources
+1. Search for JawsDB MySQL
+1. JAWSDB_URL should be automatically added in your config vars
