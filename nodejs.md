@@ -473,11 +473,12 @@ app.get("/", (req, res) => {
 
 View File Example:
 
+{% raw %}
 ```HTML
 <!DOCTYPE html>
 <html>
     <head> <!-- Contains metadata -->
-        <title>\{{title}}</title>
+        <title>{{title}}</title>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     </head>
@@ -520,6 +521,8 @@ View File Example:
 
 - {{s are treated like text
 - {{{s are used to rended a local arg as html
+
+{% endraw %}
 
 #### Definitions
 

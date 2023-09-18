@@ -34,7 +34,7 @@
 
 ## [Packages](#android)
 
-## [Manifest](#android))
+## [Manifest](#android)
 AndroidManifest.xml file provides info about the app to the Android Operating system.
 
 Such info can include
@@ -108,10 +108,10 @@ The different files in the mipmap folder refers to different screen densities(nu
 
 The version of the app icon that is used depends on the device's screen density and the Android version it's running. If it is running version 26 or greater the anydpi-v26 is used.
 
-## Permissions
-### Most Common Permissions
+## [Permissions](#android)
+### [Most Common Permissions](#android)
 
-## Gradle
+## [Gradle](#android)
 The gradle is a tool to automate the building process for android.
 
 It is used to:
@@ -120,34 +120,34 @@ It is used to:
 - Managing plugins
 - Generating APK files
 
-## APK files
+## [APK files](#android)
 Android 
-## Location
+## [Location](#android)
 
-## Location to Address
+## [Location to Address](#android)
 
 content providers - Abstract the way for how data is stored and retrieved from your app to other apps.
   - Content providers work through URIs
   - FLAG_GRANT_READ_URI_PERMISSION
 Android permissions
 
-## Rest
+## [Rest](#android)
 Communicating using HTTP requests
 
-## Login Screen
-### Google signing
+## [Login Screen](#android)
+### [Google signing](#android)
 
-## Questions
+## [Questions](#android)
   - Build vs run app
   - Sync gradle. What is teh gradle
   - SDK Manager. What are SDKs?
   - Device Manager
 
-## Data Extraction Rules
+## [Data Extraction Rules](#android)
 Rules for data extraction during backup and restore operations
 Which data should be extracted from your app during the backup process, and how it should be handled when restoring the app's data.
 
-## Backup Rules
+## [Backup Rules](#android)
 <full-backup-content>
     <exclude domain="no-backup" />
     <exclude domain="cache" />
@@ -155,8 +155,8 @@ Which data should be extracted from your app during the backup process, and how 
     <!-- Additional rules as needed -->
 </full-backup-content>
 
-## Themes
+## [Themes](#android)
 How do you work with themes?
 
-## Intents
+## [Intents](#android)
 Intents are used for sending data from one app to another.
