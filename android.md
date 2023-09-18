@@ -32,9 +32,9 @@
 - https://developer.android.com/
 - https://developers.google.com/android
 
-## Packages
+## [Packages](#android)
 
-## Manifest
+## [Manifest](#android))
 AndroidManifest.xml file provides info about the app to the Android Operating system.
 
 Such info can include
@@ -82,7 +82,7 @@ Example of AndroidManifest.xml:
 </manifest>
 ```
 
-### @s
+### [@s](#android)
 The @s in the AndroidManifest.xml refer to a specific type of resource and Android knows where to look based on that type. Each @ type is referring to a specific XML vocabulary.
 
 | Type name | Description                                     | Default File/Folder path                    |
