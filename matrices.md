@@ -19,6 +19,32 @@ Rows($R$) and columns($C$) all start at 1 and when specifying the size of a matr
 
 - Matrices are often used to represent vectors. A vector has a starting point, ending point, and a direction. They can represent many types of data.
 
+## Table Of Contents
+<!-- TOC -->
+
+- [Matrices](#matrices)
+  - [Table Of Contents](#table-of-contents)
+  - [Adding/Subtracting:](#addingsubtracting)
+    - [Example:](#example)
+  - [Multiplying:](#multiplying)
+    - [Example of multiplying by a constant:](#example-of-multiplying-by-a-constant)
+    - [Example of multiplying 2 matrices:](#example-of-multiplying-2-matrices)
+    - [Examples of scaling and rotating:](#examples-of-scaling-and-rotating)
+  - [Inverse:](#inverse)
+    - [Steps:](#steps)
+    - [Example:](#example)
+  - [Row Echelon Form:](#row-echelon-form)
+    - [Example:](#example)
+  - [Eigenvectors and Eigenvalues:](#eigenvectors-and-eigenvalues)
+    - [Calculating the Eigenvectors and Eigenvalues:](#calculating-the-eigenvectors-and-eigenvalues)
+    - [Example:](#example)
+  - [Dividing:](#dividing)
+  - [Dot product:](#dot-product)
+  - [Cross product:](#cross-product)
+  - [Kernels/Image Filters:](#kernelsimage-filters)
+
+<!-- /TOC -->
+
 ## Adding/Subtracting:
 - Only matrices of the same size can be added/subtracted
 

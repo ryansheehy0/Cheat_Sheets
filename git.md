@@ -4,22 +4,29 @@
 A version control system that manages changes to files.
 
 ## Table of Contents
-- [Cloning and Initializing](#cloning-and-initializing)
-- [Committing](#committing)
-  - [Resetting Commits](#resetting-commits)
-  - [Reverting Commits](#reverting-commits)
-  - [Commit Logs](#commit-logs)
-- [Pushing](#pushing)
-- [Pulling](#pulling)
-- [Branches](#branches)
-- [Stashing](#stashing)
-- [Setting Personal Access Tokens](#setting-personal-access-tokens)
-- [First push](#first-push)
-- [Rebasing](#rebasing)
-- [Pull Requests](#pull-requests)
-  - [When your branch says behind main](#when-your-branch-says-behind-main)
-- [Setting up with SSH](#setting-up-with-ssh)
-- [Adding a warning when pushing to main/master from another branch](#adding-a-warning-when-pushing-to-mainmaster-from-another-branch)
+<!-- TOC -->
+
+- [Git Cheat Sheet](#git-cheat-sheet)
+  - [Table of Contents](#table-of-contents)
+  - [Cloning and Initializing](#cloning-and-initializing)
+  - [Committing](#committing)
+    - [Resetting Commits](#resetting-commits)
+    - [Reverting Commits](#reverting-commits)
+    - [Commit Logs](#commit-logs)
+  - [Pushing](#pushing)
+  - [Pulling](#pulling)
+  - [Branches](#branches)
+  - [Stashing](#stashing)
+  - [Setting Personal Access Tokens](#setting-personal-access-tokens)
+  - [First push](#first-push)
+  - [Rebasing](#rebasing)
+  - [Pull Requests](#pull-requests)
+    - [When your branch says behind main](#when-your-branch-says-behind-main)
+  - [Setting up with SSH](#setting-up-with-ssh)
+  - [Adding a warning when pushing to main/master from another branch](#adding-a-warning-when-pushing-to-mainmaster-from-another-branch)
+  - [Git Ignore](#git-ignore)
+
+<!-- /TOC -->
 
 ## Cloning and Initializing
 

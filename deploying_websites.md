@@ -3,6 +3,17 @@
 # Deploying Websites
 
 ## Table of Contents
+<!-- TOC -->
+
+- [Deploying Websites](#deploying-websites)
+  - [Table of Contents](#table-of-contents)
+  - [Github Pages](#github-pages)
+  - [Heroku](#heroku)
+    - [Website](#website)
+    - [Terminal](#terminal)
+    - [Using API keys](#using-api-keys)
+
+<!-- /TOC -->
 
 ## Github Pages
 1. Push your code to git. Have your deployable code in the "docs" folder
@@ -16,7 +27,7 @@
 
 ## Heroku
 ### Website
-1. Login or create Heroku account at https://id.heroku.com/login
+1. Login or create Heroku account at `https://id.heroku.com/login`
 1. Click on top right "New" and click "Create new app"
 1. Give an app name of `{github username}-{github repo name}`
   - Make sure to replace any spaces or underscores with dashes

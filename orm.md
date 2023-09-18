@@ -3,6 +3,25 @@
 # Object Relational Mappings(ORMs)
 ORMs are used to interact with relational databases using oop.
 
+## Table of Contents
+<!-- TOC -->
+
+- [Object Relational MappingsORMs](#object-relational-mappingsorms)
+  - [Table of Contents](#table-of-contents)
+  - [Sequelize](#sequelize)
+    - [Syncing](#syncing)
+    - [Modals](#modals)
+    - [Associations](#associations)
+      - [Association Functions](#association-functions)
+    - [Seeding data](#seeding-data)
+    - [Querying data](#querying-data)
+      - [Arguments Querying Functions](#arguments-querying-functions)
+      - [Create Update and Destroy](#create-update-and-destroy)
+      - [Hooks](#hooks)
+  - [Sessions](#sessions)
+
+<!-- /TOC -->
+
 ## Sequelize
 Sequelize can work with multiple different RDBMS so you need to install `mysql2` as well if you are using mysql.
 
@@ -255,7 +274,7 @@ cost dishes = dishData.map(dish => dish.get({plain: true}))
 Example:
 
 ```javascript
-Book.findAll(
+Book.findAll({
   include: [
     {
       model: linkedModel,
@@ -266,7 +285,7 @@ Book.findAll(
     },
     {model: secondLinkedModel}
   ]
-)
+})
 .then(data => console.log(data))
 .catch(error => console.error(error))
 ```

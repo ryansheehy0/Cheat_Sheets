@@ -4,6 +4,22 @@
 This cheat sheet is not for explaining all the concepts in C, but to explain some of the concepts that are hard to remember.
 
 ## Table of Contents
+<!-- TOC -->
+
+- [C](#c)
+  - [Table of Contents](#table-of-contents)
+  - [Standard Libraries](#standard-libraries)
+  - [Command Line Arguments](#command-line-arguments)
+  - [Interacting with files](#interacting-with-files)
+  - [Unions](#unions)
+  - [Printf format specifiers](#printf-format-specifiers)
+    - [Format specifiers flags](#format-specifiers-flags)
+  - [Pointers](#pointers)
+  - [Arrays](#arrays)
+  - [Header Guards](#header-guards)
+  - [stdlib functions](#stdlib-functions)
+
+<!-- /TOC -->
 
 ## Standard Libraries
 

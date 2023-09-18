@@ -4,6 +4,18 @@
 
 A simple non secure encryption that only allows writable ASCII characters used to obfuscate files.
 
+## Table of Contents
+<!-- TOC -->
+
+- [Simple Encryption](#simple-encryption)
+  - [Table of Contents](#table-of-contents)
+  - [Writable ASCII characters:](#writable-ascii-characters)
+  - [Steps:](#steps)
+  - [Example:](#example)
+  - [Pseudocode](#pseudocode)
+
+<!-- /TOC -->
+
 ## Writable ASCII characters:
 
 |Decimal| Character |Dec|Char|Dec|Char|Dec|Char|Dec|Char|Dec|Char|

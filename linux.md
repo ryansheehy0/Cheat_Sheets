@@ -3,7 +3,12 @@
 # Linux
 
 ## Table of Contents
-- [Most Common](#most-common)
+
+<!-- TOC -->
+
+- [Linux](#linux)
+  - [Table of Contents](#table-of-contents)
+  - [Most Common](#most-common)
     - [ls](#ls)
     - [cd](#cd)
     - [mv](#mv)
@@ -11,7 +16,17 @@
     - [rm](#rm)
     - [mkdir](#mkdir)
     - [touch](#touch)
+  - [echo](#echo)
+  - [cat](#cat)
+    - [grep](#grep)
+    - [sed](#sed)
+    - [awk](#awk)
+    - [Types of Files](#types-of-files)
+  - [sed](#sed)
+  - [Recursive size of folders in a directory](#recursive-size-of-folders-in-a-directory)
+  - [Curl](#curl)
 
+<!-- /TOC -->
 
 ## Most Common
 ### ls

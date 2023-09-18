@@ -4,20 +4,27 @@
 - The purpose of this cheat sheet is to provide an overview of the most useful HTML elements.
 
 ## Table of Contents
-- [Start of HTML](#start-of-html)
-- [Text Formatting](#text-formatting)
-- [Links and Images](#links-and-images)
-- [Lists](#lists)
-- [Tables](#tables)
-- [Forms](#forms)
-- [Grouping](#grouping)
-- [Self Closing Tags](#self-closing-tags)
-- [Comments](#comments)
-- [HTML entities](#html-entities)
-- [Attributes](#attributes)
-- [Inline elements vs block elements](#inline-elements-vs-block-elements)
-- [CSS in HTML](#css-in-html)
-- [JavaScript in HTML](#javascript-in-html)
+
+<!-- TOC -->
+
+- [HTML](#html)
+  - [Table of Contents](#table-of-contents)
+  - [Start of HTML](#start-of-html)
+  - [Text Formatting](#text-formatting)
+  - [Links and Images](#links-and-images)
+  - [Lists](#lists)
+  - [Tables](#tables)
+  - [Forms](#forms)
+  - [Grouping](#grouping)
+  - [Self Closing Tags](#self-closing-tags)
+  - [Comments](#comments)
+  - [HTML entities](#html-entities)
+  - [Attributes](#attributes)
+  - [Inline elements vs block elements](#inline-elements-vs-block-elements)
+  - [CSS in HTML](#css-in-html)
+  - [JavaScript in HTML](#javascript-in-html)
+
+<!-- /TOC -->
 
 ## Start of HTML
 
@@ -93,12 +100,14 @@ You can add an favicon in the top of the tab by adding this to the head:
 ## Forms
 
 ```HTML
-<form action="/submit" method="post">  <!-- Defines a form -->
+<form action="/submit" method="post">  <!-- Defines a form. Method can only be get and post. -->
   <input type="text" name="username" placeholder="Username">  <!-- Text input -->
   <input type="password" name="password" placeholder="Password">  <!-- Password input -->
   <input type="submit" value="Submit">  <!-- Submit button -->
   <input type="checkbox" name="agree" id="agree">  <!-- Checkbox -->
   <label for="agree">I agree to the terms</label>
+
+  <input type="hidden" name="hiddenValue" value="hidden value sent"> <!-- Sends a hidden value when sending the form -->
 
   <input type="radio" name="gender" value="male">  <!-- radio button where you can only click the circle -->
   <label for="male">male</label>

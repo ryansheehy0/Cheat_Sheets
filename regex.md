@@ -3,6 +3,18 @@
 # Regular Expressions(Regex)
 The purpose of a regex is to find character patterns. This can be used to replace them with something or to delete them.
 
+## Table of Contents
+<!-- TOC -->
+
+- [Regular ExpressionsRegex](#regular-expressionsregex)
+  - [Table of Contents](#table-of-contents)
+  - [How to use](#how-to-use)
+  - [Backus-Naur form grammerBNF](#backus-naur-form-grammerbnf)
+    - [Examples](#examples)
+  - [Command line tools](#command-line-tools)
+
+<!-- /TOC -->
+
 ## How to use
 - All characters except special character match themselves 
 - Special characters: ., +, -, *, ?, ^, $, (, ), [, ], {, }, |, and \

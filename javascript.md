@@ -4,51 +4,59 @@
 JavaScript is the only language that can be run in the browser.
 
 ## Table of Contents
-- [Comments](#comments)
-- [Primitive Data Types](#primitive-data-types)
-- [Sets](#sets)
-- [Variables](#variables)
-- [Strings](#strings)
+<!-- TOC -->
+
+- [JavaScript](#javascript)
+  - [Table of Contents](#table-of-contents)
+  - [Comments](#comments)
+  - [Primitive Data Types](#primitive-data-types)
+  - [Sets](#sets)
+  - [Variables](#variables)
+  - [Strings](#strings)
     - [String Functions](#string-functions)
-- [Arrays](#arrays)
+  - [Arrays](#arrays)
     - [Array Functions](#array-functions)
-- [Equality Operators](#equality-operators)
-- [Switch Block](#switch-block)
-- [Functions](#functions)
-- [Useful Functions](#useful-functions)
+  - [Equality Operators](#equality-operators)
+  - [Switch Block](#switch-block)
+  - [Functions](#functions)
+  - [Useful Functions](#useful-functions)
     - [Fetch](#fetch)
-        - [Optional Fetch Argument](#optional-fetch-argument)
-- [Objects](#objects)
+      - [Optional Fetch Argument](#optional-fetch-argument)
+  - [Objects](#objects)
     - [For In](#for-in)
-    - [JavaScript Object Notation(JSON)](#javascript-object-notationjson)
+    - [JavaScript Object NotationJSON](#javascript-object-notationjson)
     - [Spread Operator](#spread-operator)
-    - [Object to Array](#objecttoarray)
-- [Template Literals](#template-literals)
-- [Import and Export](#import-and-export)
-- [Errors](#error)
+    - [Object to Array](#object-to-array)
+  - [Template Literals](#template-literals)
+  - [Import and Export](#import-and-export)
+  - [Errors](#errors)
     - [Error Handling](#error-handling)
     - [Throwing Errors](#throwing-errors)
-- [Promises](#promises)
-- [Async/Await](#asyncawait)
-- [DOM Manipulation](#dom-manipulation)
+  - [Promises](#promises)
+  - [Async/Await](#asyncawait)
+  - [DOM Manipulation](#dom-manipulation)
     - [Accessing Elements](#accessing-elements)
     - [Modifying Elements](#modifying-elements)
     - [Creating and Appending Elements](#creating-and-appending-elements)
+      - [Insert Adjacent Element](#insert-adjacent-element)
     - [Event Handling](#event-handling)
-        - [Commonly Used Events](#commonly-used-events)
-        - [Default Events](#default-events)
+      - [Commonly Used Events](#commonly-used-events)
+      - [Default Events](#default-events)
     - [Traversing the DOM](#traversing-the-dom)
-- [This](#this)
-- [Timing](#timing)
-- [+/-/++/-- Operators](#----operators)
-- [Local/Session Storage](#localsession-storage)
-- [Common APIs](#common-apis)
-    - [DayJS](#dayjs)
-- [URL of Webpage](#url-of-webpage)
+  - [This](#this)
+  - [Timing](#timing)
+  - [+/-/++/-- Operators](#----operators)
+  - [Local/Session Storage](#localsession-storage)
+  - [Common APIs](#common-apis)
+    - [Dayjs](#dayjs)
+  - [URL of Webpage](#url-of-webpage)
     - [Redirect URL](#redirect-url)
-- [Regex](#regex)
-- [Object Oriented](#object-oriented)
+  - [Regex](#regex)
+  - [Object Oriented](#object-oriented)
+    - [Class Constructors](#class-constructors)
     - [Prototype](#prototype)
+
+<!-- /TOC -->
 
 ## Comments
 
@@ -915,15 +923,10 @@ You can get everything after the ? in the URL(query string) by doing `document.l
 ### Redirect URL
 `document.location.href = newURL`
 
-This can be used to go to another one of your pages by setting the new URL to the filepath of an html page.
-
-In order to keep the same base URL you can do
-
 ```javascript
-const newPath = `/new/path`
-const baseURL = window.location.protocol + "//" + window.location.host
-
-document.location = baseURL + newPath
+document.location.href = "/new-page"
+// or
+document.location.href = "https://www.newwebsite.com"
 ```
 
 ## Regex

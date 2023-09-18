@@ -4,6 +4,7 @@
 - This will only cover the commands I use the most
 
 ## Table of Contents
+<!-- TOC -->
 - [Movement](#movement)
 - [Save/Quit](#savequit)
 - [Comment/Uncomment](#commentuncomment)
@@ -16,6 +17,7 @@
 - [Find on page/Search](#find-on-pagesearch)
 - [Macros](#macros)
 - [Swp files](#swp-files)
+<!-- /TOC -->
 
 ## Movement
 

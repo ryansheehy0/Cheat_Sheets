@@ -2,6 +2,17 @@
 
 # HTTP
 
+## Table Of Contents
+
+<!-- TOC -->
+
+- [HTTP](#http)
+  - [Table Of Contents](#table-of-contents)
+  - [Status Codes](#status-codes)
+  - [HTTP Methods/Verbs](#http-methodsverbs)
+
+<!-- /TOC -->
+
 ## Status Codes
 - 404
 

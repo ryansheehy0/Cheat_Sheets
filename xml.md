@@ -3,6 +3,21 @@
 # Extensible Markup Language(XML)
 XML is markup language that allows you to define your own elements in order to be both human readable and machine readable. It is often used to communicate information between systems.
 
+## Table of Contents
+<!-- TOC -->
+
+- [Extensible Markup LanguageXML](#extensible-markup-languagexml)
+  - [Table of Contents](#table-of-contents)
+  - [Rules](#rules)
+  - [Comments](#comments)
+  - [Attributes](#attributes)
+  - [Character References](#character-references)
+  - [Prolog](#prolog)
+  - [Namespaces](#namespaces)
+  - [Vocabularies or Domains](#vocabularies-or-domains)
+
+<!-- /TOC -->
+
 ## Rules
 - XML must contain one root element that is the parent of all other elements.
 - All elements in XML must have a closing tag

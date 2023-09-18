@@ -2,6 +2,32 @@
 
 # Android
 
+## Table Of Contents
+<!-- TOC -->
+
+- [Android](#android)
+  - [Table Of Contents](#table-of-contents)
+  - [Links](#links)
+  - [Packages](#packages)
+  - [Manifest](#manifest)
+    - [@s](#s)
+  - [Permissions](#permissions)
+    - [Most Common Permissions](#most-common-permissions)
+  - [Gradle](#gradle)
+  - [APK files](#apk-files)
+  - [Location](#location)
+  - [Location to Address](#location-to-address)
+  - [Rest](#rest)
+  - [Login Screen](#login-screen)
+    - [Google signing](#google-signing)
+  - [Questions](#questions)
+  - [Data Extraction Rules](#data-extraction-rules)
+  - [Backup Rules](#backup-rules)
+  - [Themes](#themes)
+  - [Intents](#intents)
+
+<!-- /TOC -->
+
 ## Links
 - https://developer.android.com/
 - https://developers.google.com/android

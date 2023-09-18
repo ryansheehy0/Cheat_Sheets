@@ -4,6 +4,32 @@
 
 Procedural programming is having functions that take in data, manipulate it, then return it.
 
+## Table of Contents
+<!-- TOC -->
+
+- [Object Oriented ProgrammingOOP](#object-oriented-programmingoop)
+  - [Table of Contents](#table-of-contents)
+  - [Problems with Procedural Programming](#problems-with-procedural-programming)
+  - [Pillars of OOP](#pillars-of-oop)
+    - [Encapsulation](#encapsulation)
+    - [Abstraction](#abstraction)
+    - [Inheritance](#inheritance)
+    - [Polymorphism](#polymorphism)
+  - [Dependency Injection](#dependency-injection)
+  - [Static methods](#static-methods)
+  - [Set and Get methods](#set-and-get-methods)
+  - [Design Patterns](#design-patterns)
+    - [Decorator](#decorator)
+    - [Singletons](#singletons)
+    - [Factory](#factory)
+    - [Builder Design Pattern](#builder-design-pattern)
+    - [Model View ControllerMVC](#model-view-controllermvc)
+    - [Observer](#observer)
+  - [Other](#other)
+  - [Use Builder pattern](#use-builder-pattern)
+
+<!-- /TOC -->
+
 ## Problems with Procedural Programming
 - You end up having many different functions all over the place that are hard to group together into folders and files.
 - There are a lot of dependencies from one function to another. If you change one function it may brake other functions.

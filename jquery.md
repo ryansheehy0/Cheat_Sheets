@@ -15,24 +15,29 @@ See [here](https://releases.jquery.com/) for any up to date links.
 
 ## Table of Contents
 
-- [Table of Contents](#table-of-contents)
-- [Selecting Elements](#selecting-elements)
-- [Changing HTML](#changing-html)
-- [Modifying/Getting Contents](#modifyinggetting-contents)
-- [Changing CSS](#changing-css)
-- [Manipulating Attributes](#manipulating-attributes)
-- [Handling Events](#handling-events)
-- [Traversing the DOM](#traversing-the-dom)
-- [Animations](#animations)
-  - [Optional Animation Arguments](#optional-animation-arguments)
-- [AJAX Requests](#ajax-requests)
-- [Useful Functions](#useful-functions)
-- [jQuery UI](#jquery-ui)
-  - [Interactions](#interactions)
-    - [Droppable](#droppable)
-  - [Widgets](#widgets)
-    - [Autocomplete](#autocomplete)
-  - [Effects](#effects)
+<!-- TOC -->
+
+- [jQuery](#jquery)
+  - [Table of Contents](#table-of-contents)
+  - [Selecting Elements](#selecting-elements)
+  - [Changing HTML](#changing-html)
+  - [Modifying/Getting Contents](#modifyinggetting-contents)
+  - [Changing CSS](#changing-css)
+  - [Manipulating Attributes](#manipulating-attributes)
+  - [Handling Events](#handling-events)
+  - [Traversing the DOM](#traversing-the-dom)
+  - [Animations](#animations)
+    - [Optional Animation Arguments](#optional-animation-arguments)
+  - [AJAX Requests](#ajax-requests)
+  - [Useful Functions](#useful-functions)
+  - [jQuery UI](#jquery-ui)
+    - [Interactions](#interactions)
+      - [Droppable](#droppable)
+    - [Widgets](#widgets)
+      - [Autocomplete](#autocomplete)
+    - [Effects](#effects)
+
+<!-- /TOC -->
 
 ## Selecting Elements
 

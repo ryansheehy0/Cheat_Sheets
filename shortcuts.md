@@ -6,6 +6,19 @@
 - Web Browser: [Firefox](#firefox)
 - Text Editor: [VS Code](#vs-code)
 
+## Table of Contents
+<!-- TOC -->
+
+- [Shortcuts](#shortcuts)
+  - [Table of Contents](#table-of-contents)
+  - [Linux Mint](#linux-mint)
+  - [Firefox](#firefox)
+    - [Firefox Vim Vixen](#firefox-vim-vixen)
+    - [Firefox Video Speed Controller](#firefox-video-speed-controller)
+  - [VS Code](#vs-code)
+
+<!-- /TOC -->
+
 ## Linux Mint
 
 |                       |                     |

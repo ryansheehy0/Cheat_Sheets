@@ -2,6 +2,18 @@
 
 # Advanced Programming Tips
 
+## Table of Contents
+<!-- TOC -->
+
+- [Advanced Programming Tips](#advanced-programming-tips)
+  - [Table of Contents](#table-of-contents)
+  - [Formatting](#formatting)
+  - [General](#general)
+    - [Organization and OOP](#organization-and-oop)
+  - [Javascript](#javascript)
+
+<!-- /TOC -->
+
 ## Formatting
 - No space between ()s and {s
 - When setting variables use spaces between the =s

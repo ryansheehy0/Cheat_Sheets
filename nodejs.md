@@ -6,44 +6,58 @@ NodeJS is used to run JavaScript outside of the browser.
 Somethings work differently when using JS in NodeJS then in the browser. This cheat sheet will cover those differences.
 
 ## Table Of Contents
-- [Getting Started](#getting-started)
-- [Node Package Manager(NPM)](#node-package-managernpm)
-  - [Scripts](#scripts)
-  - [Importing](#importing)
-  - [Exporting](#exporting)
-- [Miscellaneous](#miscellaneous)
-- [Things that don't work](#things-that-dont-work)
-- [this keyword](#this-keyword)
-- [Global Variables](#global-variables)
-  - [Process](#process)
-    - [Arguments from the Terminal](#arguments-from-the-terminal)
-- [Events](#events)
-  - [Emitting Events](#emitting-events)
-  - [Receiving Events](#receiving-events)
-- [File System](#file-system)
-  - [Reading to Files](#reading-to-files)
-  - [Writing to Files](#writing-to-files)
-  - [Appending to Files](#appending-to-files)
-- [Path](#path)
-- [Node-fetch](#node-fetch)
-- [Packages](#packages)
-  - [inquirer](#inquirer)
-  - [express](#express)
-    - [Express HTTP Methods](#express-http-methods)
-    - [Parameters](#parameters)
-    - [Routers](#routers)
-    - [Middleware Functions](#middleware-functions)
-    - [View Engines](#view-engines)
-      - [EJS](#ejs)
-    - [Front end and Back end](#front-end-and-back-end)
-  - [jest](#jest)
-  - [mysql2](#mysql2)
-    - [mysql2 with Promises](#mysql2-with-promises)
-    - [Prevent SQL Injections](#prevent-sql-injections)
-  - [dotenv](#dotenv)
-  - [bcrypt](#bcrypt)
-    - [Creating a Hash](#creating-a-hash)
-    - [Comparing a Password](#comparing-a-password)
+<!-- TOC -->
+
+- [NodeJS](#nodejs)
+  - [Table Of Contents](#table-of-contents)
+  - [Getting Started](#getting-started)
+  - [Node Package ManagerNPM](#node-package-managernpm)
+    - [Scripts](#scripts)
+    - [Importing](#importing)
+    - [Exporting](#exporting)
+  - [Miscellaneous](#miscellaneous)
+  - [Things that don't work](#things-that-dont-work)
+  - [this keyword](#this-keyword)
+  - [Global Variables](#global-variables)
+    - [Process](#process)
+      - [Arguments from the Terminal](#arguments-from-the-terminal)
+  - [Events](#events)
+    - [Emitting Events](#emitting-events)
+    - [Receiving Events](#receiving-events)
+  - [File System](#file-system)
+    - [Reading to Files](#reading-to-files)
+    - [Writing to Files](#writing-to-files)
+    - [Appending to Files](#appending-to-files)
+  - [Path](#path)
+  - [Node-fetch](#node-fetch)
+  - [Packages](#packages)
+    - [inquirer](#inquirer)
+    - [express](#express)
+      - [Express HTTP Methods](#express-http-methods)
+      - [Parameters](#parameters)
+      - [Routers](#routers)
+      - [Middleware Functions](#middleware-functions)
+      - [View Engines](#view-engines)
+        - [Handlebars](#handlebars)
+      - [Definitions](#definitions)
+      - [Custom Helpers](#custom-helpers)
+      - [Front end and Back end](#front-end-and-back-end)
+    - [jest](#jest)
+    - [mysql2](#mysql2)
+      - [mysql2 with Promises](#mysql2-with-promises)
+      - [Prevent SQL Injections](#prevent-sql-injections)
+    - [dotenv](#dotenv)
+    - [bcrypt](#bcrypt)
+      - [Creating a Hash](#creating-a-hash)
+      - [Comparing a Password](#comparing-a-password)
+    - [tailwindcss](#tailwindcss)
+    - [express-session](#express-session)
+      - [Storing data](#storing-data)
+      - [Retrieving data](#retrieving-data)
+      - [Destroying session](#destroying-session)
+    - [cookie-parser](#cookie-parser)
+
+<!-- /TOC -->
 
 ## Getting Started
 Run `node -v` to see what version of node you have. If you don't have node you can install it from [here](https://nodejs.org/en).
@@ -405,6 +419,15 @@ const middleware = (req, res, next) => {
 app.use(middleware)
 ```
 
+Middleware functions are often used to see if the user is logged in.
+
+```javascript
+const withAuth = (req, res, next) => {
+  if(!req.session.loggedIn) res.redirect("/login")
+  next()
+}
+```
+
 #### View Engines
 View engines allow you to change the html from the server before it is sent.
 
@@ -505,12 +528,12 @@ View File Example:
   - Put in the layouts folder in the views folder
 - **Templates** contain the content unique to a particular page
 - **Partials** are reusable sections of a web page
-  - Put in the partials folder in he views folder
-
-Templates and/or particles are placed into layouts in order to make a completed page.
-
-- You can use `{{> handlebarFileName}}` to render any handlebar template/partial
+  - Put in the partials folder in the views folder
+  - You can use `{{> handlebarFileName}}` to render any handlebar partial
   - The default file path starts with views/partials/handlebarFileName
+
+Particles are placed into layouts in order to make a completed page.
+
 
 #### Custom Helpers
 
@@ -526,7 +549,12 @@ module.exports = {
 }
 ```
 
-In your server JS file where you create your engine: `const hbs = exphbs.create({helperJSFile})`
+In your server JS file where you create your engine:
+
+```javascript
+const helperJSFile = require("./utils/helpers")
+const hbs = exphbs.create({helperJSFile})
+```
 
 #### Front end and Back end
 When using links in the font end with express you should use `/`s and then crete an express source to render that page.

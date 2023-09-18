@@ -32,6 +32,21 @@ Example: * means a file has changed.
 1. Add rules
 1. Run `make` when ready to compile 
 
+## Table of Contents
+<!-- TOC -->
+
+- [Make files](#make-files)
+  - [Table of Contents](#table-of-contents)
+- [Comments](#comments)
+- [Rules](#rules)
+- [Clean](#clean)
+- [Variables](#variables)
+- [Conditional execution](#conditional-execution)
+  - [List of ifs](#list-of-ifs)
+- [Full Example](#full-example)
+
+<!-- /TOC -->
+
 # Comments
 Comments start with #
 

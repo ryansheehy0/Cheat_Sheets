@@ -4,12 +4,14 @@
 A programming language to manage relational databases.
 
 # Table of Contents
+<!-- TOC -->
 
+- [SQL](#sql)
 - [Table of Contents](#table-of-contents)
 - [Relational Databases](#relational-databases)
-  - [Atomicity Consistency Isolation Durability(ACID)](#atomicity-consistency-isolation-durabilityacid)
+  - [Atomicity Consistency Isolation DurabilityACID](#atomicity-consistency-isolation-durabilityacid)
   - [Attribute Properties](#attribute-properties)
-- [Structured Query Language(SQL)](#structured-query-languagesql)
+- [Structured Query LanguageSQL](#structured-query-languagesql)
   - [Database Commands](#database-commands)
   - [Table Commands](#table-commands)
   - [Insert Command](#insert-command)
@@ -19,8 +21,17 @@ A programming language to manage relational databases.
   - [Where](#where)
     - [Like](#like)
   - [Join](#join)
+    - [Cross Join](#cross-join)
     - [Inner Join](#inner-join)
-    - [Left/Right Join](#leftright-join)
+    - [Outer Join](#outer-join)
+      - [Full Outer Join](#full-outer-join)
+      - [Left Outer Join](#left-outer-join)
+      - [Right Outer Join](#right-outer-join)
+    - [Natural Join](#natural-join)
+    - [Excluding Join](#excluding-join)
+      - [Outer Excluding Join](#outer-excluding-join)
+      - [Left Excluding Join](#left-excluding-join)
+      - [Right Excluding Join](#right-excluding-join)
     - [Dereferencing](#dereferencing)
   - [Functions](#functions)
   - [Group By](#group-by)
@@ -29,9 +40,11 @@ A programming language to manage relational databases.
   - [Variables](#variables)
   - [Indexes](#indexes)
   - [Types of Relationships](#types-of-relationships)
-- [Relational Database Management System(RDBMS)](#relational-database-management-systemrdbms)
+- [Relational Database Management SystemRDBMS](#relational-database-management-systemrdbms)
   - [MySQL](#mysql)
     - [Installation](#installation)
+
+<!-- /TOC -->
 
 # Relational Databases
 Relational databases organize things into tables with each element in the table having a unique id/primary key. Elements in these tables can connect to elements from other tables by having a column of that connection's unique id.
