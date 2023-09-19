@@ -5,6 +5,7 @@
 A simple non secure encryption that only allows writable ASCII characters used to obfuscate files.
 
 ## Table of Contents
+
 <!-- TOC -->
 
 - [Simple Encryption](#simple-encryption)
@@ -16,7 +17,7 @@ A simple non secure encryption that only allows writable ASCII characters used t
 
 <!-- /TOC -->
 
-## Writable ASCII characters:
+## [Writable ASCII characters:](#table-of-contents)
 
 |Decimal| Character |Dec|Char|Dec|Char|Dec|Char|Dec|Char|Dec|Char|
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -38,7 +39,7 @@ A simple non secure encryption that only allows writable ASCII characters used t
 | 122 |   z    |123 |   {    |124 |  \|    |125 |   }    |126 |   ~    |
 | 9 | tab | 10 | new line |
 
-## Steps:
+## [Steps:](#table-of-contents)
 1. Get input character
 1. If the input character is a tab or new line then print it out and go to next character, but don't go to the next password character
 1. Get password character
@@ -53,7 +54,7 @@ A simple non secure encryption that only allows writable ASCII characters used t
 1. Add 32 to the result
 1. Print out the output character
 
-## Example:
+## [Example:](#table-of-contents)
 
 | | |
 |:-|:-:|
@@ -81,7 +82,7 @@ A simple non secure encryption that only allows writable ASCII characters used t
 | 52 + 32 = 84 | 72 + 32 = 104 | 73 + 32 = 105 | 83 + 32 = 115 |
 | T | h | i | s |
 
-## Pseudocode
+## [Pseudocode](#table-of-contents)
 
 ```javascript
 const fileLocation = question("Enter your input file: ")

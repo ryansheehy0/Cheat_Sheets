@@ -7,6 +7,7 @@
 - Text Editor: [VS Code](#vs-code)
 
 ## Table of Contents
+
 <!-- TOC -->
 
 - [Shortcuts](#shortcuts)
@@ -19,7 +20,7 @@
 
 <!-- /TOC -->
 
-## Linux Mint
+## [Linux Mint](#table-of-contents)
 
 |                       |                     |
 |-----------------------|---------------------|
@@ -36,7 +37,7 @@
 | Move to left monitor  | super + shift + <   |
 | Move to right monitor | super + shift + >   |
 
-## Firefox
+## [Firefox](#table-of-contents)
 
 |                           |                    |
 |---------------------------|--------------------|
@@ -52,7 +53,7 @@
 | Zoom in                   | ctrl + +           |
 | Zoom out                  | ctrl + -           |
 
-### Firefox Vim Vixen
+### [Firefox Vim Vixen](#table-of-contents)
 
 |                                                                  |                |
 |------------------------------------------------------------------|----------------|
@@ -70,7 +71,7 @@
 | Toggle extension on and off                                      | shift + esc    |
 
 
-### Firefox Video Speed Controller
+### [Firefox Video Speed Controller](#table-of-contents)
 
 |                |   |
 |----------------|---|
@@ -79,7 +80,7 @@
 | Default speed  | g |
 
 
-## VS Code
+## [VS Code](#table-of-contents)
 
 |                                    |                                  |
 |------------------------------------|----------------------------------|

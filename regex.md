@@ -15,8 +15,8 @@ The purpose of a regex is to find character patterns. This can be used to replac
 
 <!-- /TOC -->
 
-## How to use
-- All characters except special character match themselves 
+## [How to use](#table-of-contents)
+- All characters except special character match themselves
 - Special characters: ., +, -, *, ?, ^, $, (, ), [, ], {, }, |, and \
 
 | Sequence  | Description                                                                      |
@@ -45,7 +45,7 @@ The purpose of a regex is to find character patterns. This can be used to replac
 | \D        | Any non-digit                                                                    |
 | \W        | Any non word character                                                           |
 
-## Backus-Naur form grammer(BNF)
+## [Backus-Naur form grammer(BNF)](#table-of-contents)
 Similar to regex in that it is a language to find character patterns.
 - BNF is composed of 4 parts
     - terms/variables `<term>`. Recursion is often used.
@@ -53,13 +53,13 @@ Similar to regex in that it is a language to find character patterns.
     - string literals
     - an or symbol `|`
 
-### Examples
+### [Examples](#table-of-contents)
 
 ```
 <number> ::= <digit> | <number> <digit>
 <digit>  ::= 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
 ```
 
-## Command line tools
+## [Command line tools](#table-of-contents)
 See [Linux](./linux.md)
 - sed

@@ -4,22 +4,27 @@
 - This will only cover the commands I use the most
 
 ## Table of Contents
+
 <!-- TOC -->
-- [Movement](#movement)
-- [Save/Quit](#savequit)
-- [Comment/Uncomment](#commentuncomment)
-- [Increment numbers](#increment-numbers)
-- [Modes](#modes)
-- [Delete](#delete)
-- [Change](#change)
-- [Undo and redo](#undo-and-redo)
-- [Copy, Paste, and Cut](#copy-paste-and-cut)
-- [Find on page/Search](#find-on-pagesearch)
-- [Macros](#macros)
-- [Swp files](#swp-files)
+
+- [Vim commands](#vim-commands)
+  - [Table of Contents](#table-of-contents)
+  - [Movement](#movement)
+  - [Save/Quit](#savequit)
+  - [Comment/Uncomment](#commentuncomment)
+  - [Increment numbers](#increment-numbers)
+  - [Modes](#modes)
+  - [Delete](#delete)
+  - [Change](#change)
+  - [Undo and redo](#undo-and-redo)
+  - [Copy, Paste, and Cut](#copy-paste-and-cut)
+  - [Find on page/Search](#find-on-pagesearch)
+  - [Macros](#macros)
+  - [Swp files](#swp-files)
+
 <!-- /TOC -->
 
-## Movement
+## [Movement](#table-of-contents)
 
 |            |                                           |
 |------------|-------------------------------------------|
@@ -43,7 +48,7 @@
 | g + $      | End of line without the line break        |
 | e          | Move to the end of a word                 |
 
-## Save/Quit
+## [Save/Quit](#table-of-contents)
 
 |      |                       |
 |------|-----------------------|
@@ -52,7 +57,7 @@
 | :wq  | save and quit         |
 | :wq! | force a save and quit |
 
-## Comment/Uncomment
+## [Comment/Uncomment](#table-of-contents)
 
 |           |              |
 |-----------|--------------|
@@ -60,7 +65,7 @@
 | shift + i | comment      |
 | esc       |              |
 
-## Increment numbers
+## [Increment numbers](#table-of-contents)
 
 |                 |                                       |
 |-----------------|---------------------------------------|
@@ -70,7 +75,7 @@
 | g then ctrl + a | progressively increment. 1 2 3 4 etc. |
 | g then ctrl + x | progressively decrement. 4 3 2 1 etc. |
 
-## Modes
+## [Modes](#table-of-contents)
 
 |     |                              |
 |-----|------------------------------|
@@ -81,14 +86,14 @@
 | esc | back to command/normal mode  |
 | v   | visual mode                  |
 
-## Delete
+## [Delete](#table-of-contents)
 
 |    |                                               |
 |----|-----------------------------------------------|
 | dd | delete line and copy line to default register |
 | x  | delete where your cursor is at                |
 
-## Change
+## [Change](#table-of-contents)
 
 |           |                |
 |-----------|----------------|
@@ -96,7 +101,7 @@
 | c + i + w | change in word |
 | r         | replace letter |
 
-## Undo and redo
+## [Undo and redo](#table-of-contents)
 
 |          |                    |
 |----------|--------------------|
@@ -104,7 +109,7 @@
 | ctrl + r | redo               |
 | .        | redo command again |
 
-## Copy, Paste, and Cut
+## [Copy, Paste, and Cut](#table-of-contents)
 
 |              |                               |
 |--------------|-------------------------------|
@@ -115,7 +120,7 @@
 | " + char + p | paste from char register      |
 | " + +        | clipboard register            |
 
-## Find on page/Search
+## [Find on page/Search](#table-of-contents)
 
 |                       |                                                                  |
 |-----------------------|------------------------------------------------------------------|
@@ -127,14 +132,14 @@
 | f + character         | Go to the next occurrence of that character in the current line. |
 | shift + f + character | Go to the next occurrence of that character in the current line. |
 
-## Macros
+## [Macros](#table-of-contents)
 
 |                      |                                 |
 |----------------------|---------------------------------|
 | q + macro + keys + q | record keys and put it in macro |
 | @ + macro            | play macro                      |
 
-## Swp files
+## [Swp files](#table-of-contents)
 
 |           |                                                                                                                     |
 |-----------|---------------------------------------------------------------------------------------------------------------------|

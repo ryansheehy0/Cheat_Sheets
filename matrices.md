@@ -20,6 +20,7 @@ Rows($R$) and columns($C$) all start at 1 and when specifying the size of a matr
 - Matrices are often used to represent vectors. A vector has a starting point, ending point, and a direction. They can represent many types of data.
 
 ## Table Of Contents
+
 <!-- TOC -->
 
 - [Matrices](#matrices)
@@ -45,10 +46,10 @@ Rows($R$) and columns($C$) all start at 1 and when specifying the size of a matr
 
 <!-- /TOC -->
 
-## Adding/Subtracting:
+## [Adding/Subtracting:](#table-of-contents)
 - Only matrices of the same size can be added/subtracted
 
-### Example:
+### [Example:](#table-of-contents)
 
 $$
 \begin{array}{}
@@ -98,7 +99,7 @@ $$
 \end{array}
 $$
 
-## Multiplying:
+## [Multiplying:](#table-of-contents)
 
 - The number of columns in the 1st matrix must be equal to the number of rows in the 2nd matrix
 - The result of the multiplication is the rows of the 1st matrix and the column of the 2nd matrix.
@@ -132,7 +133,7 @@ $$
 \end{array}
 $$
 
-### Example of multiplying by a constant:
+### [Example of multiplying by a constant:](#table-of-contents)
 
 $$
 	4 * 	
@@ -154,7 +155,7 @@ $$
 	\end{bmatrix}
 $$
 
-### Example of multiplying 2 matrices:
+### [Example of multiplying 2 matrices:](#table-of-contents)
 
 $$
 2\text{x}3\quad A = 
@@ -190,7 +191,7 @@ $$
 
 - $B * A$ cannot be calculated because the number of columns in $B$ doesn't equal the number of rows in $A$.
 
-### Examples of scaling and rotating:
+### [Examples of scaling and rotating:](#table-of-contents)
 - This matrix rotates a vector by 90 degrees counter-clockwise:
 
 $$
@@ -211,7 +212,7 @@ $$
 \end{bmatrix}
 $$
 
-## Inverse:
+## [Inverse:](#table-of-contents)
 $A^{-1} = \frac{1}{\text{determinant}(A)} * \text{adjugate}(A)$
 
 With $A$ being the matrix and $A^{-1}$ being the inverse.
@@ -220,7 +221,7 @@ With $A$ being the matrix and $A^{-1}$ being the inverse.
 - If the determinant is 0 then the matrix cannot be inverted.
 - If Matrix $A$ is multiplied by $A^{-1}$ the result is the identity matrix($I$) of the same size which has $1\text{s}$ on its left diagonal and $0\text{s}$ everywhere else.
 
-### Steps:
+### [Steps:](#table-of-contents)
 
 1. Get the **adjugate**:
 	1. Get the **matrix of minors**
@@ -426,7 +427,7 @@ $$(1 * -1) + (1 * 7) + (3 * -5) = -9$$
 
 3. Plug **determinant** and **adjugate** into the equation.
 
-### Example:
+### [Example:](#table-of-contents)
 
 $$
 A = 
@@ -623,11 +624,11 @@ $$
 x = 1 \qquad y = 1
 $$
 
-## Row Echelon Form:
+## [Row Echelon Form:](#table-of-contents)
 - Row echelon form is used to solve system of equations easier.
 - Row echelon form consists of modifying rows with equations consisting of other rows.
 
-### Example:
+### [Example:](#table-of-contents)
 
 $$x + y - z = -2$$
 
@@ -746,7 +747,7 @@ $$z=2$$
 
 $$y=-1 \text{ and } x=1$$
 
-## Eigenvectors and Eigenvalues:
+## [Eigenvectors and Eigenvalues:](#table-of-contents)
 - Any vector that is only scaled by a matrix and not rotated is called an Eigenvector of that matrix. How much that vector is scaled by is called the Eigenvalue. 
 - Only square matrices have eigenvectors and eigenvalues.
 - Each Eigenvector has one Eigenvalue associated with it.
@@ -758,7 +759,7 @@ $$A \vec{v} = \lambda \vec{v}$$
 
 - Where $A$ is the matrix, $\vec{v}$ is the Eigenvector, and $\lambda$ is the Eigenvalue.
 
-### Calculating the Eigenvectors and Eigenvalues:
+### [Calculating the Eigenvectors and Eigenvalues:](#table-of-contents)
 
 $$A \vec{v} - \lambda \vec{v} = \vec{0} $$
 
@@ -782,7 +783,7 @@ $$\text{determinant}(A - \lambda I) = 0$$
 	- Each Eigenvalue($\lambda$) is used to calculate its Eigenvector($\vec{v}$) using $(A - \lambda I) \vec{v} = 0$ and translated into its row echelon form and then translated into an equation. Assuming one of the variables is 1 the other can be calculated and the Eigenvector($\vec{v}$) can be calculated.
 	- This has to be done for each Eigenvalue($\lambda$) separately
 
-### Example:
+### [Example:](#table-of-contents)
 
 $$.8(h_1) + .1(z_1) = h_2$$
 
@@ -936,7 +937,7 @@ $$
 \end{bmatrix}
 $$
 
-## Dividing:
-## Dot product:
-## Cross product:
-## Kernels/Image Filters:
+## [Dividing:](#table-of-contents)
+## [Dot product:](#table-of-contents)
+## [Cross product:](#table-of-contents)
+## [Kernels/Image Filters:](#table-of-contents)

@@ -4,6 +4,7 @@
 ORMs are used to interact with relational databases using oop.
 
 ## Table of Contents
+
 <!-- TOC -->
 
 - [Object Relational MappingsORMs](#object-relational-mappingsorms)
@@ -22,7 +23,7 @@ ORMs are used to interact with relational databases using oop.
 
 <!-- /TOC -->
 
-## Sequelize
+## [Sequelize](#table-of-contents)
 Sequelize can work with multiple different RDBMS so you need to install `mysql2` as well if you are using mysql.
 
 ./connection.js file:
@@ -43,7 +44,7 @@ const sequelize = process.env.JAWSDB_URL
 module.exports = sequelize
 ```
 
-### Syncing
+### [Syncing](#table-of-contents)
 Syncing is connecting to your sql server with sequelize.
 
 In your server file:
@@ -67,7 +68,7 @@ sequelize.sync({force: true}).then(() => {
 })
 ```
 
-### Modals
+### [Modals](#table-of-contents)
 Modals are JS classes that define a table's schema.
 
 ```javascript
@@ -146,12 +147,12 @@ const ModalName = sequelize.define('modal_name', {
 const Book = require(`./Book`) // This invokes the init method and thus connect to sequelize.
 ```
 
-### Associations
+### [Associations](#table-of-contents)
 When using references within a modal you have to use a function to define that reference. These functions define relationships between models.
 
 Association functions create a new column(or use an already existing column) that is a foreign key reference to another table.
 
-#### Association Functions
+#### [Association Functions](#table-of-contents)
 - Module1.hasOne(Module2)
   - Creates a foreign key `Module1Id` inside the `Module2` table that references the primary key of the `Module1` table.
   - `Module1Id` has to be unique inside the `Module2` table.
@@ -204,7 +205,7 @@ Courses.belongsToMany(Students, {
   })
 ```
 
-### Seeding data
+### [Seeding data](#table-of-contents)
 Seeding data is putting data into the database.
 
 ```javascript
@@ -229,7 +230,7 @@ Book.bulkCreate([
 ])
 ```
 
-### Querying data
+### [Querying data](#table-of-contents)
 
 | Function Name      | Description                                                         |
 |--------------------|---------------------------------------------------------------------|
@@ -256,7 +257,7 @@ const dishData = await Dish.findAll()
 cost dishes = dishData.map(dish => dish.get({plain: true}))
 ```
 
-#### Arguments Querying Functions
+#### [Arguments Querying Functions](#table-of-contents)
 
 | Argument   | Description                                                                          |
 |------------|--------------------------------------------------------------------------------------|
@@ -290,7 +291,7 @@ Book.findAll({
 .catch(error => console.error(error))
 ```
 
-#### Create Update and Destroy
+#### [Create Update and Destroy](#table-of-contents)
 
 ```javascript
 Book.create({
@@ -323,7 +324,7 @@ Book.destroy({
 .catch(error => console.error(error))
 ```
 
-#### Hooks
+#### [Hooks](#table-of-contents)
 Used to filter data before some modification to the database.
 
 The hook is used when creating your schema.
@@ -346,7 +347,7 @@ hooks: {
 If you are using bulk commands like `bulkCreate`, `update`, etc you have to set the property `individualHooks = true`
 
 
-## Sessions
+## [Sessions](#table-of-contents)
 Storing sessions in a database. This is useful if you need to restart you server, but you don't want to loose your session information.
 
 ```javascript

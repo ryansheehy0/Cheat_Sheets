@@ -30,9 +30,10 @@ Example: * means a file has changed.
 
 1. Create a file called `makefile` or `Makefile`
 1. Add rules
-1. Run `make` when ready to compile 
+1. Run `make` when ready to compile
 
 ## Table of Contents
+
 <!-- TOC -->
 
 - [Make files](#make-files)
@@ -47,10 +48,10 @@ Example: * means a file has changed.
 
 <!-- /TOC -->
 
-# Comments
+# [Comments](#table-of-contents)
 Comments start with #
 
-# Rules
+# [Rules](#table-of-contents)
 - If the dependency changes then the command is run to regenerate the target
 
 ```
@@ -62,7 +63,7 @@ file1.o: file1.c
     gcc file1.c
 ```
 
-# Clean
+# [Clean](#table-of-contents)
 There is often a clean target that usually removes the .o files and the executable.
 - To use clean just run `make clean`
 
@@ -71,14 +72,14 @@ clean:
     rm -f *.o executable
 ```
 
-# Variables
+# [Variables](#table-of-contents)
 
 |                  |              |
 |------------------|--------------|
 | VAR_NAME = value | Creating var |
 | $(VAR_NAME)      | Using var    |
 
-# Conditional execution
+# [Conditional execution](#table-of-contents)
 
 ```
 ifeq ($(VAR_NAME), value)
@@ -90,7 +91,7 @@ else
 endif
 ```
 
-## List of ifs
+## [List of ifs](#table-of-contents)
 
 |        |                                     |
 |--------|-------------------------------------|
@@ -99,7 +100,7 @@ endif
 | ifdef  | if a variable is defined(non-empty) |
 | ifndef | if a variable is not defined        |
 
-# Full Example
+# [Full Example](#table-of-contents)
 
 ```
 CC = gcc

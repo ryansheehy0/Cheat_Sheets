@@ -3,6 +3,7 @@
 # Advanced Programming Tips
 
 ## Table of Contents
+
 <!-- TOC -->
 
 - [Advanced Programming Tips](#advanced-programming-tips)
@@ -14,12 +15,12 @@
 
 <!-- /TOC -->
 
-## Formatting
+## [Formatting](#table-of-contents)
 - No space between ()s and {s
 - When setting variables use spaces between the =s
 - Use "s instead of 's
 
-## General
+## [General](#table-of-contents)
 - Use guard clauses in functions when possible
 
 ```javascript
@@ -33,7 +34,7 @@ function test(arg) {
 - Make smaller functions with descriptive names instead of comments
 
 
-### Organization and OOP
+### [Organization and OOP](#table-of-contents)
 It is almost always better to get started coding with bad organization and then organize your code when you can clearly see the patterns.
 
 - If a class has a lot of methods
@@ -98,7 +99,7 @@ item
 - Try to never keep changing the same variable for too long.
   - This will make your code hard to follow along
 
-## Javascript
+## [Javascript](#table-of-contents)
 - Keep in mind arguments being `undefined` or `null`
 - Use Class Constructor Functions instead of the `class` keyword
   - Don't need a separate constructor function

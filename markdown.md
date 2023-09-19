@@ -5,6 +5,7 @@
     - Valid HTML can be used within markdown
 
 ## Table Of Contents
+
 <!-- TOC -->
 
 - [Markdown](#markdown)
@@ -21,7 +22,7 @@
 
 <!-- /TOC -->
 
-## Links and Etc
+## [Links and Etc](#table-of-contents)
 
 |                          |                        |
 |--------------------------|------------------------|
@@ -37,7 +38,7 @@
 | > Text                   | Blockquote             |
 | >> Text                  | Nested Blockquote      |
 
-## Emphasis
+## [Emphasis](#table-of-contents)
 |               |                |
 |---------------|----------------|
 | \*\*Text*\*   | Bold           |
@@ -45,14 +46,14 @@
 | \~\~Text\~~    | Strike through |
 | \<u>Text\</u> | Underline      |
 
-## Lists
-### Unordered Lists
+## [Lists](#table-of-contents)
+### [Unordered Lists](#table-of-contents)
 ```
 - Start
     - Indented
 ```
 
-### Ordered Lists
+### [Ordered Lists](#table-of-contents)
 ```
 1. First
 2. Second
@@ -67,7 +68,7 @@
 1. Third
 1. etc
 ```
-### More Complex Lists
+### [More Complex Lists](#table-of-contents)
 - If you are doing anything that involves complex lists it is recommended to use HTML
 
 ```
@@ -89,7 +90,7 @@
 </ul>
 ```
 
-## Tables
+## [Tables](#table-of-contents)
 - You need a new line on top and below
 
 ```
@@ -108,7 +109,7 @@ Text
 | --: | Right align  |
 | :-: | Center align |
 
-## Math
+## [Math](#table-of-contents)
 - You need a new line on top and below for multi-line math mode
 
 |                               |                 |
@@ -119,7 +120,7 @@ Text
 | x^2                           | Superscript     |
 | \frac{Numerator}{Denominator} | Fractions       |
 
-## Automatically create table of contents
+## [Automatically create table of contents](#table-of-contents)
 
 `sudo npm install -g doctoc`
 

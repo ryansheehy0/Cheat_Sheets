@@ -26,7 +26,7 @@
 
 <!-- /TOC -->
 
-## Start of HTML
+## [Start of HTML](#table-of-contents)
 
 ```HTML
 <!DOCTYPE html>
@@ -47,7 +47,7 @@ You can add an favicon in the top of the tab by adding this to the head:
 <link rel="icon" href="/favicon.svg" >
 ```
 
-## Text Formatting
+## [Text Formatting](#table-of-contents)
 
 ```HTML
 <h1>Heading</h1>        <!-- Headings from 1 to 6 -->
@@ -60,7 +60,7 @@ You can add an favicon in the top of the tab by adding this to the head:
 <ins>Underline</ins>
 ```
 
-## Links and Images
+## [Links and Images](#table-of-contents)
 
 ```HTML
 <a href="URL/filepath">Link</a>
@@ -69,7 +69,7 @@ You can add an favicon in the top of the tab by adding this to the head:
     <!-- "Image of" is said before alt texts. -->
 ```
 
-## Lists
+## [Lists](#table-of-contents)
 
 ```HTML
 <ul>                 <!-- Unordered list -->
@@ -82,7 +82,7 @@ You can add an favicon in the top of the tab by adding this to the head:
 </ol>
 ```
 
-## Tables
+## [Tables](#table-of-contents)
 
 ```HTML
 <table>              <!-- Defines a table -->
@@ -97,7 +97,7 @@ You can add an favicon in the top of the tab by adding this to the head:
 </table>
 ```
 
-## Forms
+## [Forms](#table-of-contents)
 
 ```HTML
 <form action="/submit" method="post">  <!-- Defines a form. Method can only be get and post. -->
@@ -130,7 +130,7 @@ You can add an favicon in the top of the tab by adding this to the head:
 
 Forms by default send a http POST request with the endpoint in action. The server responds with a html page to be loaded after the submission of the post.
 
-## Grouping
+## [Grouping](#table-of-contents)
 
 ```HTML
 <div>Container</div>
@@ -144,7 +144,7 @@ Forms by default send a http POST request with the endpoint in action. The serve
 <aside>Side Content</aside>
 ```
 
-## Self Closing Tags
+## [Self Closing Tags](#table-of-contents)
 
 ```HTML
 <br/>    <!-- Line break -->
@@ -152,13 +152,13 @@ Forms by default send a http POST request with the endpoint in action. The serve
 <wbr/>   <!-- Word break. The browser can line wrap at that point if necessary. -->
 ```
 
-## Comments
+## [Comments](#table-of-contents)
 
 ```HTML
 <!-- Comments -->
 ```
 
-## HTML entities
+## [HTML entities](#table-of-contents)
 - Used to represent reserved characters within HTML.
 
 | Text    | Symbol |
@@ -172,7 +172,7 @@ Forms by default send a http POST request with the endpoint in action. The serve
 | &reg\;  | &reg;  |
 | &deg\;  | &deg;  |
 
-## Attributes
+## [Attributes](#table-of-contents)
 
 |          |                                                                          |
 |----------|--------------------------------------------------------------------------|
@@ -182,19 +182,19 @@ Forms by default send a http POST request with the endpoint in action. The serve
 | title    | Additional info that is often displayed as a tooltip.                    |
 | disabled | Disables user interaction.                                               |
 
-## Inline elements vs block elements
+## [Inline elements vs block elements](#table-of-contents)
 - Block elements take up the whole line
 - Inline elements just are inline
 - You can force inline or block with CSS
 
-## CSS in HTML
+## [CSS in HTML](#table-of-contents)
 - Put into the `<head>` of the HTML so the browser can style before it paints the page.
 
 ```HTML
 <link rel="stylesheet" type="text/css" href="style.css" />
 ```
 
-## JavaScript in HTML
+## [JavaScript in HTML](#table-of-contents)
 - Put at the very end of the HTML `<body>` so the JavaScript can interact with the HTML elements. 
 
 ```HTML

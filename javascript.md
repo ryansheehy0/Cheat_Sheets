@@ -58,7 +58,7 @@ JavaScript is the only language that can be run in the browser.
 
 <!-- /TOC -->
 
-## Comments
+## [Comments](#table-of-contents)
 
 ```javascript
 // Inline comment
@@ -68,7 +68,7 @@ JavaScript is the only language that can be run in the browser.
 */
 ```
 
-## Primitive Data Types
+## [Primitive Data Types](#table-of-contents)
 - Dynamically typed. A variable can be assigned to multiple types.
 - By default all objects and array are pass by reference. In order to do a pass by value you have to use the spread operator.`[...array]`
 - `typeof operand` can be used to get a string of the type
@@ -93,13 +93,13 @@ JavaScript is the only language that can be run in the browser.
         - Support integers of arbitrary size
         - `123n` or `BigInt(123)`
 
-## Sets
+## [Sets](#table-of-contents)
 - Only can store unique values. If you attempt to add a duplicate it will be ignored.
 - There is no specific ordering.
 - `new Set()`
 - `set.add(value)`, `set.delete(value)`, `set.has(value)`, `set.size`, `set.clear()`
 
-## Variables
+## [Variables](#table-of-contents)
 `var` - Can be used through your whole function or program if declared outside a function.
 
 `let` - Only used within the scope of where you declared it
@@ -129,7 +129,7 @@ function example() {
 example();
 ```
 
-## Strings
+## [Strings](#table-of-contents)
 Strings can start with "s, 's, or `s
 
 Escape sequences: \\", \\', \\`, \\ \\
@@ -144,7 +144,7 @@ Escape sequences: \\", \\', \\`, \\ \\
 
 Strings are immutable. Once a string is created its value cannot be changed. If the value is changed what is happening is that a new string is being made and assigned.
 
-### String Functions
+### [String Functions](#table-of-contents)
 - `.length`
     - Size of the string
 - `.slice(start, end)` or `.slice(start)`
@@ -170,10 +170,10 @@ Strings are immutable. Once a string is created its value cannot be changed. If 
 - `.contains("substring")`
     - Does the string contain the substring in it?
 
-## Arrays
+## [Arrays](#table-of-contents)
 Arrays allow you to store several pieces of data in the same place. Elements can be any data type and arrays are mutable.
 
-### Array Functions
+### [Array Functions](#table-of-contents)
 - `.length`
 - `.join(string_separator)`
     - Converts an array to a string with the string separators between each element.
@@ -264,7 +264,7 @@ console.log(numbers); // Output: [1, 1, 2, 3, 3, 4, 5, 5, 5, 6, 9]
 - `.includes(value)`
   - If the array includes value it returns true
 
-## Equality Operators
+## [Equality Operators](#table-of-contents)
 - `===` `!==` strict operator
     - Doesn't do the type conversion
 - `==` `!=`
@@ -278,7 +278,7 @@ console.log(numbers); // Output: [1, 1, 2, 3, 3, 4, 5, 5, 5, 6, 9]
 3 == '3' // true
 ```
 
-## Switch Block
+## [Switch Block](#table-of-contents)
 
 ```javascript
 let x = 10
@@ -301,7 +301,7 @@ switch(x) {
 
 You can create a new scope in a case block using '{}'s which will prevent variable naming conflicts.
 
-## Functions
+## [Functions](#table-of-contents)
 - If you don't return anything then the return value is undefined
     - Can be declared below their use. This is called hoisting and is unique to JS.
 ```javascript
@@ -338,7 +338,7 @@ const func_name4 = (...args) => {
 })()
 ```
 
-## Useful Functions
+## [Useful Functions](#table-of-contents)
 
 |                                          |                                                                                   |
 |------------------------------------------|-----------------------------------------------------------------------------------|
@@ -355,7 +355,7 @@ const func_name4 = (...args) => {
 | .toFixed(number of decimal places)       | Rounds to the number of decimal places.                                           |
 | parseInt(str) or parseInt(str, base num) | Converts a string to an int. If it can't then it returns NaN                      |
 
-### Fetch
+### [Fetch](#table-of-contents)
 Used to fetch data from a server. Returns a promise of the response.
 
 ```javascript
@@ -388,7 +388,7 @@ fetch("URL", {
     })
 ```
 
-#### Optional Fetch Argument
+#### [Optional Fetch Argument](#table-of-contents)
 
 | method: | Description                     |
 |---------|---------------------------------|
@@ -437,7 +437,7 @@ fetch('api/request', {
 })
 ```
 
-## Objects
+## [Objects](#table-of-contents)
 Objects are used to store an unordered list of properties to describe one thing.
 
 Literal object notation is an object created with key-value pairs.
@@ -501,7 +501,7 @@ console.log(var1) // ele1
 console.log(var2) // ele2
 ```
 
-### For In
+### [For In](#table-of-contents)
 - You need to do [] when referencing properties in a for in loop in case the property has a space in it.
 
 ```javascript
@@ -515,7 +515,7 @@ for (const property in object) {
 // "c: 3"
 ```
 
-### JavaScript Object Notation(JSON)
+### [JavaScript Object Notation(JSON)](#table-of-contents)
 - The last key-value pair cannot end with ,s
 - Convert JSON to an object
     - `JSON.parse(json)`
@@ -539,7 +539,7 @@ console.log(obj) // "first name": "Ryan", "last name": "Mr. Sheehy"
         - the 2nd argument is like running a map function before making the json
         - the 3rd argument specifies the space for indentation. In this case it is 2 spaces.
 
-### Spread Operator
+### [Spread Operator](#table-of-contents)
 - Used to spread out an array or an object
 
 ```javascript
@@ -566,10 +566,10 @@ const obj3 = {...obj1, ...obj2}
 
 It can be used to create an array from something that isn't an array. `[...nonArray]`
 
-### Object to Array
+### [Object to Array](#table-of-contents)
 `Object.values(obj)` converts the obj to an array with their values in the array.
 
-## Template Literals
+## [Template Literals](#table-of-contents)
 Used to make complete string with embedded JS.
 - Starts with \`s
 - It allows you to have multi-line strings with a newline inserted.
@@ -583,7 +583,7 @@ console.log(`Hello, my name is ${person.name}!
 I am ${person.age} years old.`)
 ```
 
-## Import and Export
+## [Import and Export](#table-of-contents)
 Use `export` to export the var/function
     - Ex: `export const name = "Ryan Sheehy"`
     - There can be a default export for a file. There can only be 1 default export.
@@ -613,9 +613,9 @@ window.test = test
 window.test()
 ```
 
-## Errors
+## [Errors](#table-of-contents)
 
-### Error Handling
+### [Error Handling](#table-of-contents)
 Error handling is used to keep the code running even when there is an error.
 
 ```javascript
@@ -633,12 +633,12 @@ try{
 }
 ```
 
-### Throwing Errors
+### [Throwing Errors](#table-of-contents)
 Errors stop the execution of the code. You can throw a custom error by doing
 
 `throw new Error("Name of error")`
 
-## Promises
+## [Promises](#table-of-contents)
 Used to handle asynchronous(code can be run in parallel) operations. Can only return either a resolve or a reject.
 
 Returning a new promise is most commonly used to convert a async callback function to an async/await.
@@ -668,7 +668,7 @@ promise().then((message) => {
 })
 ```
 
-## Async/Await
+## [Async/Await](#table-of-contents)
 Used to make promises easier to work with. Only works with asynchronous functions. Await waits for the Promise to resolve.
 
 All async function return a promise. It is recommended that if you manually return a new promise then you put it in an async function.
@@ -715,12 +715,12 @@ async func_name = () => {
 
 If a sub function returns a promise and you want to await it you have to make all functions async.
 
-## DOM Manipulation
+## [DOM Manipulation](#table-of-contents)
 The DOM is the Document Object Model.
 
 The `window` is an object that have internal functions and data that can be accessed. `document` is an object part of the window and is the DOM. `document` allows JavaScript to access different elements of the HTML page.
 
-### Accessing Elements
+### [Accessing Elements](#table-of-contents)
 
 |                                          |                                                            |
 |------------------------------------------|------------------------------------------------------------|
@@ -732,7 +732,7 @@ The `window` is an object that have internal functions and data that can be acce
 
 The selector in querySelector cannot start with a number therefore ids and classes should preferably start with letters.
 
-### Modifying Elements
+### [Modifying Elements](#table-of-contents)
 
 |                                            |                                                                           |
 |--------------------------------------------|---------------------------------------------------------------------------|
@@ -746,7 +746,7 @@ The selector in querySelector cannot start with a number therefore ids and class
 | element.classList.toggle('class')          | Toggles the presence of a CSS class on the element                        |
 | element.dataset.name = "name"              | Searches the html attributes for data-name and sets its contents to name. |
 
-### Creating and Appending Elements
+### [Creating and Appending Elements](#table-of-contents)
 
 |                                                      |                                                                     |
 |------------------------------------------------------|---------------------------------------------------------------------|
@@ -757,7 +757,7 @@ The selector in querySelector cannot start with a number therefore ids and class
 | parentElement.removeChild(childElement)              | Removes a specified child element from its parent                   |
 | element.remove()                                     | Removes that element form the dom.                                  |
 
-#### Insert Adjacent Element
+#### [Insert Adjacent Element](#table-of-contents)
 `element.insertAdjacentElement("position", newElement)` or `element.insertAdjacentHTML("position", "html")`
 
 | Position Name | Description    |
@@ -767,7 +767,7 @@ The selector in querySelector cannot start with a number therefore ids and class
 | beforebegin   | Before element |
 | beforeend     | Last child     |
 
-### Event Handling
+### [Event Handling](#table-of-contents)
 
 |                                                     |                                                                                          |
 |-----------------------------------------------------|------------------------------------------------------------------------------------------|
@@ -787,7 +787,7 @@ The selector in querySelector cannot start with a number therefore ids and class
   })
 ```
 
-#### Commonly Used Events
+#### [Commonly Used Events](#table-of-contents)
 
 | Event         | Description                                                                                   |
 |---------------|-----------------------------------------------------------------------------------------------|
@@ -806,7 +806,7 @@ The selector in querySelector cannot start with a number therefore ids and class
 | transitionend | Triggered when a CSS transition ends.                                                         |
 | error         | Triggered when an error occurs during loading of an external file.                            |
 
-#### Default Events
+#### [Default Events](#table-of-contents)
 
 - click <a>
     - Automatically changes the URL and goes to that URL.
@@ -815,7 +815,7 @@ The selector in querySelector cannot start with a number therefore ids and class
     - Clears form inputs
     - Changes URL
 
-### Traversing the DOM
+### [Traversing the DOM](#table-of-contents)
 
 |                         |                                                            |
 |-------------------------|------------------------------------------------------------|
@@ -827,7 +827,7 @@ The selector in querySelector cannot start with a number therefore ids and class
 | element.previousSibling | Returns the previous sibling element of the current element|
 | element.children[index] | Gets the child of the element at the index.                |
 
-## This
+## [This](#table-of-contents)
 The `this` keyword is used to refer to the current object.
 
 - By default the `this` keyword is in the window object.
@@ -842,7 +842,7 @@ let planet = {
 }
 ```
 
-## Timing
+## [Timing](#table-of-contents)
 
 |                                          |                                                                                               |
 |------------------------------------------|-----------------------------------------------------------------------------------------------|
@@ -853,7 +853,7 @@ let planet = {
 
 1000 Milliseconds = 1 Second
 
-## +/-/++/-- Operators
+## [+/-/++/-- Operators](#table-of-contents)
 
 ```javascript
 let variable = 5
@@ -871,7 +871,7 @@ console.log(-"3" - -"5") // 2
 console.log(-"-3" + -"5") // -2
 ```
 
-## Local/Session Storage
+## [Local/Session Storage](#table-of-contents)
 Local storage is information stored locally on the browser.
 
 Session storage is information stored locally to that tab.
@@ -893,7 +893,7 @@ localStorage.clear()
 ```
 - Never store passwords, even hashed passwords, in the local storage or session storage.
 
-## Common APIs
+## [Common APIs](#table-of-contents)
 
 |           |                                                                                                    |
 |-----------|----------------------------------------------------------------------------------------------------|
@@ -903,7 +903,7 @@ localStorage.clear()
 | jQuery UI | Makes manipulating things easier. Can work with bootstrap. |
 | [Axios](https://axios-http.com/docs/intro)     | ajax in jQuery, but without the jQuery. |
 
-### Dayjs
+### [Dayjs](#table-of-contents)
 
 Provides more powerful formatting than the inbuilt Date() in JS
 
@@ -915,12 +915,12 @@ today.format('[This is the day: ] ddd')
 
 Unix time is the number of seconds from Jan 1st, 1970(epoch time).
 
-## URL of Webpage
+## [URL of Webpage](#table-of-contents)
 Use `document.location` to get properties of the current webpage's URL.
 
 You can get everything after the ? in the URL(query string) by doing `document.location.search`
 
-### Redirect URL
+### [Redirect URL](#table-of-contents)
 `document.location.href = newURL`
 
 ```javascript
@@ -929,7 +929,7 @@ document.location.href = "/new-page"
 document.location.href = "https://www.newwebsite.com"
 ```
 
-## Regex
+## [Regex](#table-of-contents)
 Used to match patterns.
 
 ```javascript
@@ -957,9 +957,9 @@ function validate(input){
 }
 ```
 
-## Object Oriented
+## [Object Oriented](#table-of-contents)
 
-### Class Constructors
+### [Class Constructors](#table-of-contents)
 You can create objects with object literals or using the `new` keyword on classes/constructor functions
 
 - Constructors tend to start with capital letters as JS convention.
@@ -1014,7 +1014,7 @@ class Car extends Vehicle {
 }
 ```
 
-### Prototype
+### [Prototype](#table-of-contents)
 Adds a variable or function to a class or constructor function.
 
 `Car.prototype.moreInfo = () => {console.log("moreInfo")}`

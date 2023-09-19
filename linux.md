@@ -28,8 +28,8 @@
 
 <!-- /TOC -->
 
-## Most Common
-### ls
+## [Most Common](#table-of-contents)
+### [ls](#table-of-contents)
 List information about a directory. The current directory is default.
 
 |    |                           |
@@ -55,32 +55,32 @@ x - execute permissions
 - - no permissions
 ```
 
-### cd
+### [cd](#table-of-contents)
 Change directory.
-### mv
+### [mv](#table-of-contents)
 ```
 mv ./* {Folder path}
     Move all the contents of the current folder to the filepath folder
 ```
-### cp
-### rm
+### [cp](#table-of-contents)
+### [rm](#table-of-contents)
 - rm file
 - rm -rf Directory
-### mkdir
-### touch
+### [mkdir](#table-of-contents)
+### [touch](#table-of-contents)
 
-## echo
-## cat
+## [echo](#table-of-contents)
+## [cat](#table-of-contents)
 - displays contents of a file
 
-### grep
+### [grep](#table-of-contents)
 - Searches for patterns in a file or input stream
-### sed
+### [sed](#table-of-contents)
 - text transformations on a file or input stream
-### awk
+### [awk](#table-of-contents)
 - analyzes text files or input streams
 
-### Types of Files
+### [Types of Files](#table-of-contents)
 
 |   |                            |
 |---|----------------------------|
@@ -108,7 +108,7 @@ mv ./* {Folder path}
     - pipes, appending text into file or re-writing text into file
 
 
-## sed
+## [sed](#table-of-contents)
 Stream editor
 
 sed {options} {script} {optional file}
@@ -144,12 +144,12 @@ man sed | sed '/replace/s/the/The/g'
     The lines that have "replace" on them have the "the"s changed to "The"s.
 ```
 
-## Recursive size of folders in a directory
+## [Recursive size of folders in a directory](#table-of-contents)
 I want ls, but with recursively calculated sizes. Not just folders, but also files.
 
 `du --max-depth=1 -h ./`
 
-## Curl
+## [Curl](#table-of-contents)
 
 Used to see the return from an api calls. Makes a get request form a URL.
 

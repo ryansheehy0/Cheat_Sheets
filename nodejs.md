@@ -6,6 +6,7 @@ NodeJS is used to run JavaScript outside of the browser.
 Somethings work differently when using JS in NodeJS then in the browser. This cheat sheet will cover those differences.
 
 ## Table Of Contents
+
 <!-- TOC -->
 
 - [NodeJS](#nodejs)
@@ -59,12 +60,12 @@ Somethings work differently when using JS in NodeJS then in the browser. This ch
 
 <!-- /TOC -->
 
-## Getting Started
+## [Getting Started](#table-of-contents)
 Run `node -v` to see what version of node you have. If you don't have node you can install it from [here](https://nodejs.org/en).
 
 You can run `node script.js` or `node script` to run a JS file.
 
-## Node Package Manager(NPM)
+## [Node Package Manager(NPM)](#table-of-contents)
 NPM is used to install dependencies/packages for NodeJS code.
 
 |                           |                                                                                                             |
@@ -82,7 +83,7 @@ package-lock.json locks the versions of the packages so that new version don't b
 
 - devDependencies are dependencies that are only applied when developing and not in the production release of the app.
 
-### Scripts
+### [Scripts](#table-of-contents)
 Inside the package.json
 
 ```javascript
@@ -95,14 +96,14 @@ Inside the package.json
 Running a script
 `npm run scriptName`
 
-### Importing
+### [Importing](#table-of-contents)
 To import the exported variable you can do `const module = require("./filepath.js")`
 
 In order to import from a package you do `const package = require("packageName")`
 
 You can import json directly `const json = require("./file.json")`
 
-### Exporting
+### [Exporting](#table-of-contents)
 To export you use the module.exports object
 
 ```javascript
@@ -112,19 +113,19 @@ module.exports = {
 }
 ```
 
-## Miscellaneous
+## [Miscellaneous](#table-of-contents)
 - Functions that end in "sync" are blocking functions which means they force the other code to wait until it it done.
 - index.js is the default location for node.
     - If you run `node ./` it will look for index.js first.
 
-## Things that don't work
+## [Things that don't work](#table-of-contents)
 - window global variable
 - alert, prompt, and confirm
 
-## this keyword
+## [this keyword](#table-of-contents)
 - In order to use the this keyword you have to be inside a function.
 
-## Global Variables
+## [Global Variables](#table-of-contents)
 
 |           |                                                                                       |
 |-----------|---------------------------------------------------------------------------------------|
@@ -135,14 +136,14 @@ module.exports = {
 | Buffer    | Used to handle binary data.                                                           |
 | __dirname | Specifies the absolute path of the currently running JS file.                         |
 
-### Process
+### [Process](#table-of-contents)
 `process.platform` get what platform the node is running on like linux.
 
 `process.env.NAME` get the environment variable called NAME
 
 `server.address().port` gets the current port the server is running on.
 
-#### Arguments from the Terminal
+#### [Arguments from the Terminal](#table-of-contents)
 process.argv is an array that contains the command-line arguments.
 
 ```
@@ -157,9 +158,9 @@ Console:
 ]
 ```
 
-## Events
+## [Events](#table-of-contents)
 
-### Emitting Events
+### [Emitting Events](#table-of-contents)
 ```javascript
 const { EventEmitter } = require('events')
 const eventEmitter = new EventEmitter
@@ -167,16 +168,16 @@ const eventEmitter = new EventEmitter
 eventEmitter.emit("eventName")
 ```
 
-### Receiving Events
+### [Receiving Events](#table-of-contents)
 ```javascript
 eventEmitter.on("eventName", () => {
 })
 ```
 
-## File System
+## [File System](#table-of-contents)
 `const fs = require('fs')` or with premisses `const fs = require('fs').promises`
 
-### Reading to Files
+### [Reading to Files](#table-of-contents)
 
 ```javascript
 const encodingType = "utf8"
@@ -193,29 +194,29 @@ async function loadFile() {
 }
 ```
 
-### Writing to Files
+### [Writing to Files](#table-of-contents)
 
 ```javascript
 fs.writeFile("./filepath.txt", "Written data", error => {error ? console.log(error) : false})
 ```
 
-### Appending to Files
+### [Appending to Files](#table-of-contents)
 
 ```javascript
 fs.appendFile("./filepath.txt", "Written data", error => {error ? console.log(error) : false})
 ```
 
-## Path
+## [Path](#table-of-contents)
 Used to make working with file paths easier.
 
 `const path = require("path")`
 
-## Node-fetch
+## [Node-fetch](#table-of-contents)
 Allows you to use the fetch function in node
 
 `const fetch = require('node-fetch')`
 
-## Packages
+## [Packages](#table-of-contents)
 
 | Package         | Description                                                            |
 |-----------------|------------------------------------------------------------------------|
@@ -228,7 +229,7 @@ Allows you to use the fetch function in node
 | tailwindcss     | Use tailwind inside nodeJS.                                            |
 | express-session | Handle session which are info about the user across multiple requests. |
 
-### inquirer
+### [inquirer](#table-of-contents)
 Used to simply get user input from the terminal.
 
 Use  `npm install inquirer@8.2.4` to use require with inquirer.
@@ -273,7 +274,7 @@ function validationFunction(input){
 }
 ```
 
-### express
+### [express](#table-of-contents)
 Simplifies HTTP-related tasks usually for making APIs. It's a framework for handling http requests.
 
 ```javascript
@@ -309,7 +310,7 @@ app.listen(port, () => {
 
 - Always start your listening after you have defined all of your routes so the server can start with routes already defined.
 
-#### Express HTTP Methods
+#### [Express HTTP Methods](#table-of-contents)
 Making/Receiving an http method uses the format of `app.httpMethod("path", callbackFunction)`
 - The path is what is after the URL. By default the path is "/".
   - Ex: https://www.rscheatsheets.com/
@@ -353,7 +354,7 @@ app.patch("/", (req, res) => {
 
 Your http methods need to return something, even an empty response, to indicate that the request was successfully handled. You can use `res.send("GET / handled successfully")`
 
-#### Parameters
+#### [Parameters](#table-of-contents)
 Parameters are data sent through the URL. This can include regular parameters like `/api/test/${id}` or query parameters like `/api/test?id=${id}`
 
 ```javascript
@@ -372,7 +373,7 @@ app.get("/api/test", (req, res) => {
 
 - Often times parameters are set to `.toLowerCase()` to make them case insensitive. .toLowerCase is used over .toUpperCase because it is slightly faster.
 
-#### Routers
+#### [Routers](#table-of-contents)
 Routers are used to help you organize your routes and the code for those routes.
 
 In your main express file (usually server.js) you need to add:
@@ -408,7 +409,7 @@ tipsRouter.get("/", (req, res) => { // This path is /api/tips/
 module.exports = tipsRouter
 ```
 
-#### Middleware Functions
+#### [Middleware Functions](#table-of-contents)
 
 ```javascript
 const middleware = (req, res, next) => {
@@ -428,7 +429,7 @@ const withAuth = (req, res, next) => {
 }
 ```
 
-#### View Engines
+#### [View Engines](#table-of-contents)
 View engines allow you to change the html from the server before it is sent.
 
 View engines offer ___ inside of html
@@ -441,7 +442,7 @@ This allows you to keep your view and your controller separated.
 
 `/views/layouts/main.handlebars` is the default location for where handlebars will look for.
 
-##### Handlebars
+##### [Handlebars](#table-of-contents)
 
 ```javascript
 const exphbs = require("express-handlebars")
@@ -524,7 +525,7 @@ View File Example:
 
 {% endraw %}
 
-#### Definitions
+#### [Definitions](#table-of-contents)
 
 - **Layouts** are used to make a consistent structure for multiple pages
   - You can pass in templates into layouts by using `{{{ body }}}`
@@ -538,7 +539,7 @@ View File Example:
 Particles are placed into layouts in order to make a completed page.
 
 
-#### Custom Helpers
+#### [Custom Helpers](#table-of-contents)
 
 In your handlebars file: `{{custom_helper arg1}}` to use the helper function
 
@@ -559,9 +560,9 @@ const helperJSFile = require("./utils/helpers")
 const hbs = exphbs.create({helperJSFile})
 ```
 
-#### Front end and Back end
+#### [Front end and Back end](#table-of-contents)
 When using links in the font end with express you should use `/`s and then crete an express source to render that page.
-### jest
+### [jest](#table-of-contents)
 Used for tests inside node.
 
 Tests are used to test your code usually before sending them towards production. Install jest as a dev package.
@@ -599,7 +600,7 @@ describe("test title" () => {
 - expect is used instead of if statements to make code cleaner and less lines.
 - Each test/it is run in a separate instance so if an error is thrown in one of them it will still run the other tests/its.
 
-### mysql2
+### [mysql2](#table-of-contents)
 
 ```javascript
 const mysql = require("mysql2")
@@ -619,7 +620,7 @@ db.query(`SELECT * FROM table_name;`, (err, results) => {
 })
 ```
 
-#### mysql2 with Promises
+#### [mysql2 with Promises](#table-of-contents)
 
 ```javascript
 const mysql = require("mysql2/promise")
@@ -644,7 +645,7 @@ async function asyncQuery(){
 }
 ```
 
-#### Prevent SQL Injections
+#### [Prevent SQL Injections](#table-of-contents)
 You can use the `?` in you SQL query to prevent SQL injections.
 
 ```javascript
@@ -666,7 +667,7 @@ async function safe(){
 }
 ```
 
-### dotenv
+### [dotenv](#table-of-contents)
 Used to work with environment variables so that you don't have your passwords or keys stored in plane text.
 
 Environment variables are variables that are local on your server or computer. Usually environment variables are all capitalized.
@@ -690,14 +691,14 @@ API_KEY=08fe01a78943266193fc7a23625f68fa
 DB_PASSWORD=password
 ```
 
-### bcrypt
+### [bcrypt](#table-of-contents)
 Used to hash passwords. Bcrypt automatically creates the salt.
 
 ```javascript
 const bcrypt = require('bcrypt')
 ```
 
-#### Creating a Hash
+#### [Creating a Hash](#table-of-contents)
 
 ```javascript
 const saltRounds = 14 // Number of times the hash is applied. This sets the time to make the hash
@@ -720,7 +721,7 @@ let hash = bcrypt.hashSync(`password`, saltRounds)
 
 ```
 
-#### Comparing a Password
+#### [Comparing a Password](#table-of-contents)
 
 ```javascript
 const hash = `$2b$07$i7vcjUJXJbczMVmbiJiQBOHEtZHk/N93Sh1H862iC9iKxVqIveihG`
@@ -743,7 +744,7 @@ let isPassword = await bcrypt.compare(password, hash)
 let isPassword = bcrypt.compareSync(password, hash)
 ```
 
-### tailwindcss
+### [tailwindcss](#table-of-contents)
 Tailwindcss goes through all your HTM, JS, and any other files to find which tailwind classes are being used and then creates one css file which is used.
 
 `npm install -D tailwindcss`
@@ -784,7 +785,7 @@ module.exports = {
   - If you need to make quick changes or development it is much faster to use the CDN
     - `<script src="https://cdn.tailwindcss.com"></script>`
 
-### express-session
+### [express-session](#table-of-contents)
 Express middleware which manges sessions which is information about a user across multiple requests.
 
 - Local Storage and Session Storage are client side storage and used by the font end.
@@ -812,7 +813,7 @@ app.use(session({
 }))
 ```
 
-#### Storing data
+#### [Storing data](#table-of-contents)
 
 ```javascript
 app.get('/login', (req, res) => {
@@ -822,7 +823,7 @@ app.get('/login', (req, res) => {
 });
 ```
 
-#### Retrieving data
+#### [Retrieving data](#table-of-contents)
 
 ```javascript
 app.get('/dashboard', (req, res) => {
@@ -835,7 +836,7 @@ app.get('/dashboard', (req, res) => {
 });
 ```
 
-#### Destroying session
+#### [Destroying session](#table-of-contents)
 
 ```javascript
 app.get('/logout', (req, res) => {
@@ -850,4 +851,4 @@ app.get('/logout', (req, res) => {
 });
 ```
 
-### cookie-parser
+### [cookie-parser](#table-of-contents)

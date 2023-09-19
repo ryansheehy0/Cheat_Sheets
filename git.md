@@ -28,14 +28,14 @@ A version control system that manages changes to files.
 
 <!-- /TOC -->
 
-## Cloning and Initializing
+## [Cloning and Initializing](#table-of-contents)
 
 |                   |                                             |
 |-------------------|---------------------------------------------|
 | git clone {https} | Pulls github repository and initializes it. |
 | git init          | Creates .git file to allow for pushing.     |
 
-## Committing
+## [Committing](#table-of-contents)
 
 |                                            |                                                                                                                                                                                                                                                  |
 |--------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -44,7 +44,7 @@ A version control system that manages changes to files.
 | git add -A                                 | Tracks and stages all the files and folders listed in status.                                                                                                                                                                                    |
 | git commit -m ”{Title}” -m ”{Description}” | Commits staged files. It is recommended to have your Title be in the present tense. Ex: "Adds some stuff"                                                                                                                                      |
 
-### Resetting Commits
+### [Resetting Commits](#table-of-contents)
 
 |                               |                                                                       |
 |-------------------------------|-----------------------------------------------------------------------|
@@ -52,20 +52,20 @@ A version control system that manages changes to files.
 | git reset {commit hash}       | Resets to commit specified and unstages changes.                      |
 | git reset -soft {commit hash} | Resets to commit specified, but leaves files staged.                  |
 
-### Reverting Commits
+### [Reverting Commits](#table-of-contents)
 
 |                          |                                                                                                                            |
 |--------------------------|----------------------------------------------------------------------------------------------------------------------------|
 | git revert {commit hash} | Makes a new commit that undos the changes from the commit hash. Does the opposite of the changes made in that commit hash. |
 
-### Commit Logs
+### [Commit Logs](#table-of-contents)
 
 |                  |                                                            |
 |------------------|------------------------------------------------------------|
 | git log          | Lists commit history. This can tell you the commit hashes. |
 | git log {branch} | Lists commit history for that branch.                      |
 
-## Pushing
+## [Pushing](#table-of-contents)
 
 |                                   |                                                         |
 |-----------------------------------|---------------------------------------------------------|
@@ -74,7 +74,7 @@ A version control system that manages changes to files.
 | git remote add {location} {https} | Adds a location you can push to.                        |
 | git remote remove {location}      | Removes a location you can push to.
 
-## Pulling
+## [Pulling](#table-of-contents)
 
 |                               |                                                                                                                |
 |-------------------------------|----------------------------------------------------------------------------------------------------------------|
@@ -83,7 +83,7 @@ A version control system that manages changes to files.
 | git fetch                     | Fetches all the branches.                                                                                      |
 | git merge {location}/{branch} | Incorporate the changes from fetch into the specified branch. This downloads the changes from the remote repo. |
 
-## Branches
+## [Branches](#table-of-contents)
 
 |                          |                                              |
 |--------------------------|----------------------------------------------|
@@ -92,7 +92,7 @@ A version control system that manages changes to files.
 | git checkout {branch}    | Switches branch.                             |
 | git branch -d {branch}   | Deletes branch.                              |
 
-## Stashing
+## [Stashing](#table-of-contents)
 
 |                        |                                                                                      |
 |------------------------|--------------------------------------------------------------------------------------|
@@ -103,7 +103,7 @@ A version control system that manages changes to files.
 | git stash drop         | Removes the last stash.                                                              |
 | git stash drop {index} | Removes the stash at the index.                                                      |
 
-## Setting Personal Access Tokens
+## [Setting Personal Access Tokens](#table-of-contents)
 
 Settings $\rightarrow$ Developer settings $\rightarrow$ Personal access tokens $\rightarrow$ Generate new tokens
 
@@ -114,7 +114,7 @@ Settings $\rightarrow$ Developer settings $\rightarrow$ Personal access tokens $
 |-------------------------------------------------------------------------------------------------------------------------|-------------------------------------|
 | git remote set-url {location} https://{username}:{personal access token}@github.com/{owner's username}/{repository}.git | Gives permissions for the location. |
 
-## First push
+## [First push](#table-of-contents)
 1. git init
 1. git add -A
 1. git commit -m "{Title}" -m "{Description}"
@@ -123,13 +123,13 @@ Settings $\rightarrow$ Developer settings $\rightarrow$ Personal access tokens $
 1. git push {location} {branch}
 - The recommended {location} is origin and the recommended {branch} is master/main.
 
-## Rebasing
+## [Rebasing](#table-of-contents)
 
 |                     |                                                                                    |
 |---------------------|------------------------------------------------------------------------------------|
 | git rebase {branch} | Takes the commits from current branch and puts them ontop of the specified branch. |
 
-## Pull Requests
+## [Pull Requests](#table-of-contents)
 - A pull request is a request to make changes to a branch from another branch.
 - A merge is the combining changes from one branch to another.
 
@@ -139,7 +139,7 @@ Settings $\rightarrow$ Developer settings $\rightarrow$ Personal access tokens $
 | Squash and merge      | Combines all the changes from the source branch and makes a commit to the target branch with the changes. This removes the source branch. Doesn't preserve the history. |
 | Rebase and merge      | Commits all the previous commits in the source branch and adds them to the target branch. This removes the source branch. Preserves the history.                        |
 
-### When your branch says behind main 
+### [When your branch says behind main](#table-of-contents)
 - This means that there are new commits in the main branch that aren't in your branch.
 1. Ensure your changes are committed
     - git status
@@ -179,7 +179,7 @@ Settings $\rightarrow$ Developer settings $\rightarrow$ Personal access tokens $
     </ul>
 </ol>
 
-## Setting up with SSH
+## [Setting up with SSH](#table-of-contents)
 1. `ssh-keygen -t ed25519 -C {github email}`
     - Used to generate a public and private key pair.
         - Private key is in: .ssh/id_ed25519 (Don't share with anyone)
@@ -205,7 +205,7 @@ Settings $\rightarrow$ Developer settings $\rightarrow$ Personal access tokens $
     - If this doesn't work then you may need to run `eval "$(ssh-agent -s)"` in order to start the ssh-agent
 1. To use with SSH make sure your location is SSH(starts with git@github.com)
 
-## Adding a warning when pushing to main/master from another branch
+## [Adding a warning when pushing to main/master from another branch](#table-of-contents)
 - Put this code inside .git/hooks/pre-push
     - Not pre-push.sample
 
@@ -232,7 +232,7 @@ exit 0
 
 - Make it executable with `chmod +x ./.git/hooks/pre-push`
 
-## Git Ignore
+## [Git Ignore](#table-of-contents)
 A file called `.gitignore` which is used to ignore folders or files when pushed to github.
 
 Git ignores use regexes.

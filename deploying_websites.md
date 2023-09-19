@@ -16,7 +16,7 @@
 
 <!-- /TOC -->
 
-## Github Pages
+## [Github Pages](#table-of-contents)
 1. Push your code to git. Have your deployable code in the "docs" folder
   - Make sure it is all correct because it maybe hard to change the website once it is deployed
 1. Go to "Settings" tab and click "Pages" on the left side
@@ -26,8 +26,8 @@
   - Any new pushes to that branch should be automatically deployed
   - If any new changes are taking a very long time to deploy then you need to create a new repo with your code and deploy from that.
 
-## Heroku
-### Website
+## [Heroku](#table-of-contents)
+### [Website](#table-of-contents)
 1. Login or create Heroku account at `https://id.heroku.com/login`
 1. Click on top right "New" and click "Create new app"
 1. Give an app name of `{github username}-{github repo name}`
@@ -37,7 +37,7 @@
 1. Go to "Deploy" tab and set your deployment method to github and connect your github repo
 1. Got to "Settings" tab and set your buildpack to what your app is using.
 
-### Terminal
+### [Terminal](#table-of-contents)
 1. Make sure to have the Heroku CLI installed at this link https://devcenter.heroku.com/articles/heroku-cli
   - On Linux: `curl https://cli-assets.heroku.com/install-ubuntu.sh | sh`
 1. Run `heroku login` in the terminal
@@ -48,11 +48,11 @@
 1. Run `git subtree push --prefix my-subdirectory heroku master`, but replace my-subdirectory with your root directory and replace master with your branch you want to deploy from.
   - This will make Heroku use my-subdirectory as the root directory
 
-### Using keys
+### [Using keys](#table-of-contents)
 - On the Heroku website go to Settings and click Show Config Vars
 - In nodeJS use the package dotenv and use the Keys that are in your Config Vars
 
-### MySQL
+### [MySQL](#table-of-contents)
 1. Go to Resources
 1. Search for JawsDB MySQL
 1. JAWSDB_URL should be automatically added in your config vars

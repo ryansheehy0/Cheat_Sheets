@@ -13,10 +13,10 @@
 
 <!-- /TOC -->
 
-## Status Codes
+## [Status Codes](#table-of-contents)
 - 404
 
-## HTTP Methods/Verbs
+## [HTTP Methods/Verbs](#table-of-contents)
 - GET - retrieves data
 - POST - submits data. Give data
 - PUT - replaces a specified resource. Update data on the server.
