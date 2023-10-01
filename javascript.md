@@ -167,8 +167,8 @@ Strings are immutable. Once a string is created its value cannot be changed. If 
 - `.charAt(index)`
     - Gets the character at that index. If there is no character there then it returns an empty string.
     - Cannot take negative numbers.
-- `.contains("substring")`
-    - Does the string contain the substring in it?
+- `.includes("substring")`
+    - Is the substring included in the string?
 
 ## [Arrays](#table-of-contents)
 Arrays allow you to store several pieces of data in the same place. Elements can be any data type and arrays are mutable.

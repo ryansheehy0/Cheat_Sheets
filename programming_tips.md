@@ -31,7 +31,19 @@ function test(arg) {
 ```
 
 - Use descriptive variable/function names
-- Make smaller functions with descriptive names instead of comments
+- Make smaller functions with descriptive names
+- Write pseudocode in comments before programming
+  - This reduces the overhead of information requires to be stored in your head when programming
+- When writing comments put the code right underneath comments
+
+```javascript
+// Do A
+A()
+// Do B
+B()
+```
+
+- Try using separate descriptive functions instead of comments
 
 
 ### [Organization and OOP](#table-of-contents)
