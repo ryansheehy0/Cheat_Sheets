@@ -14,6 +14,7 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
         - [OOP](./oop.md)
         - [ORMs](./orm.md)
         - [jQuery](./jquery.md)
+        - [Javascript Under the Hood](./javascript_under_the_hood.md)
     - HTML/CSS/JS
         - [HTML](./html.md)
         - [CSS](./css.md)
@@ -33,6 +34,7 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
     - [Newtons Method](./Newtons_Method/newtons_method.md)
     - [Gradient Descent](./Machine_Learning/Gradient_Descent/gradient_descent.md)
     - [Matrices](./matrices.md)
+    - [Probabilities](./Probability/probability.md)
 - Physics/EE
     - [Logic Gate Electronic Speed Controller](./Logic_Gate_Electronic_Speed_Controller/logic_gate_electronic_speed_controller.md)
 
@@ -83,12 +85,12 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
     - Hyperbolic trig
     - Complex/imaginary numbers
     - Pareto Distribution
-    - Bayes' Theorem
     - Multi-variable calculus
     - Differential Equations
     - Extended factorial function
     - Matrixes
     - Integrals with circles
+    - Bell Curves
 - AI
     - Machine learning
     - Kernel machines
