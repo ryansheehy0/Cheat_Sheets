@@ -19,6 +19,7 @@ JavaScript is the only language that can be run in the browser.
   - [Equality Operators](#equality-operators)
   - [Switch Block](#switch-block)
   - [Functions](#functions)
+    - [This Keyword](#this-keyword)
   - [Useful Functions](#useful-functions)
     - [Fetch](#fetch)
       - [Optional Fetch Argument](#optional-fetch-argument)
@@ -326,12 +327,43 @@ const func_name4 = (...args) => {
 }
 ```
 
-- When using the function keyword the `this` keyword is reset.
-- When using the arrow function(=>) the `this` keyword is not reset.
-    - The `this` keyword is most commonly used withing objects.
-    - Avoid using arrow functions(=>) inside objects at least on the first layer.
+### [This Keyword](#table-of-contents)
+
+```javascript
+function regularFunction(){
+    console.log(this)
+}
+
+const pointerFunction = () => {
+    console.log(this)
+}
+
+const obj = {
+    regular: regularFunction,
+    pointer: pointerFunction,
+    pointerHere: () => {
+        console.log(this)
+    },
+    regularHere: function(){
+        console.log(this)
+    }
+}
+
+obj.regular() // "this" refers to "obj"
+obj.regularHere() // "this" refers to "obj"
+regularFunction() // "this" refers to "window"
+
+obj.pointer() // "this" refers to "window"
+obj.pointerHere() // "this" refers to "window"
+pointerFunction() // "this" refers to "window"
+```
+
+Pointer functions inherit `this` from their surroundings when they are created/defined.
+
+The function keyword inherits `this` when it is called.
 
 - You can run a function immediately by doing
+
 ```javascript
 (function() {
     console.log("Function that ran immediately")

@@ -12,6 +12,7 @@ A programming language to manage relational databases.
 - [Relational Databases](#relational-databases)
   - [Atomicity Consistency Isolation DurabilityACID](#atomicity-consistency-isolation-durabilityacid)
   - [Attribute Properties](#attribute-properties)
+    - [Data types](#data-types)
 - [Structured Query LanguageSQL](#structured-query-languagesql)
   - [Database Commands](#database-commands)
   - [Table Commands](#table-commands)
@@ -97,7 +98,8 @@ Attributes(columns) have various properties that define their behavior/internal 
 - **Index** improves data retrieval speeds. You can query using the index directly. Like the key in a JS object.
 - **Auto Increment** allows the column to automatically generate a unique value and is often used for primary keys.
 - **Unsigned** used for numerical data types and decides if they can have signed or unsigned values.
-- Data types
+
+### [Data types](#table-of-contents)
 
 | Most Common Data Types | Description                                                        |
 |------------------------|--------------------------------------------------------------------|

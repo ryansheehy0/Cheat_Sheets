@@ -53,8 +53,11 @@ Somethings work differently when using JS in NodeJS then in the browser. This ch
       - [Comparing a Password](#comparing-a-password)
     - [tailwindcss](#tailwindcss)
     - [express-session](#express-session)
-      - [Storing data](#storing-data)
-      - [Retrieving data](#retrieving-data)
+      - [Authentication](#authentication)
+      - [Server Side](#server-side)
+      - [Storing and Retrieving](#storing-and-retrieving)
+        - [Storing data](#storing-data)
+        - [Retrieving data](#retrieving-data)
       - [Destroying session](#destroying-session)
     - [cookie-parser](#cookie-parser)
 
@@ -786,34 +789,58 @@ module.exports = {
     - `<script src="https://cdn.tailwindcss.com"></script>`
 
 ### [express-session](#table-of-contents)
-Express middleware which manges sessions which is information about a user across multiple requests.
+Express middleware which manges sessions and cookies across multiple requests.
+
 
 - Local Storage and Session Storage are client side storage and used by the font end.
 - Cookies are client side storage, but are used by the server. They are strings and are often used for authentication. 4kbs limit on cookies.
-  - Never store passwords on any client side storage.
-  - Not the same data as a session
-  - Cookies stay on the headers when data is send back and forth.
+  - Cookies are sent in the header of any HTTP requests between the client and server
+  - Cookies belong to each website. If you are on one website, but loading data from another website in that website, then a cookie from the loading website can be stored. When you load data from that website again, that website can know who you are from that cookie.
+    - You visit Website A which is using Advertiser A.
+      - then you load data from Advertiser A's website and gives you a cookie to identify you.
+      - then Website A tells Advertiser A what products you are viewing.
+    - If you go to Website B which is also using Advertiser A
+      - then you load from Advertiser A which identifies you based on your cookie
+      - then Advertiser A can load an ad relating to Website A
+    - In order for this to work there needs to be cross origin requests. Cross origin requests are the server/website telling the client to load some data from another server/website.
+- Sessions are server side storage and are unique for each client.
 
-Sessions are server side storage.
+When a session is created a cookie with that session's id and hash is sent to the client.
+
+#### [Authentication](#table-of-contents)
+  Sessions and cookies are used for authentication.
+
+  Client sends username and password -> Server checks username and password in database -> Server logs in client, creates a new session(user specific data) for them, and sends a cookie with the session id to the client.
+
+  If the user logs out the session is destroyed on the server.
+
+#### [Server Side](#table-of-contents)
 
 ```javascript
 const session = require("express-session")
 
 app.use(session({
-  secret: "secretKey", // Sign the session id. Should be in .env file
-    // Adds salt to the session hash
-  cookie: {
-    maxAge: 24 * 60 * 60 * 1000, // expires after 1 day
-    httpOnly: true,
-    secure: false,
-    sameSite: "strict"
+  secret: "secretKey", // Required. Used to encrypt the session id to prevent others from putting in their own session id into the cookie. This should be put in the .env file.
+    // The secret key is used for message authentication codes(MACs) which prevent the client from changing the message.
+    // On the server: Session ID + Secret Key -> Hash
+    // The client's cookie: Session ID and Hash
+    // When the server receives the cookie: Cookie's Session ID + Secret Key -> Generated Hash. Compares the Generated Hash and the cookie's hash. If they match then the session ID wasn't modified. If they don't then the session id should not be used.
+  cookie: { // Optional. Sets the settings for the session cookie.
+    maxAge: 24 * 60 * 60 * 1000, // Expires after 1 day. In milliseconds. Sets the expiration for the session and the cookie.
+    httpOnly: true, // The cookie is unaccessible to client side JavaScript. Used to prevent XSS.
+    secure: false, // If true then the session is only sent over HTTPS
+    sameSite: "strict" // Can the browser send cookies with cross origin requests
   }
-  resave: false, // Saveback to the session store
-  saveUninitalized: false //
+  resave: false, // Optional. If set to false the session is saved only when modified. Setting it to true maybe useful to reset the expiration date on the session.
+  saveUninitalized: false // Optional. If set to false sessions that aren't initialized aren't saved. Sessions only initialized are saved.
+    // This is useful to only make sessions for users who are logged in.
 }))
 ```
 
-#### [Storing data](#table-of-contents)
+#### [Storing and Retrieving](#table-of-contents)
+express-session stores the session data in the `req.session` object which can be used inside express endpoints.
+
+##### [Storing data](#table-of-contents)
 
 ```javascript
 app.get('/login', (req, res) => {
@@ -823,7 +850,7 @@ app.get('/login', (req, res) => {
 });
 ```
 
-#### [Retrieving data](#table-of-contents)
+##### [Retrieving data](#table-of-contents)
 
 ```javascript
 app.get('/dashboard', (req, res) => {
