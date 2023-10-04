@@ -1,7 +1,7 @@
 [Home](./README.md)
 
 # JavaScript Under the Hood
-Javascript is single threaded language. The thread has a call stack and memory heap. This cheat sheet goes through how those things work.
+Javascript is single threaded language. The thread has a call stack and memory heap. This cheat sheet goes through how those things work and other things on how javascript works under the hood.
 
 ## Table of Contents
 
@@ -9,42 +9,15 @@ Javascript is single threaded language. The thread has a call stack and memory h
 
 - [JavaScript Under the Hood](#javascript-under-the-hood)
   - [Table of Contents](#table-of-contents)
-  - [Question](#question)
-  - [Todo](#todo)
-  - [- call stack](#--call-stack)
   - [LIFO/FIFO](#lifofifo)
   - [Call Stack](#call-stack)
     - [Example 1](#example-1)
     - [Example 2](#example-2)
-  - [Callback Queue](#callback-queue)
-  - [Event Loop](#event-loop)
-  - [Global and Function execution context](#global-and-function-execution-context)
+  - [Callback Queue and Event Loop](#callback-queue-and-event-loop)
+  - [Global and Function Execution Context](#global-and-function-execution-context)
+  - [Use Strick](#use-strick)
 
 <!-- /TOC -->
-
-## Question
-Why can't javascript be multithreaded especially for something like node?
-
-## Todo
-- global execution context and a function execution context
-- When is the function execution context created
-  - When a new function is invoked
-- What is stored in the function execution context
-  - Local variables to that function
-- call stack
-  -
-- callback queue
-- stack vs a queue in terms of LIFO and FIFO
-  - Stack is LIFO
-  - Queue is FIFO
-- Asynchronous code and event loop
-- higher order functions
-- lexical environment
-- encapsulated variables
-- factory function
-- inheritance and composition design
-- 'use strick' in the top of the js file
-
 
 ## [LIFO/FIFO](#table-of-contents)
 **LIFO** - Last in first out.
@@ -58,7 +31,7 @@ Why can't javascript be multithreaded especially for something like node?
 ## [Call Stack](#table-of-contents)
 The call stack is LIFO and is a list of functions that need to be ran. The bottom is always the Global Execution Context.
 
-### Example 1
+### [Example 1](#table-of-contents)
 
 ```javascript
 function first(){console.log("first")}
@@ -75,7 +48,7 @@ third()
 third -> | second     | -> first
          | Global EV  |
 
-### Example 2
+### [Example 2](#table-of-contents)
 When you have functions inside functions it is added to the call stack.
 
 ```javascript
@@ -103,25 +76,29 @@ first()
 | first      |
 | Global EC  |
 
-## Callback Queue
-The callback queue is a queue of functions waiting to be executed.
+## [Callback Queue and Event Loop](#table-of-contents)
+When an `async` function is called it runs synchronously like any other function. If an `await` is encountered, it passes the code to the webAPI or the NodeAPI.
 
-The output of the callback queue goes into the callback stack.
+The webAPIs or the NodeAPIs run in a different threads and are called when async operations need to be performed.
 
-## Event Loop
-Queue of data
-There is a predefined list of events that happen when something happens. Like clicking a button sends a click event and adds that event to the event bus.
+When the async operation finishes, like the timer in `setTimeout` or `fetch` gets back data, the callback function(with async, the code after the await) is added to the callback queue.
 
-Mimics multithreaded behaviro
+The event loop checks if the callback stack is empty. If it is empty it checks for the next callback function in the event queue. It then puts the 
 
-## Global and Function execution context
-- global execution context and a function execution context
+## [Global and Function Execution Context](#table-of-contents)
+The global execution context is the outermost scope in JS.
 
-setTimeout(() -> {
-  console.log("timeer")
-}, 0)
+The function execution context is created when a function is invoked and variables declared in the function can only be used in the function.
 
-console.log("outer")
+## [Use Strick](#table-of-contents)
+Use strick is used to convert bad syntax to errors.
 
-// "outer" will always be printed before the timeout.
-  // This is because the setTimeout is placed on the event loop and waits until all other code is finished.
+To use use strick you can either put `"use strick"` at the top of your js file or put `"use strick"` at the top of functions to just use strick for that function.
+
+- Can't use un-declared variables.
+  - You have ot first create a variable with var, const, or let
+- You can't delete a variable
+  - Ex: `const x = 5; delete x;` will throw an error
+- No duplicate argument names in functions
+- `this` is undefined for functions that aren't methods
+- Can't use `with` or `eval` keyword
