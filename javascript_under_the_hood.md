@@ -19,6 +19,7 @@ Javascript is single threaded language. The thread has a call stack and memory h
   - [Useful terms](#useful-terms)
   - [Closures](#closures)
     - [Var/Let strick question](#varlet-strick-question)
+  - [Big O Notation](#big-o-notation)
 
 <!-- /TOC -->
 
@@ -117,7 +118,7 @@ To use use strick you can either put `"use strick"` at the top of your js file o
 | Higher order functions | Functions with other functions as arguments |
 | Shallow copy           | Pass by reference                           |
 | Deep copy              | Pass by value                               |
-| Lexical Envurornemrn | 
+| Lexical Envurornemrn | |
 
 ## [Closures](#table-of-contents)
 Closures are functions that are returned from another function, that allow you to access private variables in the outer function.
@@ -155,3 +156,19 @@ for(var i = 0; i < 3; i++){
 
 // This will output 3 3 3
 ```
+
+## [Big O Notation](#table-of-contents)
+Because an increasingly complex computer can run any algorithm faster, in order to compare algorithms we use a standard notation called Big O Notation.
+
+Big O Notation removes any constants and only accounts for the number of inputs so you don't have to worry about different computers.
+
+Big O notation uses the syntax of O().
+
+This is the efficiency in order of worst to best when n is very large.
+  - O(n!), O(2^n), O(n^2), O(n log n), O(n), O(log n), O(1)
+
+The Big O of a for loop is O(n)
+
+The Big O of a nested for loop in another for loop is O(n^2)
+
+Big O notation is always the worst case scenario

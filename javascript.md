@@ -207,13 +207,15 @@ console.log(fruits)
 //Outputs: [ "Banana", "Apple", "Mango" ]
 ```
 
-- `.forEach(function)`
+- `.forEach((element, index, array) => {})`
     - Runs the function for each element in the array.
     - The args that forEach passes are value/element, key/index, and array
-- `.map(function)`
+    - You cannot use the keyword `break` in a forEach loop
+    - If you return in a forEach loop it goes to the next iteration. It doesn't return a value
+- `.map((element, index, array) => {})`
     - Performs a function for each element in an array, then stores the returned values in a new array.
     - The args that forEach passes are value/element, key/index, and array
-- `.filter(function(element))`
+- `.filter((element, index, array) => {})`
     - Filter loops through and array and allows you to remove elements
     - If the function returns false for that element then it gets removed.
 
@@ -228,7 +230,7 @@ console.log(numbers)
 
 - `.slice(start, end)` or `.slice(start)`
     - Slices out a piece of an array into a new array without modifying the existing the array.
-- `.reduce((accumulator, item) => {}, startingValue)`
+- `.reduce((accumulator, currentValue, index, array) => {}, startingValue)`
     - Takes an array and reduces it to 1 value
     - The accumulator is set to the startingValue when starting to go through the function.
     - Whatever is returned from the function is what is set to the total for the next iteration
@@ -248,7 +250,7 @@ prices.forEach(price => {
 console.log(totalPrice)
 ```
 
-- `.find(function)`
+- `.find((element, index, array))`
     - Used to find the first element that satisfies the given function.
 - `.sort((a, b) => a - b)`
     - If the function returns a negative number "a" is sorted before "b"

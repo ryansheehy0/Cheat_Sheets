@@ -27,6 +27,7 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
         - [Make Files](./make_files.md)
         - [C](./c.md)
     - Algorithms
+        - [Search Algorithms](./search_algorithms.md)
         - [Machine Learning](./Machine_Learning/machine_learning.md)
         - [Memory Managed Hash Table](./memory_managed_hash_table.md)
 - Math
