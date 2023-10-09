@@ -129,3 +129,5 @@ function test(arg1, {optional1 = 1, optional2 = 2} = {}) {
 }
 ```
 
+
+Pre-defined fixed lengths of data(stack) over dynamic memory(heap). The edge case for what if the data goes over the fixed length always has to be considered.
