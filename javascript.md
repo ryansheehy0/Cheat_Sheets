@@ -334,6 +334,14 @@ const func_name4 = (...args) => {
 }
 ```
 
+You can put default arguments into function
+
+```javascript
+function func_name(array = [], max = Math.max(...arg1)){
+    // Default arguments
+}
+```
+
 ### [This Keyword](#table-of-contents)
 
 ```javascript

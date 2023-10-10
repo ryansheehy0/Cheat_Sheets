@@ -93,6 +93,7 @@ Divides input into 2 categories. Sorted and unsorted region. Takes one elements 
 O(n^2)
 
 ## Comparison
+A comparison sorting algorithm compares two at a time using either < or > operators.
 
 ### Quick Sort
 Quicksort defines a pivot(usually at the end) and sorts the array so that elements to the left are less than the pivot and elements to the right are greater than the pivot. This is then done recursively to the left and right sides until there is no longer anything to sort.
@@ -173,10 +174,52 @@ O(n log n)
 ## Linear
 
 ### Radix Sort
+
 O(n)
 
 ### Counting Sort
+The count sort algorithm goes through the input and counts how many of a digit there are and then reconstructs the sorted array from that count.
+- O(n)
+- This sorting algorithm is best when the range is known before hand and the difference between each element isn't great
+
+
+The input is [1, 0, 2, 2, 4, 1]
+The range is between 0 and 4
+Go through one element at a time
+Count array:   [1, 2, 2, 0, 1]
+Number counted: 0  1  2  3  4
+Output: [0, 1, 1, 2, 3, 4]
+
+```javascript
+const input = [1, 0, 2, 2, 4, 1]
+
+function arrayWithZeros(length){
+  let array = []
+  for(let i = 0; i < length; i++){
+    array.push(0)
+  }
+  return array
+}
+
+function countingSort(input, min = Math.min(...input), max = Math.max(...input)){
+  let countArray = new Array(max - min)
+  // Set the count array
+  input.forEach(ele => {
+    countArray[ele - min]++
+  })
+  // Construct output array from the count array
+  let outputArray = new Array(input.length)
+  countArray.forEach((ele, index) => {
+    for(let i = 0; i < ele; i++){
+      outputArray[ian] =WithZeros index + m + 1in
+    }
+  })
+  return outputArray
+}
+
+console.log(countingSort(input, 0, 4))
+```
 
 ## Hybrid
-
+.push()
 ## Tim Sort
