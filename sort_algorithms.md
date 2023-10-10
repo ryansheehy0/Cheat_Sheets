@@ -95,7 +95,73 @@ O(n^2)
 ## Comparison
 
 ### Quick Sort
-O(n log n)
+Quicksort defines a pivot(usually at the end) and sorts the array so that elements to the left are less than the pivot and elements to the right are greater than the pivot. This is then done recursively to the left and right sides until there is no longer anything to sort.
+- O(n log n)
+- Worst case: O(n^2)
+- Memory usage: O(log n) due to recursion
+
+input is [4, 1, 2, 5, 3]
+Pivot is the last element(3). i is -1 and j is 0
+Is 4(input[j]) less than 3(input[pivot])
+  No so increment j(1)
+Is 1 less than 3
+  Yes so increment i(0)
+  Swap 4(input[i]) and 1(input[j])
+  Increment j(2)
+[1, 4, 2, 5, 3]
+Is 2 less than 3
+  Yes so increment i(1)
+  Swap 4 and 2
+  Increment j(3)
+[1, 2, 4, 5, 3]
+Is 5 less than 3
+  No so increment j(4)
+J is the same location as the pivot
+  so place 3 at input[i+1]
+[1, 2, 3, 4, 5]
+Recursively apply the quick sort algorithm to the left([1, 2]) and right([4, 5]) sides of the pivot
+  Do this until there is only one element
+
+```javascript
+const input = [4, 1, 2, 5, 3]
+
+function quickSort(input){
+  if(input.length === 1 || input.length === 0) return input // Recursion end case
+
+  let i = -1
+  let j = 0
+  const lastIndex = input.length - 1
+  const pivot = input[lastIndex] // Pass by value
+  while(j !== lastIndex){
+    if(input[j] < pivot){
+      i++
+      // swap
+      const temp = input[j]
+      input[j] = input[i]
+      input[i] = temp
+    }
+    j++
+  }
+  i++
+  // place pivot
+  input.splice(i, 0, pivot) // insert pivot at i
+  input.length-- // remove last element
+  // Quick sort left and right
+  const leftArray = input.slice(0, i)
+  const rightArray = input.slice(i+1, input.length)
+  const sortedLeftArray = [...quickSort(leftArray)] // Pass by value
+  const sortedRightArray = [...quickSort(rightArray)] // Pass by value
+
+    // Replace left array
+  input.splice(0, leftArray.length, ...sortedLeftArray)
+    // Replace right array
+  input.splice(i+1, rightArray.length, ...sortedRightArray)
+
+  return input
+}
+
+console.log(quickSort(input))
+```
 
 ### Shell Sort
 O(n log n)

@@ -43,6 +43,9 @@ JavaScript is the only language that can be run in the browser.
     - [Event Handling](#event-handling)
       - [Commonly Used Events](#commonly-used-events)
       - [Default Events](#default-events)
+      - [Custom Events](#custom-events)
+        - [Sending Custom Event](#sending-custom-event)
+        - [Receiving Custom Event](#receiving-custom-event)
     - [Traversing the DOM](#traversing-the-dom)
   - [This](#this)
   - [Timing](#timing)
@@ -56,6 +59,7 @@ JavaScript is the only language that can be run in the browser.
   - [Object Oriented](#object-oriented)
     - [Class Constructors](#class-constructors)
     - [Prototype](#prototype)
+  - [Debugging](#debugging)
 
 <!-- /TOC -->
 
@@ -71,7 +75,7 @@ JavaScript is the only language that can be run in the browser.
 
 ## [Primitive Data Types](#table-of-contents)
 - Dynamically typed. A variable can be assigned to multiple types.
-- By default all objects and array are pass by reference. In order to do a pass by value you have to use the spread operator.`[...array]`
+- By default all objects and array are pass by reference. In order to do a pass by value you have to use the spread operator.`[...array]`. However, getting one element is pass by value. `array[0]` is pass by value.
 - `typeof operand` can be used to get a string of the type
     - undefined
         - Is an uninitialized value
@@ -230,6 +234,7 @@ console.log(numbers)
 
 - `.slice(start, end)` or `.slice(start)`
     - Slices out a piece of an array into a new array without modifying the existing the array.
+    - Start is inclusive while end is exclusive. `array.slice(0, array.length)` selects the whole array.
 - `.reduce((accumulator, currentValue, index, array) => {}, startingValue)`
     - Takes an array and reduces it to 1 value
     - The accumulator is set to the startingValue when starting to go through the function.
@@ -579,7 +584,7 @@ console.log(obj) // "first name": "Ryan", "last name": "Mr. Sheehy"
 ```javascript
 const numbersOne = [1, 2, 3]
 const numbersTwo = [4, 5, 6]
-const numbersCombined = [...numbersOne, ...numbersTwo]
+const numbersCombined = [...numbersOne, ...numbersTwo] // [1, 2, 3, 4, 5, 6]
 
 const numbers = [1, 2, 3, 4, 5, 6]
 const [one, two, ...rest] = numbers
@@ -849,6 +854,28 @@ The selector in querySelector cannot start with a number therefore ids and class
     - Clears form inputs
     - Changes URL
 
+#### [Custom Events](#table-of-contents)
+
+##### [Sending Custom Event](#table-of-contents)
+
+```javascript
+const customEvent = new CustomEvent("customEvent", {
+    detail: {
+        key: "value"
+    }
+})
+
+document.dispatchEvent(customEvent)
+```
+
+##### [Receiving Custom Event](#table-of-contents)
+
+```javascript
+document.addEventListener("customEvent", (event) => {
+    console.log(event.detail.key)
+})
+```
+
 ### [Traversing the DOM](#table-of-contents)
 
 |                         |                                                            |
@@ -1055,3 +1082,6 @@ Adds a variable or function to a class or constructor function.
 - All objects of Car, even the ones created in the past, get access to this method.
 
 This can be used to have inheritance with constructor functions.
+
+## [Debugging](#table-of-contents)
+Just put `debugger` in your js code and in your inspect element it should allow you to debug

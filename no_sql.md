@@ -14,6 +14,9 @@ No SQL databases are typically used for unstructured or semi-structured data. Th
     - [Schema](#schema)
     - [Create](#create)
     - [Get](#get)
+      - [Find by field](#find-by-field)
+      - [[]](#)
+      - [Aggregate](#aggregate)
     - [Edit](#edit)
     - [Delete](#delete)
 
@@ -105,16 +108,70 @@ BSON Supports the data types String, Boolean, Number(Integer, Float, Long, Decim
 - What does the required function do?
 - How can you change your schema in MongoDB
 - Can you use a SQL like database in MongoDB
+- How to do CRED operations outside of schema
 
 ### [Create](#table-of-contents)
 
 ```javascript
+const Schema = require("../models/schema")
+
+router.get("/", async (req, res) => {
+  const schema = new Schema({
+    email: "ryansheehy0@gmail.com",
+    firstName: "ryan",
+    lastName: "sheehy",
+    age: 21,
+  })
+  try{
+    const newSchema = await schema.save()
+    res.status(201).json(data)
+  }catch(error){
+    res.status(400).json({error})
+  }
+})
 ```
 
 ### [Get](#table-of-contents)
 
 ```javascript
+const Schema = require("../models/schema")
+
+router.get("/", async (req, res) => {
+  try{
+    const data = Schema.find()
+    res.json(data)
+  }catch(error){
+    res.send(500)
+  }
+})
 ```
+
+| Method                 | Description                                                       |
+|------------------------|-------------------------------------------------------------------|
+| .find()                | Find documents with the fields                                    |
+| .findOne()             | Find the first document with the field                            |
+| .findById(docIdString) | Find document by id string                                        |
+| .aggregate()           | Advanced querying and aggregation operations                      |
+| .count()               | Count the number of documents with the query                      |
+| .distinct()            | Returns an array of distinct values for a specified field         |
+| .limit(number)         | Limits the number of documents returned                           |
+| .sort({field: "asc"})  | Sort in "ascending"/"asc"/1 order or "descending"/"desc"/-1 order |
+| .skip(number)          | Skips a number of documents in a query                            |
+
+#### [Find by field](#table-of-contents)
+
+```javascript
+.find({key: "value"})
+```
+
+#### []
+
+#### [Aggregate](#table-of-contents)
+
+```javascript
+
+```
+
 
 ### [Edit](#table-of-contents)
 
