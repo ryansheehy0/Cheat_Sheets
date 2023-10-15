@@ -779,6 +779,13 @@ The `window` is an object that have internal functions and data that can be acce
 
 The selector in querySelector cannot start with a number therefore ids and classes should preferably start with letters.
 
+You can use `:scope` to reference the current element that you are querying on
+
+```javascript
+const div = document.querySelector("div")
+const divDirectChild = div.querySelectorAll(":scope > *") // Gets any direct children of the div
+```
+
 ### [Modifying Elements](#table-of-contents)
 
 |                                            |                                                                           |

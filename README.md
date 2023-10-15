@@ -10,16 +10,17 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
         - [Regex](./regex.md)
         - [Deploying Websites](./deploying_websites.md)
         - [Linux](./linux.md)
-        - [SQL](./sql.md)
         - [OOP](./oop.md)
-        - [ORMs](./orm.md)
-        - [jQuery](./jquery.md)
-        - [Javascript Under the Hood](./javascript_under_the_hood.md)
     - HTML/CSS/JS
         - [HTML](./html.md)
         - [CSS](./css.md)
         - [JavaScript](./javascript.md)
+            - [jQuery](./jquery.md)
+            - [Javascript Under the Hood](./javascript_under_the_hood.md)
         - [NodeJS](./nodejs.md)
+            - [SQL](./sql.md)
+            - [ORMs](./orm.md)
+            - [No SQL](./no_sql.md)
     - Android
         - [XML](./xml.md)
         - [Android](./android.md)
@@ -28,6 +29,7 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
         - [C](./c.md)
     - Algorithms
         - [Search Algorithms](./search_algorithms.md)
+        - [Sort Algorithms](./sort_algorithms.md)
         - [Machine Learning](./Machine_Learning/machine_learning.md)
         - [Memory Managed Hash Table](./memory_managed_hash_table.md)
 - Math
