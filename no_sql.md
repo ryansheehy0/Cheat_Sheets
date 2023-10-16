@@ -32,13 +32,15 @@ There are 4 main types of no sql databases
   - [Mongoose](#mongoose)
     - [Connecting](#connecting)
     - [Schema and Model](#schema-and-model)
-    - [CRUD](#crud)
-      - [Create](#create)
-      - [Read](#read)
+    - [Mongoose CRUD](#mongoose-crud)
+      - [Mongoose Create](#mongoose-create)
+      - [Mongoose Read](#mongoose-read)
         - [Aggregate](#aggregate)
-      - [Update](#update)
+      - [Mongoose Update](#mongoose-update)
       - [Delete](#delete)
-    - [Instance Methods](#instance-methods)
+    - [Instance Methods/Virtuals](#instance-methodsvirtuals)
+      - [Instance Methods](#instance-methods)
+      - [Virtuals](#virtuals)
     - [Embedded Documents](#embedded-documents)
 
 <!-- /TOC -->
@@ -282,6 +284,7 @@ A model is a constructor function that is used to create, read, update, and dele
 
 ```javascript
 const mongoose = require("mongoose")
+const EmbeddedDoc = require("./embeddedDoc") // This is the exported model
 
 const schema = new mongoose.Schema({
   email: {
@@ -289,7 +292,9 @@ const schema = new mongoose.Schema({
     required: true,
     unique: true,
     alias: "username", // Alternate name for the property
-    immutable: true // Property is read only
+    immutable: true, // Property is read only
+    trimmed: true, // Trims leading and trailing whitespace
+    maxLength: 280,
   },
   role: {
     type: String,
@@ -322,12 +327,13 @@ const schema = new mongoose.Schema({
       message: "Age must be at least 18."
     }
   },
-  partner: {
+  partner: { // Creating a reference to another Model
     type: mongoose.Schema.Types.ObjectId,
     ref: "User", // References the "User" model
     select: false, // Property isn't included in query by default
   },
-  lastAccessed: {
+  embeddedDoc: EmbeddedDoc.Schema, // This is creating an embedded document(object) which is different from a ref.
+  createdAt: {
     type: Date,
     default: Date.now
   }
@@ -347,10 +353,10 @@ module.exports = { ModelName };
 
 BSON Supports the data types String, Boolean, Number(Integer, Float, Long, Decimal128, ...), Array, null, Date, BinData
 
-### [CRUD](#table-of-contents)
+### [Mongoose CRUD](#table-of-contents)
 https://mongoosejs.com/docs/queries.html
 
-#### [Create](#table-of-contents)
+#### [Mongoose Create](#table-of-contents)
 Create a new document from a model
 
 ```javascript
@@ -382,7 +388,7 @@ const newDoc = await ModelInstance.insertMany({
 newDoc.save()
 ```
 
-#### [Read](#table-of-contents)
+#### [Mongoose Read](#table-of-contents)
 
 ```javascript
 ModelInstance.find({}) // Finds all the documents that follow that schema
@@ -453,7 +459,7 @@ const pipeline = [{
 { "_id": "Marketing", "totalEmployees": 1, "averageSalary": 60000 }
 ```
 
-#### [Update](#table-of-contents)
+#### [Mongoose Update](#table-of-contents)
 
 ```javascript
 const filter = { name: "Ryan Sheehy"} // Get documents with name being Ryan Sheehy
@@ -465,7 +471,7 @@ Model.findOneAndUpdate(filter, update) // Returns the updated document
 Model.updateMany(filter, update)
 ```
 
-#### [Delete](#table-of-contents)
+#### [Mongoose Delete](#table-of-contents)
 
 ```javascript
 Model.deleteMany(filter)
@@ -473,10 +479,10 @@ Model.deleteMany(filter)
 Model.deleteOne(filter)
 ```
 
-### [Instance Methods](#table-of-contents)
-Instance methods are methods that belong to the schema and are used to perform certain functions.
+### [Instance Methods/Virtuals](#table-of-contents)
 
-// List out the most common instance methods
+#### [Instance Methods](#table-of-contents)
+Instance methods are methods that belong to the schema and are used to perform certain functions.
 
 In your schema
 ```javascript
@@ -498,6 +504,26 @@ docName.newCustomMethod() // ryan sheehy
 docName.get("key") // Gets the value fo the key
   // or
 docName.get("key", String) // Gets the value fo the key as a string
+```
+
+#### [Virtuals](#table-of-contents)
+Virtuals are like instance methods, but they are treated like any other value in the model. They aren't stored in the database, but are instead calculated when the virtual is called.
+
+In your schema
+```javascript
+schema.virtual("newCustomVirtual").get(() => {
+  return `${this.firstName} ${this.lastName}`
+})
+```
+
+```javascript
+const docName = new Model({
+  email: "ryansheehy0@gmail.com",
+  firstName: "ryan",
+  lastName: "sheehy"
+})
+
+console.log(docName.newCustomVirtual) // ryan sheehy
 ```
 
 ### [Embedded Documents](#table-of-contents)
