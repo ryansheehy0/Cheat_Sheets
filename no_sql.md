@@ -37,11 +37,11 @@ There are 4 main types of no sql databases
       - [Mongoose Read](#mongoose-read)
         - [Aggregate](#aggregate)
       - [Mongoose Update](#mongoose-update)
-      - [Delete](#delete)
+      - [Mongoose Delete](#mongoose-delete)
     - [Instance Methods/Virtuals](#instance-methodsvirtuals)
       - [Instance Methods](#instance-methods)
       - [Virtuals](#virtuals)
-    - [Embedded Documents](#embedded-documents)
+    - [Mongoose Embedded Documents](#mongoose-embedded-documents)
 
 <!-- /TOC -->
 
@@ -106,7 +106,7 @@ The `ObjectId()` function ensures that the id is unique across the whole DB.
 The id created by ObjectId has a timestamp associated with it.
 
 ```javascript
-const documentId = new ObjectId("unique id string")
+const documentId = new mongoose.Types.ObjectId("unique id string")
 const documentTimestamp = documentId.getTimestamp() // YYYY-MM-DD HH:mm:ss
 ```
 
@@ -116,6 +116,7 @@ const documentTimestamp = documentId.getTimestamp() // YYYY-MM-DD HH:mm:ss
 const { MongoClient, ObjectId } = require("mongodb")
 const seedData = require("./seed")
 
+// Might be process.env.MONGODB_URI
 const databaseUrl = "mongodb://localhost:27017" // Default local port of mongoDB. usually a .env variable
 const client = new MongoClient(databaseUrl)
 let db
@@ -165,7 +166,7 @@ db.collection("collectionName")
 
 // You can use this to find by an id or you can use .findById
 db.collection("collectionName")
-  .find({_id: new ObjectId("unique id string")})
+  .find({_id: new mongooseObjectId("unique id string")})
   .toArray()
   .then(results => console.log(results))
   .catch(err => console.error(err))
@@ -174,7 +175,7 @@ db.collection("collectionName")
 ### [Update](#table-of-contents)
 
 ```javascript
-const filter = { _id: new ObjectId('unique id string') } // Chooses which document
+const filter = { _id: new mongoose.Types.ObjectId('unique id string') } // Chooses which document
 const update = { $set: { name: 'New Name', age: 31 } } // The $set allows you to update specific keys in the document without effecting the others.
 
 db.collection("collectionName").updateOne(filter, update);
@@ -194,7 +195,7 @@ db.collection("collectionName").updateOne(filter, update);
 ### [Delete](#table-of-contents)
 
 ```javascript
-db.collection("collectionName").deleteOne({_id: new ObjectId("unique id string")})
+db.collection("collectionName").deleteOne({_id: new mongoose.Types.ObjectId("unique id string")})
   .then(results => console.log(results))
   .catch(err => console.error(err))
 
@@ -336,6 +337,15 @@ const schema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now
+  },
+  id: {
+    type: mongoose.Schema.Type.ObjectId,
+    default: new mongoose.Types.ObjectId()
+  }
+},
+{
+  toJSON: {
+    virtuals: true, // Allow for virtuals
   }
 })
 
@@ -407,7 +417,8 @@ ModelInstance.find({key: "value"}) // Finds all documents that have the key that
 | .limit(number)         | Limits the number of documents returned                           |
 | .sort({field: "asc"})  | Sort in "ascending"/"asc"/1 order or "descending"/"desc"/-1 order |
 | .skip(number)          | Skips a number of documents in a query                            |
-| .exec()                | Used to convert the other methods to return a promise            |
+| .exec()                | Used to convert the other methods to return a promise             |
+| .populate("key")       | key is a reference to a Model then it populates it.               |
 
 ```javascript
 const query = Model.find({key: "value"})
@@ -466,7 +477,7 @@ const filter = { name: "Ryan Sheehy"} // Get documents with name being Ryan Shee
 const update = { age: 22 } // Updates the age in those documents to 22
 
 Model.updateOne(filter, update) // Only returns success or failure
-Model.findOneAndUpdate(filter, update) // Returns the updated document
+Model.findOneAndUpdate(filter, update, { new: true }) // Returns the updated document
 
 Model.updateMany(filter, update)
 ```
@@ -477,6 +488,7 @@ Model.updateMany(filter, update)
 Model.deleteMany(filter)
 
 Model.deleteOne(filter)
+Model.findOneAndDelete(filter, { new: true })
 ```
 
 ### [Instance Methods/Virtuals](#table-of-contents)
@@ -511,7 +523,7 @@ Virtuals are like instance methods, but they are treated like any other value in
 
 In your schema
 ```javascript
-schema.virtual("newCustomVirtual").get(() => {
+schema.virtual("newCustomVirtual").get(function(){
   return `${this.firstName} ${this.lastName}`
 })
 ```
@@ -526,7 +538,7 @@ const docName = new Model({
 console.log(docName.newCustomVirtual) // ryan sheehy
 ```
 
-### [Embedded Documents](#table-of-contents)
+### [Mongoose Embedded Documents](#table-of-contents)
 Schema for nested objects.
 
 ```javascript

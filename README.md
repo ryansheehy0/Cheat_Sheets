@@ -38,6 +38,7 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
     - [Gradient Descent](./Machine_Learning/Gradient_Descent/gradient_descent.md)
     - [Matrices](./matrices.md)
     - [Probabilities](./Probability/probability.md)
+    - [Basic Graphing](./basic_graphing.md)
 - Physics/EE
     - [Logic Gate Electronic Speed Controller](./Logic_Gate_Electronic_Speed_Controller/logic_gate_electronic_speed_controller.md)
 
