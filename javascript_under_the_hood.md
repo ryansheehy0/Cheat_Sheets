@@ -20,6 +20,10 @@ Javascript is single threaded language. The thread has a call stack and memory h
   - [Closures](#closures)
     - [Var/Let strick question](#varlet-strick-question)
   - [Big O Notation](#big-o-notation)
+  - [Progressive Web AppsPWA](#progressive-web-appspwa)
+  - [Webpack](#webpack)
+    - [Babel](#babel)
+  - [Lighthouse](#lighthouse)
 
 <!-- /TOC -->
 
@@ -48,7 +52,7 @@ third()
 ```
 
          | Call Stack |
-         |------------|
+---------|------------|---------
 third -> | second     | -> first
          | Global EV  |
 
@@ -118,7 +122,7 @@ To use use strick you can either put `"use strick"` at the top of your js file o
 | Higher order functions | Functions with other functions as arguments |
 | Shallow copy           | Pass by reference                           |
 | Deep copy              | Pass by value                               |
-| Lexical Envurornemrn | |
+| Lexical Envurornemrn   |                                             |
 
 ## [Closures](#table-of-contents)
 Closures are functions that are returned from another function, that allow you to access private variables in the outer function.
@@ -172,3 +176,115 @@ The Big O of a for loop is O(n)
 The Big O of a nested for loop in another for loop is O(n^2)
 
 Big O notation is always the worst case scenario
+
+## [Progressive Web Apps(PWA)](#table-of-contents)
+A progressive web app(PWA) is a web application that performs like a native app.
+- Installable on the device
+  - Run in a headless browser
+- Can work offline
+- Can have a splash screen
+- Secure(HTTPS)
+- Assets are downloaded and bundled which often leads to faster performance.
+- Allows for push notifications
+
+Need to research
+- manifest.json
+  - The settings for you PWA
+  - Needs maskable icon
+- service worker
+  - Thread that works in the background. Caching, background sync, push notifications.
+- client side database
+
+## [Webpack](#table-of-contents)
+Webpack is a bundler that takes your javascript, css, images, etc and bundles them into 1 file or multiple files.
+
+Webpack supports
+- importing and exporting
+  - Don't have to put scripts in your html in a specific order. Just have to link the bundled js file in your html
+- Removes unused code
+  - Like duplications in node modules
+
+NPM installs
+- `npm install webpack webpack-cli style-loader css-loader html-webpack-plugin webpack-dev-server --save-dev`
+
+webpack.config.js
+
+```javascript
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path')
+
+module.exports = {
+  mode: 'development',
+  entry: './src/js/index.js', // Look first to build out the bundle
+  devServer: {
+    hot: 'only' // use the hot module reloading api
+  },
+  output: {
+    filename: 'bundle.js', // Output js file name
+    path: path.resolve(__dirname, 'dist'), // Path where to to output. Using file called dist
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './index.html', // Optional. Name of outputted html file
+    })
+  ],
+  module: {
+    rules: [
+      {
+        test: /\.css$/i, // Looks for .css files
+        use: ['style-loader', 'css-loader'], // Libraries for embeding css in html
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+      },
+    ],
+  },
+}
+```
+
+You don't need to include your css or js in your html.
+
+Run `npm run build` or `npx webpack` in order to build the webpack with your webpack,.
+
+To allow for hot module reloading(HMR), reloading on save including the webpage, add `"dev": "webpack-dev-server --open"` in your package.json under scripts. Then run `npm run dev`
+
+In your main js file add this code at the bottom
+
+```javascript
+if(module.hot){
+  module.hot.accept((err) => {
+    if(err){
+      console.error("Cannot apply HMR update.", err)
+    }
+  })
+}
+```
+
+### [Babel](#table-of-contents)
+Convert ES6 to ES5
+
+Allows modern js to be able to run on old browsers.
+
+`npm install babel-loader @babel/core @babel/preset-env --save-dev`
+
+Add to rules in the webpack.config.js
+
+```javascript
+    {
+      test: /\.m?js$/,
+      exclude: /(node_modules|bower_components)/,
+      use: {
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env']
+        }
+      }
+    },
+```
+
+## [Lighthouse](#table-of-contents)
+Test the performance, accessability, SEO, and other things for your web app.
+
+Inspect element and Lighthouse tab.
+
