@@ -20,7 +20,7 @@ Javascript is single threaded language. The thread has a call stack and memory h
   - [Closures](#closures)
     - [Var/Let strick question](#varlet-strick-question)
   - [Big O Notation](#big-o-notation)
-  - [Progressive Web AppsPWA](#progressive-web-appspwa)
+  - [Progressive Web AppsPWAs](#progressive-web-appspwas)
     - [Manifest](#manifest)
     - [Service worker](#service-worker)
       - [Push notifications](#push-notifications)
@@ -182,7 +182,7 @@ The Big O of a nested for loop in another for loop is O(n^2)
 
 Big O notation is always the worst case scenario
 
-## [Progressive Web Apps(PWA)](#table-of-contents)
+## [Progressive Web Apps (PWAs)](#table-of-contents)
 A progressive web app(PWA) is a web application that performs like a native app.
 - Installable on the device
   - Run in a headless browser
@@ -449,7 +449,7 @@ Inside webpack.config.js
 
 // Inside plugins. Instead of new WorkboxPlugin.GenerateSW
   new WorkboxPlugin.InjectManifest({
-    swSrc: './src/sw.js',
+    swSrc: './src/sw.js', // Your custom service worker code
     swDest: 'service-worker.js',
   }),
 ```
@@ -482,13 +482,14 @@ Scripts
 
 ```javascript
 {
-  "name": "13-ins_client-server",
+  "name": "Project Name",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "concurrently \"cd client && npm run build\" \"cd server && npm run server\" ",
-    "server": "cd server && npm run server",
+    "start:dev": "concurrently \"cd client && npm run build\" \"cd server && npm run server\" ",
+    "start": "npm run build && cd server && node server.js",
+    "server": "cd server node server.js --ignore client",
     "build": "cd client && npm run build",
     "install": "cd server && npm i && cd ../client && npm i",
     "client": "cd client && npm start"

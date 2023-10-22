@@ -20,6 +20,7 @@ JavaScript is the only language that can be run in the browser.
   - [Switch Block](#switch-block)
   - [Functions](#functions)
     - [This Keyword](#this-keyword)
+  - [Logical Or for Fallbacks](#logical-or-for-fallbacks)
   - [Useful Functions](#useful-functions)
     - [Fetch](#fetch)
       - [Optional Fetch Argument](#optional-fetch-argument)
@@ -31,7 +32,7 @@ JavaScript is the only language that can be run in the browser.
   - [Template Literals](#template-literals)
   - [Import and Export](#import-and-export)
   - [Errors](#errors)
-    - [Error Handling](#error-handling)
+    - [Error Handling/Try Catch](#error-handlingtry-catch)
     - [Throwing Errors](#throwing-errors)
   - [Promises](#promises)
   - [Async/Await](#asyncawait)
@@ -385,6 +386,20 @@ The function keyword inherits `this` when it is called.
 })()
 ```
 
+## [Logical Or for Fallbacks](#table-of-contents)
+You can have fallback values incase your first value is falsy(null, undefined, 0, empty string, etc).
+
+```javascript
+// Setting a variable
+const variable = A || B || C
+// Arguments into functions
+func(A || B || C)
+/*
+If A is falsy then use B
+If B is falsy then use C
+*/
+```
+
 ## [Useful Functions](#table-of-contents)
 
 |                                          |                                                                                   |
@@ -662,7 +677,7 @@ window.test()
 
 ## [Errors](#table-of-contents)
 
-### [Error Handling](#table-of-contents)
+### [Error Handling/Try Catch](#table-of-contents)
 Error handling is used to keep the code running even when there is an error.
 
 ```javascript
