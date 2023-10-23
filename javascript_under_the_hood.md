@@ -20,13 +20,14 @@ Javascript is single threaded language. The thread has a call stack and memory h
   - [Closures](#closures)
     - [Var/Let strick question](#varlet-strick-question)
   - [Big O Notation](#big-o-notation)
-  - [Progressive Web AppsPWAs](#progressive-web-appspwas)
+  - [Progressive Web Apps PWAs](#progressive-web-apps-pwas)
     - [Manifest](#manifest)
     - [Service worker](#service-worker)
       - [Push notifications](#push-notifications)
   - [Webpack](#webpack)
     - [Babel](#babel)
     - [Inject Manifest](#inject-manifest)
+    - [Importing and Exporting](#importing-and-exporting)
   - [Lighthouse](#lighthouse)
   - [Client-Server Folder Layout](#client-server-folder-layout)
 
@@ -446,12 +447,28 @@ It uses the same `workbox-webpack-plugin` npm package
 Inside webpack.config.js
 
 ```javascript
-
 // Inside plugins. Instead of new WorkboxPlugin.GenerateSW
   new WorkboxPlugin.InjectManifest({
     swSrc: './src/sw.js', // Your custom service worker code
     swDest: 'service-worker.js',
   }),
+```
+
+### [Importing and Exporting](#table-of-contents)
+
+```javascript
+// You can either import the defaulted export(without the {}s) or just the exported value(with the {}s)
+import defaultExport from "npmPackage"
+import {regularExport} from "./javascriptFile"
+import {obj: {key1, key2}} from "./anotherJSFile" // dereferencing an object inside an export
+
+// In separate files
+export default function defaultThing(){console.log("default export")}
+export function regularExport(){console.log("regular export")}
+export const obj ={
+  key1: "value1",
+  key2: "value2"
+}
 ```
 
 ## [Lighthouse](#table-of-contents)

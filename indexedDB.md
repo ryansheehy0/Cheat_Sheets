@@ -1,6 +1,6 @@
 [Home](./README.md)
 
-## [IndexedDB/idb](#table-of-contents)
+# IndexedDB/idb
 IndexedDB is useful if you need to store large amounts of data on the client side that can quickly be retrieved.
 
 IndexedDB is a NoSQL database that stores data in object stores in a binary format for efficiency. There is no inbuilt functionality for schemas.
@@ -27,17 +27,16 @@ IDB is a library that makes it easier to work with indexedDB. Instead of callbac
 <!-- TOC -->
 
 - [IndexedDB/idb](#indexeddbidb)
-- [Table of Contents](#table-of-contents)
-- [Initializing DB](#initializing-db)
-  - [IndexedDB initializing](#indexeddb-initializing)
-  - [idb initializing](#idb-initializing)
-- [CRUD Operations](#crud-operations)
-  - [IndexedDB/idb Create/Add](#indexeddbidb-createadd)
-  - [Read/Get](#readget)
-    - [IndexedDB Read/Get](#indexeddb-readget)
-    - [idb Read/Get](#idb-readget)
-- [Creating Indexes](#creating-indexes)
-  - [idb Get/Read with index](#idb-getread-with-index)
+  - [Table of Contents](#table-of-contents)
+  - [Initializing DB](#initializing-db)
+    - [IndexedDB initializing](#indexeddb-initializing)
+    - [idb initializing](#idb-initializing)
+  - [CRUD Operations](#crud-operations)
+    - [Seeding data](#seeding-data)
+    - [IndexedDB CRUD](#indexeddb-crud)
+    - [idb CRUD](#idb-crud)
+  - [Indexes](#indexes)
+  - [Cursor](#cursor)
 
 <!-- /TOC -->
 
@@ -72,13 +71,7 @@ request.onupgradeneeded = function(){
   // Define a new object store in the indexedDB
   const objectStoreName = "FictionalBooks"
   const primaryKey = "ISBN"
-  const fictionalBooks = db.createObjectStore(objectStoreName, { keyPath: primaryKey }) // You can have the optional ,autoIncrement: true
-
-  const indexName = "AuthorIndex"
-  const keyName = "Author"
-  fictionalBooks.createIndex(indexName, keyName)
-
-  seed(db)
+  const fictionalBooks = db.createObjectStore(objectStoreName, { keyPath: primaryKey }) // You can have the optional ,autoIncrement: true to automatically increment the primaryKey
 }
 ```
 
@@ -96,7 +89,6 @@ function initDB(){
       if(!db.objectStoreNames.contains(objectStoreName)){
         db.createObjectStore(objectStoreName, { keyPath: "ISBN"})
       }
-      seed(db)
     }
   })
 }
@@ -104,104 +96,144 @@ function initDB(){
 
 ## [CRUD Operations](#table-of-contents)
 
-### [IndexedDB/idb Create/Add](#table-of-contents)
+| Method Name               | Description                                               |
+|---------------------------|-----------------------------------------------------------|
+| .add(object)              | Adds a new object to the object store.                    |
+| .get(primary key)         | Gets object from the object store or index.               |
+| .getAll()                 | Gets all the objects in the object store.                 |
+| .put(object, primary key) | Replaces object with the primary key in the object store. |
+| .delete(primary key)      | Deletes object with primary key.                          |
+| .clear()                  | Deletes all objects in object store.                      |
+| .count(query)             | Gets the count of the query                               |
+| .count()                  | Counts all objects in the object store.                   |
+
+You can do `deleteObjectStore("objectStoreName")` to delete object stores.
+
+### [Seeding data](#table-of-contents)
 
 ```javascript
-function seed(db){
-  // Create the transaction
-    const objectStores = "FictionalBooks" // String or an array of strings of all the object stores you want to access with the transaction
-    const mode = "readwrite" // "readonly", "readwrite", or "versionchange". This is optional and the default value is readonly
-  const transaction = db.transaction(objectStores, mode)
+const data = [
+  {
+    ISBN: 9781234567, Title: "Book A", Author: "Author A", Genre: "Sci-Fi"
+  },
+  {
+    ISBN: 9781234568, Title: "Book B", Author: "Author B", Genre: "Fantasy"
+  },
+  {
+    ISBN: 9781234569, Title: "Book C", Author: "Author A", Genre: "Fantasy"
+  },
+]
 
-  // Choose which object store you are going to use with that transaction
-    const objectStoreName = "FictionalBooks"
-  const fictionalBooks = transaction.objectStore(objectStoreName)
-
-  // Make data variable
-  const data = [
-    {
-      ISBN: 9781234567, Title: "Book A", Author: "Author A", Genre: "Sci-Fi"
-    },
-    {
-      ISBN: 9781234568, Title: "Book B", Author: "Author B", Genre: "Fantasy"
-    },
-    {
-      ISBN: 9781234569, Title: "Book C", Author: "Author A", Genre: "Fantasy"
-    },
-  ]
-
-  // Add the data with the object store in the transaction
-  data.forEach(book => {
-    fictionalBooks.add(book)
-  })
-
-  return transaction.complete
-}
+data.forEach(book => {
+  fictionalBooks.add(book) // Adds book object to the fictional books object store
+})
 ```
 
-### [Read/Get](#table-of-contents)
-
-To get an object from its primary key you use the `.get(primaryKey)` method.
-
-To get more complex queries you have to use indexes.
-
-#### [IndexedDB Read/Get](#table-of-contents)
+### [IndexedDB CRUD](#table-of-contents)
+This is the boilerplate code needed to make any CRUD operation
 
 ```javascript
-function get(){
-  // Open the db
-  const request = indexedDB.open("Library", 1)
+// Open the db
+const request = indexedDB.open("Library", 1)
 
-  request.onsuccess = (event) => {
-    const db = event.target.result
-    // Make the transaction
-    const transaction = db.transaction("FictionalBooks")
-    const fictionalBooks = transaction.objectStore("FictionalBooks")
-
-    const bookARequest = fictionalBooks.get(9781234567)
-
-    bookARequest.onsuccess = (event) => {
-      const bookA = event.target.result
-      console.log(bookA)
+// Handle if request what successful. Opened db
+request.onsuccess = function(event){
+  const db = event.target.result
+  // Make the transaction
+  const objectStores = "FictionalBooks" // String or array of strings of object stores
+  const mode = "readwrite" // "readonly", "readwrite", or "versionchange". This is optional and the default value is readonly
+  const transaction = db.transaction(objectStores, mode)
+  // Get object store from transaction
+  const fictionalBooks = transaction.objectStore("FictionalBooks")
+  // Make request for CRUD operation
+  const crudRequest = fictionalBooks.getAll()
+    // Handle if the request succeeded
+    crudRequest.onsuccess = function(event){
+      const books = event.target.result
+      console.log(books)
     }
-
-    bookARequest.oncomplete = () => {
+    // Close db once the request completed
+    crudRequest.oncomplete = () => {
       db.close()
     }
-  }
+}
 
-  request.onerror = (event) => {
-    console.error(`Error opening the database: ${event.target.error}` )
-  }
+// Handle if the request failed. Failed to open db
+request.onerror = (event) => {
+  console.error(`Error opening the database: ${event.target.error}` )
 }
 ```
 
-#### [idb Read/Get](#table-of-contents)
+### [idb CRUD](#table-of-contents)
+This is the boilerplate code needed to make any CRUD operation
 
 ```javascript
 import {openDB} from "idb"
-async function get(){
+
+async function crudOperation(){
   const db = await openDB("Library", 1)
   try{
-    const transaction = db.transaction("FictionalBooks")
+    const transaction = db.transaction("FictionalBooks", "readwrite")
     const fictionalBooks = transaction.objectStore("FictionalBooks")
-    const bookA = await fictionalBooks.get(9781234567)
-    console.log(bookA)
-    const allBooks = await fictionalBooks.getAll()
+    const books = await fictionalBooks.getAll()
+    console.log(books)
   }catch(error){
-    console.error(`An error occured with get: ${error}`)
+    console.error(`An error occurred with get: ${error}`)
   }finally{
     db.close()
   }
 }
 ```
 
-## [Creating Indexes](#table-of-contents)
+Or you can make it a function
 
 ```javascript
-const indexName = "AuthorIndex"
-const keys = "Author" // String or array of strings of the keys that are to be indexed
-objectStore.createIndex(indexName, keys, { unique: false})
+async function(db){
+  try{
+    const transaction = db.transaction("FictionalBooks", "readwrite")
+    const fictionalBooks = transaction.objectStore("FictionalBooks")
+    const books = await fictionalBooks.getAll()
+    console.log(books)
+    return transaction.complete // returns a promise
+  }catch(error){
+    console.error(`An error occurred with get: ${error}`)
+  }
+}
 ```
 
-### [idb Get/Read with index](#table-of-contents)
+## [Indexes](#table-of-contents)
+To get more complex queries you have to use indexes.
+
+```javascript
+// Creating indexes
+const indexName = "AuthorIndex"
+const keys = "Author" // String or array of strings of the keys that are to be indexed
+objectStore.createIndex(indexName, keys, { unique: false }) // Enforces uniqueness for any new objects added to the object store
+
+// Getting indexes
+const index = objectStore.index(indexName)
+
+// Deleting indexes
+objectStore.deleteIndex(indexName)
+```
+
+## [Cursor](#table-of-contents)
+A cursor allows you to iterate over multiple objects in an object store or index.
+
+```javascript
+// The range is optional
+  // Sets the range for what the primary key can be for when the cursor moves
+  let range = IDBKeyRange.bound(100/*lower*/, 200/*upper*/, false/*Optional. Inclusive lower?*/, true/*Optional. Inclusive upper?*/) // The default for inclusive lower and inclusive upper are false
+  range = IDBKeyRange.lowerBound(100)
+  range = IDBKeyRange.upperBound(200)
+  range = IDBKeyRange.only(1) // The cursor can only move between queries where it's primary key is equal to 1
+// The direction is optional
+  const direction = "next" // "nextunique" which moves to the next unique object in an index, "prev", and "prevunique"
+const cursor = await objectStore.openCursor(range, direction)
+
+// Move the cursor
+cursor.continue()
+
+// Delete cursor
+cursor.close()
+```
