@@ -24,9 +24,6 @@ Javascript is single threaded language. The thread has a call stack and memory h
     - [Manifest](#manifest)
     - [Service worker](#service-worker)
       - [Push notifications](#push-notifications)
-  - [Webpack](#webpack)
-    - [Babel](#babel)
-    - [Inject Manifest](#inject-manifest)
     - [Importing and Exporting](#importing-and-exporting)
   - [Lighthouse](#lighthouse)
   - [Client-Server Folder Layout](#client-server-folder-layout)
@@ -245,7 +242,9 @@ The only settings that are required are name and short_name
       "type": "image/png"
     },
     // More icons
+    // SVG icon
   ],
+  "orientation": "portrait", // default orientation for the PWA
   "display": "standalone", // fullscreen(Puts the webapp in fullscreen like a video), standalone(standalone app), minimal-ui(mini ui for controlling navigation), browser(normal browser tab)
   "theme_color": "#4285F4", // The ui color theme of the browser
   "background_color": "#FFFFFF", // Sets the background color of the splash screen
@@ -256,9 +255,24 @@ You have to link the manifest file in your html
 
 `<link rel="manifest" href="/manifest.json">`
 
+You can put the manifest file in the `webpack.config.js` with `npm install webpack-pwa-manifest --save-dev`
+
+```javascript
+const WebpackPwaManifest = require('webpack-pwa-manifest')
+// Put in the plugins array
+  new WebpackPwaManifest({
+    name: "Just Another Text Editor",
+    // More manifest fields
+  })
+```
+
 ### [Service worker](#table-of-contents)
-The service worker is a separate thread that runs in the background which allows for offline functionality, push notification, and background synchronization(app updates even if its not on the screen).
-install activate claim
+The service worker is a separate thread that runs in the background which allows for offline functionality, push notification, and background synchronization(app keeps running even if its not on the screen).
+
+The 3 steps for service worker.
+- Install
+- Activate
+- Claim
 
 In your main js file
 
@@ -335,125 +349,6 @@ self.addEventListener("fetch", event => {
 
 #### [Push notifications](#table-of-contents)
 
-
-## [Webpack](#table-of-contents)
-Webpack is a bundler that takes your javascript, css, images, etc and bundles them into 1 file or multiple files.
-
-Webpack supports
-- importing and exporting
-  - Don't have to put scripts in your html in a specific order. Just have to link the bundled js file in your html
-- Removes unused code
-  - Like duplications in node modules
-
-NPM installs
-- `npm install webpack webpack-cli style-loader css-loader html-webpack-plugin webpack-dev-server mini-css-extract-plugin workbox-webpack-plugin --save-dev`
-
-webpack.config.js
-
-```javascript
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const WorkboxPlugin = require("workbox-webpack-plugin")
-const path = require('path')
-
-module.exports = {
-  mode: 'development',
-  entry: './src/js/index.js', // Look first to build out the bundle
-  devServer: {
-    hot: 'only' // use the hot module reloading api
-  },
-  output: {
-    filename: 'bundle.js', // Output js file name
-    path: path.resolve(__dirname, 'dist'), // Path where to to output. Using file called dist which stands for distribution
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './index.html', // Optional. Name of outputted html file
-    }),
-    new MiniCssExtractPlugin(),
-    new WorkboxPlugin.GenerateSW({
-      // Runtime caching is used to
-        // prevent too much pre-caching which will download a lot of content that the user may never see. This pre-caching may cause things to slow down when they are downloading.
-      exclude: /\.(png|jpg|jpeg|gif)$/, // Don't cache files ending in those extensions
-      runtimeCaching: [{
-        urlPattern: /\.(png|jpg|jpeg|gif)$/,
-        handler: "CacheFirst", // Service worker will look for resource in cache first
-        options: {
-          cacheName: "images-cache",
-        }
-      }]
-    }),
-  ],
-  module: {
-    rules: [
-      {
-        test: /\.css$/i, // Looks for .css files
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
-      },
-      {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: 'asset/resource',
-      },
-    ],
-  },
-}
-```
-
-You don't need to include your css or js in your html.
-
-Run `npm run build` or `npx webpack` in order to build the webpack with your webpack,.
-
-To allow for hot module reloading(HMR), reloading on save including the webpage, add `"dev": "webpack-dev-server --open"` in your package.json under scripts. Then run `npm run dev`
-
-In your main js file add this code at the bottom
-
-```javascript
-if(module.hot){
-  module.hot.accept((err) => {
-    if(err){
-      console.error("Cannot apply HMR update.", err)
-    }
-  })
-}
-```
-
-### [Babel](#table-of-contents)
-Convert ES6 to ES5
-
-Allows modern js to be able to run on old browsers.
-
-`npm install babel-loader @babel/core @babel/preset-env --save-dev`
-
-Add to rules in the webpack.config.js
-
-```javascript
-    {
-      test: /\.m?js$/,
-      exclude: /(node_modules|bower_components)/,
-      use: {
-        loader: 'babel-loader',
-        options: {
-          presets: ['@babel/preset-env']
-        }
-      }
-    },
-```
-
-### [Inject Manifest](#table-of-contents)
-Used to customize the autogenerated service-worker.js more than with GenerateSW.
-
-It uses the same `workbox-webpack-plugin` npm package
-
-Inside webpack.config.js
-
-```javascript
-// Inside plugins. Instead of new WorkboxPlugin.GenerateSW
-  new WorkboxPlugin.InjectManifest({
-    swSrc: './src/sw.js', // Your custom service worker code
-    swDest: 'service-worker.js',
-  }),
-```
-
 ### [Importing and Exporting](#table-of-contents)
 
 ```javascript
@@ -461,6 +356,7 @@ Inside webpack.config.js
 import defaultExport from "npmPackage"
 import {regularExport} from "./javascriptFile"
 import {obj: {key1, key2}} from "./anotherJSFile" // dereferencing an object inside an export
+import "jsFile" // This will just run the jsFile.
 
 // In separate files
 export default function defaultThing(){console.log("default export")}

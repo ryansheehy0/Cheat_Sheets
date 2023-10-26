@@ -19,6 +19,8 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
             - [jQuery](./jquery.md)
             - [Javascript Under the Hood](./javascript_under_the_hood.md)
             - [IndexedDB](./indexedDB.md)
+            - [Webpack](./webpack.md)
+            - [React](./react.md)
         - [NodeJS](./nodejs.md)
             - [SQL](./sql.md)
             - [ORMs](./orm.md)

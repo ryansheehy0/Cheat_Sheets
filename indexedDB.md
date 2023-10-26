@@ -79,7 +79,7 @@ request.onupgradeneeded = function(){
 
 ```javascript
 import {openDB} from "idb"
-function initDB(){
+async function initDB(){
   const dbName = "Library"
   const version = 1
   openDB(dbName, version, {
@@ -87,7 +87,7 @@ function initDB(){
       const objectStoreName = "FictionalBooks"
       // Make sure db doesn't already exist
       if(!db.objectStoreNames.contains(objectStoreName)){
-        db.createObjectStore(objectStoreName, { keyPath: "ISBN"})
+        db.createObjectStore(objectStoreName, { keyPath: "ISBN"/*, autoIncrement: true*/})
       }
     }
   })
@@ -96,16 +96,16 @@ function initDB(){
 
 ## [CRUD Operations](#table-of-contents)
 
-| Method Name               | Description                                               |
-|---------------------------|-----------------------------------------------------------|
-| .add(object)              | Adds a new object to the object store.                    |
-| .get(primary key)         | Gets object from the object store or index.               |
-| .getAll()                 | Gets all the objects in the object store.                 |
-| .put(object, primary key) | Replaces object with the primary key in the object store. |
-| .delete(primary key)      | Deletes object with primary key.                          |
-| .clear()                  | Deletes all objects in object store.                      |
-| .count(query)             | Gets the count of the query                               |
-| .count()                  | Counts all objects in the object store.                   |
+| Method Name                   | Description                                               |
+|-------------------------------|-----------------------------------------------------------|
+| .add(object)                  | Adds a new object to the object store.                    |
+| .get(primary key)             | Gets object from the object store or index.               |
+| .getAll()                     | Gets all the objects in the object store.                 |
+| .put({primaryKey: 1, object}) | Replaces object with the primary key in the object store. |
+| .delete(primary key)          | Deletes object with primary key.                          |
+| .clear()                      | Deletes all objects in object store.                      |
+| .count(query)                 | Gets the count of the query                               |
+| .count()                      | Counts all objects in the object store.                   |
 
 You can do `deleteObjectStore("objectStoreName")` to delete object stores.
 
