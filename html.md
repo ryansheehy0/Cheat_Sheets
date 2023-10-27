@@ -161,16 +161,17 @@ Forms by default send a http POST request with the endpoint in action. The serve
 ## [HTML entities](#table-of-contents)
 - Used to represent reserved characters within HTML.
 
-| Text    | Symbol |
-|---------|--------|
-| &lt\;   | <      |
-| &gt\;   | >      |
-| &amp\;  | &      |
-| &quot\; | "      |
-| &apos\; | '      |
-| &copy\; | &copy; |
-| &reg\;  | &reg;  |
-| &deg\;  | &deg;  |
+| Text    | Symbol            |
+|---------|-------------------|
+| &lt\;   | <                 |
+| &gt\;   | >                 |
+| &amp\;  | &                 |
+| &quot\; | "                 |
+| &apos\; | '                 |
+| &copy\; | &copy;            |
+| &reg\;  | &reg;             |
+| &deg\;  | &deg;             |
+| &emsp\; | non breakable tag |
 
 ## [Attributes](#table-of-contents)
 
