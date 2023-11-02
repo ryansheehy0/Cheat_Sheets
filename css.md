@@ -194,6 +194,7 @@ Moves relative to the nearest position ancestor or the body if none is specified
 ### [Fixed](#table-of-contents)
 Moves relative to the view port.
 ### [Sticky](#table-of-contents)
+Absolute positioning, but will stick to the side of the screen if the content moves.
 
 ## [Display](#table-of-contents)
 
@@ -278,7 +279,7 @@ Example:
 
 ```CSS
 .container{
-    grid_template-columns: 3;
+    grid-template-columns: 3;
 }
 .element1{
     grid-column: span 2;

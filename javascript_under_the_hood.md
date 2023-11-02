@@ -357,6 +357,7 @@ import defaultExport from "npmPackage"
 import {regularExport} from "./javascriptFile"
 import {obj: {key1, key2}} from "./anotherJSFile" // dereferencing an object inside an export
 import "jsFile" // This will just run the jsFile.
+import defaultExport as anotherDefaultName, {regularExport as anotherName} from "./javascriptFile" // Importing as a different name
 
 // In separate files
 export default function defaultThing(){console.log("default export")}

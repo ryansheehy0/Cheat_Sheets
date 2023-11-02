@@ -31,13 +31,16 @@ Why use react over vanilla JS:
     - [CSS in Components](#css-in-components)
     - [Props](#props)
   - [Conditional Rendering](#conditional-rendering)
+    - [React Router](#react-router)
   - [Map function in React](#map-function-in-react)
   - [Event handling in React](#event-handling-in-react)
   - [Tailwind in React](#tailwind-in-react)
+    - [Changing Tailwind with State](#changing-tailwind-with-state)
   - [useState](#usestate)
   - [Forms in React](#forms-in-react)
   - [useEffect](#useeffect)
   - [useRef](#useref)
+  - [Testing in React](#testing-in-react)
 
 <!-- /TOC -->
 
@@ -50,7 +53,12 @@ Why use react over vanilla JS:
       - useContext
       - Creating your own hooks
       - useRef
+      - useParams
   - Short circuit operators
+  - Where to put assets. Public or src/assets
+  - Finish reserved attributes
+  - What does `react-dom` do?
+  - What is props.children
 
 ## [Single Page vs Multi Page Apps](#table-of-contents)
 **Single Page Apps(SPAs)** are apps where page changes are handled by javascript and don't require a full page reload.
@@ -71,7 +79,7 @@ JSX allows you to write html like code in JavaScript.
 
 You can use normal html elements and component elements inside JSX. Component elements always start with capital letters while html elements start with lowercase letters.
 
-You can rin JavaScript inside JSX with {}s. Whatever the js in the {}s returns is converted into a string, including arrays, so it can be embedded in the JSX.
+You can use JavaScript inside JSX with {}s. Whatever the js in the {}s returns, is converted into a string, including arrays, so it can be embedded in the JSX.
 
 ```javascript
 const name = "ryan"
@@ -187,7 +195,7 @@ Props are arguments into react components.
 
 Data in the parent components is passed to the child component through arguments/props.
 
-Component
+Component.jsx
 
 ```javascript
 function Alert(props) {
@@ -243,18 +251,83 @@ Only non attribute JSX keywords are added to props.
 | style                          |                                                      |
 | onClick                        |                                                      |
 
+Attributes can be set with {}s or ""s
+  - `className={/*JavaScript*/}`
+  - `className="string"`
+
 ## [Conditional Rendering](#table-of-contents)
+Since you can't put if statements in JSX you have to use ternary operators
 
 ```javascript
- {props.message &&
-  <div>Some JSX</div>
- }
+  // Not recommended to use. JSX might put in the literal value of "false"
+  {props.message &&
+   <div>Some JSX</div>
+  }
 
  // It is recommended to do
- {props.message ?
-  <div>Some JSX</div> :
- }
+ {props.message ? <div>Some JSX</div> : null}
+
+ // Usually conditional rendering is done with states
+ {state ? (
+    <div>True</div>
+  ) : (
+    <div>False</div>
+  )}
 ```
+
+### [React Router](#table-of-contents)
+Conditionally render content based upon what's in the url filepath.
+
+Ex:
+  `https://yoururl.com/filepath` where the pathname is /filepath
+
+`npm install react-router-dom --save-dev`
+
+| Components   | Description                                                                                                              |
+|--------------|--------------------------------------------------------------------------------------------------------------------------|
+| BrowseRouter | Allows other react router dom components inside of it                                                                    |
+| Router       | Conditionally renders a component based on the current pathname                                                          |
+| Routes       | Renders the first Router or Redirect that matches the current location                                                   |
+| Link         | Link to another filepath that is handled by client side. <a/> is handled by server side which is what we don't want here |
+| NavLink      | Same as Link component, but allows for additional styling with it's "to" prop if the path is the current pathname        |
+| Redirect     | Redirects the filepath from something to something else                                                                  |
+
+```javascript
+import React from "react"
+import { BrowserRouter as Router, Route, Routes, Link, Redirect } from "react-router-dom"
+import Home from './components/Home';
+import About from './components/About';
+import Contact from './components/Contact';
+import NotFound from './components/NotFound';
+
+export default function Routes(){
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" exact><Home /></Route> {/*If the path is exactly /*/}
+        <Route path="/about"><About /></Route> {/*Any pathname that starts with /about */}
+        <Route path="/contact"><Contact /></Route>
+        <Route path="/404"><NotFound /></Route>
+        <Route> {/* If no path is specified then it is the default filepath*/}
+          <Redirect to="/404" />
+        </Route>
+      </Routes>
+      <Link to="/">Home</Link>
+      <Redirect from="/old-path" to="/new-path" />
+    </Router>
+  )
+}
+```
+
+| Hooks         | Description |
+|---------------|-------------|
+| useHistory    |             |
+| useLocation   | A hook that returns the current location/pathname            |
+| useParams     |             |
+| useRouteMatch |             |
+
+
+
 
 ## [Map function in React](#table-of-contents)
 Map in react allows you to render more than 1 of the same element.
@@ -315,21 +388,46 @@ function Component(){
 
 1. `npm install tailwindcss postcss autoprefixer --save-dev`
 2. Generate Tailwind Css config files `npx tailwindcss init -p`
-3. Add these lines to index.css
+3. Add this to content array in tailwind.config.js
+
 ```
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
 ```
-4. Build the tailwind.css file by adding this to your package.json and then run `npm run build:tailwind`
+
+4. Add these lines to the top of index.css
+
 ```
-"scripts": {
-  "build:tailwind": "tailwindcss build src/index.css -o public/tailwind.css"
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 ```
-5. Include link in your index.html file
+
+### [Changing Tailwind with State](#table-of-contents)
+
+Tailwind will only include classes with the full name of that class meaning you cannot use string concatenation inside a className.
+
+```javascript
+const [error, setError] = useState(false)
+
+// This will not work
+<div className="text-{{ error ? 'red' : 'green' }}-600"></div>
+
+// This will work
+<div className="{{ error ? 'text-red-600' : 'text-green-600' }}"></div>
 ```
-<link href="public/tailwind.css" rel="stylesheet">
+
+In order to have dynamic variables you have to use style.
+
+```javascript
+const width = "200px"
+
+// This will not work
+<div className="></div>
+
+// This will work
 ```
 
 ## [useState](#table-of-contents)
@@ -338,6 +436,7 @@ function Component(){
       - Count button. 2 users have different experiences depending on how many times they click it
         - this.setState
       - Changes on between 2 or more different visitors
+State is used for variables that when changed should cause a re-render on the screen. These tend to be variables that are different for each client who visits the site.
 
 useState tells React that something has changed to the DOM so react can re-render the DOM.
 
@@ -473,3 +572,40 @@ Why does useEffect [] run twice on reload when useStrick is being used on your r
 
 ## [useRef](#table-of-contents)
 Used to set variables without causing a re-render of the DOM.
+
+## [Testing in React](#table-of-contents)
+vitest
+npx vitest
+happy-dom
+@teesting-library
+
+in vite.config.js
+```javascript
+test: {
+  globals: true, // VI keywords globally. DOn't need to import
+  environment: "happy-dom",
+  setupFiles: "./src/tests/setup.js"
+}
+```
+
+src/tests
+  setup.js
+  welcome.text.jsx
+
+```javascript
+
+```
+
+`npm install react-dom --save-dev`
+react-dom gives DOM-specific methods for working with React. It is used to render React components into the DOM.
+
+```javascript
+import ReactDOM from "react-dom"
+
+// Render a React component into a DOM element
+ReactDOM.render(<App />, document.querySelector("#root")) // Puts app component in component with id "root"
+
+// Remove component from DOM and cleans up its event handlers and state
+  // What does this do and why is it needed?
+ReactDOM.unmountComponentAtNode(container)
+```

@@ -13,6 +13,7 @@
     - [Terminal](#terminal)
     - [Using keys](#using-keys)
     - [MySQL](#mysql)
+  - [Netlify](#netlify)
 
 <!-- /TOC -->
 
@@ -27,6 +28,7 @@
   - If any new changes are taking a very long time to deploy then you need to create a new repo with your code and deploy from that.
 
 ## [Heroku](#table-of-contents)
+
 ### [Website](#table-of-contents)
 1. Login or create Heroku account at `https://id.heroku.com/login`
 1. Click on top right "New" and click "Create new app"
@@ -56,3 +58,8 @@
 1. Go to Resources
 1. Search for JawsDB MySQL
 1. JAWSDB_URL should be automatically added in your config vars
+
+## [Netlify](#table-of-contents)
+1. `npm run build` to get a dist folder
+2. Go to [netlify](https://app.netlify.com/)
+3. Drag and drop dist folder into sites in netlify

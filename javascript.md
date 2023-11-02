@@ -21,6 +21,7 @@ JavaScript is the only language that can be run in the browser.
   - [Functions](#functions)
     - [This Keyword](#this-keyword)
   - [Logical Or for Fallbacks](#logical-or-for-fallbacks)
+  - [Logical And for Assignment](#logical-and-for-assignment)
   - [Useful Functions](#useful-functions)
     - [Fetch](#fetch)
       - [Optional Fetch Argument](#optional-fetch-argument)
@@ -398,6 +399,32 @@ func(A || B || C)
 If A is falsy then use B
 If B is falsy then use C
 */
+```
+
+## [Logical And for Assignment](#table-of-contents)
+The Logical And can be used to conditionally assign a variable based upon the condition.
+
+If the condition is true it assigns the variable to the valueIfTrue.
+
+If the condition is falsy it assigns the variable to the value of condition.
+
+```javascript
+const valueIfTrue = "True"
+
+
+const condition = true
+const variable = condition && valueIfTrue
+consol.log(accessLevel) // "True"
+
+
+const condition = false
+const variable = condition && valueIfTrue
+consol.log(accessLevel) // false
+
+
+const condition = undefined
+const variable = condition && valueIfTrue
+consol.log(accessLevel) // undefined
 ```
 
 ## [Useful Functions](#table-of-contents)

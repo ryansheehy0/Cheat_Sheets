@@ -22,9 +22,11 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
             - [Webpack](./webpack.md)
             - [React](./react.md)
         - [NodeJS](./nodejs.md)
+        - Databases
             - [SQL](./sql.md)
             - [ORMs](./orm.md)
             - [No SQL](./no_sql.md)
+            - [Graph QL](./graphql.md)
     - Android
         - [XML](./xml.md)
         - [Android](./android.md)
