@@ -30,8 +30,10 @@ Why use react over vanilla JS:
   - [Components](#components)
     - [CSS in Components](#css-in-components)
     - [Props](#props)
+      - [Props as embedded children](#props-as-embedded-children)
   - [Conditional Rendering](#conditional-rendering)
     - [React Router](#react-router)
+      - [useParams](#useparams)
   - [Map function in React](#map-function-in-react)
   - [Event handling in React](#event-handling-in-react)
   - [Tailwind in React](#tailwind-in-react)
@@ -59,6 +61,9 @@ Why use react over vanilla JS:
   - Finish reserved attributes
   - What does `react-dom` do?
   - What is props.children
+  - Do states re-run variables if they are set inside of the react function?
+
+  Higher order component: Wraps the whole app to allow for functionality
 
 ## [Single Page vs Multi Page Apps](#table-of-contents)
 **Single Page Apps(SPAs)** are apps where page changes are handled by javascript and don't require a full page reload.
@@ -125,6 +130,8 @@ export default defineCOnfig({
   }
 })
 ```
+
+If you do `npx vite --host` allows you to view your React app on mobile as long as you allow port forwarding. In the terminal the location should look like this: `Network: http://...`
 
 ## [File Structure](#table-of-contents)
 
@@ -255,6 +262,26 @@ Attributes can be set with {}s or ""s
   - `className={/*JavaScript*/}`
   - `className="string"`
 
+#### [Props as embedded children](#table-of-contents)
+React allows you to pass JSX as an embedded argument into components and which can be used with `props.children`
+
+```javascript
+return (
+  <Component>
+    <div>This is embedded JSX</div>
+  </Component>
+)
+
+// Inside Component
+export default function Component(props){
+  return (
+    <div>
+      {props.children} {/* This will render <div>This is embedded JSX</div> in this example*/}
+    </div>
+  )
+}
+```
+
 ## [Conditional Rendering](#table-of-contents)
 Since you can't put if statements in JSX you have to use ternary operators
 
@@ -319,15 +346,32 @@ export default function Routes(){
 }
 ```
 
-| Hooks         | Description |
-|---------------|-------------|
-| useHistory    |             |
-| useLocation   | A hook that returns the current location/pathname            |
-| useParams     |             |
-| useRouteMatch |             |
+| Hooks         | Description                                       |
+|---------------|---------------------------------------------------|
+| useHistory    |                                                   |
+| useLocation   | A hook that returns the current location/pathname |
+| useParams     | Get the parameters of the url                     |
+| useRouteMatch |                                                   |
 
 
+#### [useParams](#table-of-contents)
 
+```javascript
+// Example path: /user/:id
+import { useParams } from "react-router-dom"
+
+export default User(){
+  const { id } = useParams
+  return <p>id</p>
+}
+
+// useParams can also handle multiple parameters
+// Example path: /user/:username/:id
+export default User(){
+  const { username, id } = useParams
+  return <p>id</p>
+}
+```
 
 ## [Map function in React](#table-of-contents)
 Map in react allows you to render more than 1 of the same element.
@@ -439,6 +483,8 @@ const width = "200px"
 State is used for variables that when changed should cause a re-render on the screen. These tend to be variables that are different for each client who visits the site.
 
 useState tells React that something has changed to the DOM so react can re-render the DOM.
+
+In react when a page is re-rendered(because of a state change) then the component function is ran again to return the JSX.
 
 ```javascript
 import { useState } from 'react';

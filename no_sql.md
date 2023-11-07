@@ -35,6 +35,7 @@ There are 4 main types of no sql databases
     - [Mongoose CRUD](#mongoose-crud)
       - [Mongoose Create](#mongoose-create)
       - [Mongoose Read](#mongoose-read)
+        - [Populate](#populate)
         - [Aggregate](#aggregate)
       - [Mongoose Update](#mongoose-update)
       - [Mongoose Delete](#mongoose-delete)
@@ -421,8 +422,21 @@ ModelInstance.find({key: "value"}) // Finds all documents that have the key that
 | .populate("key")       | key is a reference to a Model then it populates it.               |
 
 ```javascript
+const mongoose = require("mongoose")
+
 const query = Model.find({key: "value"})
 const documents = await query.exec()
+
+Model.findOneAndDelete({_id: mongoose.Types.ObjectId("unique id string")})
+```
+
+##### [Populate](#table-of-contents)
+`.populate` is used to replace a specific field(which is a reference to another model) with the actual document from the referenced model.
+
+```javascript
+Book.findOne({title: "Book Title"})
+  .populate("key", "model")
+  .exec()
 ```
 
 ##### [Aggregate](#table-of-contents)

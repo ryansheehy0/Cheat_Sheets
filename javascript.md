@@ -20,16 +20,19 @@ JavaScript is the only language that can be run in the browser.
   - [Switch Block](#switch-block)
   - [Functions](#functions)
     - [This Keyword](#this-keyword)
+    - [Tagged Templates](#tagged-templates)
   - [Logical Or for Fallbacks](#logical-or-for-fallbacks)
   - [Logical And for Assignment](#logical-and-for-assignment)
   - [Useful Functions](#useful-functions)
     - [Fetch](#fetch)
       - [Optional Fetch Argument](#optional-fetch-argument)
   - [Objects](#objects)
+    - [Updating values in Object](#updating-values-in-object)
     - [For In](#for-in)
     - [JavaScript Object NotationJSON](#javascript-object-notationjson)
     - [Spread Operator](#spread-operator)
     - [Object to Array](#object-to-array)
+    - [Optional Chaining](#optional-chaining)
   - [Template Literals](#template-literals)
   - [Import and Export](#import-and-export)
   - [Errors](#errors)
@@ -387,6 +390,19 @@ The function keyword inherits `this` when it is called.
 })()
 ```
 
+### [Tagged Templates](#table-of-contents)
+You can pass template literals into functions without the need of ()s
+
+```javascript
+function myFunction(string, values){
+  console.log(string) // An array with ["Hello, ", "!"]
+  console.log(values) // The value of "World"
+}
+
+const name = "World"
+myFunction`Hello, ${name}!`
+```
+
 ## [Logical Or for Fallbacks](#table-of-contents)
 You can have fallback values incase your first value is falsy(null, undefined, 0, empty string, etc).
 
@@ -590,6 +606,34 @@ console.log(var1) // ele1
 console.log(var2) // ele2
 ```
 
+### [Updating values in Object](#table-of-contents)
+
+```javascript
+let obj = {
+    key1: "value1",
+    key2: "value2",
+    key3: "value3"
+}
+
+function updateObj(obj, key, value){
+    return {...obj, [key]: value}
+    // this is equivalant to
+    const newObj = {...obj}
+    newObj.[key] = value
+    obj = newObj
+}
+
+console.log(updateObj(obj, "key3", "valueThree"))
+/*
+Output:
+{
+    key1: "value1",
+    key2: "value2",
+    key3: "valueThree"
+}
+*/
+```
+
 ### [For In](#table-of-contents)
 - You need to do [] when referencing properties in a for in loop in case the property has a space in it.
 
@@ -657,6 +701,25 @@ It can be used to create an array from something that isn't an array. `[...nonAr
 
 ### [Object to Array](#table-of-contents)
 `Object.values(obj)` converts the obj to an array with their values in the array.
+
+### [Optional Chaining](#table-of-contents)
+Optionals chaining allows you to only access a field if the previous field is there. Otherwise it will return undefined.
+
+```javascript
+let car = {
+  make: "Toyota",
+  model: "Camry",
+  engine: {
+    type: "V6",
+    horsepower: 270
+  }
+}
+
+let horsepower = car?.engine?.horsepower
+// If there is a car value then get the engine field
+    // If there is an engine field get the horsepower field in that engine object
+// If any of these are false then return undefined
+```
 
 ## [Template Literals](#table-of-contents)
 Used to make complete string with embedded JS.

@@ -300,6 +300,9 @@ app.use(express.json()) // Parses the json body to an object
 app.use(express.static('public')) // Setting for serving static files from the public folder. You can directly call the file. Ex: localhost:3000/images/image.jpg
   // This is needed to use js and css files in you html. To reference them the file path should be /folderInPublicFolder/file.js
 app.use(express.urlencoded({ extended: true })) // Old browsers might send json through URL encoded
+  // URL encoded is used to parse information sent in the URL. Ex: https://website.com/information
+  // extended: true uses the "qs" library to parse the information passed in the url. This allows for more complex data structures like arrays and objects. Ex: key1=value1&key2=value2&nested[key3]=value3
+  // extended: false uses the "querystring" library. This only supports simple jey value pairs. Ex: key1=value1&key2=value2
 
 // HTTP Methods/Endpoints
 
