@@ -124,7 +124,9 @@ module.exports = createJWT
 
 ### [Using JWTs on the Client](#table-of-contents)
 
+```javascript
 
+```
 
 client side
 npm install jwt-decode

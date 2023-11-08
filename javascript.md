@@ -620,7 +620,7 @@ function updateObj(obj, key, value){
     // this is equivalant to
     const newObj = {...obj}
     newObj.[key] = value
-    obj = newObj
+    return newObj
 }
 
 console.log(updateObj(obj, "key3", "valueThree"))

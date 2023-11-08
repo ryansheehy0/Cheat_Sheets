@@ -24,8 +24,10 @@ Graph QL is a query language which the front end can use to only get back the da
       - [Mutation Resolver](#mutation-resolver)
   - [Client using Apollo](#client-using-apollo)
     - [Customizing Vite](#customizing-vite)
+    - [Client Boilerplate with JWTs](#client-boilerplate-with-jwts)
     - [useQuery](#usequery)
     - [useMutation](#usemutation)
+    - [Login Form Component Example](#login-form-component-example)
 
 <!-- /TOC -->
 
@@ -215,9 +217,12 @@ module.exports = {
       code: 'UNAUTHENTICATED',
     },
   }),
-  authMiddleware: function({ req }){
-    // allows token to be sent via req.body, req.query, or headers
+  authMiddleware: function({ req }){ // The apollo middleware function intercepts any requests. Not need to call next
+    // The JWT token can be in one of these locations
     let token = req.body.token || req.query.token || req.headers.authorization
+      // req.body.token allows the token to be sent in the GraphQL query
+      // req.query.token allows the token to be sent in the url as /graphql?token=${token info}
+      // req.headers.authorization allows the token to be sent in the authorization header
 
     // We split the token string into an array and return actual token
     if(req.headers.authorization){
@@ -231,7 +236,7 @@ module.exports = {
     // if token can be verified, add the decoded user's data to the request so it can be accessed in the resolver
     try{
       const { data } = jwt.verify(token, secret, { maxAge: expiration });
-      req.user = data;
+      req.user = data
     }catch{
       console.log('Invalid token');
     }
@@ -305,6 +310,10 @@ Resolver functions can have 4 arguments
   - the parent field of the current GraphQL Query
 - args
   - These are the arguments for the typeDef functions
+- context
+  - This is mainly used by the client to send authentication information and other such information
+- info
+  - Provides info about the execution of the query
 
 
 ```javascript
@@ -399,33 +408,98 @@ Add this to vite.config.js in `server: {}`
 
 This allows the front end to make API calls to the running server which is on a different port.
 
-### [useQuery](#table-of-contents)
-Allows react to make a Graph QL query to the server.
-
+### [Client Boilerplate with JWTs](#table-of-contents)
 In App.jsx
 
 ```javascript
-import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client"
+import { ApolloClient, InMemoryCache, ApolloProvider, /*For JWTs*/createHttpLink } from "@apollo/client"
+import { setContext } from '@apollo/client/link/context' // For JWTs
+  // The set context is a method to allow you to intercept graphQL queries and set the context(for the resolvers on the server)
 
+// If you aren't using JWT
 const client = new ApolloClient({
   uri: "/graphql", // Vite config which is the server
   cache: new InMemoryCache(), // Automatically caches queried data
 })
 
+// If you are using JWT
+const httpLink = createHttpLink({
+  uri: '/graphql',
+})
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('id_token') // Get the JWT token stored in local storage
+  return { // Changes the GraphQL query headers to include the JWT
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '', // Bearer is convention for sending tokens over the authorization header
+    },
+  }
+})
+const client = new ApolloClient({
+  link: authLink.concat(httpLink), // The link property tells Apollo Client where to send queries to. In this case it modies the headers and then sends it to /graphql
+  cache: new InMemoryCache(),
+})
+
 export default function App() {
   return (
     <ApolloProvider client={client}> {/*Allows access to apollo hooks*/}
-        <div className="flex-column justify-flex-start min-100-vh">
-          <Header />
-          <div className="container">
-            <Outlet />
-          </div>
-          <Footer />
-        </div>
+        <div></div>
     </ApolloProvider>
   )
 }
 ```
+
+In utils/auth.js
+
+```javascript
+import decode from 'jwt-decode';
+
+class AuthService {
+  getProfile() {
+    return decode(this.getToken());
+  }
+
+  loggedIn() {
+    // Checks if there is a saved token and it's still valid
+    const token = this.getToken();
+    return !!token && !this.isTokenExpired(token);
+  }
+
+  isTokenExpired(token) {
+    try {
+      const decoded = decode(token);
+      if (decoded.exp < Date.now() / 1000) {
+        return true;
+      } else return false;
+    } catch (err) {
+      return false;
+    }
+  }
+
+  getToken() {
+    // Retrieves the user token from localStorage
+    return localStorage.getItem('id_token');
+  }
+
+  login(idToken) {
+    // Saves user token to localStorage
+    localStorage.setItem('id_token', idToken);
+    window.location.assign('/');
+  }
+
+  logout() {
+    // Clear user token and profile data from localStorage
+    localStorage.removeItem('id_token');
+    // this will reload the page and reset the state of the application
+    window.location.assign('/');
+  }
+}
+
+export default new AuthService()
+```
+
+### [useQuery](#table-of-contents)
+Allows react to make a Graph QL query to the server.
 
 In utils/queries
 
@@ -544,7 +618,7 @@ import { useMutation } from '@apollo/client';
 
 import { ADD_PROFILE } from '../../utils/mutations';
 
-const ProfileForm = () => {
+export default function Component(){
   const [name, setName] = useState('');
 
   // Sets the addProfile mutation method
@@ -603,8 +677,82 @@ const ProfileForm = () => {
         )}
       </form>
     </div>
-  );
-};
+  )
+}
+```
 
-export default ProfileForm;
+### [Login Form Component Example](#table-of-contents)
+
+```javascript
+import { useState } from 'react';
+import { useMutation } from '@apollo/client';
+import { Link } from 'react-router-dom';
+import { LOGIN } from '../utils/mutations';
+import Auth from '../utils/auth';
+
+function Login(props) {
+  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [login, { error }] = useMutation(LOGIN);
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const mutationResponse = await login({
+        variables: { email: formState.email, password: formState.password },
+      });
+      const token = mutationResponse.data.login.token;
+      Auth.login(token);
+    } catch (e) {
+      console.log('error', e);
+    }
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
+  return (
+    <div className="container my-1">
+      <Link to="/signup">← Go to Signup</Link>
+
+      <h2>Login</h2>
+      <form onSubmit={handleFormSubmit}>
+        <div className="flex-row space-between my-2">
+          <label htmlFor="email">Email address:</label>
+          <input
+            placeholder="youremail@test.com"
+            name="email"
+            type="email"
+            id="email"
+            onChange={handleChange}
+          />
+        </div>
+        <div className="flex-row space-between my-2">
+          <label htmlFor="pwd">Password:</label>
+          <input
+            placeholder="******"
+            name="password"
+            type="password"
+            id="pwd"
+            onChange={handleChange}
+          />
+        </div>
+        {error ? (
+          <div>
+            <p className="error-text">The provided credentials are incorrect</p>
+          </div>
+        ) : null}
+        <div className="flex-row flex-end">
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+  );
+}
+
+export default Login;
 ```

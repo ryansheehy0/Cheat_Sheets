@@ -353,7 +353,6 @@ export default function Routes(){
 | useParams     | Get the parameters of the url                     |
 | useRouteMatch |                                                   |
 
-
 #### [useParams](#table-of-contents)
 
 ```javascript
