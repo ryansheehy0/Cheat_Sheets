@@ -122,9 +122,14 @@ query getClass($id: ID!){
 You can also run mutate functions
 
 ```javascript
-mutate deleteClass($id: ID!){
-  deleteClass(id: $id)
+mutation deleteClass($id: ID!){
+  deleteClass(id: $id) {
+    id
+    name
+  }
 }
+
+// You have to specify which keys you want back from what deleteClass returns.
 ```
 
 ## [Useful Scripts](#table-of-contents)

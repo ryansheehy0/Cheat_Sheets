@@ -65,6 +65,11 @@ Why use react over vanilla JS:
 
   Higher order component: Wraps the whole app to allow for functionality
 
+  - Explain and use providers inside a React component.
+  - Explain the concept of Consumer and accessing React Context.
+  - Explain and use actions with a reducer function.
+  - Explain reducers and use them with the useReducer Hook.
+
 ## [Single Page vs Multi Page Apps](#table-of-contents)
 **Single Page Apps(SPAs)** are apps where page changes are handled by javascript and don't require a full page reload.
 
@@ -598,12 +603,17 @@ useEffect(() => {
 })
 
 useEffect(() => {
-  // When the state changes this code is ran
+  // When the state changes this code is ran. Not ran on initial load.
 }, [state1])
 
 useEffect(() => {
   // When the state1 or state2 changes this code is ran
 }, [state1, state2])
+
+const variable = "Initialized variable"
+useEffect(() => {
+  // This will run on initial render because variable was originally un-initialized and then it became initialized which is a change.
+}, [variable])
 
 useEffect(() => {
   if(stateRef.current.state1 !== state1 && stateRef.current.state2 !== state2){
