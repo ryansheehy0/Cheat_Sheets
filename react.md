@@ -21,7 +21,7 @@ Why use react over vanilla JS:
 - [React](#react)
   - [Table of Contents](#table-of-contents)
   - [Questions:](#questions)
-  - [Single Page vs Multi Page Apps](#single-page-vs-multi-page-apps)
+  - [Single Page App vs Multi Page App](#single-page-app-vs-multi-page-app)
   - [Virtual DOM](#virtual-dom)
   - [JavaScript XMLJSX](#javascript-xmljsx)
     - [Fragments](#fragments)
@@ -41,6 +41,7 @@ Why use react over vanilla JS:
   - [useState](#usestate)
   - [Forms in React](#forms-in-react)
   - [useEffect](#useeffect)
+    - [Setting the Title](#setting-the-title)
   - [useRef](#useref)
   - [Testing in React](#testing-in-react)
 
@@ -70,10 +71,9 @@ Why use react over vanilla JS:
   - Explain and use actions with a reducer function.
   - Explain reducers and use them with the useReducer Hook.
 
-## [Single Page vs Multi Page Apps](#table-of-contents)
-**Single Page Apps(SPAs)** are apps where page changes are handled by javascript and don't require a full page reload.
-
-**Multi Page Apps(MPAs)** are apps where each page is a different html file which requires a reload to change between pages.
+## [Single Page App vs Multi Page App](#table-of-contents)
+- **Single Page Apps(SPAs)** are apps where page changes are handled by javascript and don't require a full page reload.
+- **Multi Page Apps(MPAs)** are apps where each page is a different html file which requires a reload to change between pages.
 
 ## [Virtual DOM](#table-of-contents)
 The Virtual DOM is an object in memory that represents the real DOM.

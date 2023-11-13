@@ -20,7 +20,10 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
             - [Javascript Under the Hood](./javascript_under_the_hood.md)
             - [IndexedDB](./indexedDB.md)
             - [Webpack](./webpack.md)
+            - [Sending Messages](./sending_messages.md)
+            - [Authentication and Authorization](./authentication_and_authorization.md)
             - [React](./react.md)
+                - [Redux and Context](./redux_and_context.md)
         - [NodeJS](./nodejs.md)
         - Databases
             - [SQL](./sql.md)

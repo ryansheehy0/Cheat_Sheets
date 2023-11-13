@@ -260,8 +260,10 @@ prices.forEach(price => {
 console.log(totalPrice)
 ```
 
-- `.find((element, index, array))`
+- `.find((element, index, array) => {})`
     - Used to find the first element that satisfies the given function.
+- `.findIndex()element, index, array) => {})`
+    - Used to find the index of the first element that satisfies the given function.
 - `.sort((a, b) => a - b)`
     - If the function returns a negative number "a" is sorted before "b"
     - If the function returns a positive number "b" is sorted before "a"

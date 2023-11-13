@@ -4,6 +4,8 @@
 
 Procedural programming is having functions that take in data, manipulate it, then return it.
 
+The reason to use OOP is to prevent functions from having extremely long arguments and it allows for better organization by group together variables and functions.
+
 ## Table of Contents
 
 <!-- TOC -->
@@ -11,7 +13,7 @@ Procedural programming is having functions that take in data, manipulate it, the
 - [Object Oriented ProgrammingOOP](#object-oriented-programmingoop)
   - [Table of Contents](#table-of-contents)
   - [Problems with Procedural Programming](#problems-with-procedural-programming)
-  - [Pillars of OOP](#pillars-of-oop)
+  - [4 Pillars of OOP](#4-pillars-of-oop)
     - [Encapsulation](#encapsulation)
     - [Abstraction](#abstraction)
     - [Inheritance](#inheritance)

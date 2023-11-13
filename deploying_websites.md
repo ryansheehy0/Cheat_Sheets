@@ -14,6 +14,9 @@
     - [Using keys](#using-keys)
     - [MySQL](#mysql)
   - [Netlify](#netlify)
+  - [MongoDB Atlas](#mongodb-atlas)
+  - [Making a new project](#making-a-new-project)
+  - [Deleting a new project](#deleting-a-new-project)
 
 <!-- /TOC -->
 
@@ -63,3 +66,34 @@
 1. `npm run build` to get a dist folder
 2. Go to [netlify](https://app.netlify.com/)
 3. Drag and drop dist folder into sites in netlify
+
+## [MongoDB Atlas](#table-of-contents)
+[MongoDB Atlas](https://www.mongodb.com/atlas)
+
+## [Making a new project](#table-of-contents)
+1. Top left project dropdown -> + New Project
+1. Name your project
+1. Create Project
+1. Create a deployment
+1. For this user there should be an auto-generated username and password. **Make sure to save the auto-generated password.**
+1. Create User
+1. Finish and Close
+1. Left side -> Under the green security header -> Network Access
+1. Edit button
+1. Allow access from anywhere
+1. Confirm
+1. Left side -> Overview
+1. Green connect button
+1. Drivers
+1. Copy the connection string which starts with `mongodb+srv://`
+1. Replace `<password>` with the password from your user you saved.
+1. You can now connect to the db with this link
+
+## [Deleting a new project](#table-of-contents)
+1. Left side -> Under the green Deployment header -> Database
+1. Click on cluster name link in blue
+1. Right side 3 dot buttons
+1. Terminate
+1. Wait for cluster to shut down and be removed
+1. Top left project dropdown -> View All Projects
+1. Delete your project with the trash button
