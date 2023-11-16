@@ -41,7 +41,6 @@ Why use react over vanilla JS:
   - [useState](#usestate)
   - [Forms in React](#forms-in-react)
   - [useEffect](#useeffect)
-    - [Setting the Title](#setting-the-title)
   - [useRef](#useref)
   - [Testing in React](#testing-in-react)
 
@@ -336,10 +335,10 @@ export default function Routes(){
   return (
     <Router>
       <Routes>
-        <Route path="/" exact><Home /></Route> {/*If the path is exactly /*/}
-        <Route path="/about"><About /></Route> {/*Any pathname that starts with /about */}
-        <Route path="/contact"><Contact /></Route>
-        <Route path="/404"><NotFound /></Route>
+        <Route path="/" exact element={<Home />}/> {/*If the path is exactly /*/}
+        <Route path="/about" element={<About />}/> {/*Any pathname that starts with /about */}
+        <Route path="/contact" element={<Contact />}/>
+        <Route path="/404" element={<NotFound />}/>
         <Route> {/* If no path is specified then it is the default filepath*/}
           <Redirect to="/404" />
         </Route>

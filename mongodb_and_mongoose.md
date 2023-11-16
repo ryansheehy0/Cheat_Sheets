@@ -1,24 +1,30 @@
 [Home](./README.md)
 
-# No SQL
-No SQL databases are typically used for unstructured or semi-structured data. They don't rely on a fixed schema, allowing it easier to make changes and scalability.
+# MongoDB and Mongoose
+Data is stored in JSON like documents. A predefined schema for the db is optional(only with mongoose). Data that is frequently accessed can be stored in the same document and thus allows for quicker reading of data, unlike in SQL where joins are necessary.
 
-There are 4 main types of no sql databases
-- Document databases
-- Key-Value stores
-- Graph databases
-- Column oriented databases
+MongoDb stores data as BSON(Binary JSON) instead of JSON. The problems that JSON has
+- Limited number of basic data types like dates and binary data.
+- JSON objects and properties don't have fixed lengths which makes it slower to retrieve data because you don't have fixed offsets(like in an array).
+
+MongoDb organizes things in these terms:
+
+| Term              | Description                                                                               |
+|-------------------|-------------------------------------------------------------------------------------------|
+| Database          | These are separate databases                                                              |
+| Collection        | These are like folders                                                                    |
+| Documents         | Documents are BSON documents that usually hold related data. Like files or objects in JS. |
+| Embedded Document | An object in a document.                                                                  |
 
 ## Table of Contents
 
 <!-- TOC -->
 
-- [No SQL](#no-sql)
+- [MongoDB and Mongoose](#mongodb-and-mongoose)
   - [Table of Contents](#table-of-contents)
-  - [MongoDB](#mongodb)
-    - [Installing](#installing)
-    - [Starting and Stopping](#starting-and-stopping)
-    - [MongoDB Shell](#mongodb-shell)
+  - [Installing](#installing)
+  - [Starting and Stopping](#starting-and-stopping)
+  - [MongoDB Shell](#mongodb-shell)
   - [Questions](#questions)
     - [Ids](#ids)
     - [Connecting](#connecting)
@@ -46,34 +52,19 @@ There are 4 main types of no sql databases
 
 <!-- /TOC -->
 
-## [MongoDB](#table-of-contents)
-Data is stored in JSON like documents. A predefined schema for the db is optional. Data that is frequently accessed can be stored in the same document and thus allows for quicker reading of data unlike SQL where joins are necessary.
 
-MongoDb stores data as BSON(Binary JSON) instead of JSON. The problems that JSON has
-- Limited number of basic data types like dates and binary data.
-- JSON objects and properties don't have fixed lengths which makes it slower to retrieve data because you don't have fixed offsets(like in an array).
-
-MongoDb organizes things in these terms:
-
-| Term              | Description                                                 |
-|-------------------|-------------------------------------------------------------|
-| Database          | These are separate databases                                |
-| Collection        | These are like folders                                      |
-| Documents         | Documents are BSON documents that usually hold related data |
-| Embedded Document | An object in a document.                                    |
-
-### [Installing](#table-of-contents)
+## [Installing](#table-of-contents)
 - Install MongoDb [here](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/#install-mongodb-community-edition)
 - Install Mongo Compass [here](https://www.mongodb.com/docs/compass/current/install/).
 
-### [Starting and Stopping](#table-of-contents)
+## [Starting and Stopping](#table-of-contents)
 Start: `sudo service mongod start`
 
 Verify it's started: `sudo service mongod status`
 
 Stop: `sudo service mongod stop`
 
-### [MongoDB Shell](#table-of-contents)
+## [MongoDB Shell](#table-of-contents)
 
 | Shell command                                                  | Description                                           |
 |----------------------------------------------------------------|-------------------------------------------------------|

@@ -14,9 +14,11 @@
     - [Using keys](#using-keys)
     - [MySQL](#mysql)
   - [Netlify](#netlify)
+    - [Adding Domain Name](#adding-domain-name)
   - [MongoDB Atlas](#mongodb-atlas)
-  - [Making a new project](#making-a-new-project)
-  - [Deleting a new project](#deleting-a-new-project)
+    - [Making a new project](#making-a-new-project)
+    - [Deleting a new project](#deleting-a-new-project)
+  - [Domain Names](#domain-names)
 
 <!-- /TOC -->
 
@@ -67,10 +69,19 @@
 2. Go to [netlify](https://app.netlify.com/)
 3. Drag and drop dist folder into sites in netlify
 
+### [Adding Domain Name](#table-of-contents)
+1. Domain management
+1. Add domain name
+1. Type your registered domain name -> Add domain (There should be something saying it was already registered) -> Add domain again
+1. On your domain name click options -> Set up Netlify DNS
+1. Verify -> Add domain -> Continue -> You should get ~4 domain name servers. Make sure to copy these.
+
+On your register website(Not netlify) paste those ~4 domain name servers in.
+
 ## [MongoDB Atlas](#table-of-contents)
 [MongoDB Atlas](https://www.mongodb.com/atlas)
 
-## [Making a new project](#table-of-contents)
+### [Making a new project](#table-of-contents)
 1. Top left project dropdown -> + New Project
 1. Name your project
 1. Create Project
@@ -89,7 +100,7 @@
 1. Replace `<password>` with the password from your user you saved.
 1. You can now connect to the db with this link
 
-## [Deleting a new project](#table-of-contents)
+### [Deleting a new project](#table-of-contents)
 1. Left side -> Under the green Deployment header -> Database
 1. Click on cluster name link in blue
 1. Right side 3 dot buttons
@@ -97,3 +108,7 @@
 1. Wait for cluster to shut down and be removed
 1. Top left project dropdown -> View All Projects
 1. Delete your project with the trash button
+
+## [Domain Names](#table-of-contents)
+- [Porkbun](https://porkbun.com/)
+  - Under your domain name. Small red NS and paste in.

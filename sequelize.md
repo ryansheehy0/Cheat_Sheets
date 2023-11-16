@@ -1,15 +1,15 @@
 [Home](./README.md)
 
-# Object Relational Mappings(ORMs)
-ORMs are used to interact with relational databases using oop.
+# Sequelize
+Sequelize is an ORM(Object Relational Mappings). Sequelize is used to interaction with SQL databases using something similar to javascript objects instead of SQL.
 
 ## Table of Contents
 
 <!-- TOC -->
 
-- [Object Relational MappingsORMs](#object-relational-mappingsorms)
+- [Sequelize](#sequelize)
   - [Table of Contents](#table-of-contents)
-  - [Sequelize](#sequelize)
+  - [Connecting](#connecting)
     - [Syncing](#syncing)
     - [Modals](#modals)
     - [Associations](#associations)
@@ -23,8 +23,9 @@ ORMs are used to interact with relational databases using oop.
 
 <!-- /TOC -->
 
-## [Sequelize](#table-of-contents)
-Sequelize can work with multiple different RDBMS so you need to install `mysql2` as well if you are using mysql.
+
+## [Connecting](#table-of-contents)
+Sequelize can work with multiple different SQL databases so you need to install `mysql2` as well if you are using mysql.
 
 ./connection.js file:
 

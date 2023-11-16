@@ -12,6 +12,7 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
         - [Linux](./linux.md)
         - [OOP](./oop.md)
         - [Programming Tips](./programming_tips.md)
+        - [Sending Messages](./sending_messages.md)
     - HTML/CSS/JS
         - [HTML](./html.md)
         - [CSS](./css.md)
@@ -27,8 +28,8 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
         - [NodeJS](./nodejs.md)
         - Databases
             - [SQL](./sql.md)
-            - [ORMs](./orm.md)
-            - [No SQL](./no_sql.md)
+            - [Sequelize](./sequelize.md)
+            - [MongoDB and Mongoose](./mongodb_and_mongoose.md)
             - [Graph QL](./graphql.md)
     - Android
         - [XML](./xml.md)

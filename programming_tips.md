@@ -8,17 +8,27 @@
 
 - [Advanced Programming Tips](#advanced-programming-tips)
   - [Table of Contents](#table-of-contents)
+  - [Project Management](#project-management)
   - [Formatting and Rules](#formatting-and-rules)
   - [Code Organization](#code-organization)
 
 <!-- /TOC -->
+
+## [Project Management](#table-of-contents)
+- Have a well detailed end goal app idea
+  - A full write up on how all the features are going to work and how each page of the app will look and work
+- Develop in stages of Minimum Viable Product
+  - MVP 1, MVP 2, etc. Keep adding MVPs until you reach all the features in the end goal app idea
+  - The 1st MVP should be the most bare bones features as possible. Just the minimum to make it somewhat usable.
+- Delegate tasks and every few days or week have a group meeting on the progress of those tasks
+  - If one member is falling behind then put more resources to help them catch up
 
 ## [Formatting and Rules](#table-of-contents)
 - No space between ()s and {s
 - Use "s instead of 's
 - When setting variables use spaces between the =s
 - Use guard clauses when possible
-- Pseudocode in comments before programming
+- Pseudo-code in comments before programming
   - Code underneath comments
   - No spaces between comments and code
 

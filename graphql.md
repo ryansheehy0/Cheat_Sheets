@@ -235,7 +235,8 @@ module.exports = {
     }
 
     if(!token){
-      return req
+      // You are sending the un-altered req to the resolver
+      return req // Sending the req to the resolver. Not to the client!!!
     }
 
     // if token can be verified, add the decoded user's data to the request so it can be accessed in the resolver
