@@ -43,6 +43,7 @@ Why use react over vanilla JS:
   - [useEffect](#useeffect)
   - [useRef](#useref)
   - [Testing in React](#testing-in-react)
+  - [setTimeout in React](#settimeout-in-react)
 
 <!-- /TOC -->
 
@@ -662,4 +663,21 @@ ReactDOM.render(<App />, document.querySelector("#root")) // Puts app component 
 // Remove component from DOM and cleans up its event handlers and state
   // What does this do and why is it needed?
 ReactDOM.unmountComponentAtNode(container)
+```
+
+## [setTimeout in React](#table-of-contents)
+
+```javascript
+import { useEffect } from "react"
+
+export default function Component(){
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      // Set timeout code
+    }, 1000 /*1 second*/)
+    return () => clearTimeout(timer)
+  }, [])
+
+  return <div></div>
+}
 ```

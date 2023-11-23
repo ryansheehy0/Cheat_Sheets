@@ -461,6 +461,7 @@ consol.log(accessLevel) // undefined
 | Math.ceil(num)                           | Rounds up to the nearest whole number                                             |
 | .toFixed(number of decimal places)       | Rounds to the number of decimal places.                                           |
 | parseInt(str) or parseInt(str, base num) | Converts a string to an int. If it can't then it returns NaN                      |
+| .toString()                              | Convert a data type to a string.                                                  |
 
 ### [Fetch](#table-of-contents)
 Used to fetch data from a server. Returns a promise of the response.
@@ -777,6 +778,7 @@ try{
     // Code that may throw an error
     if( variable ){
         throw "Custom error message." // The "Custom error message." is in error and not error.name or error.message
+        throw new Error("A new error") // This error gets caught by the catch block
     }
 }catch(error) {
     // These are the only 2 keys in an error
