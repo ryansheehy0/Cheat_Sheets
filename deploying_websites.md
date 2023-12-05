@@ -8,13 +8,15 @@
 - [Deploying Websites](#deploying-websites)
   - [Table of Contents](#table-of-contents)
   - [Github Pages](#github-pages)
+    - [Github Pages Adding Domain Name](#github-pages-adding-domain-name)
   - [Heroku](#heroku)
     - [Website](#website)
     - [Terminal](#terminal)
     - [Using keys](#using-keys)
     - [MySQL](#mysql)
+    - [Heroku Adding Domain Name](#heroku-adding-domain-name)
   - [Netlify](#netlify)
-    - [Adding Domain Name](#adding-domain-name)
+    - [Netlify Adding Domain Name](#netlify-adding-domain-name)
   - [MongoDB Atlas](#mongodb-atlas)
     - [Making a new project](#making-a-new-project)
     - [Deleting a new project](#deleting-a-new-project)
@@ -31,6 +33,31 @@
 1. Click "Save" and wait. It may take a while
   - Any new pushes to that branch should be automatically deployed
   - If any new changes are taking a very long time to deploy then you need to create a new repo with your code and deploy from that.
+
+### [Github Pages Adding Domain Name](#table-of-contents)
+1. On github go to user -> Settings -> Pages
+1. Click Add a domain
+1. Put your domain name in and follow the direction(Adding A TXT DNS record).
+1. Click Add domain and wait for it to verify
+1. Go to your github pages repo -> Settings -> Pages
+1. Add you Custom domain and click save
+
+On Porkbun
+1. Login
+1. Account -> Domain Management
+1. Click the arrow down in the red box on the right of you domain name you want to use
+1. Under DNS RECORDS click Edit
+1. Remove the 2 default DNS records of type ALIAS and CNAME*
+1. Add TYPE CNAME, Host www, and ANSWER (github username).github.io.
+1. Add 4 TYPE A DNSs. Leave the Host blank and put these 4 ip addresses
+  - 185.199.108.153
+  - 185.199.109.153
+  - 185.199.110.153
+  - 185.199.111.153
+  - These may change in the future. So double check on this [website](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site).
+
+You have to wait around 30 mins.
+- After around 30 min on your github pages repo click Check Again under your Custom domain
 
 ## [Heroku](#table-of-contents)
 
@@ -64,12 +91,27 @@
 1. Search for JawsDB MySQL
 1. JAWSDB_URL should be automatically added in your config vars
 
+### [Heroku Adding Domain Name](#table-of-contents)
+1. On heroku website go to Settings
+1. Click Add domain
+1. Paste your domain name
+1. Copy the DNS target link
+
+On Porkbun
+1. Login
+1. Account -> Domain Management
+1. Click the arrow down in the red box on the right of you domain name you want to use
+1. Under DNS RECORDS click Edit
+1. Remove the 2 default DNS records of type ALIAS and CNAME*
+1. Set type to ALIAS, leave Host blank, and past your heroku DNS target link under Answer. Then Click Add
+1. Set type to CNAME, under Host put *, and past your heroku DNS target link under Answer. Then Click Add
+
 ## [Netlify](#table-of-contents)
 1. `npm run build` to get a dist folder
 2. Go to [netlify](https://app.netlify.com/)
 3. Drag and drop dist folder into sites in netlify
 
-### [Adding Domain Name](#table-of-contents)
+### [Netlify Adding Domain Name](#table-of-contents)
 1. Domain management
 1. Add domain name
 1. Type your registered domain name -> Add domain (There should be something saying it was already registered) -> Add domain again
