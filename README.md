@@ -12,6 +12,7 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
         - [NOT DONE: OOP](./oop.md)
         - [NOT DONE: Programming Tips](./programming_tips.md)
         - [Sending Messages](./sending_messages.md)
+        - [Advanced Google Searches](./advanced_google_searches.md)
     - HTML/CSS/JS
         - [HTML](./html.md)
         - [CSS](./css.md)
