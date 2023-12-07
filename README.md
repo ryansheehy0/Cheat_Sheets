@@ -30,6 +30,8 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
             - [SQL](./sql.md)
             - [Sequelize](./sequelize.md)
             - [MongoDB and Mongoose](./mongodb_and_mongoose.md)
+    - [NOT DONE: Bug Bounties](./Bug_Bounties/bug_bounties.md)
+        - [NOT DONE: Assetfinder](./Bug_Bounties/assetfinder.md)
     - C/C++
         - [Make Files](./make_files.md)
     - Algorithms
