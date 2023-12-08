@@ -29,9 +29,9 @@ The output should be the sorted input.
 
 <!-- /TOC -->
 
-## Quadratic
+## [Quadratic](#table-of-contents)
 
-### Bubble Sort
+### [Bubble Sort](#table-of-contents)
 Goes through one element at a time, compares the adjacent element, and swaps them if they are in the wrong order.
 - O(n^2)
   - Small datasets ok-ish
@@ -84,18 +84,18 @@ function bubbleSort(input){
 console.log(bubbleSort(input))
 ```
 
-### Selection Sort
+### [Selection Sort](#table-of-contents)
 Divides input into 2 categories. Sorted and unsorted region. Finds the smallest(or largest) in the unsorted and moves it into the sorted region.
 O(n^2)
 
-### Insertion Sort
+### [Insertion Sort](#table-of-contents)
 Divides input into 2 categories. Sorted and unsorted region. Takes one elements from the unsorted and inserts it into its correct position in the sorted region.
 O(n^2)
 
-## Comparison
+## [Comparison](#table-of-contents)
 A comparison sorting algorithm compares two at a time using either < or > operators.
 
-### Quick Sort
+### [Quick Sort](#table-of-contents)
 Quicksort defines a pivot(usually at the end) and sorts the array so that elements to the left are less than the pivot and elements to the right are greater than the pivot. This is then done recursively to the left and right sides until there is no longer anything to sort.
 - O(n log n)
 - Worst case: O(n^2)
@@ -164,20 +164,20 @@ function quickSort(input){
 console.log(quickSort(input))
 ```
 
-### Shell Sort
+### [Shell Sort](#table-of-contents)
 O(n log n)
 
-### Merge Sort
-### Heap Sort
-### Bucket Sort
+### [Merge Sort](#table-of-contents)
+### [Heap Sort](#table-of-contents)
+### [Bucket Sort](#table-of-contents)
 
-## Linear
+## [Linear](#table-of-contents)
 
-### Radix Sort
+### [Radix Sort](#table-of-contents)
 
 O(n)
 
-### Counting Sort
+### [Counting Sort](#table-of-contents)
 The count sort algorithm goes through the input and counts how many of a digit there are and then reconstructs the sorted array from that count.
 - O(n)
 - This sorting algorithm is best when the range is known before hand and the difference between each element isn't great
@@ -220,6 +220,7 @@ function countingSort(input, min = Math.min(...input), max = Math.max(...input))
 console.log(countingSort(input, 0, 4))
 ```
 
-## Hybrid
+## [Hybrid](#table-of-contents)
 .push()
-## Tim Sort
+
+## [Tim Sort](#table-of-contents)

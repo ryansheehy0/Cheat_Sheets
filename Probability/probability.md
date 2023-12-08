@@ -1,4 +1,4 @@
-[Home](./README.md)
+[Home](../README.md)
 
 # Probability
 Some basic probability concepts.
@@ -14,12 +14,10 @@ Some basic probability concepts.
   - [Conditional Probability](#conditional-probability)
   - [Bayes Theorem](#bayes-theorem)
     - [Example:](#example)
-  - [Bell curve](#bell-curve)
-    - [Central Limit Theorem](#central-limit-theorem)
 
 <!-- /TOC -->
 
-## Probability Logic
+## [Probability Logic](#table-of-contents)
 
 | Name               | Calculation                                      | Venn Diagram          | Description                         |
 |--------------------|--------------------------------------------------|-----------------------|-------------------------------------|
@@ -33,12 +31,12 @@ Some basic probability concepts.
 | B Not A            | P(B) * P(A')                                     | ![bnota](./bnota.png) | Probability of B, but not A         |
 
 
-## Law of Large Numbers
+## [Law of Large Numbers](#table-of-contents)
 A the number of outcomes for a probabilistic event goes to infinity the outcomes get closer and closer to the true probability of that event.
 
 Ex: If you flip a coin an infinite amount of times, 50% of the outcomes will be heads and 50% tails.
 
-## Conditional Probability
+## [Conditional Probability](#table-of-contents)
 If P(A) = P(A|B) then B doesn't effect the probability of A.
 
 If P(B) = P(B|A) then A doesn't effect the probability of B.
@@ -47,8 +45,7 @@ If P(B) = P(B|A) then A doesn't effect the probability of B.
 |-------------|---------------------------------------|-----------------------------------------|
 | Conditional | $\frac{P(A &cap; B)}{P(B)}$ = P(A\|B) | Probability of A given that B happened. |
 
-
-## Bayes Theorem
+## [Bayes Theorem](#table-of-contents)
 Bayes theorem is a formula that is used to help you update your believes based upon new evidence. New evidence shouldn't determine your believes, but update your already existing believes.
 
 | Symbol  | Description                                        |
@@ -66,7 +63,7 @@ P(A|E) = P(B|E') and P(B|E) = P(A|E')
 
 $P(A|E) = \frac{P(A) * P(E|A)}{P(A) * P(E|A) + P(B) * P(E|B)}$
 
-### Example:
+### [Example:](#table-of-contents)
 There is a meek and tidy person. Are they more likely to be a librarian or a farmer?
 - Most people assume they are more likely to be a librarian because they are meek and tidy, however they don't consider there are more farmers than librarians.
 

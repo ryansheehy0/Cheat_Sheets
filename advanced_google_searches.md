@@ -1,3 +1,5 @@
+[Home](./README.md)
+
 # Advanced Google Searches
 
 Useful features for more advanced searches in google search engine.

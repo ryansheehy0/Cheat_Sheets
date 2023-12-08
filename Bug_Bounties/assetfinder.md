@@ -1,6 +1,9 @@
+[Home](../README.md)
+
 # Assetfinder
 assetfinder is a terminal tool for finding sub domains. Sub domains are things other than "www" that go before the domain.
 
+```
 https://www.name.net
 [  ^   ][^] [ ^] [^]
    |     |    |   |
@@ -8,6 +11,7 @@ https://www.name.net
    |     | Domain
    | Sub-Domain
 Protocol
+```
 
 | Common Sub-Domains | Description                                  |
 |--------------------|----------------------------------------------|
@@ -18,7 +22,20 @@ Protocol
 | app                | Used for histing web apps                    |
 | beta               | beta features                                |
 
-## Install Kali Linux tools
+## Table of Contents
+<!-- TOC -->
+
+- [Assetfinder](#assetfinder)
+  - [Table of Contents](#table-of-contents)
+  - [Install Kali Linux tools](#install-kali-linux-tools)
+  - [How to use](#how-to-use)
+    - [Finding subdomains](#finding-subdomains)
+    - [Searching multiple domains from a file](#searching-multiple-domains-from-a-file)
+    - [Output to a file](#output-to-a-file)
+
+<!-- /TOC -->
+
+## [Install Kali Linux tools](#table-of-contents)
 - Add `deb http://http.kali.org/kali kali-rolling main contrib non-free non-free-firmware` to /etc/apt/sources.list
 - Run `sudo apt update`
   - If that doesn't work then run
@@ -27,17 +44,17 @@ Protocol
 - Run `sudo apt install assetfinder`
 
 
-## How to use
+## [How to use](#table-of-contents)
 
-### Finding subdomains
+### [Finding subdomains](#table-of-contents)
 `assetfinder name.net`
 - This also gets the connecting sites to the name.net
 
 `assetfinder -subs-only name.net`
 - This only gets the sub-domains of the name.net
 
-### Searching multiple domains from a file
+### [Searching multiple domains from a file](#table-of-contents)
 `cat domainfile.txt | assetfinder`
 
-### Output to a file
+### [Output to a file](#table-of-contents)
 `assetfinder name.net > outputfile.txt`
