@@ -65,6 +65,7 @@ JavaScript is the only language that can be run in the browser.
     - [Class Constructors](#class-constructors)
     - [Prototype](#prototype)
   - [Debugging](#debugging)
+  - [Labels](#labels)
 
 <!-- /TOC -->
 
@@ -210,6 +211,7 @@ fruits.splice(2, 0, "Lemon", "Kiwi")
 console.log(fruits)
 //Outputs: [ "Banana", "Orange", "Lemon", "Kiwi", "Apple", "Mango" ]
 
+// Removes 1 element from an array
 fruits = ["Banana", "Orange", "Apple", "Mango"]
 fruits.splice(1, 1)
 console.log(fruits)
@@ -269,15 +271,28 @@ console.log(totalPrice)
     - If the function returns a positive number "b" is sorted before "a"
 
 ```javascript
-const numbers = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5];
+const numbers = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]
 
-numbers.sort((a, b) => a - b);
-
+// Sorts least to greatest
+numbers.sort((a, b) => a - b)
 console.log(numbers); // Output: [1, 1, 2, 3, 3, 4, 5, 5, 5, 6, 9]
+
+// Sorts greatest to least
+numbers.sort((a, b) => b - a)
+console.log(numbers); // Output: [9, 6, 5, 5, 5, 4, 3, 3, 2, 1, 1]
 ```
 
 - `.includes(value)`
   - If the array includes value it returns true
+- `.some(function(currentValue, index, array))`
+  - Tests whether at least one element in the array passes the provided function.
+
+```javascript
+const numbers = [1, 2, 3, 4, 5]
+const hasEven = numbers.some((number) => {
+  return number % 2 === 0
+})
+```
 
 ## [Equality Operators](#table-of-contents)
 - `===` `!==` strict operator
@@ -1209,3 +1224,19 @@ This can be used to have inheritance with constructor functions.
 
 ## [Debugging](#table-of-contents)
 Just put `debugger` in your js code and in your inspect element it should allow you to debug
+
+## [Labels](#table-of-contents)
+Labels are useful when you have nested for loops and you want to break out of both for loops.
+
+You can use `break label` or `continue label`
+
+```javascript
+outerLoop: for (let i = 0; i < 5; i++) {
+  for (let j = 0; j < 5; j++) {
+    if (i === 2 && j === 2) {
+      break outerLoop // Breaks out of the outer loop
+    }
+    console.log(i, j)
+  }
+}
+```
