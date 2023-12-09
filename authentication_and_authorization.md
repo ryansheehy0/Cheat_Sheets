@@ -5,6 +5,7 @@
 
 **Authorization** is the process of making sure the user who logged in is the same user who is sending a request to the server.
 
+```
      Client                           Server
        |
        +------(username and password)----->+
@@ -16,6 +17,7 @@ Client +--(request, Session ID, and hash)->+
        +<---(request info if authorized)---+
        |
 
+```
 
 In order for the server to make sure the Session ID isn't tamped with, the server combines its generated Session ID with its Secret Key and creates a hash.
 

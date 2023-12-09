@@ -18,7 +18,7 @@ Javascript is single threaded language. The thread has a call stack and memory h
   - [Use Strick](#use-strick)
   - [Useful terms](#useful-terms)
   - [Closures](#closures)
-    - [Var/Let strick question](#varlet-strick-question)
+    - [Var/Let trick question](#varlet-trick-question)
   - [Big O Notation](#big-o-notation)
   - [Progressive Web Apps PWAs](#progressive-web-apps-pwas)
     - [Manifest](#manifest)
@@ -54,10 +54,12 @@ second()
 third()
 ```
 
+```
          | Call Stack |
 ---------|------------|---------
 third -> | second     | -> first
          | Global EV  |
+```
 
 ### [Example 2](#table-of-contents)
 When you have functions inside functions it is added to the call stack.
@@ -147,7 +149,7 @@ function bankAccount() {
 
 Factory functions are like closures, but are given arguments.
 
-### [Var/Let strick question](#table-of-contents)
+### [Var/Let trick question](#table-of-contents)
 
 ```javascript
 // var is scoped to the global scope therefore it doesn't change closures
