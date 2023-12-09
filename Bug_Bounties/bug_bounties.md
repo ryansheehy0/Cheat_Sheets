@@ -71,6 +71,7 @@
 
 ## [SQL Injection](#table-of-contents)
 ## [Cross site scripting(XSS)](#table-of-contents)
+  - Used to run unwanted javascript on the server itself. This is useful because it allows you to bypass permissions because the javascript is running on the server itself.
 ## [Authentication and Authorizations attacks](#table-of-contents)
 - User permissions in applications
 ## [File upload vulnerabilities](#table-of-contents)

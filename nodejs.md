@@ -360,6 +360,8 @@ app.patch("/", (req, res) => {
 
 Your http methods need to return something, even an empty response, to indicate that the request was successfully handled. You can use `res.send("GET / handled successfully")`
 
+You can change the default header type by `res.header("Content-Type", "application/javascript")`
+
 #### [Parameters](#table-of-contents)
 Parameters are data sent through the URL. This can include regular parameters like `/api/test/${id}` or query parameters like `/api/test?id=${id}`
 

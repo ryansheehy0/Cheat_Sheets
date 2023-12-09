@@ -16,15 +16,17 @@
   - [Package Manager](#package-manager)
     - [Advanced package toolapt](#advanced-package-toolapt)
   - [File and Directory Manipulation](#file-and-directory-manipulation)
-  - [Find Commands](#find-commands)
+  - [Find](#find)
   - [Computer commands](#computer-commands)
     - [Mount and Unmount drive](#mount-and-unmount-drive)
   - [Compression](#compression)
   - [sed](#sed)
   - [Recursive size of folders in a directory](#recursive-size-of-folders-in-a-directory)
-  - [Curl](#curl)
-  - [System Info](#system-info)
   - [Networking](#networking)
+    - [httprobe](#httprobe)
+    - [Curl](#curl)
+  - [Grep](#grep)
+  - [System Info](#system-info)
 
 <!-- /TOC -->
 
@@ -98,12 +100,14 @@ File types
 | date                 | Show current date and time                                |
 | ctrl + c             | Allows you to stop running the current program            |
 | command1 && command2 | Run command1 and if that was successful than run command2 |
+| wc fileName          | Counts the number of lines, words, and bytes in a file    |
 
 ## [Installation](#table-of-contents)
 
-| Command                 | Description        |
-|-------------------------|--------------------|
-| sudo dpkg -i ./file.deb | Install .deb files |
+| Command                 | Description                 |
+|-------------------------|-----------------------------|
+| sudo dpkg -i ./file.deb | Install .deb files          |
+| dpkg -l                 | List all installed packages |
 
 How to install other files
 
@@ -113,10 +117,6 @@ How to install other files
 - AppImage
 - Pacman
 - Snap
-
-| Command | Description                 |
-|---------|-----------------------------|
-| dpkg -l | List all installed packages |
 
 ### [Advanced package tool(apt)](#table-of-contents)
 
@@ -144,11 +144,27 @@ How to install other files
 | mv fileName destinationDir  | Moves file to destination directory                      |
 | mv ./* dirPath              | Move all contents of current folder to another directory |
 
-## [Find Commands](#table-of-contents)
+## [Find](#table-of-contents)
 
-| Command                        | Description                                              |
-|--------------------------------|----------------------------------------------------------|
-| find filePath -iname fileName* | Finds files under filepath                               |
+Used for finding files or directories
+
+| Command                        | Description                                                  |
+|--------------------------------|--------------------------------------------------------------|
+| find filePath -iname fileName* | Finds files under filepath. Case insensitive                 |
+| -type f                        | Only shows files                                             |
+| -type d                        | Only shows directories                                       |
+| -mmin -10                      | Find files that were modified less than 10 minutes ago       |
+| -mmin +10                      | Find files that were modified more than 10 minutes ago       |
+| -mtime -10                     | Find files that were modified less than 10 days ago          |
+| -size +5M                      | Files over 5 megabytes                                       |
+| -empty                         | Empty files                                                  |
+| -perm ###                      | Find files with that permission                              |
+| -maxdepth #                    | Sets a max depth for recursive searching through directories |
+| -exec command                  | Executes a command on all of the files                       |
+
+Examples:
+- `find . -type f -exec chown user:group {} \;` Recursively changes the own of each file in a directory.
+- `find . -type f -maxdepth 1 -name "*.jpg" -exec rm {} \;` Removes all .jpg files from a directory.
 
 ## [Computer commands](#table-of-contents)
 
@@ -177,22 +193,16 @@ With some linux distros this happens automatically
 - gzip
 
 
-- grep
-    - Searches for patterns in a file or input stream
 - sed
     - text transformations on a file or input stream
 - awk
     - analyzes text files or input streams
-- chmod
-- chown
-- find
 - head
 - tail
 - tar
 - gzip
 - sort
 - uniq
-- wc
 - gnu Parallel
 - | << >>
     - pipes, appending text into file or re-writing text into file
@@ -239,20 +249,55 @@ I want ls, but with recursively calculated sizes. Not just folders, but also fil
 
 `du --max-depth=1 -h ./`
 
-## [Curl](#table-of-contents)
+## [Networking](#table-of-contents)
+- ping
+- traceroute/tracepath
 
-Used to see the return from an api calls. Makes a get request form a URL.
+### [httprobe](#table-of-contents)
+httprobe is used to take a list of domains and probe for working HTTP and HTTPS servers.
 
-```
-curl https://api.github.com/users
-```
+`cat domains.txt | httprobe > results.txt`
 
+### [Curl](#table-of-contents)
 
+Used to get the return information from websites/apis. Makes a get request form a URL.
+
+`curl https://api.github.com/users`
+
+| Flags | Description                     |
+|-------|---------------------------------|
+| -i    | Returns the headers and content |
+| -I    | Returns just the headers        |
+
+## [Grep](#table-of-contents)
+
+Grep is used for searching text in a file. Grep returns the lines that match a pattern, or the files that contain the pattern.
+
+`grep -Flags pattern fileName`
+
+| Flags | Description                                                                    |
+|-------|--------------------------------------------------------------------------------|
+| -w    | Just match the word and not words which just contain the pattern               |
+| -i    | Case sensitive                                                                 |
+| -n    | Gives line number                                                              |
+| -A #  | Shows # of lines after the line which has the pattern                          |
+| -B #  | Shows # of lines before the line which has the pattern                         |
+| -C #  | Shows # of lines before and after the line which has the pattern               |
+| -r    | Recursively search through a directory                                         |
+| -l    | Just show the files which contain the match                                    |
+| -c    | Shows all files and how many matches are in that file.                         |
+| -P    | Allows for Pearl compatible expressions. Allows \d and other regex expressions |
+| -v    | Inverse match                                                                  |
+| -h    | Don't display the file name. Just the lines                                    |
+| -H    | Display the file name and the lines.                                           |
+
+If you don't want to recursively search through a directory you can do `grep pattern dirPath/*`
+
+Examples:
+- `grep -wirn "grep" .` Searches for lines with the word "grep" recursively in the current directory
+- `grep -wirl "grep" .` Searches for files that contain the word "grep"
+- `grep -wirc "grep" . | grep -v :0$` Search for files that contain the word "grep" and how many matches they have to the word "grep"
 
 ## [System Info](#table-of-contents)
 - df
 - free
-
-## [Networking](#table-of-contents)
-- ping
-- traceroute/tracepath
