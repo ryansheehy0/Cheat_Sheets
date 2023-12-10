@@ -11,13 +11,16 @@
   - [Table of Contents](#table-of-contents)
   - [Start of HTML](#start-of-html)
   - [Text Formatting](#text-formatting)
-  - [Links and Images](#links-and-images)
+  - [Linking and Embedding](#linking-and-embedding)
+    - [Map](#map)
   - [Lists](#lists)
   - [Tables](#tables)
   - [Forms](#forms)
   - [Grouping](#grouping)
   - [Self Closing Tags](#self-closing-tags)
   - [Comments](#comments)
+  - [Details](#details)
+  - [Dialog](#dialog)
   - [HTML entities](#html-entities)
   - [Attributes](#attributes)
   - [Inline elements vs block elements](#inline-elements-vs-block-elements)
@@ -58,15 +61,37 @@ You can add an favicon in the top of the tab by adding this to the head:
 <sub>Subscript</sub>
 <del>Crossed out</del>
 <ins>Underline</ins>
+<code>Code block</code>
+<mark>Highlighting</mark>
 ```
 
-## [Links and Images](#table-of-contents)
+## [Linking and Embedding](#table-of-contents)
 
 ```HTML
 <a href="URL/filepath">Link</a>
 <a href="URL/filepath" target="_blank">Link in new tab</a>
 <img src="URL/filepath" alt="Description">
     <!-- "Image of" is said before alt texts. -->
+<audio controls> <!-- Little play bar for playing audio -->
+  <source src="horse.mp3" type="audio/mpeg">
+</audio>
+<iframe src="url" title="description"></iframe> <!-- Embed other html in your page -->
+<!-- Used for embedding other files like PDFs -->
+<embed src="/pdfFile.pdf" type="application/pdf"/>
+```
+
+### [Map](#table-of-contents)
+
+Map allows you to click in specific spots inside of an image and go to a specific link.
+
+```HTML
+<img src="workplace.jpg" alt="Workplace" usemap="#workmap" width="400" height="379">
+
+<map name="workmap">
+  <area shape="rect" coords="34,44,270,350" alt="Computer" href="computer.htm">
+  <area shape="rect" coords="290,172,333,250" alt="Phone" href="phone.htm">
+  <area shape="circle" coords="337,300,44" alt="Cup of coffee" href="coffee.htm">
+</map>
 ```
 
 ## [Lists](#table-of-contents)
@@ -80,6 +105,18 @@ You can add an favicon in the top of the tab by adding this to the head:
   <li>Item 1</li>
   <li>Item 2</li>
 </ol>
+
+<!-- Nested lists -->
+
+<ul>
+  <li>Item 1</li>
+  <li>Item 2
+    <ul>
+      <li>Sub-item 1</li>
+      <li>Sub-item 2</li>
+    </ul>
+  </li>
+</ul>
 ```
 
 ## [Tables](#table-of-contents)
@@ -121,9 +158,19 @@ You can add an favicon in the top of the tab by adding this to the head:
 
   <textarea name="message" placeholder="Message"></textarea>  <!-- Textarea used for multi-line text input. -->
 
+  <datalist> <!-- Like a dropdown menu, but you can also type -->
+    <option value="Edge">
+    <option value="Firefox">
+    <option value="Chrome">
+    <option value="Opera">
+    <option value="Safari">
+  </datalist>
+
   <select name="country">  <!-- Select dropdown -->
-    <option value="us">United States</option>
-    <option value="ca">Canada</option>
+    <optgroup label="North America"> <!-- Sub title in the options dropdown-->
+      <option value="us">United States</option>
+      <option value="ca">Canada</option>
+    </optgroup>
   </select>
 </form>
 ```
@@ -142,20 +189,62 @@ Forms by default send a http POST request with the endpoint in action. The serve
 <section>Section of a document</section>
 <article>Self contained article</article>
 <aside>Side Content</aside>
+<button>Click Me!!!</button>
 ```
 
 ## [Self Closing Tags](#table-of-contents)
 
 ```HTML
-<br/>    <!-- Line break -->
-<hr/>    <!-- Horizontal rule/line -->
-<wbr/>   <!-- Word break. The browser can line wrap at that point if necessary. -->
+<br>    <!-- Line break -->
+<hr>    <!-- Horizontal rule/line -->
+<wbr>   <!-- Word break. The browser can line wrap at that point if necessary. -->
 ```
 
 ## [Comments](#table-of-contents)
 
 ```HTML
 <!-- Comments -->
+```
+
+## [Details](#table-of-contents)
+Small dropdown that can be opened and closed.
+
+```HTML
+<details>
+  <summary>Epcot Center</summary>
+  <p>Epcot is a theme park at Walt Disney World Resort featuring exciting attractions, international pavilions, award-winning fireworks and seasonal special events.</p>
+</details>
+```
+
+## [Dialog](#table-of-contents)
+Dialogs are used for modals
+
+```HTML
+<dialog>
+  <button autofocus>Close</button>
+  <p>This modal dialog has a groovy backdrop!</p>
+</dialog>
+<button>Show the dialog</button>
+```
+
+```CSS
+::backdrop { /* Styles the background of the dialog when it's popped up */
+  opacity: 0.75;
+}
+```
+
+```javascript
+const dialog = document.querySelector("dialog")
+const showButton = document.querySelector("dialog + button")
+const closeButton = document.querySelector("dialog button")
+
+showButton.addEventListener("click", () => {
+  dialog.showModal()
+})
+
+closeButton.addEventListener("click", () => {
+  dialog.close()
+})
 ```
 
 ## [HTML entities](#table-of-contents)
@@ -206,4 +295,10 @@ Forms by default send a http POST request with the endpoint in action. The serve
 
 ```HTML
 <script src="script.js" defer></script>
+```
+
+- `noscript` is ran when the user doesn't have javascript enabled.
+
+```HTML
+<noscript>Your browser does not support JavaScript!</noscript>
 ```
