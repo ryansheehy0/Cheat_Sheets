@@ -31,8 +31,6 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
             - [SQL](./sql.md)
             - [Sequelize](./sequelize.md)
             - [MongoDB and Mongoose](./mongodb_and_mongoose.md)
-    - [NOT DONE: Bug Bounties](./Bug_Bounties/bug_bounties.md)
-        - [NOT DONE: Assetfinder](./Bug_Bounties/assetfinder.md)
     - C/C++
         - [Make Files](./make_files.md)
     - Algorithms
@@ -40,6 +38,9 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
         - [NOT DONE: Sort Algorithms](./sort_algorithms.md)
         - [NOT DONE: Machine Learning](./Machine_Learning/machine_learning.md)
         - [NOT DONE: Memory Managed Hash Table](./memory_managed_hash_table.md)
+    - [NOT DONE: Bug Bounties](./Bug_Bounties/bug_bounties.md)
+        - [NOT DONE: Assetfinder](./Bug_Bounties/assetfinder.md)
+        - [NOT DONE: Brute Force Attacks](./Bug_Bounties/brute_force_attacks.md)
 - Math
     - [Taylor Series](./Taylor_Series/taylor_series.md)
     - [Newtons Method](./Newtons_Method/newtons_method.md)

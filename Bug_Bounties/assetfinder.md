@@ -4,7 +4,7 @@
 assetfinder is a terminal tool for finding sub domains. Sub domains are things other than "www" that go before the domain.
 
 ```
-https://www.name.net
+https://www.name.net/path
 [  ^   ][^] [ ^] [^]
    |     |    |   |
    |     |    | Top level Domain(TLD)
@@ -32,6 +32,8 @@ Protocol
     - [Finding subdomains](#finding-subdomains)
     - [Searching multiple domains from a file](#searching-multiple-domains-from-a-file)
     - [Output to a file](#output-to-a-file)
+  - [httprobe](#httprobe)
+  - [Finding different paths](#finding-different-paths)
 
 <!-- /TOC -->
 
@@ -42,7 +44,6 @@ Protocol
   - `wget -O a "https://archive.kali.org/archive-key.asc" | apt-key add a`
   - Run `sudo apt update` again
 - Run `sudo apt install assetfinder`
-
 
 ## [How to use](#table-of-contents)
 
@@ -58,3 +59,13 @@ Protocol
 
 ### [Output to a file](#table-of-contents)
 `assetfinder name.net > outputfile.txt`
+
+## [httprobe](#table-of-contents)
+httprobe is used to check if links work
+
+`cat sub_domains.txt | httprobe > valid_links.txt`
+
+## [Finding different paths](#table-of-contents)
+- https://www.name.net/robots.txt
+  - robots.txt is a text file which tells web crawlers which parts of the site should not be crawled or should be crawled with certain restrictions.
+- 
