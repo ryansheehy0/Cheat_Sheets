@@ -27,13 +27,12 @@ Protocol
 
 - [Assetfinder](#assetfinder)
   - [Table of Contents](#table-of-contents)
-  - [Install Kali Linux tools](#install-kali-linux-tools)
-  - [How to use](#how-to-use)
-    - [Finding subdomains](#finding-subdomains)
-    - [Searching multiple domains from a file](#searching-multiple-domains-from-a-file)
-    - [Output to a file](#output-to-a-file)
-  - [httprobe](#httprobe)
-  - [Finding different paths](#finding-different-paths)
+  - [](#)
+  - [](#)
+    - [](#)
+    - [](#)
+    - [](#)
+  - [](#)
 
 <!-- /TOC -->
 
@@ -60,12 +59,6 @@ Protocol
 ### [Output to a file](#table-of-contents)
 `assetfinder name.net > outputfile.txt`
 
-## [httprobe](#table-of-contents)
-httprobe is used to check if links work
-
-`cat sub_domains.txt | httprobe > valid_links.txt`
-
 ## [Finding different paths](#table-of-contents)
 - https://www.name.net/robots.txt
   - robots.txt is a text file which tells web crawlers which parts of the site should not be crawled or should be crawled with certain restrictions.
-- 
