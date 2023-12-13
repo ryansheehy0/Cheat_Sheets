@@ -19,21 +19,26 @@ Add `#!/bin/bash` to the start of bash script files. Bash script files what the 
   - [Math](#math)
   - [If statements](#if-statements)
     - [Conditionals](#conditionals)
-    - [Extended test command](#extended-test-command)
   - [Exit](#exit)
+  - [Reading user input](#reading-user-input)
+  - [While](#while)
+  - [For loop](#for-loop)
 
 <!-- /TOC -->
 
 ## [Variables](#table-of-contents)
 Variables in bash are case sensitive.
 
+- `"`s allow for special characters like `${}`
+- `'`s don't allow for special characters like `${}`
+
 ```bash
 var="Ryan"
 
 echo "hello $var"
-echo "all uppercase " ${var^^}
-echo "all lowercase " ${var,,}
-echo "length of var: " ${#var}
+echo "all uppercase ${var^^}"
+echo "all lowercase ${var,,}"
+echo "length of var: ${#var}"
 
 # variable:offset:length
 nums=0123456789
@@ -52,6 +57,7 @@ Special parameters are parameters set by the shell itself.
 | $#          | Number of arguments passed to the script                                        |
 | $0, $1, ... | Represents each argument passed to the script. $0 is the name of the script ran |
 | $$          | Process id of the current script                                                |
+| $?          | The exit status of the last executed command                                    |
 
 ## [Math](#table-of-contents)
 
@@ -69,10 +75,28 @@ echo $((x+y)) #12
 echo month{1...3} # month1 month2 month3
 ```
 
+- You can use C style math calculation using `(())`
+  - Using `$(())` allows you to return the math that was done inside
+  - Doesn't handle floats, only ints
+
+```bash
+(( a = (8*8 + 36)/2))
+echo $a #50
+echo $((++a)) #51
+
+# Exponents
+echo $((2**3)) #8
+
+# $ return the value even when assigning to a variable
+b=$((a = 15))
+echo $b #15
+```
+
 ## [If statements](#table-of-contents)
 
 ```bash
-if [ condition ]; then
+# Has to be a space between the condition and the brackets
+if [[ condition ]]; then
     # Commands to be executed if the condition is true
 else
     # Commands to be executed if the condition is false
@@ -81,24 +105,51 @@ fi
 
 ### [Conditionals](#table-of-contents)
 
-| Conditional | Description              |
-|-------------|--------------------------|
-| -eq         | Equal                    |
-| -ne         | Not equal                |
-| -lt         | Less than                |
-| -le         | Less than or equal to    |
-| -gt         | Greater than             |
-| -ge         | Greater than or equal to |
-| !           | Logical not              |
-| -z          | True if string is empty  |
-| -a          | Logical and              |
-| -o          | Logical or               |
-
-### [Extended test command](#table-of-contents)
-
-
+| Conditional   | Description              |
+|---------------|--------------------------|
+| -eq or ==     | Equal                    |
+| -ne or !=     | Not equal                |
+| =~ Regex      | If equal to the regex    |
+| -lt or \<     | Less than                |
+| -le or \<=    | Less than or equal to    |
+| -gt or >      | Greater than             |
+| -ge or >=     | Greater than or equal to |
+| !             | Logical not              |
+| -z            | True if string is empty  |
+| -a  or &&     | Logical and              |
+| -o  or \|\|   | Logical or               |
+| -f "fileName" | true if the file exists  |
 
 ## [Exit](#table-of-contents)
 Use `exit #` to exit the script.
 
 A non-zero status indicates an error, and 0 indicates a success.
+
+## [Reading user input](#table-of-contents)
+
+```bash
+# This takes multiple inputs
+read varA varB
+echo "varA: ${varA}"
+echo "varB: ${varB}"
+
+read -p "Please enter variable A: " varA
+```
+
+## [While](#table-of-contents)
+
+```bash
+num=10
+
+while [[ condition ]]; do
+  # bash
+done
+```
+
+## [For loop](#table-of-contents)
+
+```bash
+for i in {1...5}; do
+  # bash
+done
+```

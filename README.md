@@ -8,8 +8,8 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
         - [Git](./git.md)
         - [Regex](./regex.md)
         - [Deploying Websites](./deploying_websites.md)
-        - [NOT DONE: Linux Commands](./linux_commands.md)
-            - [NOT DONE: Bash Scripting](./bash_scripting.md)
+        - [Linux Commands](./linux_commands.md)
+            - [Bash Scripting](./bash_scripting.md)
         - [NOT DONE: OOP](./oop.md)
         - [NOT DONE: Programming Tips](./programming_tips.md)
         - [Sending Messages](./sending_messages.md)
@@ -28,6 +28,7 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
                 - [Redux and Context](./redux_and_context.md)
             - [Graph QL](./graphql.md)
         - [NodeJS](./nodejs.md)
+            - [NodeJS Packages](./nodejs_packages.md)
         - Databases
             - [SQL](./sql.md)
             - [Sequelize](./sequelize.md)

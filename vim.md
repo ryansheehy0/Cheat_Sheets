@@ -122,15 +122,15 @@
 
 ## [Find on page/Search](#table-of-contents)
 
-|                       |                                                                  |
-|-----------------------|------------------------------------------------------------------|
-| / + regex + enter     | Search forward on page                                           |
-| ? + regex + enter     | Search backward on page                                          |
-| n                     | got to next                                                      |
-| N                     | go back one                                                      |
-| :noh                  | remove highlight                                                 |
-| :%s/regex/replace/g   | search and replace. You can also do this for selected text.      |
-| f + character         | Go to the next occurrence of that character in the current line. |
+|                       |                                                                      |
+|-----------------------|----------------------------------------------------------------------|
+| / + regex + enter     | Search forward on page                                               |
+| ? + regex + enter     | Search backward on page                                              |
+| n                     | got to next                                                          |
+| N                     | go back one                                                          |
+| :noh                  | remove highlight                                                     |
+| :s/regex/replace/g    | search and replace. You can also do this for selected text.          |
+| f + character         | Go to the next occurrence of that character in the current line.     |
 | shift + f + character | Go to the previous occurrence of that character in the current line. |
 
 ## [Macros](#table-of-contents)

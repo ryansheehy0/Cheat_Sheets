@@ -1,7 +1,6 @@
 [Home](./README.md)
 
 # Linux Commands
-
 Linux terminal commands
 
 ## Table of Contents
@@ -10,9 +9,11 @@ Linux terminal commands
 
 - [Linux Commands](#linux-commands)
   - [Table of Contents](#table-of-contents)
+  - [Pipes](#pipes)
   - [Navigation](#navigation)
     - [Files types](#files-types)
   - [Changing Permissions](#changing-permissions)
+    - [usermod](#usermod)
   - [Miscellaneous](#miscellaneous)
   - [Installation](#installation)
   - [Package Manager](#package-manager)
@@ -20,7 +21,10 @@ Linux terminal commands
   - [File and Directory Manipulation](#file-and-directory-manipulation)
   - [Find](#find)
   - [Computer commands](#computer-commands)
+    - [ps, kill](#ps-kill)
+    - [job, bg, fg](#job-bg-fg)
     - [Mount and Unmount drive](#mount-and-unmount-drive)
+    - [Recursive size of folders in a directory](#recursive-size-of-folders-in-a-directory)
   - [Compression](#compression)
     - [gzip](#gzip)
     - [tar](#tar)
@@ -28,7 +32,6 @@ Linux terminal commands
     - [zip files](#zip-files)
   - [sed](#sed)
   - [awk](#awk)
-  - [Recursive size of folders in a directory](#recursive-size-of-folders-in-a-directory)
   - [Networking](#networking)
     - [ping](#ping)
     - [httprobe](#httprobe)
@@ -36,8 +39,17 @@ Linux terminal commands
   - [grep](#grep)
   - [sort and uniq](#sort-and-uniq)
   - [head and tail](#head-and-tail)
+  - [Redirection operations](#redirection-operations)
+  - [alias](#alias)
 
 <!-- /TOC -->
+
+## [Pipes](#table-of-contents)
+Pipes allow you to input the output of one command into another.
+
+`command1 | command2`
+
+The outputs of command1 go into the inputs of command2
 
 ## [Navigation](#table-of-contents)
 
@@ -98,6 +110,16 @@ File types
 | chmod ### fileName          | Change permissions. r(4) w(2) x(1) -(0)                                  |
 | chmod +x fileName           | Change file to be an executable                                          |
 
+### [usermod](#table-of-contents)
+`usermod` is used to change account properties.
+
+| Flags                      | Description                  |
+|----------------------------|------------------------------|
+| -l newUsername oldUsername | Changes the username         |
+| -u newUUID username        | Changes the User's id        |
+| -g newGID username         | Changes primary group id     |
+| -aG group username         | Adds the username to a group |
+
 ## [Miscellaneous](#table-of-contents)
 
 | Command              | Description                                               |
@@ -106,12 +128,16 @@ File types
 | !!                   | Run previous command                                      |
 | su user              | Switch to that user                                       |
 | cat file             | Outputs contents of a file                                |
+| cat - file           | The - is the input into the cat file                      |
+| cat file \| less     | allows you to go through outputs one by 1                 |
 | echo text            | Outputs text                                              |
 | date                 | Show current date and time                                |
 | ctrl + c             | Allows you to stop running the current program            |
 | command1 && command2 | Run command1 and if that was successful than run command2 |
+| command &            | Runs the command in the background                        |
 | wc fileName          | Counts the number of lines, words, and bytes in a file    |
 | wc -l                | Number of lines                                           |
+| clear                | Clears the contents of the terminal                       |
 
 ## [Installation](#table-of-contents)
 
@@ -122,10 +148,22 @@ File types
 
 ## [Package Manager](#table-of-contents)
 - apt
+  - debian based package manager
+  - Installs .deb files which share dependencies
 - Flatpak
+  - A package manager for .flatpakref files
+  - Packages applications and dependencies in the same place
+  - Used for gui apps
 - AppImage
+  - A format for distributing portable software.
+  - The application and the dependencies are combined.
+  - The application is just 1 file
 - Pacman
+  - Arches package manager
 - Snap
+  - Umbutu's competitor to Flatpaks
+
+Dependency hell is when one application needs an older version of a library than another application. You might have to install both the older version and the newer one.
 
 ### [Advanced package tool(apt)](#table-of-contents)
 
@@ -154,7 +192,6 @@ File types
 | mv ./* dirPath              | Move all contents of current folder to another directory |
 
 ## [Find](#table-of-contents)
-
 Used for finding files or directories
 
 | Command                        | Description                                                  |
@@ -176,14 +213,37 @@ Examples:
 - `find . -type f -maxdepth 1 -name "*.jpg" -exec rm {} \;` Removes all .jpg files from a directory.
 
 ## [Computer commands](#table-of-contents)
-- df
-- free
 
-| Command              | Description         |
-|----------------------|---------------------|
-| sudo restart         | Restart computer    |
-| sudo shutdown -h now | Shutdown's computer |
-| lspci -k             | List drivers        |
+| Command              | Description                                     |
+|----------------------|-------------------------------------------------|
+| sudo restart         | Restart computer                                |
+| sudo shutdown -h now | Shutdown's computer                             |
+| lspci -k             | List drivers                                    |
+
+### [ps, kill](#table-of-contents)
+ps is used to show different process running.
+
+| Command                | Description                                     |
+|------------------------|-------------------------------------------------|
+| ps                     | List processes running in that terminal session |
+| ps -x                  | All process on that user                        |
+| ps -He                 | Hierarchical relationships of processes         |
+| ps -axjf               | More advanced view                              |
+| ps -aux                | Shows users, cpu%, mem%, and other stuff        |
+| kill PID               | Terminate(ask program to shut down) process     |
+| kill -9 PID            | Kill(force a program to shut down) a program    |
+| killall programName    | Terminate all processes with that name          |
+| killall -9 programName | Kill all processes with that name               |
+
+### [job, bg, fg](#table-of-contents)
+
+| Commands  | Description                                                |
+|-----------|------------------------------------------------------------|
+| ctrl + z  | Suspend/Pause program                                      |
+| jobs      | List all the paused programs and their number(on the left) |
+| fg jobNum | Runs a job in the foreground                               |
+| bg jobNum | Runs a job in the background                               |
+| command & | Run command in the background                              |
 
 ### [Mount and Unmount drive](#table-of-contents)
 With some linux distros this happens automatically
@@ -192,6 +252,11 @@ With some linux distros this happens automatically
 1. `sudo fdisk -l` find where drive is
 1. `sudo mount filePathFromFdisk filePathMountFolder` mounts the drive
 1. `sudo umount filePathMountFolder` unmounts the drive
+
+### [Recursive size of folders in a directory](#table-of-contents)
+I want ls, but with recursively calculated sizes. Not just folders, but also files.
+
+`du --max-depth=1 -h ./`
 
 ## [Compression](#table-of-contents)
 
@@ -285,7 +350,6 @@ Columns are defined with teh field separator. Rows are defined by new lines.
 
 `$#` is used to choose which column. `$NF` is used to get the last column.
 
-
 | Flags | Description                               |
 |-------|-------------------------------------------|
 | -F':' | Setting a custom field separator to be :s |
@@ -298,13 +362,7 @@ Examples:
 - `echo "[" && awk '{print "\""$1"\""","}' ./text.txt && echo "]" > text.json`
   - Converts a text file of lines of data into an array in a json file
 
-## [Recursive size of folders in a directory](#table-of-contents)
-I want ls, but with recursively calculated sizes. Not just folders, but also files.
-
-`du --max-depth=1 -h ./`
-
 ## [Networking](#table-of-contents)
-- traceroute/tracepath
 
 ### [ping](#table-of-contents)
 Ping is used to message a server and see if you are getting a response.
@@ -322,7 +380,6 @@ httprobe is used to take a list of domains and probe for working HTTP and HTTPS 
 `cat domains.txt | httprobe > results.txt`
 
 ### [curl](#table-of-contents)
-
 Used to get the return information from websites/apis. Makes a get request form a URL.
 
 `curl https://api.github.com/users`
@@ -389,3 +446,34 @@ Example:
 | Flags | Description                         |
 |-------|-------------------------------------|
 | -n #  | Number of lines. The default is 10. |
+
+## [Redirection operations](#table-of-contents)
+
+| Command           | Description                                                                               |
+|-------------------|-------------------------------------------------------------------------------------------|
+| command \> file   | Redirect the output of a command into another file. It overwrites everything in that file |
+| command \>\> file | Append to the end of a file                                                               |
+| command \< file   | Inputs the file into the command. You can also use `cat file \| command`                  |
+
+- `<<` is used to input blocks of text into a command
+  - The delimiter is any sequence of characters which marks the end of the input block
+```bash
+# This will input the lines "Input line 1." and "Input line 2." into the command and the command will treat it as an input file.
+command << delimiter
+Input line 1.
+Input line 2.
+delimiter
+```
+
+- You can run this to append to the beginning of a file
+```bash
+echo "Append to beginning" | cat - file.txt > temp && mv temp file.txt
+```
+
+## [alias](#table-of-contents)
+alias is used to create shortcuts to commands so you don't have to always type them out.
+
+| Commands                   | Description                                                                                  |
+|----------------------------|----------------------------------------------------------------------------------------------|
+| alias                      | list your aliases                                                                            |
+| alias aliasName='commands' | Create an alias. To have them persist across terminal instances put them in the .bashrc file |
