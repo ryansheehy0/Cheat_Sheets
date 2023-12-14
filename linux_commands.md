@@ -138,6 +138,7 @@ File types
 | wc fileName          | Counts the number of lines, words, and bytes in a file    |
 | wc -l                | Number of lines                                           |
 | clear                | Clears the contents of the terminal                       |
+| dirname filePath     | Gets the directory portion of a file path                 |
 
 ## [Installation](#table-of-contents)
 
@@ -178,38 +179,44 @@ Dependency hell is when one application needs an older version of a library than
 | sudo apt autoremove          | Removes all unneeded packages                                                          |
 
 ## [File and Directory Manipulation](#table-of-contents)
+Folders and directories are the same thing.
 
 | Command                     | Description                                              |
 |-----------------------------|----------------------------------------------------------|
 | mkdir dirName               | Make directory                                           |
+| mkdir folderPath/dirName    | Create a directory in another folder                     |
 | touch fileName              | Make file                                                |
 | rm fileName                 | Delete file                                              |
 | rm -rf dirName              | Removes directory and everything within it               |
 | rm dirName/*                | Removes everything in directory, but keeps the directory |
-| cp fileName ./Dir/filename2 | Copies file to dir with new name                         |
-| cp fileName ./Dir/          | Copies file to dir with same name                        |
+| cp fileName fileName2       | Renames fileName to fileName2                            |
+| cp fileName ./Dir/          | Copies fileName to dir with same name                    |
+| cp fileName ./Dir/fineName2 | Copies fileName to dir and renames it to fileName2       |
+| cp -r dirName ./Dir/        | Recursively copies dirName into ./Dir/                   |
+| cp -r dirName/* ./Dir/      | Recursively copies the contents of dirName into ./Dir/   |
 | mv fileName destinationDir  | Moves file to destination directory                      |
 | mv ./* dirPath              | Move all contents of current folder to another directory |
+| gio trash dirName/          | Moves directory or file to trash.                        |
 
 ## [Find](#table-of-contents)
 Used for finding files or directories
 
-| Command                        | Description                                                  |
-|--------------------------------|--------------------------------------------------------------|
-| find filePath -iname fileName* | Finds files under filepath. Case insensitive                 |
-| -type f                        | Only shows files                                             |
-| -type d                        | Only shows directories                                       |
-| -mmin -10                      | Find files that were modified less than 10 minutes ago       |
-| -mmin +10                      | Find files that were modified more than 10 minutes ago       |
-| -mtime -10                     | Find files that were modified less than 10 days ago          |
-| -size +5M                      | Files over 5 megabytes                                       |
-| -empty                         | Empty files                                                  |
-| -perm ###                      | Find files with that permission                              |
-| -maxdepth #                    | Sets a max depth for recursive searching through directories |
-| -exec command                  | Executes a command on all of the files                       |
+| Command                          | Description                                                  |
+|----------------------------------|--------------------------------------------------------------|
+| find filePath -iname "fileName*" | Finds files under filepath. Case insensitive                 |
+| -type f                          | Only shows files                                             |
+| -type d                          | Only shows directories                                       |
+| -mmin -10                        | Find files that were modified less than 10 minutes ago       |
+| -mmin +10                        | Find files that were modified more than 10 minutes ago       |
+| -mtime -10                       | Find files that were modified less than 10 days ago          |
+| -size +5M                        | Files over 5 megabytes                                       |
+| -empty                           | Empty files                                                  |
+| -perm ###                        | Find files with that permission                              |
+| -maxdepth #                      | Sets a max depth for recursive searching through directories |
+| -exec command                    | Executes a command on all of the files                       |
 
 Examples:
-- `find . -type f -exec chown user:group {} \;` Recursively changes the own of each file in a directory.
+- `find . -type f -exec chown user:group {} \;` Recursively changes the owner of each file in a directory.
 - `find . -type f -maxdepth 1 -name "*.jpg" -exec rm {} \;` Removes all .jpg files from a directory.
 
 ## [Computer commands](#table-of-contents)

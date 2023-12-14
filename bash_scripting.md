@@ -14,6 +14,7 @@ Add `#!/bin/bash` to the start of bash script files. Bash script files what the 
 
 - [Bash Scripting](#bash-scripting)
   - [Table of Contents](#table-of-contents)
+  - [Running](#running)
   - [Variables](#variables)
   - [Special parameters](#special-parameters)
   - [Math](#math)
@@ -23,11 +24,21 @@ Add `#!/bin/bash` to the start of bash script files. Bash script files what the 
   - [Reading user input](#reading-user-input)
   - [While](#while)
   - [For loop](#for-loop)
+  - [Case statements](#case-statements)
+  - [source](#source)
 
 <!-- /TOC -->
 
+## [Running](#table-of-contents)
+- To run a bash script first make it an executable. `sudo chmod +x script.sh`
+- Then either run `./script.sh` or `. ./script.sh`
+  - `./script.sh` just runs the script
+  - `. ./script.sh` is the same as `source ./script.sh`. This allows the variables to be used after the script is ran.
+
 ## [Variables](#table-of-contents)
 Variables in bash are case sensitive.
+
+It is convention to use camel case in bash for variable names.
 
 - `"`s allow for special characters like `${}`
 - `'`s don't allow for special characters like `${}`
@@ -45,9 +56,12 @@ nums=0123456789
 echo ${nums:2:3} # 234
 echo ${nums: -4:4} # 6789
 
-# To run commands and get the output ou can use $()
+# To run commands and get the output you can use $()
 currentDir=$(pwd)
 ```
+
+- You can use 1 or 0 for boolean variables
+- When working with file path variables make sure to put them inside `"$var"`s so that spaces don't effect the execution of commands.
 
 ## [Special parameters](#table-of-contents)
 Special parameters are parameters set by the shell itself.
@@ -98,6 +112,8 @@ echo $b #15
 # Has to be a space between the condition and the brackets
 if [[ condition ]]; then
     # Commands to be executed if the condition is true
+elif [[ condition ]]; then
+    # Commands to be executed if the condition is true
 else
     # Commands to be executed if the condition is false
 fi
@@ -105,20 +121,21 @@ fi
 
 ### [Conditionals](#table-of-contents)
 
-| Conditional   | Description              |
-|---------------|--------------------------|
-| -eq or ==     | Equal                    |
-| -ne or !=     | Not equal                |
-| =~ Regex      | If equal to the regex    |
-| -lt or \<     | Less than                |
-| -le or \<=    | Less than or equal to    |
-| -gt or >      | Greater than             |
-| -ge or >=     | Greater than or equal to |
-| !             | Logical not              |
-| -z            | True if string is empty  |
-| -a  or &&     | Logical and              |
-| -o  or \|\|   | Logical or               |
-| -f "fileName" | true if the file exists  |
+| Conditional   | Description                  |
+|---------------|------------------------------|
+| -eq or ==     | Equal                        |
+| -ne or !=     | Not equal                    |
+| =~ Regex      | If equal to the regex        |
+| -lt or \<     | Less than                    |
+| -le or \<=    | Less than or equal to        |
+| -gt or >      | Greater than                 |
+| -ge or >=     | Greater than or equal to     |
+| !             | Logical not                  |
+| -z            | True if string is empty      |
+| -a  or &&     | Logical and                  |
+| -o  or \|\|   | Logical or                   |
+| -f "fileName" | true if the file exists      |
+| -d "dirName"  | true if the directory exists |
 
 ## [Exit](#table-of-contents)
 Use `exit #` to exit the script.
@@ -134,6 +151,9 @@ echo "varA: ${varA}"
 echo "varB: ${varB}"
 
 read -p "Please enter variable A: " varA
+
+# Allow for tab autocompletion
+read -ep "Please enter a file path: " varB
 ```
 
 ## [While](#table-of-contents)
@@ -143,6 +163,8 @@ num=10
 
 while [[ condition ]]; do
   # bash
+  break
+  continue
 done
 ```
 
@@ -151,5 +173,32 @@ done
 ```bash
 for i in {1...5}; do
   # bash
+  break
+  continue
 done
+```
+
+## [Case statements](#table-of-contents)
+
+```bash
+case $var in
+  "value1")
+    echo "It's value1";;
+  "value2" | "value3")
+    echo "It's value2 or value3";;
+  [0-9]*) # you can so use regex
+    echo "This stats with a digit";;
+  *)
+    echo "It's something else";;
+esac
+```
+
+## [source](#table-of-contents)
+`source` allows you to run other scripts in your script
+
+```bash
+source pathToScript/script.sh
+
+source script.sh
+# This assumes that the script
 ```
