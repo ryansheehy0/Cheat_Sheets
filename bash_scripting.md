@@ -25,7 +25,7 @@ Add `#!/bin/bash` to the start of bash script files. Bash script files what the 
   - [While](#while)
   - [For loop](#for-loop)
   - [Case statements](#case-statements)
-  - [source](#source)
+  - [Running other scripts](#running-other-scripts)
 
 <!-- /TOC -->
 
@@ -193,12 +193,10 @@ case $var in
 esac
 ```
 
-## [source](#table-of-contents)
-`source` allows you to run other scripts in your script
+## [Running other scripts](#table-of-contents)
+This allows you to run another script from your script that's in the same directory.
 
 ```bash
-source pathToScript/script.sh
-
-source script.sh
-# This assumes that the script
+current_dir=$(dirname "$0")
+"$current_dir"/script.sh
 ```

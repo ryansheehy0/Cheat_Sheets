@@ -294,6 +294,10 @@ const hasEven = numbers.some((number) => {
 })
 ```
 
+- `.at(index)`
+    - This is the same as using the `[]` syntax, but also allows for negative numbers.
+    - Instead of `array[array.length - 1]` you can instead use `array.at(-1)`
+
 ## [Equality Operators](#table-of-contents)
 - `===` `!==` strict operator
     - Doesn't do the type conversion

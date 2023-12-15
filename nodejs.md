@@ -5,6 +5,8 @@ NodeJS is used to run JavaScript outside of the browser.
 
 Somethings work differently when using JS in NodeJS then in the browser. This cheat sheet will cover those differences.
 
+To make a file execute using node you can add `#!/usr/bin/env node` to the beginning of it.
+
 ## Table Of Contents
 
 <!-- TOC -->
