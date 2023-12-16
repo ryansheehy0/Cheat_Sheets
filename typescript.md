@@ -20,9 +20,12 @@ Typescript gets compiled into javascript.
   - [Basic Types](#basic-types)
     - [Literal Types](#literal-types)
     - [Special function return types](#special-function-return-types)
+    - [DOM types](#dom-types)
   - [Type Aliases](#type-aliases)
     - [Intersection Types](#intersection-types)
   - [Casting](#casting)
+    - [Non-null assertion](#non-null-assertion)
+    - [as const](#as-const)
   - [Interfaces](#interfaces)
     - [Declaration merging](#declaration-merging)
     - [Extending interfaces](#extending-interfaces)
@@ -32,10 +35,16 @@ Typescript gets compiled into javascript.
     - [Mapped types](#mapped-types)
     - [Conditional Types](#conditional-types)
     - [Generics](#generics)
-    - [Utility Types](#utility-types)
-    - [typeof](#typeof)
+    - [lookup types](#lookup-types)
     - [keyof](#keyof)
+  - [Utility Types](#utility-types)
   - [Use instead of enums](#use-instead-of-enums)
+  - [Type guards](#type-guards)
+    - [typeof as a guard](#typeof-as-a-guard)
+    - [in](#in)
+    - [instanceof](#instanceof)
+    - [Guard function](#guard-function)
+  - [Need to understand these syntaxes](#need-to-understand-these-syntaxes)
 
 <!-- /TOC -->
 
@@ -115,6 +124,8 @@ function func(): never {
 }
 ```
 
+### [DOM types](#table-of-contents)
+
 ## [Type Aliases](#table-of-contents)
 Used to define a type which you can use again and again.
 
@@ -152,6 +163,25 @@ type cardDetails = cardNumber & cardDate
 ```
 
 ## [Casting](#table-of-contents)
+I typescript you can cast between types using the `as` keyword. This is useful when you know more about the variable type than typescript does.
+
+```typescript
+let variable: any = "Hello, TypeScript!"
+let length: number = (variable as string).length
+
+// This is the old syntax
+let length: number = (<string>variable).length
+```
+
+### [Non-null assertion](#table-of-contents)
+`!.` is used when you know that a variable isn't null or undefined.
+
+```typescript
+let id: string = element!.id
+// This means you know that the id field of element will always have a value
+```
+
+### [as const](#table-of-contents)
 
 ## [Interfaces](#table-of-contents)
 Type alias are very similar to interfaces and it is almost always recommended to use type aliases.
@@ -256,27 +286,92 @@ const example2Obj: Example2 = {
 }
 ```
 
-### [Utility Types](#table-of-contents)
 
-### [typeof](#table-of-contents)
-Gets the type of a variable.
+### [lookup types](#table-of-contents)
+Lookup types are used ot get the type of a field in an object type.
 
-You can use `typeof` to check if a variable is a certain type
 ```typescript
-function getID(id: number | string): never{
-  if(typeof id === "string"){
-    id.toLowerCase()
-  }
+type Point = {
+  x: number
+  y: number
 }
+
+type x = Point.x
+type y = Point.["y"]
 ```
 
 ### [keyof](#table-of-contents)
-`keyof ObjType`
-
-Sets the type as the union of an object's keys.
+`keyof objType` is used to get the keys of an obj type as a union of strings
 
 ```typescript
-type MyKeys = keyof { name: string; age: number }; // MyKeys is 'name' | 'age'
+type MyKeys = keyof { name: string; age: number }; // MyKeys is "name" | "age"
+```
+
+## [Utility Types](#table-of-contents)
+Utility types allow you to apply certain transformations or combinations on object types to produce other types.
+
+| Type name                           | Description                                                                        |
+|-------------------------------------|------------------------------------------------------------------------------------|
+| Awaited<T>                          |                                                                                    |
+| Partial<T>                          | Create a type from an obj type and make all the fields optional.                   |
+| Required<Type>                      | Create a type from an obj type and make all the fields required. Removes the ?s    |
+| Readonly<Type>                      | Creates a type from an obj type and make all the fields readonly                   |
+| Record<Keys, Type>                  | Converts a union of literal types to an obj type and defines their type to be Type |
+| Pick<Type, Keys>                    | Creates a new obj type by selecting properties from the original obj type(Type)    |
+| Omit<Type, Keys>                    | Like the opposite of Pick. omits properties from the original obj type.            |
+| Exclude<UnionType, ExcludedMembers> | Excludes some values from a union type.                                            |
+| Extract<Type, Union>                | Extracts only the type literals of Type from a union type                          |
+| NonNullable<UnionType>              | Removes the null and/or undefined from union types.                                |
+| Parameters<FunctionType>            | Takes the parameter types from a function and converts them to a type of tuple.    |
+| ConstructorParameters<ClassType>    | Takes the parameter types from a class and convert them to a type of tuple.        |
+| ReturnType<FunctionType>                    | Gets the return type of a function type                                                                                    |
+| InstanceType<Type>                  |                                                                                    |
+| ThisParameterType<Type>             |                                                                                    |
+| OmitThisParameter<Type>             |                                                                                    |
+| ThisType<Type>                      |                                                                                    |
+| ReturnType<Type>                    |                                                                                    |
+
+Examples:
+- Record<Keys, Type>
+
+```typescript
+type Fruit = "apple" | "banana" | "orange"
+type FruitCounts = Record<Fruit, number>
+const fruitCounts: FruitCounts = {
+  apple: 5,
+  banana: 10,
+  orange: 5
+}
+```
+
+- Pick<Type, Keys>
+
+```typescript
+type Person = {
+  name: string
+  age: number
+  address: string
+}
+
+type PersonSummary = Pick<Person, "name" | "age">
+const personSummary: PersonSummary = {
+  name: "John",
+  age: 25
+}
+```
+
+- Exclude<UnionType, ExcludedMembers>
+
+```typescript
+type Fruits = "apple" | "banana" | "orange"
+type RoundFruits = Exclude<Fruits, "banana"> // "apple" | "orange"
+```
+
+- Extract<Type, Union>
+
+```typescript
+type One = "one" | 1 | "uno"
+type StringOnes = Extract<string, One>
 ```
 
 ## [Use instead of enums](#table-of-contents)
@@ -300,4 +395,69 @@ type UserRole = keyof typeof UserRoles
 function logRole(role: UserRole): never{
   console.log(`The user's role is: ${UserRoles[role]}`)
 }
+```
+
+## [Type guards](#table-of-contents)
+Type guards are used to ensure that a variable is a certain type.
+
+
+### [typeof as a guard](#table-of-contents)
+Gets the type of a variable as a string.
+
+```typescript
+let x = 10
+if(typeof x === "number"){
+  // x is a number
+}
+```
+
+### [in](#table-of-contents)
+Checks if a field exists in an object.
+
+```typescript
+let obj = { prop: "value" }
+if("prop" in obj){
+  // prop is in obj
+}
+```
+
+### [instanceof](#table-of-contents)
+Check if an object is an instance of a class.
+
+```typescript
+class MyClass {}
+let obj = new MyClass()
+if(obj instanceof MyClass){
+  // obj is an instance of MyClass
+}
+```
+
+### [Guard function](#table-of-contents)
+Guard functions are functions that manually check if a value is of a certain type. This uses the `is` keyword.
+
+The reasons you use `is` instead of just returning a boolean is to let typescript now what the type is after the function is called.
+
+```typescript
+function isString(value: any): value is string{
+  return typeof value === "string"
+}
+
+let x = "hello"
+if(isString(x)){
+  // typescript knows x is a string
+}
+```
+
+## Need to understand these syntaxes
+
+```typescript
+type Pick<Type, Keys extends keyof Type> = {
+  [K in Keys]: Type[K];
+};
+
+type Exclude<UnionType, ExcludedMembers> = UnionType extends ExcludedMembers
+  ? never
+  : UnionType;
+
+type Parameters<Type extends (...args: any[]) => any> = Type extends (...args: infer P) => any ? P : never;
 ```
