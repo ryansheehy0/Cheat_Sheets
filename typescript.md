@@ -38,6 +38,7 @@ Typescript gets compiled into javascript.
     - [lookup types](#lookup-types)
     - [keyof](#keyof)
   - [Utility Types](#utility-types)
+    - [Mapped Types](#mapped-types)
   - [Use instead of enums](#use-instead-of-enums)
   - [Type guards](#type-guards)
     - [typeof as a guard](#typeof-as-a-guard)
@@ -286,7 +287,6 @@ const example2Obj: Example2 = {
 }
 ```
 
-
 ### [lookup types](#table-of-contents)
 Lookup types are used ot get the type of a field in an object type.
 
@@ -372,6 +372,28 @@ type RoundFruits = Exclude<Fruits, "banana"> // "apple" | "orange"
 type One = "one" | 1 | "uno"
 type StringOnes = Extract<string, One>
 ```
+
+### [Mapped Types](#table-of-contents)
+Mapped types allow you to create your own utility types.
+
+The syntax is `[Key in UnionType]`. They key loops through all the values in the union type.
+
+```typescript
+type Point = {
+  x: number
+  y: number
+}
+
+// A mapped type that is Readonly
+type ReadonlyPoint = {
+  readonly [Key in "x" | "y"]: number
+  // Same as
+    // readonly "x": number
+    // readonly "y": number
+}
+```
+
+Often times the mapped type is used with the `keyof` operator to get a union of keys from an Object Type. Like `[K in keyof ObjType]`
 
 ## [Use instead of enums](#table-of-contents)
 Enums have some weird behaviors which may cause some issues. Instead you can use these alternatives instead.
