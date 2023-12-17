@@ -310,26 +310,25 @@ type MyKeys = keyof { name: string; age: number }; // MyKeys is "name" | "age"
 ## [Utility Types](#table-of-contents)
 Utility types allow you to apply certain transformations or combinations on object types to produce other types.
 
-| Type name                           | Description                                                                        |
-|-------------------------------------|------------------------------------------------------------------------------------|
-| Awaited<T>                          |                                                                                    |
-| Partial<T>                          | Create a type from an obj type and make all the fields optional.                   |
-| Required<Type>                      | Create a type from an obj type and make all the fields required. Removes the ?s    |
-| Readonly<Type>                      | Creates a type from an obj type and make all the fields readonly                   |
-| Record<Keys, Type>                  | Converts a union of literal types to an obj type and defines their type to be Type |
-| Pick<Type, Keys>                    | Creates a new obj type by selecting properties from the original obj type(Type)    |
-| Omit<Type, Keys>                    | Like the opposite of Pick. omits properties from the original obj type.            |
-| Exclude<UnionType, ExcludedMembers> | Excludes some values from a union type.                                            |
-| Extract<Type, Union>                | Extracts only the type literals of Type from a union type                          |
-| NonNullable<UnionType>              | Removes the null and/or undefined from union types.                                |
-| Parameters<FunctionType>            | Takes the parameter types from a function and converts them to a type of tuple.    |
-| ConstructorParameters<ClassType>    | Takes the parameter types from a class and convert them to a type of tuple.        |
-| ReturnType<FunctionType>                    | Gets the return type of a function type                                                                                    |
-| InstanceType<Type>                  |                                                                                    |
-| ThisParameterType<Type>             |                                                                                    |
-| OmitThisParameter<Type>             |                                                                                    |
-| ThisType<Type>                      |                                                                                    |
-| ReturnType<Type>                    |                                                                                    |
+| Type name                           | Description                                                                                               |
+|-------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| Awaited<T>                          |                                                                                                           |
+| Partial<T>                          | Create a type from an obj type and make all the fields optional.                                          |
+| Required<Type>                      | Create a type from an obj type and make all the fields required. Removes the ?s                           |
+| Readonly<Type>                      | Creates a type from an obj type and make all the fields readonly                                          |
+| Record<Keys, Type>                  | Converts a union of literal types to an obj type and defines their type to be Type                        |
+| Pick<Type, Keys>                    | Creates a new obj type by selecting properties from the original obj type(Type)                           |
+| Omit<Type, Keys>                    | Like the opposite of Pick. omits properties from the original obj type.                                   |
+| Exclude<UnionType, ExcludedMembers> | Excludes some values from a union type.                                                                   |
+| Extract<Type, Union>                | Extracts only the type literals of Type from a union type                                                 |
+| NonNullable<UnionType>              | Removes the null and/or undefined from union types.                                                       |
+| Parameters<FunctionType>            | Takes the parameter types from a function and converts them to a type of tuple.                           |
+| ConstructorParameters<ClassType>    | Takes the parameter types from a class and convert them to a type of tuple.                               |
+| ReturnType<FunctionType>            | Gets the return type of a function type                                                                   |
+| InstanceType<ClassType>             | Takes in a class type and return the object type that that class would produce.                           |
+| ThisParameterType<FunctionType>     | Extracts the `this` type from a function type.                                                            |
+| OmitThisParameter<FunctionType>     | Removes the this parameter from a function type.                                                          |
+| ThisType<ObjectType>                | Defines the type of this inside methods in the object type. ThisParameterType<Each method in object type> |
 
 Examples:
 - Record<Keys, Type>
