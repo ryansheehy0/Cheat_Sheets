@@ -31,7 +31,7 @@ Typescript gets compiled into javascript.
     - [Extending interfaces](#extending-interfaces)
     - [Arrays](#arrays)
   - [Advanced typing](#advanced-typing)
-    - [Indexing with number](#indexing-with-number)
+    - [Index signatures](#index-signatures)
     - [Mapped types](#mapped-types)
     - [Conditional Types](#conditional-types)
     - [Generics](#generics)
@@ -247,8 +247,32 @@ type Names: string[]
 
 ## [Advanced typing](#table-of-contents)
 
-### [Indexing with number](#table-of-contents)
-[number]
+### [Index signatures](#table-of-contents)
+Index signatures allow you to define a type for the properties in an object or array when you don't know their names.
+
+```typescript
+type NumberIndexedAlias = {
+  [index: number]: string
+  // Forces the keys to be numbers
+}
+
+// Create an object that matches the type alias
+let myObjectAlias: NumberIndexedAlias = {
+  0: 'Zero',
+  1: 'One',
+  2: 'Two',
+}
+```
+
+You can also use `[number]` to go through each of the elements in an array.
+
+```typescript
+type MyArray = [string, string, number]
+
+type ObjArray = {
+   [index: string]: typeof MyArray[number]// Gets each type from the tuple
+}
+```
 
 ### [Mapped types](#table-of-contents)
 
@@ -264,7 +288,20 @@ type ReadonlyFlags = {
 ```
 
 ### [Conditional Types](#table-of-contents)
+Conditional types allows you to create a type based upon other types.
+
 `T extends U ? X : Y`
+
+`extends` returns a boolean if type `T` is a subtype of type `U`
+
+Examples:
+
+```typescript
+// Example 1
+type CheckNumber<T> = T extends number ? 'Is a number' : 'Not a number'
+type Result1 = CheckNumber<42>        // 'Is a number'
+type Result2 = CheckNumber<'hello'>   // 'Not a number'
+```
 
 ### [Generics](#table-of-contents)
 Generics are used for when the exact type is not known beforehand and you want the user to be able to specify the type dynamically.
@@ -393,7 +430,8 @@ type ReadonlyPoint = {
 }
 ```
 
-Often times the mapped type is used with the `keyof` operator to get a union of keys from an Object Type. Like `[K in keyof ObjType]`
+- Often times the mapped type is used with the `keyof` operator to get a union of keys from an Object Type. Like `[K in keyof ObjType]`.
+- Often times you can use the Key as a lookup type. Like `[K in "a" | "b" | "c" ]: ObjType[K]`. This sets the keys to be the same time as `ObjType[Key]`.
 
 ## [Use instead of enums](#table-of-contents)
 Enums have some weird behaviors which may cause some issues. Instead you can use these alternatives instead.
@@ -482,3 +520,5 @@ type Exclude<UnionType, ExcludedMembers> = UnionType extends ExcludedMembers
 
 type Parameters<Type extends (...args: any[]) => any> = Type extends (...args: infer P) => any ? P : never;
 ```
+
+- infer
