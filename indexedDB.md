@@ -3,6 +3,16 @@
 # IndexedDB/idb
 IndexedDB is useful if you need to store large amounts of data on the client side that can quickly be retrieved.
 
+Why use IndexedDB over local storage?
+- Need to store a lot of data
+- Need to store different types of data other than strings
+  - Storing images
+- Better CRUD operations
+  - Easier to create structured data
+  - Easier to query data/More query options
+  - Easier to update data
+  - Easier to delete data
+
 IndexedDB is a NoSQL database that stores data in object stores in a binary format for efficiency. There is no inbuilt functionality for schemas.
 - **Databases** store collections of object stores and data.
 - **Object Stores** can hold multiple objects. Like containers in MongoDB.

@@ -16,6 +16,7 @@ JavaScript is the only language that can be run in the browser.
     - [String Functions](#string-functions)
   - [Arrays](#arrays)
     - [Array Functions](#array-functions)
+    - [For of](#for-of)
   - [Equality Operators](#equality-operators)
   - [Switch Block](#switch-block)
   - [Functions](#functions)
@@ -89,6 +90,7 @@ JavaScript is the only language that can be run in the browser.
         - Includes true or false
         - Something is false if it has the values of 0, -0, On, "", null, undefined, NaN, or false.
         - Often start with the words is, has, or should.
+        - To convert regular values to boolean you can use `!!value`
     - string
     - number
         - Includes ints, floats, NaN, and Infinity
@@ -109,6 +111,12 @@ JavaScript is the only language that can be run in the browser.
 - There is no specific ordering.
 - `new Set()`
 - `set.add(value)`, `set.delete(value)`, `set.has(value)`, `set.size`, `set.clear()`
+
+This is useful to get ride of duplicates in an array.
+```javascript
+const array = [1, 2, 3, 4, 1, 2]
+const removedDuplicates = [...new Set(array)]
+```
 
 ## [Variables](#table-of-contents)
 `var` - Can be used through your whole function or program if declared outside a function.
@@ -226,6 +234,7 @@ console.log(fruits)
 - `.map((element, index, array) => {})`
     - Performs a function for each element in an array, then stores the returned values in a new array.
     - The args that forEach passes are value/element, key/index, and array
+    - Map always returns an array of the same length
 - `.filter((element, index, array) => {})`
     - Filter loops through and array and allows you to remove elements
     - If the function returns false for that element then it gets removed.
@@ -264,7 +273,7 @@ console.log(totalPrice)
 
 - `.find((element, index, array) => {})`
     - Used to find the first element that satisfies the given function.
-- `.findIndex()element, index, array) => {})`
+- `.findIndex((element, index, array) => {})`
     - Used to find the index of the first element that satisfies the given function.
 - `.sort((a, b) => a - b)`
     - If the function returns a negative number "a" is sorted before "b"
@@ -297,6 +306,19 @@ const hasEven = numbers.some((number) => {
 - `.at(index)`
     - This is the same as using the `[]` syntax, but also allows for negative numbers.
     - Instead of `array[array.length - 1]` you can instead use `array.at(-1)`
+
+### [For of](#table-of-contents)
+Used to loop through each element in an array.
+
+This is better than using `.forEach` because this still allows you to break and return from the loop.
+
+```javascript
+const myArray = [1, 2, 3, 4, 5]
+
+for(const value of myArray){
+  console.log(value)
+}
+```
 
 ## [Equality Operators](#table-of-contents)
 - `===` `!==` strict operator
@@ -448,16 +470,13 @@ If the condition is falsy it assigns the variable to the value of condition.
 ```javascript
 const valueIfTrue = "True"
 
-
 const condition = true
 const variable = condition && valueIfTrue
 consol.log(accessLevel) // "True"
 
-
 const condition = false
 const variable = condition && valueIfTrue
 consol.log(accessLevel) // false
-
 
 const condition = undefined
 const variable = condition && valueIfTrue

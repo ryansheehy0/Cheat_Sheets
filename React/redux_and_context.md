@@ -82,7 +82,7 @@ export default function UserProvider({children}){
   const variable = "You can also allow consumers to use variables."
 
   return (
-    <UserContext.Provider value={{ currentUser, setCurrentUser, variable }}>
+    <UserContext.Provider value=\{{ currentUser, setCurrentUser, variable }\}>
       {children}
     </UserContext.Provider>
   )

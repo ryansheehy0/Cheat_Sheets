@@ -26,6 +26,9 @@ Why use react over vanilla JS:
   - [JavaScript XMLJSX](#javascript-xmljsx)
     - [Fragments](#fragments)
   - [Vite](#vite)
+  - [Vite plugins](#vite-plugins)
+    - [vite-plugin-svgr](#vite-plugin-svgr)
+    - [vite-plugin-pwa](#vite-plugin-pwa)
   - [File Structure](#file-structure)
   - [Components](#components)
     - [CSS in Components](#css-in-components)
@@ -137,6 +140,61 @@ export default defineCOnfig({
 ```
 
 If you do `npx vite --host` allows you to view your React app on mobile as long as you allow port forwarding. In the terminal the location should look like this: `Network: http://...`
+
+## [Vite plugins](#table-of-contents)
+
+### [vite-plugin-svgr](#table-of-contents)
+Used to allow svg files to be used as react components.
+
+`npm install vite-plugin-svgr`
+
+Add to vite.config.ts
+```javascript
+import svgr from "vite-plugin-svgr"
+
+export default defineConfig({
+  plugins: [react(), svgr()],
+})
+```
+
+In your react component.
+```javascript
+// You have to add the ?react at the end
+import svgIcon from "/path/to/svgfile.svg?react"
+
+// Then you can use this svg like a component
+<svgIcon />
+```
+
+You cannot add react refs to these svg component. Instead wrap the svg component in a div and put the reference on the div.
+
+### [vite-plugin-pwa](#table-of-contents)
+Used to add pwa manifest file to vite. Once deployed, the service worker should be added automatically.
+
+`npm install vite-plugin-pwa`
+
+Add to vite.config.ts
+```javascript
+import { VitePWA } from "vite-plugin-pwa"
+import manifest from "./manifest"
+
+export default defineConfig({
+  plugins: [react(), VitePWA(manifest)],
+})
+```
+
+In the manifest.js file
+```javascript
+const manifest = {
+  manifest: {
+    name: "",
+    short_name: "",
+    // etc
+  }
+}
+
+export default manifest
+```
 
 ## [File Structure](#table-of-contents)
 
@@ -626,7 +684,8 @@ useEffect(() => {
 Why does useEffect [] run twice on reload when useStrick is being used on your react app.
 
 ## [useRef](#table-of-contents)
-Used to set variables without causing a re-render of the DOM.
+When a reference is changed it doesn't cause your component to re-render.
+
 
 ## [Testing in React](#table-of-contents)
 vitest

@@ -514,6 +514,8 @@ type Pick<Type, Keys extends keyof Type> = {
   [K in Keys]: Type[K];
 };
 
+// extends is being used as a Type parameter constraint
+
 type Exclude<UnionType, ExcludedMembers> = UnionType extends ExcludedMembers
   ? never
   : UnionType;

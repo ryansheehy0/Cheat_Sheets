@@ -58,6 +58,7 @@ selector{
     - [Selector Specificity](#selector-specificity)
   - [Variables in CSS](#variables-in-css)
   - [JASS](#jass)
+  - [How to hide scrollbar](#how-to-hide-scrollbar)
 
 <!-- /TOC -->
 
@@ -593,3 +594,15 @@ document.documentElement.style.setProperty("--var", "10px")
 ## [JASS](#table-of-contents)
 
 Often times a jass.css file is used which has a lot of CSS utility classes which can be added and removed with JS to apply custom CSS easily.
+
+## [How to hide scrollbar](#table-of-contents)
+
+```javascript
+.remove-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.remove-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome */
+}
+```

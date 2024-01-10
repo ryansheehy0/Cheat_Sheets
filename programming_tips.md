@@ -11,6 +11,7 @@
   - [Project Management](#project-management)
   - [Formatting and Rules](#formatting-and-rules)
   - [Code Organization](#code-organization)
+  - [When to reuse code](#when-to-reuse-code)
 
 <!-- /TOC -->
 
@@ -52,3 +53,12 @@ item
     list.js
     card.js
 ```
+
+## [When to reuse code](#table-of-contents)
+Always be hesitant to re-use code.
+
+It is better to change the same code in multiple places then it is to pass more and more information between the parent and child.
+
+It is better to change the same code in multiple places then it is to completely reorganize your code in order to add a new feature.
+  - This is especially important when it comes to re-using separate components/classes.
+  - Over time small changes become larger and larger. This creates more and more complexity as the reused component it given more and more information to distinguish between its different roles.
