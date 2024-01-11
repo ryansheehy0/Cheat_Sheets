@@ -23,7 +23,9 @@ JavaScript is the only language that can be run in the browser.
     - [This Keyword](#this-keyword)
     - [Tagged Templates](#tagged-templates)
   - [Logical Or for Fallbacks](#logical-or-for-fallbacks)
-  - [Logical And for Assignment](#logical-and-for-assignment)
+  - [&& and ?? for Assignment](#-and--for-assignment)
+    - [Logical and for Assignment](#logical-and-for-assignment)
+    - [Nullish coalescing operator ??](#nullish-coalescing-operator-)
   - [Useful Functions](#useful-functions)
     - [Fetch](#fetch)
       - [Optional Fetch Argument](#optional-fetch-argument)
@@ -40,6 +42,7 @@ JavaScript is the only language that can be run in the browser.
     - [Error Handling/Try Catch](#error-handlingtry-catch)
     - [Throwing Errors](#throwing-errors)
   - [Promises](#promises)
+    - [Promise.all, Promise.race, Promise.allSettled, Promise.any](#promiseall-promiserace-promiseallsettled-promiseany)
   - [Async/Await](#asyncawait)
   - [DOM Manipulation](#dom-manipulation)
     - [Accessing Elements](#accessing-elements)
@@ -67,6 +70,11 @@ JavaScript is the only language that can be run in the browser.
     - [Prototype](#prototype)
   - [Debugging](#debugging)
   - [Labels](#labels)
+  - [Symbols](#symbols)
+  - [Symbol.iterator](#symboliterator)
+    - [Adding Symbol.iterator to object](#adding-symboliterator-to-object)
+  - [Generator functions](#generator-functions)
+  - [Async iterators](#async-iterators)
 
 <!-- /TOC -->
 
@@ -100,7 +108,7 @@ JavaScript is the only language that can be run in the browser.
         - Object types: object, date, array, string, number, boolean.
     - function
     - symbol
-        - `Symbol()` or `Symbol("description")
+        - `Symbol()` or `Symbol("description")`
         - Unique(Symbols cannot equal anything else) and immutable.
     - bigints
         - Support integers of arbitrary size
@@ -273,8 +281,10 @@ console.log(totalPrice)
 
 - `.find((element, index, array) => {})`
     - Used to find the first element that satisfies the given function.
+    - If the function returns true on that element then `.find` will return that element.
 - `.findIndex((element, index, array) => {})`
     - Used to find the index of the first element that satisfies the given function.
+    - If the function returns true on that element then `.findIndex` will get it's index.
 - `.sort((a, b) => a - b)`
     - If the function returns a negative number "a" is sorted before "b"
     - If the function returns a positive number "b" is sorted before "a"
@@ -317,6 +327,16 @@ const myArray = [1, 2, 3, 4, 5]
 
 for(const value of myArray){
   console.log(value)
+}
+```
+
+In order to get the index you have to use `.entries()`
+
+```javascript
+const myArray = [1, 2, 3, 4, 5]
+
+for(const [i, value] of myArray.entries()){
+  console.log(i, value)
 }
 ```
 
@@ -390,6 +410,12 @@ function func_name(array = [], max = Math.max(...arg1)){
 }
 ```
 
+You can directly return results with the arrow function. You don't need the `{}`s as long as its on the same line.
+
+```javascript
+const test = () => 5 // function returns 5
+```
+
 ### [This Keyword](#table-of-contents)
 
 ```javascript
@@ -460,7 +486,9 @@ If B is falsy then use C
 */
 ```
 
-## [Logical And for Assignment](#table-of-contents)
+## [&& and ?? for Assignment](#table-of-contents)
+
+### [Logical and for Assignment](#table-of-contents)
 The Logical And can be used to conditionally assign a variable based upon the condition.
 
 If the condition is true it assigns the variable to the valueIfTrue.
@@ -468,11 +496,11 @@ If the condition is true it assigns the variable to the valueIfTrue.
 If the condition is falsy it assigns the variable to the value of condition.
 
 ```javascript
-const valueIfTrue = "True"
+const valueIfTrue = "value"
 
 const condition = true
 const variable = condition && valueIfTrue
-consol.log(accessLevel) // "True"
+consol.log(accessLevel) // "value"
 
 const condition = false
 const variable = condition && valueIfTrue
@@ -481,6 +509,25 @@ consol.log(accessLevel) // false
 const condition = undefined
 const variable = condition && valueIfTrue
 consol.log(accessLevel) // undefined
+```
+
+### [Nullish coalescing operator ??](#table-of-contents)
+If the nullish coalescing operator is the opposite of &&.
+
+If the condition is falsy it assigns the variable to the valueIfTrue.
+
+If the condition is truthy it assigns the condition.
+
+```javascript
+const valueIfTrue = "value"
+
+const condition = "truthy condition"
+const variable = condition ?? valueIfTrue
+consol.log(accessLevel) // "truthy condition"
+
+const condition = false
+const variable = condition && valueIfTrue
+consol.log(accessLevel) // "value
 ```
 
 ## [Useful Functions](#table-of-contents)
@@ -589,9 +636,12 @@ Objects are used to store an unordered list of properties to describe one thing.
 Literal object notation is an object created with key-value pairs.
 
 ```javascript
+let dynamicKey = "key"
+
 let testObj = {
     "A food": "hamburger",
     "drink": "water",
+    [dynamicKey]: "value"
 }
 
 let test2Obj = {
@@ -609,6 +659,15 @@ console.log(testObj["A food"]) // hamburger
 - You can check if an object has a property with `.hasOwnProperty("property")`
     - Ex: `testObj.hasOwnProperty("A food")`
 - Objects can have functions. Methods are functions inside objects.
+
+```javascript
+// Both of these syntaxes work
+let obj = {
+    function1: function(){},
+    function2(){}
+}
+```
+
 - Object.values(object) converts an object to an array where the keys are replaced with indices.
 - Object.keys(object) gets an array of the keys of that object
 - You can do object shorthand if the key and value are the same
@@ -862,6 +921,38 @@ promise().then((message) => {
 })
 ```
 
+### [Promise.all, Promise.race, Promise.allSettled, Promise.any](#table-of-contents)
+`Promise.all` type of functions allow you to run async function in parallel instead of 1 at a time. This makes things faster.
+
+Short circuiting is .
+
+```javascript
+const response1 = await promise1()
+const response2 = await promise2()
+const response3 = await promise3()
+// These are ran synchronously and take a long time.
+
+const responses = await Promise.all([promise1(), promise2(), promise3()])
+console.log(responses) // this returns an array of all the responses. The promises are ran in parallel
+
+// It is recommended to use Promise.allSettled and then manually check if any of the resolves were rejected
+const responses = await Promise.allSettled([promise1(), promise2(), promise3()])
+console.log(responses) // Returns an array of objects with fields of status and value/reason.
+// { status: "fulfilled", value: "result" }
+// { status: "rejected", reason: "Reason for the error" }
+const errors = responses.filter((r) => r.status === "rejected")
+const successes = responses.filter((r) => r.status === "fulfilled").map((r) => r.value)
+```
+
+Short circuit just means it returns the result.
+
+| Name               | Description                                                                                             |
+|--------------------|---------------------------------------------------------------------------------------------------------|
+| Promise.allSettled | Returns all the results even if they were rejected                                                      |
+| Promise.all        | If any of the input values are rejected it throws an error and doesn't return any of the other results. |
+| Promise.race       | When the first input value is settled(resolved or rejected) it returns the result.                      |
+| Promise.any        | When the first input value is resolved it returns the result.                                           |
+
 ## [Async/Await](#table-of-contents)
 Used to make promises easier to work with. Only works with asynchronous functions. Await waits for the Promise to resolve.
 
@@ -976,6 +1067,8 @@ const divDirectChild = div.querySelectorAll(":scope > *") // Gets any direct chi
 | element.removeEventListener('event', eventFunction) | Removes an event listener from the element                                               |
 | event.preventDefault()                              | Prevents the default event for an element. Certain elements have default events.         |
 | event.stopPropagation()                             | Only have to worry if you have clickable elements inside clickable elements in the html. |
+| event.target                                        | Get the dom element which called the event.                                              |
+| event.target.tagName                                | Get the HTML type of dom element. This is in all caps. Ex: `"TEXTAREA"`                  |
 
 ```javascript
 // To dynamically add listeners to dynamically added elements.
@@ -1261,5 +1354,117 @@ outerLoop: for (let i = 0; i < 5; i++) {
     }
     console.log(i, j)
   }
+}
+```
+
+## [Symbols](#table-of-contents)
+All symbols are unique, guaranteed by javascript runtime.
+
+To create a symbol do `Symbol()` or `Symbol("description")`
+
+In order to create a symbol across the global symbol registry do `Symbol.for("globalKey")`.  In order to access this symbol in other places in your code you can use `Symbol.keyFor("globalKey")`
+
+## [Symbol.iterator](#table-of-contents)
+The iterator protocol requires the field of `Symbol.iterator` to return an object with a `next()` function which returns an object with `value` and `done` properties.
+- `value` is the value returned
+- `done` is true when there are no more values. When done is true it doesn't return a value, but instead is just `{ done: true }`
+
+All arrays automatically have a `Symbol.iterator` so you can iterate on them.
+
+```javascript
+let array = [1, 2, 3, 4]
+let iterator = array[Symbol.iterator]()
+console.log(iterator.next()) // { value: 1, done: false }
+console.log(iterator.next()) // { value: 2, done: false }
+console.log(iterator.next()) // { value: 3, done: false }
+console.log(iterator.next()) // { done: true }
+```
+
+### [Adding Symbol.iterator to object](#table-of-contents)
+In order to use a for of loop with any object, that object needs a `Symbol.iterator` function as a property.
+
+This `Symbol.iterator` function returns an object with a callback `next` function property.
+
+```javascript
+const iterableObj = {
+    data: [1, 2, 3, 4],
+    [Symbol.iterator]: function(){
+        let index = 0
+        return {
+            next: () => { // Use the error function so the `this` keyword doesn't get reset.
+                if(index < this.data.length){
+                    return { value: this.data[index++], done: false }
+                }else{
+                    return { done: true }
+                }
+            }
+        }
+    }
+}
+
+for(const value of iterableObj){
+    console.log(value)
+}
+```
+
+## [Generator functions](#table-of-contents)
+Generator functions allow you to create iterators.
+
+To create a generator function use `function* generatorFunc(){}`.
+
+```javascript
+function* generatorFunc(){
+    yield 1
+    yield 2
+    yield 3
+    yield 4
+}
+
+const iterator = generatorFunc()
+console.log(iterator.next()) // { value: 1, done: false }
+console.log(iterator.next()) // { value: 2, done: false }
+console.log(iterator.next()) // { value: 3, done: false }
+console.log(iterator.next()) // { value: 4, done: false }
+console.log(iterator.next()) // { done: true }
+```
+
+## [Async iterators](#table-of-contents)
+Async iterators allow you to execute a list of async tasks sequentially. Await for first promise, await for 2nd promise, etc.
+
+The async iterator protocol requires the field of `Symbol.asyncIterator` to return an object with a `next()` function which returns a promise whcih resolves with an object with the properties of `value` and `done`.
+
+```javascript
+async function asyncFunc(arg){
+    // Some async code
+}
+
+const asyncArray = [
+    asyncFunc(1),
+    asyncFunc(2),
+    asyncFunc(3)
+]
+
+for await (const result of asyncArray){ // A loop that pauses and await for the next result to finish
+    console.log(result)
+}
+```
+
+```javascript
+const asyncIterableObj = {
+    data: [asyncFunc(1), asyncFunc(2), asyncFunc(3)],
+    [Symbol.asyncIterator](){
+        let index = 0
+        return {
+            next: () => {
+                return new Promise((resolve, reject) => {
+                    if(index < this.data.length){
+                        resolve({ value: this.data[index++], done: false })
+                    }else{
+                        resolve({ done: true })
+                    }
+                })
+            }
+        }
+    }
 }
 ```

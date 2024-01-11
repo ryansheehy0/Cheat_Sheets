@@ -67,13 +67,14 @@
 
 ## [Increment numbers](#table-of-contents)
 
-|                 |                                       |
-|-----------------|---------------------------------------|
-| ctrl + v        | select lines                          |
-| ctrl + a        | increment number by 1                 |
-| ctrl + x        | decrement number by 1                 |
-| g then ctrl + a | progressively increment. 1 2 3 4 etc. |
-| g then ctrl + x | progressively decrement. 4 3 2 1 etc. |
+|                                     |                                            |
+|-------------------------------------|--------------------------------------------|
+| ctrl + v                            | select lines                               |
+| ctrl + v then shift + I             | Insert in front of the lines you selected. |
+| select numbers then ctrl + a        | increment number by 1                      |
+| select numbers then ctrl + x        | decrement number by 1                      |
+| select numbers then g then ctrl + a | progressively increment. 1 2 3 4 etc.      |
+| select number then g then ctrl + x  | progressively decrement. 4 3 2 1 etc.      |
 
 ## [Modes](#table-of-contents)
 
