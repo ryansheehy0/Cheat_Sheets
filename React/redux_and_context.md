@@ -82,13 +82,13 @@ export default function UserProvider({children}){
   const variable = "You can also allow consumers to use variables."
 
   return (
-    <UserContext.Provider value=\{{ currentUser, setCurrentUser, variable }\}>
+    <UserContext.Provider value={ { currentUser, setCurrentUser, variable }}>
       {children}
     </UserContext.Provider>
   )
   // You could also just spread the props which will do the same thing as including the children. Make sure not to dereference props.
   return (
-    <UserContext.Provider value={{ currentUser, setCurrentUser, variable }} {...props}>
+    <UserContext.Provider value={ { currentUser, setCurrentUser, variable }} {...props}>
   )
 }
 ```
