@@ -47,6 +47,8 @@ IDB is a library that makes it easier to work with indexedDB. Instead of callbac
     - [idb CRUD](#idb-crud)
   - [Indexes](#indexes)
   - [Cursor](#cursor)
+  - [Dexie.js](#dexiejs)
+    - [Using dexie with react](#using-dexie-with-react)
 
 <!-- /TOC -->
 
@@ -247,3 +249,81 @@ cursor.continue()
 // Delete cursor
 cursor.close()
 ```
+
+## [Dexie.js](#table-of-contents)
+Dexie is a library to make working with indexedDb easier to use.
+
+`npm install dexie`
+
+Creating a db
+
+```javascript
+let db = new Dexie("Database name")
+db.version(1).stores({
+  table1: "++id,field1,field2",
+  table2: "++id,field1,field2"
+})
+```
+
+Creating data
+
+```javascript
+const newlyAddedObjId = await db.table1.add({
+  field1: "value1",
+  field1: "value2"
+})
+```
+
+Reading data
+
+```javascript
+let id = 1 // Ids start at 1
+let obj = await db.table1.get(id)
+
+// or
+let table1Objs = await db.table.toArray()
+```
+
+Updating data
+
+```javascript
+let id = 1
+await db.table1.update(id, {
+  field1: "updated value"
+})
+
+// You can update just one value at a time
+```
+
+Deleting data
+
+```javascript
+// Delete 1 obj in table
+let id = 1
+await db.table1.delete(1)
+
+// Delete all objects inside table
+await db.table1.clear()
+
+// Delete table
+await db.delete("table1")
+```
+
+### [Using dexie with react](#table-of-contents)
+You can have something like state in react that updates whenever the db updates.
+
+`npm install dexie-react-hooks`
+
+```javascript
+export default function Component({db}){
+  const table1 = useLiveQuery(async () => {
+    return await db.table1.toArray()
+  }, [/*optional dependencies*/])
+
+  return <div>{table1}</div>
+}
+```
+
+Whenever the db changes table1 gets updated like state in react.
+
+If you are using custom awaits, awaits not associated with dexie, you have to use Promise.all in order for it to work.

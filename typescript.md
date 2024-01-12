@@ -45,6 +45,7 @@ Typescript gets compiled into javascript.
     - [in](#in)
     - [instanceof](#instanceof)
     - [Guard function](#guard-function)
+  - [React](#react)
   - [Need to understand these syntaxes](#need-to-understand-these-syntaxes)
 
 <!-- /TOC -->
@@ -506,6 +507,9 @@ if(isString(x)){
   // typescript knows x is a string
 }
 ```
+
+## [React](#table-of-contents)
+
 
 ## Need to understand these syntaxes
 

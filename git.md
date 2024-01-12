@@ -203,7 +203,7 @@ Settings $\rightarrow$ Developer settings $\rightarrow$ Personal access tokens $
 1. Paste the contents of id_ed25519.pub into github and press Add Key
 1. To test if it worked run: `ssh -T git@github.com` and you should see Successfully Authenticated
     - If this doesn't work then you may need to run `eval "$(ssh-agent -s)"` in order to start the ssh-agent
-1. To use with SSH make sure your location is SSH(starts with git@github.com)
+1. To use with SSH make sure your github repo locations are SSHs(they starts with git@github.com)
 
 ## [Adding a warning when pushing to main/master from another branch](#table-of-contents)
 - Put this code inside .git/hooks/pre-push

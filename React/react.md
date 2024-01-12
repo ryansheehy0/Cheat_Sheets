@@ -47,6 +47,7 @@ Why use react over vanilla JS:
   - [useRef](#useref)
   - [Testing in React](#testing-in-react)
   - [setTimeout in React](#settimeout-in-react)
+  - [awaiting a react component](#awaiting-a-react-component)
 
 <!-- /TOC -->
 
@@ -455,6 +456,16 @@ return (
 
 Each child in a list should have a unique key attribute. React uses this to know which list item is which.
 
+It can also be useful to skip any values that aren't valid.
+
+```javascript
+{items ? items.map((item) => (
+  item ? (
+    <Component />
+  ) : null
+)): null}
+```
+
 ## [Event handling in React](#table-of-contents)
 Events in react are done thought attributes.
 
@@ -738,5 +749,29 @@ export default function Component(){
   }, [])
 
   return <div></div>
+}
+```
+
+## [awaiting a react component](#table-of-contents)
+
+```javascript
+// This component awaits for the return value from awaitFunc before loading
+export default function Component(){
+  const [loading, setLoading] = useState(true)
+  useEffect(() => {
+    async function asyncFunc(){
+      await awaitFunc()
+      setLoading(false)
+    }
+    asyncFunc()
+  }, [])
+
+  if(loading) return null
+
+  return (
+    <div>
+      Component
+    </div>
+  )
 }
 ```
