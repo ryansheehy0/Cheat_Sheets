@@ -45,6 +45,7 @@ Why use react over vanilla JS:
   - [Forms in React](#forms-in-react)
   - [useEffect](#useeffect)
   - [useRef](#useref)
+    - [React.forwardRef](#reactforwardref)
   - [Testing in React](#testing-in-react)
   - [setTimeout in React](#settimeout-in-react)
   - [awaiting a react component](#awaiting-a-react-component)
@@ -697,6 +698,23 @@ Why does useEffect [] run twice on reload when useStrick is being used on your r
 ## [useRef](#table-of-contents)
 When a reference is changed it doesn't cause your component to re-render.
 
+### [React.forwardRef](#table-of-contents)
+React forward ref on a component allows you to use ref as a function in a parent component. This is useful for creating an array of refs in the parent component.
+
+```javascript
+const Component = React.forwardRef(props, refs) => {
+}
+
+export default Component
+
+// In parent component
+const componentRefs = useRef([])
+return (
+  <Component
+    ref={(ref) => {componentRefs.push(ref)}}
+  />
+)
+```
 
 ## [Testing in React](#table-of-contents)
 vitest

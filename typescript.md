@@ -510,6 +510,18 @@ if(isString(x)){
 
 ## [React](#table-of-contents)
 
+```javascript
+import React from 'react'
+const Component: React.RC<ComponentProps> = ({}) => {
+}
+
+// Or no Props
+const Component: React.RC = () => {
+}
+
+export default Component
+```
+
 
 ## Need to understand these syntaxes
 

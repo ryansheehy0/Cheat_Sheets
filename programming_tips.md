@@ -27,7 +27,7 @@
 
 ## [Formatting and Rules](#table-of-contents)
 - No space between ()s and {s
-- Use "s instead of 's
+- Use 's instead of "s
 - When assigning variables use spaces between the `=`s
 - Use guard clauses when possible
 - When possible use variables and self explanatory code instead of comments
