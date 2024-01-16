@@ -1,4 +1,4 @@
-[Home](./README.md)
+[Home](../README.md)
 
 # Redux and Context
 Redux is both a library and a design patter.

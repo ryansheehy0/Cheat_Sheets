@@ -44,9 +44,10 @@ Typescript gets compiled into javascript.
     - [typeof as a guard](#typeof-as-a-guard)
     - [in](#in)
     - [instanceof](#instanceof)
-    - [Guard function](#guard-function)
+    - [Type Guard function](#type-guard-function)
   - [React](#react)
   - [Need to understand these syntaxes](#need-to-understand-these-syntaxes)
+  - [Phantom Types](#phantom-types)
 
 <!-- /TOC -->
 
@@ -492,10 +493,18 @@ if(obj instanceof MyClass){
 }
 ```
 
-### [Guard function](#table-of-contents)
-Guard functions are functions that manually check if a value is of a certain type. This uses the `is` keyword.
+### [Type Guard function](#table-of-contents)
+A type guard function is used to check if a value is a certain type at runtime.
 
-The reasons you use `is` instead of just returning a boolean is to let typescript now what the type is after the function is called.
+A type guard function returns a type predicate, which takes the form of `parameterName is Type`
+
+The `is` keyword is used, instead of a boolean, to let typescript know what the type is after the function is called.
+
+```typescript
+function isStringOfLength<Min extends number, Max extends number>(str: string, min: Min, max: Max): str is StringOfLength<Min, Max> {
+  return str.length >= min && str.length <= max
+}
+```
 
 ```typescript
 function isString(value: any): value is string{
@@ -540,3 +549,5 @@ type Parameters<Type extends (...args: any[]) => any> = Type extends (...args: i
 ```
 
 - infer
+
+## [Phantom Types](#table-of-contents)

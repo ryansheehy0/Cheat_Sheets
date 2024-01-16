@@ -1,4 +1,4 @@
-[Home](./README.md)
+[Home](../README.md)
 
 # React
 A javascript UI framework that makes creating single page applications easier.
@@ -467,6 +467,10 @@ It can also be useful to skip any values that aren't valid.
 )): null}
 ```
 
+- Components with the same JSX can have different state if they are rendered in different positions in the dom.
+- Switching components or removing them from the DOM causes the destruction of their state
+  - Unless they have the same key value in a map function
+
 ## [Event handling in React](#table-of-contents)
 Events in react are done thought attributes.
 
@@ -793,3 +797,13 @@ export default function Component(){
   )
 }
 ```
+
+const crypto = require("crypto")
+
+function hexSHA256(input){
+  const hash = crypto.createHash("sha256")
+  hash.update(input)
+  return hash.digest("hex")
+}
+
+module.exports = hexSHA256

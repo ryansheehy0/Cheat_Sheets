@@ -14,6 +14,7 @@ JavaScript is the only language that can be run in the browser.
   - [Variables](#variables)
   - [Strings](#strings)
     - [String Functions](#string-functions)
+    - [Concatenation with numbers](#concatenation-with-numbers)
   - [Arrays](#arrays)
     - [Array Functions](#array-functions)
     - [For of](#for-of)
@@ -75,6 +76,7 @@ JavaScript is the only language that can be run in the browser.
     - [Adding Symbol.iterator to object](#adding-symboliterator-to-object)
   - [Generator functions](#generator-functions)
   - [Async iterators](#async-iterators)
+  - [UUIDs](#uuids)
 
 <!-- /TOC -->
 
@@ -196,6 +198,14 @@ Strings are immutable. Once a string is created its value cannot be changed. If 
     - Cannot take negative numbers.
 - `.includes("substring")`
     - Is the substring included in the string?
+
+### [Concatenation with numbers](#table-of-contents)
+When you use the `+` keyword with a string and a number, the number is converted to a string and they are concatenated.
+
+```javascript
+10 + '10' // '1010'
+'10' + 10 // '1010
+```
 
 ## [Arrays](#table-of-contents)
 Arrays allow you to store several pieces of data in the same place. Elements can be any data type and arrays are mutable.
@@ -1468,3 +1478,10 @@ const asyncIterableObj = {
     }
 }
 ```
+
+## [UUIDs](#table-of-contents)
+You can generate a new uuid with `crypto.randomUUID()`.
+- This only works on the client
+- You have to import crypto if you want to use it in node
+
+The probability of a UUID collision is so low, that it can be ignored.

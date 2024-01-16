@@ -80,6 +80,8 @@ In order to import from a package you do `const package = require("packageName")
 
 You can import json directly `const json = require("./file.json")`
 
+To use the regular importing syntax you can do `npm install @types/node --save-dev`.
+
 ### [Exporting](#table-of-contents)
 To export you use the module.exports object
 
