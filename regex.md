@@ -82,7 +82,7 @@ Quantifiers decide how many times a character can occur for it to be selected.
 The or operator "\|" allows you to select one pattern or another.
 
 #### [Examples](#table-of-contents)
-- "cat|dog" will select
+- "cat\|dog" will select
   - "dog" and "cat" in the line "dogabccat"
 
 ### [Character Classes](#table-of-contents)
@@ -181,24 +181,25 @@ Used to see if a pattern matches ahead or behind the current position without ch
 ### [Metacharacters](#table-of-contents)
 Special characters with specific meanings.
 
-| Metacharacters | Description                                                |
-|----------------|------------------------------------------------------------|
-| .              | Find any single character except new line                  |
-| \w             | Find a lower case, upper case, or digit.                   |
-| \W             | Find anything that isn't lower case, upper case, or digit. |
-| \d             | Find any digit                                             |
-| \D             | Find any non-digit character                               |
-| \s             | Find a whitespace character                                |
-| \S             | Find any non-whitespace character                          |
-| \0             | Find null character                                        |
-| \n             | Find new line character                                    |
-| \f             | Find form feed character                                   |
-| \r             | Find carriage return character                             |
-| \t             | Find tab character                                         |
-| \v             | Find vertical tab character                                |
-| \ddd           | Find the octal number with ddd                             |
-| \xYY           | Find a hexadecimal number with YY                          |
-| \uYYYY         | Find the unicode character with the hex number nnnn        |
+| Metacharacters | Description                                                                       |
+|----------------|-----------------------------------------------------------------------------------|
+| .              | Find any single character except new line                                         |
+| .*             | Find any character 0 or more. Useful for selecting everything in front or behind. |
+| \w             | Find a lower case, upper case, or digit.                                          |
+| \W             | Find anything that isn't lower case, upper case, or digit.                        |
+| \d             | Find any digit                                                                    |
+| \D             | Find any non-digit character                                                      |
+| \s             | Find a whitespace character                                                       |
+| \S             | Find any non-whitespace character                                                 |
+| \0             | Find null character                                                               |
+| \n             | Find new line character                                                           |
+| \f             | Find form feed character                                                          |
+| \r             | Find carriage return character                                                    |
+| \t             | Find tab character                                                                |
+| \v             | Find vertical tab character                                                       |
+| \ddd           | Find the octal number with ddd                                                    |
+| \xYY           | Find a hexadecimal number with YY                                                 |
+| \uYYYY         | Find the unicode character with the hex number nnnn                               |
 
 ## [Regex Examples](#table-of-contents)
 

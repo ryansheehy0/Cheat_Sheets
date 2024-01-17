@@ -12,41 +12,53 @@ When using zod just include `import { z } from 'zod'`
 
 - [Zod](#zod)
   - [Table of Contents](#table-of-contents)
+  - [DataTypes](#datatypes)
   - [Coerce](#coerce)
   - [Parsing](#parsing)
+  - [Infer](#infer)
   - [String validations](#string-validations)
+  - [Number validations](#number-validations)
+  - [Objects](#objects)
+  - [Arrays](#arrays)
 
 <!-- /TOC -->
 
+## [DataTypes](#table-of-contents)
+
+| Data Types      | Description                                                                              |
+|-----------------|------------------------------------------------------------------------------------------|
+| .string()       |                                                                                          |
+| .number()       |                                                                                          |
+| .bigint()       |                                                                                          |
+| .boolean()      |                                                                                          |
+| .date()         |                                                                                          |
+| .literal(value) | Can only be that value                                                                   |
+| .symbol()       |                                                                                          |
+| .undefined()    |                                                                                          |
+| .null()         |                                                                                          |
+| .void()         |                                                                                          |
+| .any()          |                                                                                          |
+| .unknown()      |                                                                                          |
+| .never()        |                                                                                          |
+| .object()       |                                                                                          |
+| .array()        | `z.array(z.string())` or `z.string().array()`                                            |
+| .enum(values)   | Unions when values is an array of strings. A tuple when value has `as const` at the end. |
+| .function()     |                                                                                          |
+
+You can make types optional by putting `.optional()` on them.
+
+You can make types nullable by putting `.nullable()` on them. This means they can either be null or the type.
+
+You can remove the optional or nullable with `.unwrap()`
+
 ```javascript
-// primitive values
-z.string()
-z.number()
-z.bigint()
-z.boolean()
-z.date()
-z.symbol()
+const stringSchema = z.string()
 
-// empty types
-z.undefined()
-z.null()
-z.void() // accepts undefined
+const optionalString = stringSchema.optional()
+optionalString.unwrap() === stringSchema // true
 
-// catch-all types
-// allows any value
-z.any()
-z.unknown()
-
-// never type
-// allows no values
-z.never()
-
-
-z.object()
-  .optional()
-
-// Convert to typescript type
-type Type = z.infer<typeof schema>
+const nullableString = stringSchema.nullable()
+nullableString.unwrap() === stringSchema // true
 ```
 
 ## [Coerce](#table-of-contents)
@@ -67,8 +79,19 @@ Parsing allows you to check if a variable or value of of that type at runtime.
 schema.parse(var)
   // Throws error if wrong
 schema.safeParse(var)
-  // returns invalid object when wrong
+  /* returns either
+    { success: true
+      data: 'billie' }
+    or
+    { success: false
+      error: ZodError }
+  */
 ```
+
+## [Infer](#table-of-contents)
+Used to infer the typescript type from a zod schema.
+
+`z.infer<typeof Schema>`
 
 ## [String validations](#table-of-contents)
 These are used to add some more limitations to strings. `z.string().validation()` or `z.string().transformation()`
@@ -96,3 +119,59 @@ You can also do some transformation with strings.
 - `.tim()`
 - `.toLowerCase()`
 - `.toUpperCase()`
+
+You can also put error message if the parse fails
+`z.string().min(5, { message: "Must be 5 or more characters long" })`
+
+## [Number validations](#table-of-contents)
+
+| .validation()            | Description                                                                |
+|--------------------------|----------------------------------------------------------------------------|
+| z.number().gt(#)         | Greater than #                                                             |
+| z.number().gte(#)        | Greater than or equal to #                                                 |
+| z.number().lt(#)         | Less than #                                                                |
+| z.number().lte(#)        | Less than or equal to #                                                    |
+| z.number().int()         | Integer                                                                    |
+| z.number().positive()    | x > 0                                                                      |
+| z.number().nonnegative() | x >= 0                                                                     |
+| z.number().negative()    | x \< 0                                                                     |
+| z.number().nonpositive() | x \<= 0                                                                    |
+| z.number().multipleOf(#) | Needs to be evenly divisible by #                                          |
+| z.number().finite()      | Not Infinity or -Infinity                                                  |
+| z.number().safe()        | This ensures that ints don't go outside the range their memory can handle. |
+
+## [Objects](#table-of-contents)
+
+```javascript
+// All properties are required by default
+const Dog = z.object({
+  name: z.string(),
+  age: z.number(),
+})
+```
+
+| Object methods         | Description                                            |
+|------------------------|--------------------------------------------------------|
+| .shape                 |                                                        |
+| .keyof()               |                                                        |
+| .extend(ObjSchema)     | Can be used to overwrite fields.                       |
+| .merge(ObjSchema)      | A.extend(B.shape)                                      |
+| .pick()/.omit()        |                                                        |
+| .partial()             | Makes all properties optional                          |
+| .partial({ key: true}) | Makes just those keys optional                         |
+| .deepPartial()         | Partials any nested object schemas as well             |
+| .required()            | Makes all properties required                          |
+| .passthrough().parse() | Unknown properties aren't stripped, but passed through |
+| .strict()              | Any unknown keys .parse() with throw error             |
+| .strip()               | Reset object schema to default behavior when parsing   |
+| .catchall(schema)      | Allows anything of the type schema to pass through     |
+
+## [Arrays](#table-of-contents)
+
+| Array methods | Description                         |
+|---------------|-------------------------------------|
+| .element      | Access the schema of an element     |
+| .noempty()    | Doesn't allow the array to be empty |
+| .min(#)       |                                     |
+| .max(#)       |                                     |
+| .length(#)    |                                     |
