@@ -524,20 +524,20 @@ consol.log(accessLevel) // undefined
 ### [Nullish coalescing operator ??](#table-of-contents)
 If the nullish coalescing operator is the opposite of &&.
 
-If the condition is falsy it assigns the variable to the valueIfTrue.
+If the condition is falsy it assigns the variable to the valueIfFalse.
 
 If the condition is truthy it assigns the condition.
 
 ```javascript
-const valueIfTrue = "value"
+const valueIfFalse = "value"
 
 const condition = "truthy condition"
-const variable = condition ?? valueIfTrue
+const variable = condition ?? valueIfFalse
 consol.log(accessLevel) // "truthy condition"
 
 const condition = false
-const variable = condition && valueIfTrue
-consol.log(accessLevel) // "value
+const variable = condition ?? valueIfFalse
+consol.log(accessLevel) // "value"
 ```
 
 ## [Useful Functions](#table-of-contents)

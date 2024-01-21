@@ -150,21 +150,21 @@ const Dog = z.object({
 })
 ```
 
-| Object methods         | Description                                            |
-|------------------------|--------------------------------------------------------|
-| .shape                 |                                                        |
-| .keyof()               |                                                        |
-| .extend(ObjSchema)     | Can be used to overwrite fields.                       |
-| .merge(ObjSchema)      | A.extend(B.shape)                                      |
-| .pick()/.omit()        |                                                        |
-| .partial()             | Makes all properties optional                          |
-| .partial({ key: true}) | Makes just those keys optional                         |
-| .deepPartial()         | Partials any nested object schemas as well             |
-| .required()            | Makes all properties required                          |
-| .passthrough().parse() | Unknown properties aren't stripped, but passed through |
-| .strict()              | Any unknown keys .parse() with throw error             |
-| .strip()               | Reset object schema to default behavior when parsing   |
-| .catchall(schema)      | Allows anything of the type schema to pass through     |
+| Object methods         | Description                                                                         |
+|------------------------|-------------------------------------------------------------------------------------|
+| .shape                 | Get the schema of a key                                                             |
+| .keyof()               | Get Zod enum of keys of an object                                                   |
+| .extend(ObjSchema)     | Used to add additional fields to an object schema. Can be used to overwrite fields. |
+| .merge(ObjSchema)      | Combines 2 object schemas. A.extend(B.shape)                                        |
+| .pick()/.omit()        | used to keep or remove certain fields.                                              |
+| .partial()             | Makes all properties optional                                                       |
+| .partial({ key: true}) | Makes just those keys optional                                                      |
+| .deepPartial()         | Partials any nested object schemas as well                                          |
+| .required()            | Makes all properties required                                                       |
+| .passthrough().parse() | Unknown properties aren't stripped, but passed through                              |
+| .strict()              | Any unknown keys .parse() with throw error                                          |
+| .strip()               | Reset object schema to default behavior when parsing                                |
+| .catchall(schema)      | Allows anything of the type schema to pass through                                  |
 
 ## [Arrays](#table-of-contents)
 

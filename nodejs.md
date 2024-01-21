@@ -96,6 +96,7 @@ module.exports = {
 - Functions that end in "sync" are blocking functions which means they force the other code to wait until it it done.
 - index.js is the default location for node.
     - If you run `node ./` it will look for index.js first.
+- You can exit the program without throwing an error with `process.exit(1)`
 
 ## [Things that don't work](#table-of-contents)
 - window global variable

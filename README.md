@@ -28,7 +28,7 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
                 - [Redux and Context](./React/redux_and_context.md)
             - [Graph QL](./graphql.md)
         - [NOT DONE: TypeScript](./typescript.md)
-            - [NOT DONE: Zod](./zod.md)
+            - [Zod](./zod.md)
         - [NodeJS](./nodejs.md)
             - [NodeJS Packages](./nodejs_packages.md)
         - Databases

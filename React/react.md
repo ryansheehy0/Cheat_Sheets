@@ -26,7 +26,6 @@ Why use react over vanilla JS:
   - [JavaScript XMLJSX](#javascript-xmljsx)
     - [Fragments](#fragments)
   - [Vite](#vite)
-  - [Vite plugins](#vite-plugins)
     - [vite-plugin-svgr](#vite-plugin-svgr)
     - [vite-plugin-pwa](#vite-plugin-pwa)
   - [File Structure](#file-structure)
@@ -41,6 +40,7 @@ Why use react over vanilla JS:
   - [Event handling in React](#event-handling-in-react)
   - [Tailwind in React](#tailwind-in-react)
     - [Changing Tailwind with State](#changing-tailwind-with-state)
+  - [React hooks](#react-hooks)
   - [useState](#usestate)
   - [Forms in React](#forms-in-react)
   - [useEffect](#useeffect)
@@ -143,8 +143,6 @@ export default defineCOnfig({
 
 If you do `npx vite --host` allows you to view your React app on mobile as long as you allow port forwarding. In the terminal the location should look like this: `Network: http://...`
 
-## [Vite plugins](#table-of-contents)
-
 ### [vite-plugin-svgr](#table-of-contents)
 Used to allow svg files to be used as react components.
 
@@ -202,18 +200,16 @@ export default manifest
 
 ```
 public
-src // Do reacted development
+src // React development
   assets
   components
     Component.jsx
   App.css // App specific css
   App.jsx // Imports App.css and is the start of app
-  index.css // Takes president over App.css
+  index.css // Takes president over App.css. Sets default styling for app.
   main.jsx // Imports react, app, index.css and renders App.jsx in the id root
 index.html // React inserts into <div id="root"></div> and loads main.jsx
 ```
-
-main.jsx
 
 ## [Components](#table-of-contents)
 Each component tends to go in its own file.
@@ -551,6 +547,14 @@ const width = "200px"
 
 // This will work
 ```
+
+## [React hooks](#table-of-contents)
+Why do you need react hooks
+
+| Hook name | Description |
+|-----------|-------------|
+| useState  |             |
+
 
 ## [useState](#table-of-contents)
   - State

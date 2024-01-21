@@ -521,11 +521,11 @@ if(isString(x)){
 
 ```javascript
 import React from 'react'
-const Component: React.RC<ComponentProps> = ({}) => {
+const Component: React.FC<ComponentProps> = ({}) => {
 }
 
 // Or no Props
-const Component: React.RC = () => {
+const Component: React.FC = () => {
 }
 
 export default Component
