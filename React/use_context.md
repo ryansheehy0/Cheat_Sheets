@@ -30,18 +30,18 @@ If you were to throw an event when the button is clicked and add an event listen
 <!-- TOC -->
 
 - [Redux and Context](#redux-and-context)
-  - [Table of Contents](#table-of-contents)
-  - [Questions](#questions)
-  - [Installation](#installation)
-  - [Context](#context)
-    - [Creating a Context](#creating-a-context)
-    - [Providing the context](#providing-the-context)
-    - [Consuming the state from the provider](#consuming-the-state-from-the-provider)
-    - [Redux patter with Context](#redux-patter-with-context)
-      - [Actions](#actions)
-      - [Reducers](#reducers)
-      - [useReducer](#usereducer)
-      - [Dispatching an action](#dispatching-an-action)
+	- [Table of Contents](#table-of-contents)
+	- [Questions](#questions)
+	- [Installation](#installation)
+	- [Context](#context)
+		- [Creating a Context](#creating-a-context)
+		- [Providing the context](#providing-the-context)
+		- [Consuming the state from the provider](#consuming-the-state-from-the-provider)
+		- [Redux patter with Context](#redux-patter-with-context)
+			- [Actions](#actions)
+			- [Reducers](#reducers)
+			- [useReducer](#usereducer)
+			- [Dispatching an action](#dispatching-an-action)
 
 <!-- /TOC -->
 

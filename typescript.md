@@ -520,7 +520,12 @@ if(isString(x)){
 ## [React](#table-of-contents)
 
 ```javascript
-import React from 'react'
+import React, { ReactNode } from 'react'
+
+type ComponentProps = {
+  children: ReactNode
+}
+
 const Component: React.FC<ComponentProps> = ({}) => {
 }
 

@@ -13,68 +13,41 @@ Why use react over vanilla JS:
   - Updates are bundled as to not repaint the page too much
   - React is very efficient for very complex UIs, but tends to be less efficient for apps where the DOM isn't being updated as much.
 
-
 ## Table of Contents
 
 <!-- TOC -->
 
 - [React](#react)
-  - [Table of Contents](#table-of-contents)
-  - [Questions:](#questions)
-  - [Single Page App vs Multi Page App](#single-page-app-vs-multi-page-app)
-  - [Virtual DOM](#virtual-dom)
-  - [JavaScript XMLJSX](#javascript-xmljsx)
-    - [Fragments](#fragments)
-  - [Vite](#vite)
-    - [vite-plugin-svgr](#vite-plugin-svgr)
-    - [vite-plugin-pwa](#vite-plugin-pwa)
-  - [File Structure](#file-structure)
-  - [Components](#components)
-    - [CSS in Components](#css-in-components)
-    - [Props](#props)
-      - [Props as embedded children](#props-as-embedded-children)
-  - [Conditional Rendering](#conditional-rendering)
-    - [React Router](#react-router)
-      - [useParams](#useparams)
-  - [Map function in React](#map-function-in-react)
-  - [Event handling in React](#event-handling-in-react)
-  - [Tailwind in React](#tailwind-in-react)
-    - [Changing Tailwind with State](#changing-tailwind-with-state)
-  - [React hooks](#react-hooks)
-  - [useState](#usestate)
-  - [Forms in React](#forms-in-react)
-  - [useEffect](#useeffect)
-  - [useRef](#useref)
-    - [React.forwardRef](#reactforwardref)
-  - [Testing in React](#testing-in-react)
-  - [setTimeout in React](#settimeout-in-react)
-  - [awaiting a react component](#awaiting-a-react-component)
+	- [Table of Contents](#table-of-contents)
+	- [Questions:](#questions)
+	- [Single Page App vs Multi Page App](#single-page-app-vs-multi-page-app)
+	- [Virtual DOM](#virtual-dom)
+	- [JavaScript XMLJSX](#javascript-xmljsx)
+		- [Fragments](#fragments)
+	- [Vite](#vite)
+		- [vite-plugin-svgr](#vite-plugin-svgr)
+		- [vite-plugin-pwa](#vite-plugin-pwa)
+	- [File Structure](#file-structure)
+	- [Components](#components)
+		- [CSS in Components](#css-in-components)
+		- [Props](#props)
+			- [Props as embedded children](#props-as-embedded-children)
+	- [Conditional Rendering](#conditional-rendering)
+		- [React Router](#react-router)
+			- [useParams](#useparams)
+	- [Map function in React](#map-function-in-react)
+	- [Event handling in React](#event-handling-in-react)
+	- [Tailwind in React](#tailwind-in-react)
+		- [Changing Tailwind with State](#changing-tailwind-with-state)
+	- [Forms in React](#forms-in-react)
+	- [Testing with vite](#testing-with-vite)
+	- [setTimeout in React](#settimeout-in-react)
+	- [awaiting a react component](#awaiting-a-react-component)
 
 <!-- /TOC -->
 
 ## Questions:
-  - Hooks
-    - State and other react features without writing classes. Can put them in functions.
-    - Don't need this.setState
-    - All hooks start with the word use
-      - useState
-      - useContext
-      - Creating your own hooks
-      - useRef
-      - useParams
-  - Short circuit operators
-  - Where to put assets. Public or src/assets
-  - Finish reserved attributes
-  - What does `react-dom` do?
-  - What is props.children
-  - Do states re-run variables if they are set inside of the react function?
-
   Higher order component: Wraps the whole app to allow for functionality
-
-  - Explain and use providers inside a React component.
-  - Explain the concept of Consumer and accessing React Context.
-  - Explain and use actions with a reducer function.
-  - Explain reducers and use them with the useReducer Hook.
 
 ## [Single Page App vs Multi Page App](#table-of-contents)
 - **Single Page Apps(SPAs)** are apps where page changes are handled by javascript and don't require a full page reload.
@@ -548,55 +521,6 @@ const width = "200px"
 // This will work
 ```
 
-## [React hooks](#table-of-contents)
-Why do you need react hooks
-
-| Hook name | Description |
-|-----------|-------------|
-| useState  |             |
-
-
-## [useState](#table-of-contents)
-  - State
-    - Just an object. Something that changes on the website that changes between 2 unique visitors to a page.
-      - Count button. 2 users have different experiences depending on how many times they click it
-        - this.setState
-      - Changes on between 2 or more different visitors
-State is used for variables that when changed should cause a re-render on the screen. These tend to be variables that are different for each client who visits the site.
-
-useState tells React that something has changed to the DOM so react can re-render the DOM.
-
-In react when a page is re-rendered(because of a state change) then the component function is ran again to return the JSX.
-
-```javascript
-import { useState } from 'react';
-
-export default function Counter() {
-  // Array destructing
-  const [count, setCount] = useState(0/*Initial value of state*/);
-    // count is the value of the state at that moment. Get variable
-    // setCount is used to update the state. Set method
-
-  const handleClick = () => {
-    setCount((count + 1)) // Takes time to update the count. Can't use async/await
-    count += 1 // This will change the state, but it won't tell react to update the DOM so you don't see the changes
-    console.log(`New value of count: ${count}`); // Previous value of count because setCount hasn't had time to update count
-  };
-
-  return (
-    <div className="card text-center">
-      <div className="card-header bg-primary text-white">Click Counter!</div>
-      <div className="card-body">
-        <p className="card-text">Click Count: {count}</p>
-        <button className="btn btn-primary" type="button" onClick={handleClick}>
-          Increment
-        </button>
-      </div>
-    </div>
-  );
-}
-```
-
 ## [Forms in React](#table-of-contents)
 States are used to update the values in forms as to allow for setState to update the form.
 
@@ -655,76 +579,7 @@ function Form() {
 export default Form;
 ```
 
-## [useEffect](#table-of-contents)
-useEffect is used to run code based upon some variable changing.
-
-useEffect is often used for things in the app that need to interact with the external world like API requests, localstorage, etc. These are called sideEffects.
-
-You can think of these as event driven code.
-
-useEffect never returns anything
-
-```javascript
-import {useEffect, useState, useRef} from "react"
-
-const [state1, setState1] = useState(true)
-const [state2, setState2] = useState(true)
-
-const stateRef = useRef({state1, state2})
-
-useEffect(() => {
-  // Only run when mounted/on first load of app
-}, [])
-
-useEffect(() => {
-  // This code is ran on every DOM re-render
-})
-
-useEffect(() => {
-  // When the state changes this code is ran. Not ran on initial load.
-}, [state1])
-
-useEffect(() => {
-  // When the state1 or state2 changes this code is ran
-}, [state1, state2])
-
-const variable = "Initialized variable"
-useEffect(() => {
-  // This will run on initial render because variable was originally un-initialized and then it became initialized which is a change.
-}, [variable])
-
-useEffect(() => {
-  if(stateRef.current.state1 !== state1 && stateRef.current.state2 !== state2){
-    // Only when both the state1 and state2 changes this code is ran
-    stateRef.current = {state1, state2}
-  }
-}, [state1, state2])
-```
-
-Why does useEffect [] run twice on reload when useStrick is being used on your react app.
-
-## [useRef](#table-of-contents)
-When a reference is changed it doesn't cause your component to re-render.
-
-### [React.forwardRef](#table-of-contents)
-React forward ref on a component allows you to use ref as a function in a parent component. This is useful for creating an array of refs in the parent component.
-
-```javascript
-const Component = React.forwardRef(props, refs) => {
-}
-
-export default Component
-
-// In parent component
-const componentRefs = useRef([])
-return (
-  <Component
-    ref={(ref) => {componentRefs.push(ref)}}
-  />
-)
-```
-
-## [Testing in React](#table-of-contents)
+## [Testing with vite](#table-of-contents)
 vitest
 npx vitest
 happy-dom
@@ -801,13 +656,3 @@ export default function Component(){
   )
 }
 ```
-
-const crypto = require("crypto")
-
-function hexSHA256(input){
-  const hash = crypto.createHash("sha256")
-  hash.update(input)
-  return hash.digest("hex")
-}
-
-module.exports = hexSHA256
