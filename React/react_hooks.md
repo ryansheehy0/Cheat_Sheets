@@ -38,6 +38,7 @@ Not frequently used so maybe not put in
 	- [useEffect](#useeffect)
 	- [useRef](#useref)
 		- [React.forwardRef](#reactforwardref)
+	- [useMemo](#usememo)
 
 <!-- /TOC -->
 
@@ -144,3 +145,26 @@ return (
   />
 )
 ```
+
+## [useMemo](#table-of-contents)
+When you have slow functions that don't need to be called frequently you can useMemo in order to store the value.
+
+It is not recommended to use useMemo when it isn't needed because it will take up more memory and decrease performance.
+
+```javascript
+import { useState, useMemo } from 'react'
+
+const Component = () => {
+	const [number, setNumber] = useState(0)
+	const var = useMemo(() => {
+		return slowFunction(number)
+	}, [/*Dependencies*/number])
+	// Whenever the dependency changes then teh slow function is ran.
+	const var = slowFunction(number) // This will run every render which will cause performance problems.
+
+	return ()
+}
+export default Component
+```
+
+If you are returning an object and you want the reference to that object not to change you can also use useMemo.

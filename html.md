@@ -8,24 +8,24 @@
 <!-- TOC -->
 
 - [HTML](#html)
-  - [Table of Contents](#table-of-contents)
-  - [Start of HTML](#start-of-html)
-  - [Text Formatting](#text-formatting)
-  - [Linking and Embedding](#linking-and-embedding)
-    - [Map](#map)
-  - [Lists](#lists)
-  - [Tables](#tables)
-  - [Forms](#forms)
-  - [Grouping](#grouping)
-  - [Self Closing Tags](#self-closing-tags)
-  - [Comments](#comments)
-  - [Details](#details)
-  - [Dialog](#dialog)
-  - [HTML entities](#html-entities)
-  - [Attributes](#attributes)
-  - [Inline elements vs block elements](#inline-elements-vs-block-elements)
-  - [CSS in HTML](#css-in-html)
-  - [JavaScript in HTML](#javascript-in-html)
+	- [Table of Contents](#table-of-contents)
+	- [Start of HTML](#start-of-html)
+	- [Text Formatting](#text-formatting)
+	- [Linking and Embedding](#linking-and-embedding)
+		- [Map](#map)
+	- [Lists](#lists)
+	- [Tables](#tables)
+	- [Forms](#forms)
+	- [Grouping](#grouping)
+	- [Self Closing Tags](#self-closing-tags)
+	- [Comments](#comments)
+	- [Details](#details)
+	- [Dialog](#dialog)
+	- [HTML entities](#html-entities)
+	- [Attributes](#attributes)
+	- [Inline elements vs block elements](#inline-elements-vs-block-elements)
+	- [CSS in HTML](#css-in-html)
+	- [JavaScript in HTML](#javascript-in-html)
 
 <!-- /TOC -->
 
@@ -250,17 +250,17 @@ closeButton.addEventListener("click", () => {
 ## [HTML entities](#table-of-contents)
 - Used to represent reserved characters within HTML.
 
-| Text    | Symbol            |
-|---------|-------------------|
-| &lt\;   | <                 |
-| &gt\;   | >                 |
-| &amp\;  | &                 |
-| &quot\; | "                 |
-| &apos\; | '                 |
-| &copy\; | &copy;            |
-| &reg\;  | &reg;             |
-| &deg\;  | &deg;             |
-| &emsp\; | non breakable tag |
+| Text    | Symbol                 |
+|---------|------------------------|
+| &lt\;   | <                      |
+| &gt\;   | >                      |
+| &amp\;  | &                      |
+| &quot\; | "                      |
+| &apos\; | '                      |
+| &copy\; | &copy;                 |
+| &reg\;  | &reg;                  |
+| &deg\;  | &deg;                  |
+| &emsp\; | tab that doesn't break |
 
 ## [Attributes](#table-of-contents)
 
