@@ -11,7 +11,7 @@ React hooks allow functional components to manage state, handle lifecycle events
 | useReducer      | Manages complex state logic using a reducer function             |
 | useRef          | Creates a mutable object references that persists across renders |
 | useCallback     | Stores callback functions to prevent unnecessary re-renders      |
-| useMemo         | Stores values to prevent unnecessary computations. Like caching  |
+| useMemo         | Stores values to prevent unnecessary computations. Like caching.  |
 | useEffectEvent  | Listens to custom events using useEffect                         |
 | useLayoutEffect | Like useEffect, but fires synchronously after all DOM mutations. |
 | useTransition   | Enables multiple components to render at the same time           |
@@ -39,6 +39,7 @@ Not frequently used so maybe not put in
 	- [useRef](#useref)
 		- [React.forwardRef](#reactforwardref)
 	- [useMemo](#usememo)
+	- [useReducer](#usereducer)
 
 <!-- /TOC -->
 
@@ -168,3 +169,54 @@ export default Component
 ```
 
 If you are returning an object and you want the reference to that object not to change you can also use useMemo.
+
+## [useReducer](#table-of-contents)
+Another way to manager state in react.
+
+Why use over useState:
+- A central location to manage state
+- Cannot change state outside of predefined actions
+	- Makes working with state more predictable
+
+```javascript
+import { useReducer } from 'react'
+
+// This is recommended to allow type completion with typescript
+const ACTIONS = {
+	INCREMENT: "increment",
+	DECREMENT: "decrement"
+}
+
+// Central location for managing state
+function reducer(state/*Previous value of state*/, action/*Argument in dispatch*/){
+	switch(action.type){
+		case ACTIONS.INCREMENT:
+			return { count: state.count + action.payload.value}
+		case ACTIONS.DECREMENT:
+			return { count: state.count - action.payload.value}
+		default:
+			return state
+	}
+}
+
+export default function Component(){
+	const [state, dispatch/*Used to change state*/] = useReducer(reducer/*Reducer function*/, { count: 0 }/* Default value of state*/)
+	// You can pass this dispatch function to any children components which makes it easier for children to manage the state of its parent
+
+	function increment(){
+		dispatch({ type: ACTIONS.INCREMENT, payload: { value: 1}})
+	}
+
+	function decrement(){
+		dispatch({ type: ACTIONS.DECREMENT, payload: { value: 1}})
+	}
+
+	return (
+		<>
+			<button onClick={increment}>+</button>
+			<p>{state.count}</p>
+			<button onClick={decrement}>-</button>
+		</>
+	)
+}
+```
