@@ -7,76 +7,77 @@ JavaScript is the only language that can be run in the browser.
 <!-- TOC -->
 
 - [JavaScript](#javascript)
-  - [Table of Contents](#table-of-contents)
-  - [Comments](#comments)
-  - [Primitive Data Types](#primitive-data-types)
-  - [Sets](#sets)
-  - [Variables](#variables)
-  - [Strings](#strings)
-    - [String Functions](#string-functions)
-    - [Concatenation with numbers](#concatenation-with-numbers)
-  - [Arrays](#arrays)
-    - [Array Functions](#array-functions)
-    - [For of](#for-of)
-  - [Equality Operators](#equality-operators)
-  - [Switch Block](#switch-block)
-  - [Functions](#functions)
-    - [This Keyword](#this-keyword)
-    - [Tagged Templates](#tagged-templates)
-  - [Logical Or for Fallbacks](#logical-or-for-fallbacks)
-  - [&& and ?? for Assignment](#-and--for-assignment)
-    - [Logical and for Assignment](#logical-and-for-assignment)
-    - [Nullish coalescing operator ??](#nullish-coalescing-operator-)
-  - [Useful Functions](#useful-functions)
-    - [Fetch](#fetch)
-      - [Optional Fetch Argument](#optional-fetch-argument)
-  - [Objects](#objects)
-    - [Updating values in Object](#updating-values-in-object)
-    - [For In](#for-in)
-    - [JavaScript Object NotationJSON](#javascript-object-notationjson)
-    - [Spread Operator](#spread-operator)
-    - [Object to Array](#object-to-array)
-    - [Optional Chaining](#optional-chaining)
-  - [Template Literals](#template-literals)
-  - [Import and Export](#import-and-export)
-  - [Errors](#errors)
-    - [Error Handling/Try Catch](#error-handlingtry-catch)
-    - [Throwing Errors](#throwing-errors)
-  - [Promises](#promises)
-    - [Promise.all, Promise.race, Promise.allSettled, Promise.any](#promiseall-promiserace-promiseallsettled-promiseany)
-  - [Async/Await](#asyncawait)
-  - [DOM Manipulation](#dom-manipulation)
-    - [Accessing Elements](#accessing-elements)
-    - [Modifying Elements](#modifying-elements)
-    - [Creating and Appending Elements](#creating-and-appending-elements)
-      - [Insert Adjacent Element](#insert-adjacent-element)
-    - [Event Handling](#event-handling)
-      - [Commonly Used Events](#commonly-used-events)
-      - [Default Events](#default-events)
-      - [Custom Events](#custom-events)
-        - [Sending Custom Event](#sending-custom-event)
-        - [Receiving Custom Event](#receiving-custom-event)
-    - [Traversing the DOM](#traversing-the-dom)
-  - [This](#this)
-  - [Timing](#timing)
-  - [+/-/++/-- Operators](#----operators)
-  - [Local/Session Storage](#localsession-storage)
-  - [Common APIs](#common-apis)
-    - [Dayjs](#dayjs)
-  - [URL of Webpage](#url-of-webpage)
-    - [Redirect URL](#redirect-url)
-  - [Regex](#regex)
-  - [Object Oriented](#object-oriented)
-    - [Class Constructors](#class-constructors)
-    - [Prototype](#prototype)
-  - [Debugging](#debugging)
-  - [Labels](#labels)
-  - [Symbols](#symbols)
-  - [Symbol.iterator](#symboliterator)
-    - [Adding Symbol.iterator to object](#adding-symboliterator-to-object)
-  - [Generator functions](#generator-functions)
-  - [Async iterators](#async-iterators)
-  - [UUIDs](#uuids)
+	- [Table of Contents](#table-of-contents)
+	- [Comments](#comments)
+	- [Primitive Data Types](#primitive-data-types)
+	- [Sets](#sets)
+	- [Variables](#variables)
+	- [Strings](#strings)
+		- [String Functions](#string-functions)
+		- [Concatenation with numbers](#concatenation-with-numbers)
+	- [Arrays](#arrays)
+		- [Array Functions](#array-functions)
+		- [For of](#for-of)
+	- [Equality Operators](#equality-operators)
+	- [Switch Block](#switch-block)
+	- [Functions](#functions)
+		- [This Keyword](#this-keyword)
+		- [Tagged Templates](#tagged-templates)
+	- [Logical Or for Fallbacks](#logical-or-for-fallbacks)
+	- [&& and ?? for Assignment](#-and--for-assignment)
+		- [Logical and for Assignment](#logical-and-for-assignment)
+		- [Nullish coalescing operator ??](#nullish-coalescing-operator-)
+	- [Useful Functions](#useful-functions)
+		- [Fetch](#fetch)
+			- [Optional Fetch Argument](#optional-fetch-argument)
+	- [Objects](#objects)
+		- [Updating values in Object](#updating-values-in-object)
+		- [For In](#for-in)
+		- [JavaScript Object NotationJSON](#javascript-object-notationjson)
+		- [Spread Operator](#spread-operator)
+		- [Object to Array](#object-to-array)
+		- [Optional Chaining](#optional-chaining)
+	- [Template Literals](#template-literals)
+	- [Import and Export](#import-and-export)
+	- [Errors](#errors)
+		- [Error Handling/Try Catch](#error-handlingtry-catch)
+		- [Throwing Errors](#throwing-errors)
+	- [Promises](#promises)
+		- [Promise.all, Promise.race, Promise.allSettled, Promise.any](#promiseall-promiserace-promiseallsettled-promiseany)
+	- [Async/Await](#asyncawait)
+	- [DOM Manipulation](#dom-manipulation)
+		- [Accessing Elements](#accessing-elements)
+		- [Modifying Elements](#modifying-elements)
+		- [Creating and Appending Elements](#creating-and-appending-elements)
+			- [Insert Adjacent Element](#insert-adjacent-element)
+		- [Event Handling](#event-handling)
+			- [Commonly Used Events](#commonly-used-events)
+			- [Default Events](#default-events)
+			- [Custom Events](#custom-events)
+				- [Sending Custom Event](#sending-custom-event)
+				- [Receiving Custom Event](#receiving-custom-event)
+		- [Traversing the DOM](#traversing-the-dom)
+	- [This](#this)
+	- [Timing](#timing)
+	- [+/-/++/-- Operators](#----operators)
+	- [Local/Session Storage](#localsession-storage)
+	- [Common APIs](#common-apis)
+		- [Dayjs](#dayjs)
+	- [URL of Webpage](#url-of-webpage)
+		- [Redirect URL](#redirect-url)
+		- [Reload page](#reload-page)
+	- [Regex](#regex)
+	- [Object Oriented](#object-oriented)
+		- [Class Constructors](#class-constructors)
+		- [Prototype](#prototype)
+	- [Debugging](#debugging)
+	- [Labels](#labels)
+	- [Symbols](#symbols)
+	- [Symbol.iterator](#symboliterator)
+		- [Adding Symbol.iterator to object](#adding-symboliterator-to-object)
+	- [Generator functions](#generator-functions)
+	- [Async iterators](#async-iterators)
+	- [UUIDs](#uuids)
 
 <!-- /TOC -->
 
@@ -524,19 +525,19 @@ consol.log(accessLevel) // undefined
 ### [Nullish coalescing operator ??](#table-of-contents)
 If the nullish coalescing operator is the opposite of &&.
 
-If the condition is falsy it assigns the variable to the valueIfFalse.
+If the condition is null or undefined it assigns the variable to the valueIfFalse.
 
-If the condition is truthy it assigns the condition.
+If the condition is not null or undefined it assigns the condition.
 
 ```javascript
-const valueIfFalse = "value"
+const valueIfNullOrUndefined = "value"
 
 const condition = "truthy condition"
-const variable = condition ?? valueIfFalse
+const variable = condition ?? valueIfNullOrUndefined
 consol.log(accessLevel) // "truthy condition"
 
 const condition = false
-const variable = condition ?? valueIfFalse
+const variable = condition ?? valueIfNullOrUndefined
 consol.log(accessLevel) // "value"
 ```
 
@@ -1254,6 +1255,9 @@ document.location.href = "/new-page"
 // or
 document.location.href = "https://www.newwebsite.com"
 ```
+
+### [Reload page](#table-of-contents)
+`location.reload()`
 
 ## [Regex](#table-of-contents)
 Used to match patterns.

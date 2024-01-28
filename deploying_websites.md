@@ -6,21 +6,23 @@
 <!-- TOC -->
 
 - [Deploying Websites](#deploying-websites)
-  - [Table of Contents](#table-of-contents)
-  - [Github Pages](#github-pages)
-    - [Github Pages Adding Domain Name](#github-pages-adding-domain-name)
-  - [Heroku](#heroku)
-    - [Website](#website)
-    - [Terminal](#terminal)
-    - [Using keys](#using-keys)
-    - [MySQL](#mysql)
-    - [Heroku Adding Domain Name](#heroku-adding-domain-name)
-  - [Netlify](#netlify)
-    - [Netlify Adding Domain Name](#netlify-adding-domain-name)
-  - [MongoDB Atlas](#mongodb-atlas)
-    - [Making a new project](#making-a-new-project)
-    - [Deleting a new project](#deleting-a-new-project)
-  - [Domain Names](#domain-names)
+	- [Table of Contents](#table-of-contents)
+	- [Github Pages](#github-pages)
+		- [Github Pages Adding Domain Name](#github-pages-adding-domain-name)
+	- [Heroku](#heroku)
+		- [Website](#website)
+		- [Terminal](#terminal)
+		- [Using keys](#using-keys)
+		- [MySQL](#mysql)
+		- [Heroku Adding Domain Name](#heroku-adding-domain-name)
+	- [Netlify](#netlify)
+		- [Netlify Adding Domain Name](#netlify-adding-domain-name)
+	- [Vercel](#vercel)
+		- [Vercel adding domains](#vercel-adding-domains)
+	- [MongoDB Atlas](#mongodb-atlas)
+		- [Making a new project](#making-a-new-project)
+		- [Deleting a new project](#deleting-a-new-project)
+	- [Domain Names](#domain-names)
 
 <!-- /TOC -->
 
@@ -119,6 +121,17 @@ On Porkbun
 1. Verify -> Add domain -> Continue -> You should get ~4 domain name servers. Make sure to copy these.
 
 On your register website(Not netlify) paste those ~4 domain name servers in.
+
+## [Vercel](#table-of-contents)
+Vercel doesn't allow you to make monetary transactions on the free tear.
+
+### [Vercel adding domains](#table-of-contents)
+1. Top left ryansheehy0's projects
+2. Click the 3 dots to the left of your project
+3. Manage domains
+4. Add A record to DNS on porkbun
+5. Add CNAME record to DNS on porkbun
+When adding domain names add the A records and the C
 
 ## [MongoDB Atlas](#table-of-contents)
 [MongoDB Atlas](https://www.mongodb.com/atlas)
