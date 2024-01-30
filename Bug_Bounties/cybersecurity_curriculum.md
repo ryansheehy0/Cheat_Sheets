@@ -1,0 +1,25 @@
+- Tools
+	- Wireshark
+	- John the ripper(Brute force attacker)
+	- sqlmap
+	- Aircrack ng
+	- burp suit
+	- net cat
+	- nmap
+	- nikto
+	- metasploit
+	- Hashcat
+	- Hydra
+	- Maltego
+	- OWASP ZAP
+- Web security vulnerabilities
+	- SQL Injection(SQLI)
+	- Cross-site scripting(XSS)
+	- Cross site request forgery(CSRF)
+	- Insecure Direct Object References(IDOR)
+	- Server side request forgery(SSRF)
+	- XML External Entity (XXE)
+	- Default credentials and Insecure server configurations
+- Recon
+	- Find hidden URLs
+- Browser tools

@@ -7,22 +7,23 @@
 <!-- TOC -->
 
 - [Javascript Bug Bounties](#javascript-bug-bounties)
-  - [Table of Contents](#table-of-contents)
-  - [Rules](#rules)
-  - [Links](#links)
-  - [Places to look](#places-to-look)
-  - [How to find the source code?](#how-to-find-the-source-code)
-  - [Static Analysis Security TestingSAST tools](#static-analysis-security-testingsast-tools)
-  - [Useful Terms](#useful-terms)
-  - [SQL Injection](#sql-injection)
-  - [Cross site scriptingXSS](#cross-site-scriptingxss)
-  - [Authentication and Authorizations attacks](#authentication-and-authorizations-attacks)
-  - [File upload vulnerabilities](#file-upload-vulnerabilities)
-  - [Server side request forgeriesSSRF](#server-side-request-forgeriesssrf)
-  - [Cross-Site Request ForgeryCSRF](#cross-site-request-forgerycsrf)
-  - [Insecure Deserialization](#insecure-deserialization)
-  - [Insecure Direct Object ReferencesIDOR](#insecure-direct-object-referencesidor)
-  - [Leaked Credentials](#leaked-credentials)
+	- [Table of Contents](#table-of-contents)
+	- [Rules](#rules)
+	- [Links](#links)
+	- [Places to look](#places-to-look)
+	- [How to find the source code?](#how-to-find-the-source-code)
+	- [Static Analysis Security TestingSAST tools](#static-analysis-security-testingsast-tools)
+	- [Useful Terms](#useful-terms)
+	- [SQL Injection](#sql-injection)
+	- [Cross site scriptingXSS](#cross-site-scriptingxss)
+	- [Authentication and Authorizations attacks](#authentication-and-authorizations-attacks)
+	- [File upload vulnerabilities](#file-upload-vulnerabilities)
+	- [Server side request forgeriesSSRF](#server-side-request-forgeriesssrf)
+	- [Cross-Site Request ForgeryCSRF](#cross-site-request-forgerycsrf)
+	- [Insecure Deserialization](#insecure-deserialization)
+	- [Insecure Direct Object ReferencesIDOR](#insecure-direct-object-referencesidor)
+	- [Leaked Credentials](#leaked-credentials)
+	- [Steps](#steps)
 
 <!-- /TOC -->
 
@@ -30,6 +31,15 @@
 - Testing for vulnerabilities should not degrade, damage, or destroy(No DDOS)
 - Report vulnerabilities without any conditions attached
 - Do not share any vulnerabilities to 3rd parties
+
+- Production servers are off-limits.
+
+- Certain links are out of scope
+- System downtime is not permitted under any circumstances.
+  - Any form of DDoS or DoS is prohibited.
+  - Use of any harmful malware is prohibited; this includes ransomware and other variations
+- Exfiltration of Personal Identifiable Information(PII) is prohibited.
+
 
 ## [Links](#table-of-contents)
 - https://www.hackerone.com/
@@ -83,3 +93,12 @@
 
 JWT attacks
 BOLA broken objects level authorization
+
+## [Steps](#table-of-contents)
+- Recon: gain info
+- Weaponization: Combine the objective with an exploit. 
+- Delivery: How will the weaponized function be delivered to the target	
+- Exploitation: Exploit the target's system to execute code
+- Installation: Install malware or other tooling
+- Command & Control: Control the compromised asset from a remote central controller
+- Actions on Objectives: Any end objectives: ransomware, data exfiltration, etc.

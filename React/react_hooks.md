@@ -40,6 +40,7 @@ Not frequently used so maybe not put in
 		- [React.forwardRef](#reactforwardref)
 	- [useMemo](#usememo)
 	- [useReducer](#usereducer)
+	- [useCallback](#usecallback)
 
 <!-- /TOC -->
 
@@ -219,4 +220,24 @@ export default function Component(){
 		</>
 	)
 }
+```
+
+## [useCallback](#table-of-contents)
+Functions in functional components are remade every time the component is re-rendered. To keep the same function you can use useCallback.
+
+useMemo returns the value of the function while useCallback returns the function itself.
+
+```javascript
+import { useCallback } from 'react'
+
+const Component = () => {
+	function reRendered(){
+		console.log("This func gets remade each time this component is re-rendered")
+	}
+
+	const notReRendered = useCallback(() => {
+		console.log("This function remains the same event on re-renders.")
+	})
+}
+export default Component
 ```
