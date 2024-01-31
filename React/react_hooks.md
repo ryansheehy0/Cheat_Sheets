@@ -130,6 +130,8 @@ Why does useEffect [] run twice on reload when useStrick is being used on your r
 ## [useRef](#table-of-contents)
 When a reference is changed it doesn't cause your component to re-render.
 
+References can be used to store values and keep them the same upon rerender.
+
 ### [React.forwardRef](#table-of-contents)
 React forward ref on a component allows you to use ref as a function in a parent component. This is useful for creating an array of refs in the parent component.
 

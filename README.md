@@ -16,6 +16,7 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
         - [Advanced Google Searches](./advanced_google_searches.md)
     - HTML/CSS/JS
         - [HTML](./html.md)
+            - [NOT DONE: HTML Canvas](./html_canvas.md)
         - [CSS](./css.md)
         - [JavaScript](./javascript.md)
             - [jQuery](./jquery.md)
