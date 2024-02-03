@@ -2,9 +2,9 @@
 
 # HTML Canvas
 
-HTML `<canvas></canvas>` allows you to have a drawable cavas in html.
+HTML `<canvas></canvas>` allows you to have a drawable canvas in html.
 
-First get the 2d rendering contxt
+First get the 2d rendering context
 
 ```javascript
 const canvas = document.getElementById('myCanvas')

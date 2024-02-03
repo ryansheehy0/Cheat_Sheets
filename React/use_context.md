@@ -1,6 +1,8 @@
 [Home](../README.md)
 
-# Redux and Context
+# useContext
+Context allows you to avoid manually passing props down at every level of your component tree.
+
 Redux is both a library and a design patter.
 
 If you have a button which when clicked changes another component you have to pass the button's state to that component. In order to do this, the button's state can no longer live in the button, but instead it has to live in the closes parent. This parent then passes the state to the button and the component you want to change when the button is clicked, this is called prop drilling. As an app grows in complexity, parent components end up having more and more state and things become more and more confusing.
@@ -29,7 +31,7 @@ If you were to throw an event when the button is clicked and add an event listen
 ## Table of Contents
 <!-- TOC -->
 
-- [Redux and Context](#redux-and-context)
+- [useContext](#usecontext)
 	- [Table of Contents](#table-of-contents)
 	- [Questions](#questions)
 	- [Installation](#installation)

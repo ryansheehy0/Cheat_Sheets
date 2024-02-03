@@ -27,7 +27,7 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
             - [Authentication and Authorization](./authentication_and_authorization.md)
             - [NOT DONE: React](./React/react.md)
                 - [NOT DONE: React hooks](./React/react_hooks.md)
-                - [NOT DONE: useContext](./React/redux_and_context.md)
+                - [NOT DONE: useContext](./React/use_context.md)
                 - [NOT DONE: Solid JS](./React/solid_js.md)
             - [Graph QL](./graphql.md)
         - [NOT DONE: TypeScript](./typescript.md)
