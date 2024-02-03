@@ -18,6 +18,7 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
         - [HTML](./html.md)
             - [NOT DONE: HTML Canvas](./html_canvas.md)
         - [CSS](./css.md)
+        - [NOT DONE: SVGs](./svgs.md)
         - [JavaScript](./javascript.md)
             - [jQuery](./jquery.md)
             - [Javascript Under the Hood](./javascript_under_the_hood.md)

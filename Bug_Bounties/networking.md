@@ -71,7 +71,7 @@ Local networks with class A IP Addresses can have 2^(8*3) different devices with
 - **Classful networks** are networks that keep the default subnet mask.
 
 ### [Private IP Addresses](#table-of-contents)
-Private IP Addresses are specific IP Addresses that aren't unique. They 
+Private IP Addresses are specific IP Addresses that aren't unique. They
 
 127.0.0.1 - 127.255.255.255 are **loopback address**. These are used to test your network by having your device all itself.
 
