@@ -16,6 +16,7 @@ XML allows you to define your own custom elements and attributes, but in order t
 
 What if you leave off xmlns?
 
+What does this do? xmlns:xlink="http://www.w3.org/1999/xlink"
 
 ## Table of Contents
 <!-- TOC -->
@@ -26,8 +27,13 @@ What if you leave off xmlns?
 	- [Attributes for all SVG elements](#attributes-for-all-svg-elements)
 		- [stroke-dasharray and stroke-dashoffset](#stroke-dasharray-and-stroke-dashoffset)
 		- [transform](#transform)
-		- [Accessible rich internet applicationsaria-*](#accessible-rich-internet-applicationsaria-)
 	- [Line](#line)
+	- [Rectangle](#rectangle)
+	- [Polygon](#polygon)
+	- [Polyline](#polyline)
+	- [Circle](#circle)
+	- [Ellipse](#ellipse)
+	- [Path](#path)
 	- [Elements](#elements)
 
 <!-- /TOC -->
@@ -51,10 +57,12 @@ When defining the viewBox attribute it uses this format: `viewBox="min-x min-y w
 - stroke: Defines the stroke color
 - stroke-width
 - opacity
+- stroke-opacity
+- fill-opacity
 - id and class
 - Different event attributes
 	- onclick, onmouseover, onmouseout, onload, etc
-
+- accessible rich internet applications(aria-)
 
 ### [stroke-dasharray and stroke-dashoffset](#table-of-contents)
 **stroke-dasharray** is an array of values which defines the lengths of alternating dashes and gaps. It follows the pattern of line length then gap length.
@@ -67,33 +75,94 @@ When defining the viewBox attribute it uses this format: `viewBox="min-x min-y w
 ### [transform](#table-of-contents)
 
 - translate(x, y)
+	- Moves the svg according to the top left
+- rotate(degrees)
+	- Rotates from the top left
+- scale(ratio)
+	- Scales by the ration from the top left
+- skewX(angle) and skewY(angle)
+	- Skews an element along the X or Y axis
+- matrix(a, b, c, d, e, f)
 
-### [Accessible rich internet applications(aria-*)](#table-of-contents)
+The order of transforms matters
+- `transform="translate(10, 10) rotate(45)`
+	- Moves then rotates from the new origin set by translate
+- `transform="rotate(45) translate(10, 10)`
+	- Rotates from the original origin and then translates. The translation is also rotated.
 
 ## [Line](#table-of-contents)
+`<line x1="" y1="" x2="" y2=""/>`
+
+## [Rectangle](#table-of-contents)
+`<rect x="" y="" width="" height=""`
+
+## [Polygon](#table-of-contents)
+Used to create a closed shape by connecting the first and last points.
+
+- Polygon automatically connects the first and last points.
+
+`<polygon points="x1,y1 x2,y2 x3,y3"`
+
+- Lines are drawn at each of the points.
+- Ex: `<polygon points="10,10 10,50 50,50"/>` draws a triangle
+
+## [Polyline](#table-of-contents)
+Used to create an open shape. There is no connecting between the last and first points.
+
+`<polyline points="x1,y1 x2,y2 x3,y3/>`
+
+## [Circle](#table-of-contents)
+`<circle cx="" cy="" r=""`
+
+## [Ellipse](#table-of-contents)
+`<ellipse cx="" cy="" rx="" ry="" />`
+
+## [Path](#table-of-contents)
+Used to draw lines, arcs, quadratics, and cubic bezier curves.
+
+- The path element used a virtual pen. Move the pen then draw with the pen. When a drawing element is used, it moves the virtual pen.
+	- `Mx,y` moves the pen
+	- `Lx,y` draws a line to x and y
+		- `Hdistance` draws a line on the x axis that distance
+		- `Vdistance` draws a line on the y axis that distance
+	- `Arx,ry xRotation largeArcFlag,sweepFlag x,y` draws an elliptical arc
+		- rx and ry are the radius in the x or y axis.
+		- xRotation rotates the elliptical arc across the x axis
+			- An xRotation of 45 rotates the elliptical arc from _ to \
+		- largeArcFlag of 1 pics the arc that is that large of the 2
+		- sweepFlag of 1 put the arc in the clockwise and 0 in the counterclockwise directions.
+		- x and y are the ending points
+	- `Qcx,cy x,y` draws the quadratic equations
+		- cx and cy define the control point
+		- x and y defines the end point
+	- `Ccx1,cy1 cx2,cy2 x,y` draws the cubic bezier curve which has 2 more control points than the quadratic equation.
+		- cx1,cy1 and cx2,cy2 defines the 2 other control points
+		- x and y defines the end point
+	- `Z` draws a line from the starting point to the end point of the path. If the start and end point are the same it closes the path.
+
+- Any commands which are uppercase letters are absolutely positioned while any commands which are lowercase letters are relatively positioned.
+	- Relatively positioned means positioned from the last command/virtual pen position.
+	- Ex: `M100,100 L150,150` draws line from 100,100 to 150,150
+	- Ex: `M100,100 l150,150` draws line from 100,100 to 250,250
+
+```HTML
+<path d="M100,100 L150,150 L150,200
+	A50,50 0 1,0 100,150
+	Q20,250 200,300
+	C200,400 375,350 400,300
+	Z
+"/>
+```
+
 
 ## Elements
-<rect width="400" height="100" style="fill:rgb(0,0,255);stroke-width:10;stroke:rgb(0,0,0)" />
-Rounded rect
-<rect width="400" height="100" style="fill:rgb(0,0,255);stroke-width:10;stroke:rgb(0,0,0)" />
-<circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />
-<polygon />
-<ellipse cx="100" cy="70" rx="85" ry="55" fill="url(#grad1)" />
   <text fill="#ffffff" font-size="45" font-family="Verdana" x="50" y="86">SVG</text>
   Sorry, your browser does not support inline SVG.
 
-- rect
-- circle
-- line
-- path
-	- Can also be used for splines
 - text
 - g(group)
 - use
 	- References and uses other svg elements
-- polygon
-- ellipse
-- polyline
 - tspan
 	- Text that can be broken up into multiple lines
 - textPath
@@ -119,6 +188,3 @@ Rounded rect
 - desc
 	- text description of the svg
 - title
-
-
-You can use class to define styling for different svg elements.
