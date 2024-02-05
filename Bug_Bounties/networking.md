@@ -3,8 +3,6 @@
 # Networking
 DHCP
 	How routers give IP Addresses
-Network Address Translation(NAT)
-	How the router maps the private IP Addresses to a single public IP address.
 Ports
 Networks
 Router
@@ -19,6 +17,7 @@ How can you get incoming up addresses from a node server?
 127.0.0.1
 10.0.0.31
 192.168.1.1
+proxy and VPNs
 
 ## Table of Contents
 <!-- TOC -->
@@ -27,7 +26,10 @@ How can you get incoming up addresses from a node server?
 	- [Table of Contents](#table-of-contents)
 	- [IP Address](#ip-address)
 		- [IP Address Classes](#ip-address-classes)
-		- [Private IP Addresses](#private-ip-addresses)
+		- [RFC1918](#rfc1918)
+			- [Private IP Addresses](#private-ip-addresses)
+			- [NAT](#nat)
+		- [IPv6](#ipv6)
 	- [Internet Protocol](#internet-protocol)
 	- [Network](#network)
 	- [Ports](#ports)
@@ -70,10 +72,30 @@ Local networks with class A IP Addresses can have 2^(8*3) different devices with
 - These companies often change the default subnet mask into a smaller one to allow for more local networks. These are called **classless networks**. Ex: 255.0.0.0 could be changed to 255.255.255.0
 - **Classful networks** are networks that keep the default subnet mask.
 
-### [Private IP Addresses](#table-of-contents)
-Private IP Addresses are specific IP Addresses that aren't unique. They
+127.0.0.1 - 127.255.255.255 are **loopback address**. These are used to test your network by having your device call itself.
+- 127.0.0.1 is often used to refer to your local devices
 
-127.0.0.1 - 127.255.255.255 are **loopback address**. These are used to test your network by having your device all itself.
+### [RFC1918](#table-of-contents)
+RFC1918 was a standard in order to not run out of IP Addresses. It introduced Private IP Addresses and NAT.
+
+#### [Private IP Addresses](#table-of-contents)
+Private IP Addresses are specific IP Addresses that aren't unique. They can be used by multiple devices, but because of that they cannot communicate directly with public IP Addresses(cannot directly connect to the internet).
+
+| Class | IP Range                      | Default subnet mask | CIDR |
+|-------|-------------------------------|---------------------|------|
+| A     | 10.0.0.0 - 10.255.255.255     | 255.0.0.0           | /8   |
+| B     | 172.16.0.0 - 172.31.255.255   | 255.255.0.0         | /16  |
+| C     | 192.168.0.0 - 192.168.255.255 | 255.255.255.0       | /24  |
+
+#### [NAT](#table-of-contents)
+Network Address Translation(NAT) is used by the router to convert your device's private IP Address to a public IP Address which can be used on the internet.
+
+Your router is given a public IP Address by your ISP.
+
+### [IPv6](#table-of-contents)
+2^128 different addresses.
+
+Often mobile devices, not connected to wifi, have IPv6 addresses.
 
 ## Internet Protocol
 ## Network

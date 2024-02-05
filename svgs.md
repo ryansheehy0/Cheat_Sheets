@@ -34,6 +34,8 @@ What does this do? xmlns:xlink="http://www.w3.org/1999/xlink"
 	- [Circle](#circle)
 	- [Ellipse](#ellipse)
 	- [Path](#path)
+	- [Text](#text)
+	- [Group](#group)
 	- [Elements](#elements)
 
 <!-- /TOC -->
@@ -154,13 +156,28 @@ Used to draw lines, arcs, quadratics, and cubic bezier curves.
 "/>
 ```
 
+## [Text](#table-of-contents)
+`<text x="" y="">Text</text>`
+
+The origin on the text is the bottom left.
+
+You can have other attributes:
+- `font-size=""`
+- `font-family=""`
+- etc
+
+## [Group](#table-of-contents)
+The group elements allows you to group different svg elements together in order to style them together.
+
+```HTML
+<g>
+	<!-- Grouped SVG elements -->
+</g>
+```
 
 ## Elements
-  <text fill="#ffffff" font-size="45" font-family="Verdana" x="50" y="86">SVG</text>
   Sorry, your browser does not support inline SVG.
 
-- text
-- g(group)
 - use
 	- References and uses other svg elements
 - tspan
