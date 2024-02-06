@@ -7,16 +7,14 @@ Scalable Vector Graphics is a XML namespace markup language used to describe 2d 
 In order to make a svg you need to wrap your element in
 
 ```HTML
-<svg xmlns="http://www.w3.org/2000/svg">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <!-- SVG content goes here -->
 </svg>
 ```
 
-XML allows you to define your own custom elements and attributes, but in order to apply rules to these elements and attributes you need a XML namespace. The **xmlns** attribute is used to define this XML namespace.
+XML allows you to define your own custom elements and attributes, but in order to apply rules to these elements and attributes you need a XML namespace. The **xmlns** attribute is used to define this XML namespace and if left off there may be unexpected behaviors.
 
-What if you leave off xmlns?
-
-What does this do? xmlns:xlink="http://www.w3.org/1999/xlink"
+The `xmlns:xlink="http://www.w3.org/1999/xlink"` attribute allow you to use links and use in your svg.
 
 ## Table of Contents
 <!-- TOC -->
@@ -35,8 +33,22 @@ What does this do? xmlns:xlink="http://www.w3.org/1999/xlink"
 	- [Ellipse](#ellipse)
 	- [Path](#path)
 	- [Text](#text)
+	- [Text path](#text-path)
 	- [Group](#group)
-	- [Elements](#elements)
+	- [Link](#link)
+	- [Use](#use)
+	- [defs](#defs)
+	- [Image](#image)
+	- [ClipPath](#clippath)
+	- [Mask](#mask)
+	- [Linear Gradient](#linear-gradient)
+	- [Radial Gradient](#radial-gradient)
+	- [Pattern](#pattern)
+	- [Filter](#filter)
+	- [Information Elements](#information-elements)
+		- [Metadata](#metadata)
+		- [Description](#description)
+		- [Title](#title)
 
 <!-- /TOC -->
 
@@ -96,14 +108,14 @@ The order of transforms matters
 `<line x1="" y1="" x2="" y2=""/>`
 
 ## [Rectangle](#table-of-contents)
-`<rect x="" y="" width="" height=""`
+`<rect x="" y="" width="" height="" />`
 
 ## [Polygon](#table-of-contents)
 Used to create a closed shape by connecting the first and last points.
 
 - Polygon automatically connects the first and last points.
 
-`<polygon points="x1,y1 x2,y2 x3,y3"`
+`<polygon points="x1,y1 x2,y2 x3,y3" />`
 
 - Lines are drawn at each of the points.
 - Ex: `<polygon points="10,10 10,50 50,50"/>` draws a triangle
@@ -111,10 +123,10 @@ Used to create a closed shape by connecting the first and last points.
 ## [Polyline](#table-of-contents)
 Used to create an open shape. There is no connecting between the last and first points.
 
-`<polyline points="x1,y1 x2,y2 x3,y3/>`
+`<polyline points="x1,y1 x2,y2 x3,y3 />`
 
 ## [Circle](#table-of-contents)
-`<circle cx="" cy="" r=""`
+`<circle cx="" cy="" r="" />`
 
 ## [Ellipse](#table-of-contents)
 `<ellipse cx="" cy="" rx="" ry="" />`
@@ -157,7 +169,13 @@ Used to draw lines, arcs, quadratics, and cubic bezier curves.
 ```
 
 ## [Text](#table-of-contents)
-`<text x="" y="">Text</text>`
+
+```HTML
+<text x="" y="">
+	Text
+	<tspan fill="red">red</tspan>
+</text>
+```
 
 The origin on the text is the bottom left.
 
@@ -165,6 +183,17 @@ You can have other attributes:
 - `font-size=""`
 - `font-family=""`
 - etc
+
+Tspan is used to style text independently from the other text.
+
+## [Text path](#table-of-contents)
+Sets a path where text can be rendered. This allows text to be curved.
+
+```HTML
+<text>
+  <textPath href="#path">Curved Text</textPath>
+</text>
+```
 
 ## [Group](#table-of-contents)
 The group elements allows you to group different svg elements together in order to style them together.
@@ -175,33 +204,147 @@ The group elements allows you to group different svg elements together in order 
 </g>
 ```
 
-## Elements
-  Sorry, your browser does not support inline SVG.
+## [Link](#table-of-contents)
+Allows you to have a hyperlink inside your svg. You need the xmlns:xlink attribute set in your svg in order for this to work.
 
-- use
-	- References and uses other svg elements
-- tspan
-	- Text that can be broken up into multiple lines
-- textPath
-	- Specifies a path which text should be rendered
-- defs
-	- Defines reusable svg elements
-- image
+```HTML
+<a xlink:href="https://example.com">
+	<text x="50" y="50" fill="white" text-anchor="middle" alignment-baseline="middle">Click me</text>
+</a>
+```
+
+## [Use](#table-of-contents)
+References another SVG element defined with the id attribute. You need the xmlns:xlink attribute set in your svg in order for this to work.
+
+`<use xlink:href="#existingElement" />`
+
+## [defs](#table-of-contents)
+Defines reusable SVG elements. In order to give the definition a nation you have to use the id attribute.
+
+```HTML
+<defs>
+	<linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+		<stop offset="0%" style="stop-color:rgb(255,255,0);stop-opacity:1" />
+		<stop offset="100%" style="stop-color:rgb(255,0,0);stop-opacity:1" />
+	</linearGradient>
+</defs>
+<ellipse cx="100" cy="70" rx="85" ry="55" fill="url(#grad1)" />
+```
+
+## [Image](#table-of-contents)
+Displays raster images
+
+`<image x="" y="" width="" height="" href="" />`
+
+## [ClipPath](#table-of-contents)
+Creates a path which can hide or show portions of other elements.
+
+```HTML
+<clipPath id="clip">
+  <rect width="50" height="50" />
+</clipPath>
+```
+
+## [Mask](#table-of-contents)
+Defines an image mask which can hide or show portions of other elements.
+
+```HTML
+<mask id="mask">
+  <!-- Define mask elements here -->
+</mask>
+```
+
+What is the difference between clipPath and mask?
+
+## [Linear Gradient](#table-of-contents)
+
+```HTML
+<linearGradient x1="0%" y1="0%" x2="100%" y2="0%">
+	<stop offset="0%" style="stop-color:rgb(255,255,0);stop-opacity:1" />
+	<stop offset="100%" style="stop-color:rgb(255,0,0);stop-opacity:1" />
+</linearGradient>
+```
+
+- x1 and y1 define the first point
+- x2 and y2 define the end point
+- The linear gradient flows from the first point to the end point
+
+## [Radial Gradient](#table-of-contents)
+
+```HTML
+<radialGradient cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+	<stop offset="0%" style="stop-color:rgb(255,255,255);stop-opacity:0" />
+	<stop offset="100%" style="stop-color:rgb(0,0,255);stop-opacity:1" />
+</radialGradient>
+```
+
+What is fx and fy?
+
+## [Pattern](#table-of-contents)
+A pattern element which can be redrawn at repeated x and y coordinates intervals(tiled).
+
+```HTML
+<defs>
+	<pattern id="star" viewBox="0,0,10,10" width="10%" height="10%">
+		<polygon points="0,0 2,5 0,10 5,8 10,10 8,5 10,0 5,2" />
+	</pattern>
+</defs>
+
+<circle cx="50" cy="50" r="50" fill="url(#star)" />
+```
+
+## [Filter](#table-of-contents)
+Apply a filter, defined by grouping filter primitives, to svg elements.
+
+```HTML
+<filter id="blurMe">
+	<feGaussianBlur stdDeviation="5" />
+</filter>
+
+<circle cx="170" cy="60" r="50" fill="green" filter="url(#blurMe)" />
+```
+
+| Filter primitive    | Description |
+|---------------------|-------------|
+| feBlend             |             |
+| feColorMatrix       |             |
+| feComponentTransfer |             |
+| feComposite         |             |
+| feConvolveMatrix    |             |
+| feDiffuseLighting   |             |
+| feDisplacementMap   |             |
+| feDropShadow        |             |
+| feFlood             |             |
+| feGaussianBlur      |             |
+| feImage             |             |
+| feMerge             |             |
+| feMorphology        |             |
+| feOffset            |             |
+| feSpecularLighting  |             |
+| feTile              |             |
+| feTurbulence        |             |
+
+## [Information Elements](#table-of-contents)
+
+### [Metadata](#table-of-contents)
+
+```HTML
+<metadata>
+  <!-- Include metadata information here -->
+</metadata>
+```
+
+### [Description](#table-of-contents)
+
+`<desc>This is an example SVG document.</desc>`
+
+### [Title](#table-of-contents)
+
+`<title>SVG Document Title</title>`
+
+
+Questions
 - clipPath
-	- Used to hide or show portions of other elements
 - mask
-	- Defines an image mask that can be used to hide or reveal portions of other elements.
-- linearGradient
-- radialGradient
-- pattern
-	- Defines a patter that can be used to fill SVG shapes
-- filter
-	- image filters
-- animate
-- animateTransform
-	- scaling or rotating animation
-- animateMotion
-- metadata
-- desc
-	- text description of the svg
-- title
+- radial gradient fx and fy
+- filters
