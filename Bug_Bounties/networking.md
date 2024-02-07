@@ -3,21 +3,8 @@
 # Networking
 DHCP
 	How routers give IP Addresses
-Ports
-Networks
-Router
-Switcher
-Repeater
-Firewall
-Hosts
-TCP/UDP
-	- TCP is a 3 way handshake
-How is location information tied to your ip address?
-How can you get incoming up addresses from a node server?
-127.0.0.1
-10.0.0.31
-192.168.1.1
 proxy and VPNs
+Mac addresses
 
 ## Table of Contents
 <!-- TOC -->
@@ -30,9 +17,9 @@ proxy and VPNs
 			- [Private IP Addresses](#private-ip-addresses)
 			- [NAT](#nat)
 		- [IPv6](#ipv6)
-	- [Internet Protocol](#internet-protocol)
-	- [Network](#network)
 	- [Ports](#ports)
+	- [TCP and UDP](#tcp-and-udp)
+	- [Modem, Router, Switch, and Repeater](#modem-router-switch-and-repeater)
 
 <!-- /TOC -->
 
@@ -97,10 +84,11 @@ Your router is given a public IP Address by your ISP.
 
 Often mobile devices, not connected to wifi, have IPv6 addresses.
 
-## Internet Protocol
-## Network
-
 ## Ports
+The IP Address determines the device while the port determines which service or program on that server is to be used.
+
+Each IP Address can have a port from 0 to 65535
+
 | Port Number | Description                               |
 |-------------|-------------------------------------------|
 | 21          | File transfer protocol(FTP)               |
@@ -109,6 +97,51 @@ Often mobile devices, not connected to wifi, have IPv6 addresses.
 | 53          | Domain name system(DNS)                   |
 | 80          | Hypertext transfer protocol(HTTP)         |
 | 443         | Hypertext transfer protocol Secure(HTTPS) |
+| 1102        | Adobe Server                              |
+| 1416        | Microsoft SQL Server                      |
+| 1527        | Oracle Server                             |
 | 3306        | MySQL                                     |
 | 5432        | PostgreSQL                                |
 | 27017       | MongoDB                                   |
+
+| Port range    | Description                                                                 | Used by server or client |
+|---------------|-----------------------------------------------------------------------------|--------------------------|
+| 0 - 1023      | System or well-known ports                                                  | Server                   |
+| 1024 - 49151  | User or Registered ports. These can be registered for a particular service. | Server                   |
+| 49152 - 65535 | Dynamic or Private ports.                                                   | Client                   |
+
+Your computer temporarily assigns itself a private port during a session like when browsing the web.
+
+A **socket** is a program that handles incoming and outgoing request on a specific IP address and port.
+
+**Port forwarding** allows public access to sockets on a local network. It redirects network traffic from a port on a router's public IP address ot a corresponding port on a device withing the local network.
+- If you want to host a website on your local computer you need to port forward ports 80 and 443 to your server's port.
+
+## [TCP and UDP](#table-of-contents)
+Transmission control protocol(**TCP**) is used when the communication between 2 computers needs to guarantee
+- the data is in order
+- all the data is received
+
+TCP establishes a connection first with a 3 way handshake.
+
+```
+Computer 1                    Computer 2
+           -> SYN     ->
+					 <- SYN ACK <-
+					 -> ACK Received ->
+```
+
+User Datagram Protocol(**UDP**)
+- doesn't establish a connection
+- doesn't guarantee data delivery. Some data maybe lost.
+- doesn't guarantee the order of the data received
+- Is faster than TCP
+
+## [Modem, Router, Switch, and Repeater](#table-of-contents)
+**Modem** Converts digital signals(used by computer and router) to analog signals(sometimes used to connect to your ISP) and vice versa	.
+- If you don't have any other devices in your local network you can often connect your one device to the modem.
+
+**Router** given a public IP Address by your ISP and assigns private IP Addresses to each device in your local network.
+- Not all routers have a separate modem.
+
+A **Switch** is used for communication on a local network. It knows each devices mac address and moves any communication it gets to its corresponding mac address.
