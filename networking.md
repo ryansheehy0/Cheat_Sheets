@@ -1,10 +1,7 @@
 [Home](../README.md)
 
 # Networking
-DHCP
-	How routers give IP Addresses
-proxy and VPNs
-Mac addresses
+Explaining how the internet works.
 
 ## Table of Contents
 <!-- TOC -->
@@ -20,6 +17,8 @@ Mac addresses
 	- [Ports](#ports)
 	- [TCP and UDP](#tcp-and-udp)
 	- [Modem, Router, Switch, and Repeater](#modem-router-switch-and-repeater)
+	- [MAC Address](#mac-address)
+	- [Forward proxy, reverse proxy, and VPNs](#forward-proxy-reverse-proxy-and-vpns)
 
 <!-- /TOC -->
 
@@ -61,6 +60,9 @@ Local networks with class A IP Addresses can have 2^(8*3) different devices with
 
 127.0.0.1 - 127.255.255.255 are **loopback address**. These are used to test your network by having your device call itself.
 - 127.0.0.1 is often used to refer to your local devices
+
+- Domain Name Server(**DNS**) is the server which converts URLs to IP Addresses.
+- Dynamic Host Configuration Protocol(**DHCP**) is how a router assigns it's devices an IP Address, Subnet mask, default gateway, and DNS IP address.
 
 ### [RFC1918](#table-of-contents)
 RFC1918 was a standard in order to not run out of IP Addresses. It introduced Private IP Addresses and NAT.
@@ -145,3 +147,26 @@ User Datagram Protocol(**UDP**)
 - Not all routers have a separate modem.
 
 A **Switch** is used for communication on a local network. It knows each devices mac address and moves any communication it gets to its corresponding mac address.
+
+## [MAC Address](#table-of-contents)
+All devices which connect to the internet(has a network interface card) have a unique Media Access Control(MAC) Address.
+
+An IP Address is used to local a device while a MAC address is used to identify a device.
+- IP Address can change for the device, but the MAC address cannot.
+
+## [Forward proxy, reverse proxy, and VPNs](#table-of-contents)
+
+A **forward proxy server** regulates traffic going out of a network. It is used to protect clients.
+- Privacy and change location
+	- Instead of using the device's IP Address all traffic is routed through the proxy server's IP Address. If the proxy server's IP Address is located in a different area, when you access sites they may think you are in that different area.
+- Speed and saves internet bandwidth
+	- Proxy servers can cache static assets and static websites.
+- Activity logging and blocking certain websites
+	- Proxy servers can be set up to document what websites the clients are going to and block certain websites.
+
+A Virtual Private Network(**VPN**) is like a forward proxy server, but it encrypts data that is sent over the internet and often has some guarantees of no activity logging.
+
+A **reverse proxy server** regulates traffic going into a network. It is used to protect servers. A reverse proxy server is often used as a single point of entry for websites.
+- Balance traffic to different servers.
+- Can cache images and static sites to prevent too many unnecessary request to the servers.
+- Defend against DDOS attacks by handling a lot of requests and filter out non legitimate users before they request anything from the server.
