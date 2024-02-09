@@ -3,36 +3,17 @@
 # Assetfinder
 assetfinder is a terminal tool for finding sub domains. Sub domains are things other than "www" that go before the domain.
 
-```
-https://www.name.net/path
-[  ^   ][^] [ ^] [^]
-   |     |    |   |
-   |     |    | Top level Domain(TLD)
-   |     | Domain
-   | Sub-Domain
-Protocol
-```
-
-| Common Sub-Domains | Description                                  |
-|--------------------|----------------------------------------------|
-| www                | Used to denote the default web page          |
-| blog               | Used for hosting a blog from the main domain |
-| shop               | Used for online store                        |
-| api                | Dedicated to hosting APIs                    |
-| app                | Used for histing web apps                    |
-| beta               | beta features                                |
-
 ## Table of Contents
 <!-- TOC -->
 
 - [Assetfinder](#assetfinder)
-  - [Table of Contents](#table-of-contents)
-  - [](#)
-  - [](#)
-    - [](#)
-    - [](#)
-    - [](#)
-  - [](#)
+	- [Table of Contents](#table-of-contents)
+	- [Install Kali Linux tools](#install-kali-linux-tools)
+	- [How to use](#how-to-use)
+		- [Finding subdomains](#finding-subdomains)
+		- [Searching multiple domains from a file](#searching-multiple-domains-from-a-file)
+		- [Output to a file](#output-to-a-file)
+	- [Finding different paths](#finding-different-paths)
 
 <!-- /TOC -->
 

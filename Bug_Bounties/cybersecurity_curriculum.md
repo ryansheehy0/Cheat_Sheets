@@ -6,12 +6,27 @@
 	- burp suit
 	- net cat
 	- nmap
+		- Search which ports are open for an IP Address
 	- nikto
 	- metasploit
 	- Hashcat
 	- Hydra
+		- Automated brute force attacker
 	- Maltego
 	- OWASP ZAP
+	- Shodan
+		- Searches all ip addresses. Some data maybe outdated.
+	- wfuz
+		- Sub domain fuzzing
+	- dig
+		- Used for finding AXFRs
+	- nslookup
+	- whois
+	- theHarvester
+	- crt.sh
+	- wayback machine
+	- httprobe
+		- Valid urls
 - Web security vulnerabilities
 	- SQL Injection(SQLI)
 	- Cross-site scripting(XSS)
@@ -20,6 +35,10 @@
 	- Server side request forgery(SSRF)
 	- XML External Entity (XXE)
 	- Default credentials and Insecure server configurations
+	- Authoritative Zone Transfer(AXFR) on port 53
 - Recon
 	- Find hidden URLs
 - Browser tools
+
+- Make a bug bounty check list
+	- Find all open subdomains in scope

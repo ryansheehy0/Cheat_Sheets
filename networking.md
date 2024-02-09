@@ -1,7 +1,12 @@
-[Home](../README.md)
+[Home](./README.md)
 
 # Networking
 Explaining how the internet works.
+
+DNS
+	- Name Servers
+Domain names
+SSL and TLS
 
 ## Table of Contents
 <!-- TOC -->
@@ -19,6 +24,7 @@ Explaining how the internet works.
 	- [Modem, Router, Switch, and Repeater](#modem-router-switch-and-repeater)
 	- [MAC Address](#mac-address)
 	- [Forward proxy, reverse proxy, and VPNs](#forward-proxy-reverse-proxy-and-vpns)
+	- [URLs](#urls)
 
 <!-- /TOC -->
 
@@ -47,9 +53,9 @@ Ex: 192.168.1.255
 
 | Class | Range                       | Default Subnet Mask | CIDR | Description                    |
 |-------|-----------------------------|---------------------|------|--------------------------------|
-| A     | 1.0.0.0 - 126.255.255.255   | 255.0.0.0           | /8   | Large companies                |
-| B     | 128.0.0.0 - 191.255.0.0     | 255.255.0.0         | /16  | Medium companies               |
-| C     | 192.0.0.0 - 223.255.255.0   | 255.255.255.0       | /24  | ISP and most people            |
+| A     | 1.0.0.0 - 126.255.255.255   | 255.0.0.0           | 8    | Large companies                |
+| B     | 128.0.0.0 - 191.255.0.0     | 255.255.0.0         | 16   | Medium companies               |
+| C     | 192.0.0.0 - 223.255.255.0   | 255.255.255.0       | 24   | ISP and most people            |
 | D     | 224.0.0.0 - 239.255.255.255 |                     |      | Used for multicasting          |
 | E     | 240.0.0.0 - 255.255.255.255 |                     |      | Used for experimental features |
 - **CIDR notation** is just a different notation for different subnet masks
@@ -127,10 +133,10 @@ Transmission control protocol(**TCP**) is used when the communication between 2 
 TCP establishes a connection first with a 3 way handshake.
 
 ```
-Computer 1                    Computer 2
+Computer 1                   Computer 2
            -> SYN     ->
-					 <- SYN ACK <-
-					 -> ACK Received ->
+           <- SYN ACK <-
+           -> ACK Received ->
 ```
 
 User Datagram Protocol(**UDP**)
@@ -170,3 +176,29 @@ A **reverse proxy server** regulates traffic going into a network. It is used to
 - Balance traffic to different servers.
 - Can cache images and static sites to prevent too many unnecessary request to the servers.
 - Defend against DDOS attacks by handling a lot of requests and filter out non legitimate users before they request anything from the server.
+
+## [URLs](#table-of-contents)
+the Uniform Resource Locator(**URL**) is used to 
+
+Does every URL have an IP Address?
+Does the protocol always match to a port?
+What is handled by the server and what is the IP Address?
+
+```
+https://www.name.net/path?param1=value1&param2=value2
+[  ^   ][^] [ ^] [^]
+   |     |    |   |
+   |     |    | Top level Domain(TLD)
+   |     | Domain
+   | Sub-Domain
+Protocol/Scheme
+```
+
+| Common Sub-Domains | Description                                  |
+|--------------------|----------------------------------------------|
+| www                | Used to denote the default web page          |
+| blog               | Used for hosting a blog from the main domain |
+| shop               | Used for online store                        |
+| api                | Dedicated to hosting APIs                    |
+| app                | Used for histing web apps                    |
+| beta               | beta features                                |
