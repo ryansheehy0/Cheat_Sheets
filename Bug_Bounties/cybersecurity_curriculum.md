@@ -27,6 +27,13 @@
 	- wayback machine
 	- httprobe
 		- Valid urls
+	- Hakrawler
+		- Actively searches for paths and subdomains
+			- Checks wayback machine, spiders application, parses robots.txt and sitemap.xml
+			- Spider is crawling through a website and seeing any domains linked to it
+	- gau
+		- get all urls. Uses AlienVault's Open Threat Exchange, wayback machine, common crawl and URLScan
+		- Just accesses database and doesn't crawl(like a spider)
 - Web security vulnerabilities
 	- SQL Injection(SQLI)
 	- Cross-site scripting(XSS)
@@ -36,9 +43,10 @@
 	- XML External Entity (XXE)
 	- Default credentials and Insecure server configurations
 	- Authoritative Zone Transfer(AXFR) on port 53
+	- Sub-domain takeover
 - Recon
 	- Find hidden URLs
 - Browser tools
 
 - Make a bug bounty check list
-	- Find all open subdomains in scope
+	- Find all open subdomains and paths that are in scope

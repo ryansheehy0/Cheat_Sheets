@@ -5,7 +5,8 @@ Explaining how the internet works.
 
 DNS
 	- Name Servers
-Domain names
+	- CNAME - Canonical name record
+	- A - Address record
 SSL and TLS
 
 ## Table of Contents
@@ -25,6 +26,8 @@ SSL and TLS
 	- [MAC Address](#mac-address)
 	- [Forward proxy, reverse proxy, and VPNs](#forward-proxy-reverse-proxy-and-vpns)
 	- [URLs](#urls)
+	- [DNS](#dns)
+	- [SSL and TLS](#ssl-and-tls)
 
 <!-- /TOC -->
 
@@ -178,11 +181,7 @@ A **reverse proxy server** regulates traffic going into a network. It is used to
 - Defend against DDOS attacks by handling a lot of requests and filter out non legitimate users before they request anything from the server.
 
 ## [URLs](#table-of-contents)
-the Uniform Resource Locator(**URL**) is used to 
-
-Does every URL have an IP Address?
-Does the protocol always match to a port?
-What is handled by the server and what is the IP Address?
+The Uniform Resource Locator(**URL**) is used so people can memorize words instead of IP Addresses. Typically each domain name has a corresponding IP Address. Multiple domain names can share the same IP Address.
 
 ```
 https://www.name.net/path?param1=value1&param2=value2
@@ -191,8 +190,12 @@ https://www.name.net/path?param1=value1&param2=value2
    |     |    | Top level Domain(TLD)
    |     | Domain
    | Sub-Domain
-Protocol/Scheme
+Protocol/Scheme(Usually determines the port)
 ```
+
+You can buy to own domain names and top level domains together. Ex: `website.com`
+- Once you own a domain name you can create any sub-domain you want.
+- Search engines treat sub-domains as separate site while paths are treated as the same site.
 
 | Common Sub-Domains | Description                                  |
 |--------------------|----------------------------------------------|
@@ -202,3 +205,19 @@ Protocol/Scheme
 | api                | Dedicated to hosting APIs                    |
 | app                | Used for histing web apps                    |
 | beta               | beta features                                |
+
+## [DNS](#table-of-contents)
+The Domain Name System(**DNS**) is used to figure out the IP Address of a domain name.
+
+Your browser has a cache for different domain name's IP Address. DNS is only called if your browser doesn't have a cache of that domain name
+
+| IP Address                     | Public DNS     |
+|--------------------------------|----------------|
+| 8.8.8.8 or 8.8.4.4             | Google DNS     |
+| 1.1.1.1 or 1.0.0.1             | Cloudflare DNS |
+| 208.67.222.222, 208.67.220.220 | OpenDNS        |
+| 9.9.9.9                        | Quad9 DNS      |
+
+## [SSL and TLS](#table-of-contents)
+These are differnt encryption standards for HTTPS.
+SSL is older and less secure than TLS.
