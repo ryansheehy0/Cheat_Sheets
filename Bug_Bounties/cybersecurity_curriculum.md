@@ -43,10 +43,13 @@
 	- XML External Entity (XXE)
 	- Default credentials and Insecure server configurations
 	- Authoritative Zone Transfer(AXFR) on port 53
-	- Sub-domain takeover
+	- CNAME takeover
+		- If there is a CNAME that isn't being used, you can get that url and create your own phishing website.
+		- How do you discover all the CNAMEs someone has for the domain name?
 - Recon
 	- Find hidden URLs
 - Browser tools
 
 - Make a bug bounty check list
 	- Find all open subdomains and paths that are in scope
+	- Check for any unused CNAMEs

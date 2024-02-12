@@ -3,12 +3,6 @@
 # Networking
 Explaining how the internet works.
 
-DNS
-	- Name Servers
-	- CNAME - Canonical name record
-	- A - Address record
-SSL and TLS
-
 ## Table of Contents
 <!-- TOC -->
 
@@ -28,6 +22,7 @@ SSL and TLS
 	- [URLs](#urls)
 	- [DNS](#dns)
 	- [SSL and TLS](#ssl-and-tls)
+	- [Content delivery networksCDNs](#content-delivery-networkscdns)
 
 <!-- /TOC -->
 
@@ -207,7 +202,7 @@ You can buy to own domain names and top level domains together. Ex: `website.com
 | beta               | beta features                                |
 
 ## [DNS](#table-of-contents)
-The Domain Name System(**DNS**) is used to figure out the IP Address of a domain name.
+The Domain Name System(**DNS**) is used to figure out the IP Address of a domain name and any other associated information that the server may need to know which site you want.
 
 Your browser has a cache for different domain name's IP Address. DNS is only called if your browser doesn't have a cache of that domain name
 
@@ -218,6 +213,24 @@ Your browser has a cache for different domain name's IP Address. DNS is only cal
 | 208.67.222.222, 208.67.220.220 | OpenDNS        |
 | 9.9.9.9                        | Quad9 DNS      |
 
+- **Address(A) record** maps a domain or subdomain to an IPv4 address.
+- **AAAA records** resolve a domain or subdomain to an IPv6 address.
+- **Canonical(C) Name** forwards a domain to another domain instead of an ip address.
+	- Ex: www.example.com -> example.com
+- **ALIAS** the same as CNAME, but can forward with the root domain name.
+	- Ex: example.com -> www.example.com
+- **Mail Exchange(MX)** is used for emails.
+	- Email to name@example.com, dns checks MX for which domain the server can handle. Ex: example.com -> mail.example.com
+- **Text Records(TXT)** used to store arbitrary data with the domain name. Like a description.
+- **Name Servers(NS)** defines the url for the authoritative name servers. There tends to be 2 for better reliability.
+	- These are typically provided by the domain registrar company.
+
+**Authoritative name servers** are the last server that the DNS looks to to get the IP Address, and other information about the domain name.
+
 ## [SSL and TLS](#table-of-contents)
-These are differnt encryption standards for HTTPS.
-SSL is older and less secure than TLS.
+**Secure sockets layer(SSL)** and **Transport layer security(TSL)** are encryption standards used for HTTPS.
+
+SSL is older and less secure, but it is still in use.
+
+## [Content delivery networks(CDNs)](#table-of-contents)
+Your content is on servers all around the world in order to reduce delay times for your users.
