@@ -50,6 +50,17 @@
 	- Find hidden URLs
 - Browser tools
 
+- Capture the flags
+	- Hacker101
+	- Over the wire
+
 - Make a bug bounty check list
 	- Find all open subdomains and paths that are in scope
+		- example.com/robots.txt which tells crawls not to search in those paths
+	- Check HTML and CSS source code
+		- Hidden HTML Elements
+		- Comments with sensitive information
+		- URLs in the CSS
+	- Check if any urls have any parameters
+	- Check if there is any information in the cookies
 	- Check for any unused CNAMEs

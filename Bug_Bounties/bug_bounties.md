@@ -1,12 +1,12 @@
 [Home](../README.md)
 
-# Javascript Bug Bounties
+# Bug Bounties
 
 ## Table of Contents
 
 <!-- TOC -->
 
-- [Javascript Bug Bounties](#javascript-bug-bounties)
+- [Bug Bounties](#bug-bounties)
 	- [Table of Contents](#table-of-contents)
 	- [Rules](#rules)
 	- [Links](#links)
@@ -29,17 +29,9 @@
 
 ## [Rules](#table-of-contents)
 - Testing for vulnerabilities should not degrade, damage, or destroy(No DDOS)
+	- No DDOS, messing with other user's accounts, or no harmful malware.
 - Report vulnerabilities without any conditions attached
 - Do not share any vulnerabilities to 3rd parties
-
-- Production servers are off-limits.
-
-- Certain links are out of scope
-- System downtime is not permitted under any circumstances.
-  - Any form of DDoS or DoS is prohibited.
-  - Use of any harmful malware is prohibited; this includes ransomware and other variations
-- Exfiltration of Personal Identifiable Information(PII) is prohibited.
-
 
 ## [Links](#table-of-contents)
 - https://www.hackerone.com/

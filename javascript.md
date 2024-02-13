@@ -1043,6 +1043,7 @@ const divDirectChild = div.querySelectorAll(":scope > *") // Gets any direct chi
 | element.innerHTML = 'html'                 | Sets the html content of the element                                      |
 | element.value = 'value'                    | Sets the value content of the element                                     |
 | element.setAttribute('attribute', 'value') | Sets the attribute of the element                                         |
+| element.getAttribute('attribute')          | Gets the attribute of the element                                         |
 | element.style.property = 'value'           | Sets the CSS style property of the element                                |
 | element.classList.add('class')             | Adds a CSS class to the element                                           |
 | element.classList.remove('class')          | Removes a CSS class on the element                                        |
