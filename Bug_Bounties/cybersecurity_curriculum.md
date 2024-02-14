@@ -35,14 +35,15 @@
 		- get all urls. Uses AlienVault's Open Threat Exchange, wayback machine, common crawl and URLScan
 		- Just accesses database and doesn't crawl(like a spider)
 - Web security vulnerabilities
+	- Insecure Direct Object References(IDOR)
 	- SQL Injection(SQLI)
 	- Cross-site scripting(XSS)
 	- Cross site request forgery(CSRF)
-	- Insecure Direct Object References(IDOR)
 	- Server side request forgery(SSRF)
 	- XML External Entity (XXE)
 	- Default credentials and Insecure server configurations
 	- Authoritative Zone Transfer(AXFR) on port 53
+	- Business logic errors(BLEs)
 	- CNAME takeover
 		- If there is a CNAME that isn't being used, you can get that url and create your own phishing website.
 		- How do you discover all the CNAMEs someone has for the domain name?
@@ -54,9 +55,11 @@
 	- Hacker101
 	- Over the wire
 
-- Make a bug bounty check list
-	- Find all open subdomains and paths that are in scope
-		- example.com/robots.txt which tells crawls not to search in those paths
+Bug bounty check list:
+1. Find all open subdomains and paths that are in scope
+	- example.com/robots.txt which tells crawls not to search in those paths
+1. Inspect element and check for hidden HTML elements and comments with sensitive information
+1. Check IDORs
 	- Check HTML and CSS source code
 		- Hidden HTML Elements
 		- Comments with sensitive information

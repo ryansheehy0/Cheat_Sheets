@@ -558,6 +558,7 @@ consol.log(accessLevel) // "value"
 | .toFixed(number of decimal places)       | Rounds to the number of decimal places.                                           |
 | parseInt(str) or parseInt(str, base num) | Converts a string to an int. If it can't then it returns NaN                      |
 | .toString()                              | Convert a data type to a string.                                                  |
+| Math.pow(A, B) or A ** B                 | A to the power of B. A^B                                                          |
 
 ### [Fetch](#table-of-contents)
 Used to fetch data from a server. Returns a promise of the response.
