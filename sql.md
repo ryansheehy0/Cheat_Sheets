@@ -10,41 +10,41 @@ A programming language to manage relational databases.
 - [SQL](#sql)
 - [Table of Contents](#table-of-contents)
 - [Relational Databases](#relational-databases)
-  - [Atomicity Consistency Isolation DurabilityACID](#atomicity-consistency-isolation-durabilityacid)
-  - [Attribute Properties](#attribute-properties)
-    - [Data types](#data-types)
+	- [Atomicity Consistency Isolation DurabilityACID](#atomicity-consistency-isolation-durabilityacid)
+	- [Attribute Properties](#attribute-properties)
+		- [Data types](#data-types)
 - [Structured Query LanguageSQL](#structured-query-languagesql)
-  - [Database Commands](#database-commands)
-  - [Table Commands](#table-commands)
-  - [Insert Command](#insert-command)
-  - [Select Command](#select-command)
-  - [Update Command](#update-command)
-  - [Deleting Elements](#deleting-elements)
-  - [Where](#where)
-    - [Like](#like)
-  - [Join](#join)
-    - [Cross Join](#cross-join)
-    - [Inner Join](#inner-join)
-    - [Outer Join](#outer-join)
-      - [Full Outer Join](#full-outer-join)
-      - [Left Outer Join](#left-outer-join)
-      - [Right Outer Join](#right-outer-join)
-    - [Natural Join](#natural-join)
-    - [Excluding Join](#excluding-join)
-      - [Outer Excluding Join](#outer-excluding-join)
-      - [Left Excluding Join](#left-excluding-join)
-      - [Right Excluding Join](#right-excluding-join)
-    - [Dereferencing](#dereferencing)
-  - [Functions](#functions)
-  - [Group By](#group-by)
-    - [Having](#having)
-  - [Alias Tables](#alias-tables)
-  - [Variables](#variables)
-  - [Indexes](#indexes)
-  - [Types of Relationships](#types-of-relationships)
+	- [Database Commands](#database-commands)
+	- [Table Commands](#table-commands)
+	- [Insert Command](#insert-command)
+	- [Select Command](#select-command)
+	- [Update Command](#update-command)
+	- [Deleting Elements](#deleting-elements)
+	- [Where](#where)
+		- [Like](#like)
+	- [Join](#join)
+		- [Cross Join](#cross-join)
+		- [Inner Join](#inner-join)
+		- [Outer Join](#outer-join)
+			- [Full Outer Join](#full-outer-join)
+			- [Left Outer Join](#left-outer-join)
+			- [Right Outer Join](#right-outer-join)
+		- [Natural Join](#natural-join)
+		- [Excluding Join](#excluding-join)
+			- [Outer Excluding Join](#outer-excluding-join)
+			- [Left Excluding Join](#left-excluding-join)
+			- [Right Excluding Join](#right-excluding-join)
+		- [Dereferencing](#dereferencing)
+	- [Functions](#functions)
+	- [Group By](#group-by)
+		- [Having](#having)
+	- [Alias Tables](#alias-tables)
+	- [Variables](#variables)
+	- [Indexes](#indexes)
+	- [Types of Relationships](#types-of-relationships)
 - [Relational Database Management SystemRDBMS](#relational-database-management-systemrdbms)
-  - [MySQL](#mysql)
-    - [Installation](#installation)
+	- [MySQL](#mysql)
+		- [Installation](#installation)
 
 <!-- /TOC -->
 
@@ -53,8 +53,9 @@ Relational databases organize things into tables with each element in the table 
 
 Rows are called elements and columns are called attributes. Each cell contains one value of a specific data type.
 
+**Keys** in SQL have the be unique for each element and are used to define that element.
 - A **surrogate key** is a unique id that has no mapping to anything in the real world. It is just used internally in the db.
-- A **natural key** is a unique attribute that has a real world mapping to something in the real world. Like a unique email address.
+- A **natural key** is a unique attribute that has a real world mapping. Like a unique email address.
 - A **foreign key** is an attribute on a table that links to a unique key of another table.
 - A **composite key** is a primary key that is made up of 2 attributes. Only both of the attributes can uniquely identify an element.
 
@@ -210,16 +211,16 @@ VALUES
 ## [Select Command](#table-of-contents)
 
 ```SQL
--- Returns the whole table.
+-- Gets all attributes and all elements for that table.
 SELECT * FROM table_name;
 
--- Get the first 2 bands
+-- Get the first 2 elements of the table
 SELECT * FROM table_name LIMIT 2;
 
 -- Gets the 2nd element
 SELECT * FROM table_name LIMIT 1,1; -- Limit offset, count
 
--- Get from column
+-- Gets all the elements, but only those columns of that element
 SELECT column_1 FROM table_name;
 SELECT column_1, column_2 FROM table_name;
 
@@ -235,8 +236,8 @@ SELECT * FROM table_name ORDER BY column_1 DESC;
 -- Only get unique elements from a column
 SELECT DISTINCT column_1 FROM table_name;
 
--- Selecting based upon a conditional
-SELECT column_1 FROM table_name
+-- Only returns the elements with an id greater than 1
+SELECT * FROM table_name
 WHERE id > 1;
 
 -- Gets column1 and column2 from table_name and adds to it the dbs and the tables in those dbs

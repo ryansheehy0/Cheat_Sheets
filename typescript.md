@@ -182,6 +182,11 @@ let length: number = (<string>variable).length
 ```typescript
 let id: string = element!.id
 // This means you know that the id field of element will always have a value
+
+// You can also use it if you know a variable isn't null
+type ID = number | null
+let id = 10
+console.log(id!) // This tells typescript that id isn't null
 ```
 
 ### [as const](#table-of-contents)

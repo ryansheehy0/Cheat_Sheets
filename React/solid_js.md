@@ -12,3 +12,17 @@ The only difference between createMemo and createEffect is that createMemo retur
 
 Ref type
 	let canvasRef: HTMLCanvasElement
+
+createEffect
+	- Only updates when signal updates
+	- Only updates if it checks the signal before any returns
+
+Ex:
+```javascript
+	createEffect(() => {
+		const value1 = signal1()
+		if(value1 === true) return
+		const value2 = signal2()
+			// If signal2 is updated and value1 is true, then the createEffect doesn't get run again
+	})
+```

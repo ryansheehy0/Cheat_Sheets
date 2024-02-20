@@ -28,5 +28,5 @@ In order to test for IDORs you need to create 2 different accounts. The attacker
 - Logout, back button, and still authenticated/logged in
 
 You can test with BURP
-	- Intercept any HTTP request made from the client to the server
+	- Used to intercept and modify any HTTP requests sent from the client to the server.
 	- How to set up BURP
