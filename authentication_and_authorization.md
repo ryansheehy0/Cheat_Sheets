@@ -1,3 +1,21 @@
+<!--
+ * This file is part of RS Cheat Sheets.
+ *
+ * RS Cheat Sheets is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * RS Cheat Sheets is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with RS Cheat Sheets. If not, see <https://www.gnu.org/licenses/>.
+ */
+-->
+
 [Home](./README.md)
 
 # Authentication And Authorization
@@ -27,11 +45,11 @@ If an attack were to try to change the Session ID, because they don't have the s
 <!-- TOC -->
 
 - [Authentication And Authorization](#authentication-and-authorization)
-  - [Table of Contents](#table-of-contents)
-  - [Cookies](#cookies)
-  - [JSON Web TokensJWTs](#json-web-tokensjwts)
-    - [Using JWTs on the Server](#using-jwts-on-the-server)
-    - [Using JWTs on the Client](#using-jwts-on-the-client)
+	- [Table of Contents](#table-of-contents)
+	- [Cookies](#cookies)
+	- [JSON Web TokensJWTs](#json-web-tokensjwts)
+		- [Using JWTs on the Server](#using-jwts-on-the-server)
+		- [Using JWTs on the Client](#using-jwts-on-the-client)
 
 <!-- /TOC -->
 

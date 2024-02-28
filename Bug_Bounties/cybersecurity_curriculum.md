@@ -1,3 +1,21 @@
+<!--
+ * This file is part of RS Cheat Sheets.
+ *
+ * RS Cheat Sheets is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * RS Cheat Sheets is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with RS Cheat Sheets. If not, see <https://www.gnu.org/licenses/>.
+ */
+-->
+
 - Tools
 	- Wireshark
 	- John the ripper(Brute force attacker)
@@ -51,10 +69,6 @@
 	- Find hidden URLs
 - Browser tools
 
-- Capture the flags
-	- Hacker101
-	- Over the wire
-
 Bug bounty check list:
 1. Find all open subdomains and paths that are in scope
 	- example.com/robots.txt which tells crawls not to search in those paths
@@ -67,3 +81,10 @@ Bug bounty check list:
 	- Check if any urls have any parameters
 	- Check if there is any information in the cookies
 	- Check for any unused CNAMEs
+1. Check SQL Injection on any inputs
+1. Check any path traversals for any filename inputs.
+	- Like GET /image?filename=/etc/passwd or GET /etc/passwd
+		- Check any parameters
+	- Try. `/etc/passwd`, `/../etc/passwd`, `/../../etc/passwd`, etc
+	- Try. `/etc/shadow`, `/../etc/shadow`, `/../../etc/shadow`, etc
+	- Change Accept: header to `*/*` to accept any file type

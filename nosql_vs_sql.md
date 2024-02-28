@@ -1,3 +1,21 @@
+<!--
+ * This file is part of RS Cheat Sheets.
+ *
+ * RS Cheat Sheets is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * RS Cheat Sheets is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with RS Cheat Sheets. If not, see <https://www.gnu.org/licenses/>.
+ */
+-->
+
 [Home](./README.md)
 
 # NoSQL vs SQL
@@ -8,9 +26,9 @@ This will be coving the styles of NoSQL and SQL databases and not any particular
 <!-- TOC -->
 
 - [NoSQL vs SQL](#nosql-vs-sql)
-  - [Table of Contents](#table-of-contents)
-  - [Deep vs Broad](#deep-vs-broad)
-  - [Reading](#reading)
+	- [Table of Contents](#table-of-contents)
+	- [Deep vs Broad](#deep-vs-broad)
+	- [Reading](#reading)
 - [For heavily nested data it is easier to do CRUD operations with NoSQL](#for-heavily-nested-data-it-is-easier-to-do-crud-operations-with-nosql)
 
 <!-- /TOC -->

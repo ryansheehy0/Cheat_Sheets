@@ -1,3 +1,21 @@
+<!--
+ * This file is part of RS Cheat Sheets.
+ *
+ * RS Cheat Sheets is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * RS Cheat Sheets is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with RS Cheat Sheets. If not, see <https://www.gnu.org/licenses/>.
+ */
+-->
+
 [Home](./README.md)
 
 # NodeJS Packages
@@ -8,36 +26,36 @@ Useful npm packages
 <!-- TOC -->
 
 - [NodeJS Packages](#nodejs-packages)
-  - [Table of Contents](#table-of-contents)
-  - [Packages](#packages)
-    - [inquirer](#inquirer)
-    - [express](#express)
-      - [Express HTTP Methods](#express-http-methods)
-      - [Parameters](#parameters)
-      - [Routers](#routers)
-      - [Middleware Functions](#middleware-functions)
-      - [View Engines](#view-engines)
-        - [Handlebars](#handlebars)
-      - [Definitions](#definitions)
-      - [Custom Helpers](#custom-helpers)
-      - [Front end and Back end](#front-end-and-back-end)
-    - [jest](#jest)
-    - [mysql2](#mysql2)
-      - [mysql2 with Promises](#mysql2-with-promises)
-      - [Prevent SQL Injections](#prevent-sql-injections)
-    - [dotenv](#dotenv)
-    - [bcrypt](#bcrypt)
-      - [Creating a Hash](#creating-a-hash)
-      - [Comparing a Password](#comparing-a-password)
-    - [tailwindcss](#tailwindcss)
-    - [express-session](#express-session)
-      - [Authentication](#authentication)
-      - [Server Side](#server-side)
-      - [Storing and Retrieving](#storing-and-retrieving)
-        - [Storing data](#storing-data)
-        - [Retrieving data](#retrieving-data)
-      - [Destroying session](#destroying-session)
-    - [cookie-parser](#cookie-parser)
+	- [Table of Contents](#table-of-contents)
+	- [Packages](#packages)
+		- [inquirer](#inquirer)
+		- [express](#express)
+			- [Express HTTP Methods](#express-http-methods)
+			- [Parameters](#parameters)
+			- [Routers](#routers)
+			- [Middleware Functions](#middleware-functions)
+			- [View Engines](#view-engines)
+				- [Handlebars](#handlebars)
+			- [Definitions](#definitions)
+			- [Custom Helpers](#custom-helpers)
+			- [Front end and Back end](#front-end-and-back-end)
+		- [jest](#jest)
+		- [mysql2](#mysql2)
+			- [mysql2 with Promises](#mysql2-with-promises)
+			- [Prevent SQL Injections](#prevent-sql-injections)
+		- [dotenv](#dotenv)
+		- [bcrypt](#bcrypt)
+			- [Creating a Hash](#creating-a-hash)
+			- [Comparing a Password](#comparing-a-password)
+		- [tailwindcss](#tailwindcss)
+		- [express-session](#express-session)
+			- [Authentication](#authentication)
+			- [Server Side](#server-side)
+			- [Storing and Retrieving](#storing-and-retrieving)
+				- [Storing data](#storing-data)
+				- [Retrieving data](#retrieving-data)
+			- [Destroying session](#destroying-session)
+		- [cookie-parser](#cookie-parser)
 
 <!-- /TOC -->
 

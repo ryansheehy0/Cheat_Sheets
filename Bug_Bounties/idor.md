@@ -1,3 +1,21 @@
+<!--
+ * This file is part of RS Cheat Sheets.
+ *
+ * RS Cheat Sheets is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * RS Cheat Sheets is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with RS Cheat Sheets. If not, see <https://www.gnu.org/licenses/>.
+ */
+-->
+
 [Home](../README.md)
 
 # Insecure Direct Object References(IDOR)
@@ -26,7 +44,3 @@ In order to test for IDORs you need to create 2 different accounts. The attacker
 	- Check if there is a problem with the logic. Ex: Changing the price of something you are adding to cart
 	- Check the response format and try to add different properties to the response
 - Logout, back button, and still authenticated/logged in
-
-You can test with BURP
-	- Used to intercept and modify any HTTP requests sent from the client to the server.
-	- How to set up BURP

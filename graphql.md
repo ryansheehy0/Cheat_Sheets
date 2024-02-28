@@ -1,3 +1,21 @@
+<!--
+ * This file is part of RS Cheat Sheets.
+ *
+ * RS Cheat Sheets is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * RS Cheat Sheets is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with RS Cheat Sheets. If not, see <https://www.gnu.org/licenses/>.
+ */
+-->
+
 [Home](./README.md)
 
 # Graph QL
@@ -9,25 +27,25 @@ Graph QL is a query language which the front end can use to only get back the da
 <!-- TOC -->
 
 - [Graph QL](#graph-ql)
-  - [Table of Contents](#table-of-contents)
-  - [Questions](#questions)
-  - [File Structure](#file-structure)
-  - [NPM](#npm)
-  - [Querying and Mutating data with Graph QL](#querying-and-mutating-data-with-graph-ql)
-  - [Useful Scripts](#useful-scripts)
-  - [Server using Apollo Server](#server-using-apollo-server)
-    - [Apollo with Express Server](#apollo-with-express-server)
-    - [Authorization with JWTs](#authorization-with-jwts)
-    - [TypeDefs](#typedefs)
-    - [Resolvers](#resolvers)
-      - [Query Resolver](#query-resolver)
-      - [Mutation Resolver](#mutation-resolver)
-  - [Client using Apollo](#client-using-apollo)
-    - [Customizing Vite](#customizing-vite)
-    - [Client Boilerplate with JWTs](#client-boilerplate-with-jwts)
-    - [useQuery](#usequery)
-    - [useMutation](#usemutation)
-    - [Login Form Component Example](#login-form-component-example)
+	- [Table of Contents](#table-of-contents)
+	- [Questions](#questions)
+	- [File Structure](#file-structure)
+	- [NPM](#npm)
+	- [Querying and Mutating data with Graph QL](#querying-and-mutating-data-with-graph-ql)
+	- [Useful Scripts](#useful-scripts)
+	- [Server using Apollo Server](#server-using-apollo-server)
+		- [Apollo with Express Server](#apollo-with-express-server)
+		- [Authorization with JWTs](#authorization-with-jwts)
+		- [TypeDefs](#typedefs)
+		- [Resolvers](#resolvers)
+			- [Query Resolver](#query-resolver)
+			- [Mutation Resolver](#mutation-resolver)
+	- [Client using Apollo](#client-using-apollo)
+		- [Customizing Vite](#customizing-vite)
+		- [Client Boilerplate with JWTs](#client-boilerplate-with-jwts)
+		- [useQuery](#usequery)
+		- [useMutation](#usemutation)
+		- [Login Form Component Example](#login-form-component-example)
 
 <!-- /TOC -->
 

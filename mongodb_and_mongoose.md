@@ -1,3 +1,21 @@
+<!--
+ * This file is part of RS Cheat Sheets.
+ *
+ * RS Cheat Sheets is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * RS Cheat Sheets is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with RS Cheat Sheets. If not, see <https://www.gnu.org/licenses/>.
+ */
+-->
+
 [Home](./README.md)
 
 # MongoDB and Mongoose
@@ -21,34 +39,34 @@ MongoDb organizes things in these terms:
 <!-- TOC -->
 
 - [MongoDB and Mongoose](#mongodb-and-mongoose)
-  - [Table of Contents](#table-of-contents)
-  - [Installing](#installing)
-  - [Starting and Stopping](#starting-and-stopping)
-  - [MongoDB Shell](#mongodb-shell)
-  - [Questions](#questions)
-    - [Ids](#ids)
-    - [Connecting](#connecting)
-    - [Create](#create)
-    - [Get](#get)
-    - [Update](#update)
-    - [Delete](#delete)
-    - [Dollar Signs $](#dollar-signs-)
-    - [Embedded Documents](#embedded-documents)
-    - [Sort Skip Limit](#sort-skip-limit)
-  - [Mongoose](#mongoose)
-    - [Connecting](#connecting)
-    - [Schema and Model](#schema-and-model)
-    - [Mongoose CRUD](#mongoose-crud)
-      - [Mongoose Create](#mongoose-create)
-      - [Mongoose Read](#mongoose-read)
-        - [Populate](#populate)
-        - [Aggregate](#aggregate)
-      - [Mongoose Update](#mongoose-update)
-      - [Mongoose Delete](#mongoose-delete)
-    - [Instance Methods/Virtuals](#instance-methodsvirtuals)
-      - [Instance Methods](#instance-methods)
-      - [Virtuals](#virtuals)
-    - [Mongoose Embedded Documents](#mongoose-embedded-documents)
+	- [Table of Contents](#table-of-contents)
+	- [Installing](#installing)
+	- [Starting and Stopping](#starting-and-stopping)
+	- [MongoDB Shell](#mongodb-shell)
+	- [Questions](#questions)
+		- [Ids](#ids)
+		- [Connecting](#connecting)
+		- [Create](#create)
+		- [Get](#get)
+		- [Update](#update)
+		- [Delete](#delete)
+		- [Dollar Signs $](#dollar-signs-)
+		- [Embedded Documents](#embedded-documents)
+		- [Sort Skip Limit](#sort-skip-limit)
+	- [Mongoose](#mongoose)
+		- [Connecting](#connecting)
+		- [Schema and Model](#schema-and-model)
+		- [Mongoose CRUD](#mongoose-crud)
+			- [Mongoose Create](#mongoose-create)
+			- [Mongoose Read](#mongoose-read)
+				- [Populate](#populate)
+				- [Aggregate](#aggregate)
+			- [Mongoose Update](#mongoose-update)
+			- [Mongoose Delete](#mongoose-delete)
+		- [Instance Methods/Virtuals](#instance-methodsvirtuals)
+			- [Instance Methods](#instance-methods)
+			- [Virtuals](#virtuals)
+		- [Mongoose Embedded Documents](#mongoose-embedded-documents)
 
 <!-- /TOC -->
 

@@ -1,3 +1,21 @@
+<!--
+ * This file is part of RS Cheat Sheets.
+ *
+ * RS Cheat Sheets is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * RS Cheat Sheets is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with RS Cheat Sheets. If not, see <https://www.gnu.org/licenses/>.
+ */
+-->
+
 [Home](./README.md)
 
 # Linux Commands
@@ -8,39 +26,39 @@ Linux terminal commands
 <!-- TOC -->
 
 - [Linux Commands](#linux-commands)
-  - [Table of Contents](#table-of-contents)
-  - [Pipes](#pipes)
-  - [Navigation](#navigation)
-    - [Files types](#files-types)
-  - [Changing Permissions](#changing-permissions)
-    - [usermod](#usermod)
-  - [Miscellaneous](#miscellaneous)
-  - [Installation](#installation)
-  - [Package Manager](#package-manager)
-    - [Advanced package toolapt](#advanced-package-toolapt)
-  - [File and Directory Manipulation](#file-and-directory-manipulation)
-  - [Find](#find)
-  - [Computer commands](#computer-commands)
-    - [ps, kill](#ps-kill)
-    - [job, bg, fg](#job-bg-fg)
-    - [Mount and Unmount drive](#mount-and-unmount-drive)
-    - [Recursive size of folders in a directory](#recursive-size-of-folders-in-a-directory)
-  - [Compression](#compression)
-    - [gzip](#gzip)
-    - [tar](#tar)
-      - [tar and gzip combined](#tar-and-gzip-combined)
-    - [zip files](#zip-files)
-  - [sed](#sed)
-  - [awk](#awk)
-  - [Networking](#networking)
-    - [ping](#ping)
-    - [httprobe](#httprobe)
-    - [curl](#curl)
-  - [grep](#grep)
-  - [sort and uniq](#sort-and-uniq)
-  - [head and tail](#head-and-tail)
-  - [Redirection operations](#redirection-operations)
-  - [alias](#alias)
+	- [Table of Contents](#table-of-contents)
+	- [Pipes](#pipes)
+	- [Navigation](#navigation)
+		- [Files types](#files-types)
+	- [Changing Permissions](#changing-permissions)
+		- [usermod](#usermod)
+	- [Miscellaneous](#miscellaneous)
+	- [Installation](#installation)
+	- [Package Manager](#package-manager)
+		- [Advanced package toolapt](#advanced-package-toolapt)
+	- [File and Directory Manipulation](#file-and-directory-manipulation)
+	- [Find](#find)
+	- [Computer commands](#computer-commands)
+		- [ps, kill](#ps-kill)
+		- [job, bg, fg](#job-bg-fg)
+		- [Mount and Unmount drive](#mount-and-unmount-drive)
+		- [Recursive size of folders in a directory](#recursive-size-of-folders-in-a-directory)
+	- [Compression](#compression)
+		- [gzip](#gzip)
+		- [tar](#tar)
+			- [tar and gzip combined](#tar-and-gzip-combined)
+		- [zip files](#zip-files)
+	- [sed](#sed)
+	- [awk](#awk)
+	- [Networking](#networking)
+		- [ping](#ping)
+		- [httprobe](#httprobe)
+		- [curl](#curl)
+	- [grep](#grep)
+	- [sort and uniq](#sort-and-uniq)
+	- [head and tail](#head-and-tail)
+	- [Redirection operations](#redirection-operations)
+	- [alias](#alias)
 
 <!-- /TOC -->
 
@@ -261,7 +279,6 @@ With some linux distros this happens automatically
 1. `sudo umount filePathMountFolder` unmounts the drive
 
 ### [Recursive size of folders in a directory](#table-of-contents)
-I want ls, but with recursively calculated sizes. Not just folders, but also files.
 
 `du --max-depth=1 -h ./`
 

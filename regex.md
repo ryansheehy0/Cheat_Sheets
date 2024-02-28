@@ -1,3 +1,21 @@
+<!--
+ * This file is part of RS Cheat Sheets.
+ *
+ * RS Cheat Sheets is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * RS Cheat Sheets is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with RS Cheat Sheets. If not, see <https://www.gnu.org/licenses/>.
+ */
+-->
+
 [Home](./README.md)
 
 # Regular Expressions(Regex)
@@ -10,32 +28,32 @@ You can test regexes at this [site](https://regex101.com/).
 <!-- TOC -->
 
 - [Regular ExpressionsRegex](#regular-expressionsregex)
-  - [Table of Contents](#table-of-contents)
-  - [Regex Components](#regex-components)
-    - [Anchors](#anchors)
-      - [Examples](#examples)
-    - [Quantifiers](#quantifiers)
-      - [Examples](#examples)
-    - [OR Operator](#or-operator)
-      - [Examples](#examples)
-    - [Character Classes](#character-classes)
-      - [Examples](#examples)
-    - [Bracket Expressions](#bracket-expressions)
-      - [Examples](#examples)
-    - [Flags](#flags)
-    - [Grouping and Capturing](#grouping-and-capturing)
-      - [Back-references](#back-references)
-      - [Examples](#examples)
-    - [Greedy and Lazy Match](#greedy-and-lazy-match)
-    - [Boundaries](#boundaries)
-      - [Examples](#examples)
-    - [Look-ahead and Look-behind](#look-ahead-and-look-behind)
-      - [Examples](#examples)
-    - [Metacharacters](#metacharacters)
-  - [Regex Examples](#regex-examples)
-  - [Backus-Naur form grammerBNF](#backus-naur-form-grammerbnf)
-    - [Examples](#examples)
-  - [Command line tools](#command-line-tools)
+	- [Table of Contents](#table-of-contents)
+	- [Regex Components](#regex-components)
+		- [Anchors](#anchors)
+			- [Examples](#examples)
+		- [Quantifiers](#quantifiers)
+			- [Examples](#examples)
+		- [OR Operator](#or-operator)
+			- [Examples](#examples)
+		- [Character Classes](#character-classes)
+			- [Examples](#examples)
+		- [Bracket Expressions](#bracket-expressions)
+			- [Examples](#examples)
+		- [Flags](#flags)
+		- [Grouping and Capturing](#grouping-and-capturing)
+			- [Back-references](#back-references)
+			- [Examples](#examples)
+		- [Greedy and Lazy Match](#greedy-and-lazy-match)
+		- [Boundaries](#boundaries)
+			- [Examples](#examples)
+		- [Look-ahead and Look-behind](#look-ahead-and-look-behind)
+			- [Examples](#examples)
+		- [Metacharacters](#metacharacters)
+	- [Regex Examples](#regex-examples)
+	- [Backus-Naur form grammerBNF](#backus-naur-form-grammerbnf)
+		- [Examples](#examples)
+	- [Command line tools](#command-line-tools)
 
 <!-- /TOC -->
 

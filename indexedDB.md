@@ -1,3 +1,21 @@
+<!--
+ * This file is part of RS Cheat Sheets.
+ *
+ * RS Cheat Sheets is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * RS Cheat Sheets is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with RS Cheat Sheets. If not, see <https://www.gnu.org/licenses/>.
+ */
+-->
+
 [Home](./README.md)
 
 # IndexedDB/idb
@@ -37,18 +55,18 @@ IDB is a library that makes it easier to work with indexedDB. Instead of callbac
 <!-- TOC -->
 
 - [IndexedDB/idb](#indexeddbidb)
-  - [Table of Contents](#table-of-contents)
-  - [Initializing DB](#initializing-db)
-    - [IndexedDB initializing](#indexeddb-initializing)
-    - [idb initializing](#idb-initializing)
-  - [CRUD Operations](#crud-operations)
-    - [Seeding data](#seeding-data)
-    - [IndexedDB CRUD](#indexeddb-crud)
-    - [idb CRUD](#idb-crud)
-  - [Indexes](#indexes)
-  - [Cursor](#cursor)
-  - [Dexie.js](#dexiejs)
-    - [Using dexie with react](#using-dexie-with-react)
+	- [Table of Contents](#table-of-contents)
+	- [Initializing DB](#initializing-db)
+		- [IndexedDB initializing](#indexeddb-initializing)
+		- [idb initializing](#idb-initializing)
+	- [CRUD Operations](#crud-operations)
+		- [Seeding data](#seeding-data)
+		- [IndexedDB CRUD](#indexeddb-crud)
+		- [idb CRUD](#idb-crud)
+	- [Indexes](#indexes)
+	- [Cursor](#cursor)
+	- [Dexie.js](#dexiejs)
+		- [Using dexie with react](#using-dexie-with-react)
 
 <!-- /TOC -->
 

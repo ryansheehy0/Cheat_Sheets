@@ -1,3 +1,21 @@
+<!--
+ * This file is part of RS Cheat Sheets.
+ *
+ * RS Cheat Sheets is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * RS Cheat Sheets is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with RS Cheat Sheets. If not, see <https://www.gnu.org/licenses/>.
+ */
+-->
+
 [Home](./README.md)
 
 # jQuery
@@ -18,24 +36,24 @@ See [here](https://releases.jquery.com/) for any up to date links.
 <!-- TOC -->
 
 - [jQuery](#jquery)
-  - [Table of Contents](#table-of-contents)
-  - [Selecting Elements](#selecting-elements)
-  - [Changing HTML](#changing-html)
-  - [Modifying/Getting Contents](#modifyinggetting-contents)
-  - [Changing CSS](#changing-css)
-  - [Manipulating Attributes](#manipulating-attributes)
-  - [Handling Events](#handling-events)
-  - [Traversing the DOM](#traversing-the-dom)
-  - [Animations](#animations)
-    - [Optional Animation Arguments](#optional-animation-arguments)
-  - [AJAX Requests](#ajax-requests)
-  - [Useful Functions](#useful-functions)
-  - [jQuery UI](#jquery-ui)
-    - [Interactions](#interactions)
-      - [Droppable](#droppable)
-    - [Widgets](#widgets)
-      - [Autocomplete](#autocomplete)
-    - [Effects](#effects)
+	- [Table of Contents](#table-of-contents)
+	- [Selecting Elements](#selecting-elements)
+	- [Changing HTML](#changing-html)
+	- [Modifying/Getting Contents](#modifyinggetting-contents)
+	- [Changing CSS](#changing-css)
+	- [Manipulating Attributes](#manipulating-attributes)
+	- [Handling Events](#handling-events)
+	- [Traversing the DOM](#traversing-the-dom)
+	- [Animations](#animations)
+		- [Optional Animation Arguments](#optional-animation-arguments)
+	- [AJAX Requests](#ajax-requests)
+	- [Useful Functions](#useful-functions)
+	- [jQuery UI](#jquery-ui)
+		- [Interactions](#interactions)
+			- [Droppable](#droppable)
+		- [Widgets](#widgets)
+			- [Autocomplete](#autocomplete)
+		- [Effects](#effects)
 
 <!-- /TOC -->
 

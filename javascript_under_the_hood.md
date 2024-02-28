@@ -1,3 +1,21 @@
+<!--
+ * This file is part of RS Cheat Sheets.
+ *
+ * RS Cheat Sheets is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * RS Cheat Sheets is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with RS Cheat Sheets. If not, see <https://www.gnu.org/licenses/>.
+ */
+-->
+
 [Home](./README.md)
 
 # JavaScript Under the Hood
@@ -8,25 +26,25 @@ Javascript is single threaded language. The thread has a call stack and memory h
 <!-- TOC -->
 
 - [JavaScript Under the Hood](#javascript-under-the-hood)
-  - [Table of Contents](#table-of-contents)
-  - [LIFO/FIFO](#lifofifo)
-  - [Call Stack](#call-stack)
-    - [Example 1](#example-1)
-    - [Example 2](#example-2)
-  - [Callback Queue and Event Loop](#callback-queue-and-event-loop)
-  - [Global and Function Execution Context](#global-and-function-execution-context)
-  - [Use Strick](#use-strick)
-  - [Useful terms](#useful-terms)
-  - [Closures](#closures)
-    - [Var/Let trick question](#varlet-trick-question)
-  - [Big O Notation](#big-o-notation)
-  - [Progressive Web Apps PWAs](#progressive-web-apps-pwas)
-    - [Manifest](#manifest)
-    - [Service worker](#service-worker)
-      - [Push notifications](#push-notifications)
-    - [Importing and Exporting](#importing-and-exporting)
-  - [Lighthouse](#lighthouse)
-  - [Client-Server Folder Layout](#client-server-folder-layout)
+	- [Table of Contents](#table-of-contents)
+	- [LIFO/FIFO](#lifofifo)
+	- [Call Stack](#call-stack)
+		- [Example 1](#example-1)
+		- [Example 2](#example-2)
+	- [Callback Queue and Event Loop](#callback-queue-and-event-loop)
+	- [Global and Function Execution Context](#global-and-function-execution-context)
+	- [Use Strick](#use-strick)
+	- [Useful terms](#useful-terms)
+	- [Closures](#closures)
+		- [Var/Let trick question](#varlet-trick-question)
+	- [Big O Notation](#big-o-notation)
+	- [Progressive Web Apps PWAs](#progressive-web-apps-pwas)
+		- [Manifest](#manifest)
+		- [Service worker](#service-worker)
+			- [Push notifications](#push-notifications)
+		- [Importing and Exporting](#importing-and-exporting)
+	- [Lighthouse](#lighthouse)
+	- [Client-Server Folder Layout](#client-server-folder-layout)
 
 <!-- /TOC -->
 

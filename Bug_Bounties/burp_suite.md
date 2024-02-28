@@ -16,18 +16,31 @@
  */
 -->
 
-Showdan is a search engine that indexed every device connected to the internet.
+[Home](../README.md)
 
-Showdan searches every IP Address and every port in each IP Address to see what is open.
+# Burp Suite
+Burp suite is used to intercept and modify any HTTP requests sent from the client to the server.
 
-A lot of things don't change their default passwords.
-	admin
-	admin
-	or
-	admin
-	password
+## Set Scope
 
-Allows you to search very specific devices. If there is a device with a vulnerability that you know of, you can directly search for any of that device.
 
-Find ip address of a URL
-	- `host url.com`
+## Tabs
+
+### Dashboard
+
+### Target
+Shows the different targets available from your history. It shows urls in a folder file sort of layouts.
+
+### Proxy
+
+
+### Intruder
+### Repeater
+Used to manually change requests and see the responses.
+### Collaborator
+### Sequencer
+### Decoder
+### Comparer
+### Logger
+
+## Burp Suit extensions

@@ -1,3 +1,21 @@
+<!--
+ * This file is part of RS Cheat Sheets.
+ *
+ * RS Cheat Sheets is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * RS Cheat Sheets is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with RS Cheat Sheets. If not, see <https://www.gnu.org/licenses/>.
+ */
+-->
+
 [Home](./README.md)
 
 # Android
@@ -6,25 +24,25 @@
 <!-- TOC -->
 
 - [Android](#android)
-  - [Table Of Contents](#table-of-contents)
-  - [Links](#links)
-  - [Packages](#packages)
-  - [Manifest](#manifest)
-    - [@s](#s)
-  - [Permissions](#permissions)
-    - [Most Common Permissions](#most-common-permissions)
-  - [Gradle](#gradle)
-  - [APK files](#apk-files)
-  - [Location](#location)
-  - [Location to Address](#location-to-address)
-  - [Rest](#rest)
-  - [Login Screen](#login-screen)
-    - [Google signing](#google-signing)
-  - [Questions](#questions)
-  - [Data Extraction Rules](#data-extraction-rules)
-  - [Backup Rules](#backup-rules)
-  - [Themes](#themes)
-  - [Intents](#intents)
+	- [Table Of Contents](#table-of-contents)
+	- [Links](#links)
+	- [Packages](#packages)
+	- [Manifest](#manifest)
+		- [@s](#s)
+	- [Permissions](#permissions)
+		- [Most Common Permissions](#most-common-permissions)
+	- [Gradle](#gradle)
+	- [APK files](#apk-files)
+	- [Location](#location)
+	- [Location to Address](#location-to-address)
+	- [Rest](#rest)
+	- [Login Screen](#login-screen)
+		- [Google signing](#google-signing)
+	- [Questions](#questions)
+	- [Data Extraction Rules](#data-extraction-rules)
+	- [Backup Rules](#backup-rules)
+	- [Themes](#themes)
+	- [Intents](#intents)
 
 <!-- /TOC -->
 

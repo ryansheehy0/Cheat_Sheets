@@ -1,3 +1,21 @@
+<!--
+ * This file is part of RS Cheat Sheets.
+ *
+ * RS Cheat Sheets is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * RS Cheat Sheets is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with RS Cheat Sheets. If not, see <https://www.gnu.org/licenses/>.
+ */
+-->
+
 [Home](./README.md)
 
 # NodeJS
@@ -12,28 +30,28 @@ To make a file execute using node you can add `#!/usr/bin/env node` to the begin
 <!-- TOC -->
 
 - [NodeJS](#nodejs)
-  - [Table Of Contents](#table-of-contents)
-  - [Getting Started](#getting-started)
-  - [Node Package ManagerNPM](#node-package-managernpm)
-    - [Scripts](#scripts)
-    - [Importing](#importing)
-    - [Exporting](#exporting)
-  - [Miscellaneous](#miscellaneous)
-  - [Things that don't work](#things-that-dont-work)
-  - [this keyword](#this-keyword)
-  - [Global Variables](#global-variables)
-    - [Process](#process)
-      - [Arguments from the Terminal](#arguments-from-the-terminal)
-  - [Events](#events)
-    - [Emitting Events](#emitting-events)
-    - [Receiving Events](#receiving-events)
-  - [File System](#file-system)
-    - [Reading to Files](#reading-to-files)
-    - [Writing to Files](#writing-to-files)
-    - [Appending to Files](#appending-to-files)
-  - [Path](#path)
-  - [Node-fetch](#node-fetch)
-  - [Executing terminal commands](#executing-terminal-commands)
+	- [Table Of Contents](#table-of-contents)
+	- [Getting Started](#getting-started)
+	- [Node Package ManagerNPM](#node-package-managernpm)
+		- [Scripts](#scripts)
+		- [Importing](#importing)
+		- [Exporting](#exporting)
+	- [Miscellaneous](#miscellaneous)
+	- [Things that don't work](#things-that-dont-work)
+	- [this keyword](#this-keyword)
+	- [Global Variables](#global-variables)
+		- [Process](#process)
+			- [Arguments from the Terminal](#arguments-from-the-terminal)
+	- [Events](#events)
+		- [Emitting Events](#emitting-events)
+		- [Receiving Events](#receiving-events)
+	- [File System](#file-system)
+		- [Reading to Files](#reading-to-files)
+		- [Writing to Files](#writing-to-files)
+		- [Appending to Files](#appending-to-files)
+	- [Path](#path)
+	- [Node-fetch](#node-fetch)
+	- [Executing terminal commands](#executing-terminal-commands)
 
 <!-- /TOC -->
 

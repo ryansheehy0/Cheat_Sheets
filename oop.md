@@ -1,3 +1,21 @@
+<!--
+ * This file is part of RS Cheat Sheets.
+ *
+ * RS Cheat Sheets is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * RS Cheat Sheets is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with RS Cheat Sheets. If not, see <https://www.gnu.org/licenses/>.
+ */
+-->
+
 [Home](./README.md)
 
 # Object Oriented Programming(OOP)
@@ -11,25 +29,25 @@ The reason to use OOP is to prevent functions from having extremely long argumen
 <!-- TOC -->
 
 - [Object Oriented ProgrammingOOP](#object-oriented-programmingoop)
-  - [Table of Contents](#table-of-contents)
-  - [Problems with Procedural Programming](#problems-with-procedural-programming)
-  - [4 Pillars of OOP](#4-pillars-of-oop)
-    - [Encapsulation](#encapsulation)
-    - [Abstraction](#abstraction)
-    - [Inheritance](#inheritance)
-    - [Polymorphism](#polymorphism)
-  - [Dependency Injection](#dependency-injection)
-  - [Static methods](#static-methods)
-  - [Set and Get methods](#set-and-get-methods)
-  - [Design Patterns](#design-patterns)
-    - [Decorator](#decorator)
-    - [Singletons](#singletons)
-    - [Factory](#factory)
-    - [Builder Design Pattern](#builder-design-pattern)
-    - [Model View ControllerMVC](#model-view-controllermvc)
-    - [Observer](#observer)
-  - [Other](#other)
-  - [Use Builder pattern](#use-builder-pattern)
+	- [Table of Contents](#table-of-contents)
+	- [Problems with Procedural Programming](#problems-with-procedural-programming)
+	- [4 Pillars of OOP](#4-pillars-of-oop)
+		- [Encapsulation](#encapsulation)
+		- [Abstraction](#abstraction)
+		- [Inheritance](#inheritance)
+		- [Polymorphism](#polymorphism)
+	- [Dependency Injection](#dependency-injection)
+	- [Static methods](#static-methods)
+	- [Set and Get methods](#set-and-get-methods)
+	- [Design Patterns](#design-patterns)
+		- [Decorator](#decorator)
+		- [Singletons](#singletons)
+		- [Factory](#factory)
+		- [Builder Design Pattern](#builder-design-pattern)
+		- [Model View ControllerMVC](#model-view-controllermvc)
+		- [Observer](#observer)
+	- [Other](#other)
+	- [Use Builder pattern](#use-builder-pattern)
 
 <!-- /TOC -->
 

@@ -1,3 +1,21 @@
+<!--
+ * This file is part of RS Cheat Sheets.
+ *
+ * RS Cheat Sheets is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * RS Cheat Sheets is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with RS Cheat Sheets. If not, see <https://www.gnu.org/licenses/>.
+ */
+-->
+
 [Home](./README.md)
 
 # Git Cheat Sheet
@@ -7,24 +25,24 @@ A version control system that manages changes to files.
 <!-- TOC -->
 
 - [Git Cheat Sheet](#git-cheat-sheet)
-  - [Table of Contents](#table-of-contents)
-  - [Cloning and Initializing](#cloning-and-initializing)
-  - [Committing](#committing)
-    - [Resetting Commits](#resetting-commits)
-    - [Reverting Commits](#reverting-commits)
-    - [Commit Logs](#commit-logs)
-  - [Pushing](#pushing)
-  - [Pulling](#pulling)
-  - [Branches](#branches)
-  - [Stashing](#stashing)
-  - [Setting Personal Access Tokens](#setting-personal-access-tokens)
-  - [First push](#first-push)
-  - [Rebasing](#rebasing)
-  - [Pull Requests](#pull-requests)
-    - [When your branch says behind main](#when-your-branch-says-behind-main)
-  - [Setting up with SSH](#setting-up-with-ssh)
-  - [Adding a warning when pushing to main/master from another branch](#adding-a-warning-when-pushing-to-mainmaster-from-another-branch)
-  - [Git Ignore](#git-ignore)
+	- [Table of Contents](#table-of-contents)
+	- [Cloning and Initializing](#cloning-and-initializing)
+	- [Committing](#committing)
+		- [Resetting Commits](#resetting-commits)
+		- [Reverting Commits](#reverting-commits)
+		- [Commit Logs](#commit-logs)
+	- [Pushing](#pushing)
+	- [Pulling](#pulling)
+	- [Branches](#branches)
+	- [Stashing](#stashing)
+	- [Setting Personal Access Tokens](#setting-personal-access-tokens)
+	- [First push](#first-push)
+	- [Rebasing](#rebasing)
+	- [Pull Requests](#pull-requests)
+		- [When your branch says behind main](#when-your-branch-says-behind-main)
+	- [Setting up with SSH](#setting-up-with-ssh)
+	- [Adding a warning when pushing to main/master from another branch](#adding-a-warning-when-pushing-to-mainmaster-from-another-branch)
+	- [Git Ignore](#git-ignore)
 
 <!-- /TOC -->
 

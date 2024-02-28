@@ -1,3 +1,21 @@
+<!--
+ * This file is part of RS Cheat Sheets.
+ *
+ * RS Cheat Sheets is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * RS Cheat Sheets is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with RS Cheat Sheets. If not, see <https://www.gnu.org/licenses/>.
+ */
+-->
+
 [Home](./README.md)
 
 # Matrices
@@ -24,25 +42,25 @@ Rows($R$) and columns($C$) all start at 1 and when specifying the size of a matr
 <!-- TOC -->
 
 - [Matrices](#matrices)
-  - [Table Of Contents](#table-of-contents)
-  - [Adding/Subtracting:](#addingsubtracting)
-    - [Example:](#example)
-  - [Multiplying:](#multiplying)
-    - [Example of multiplying by a constant:](#example-of-multiplying-by-a-constant)
-    - [Example of multiplying 2 matrices:](#example-of-multiplying-2-matrices)
-    - [Examples of scaling and rotating:](#examples-of-scaling-and-rotating)
-  - [Inverse:](#inverse)
-    - [Steps:](#steps)
-    - [Example:](#example)
-  - [Row Echelon Form:](#row-echelon-form)
-    - [Example:](#example)
-  - [Eigenvectors and Eigenvalues:](#eigenvectors-and-eigenvalues)
-    - [Calculating the Eigenvectors and Eigenvalues:](#calculating-the-eigenvectors-and-eigenvalues)
-    - [Example:](#example)
-  - [Dividing:](#dividing)
-  - [Dot product:](#dot-product)
-  - [Cross product:](#cross-product)
-  - [Kernels/Image Filters:](#kernelsimage-filters)
+	- [Table Of Contents](#table-of-contents)
+	- [Adding/Subtracting:](#addingsubtracting)
+		- [Example:](#example)
+	- [Multiplying:](#multiplying)
+		- [Example of multiplying by a constant:](#example-of-multiplying-by-a-constant)
+		- [Example of multiplying 2 matrices:](#example-of-multiplying-2-matrices)
+		- [Examples of scaling and rotating:](#examples-of-scaling-and-rotating)
+	- [Inverse:](#inverse)
+		- [Steps:](#steps)
+		- [Example:](#example)
+	- [Row Echelon Form:](#row-echelon-form)
+		- [Example:](#example)
+	- [Eigenvectors and Eigenvalues:](#eigenvectors-and-eigenvalues)
+		- [Calculating the Eigenvectors and Eigenvalues:](#calculating-the-eigenvectors-and-eigenvalues)
+		- [Example:](#example)
+	- [Dividing:](#dividing)
+	- [Dot product:](#dot-product)
+	- [Cross product:](#cross-product)
+	- [Kernels/Image Filters:](#kernelsimage-filters)
 
 <!-- /TOC -->
 

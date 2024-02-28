@@ -1,6 +1,9 @@
 # Ryan Sheehy Cheat Sheets
 The purpose of these cheat sheets is to give concise explanations of the topic at hand. Some cheat sheets maybe unfinished.
 
+## License
+RS Cheat Sheets is licensed under GPLv3. See the COPYING file for details.
+
 - Programming
     - Tools
         - [Vim](./vim.md)
