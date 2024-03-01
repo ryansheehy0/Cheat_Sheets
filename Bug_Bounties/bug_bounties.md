@@ -28,87 +28,80 @@
 	- [Table of Contents](#table-of-contents)
 	- [Rules](#rules)
 	- [Links](#links)
-	- [Places to look](#places-to-look)
-	- [How to find the source code?](#how-to-find-the-source-code)
-	- [Static Analysis Security TestingSAST tools](#static-analysis-security-testingsast-tools)
-	- [Useful Terms](#useful-terms)
-	- [SQL Injection](#sql-injection)
-	- [Cross site scriptingXSS](#cross-site-scriptingxss)
-	- [Authentication and Authorizations attacks](#authentication-and-authorizations-attacks)
-	- [File upload vulnerabilities](#file-upload-vulnerabilities)
-	- [Server side request forgeriesSSRF](#server-side-request-forgeriesssrf)
-	- [Cross-Site Request ForgeryCSRF](#cross-site-request-forgerycsrf)
-	- [Insecure Deserialization](#insecure-deserialization)
-	- [Insecure Direct Object ReferencesIDOR](#insecure-direct-object-referencesidor)
-	- [Leaked Credentials](#leaked-credentials)
-	- [Steps](#steps)
+	- [Check list](#check-list)
+	- [Tools](#tools)
+		- [Need to research](#need-to-research)
 
 <!-- /TOC -->
 
 ## [Rules](#table-of-contents)
-- Testing for vulnerabilities should not degrade, damage, or destroy(No DDOS)
-	- No DDOS, messing with other user's accounts, or no harmful malware.
-- Report vulnerabilities without any conditions attached
-- Do not share any vulnerabilities to 3rd parties
+1. Testing for vulnerabilities should not degrade, damage, or destroy the application for other users.
+1. Report vulnerabilities without any conditions attached.
+1. Do not share any vulnerabilities to 3rd parties.
 
 ## [Links](#table-of-contents)
 - https://www.hackerone.com/
 - https://www.bugcrowd.com/
 - https://www.intigriti.com/
 
-## [Places to look](#table-of-contents)
-- Sub domains
-- Google DOB
+## [Check list](#table-of-contents)
+1. [Recon](./recon.md)
+1. Look through source code
+1. [Path traversal](./path_traversal.md)
+1. [SQL injection](./sql_injection.md)
+1. [IDORs](./idor.md)
 
+- Cross-site scripting(XSS)
+	- Used to run unwanted javascript on the server itself. This is useful because it allows you to bypass permissions because the javascript is running on the server itself.
+- Cross site request forgery(CSRF)
+- Server side request forgery(SSRF)
+- XML External Entity (XXE)
+- Default credentials and Insecure server configurations
+- Authoritative Zone Transfer(AXFR) on port 53
+- Business logic errors(BLEs)
+- File upload vulnerabilities
+- CNAME takeover
+	- If there is a CNAME that isn't being used, you can get that url and create your own phishing website.
+	- How do you discover all the CNAMEs someone has for the domain name?
+- JWT attacks
+- Broken objects level authorization(BOLA)
+- Brute force attacks on admin accounts with common passwords
 
-- Lack of input validation
-- Lack of output encoding
-- Midding access control
-- Weak regex checks
-- Server side request forgeries
-- Open redirects
+## [Tools](#table-of-contents)
+Tools:
+1. Burp suit: Intercepts requests made from the client to the server.
+1. Shodan: A database of all open IP addresses.
+1. Wayback machine: A database of snapshots of different URLS from different points in time.
 
-
-## [How to find the source code?](#table-of-contents)
-  - Look at the client side code
-  - Reverse engineer the source code
-  - Github, pastebin, wayback machine
-
-## [Static Analysis Security Testing(SAST) tools](#table-of-contents)
-  - Can have false positives or false negatives.
-    - Need to always manually check
-
-## [Useful Terms](#table-of-contents)
-
-| Term                       | Description |
-|----------------------------|-------------|
-| Privilege escalation       |             |
-| Remote Code Execution(RCE) |             |
-| I/O doors                  |             |
-| Missing access controls    |             |
-
-**0 day exploit** is an exploit that the target has had zero days of knowing about that vulnerability.
-
-## [SQL Injection](#table-of-contents)
-## [Cross site scripting(XSS)](#table-of-contents)
-  - Used to run unwanted javascript on the server itself. This is useful because it allows you to bypass permissions because the javascript is running on the server itself.
-## [Authentication and Authorizations attacks](#table-of-contents)
-- User permissions in applications
-## [File upload vulnerabilities](#table-of-contents)
-## [Server side request forgeries(SSRF)](#table-of-contents)
-## [Cross-Site Request Forgery(CSRF)](#table-of-contents)
-## [Insecure Deserialization](#table-of-contents)
-## [Insecure Direct Object References(IDOR)](#table-of-contents)
-## [Leaked Credentials](#table-of-contents)
-
-JWT attacks
-BOLA broken objects level authorization
-
-## [Steps](#table-of-contents)
-- Recon: gain info
-- Weaponization: Combine the objective with an exploit. 
-- Delivery: How will the weaponized function be delivered to the target	
-- Exploitation: Exploit the target's system to execute code
-- Installation: Install malware or other tooling
-- Command & Control: Control the compromised asset from a remote central controller
-- Actions on Objectives: Any end objectives: ransomware, data exfiltration, etc.
+### [Need to research](#table-of-contents)
+- Wireshark
+- John the ripper(Brute force attacker)
+- sqlmap
+- Aircrack ng
+- net cat
+- nmap
+	- Search which ports are open for an IP Address
+- nikto
+- metasploit
+- Hashcat
+- Hydra
+	- Automated brute force attacker
+- Maltego
+- OWASP ZAP
+- wfuz
+	- Sub domain fuzzing
+- dig
+	- Used for finding AXFRs
+- nslookup
+- whois
+- theHarvester
+- crt.sh
+- httprobe
+	- Valid urls
+- Hakrawler
+	- Actively searches for paths and subdomains
+		- Checks wayback machine, spiders application, parses robots.txt and sitemap.xml
+		- Spider is crawling through a website and seeing any domains linked to it
+- gau
+	- get all urls. Uses AlienVault's Open Threat Exchange, wayback machine, common crawl and URLScan
+	- Just accesses database and doesn't crawl(like a spider)

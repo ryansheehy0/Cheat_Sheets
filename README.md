@@ -53,8 +53,6 @@ RS Cheat Sheets is licensed under GPLv3. See the COPYING file for details.
         - [NOT DONE: Machine Learning](./Machine_Learning/machine_learning.md)
         - [NOT DONE: Memory Managed Hash Table](./memory_managed_hash_table.md)
     - [NOT DONE: Bug Bounties](./Bug_Bounties/bug_bounties.md)
-        - [NOT DONE: Assetfinder](./Bug_Bounties/assetfinder.md)
-        - [NOT DONE: Brute Force Attacks](./Bug_Bounties/brute_force_attacks.md)
 - Math
     - [Taylor Series](./Taylor_Series/taylor_series.md)
     - [Newtons Method](./Newtons_Method/newtons_method.md)

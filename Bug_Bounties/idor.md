@@ -44,3 +44,12 @@ In order to test for IDORs you need to create 2 different accounts. The attacker
 	- Check if there is a problem with the logic. Ex: Changing the price of something you are adding to cart
 	- Check the response format and try to add different properties to the response
 - Logout, back button, and still authenticated/logged in
+
+
+	- Check HTML and CSS source code
+		- Hidden HTML Elements
+		- Comments with sensitive information
+		- URLs in the CSS
+	- Check if any urls have any parameters
+	- Check if there is any information in the cookies
+	- Check for any unused CNAMEs

