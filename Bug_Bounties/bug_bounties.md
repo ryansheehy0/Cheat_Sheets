@@ -50,6 +50,7 @@
 1. [Path traversal](./path_traversal.md)
 1. [SQL injection](./sql_injection.md)
 1. [IDORs](./idor.md)
+1. [XSS](./cross_site_scripting.md)
 
 - Cross-site scripting(XSS)
 	- Used to run unwanted javascript on the server itself. This is useful because it allows you to bypass permissions because the javascript is running on the server itself.
@@ -66,6 +67,11 @@
 - JWT attacks
 - Broken objects level authorization(BOLA)
 - Brute force attacks on admin accounts with common passwords
+
+You often need 2 different accounts:
+- Attacker and victim account
+	- Used to test Stored XSS attacks
+	- IDOR vulnerabilities
 
 ## [Tools](#table-of-contents)
 Tools:
