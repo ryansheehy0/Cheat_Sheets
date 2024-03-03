@@ -29,6 +29,7 @@
 	- [Rules](#rules)
 	- [Links](#links)
 	- [Check list](#check-list)
+	- [Good attack targets](#good-attack-targets)
 	- [Tools](#tools)
 		- [Need to research](#need-to-research)
 
@@ -67,11 +68,18 @@
 - JWT attacks
 - Broken objects level authorization(BOLA)
 - Brute force attacks on admin accounts with common passwords
+- Broken access control
+- Check for max length of form inputs
 
 You often need 2 different accounts:
 - Attacker and victim account
 	- Used to test Stored XSS attacks
 	- IDOR vulnerabilities
+
+## [Good attack targets](#table-of-contents)
+- Not up to date dates
+- Powered by a 3rd party company
+	- Wordpress, GoDaddy, Wix
 
 ## [Tools](#table-of-contents)
 Tools:
