@@ -118,6 +118,8 @@ Often times inputs are filtered to remove or replace certain characters. This us
 Sometimes you need to add `">` or `'>` in front of your attacks as an escape sequence.
 
 - It is often times worth try to double URL encode you input.
+- Try URL encoding ascii characters with the hex representation fo the ascii `%hex`
+	- You can try to double URL encode this as well
 
 ## Solutions to XSS attacks
 - Better filters preferably from a library which specializes in such a thing

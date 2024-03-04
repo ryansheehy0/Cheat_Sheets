@@ -41,13 +41,13 @@ For some of these tools you need to kali repos in apt.
 	- lists all the different paths for the website
 
 ## Finding subdomains
-	sublister -d domain.com
-	amass enum -d domain.com
-	assetFinder
-	wayback machine
-	
-	Subfinder -d domain.com -o Output.txt
-	
+- `sublister -d domain.com`
+- `amass enum -d domain.com`
+
+Need to research
+- `assetFinder`
+-	`wayback machine`
+- `Subfinder -d domain.com -o Output.txt`
 	search engine dorking
 	github dorking
 

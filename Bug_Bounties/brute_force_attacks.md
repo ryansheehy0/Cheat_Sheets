@@ -20,6 +20,10 @@
 
 # Brute Force Attacks
 
+Just use Burp Suite Intruder
+Select username and password
+
+
 **Brute force attacks** are attacks where an attacker tries all possible combinations of usernames and passwords until the correct one is found.
 
 **Dictionary attacks** are attacks where an attacker tries a pre-defined set of usernames and passwords until the correct one is found.
@@ -31,9 +35,9 @@ Often it isn't practical to do brute force attack and that's why dictionary atta
 <!-- TOC -->
 
 - [Brute Force Attacks](#brute-force-attacks)
-	- [Table of Contents](#table-of-contents)
-	- [Hydra](#hydra)
-	- [Wpscan](#wpscan)
+	- [](#)
+	- [Hydra is a tool for doing dictionary attacks on websites.](#hydra-is-a-tool-for-doing-dictionary-attacks-on-websites)
+	- [](#)
 
 <!-- /TOC -->
 

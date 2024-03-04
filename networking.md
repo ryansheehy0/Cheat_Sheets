@@ -69,11 +69,12 @@ Ex: 192.168.1.255
 
 | Class | Range                       | Default Subnet Mask | CIDR | Description                    |
 |-------|-----------------------------|---------------------|------|--------------------------------|
-| A     | 1.0.0.0 - 126.255.255.255   | 255.0.0.0           | 8    | Large companies                |
-| B     | 128.0.0.0 - 191.255.0.0     | 255.255.0.0         | 16   | Medium companies               |
-| C     | 192.0.0.0 - 223.255.255.0   | 255.255.255.0       | 24   | ISP and most people            |
+| A     | 1.0.0.0 - 126.255.255.255   | 255.0.0.0           | /8   | Large companies                |
+| B     | 128.0.0.0 - 191.255.0.0     | 255.255.0.0         | /16  | Medium companies               |
+| C     | 192.0.0.0 - 223.255.255.0   | 255.255.255.0       | /24  | ISP and most people            |
 | D     | 224.0.0.0 - 239.255.255.255 |                     |      | Used for multicasting          |
 | E     | 240.0.0.0 - 255.255.255.255 |                     |      | Used for experimental features |
+
 - **CIDR notation** is just a different notation for different subnet masks
 
 Local networks with class A IP Addresses can have 2^(8*3) different devices with their own IP Addresses. These are often reserved for large companies.
@@ -97,6 +98,8 @@ Private IP Addresses are specific IP Addresses that aren't unique. They can be u
 | A     | 10.0.0.0 - 10.255.255.255     | 255.0.0.0           | /8   |
 | B     | 172.16.0.0 - 172.31.255.255   | 255.255.0.0         | /16  |
 | C     | 192.168.0.0 - 192.168.255.255 | 255.255.255.0       | /24  |
+
+Private IP Addresses are used for communication in a private network. Each device connected to the router gets its own unique private IP addresses different from all the other devices connected to the network.
 
 #### [NAT](#table-of-contents)
 Network Address Translation(NAT) is used by the router to convert your device's private IP Address to a public IP Address which can be used on the internet.
