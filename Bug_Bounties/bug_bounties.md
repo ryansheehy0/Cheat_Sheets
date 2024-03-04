@@ -28,7 +28,7 @@
 	- [Table of Contents](#table-of-contents)
 	- [Rules](#rules)
 	- [Links](#links)
-	- [Check list](#check-list)
+	- [What to look out for](#what-to-look-out-for)
 	- [Good attack targets](#good-attack-targets)
 	- [Tools](#tools)
 		- [Need to research](#need-to-research)
@@ -45,21 +45,25 @@
 - https://www.bugcrowd.com/
 - https://www.intigriti.com/
 
-## [Check list](#table-of-contents)
+## [What to look out for](#table-of-contents)
 1. [Recon](./recon.md)
 1. Look through source code
-1. [Path traversal](./path_traversal.md)
-1. [SQL injection](./sql_injection.md)
-1. [IDORs](./idor.md)
-1. [XSS](./cross_site_scripting.md)
 
-- Cross-site scripting(XSS)
-	- Used to run unwanted javascript on the server itself. This is useful because it allows you to bypass permissions because the javascript is running on the server itself.
+- URL parameters to files
+	- [Path traversal](./path_traversal.md)
+- User input that would use the db
+	- [SQL injection](./sql_injection.md)
+- User ids
+	- [IDORs](./idor.md)
+- URL parameters that output to the DOM, User input that is saved to the servers and can be seen by other users
+	- [XSS](./cross_site_scripting.md)
+- Unaccessible pages and URL or URL paths as arguments
+	- [SSRF](./server_side_request_forgery.md)
+
 - Cross site request forgery(CSRF)
-- Server side request forgery(SSRF)
 - XML External Entity (XXE)
-- Default credentials and Insecure server configurations
 - Authoritative Zone Transfer(AXFR) on port 53
+- Default credentials and Insecure server configurations
 - Business logic errors(BLEs)
 - File upload vulnerabilities
 - CNAME takeover
@@ -77,7 +81,7 @@ You often need 2 different accounts:
 	- IDOR vulnerabilities
 
 ## [Good attack targets](#table-of-contents)
-- Not up to date dates
+- Not up to date webpages
 - Powered by a 3rd party company
 	- Wordpress, GoDaddy, Wix
 
@@ -86,6 +90,7 @@ Tools:
 1. Burp suit: Intercepts requests made from the client to the server.
 1. Shodan: A database of all open IP addresses.
 1. Wayback machine: A database of snapshots of different URLS from different points in time.
+1. amass: Find subdomains and ip addresses used by domain
 
 ### [Need to research](#table-of-contents)
 - Wireshark
