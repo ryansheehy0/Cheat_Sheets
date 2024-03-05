@@ -46,19 +46,27 @@
 - https://www.intigriti.com/
 
 ## [What to look out for](#table-of-contents)
-1. [Recon](./recon.md)
-1. Look through source code
-
-- URL parameters to files
+-  [Recon](./recon.md)
+- Look through source code
+	- Comments with sensitive info
+	- Check for max length of form inputs
+- Parameters to files
 	- [Path traversal](./path_traversal.md)
 - User input that would use the db
 	- [SQL injection](./sql_injection.md)
+	- NoSQL injection
 - User ids
 	- [IDORs](./idor.md)
-- URL parameters that output to the DOM, User input that is saved to the servers and can be seen by other users
+- URL parameters that output to the DOM or User inputs that are saved to the db and can be seen by other users.
 	- [XSS](./cross_site_scripting.md)
 - Unaccessible pages and URL or URL paths as arguments
 	- [SSRF](./server_side_request_forgery.md)
+- Login pages
+	- Brute force attack on common usernames and passwords
+- Malicious action, cookie based session handling, and predictable arguments.
+	- [CSRF](./cross_site_request_forgery.md)
+- Discount codes
+	- Military, 
 
 - Cross site request forgery(CSRF)
 - XML External Entity (XXE)
@@ -71,9 +79,7 @@
 	- How do you discover all the CNAMEs someone has for the domain name?
 - JWT attacks
 - Broken objects level authorization(BOLA)
-- Brute force attacks on admin accounts with common passwords
 - Broken access control
-- Check for max length of form inputs
 
 You often need 2 different accounts:
 - Attacker and victim account

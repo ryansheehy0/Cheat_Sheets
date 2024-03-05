@@ -20,6 +20,8 @@
 
 # Insecure Direct Object References(IDOR)
 
+So IDOR happens when you can change a user id to another user that you shouldn't have access to?
+
 IDOR vulnerabilities are exposing a user's sensitive features without needing authorization.
 
 In order to test for IDORs you need to create 2 different accounts. The attacker's account and the victim's account.
