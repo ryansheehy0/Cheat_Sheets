@@ -26,9 +26,24 @@ Steps for CSRFs:
 1. Site B sends a malicious request to Site A.
 1. The browser will automatically add Site A's session cookie to the malicious request and thus Site A accepts the malicious request.
 
-## Things required for CSRFs
+This is especially bad if Site B can guarantee some users from Site A, like, for example, posting Site B's link in the comment section on Site A.
+
+## Table of Contents
+<!-- TOC -->
+
+- [Cross Site Request ForgeryCSRF](#cross-site-request-forgerycsrf)
+	- [Table of Contents](#table-of-contents)
+	- [Things required for CSRFs](#things-required-for-csrfs)
+	- [Why form over fetch](#why-form-over-fetch)
+	- [Sending JSON through form](#sending-json-through-form)
+	- [Downsides to SameSite strict cookies and localstorage for sessions](#downsides-to-samesite-strict-cookies-and-localstorage-for-sessions)
+	- [CSRF tokens](#csrf-tokens)
+
+<!-- /TOC -->
+
+## [Things required for CSRFs](#table-of-contents)
 1. **Malicious action**: An action that the attacker would want to perform as another user.
-1. **Cookie based session handling**: The server relies solely on the cookie session to identify the user who made the request.
+1. **Cookie based session handling**: The server relies solely on the cookie session to identify the user who made the request. If the cookie has SameSite set to strict then CSRFs aren't possible.
 1. **Predictable arguments**: The request doesn't contain any arguments that an attacker doesn't know or can't guess.
 
 Ex:
@@ -52,39 +67,56 @@ Often times the malicious request is sent to Site A through a hidden html form.
 						<button type="submit">CSRF attack</button>
         </form>
         <script>
-						// If you want to automatically submit the form.
-            	//document.forms[0].submit();
+						// If you want to automatically submit the form on page load.
+            document.forms[0].submit()
         </script>
     </body>
 </html>
 ```
-- You can only perform CSRFs through form and not through fetch.
-	- fetch requires cors(cross origin resource sharing) which doesn't allow cross domain cookies from being automatically added to the request.
-	- form uses navigate which does automatically add cross domain cookies.
-	- This is set through the Sec-Fetch-Mode: header.
 
-## Why cookie over localstorage
-Cookies are accessible to any site in the same browser instance. Localstorage is only accessible to the site itself.
-Thus allows cookies to be susceptible to CSRFs and not localstorage. So why are sessions commonly stored in cookies and not localstorage?
+## [Why form over fetch](#table-of-contents)
+Fetch requires CORS(cross origin resource sharing) which doesn't allow cross domain cookies from being automatically added to the request.
 
-localstorage/sessionstorage:
+Forms use `Sec-Fetch-Mode: navigate` header which does automatically add the headers.
+
+I think AJAX does work though.
+
+## [Sending JSON through form](#table-of-contents)
+Form sends data through key value pairs not json.
+
+Ex: `data=value`
+
+If you want to convert this to valid json you could set data to `{"key": "value", "junk": "` and value to `test"}`. This would result in the output being `{"key": "value", "junk": "=test"}` which would be valid json.
+- This only works if the server will just ignore the junk key.
+
+Sometimes the server requires the `Content-Type: application/json` header to be set. This can only be done through AJAX and the server has to allow you to do so through CORS.
+
+The server has to set these headers to allow you to set the Content-Type header:
+```
+Access-Control-Allow-Origin: website
+Access-Control-Allow-headers: Content-Type
+```
+
+## [Downsides to SameSite strict cookies and localstorage for sessions](#table-of-contents)
+localstorage:
 - Divided between HTTP and HTTPS
 - Divided between subdomains
 
-cookies
-- Accessible to both HTTP and HTTPS
-	- Unless it has the secure attribute
-- Read by javascript 
+sessionstorage:
+- Divided between HTTP and HTTPS
+- Divided between subdomains
+- Divided between each tab and browser window
 
-https://stackoverflow.com/questions/35291573/csrf-protection-with-json-web-tokens/
+SameSite strict cookies:
+- Not divided between HTTP and HTTPS
+- Divided between subdomains
 
-Cookies are marked with a domain. When a request is made to a server, the browser will send all cookies with the matching domain regardless of .
+This would be undesirable if, for example, you want the user to continue their sign in from one subdomain to another. Like docs.google.com and drive.google.com
 
-Cookies are sent via the headers.
+## [CSRF tokens](#table-of-contents)
+1. Server sends a random value(CSRF token) to the client along with there cookie session.
+1. The client stores this CSRF token in a local variable.
+1. Whenever the client sends a request back to the serve that CSRF token has to be sent as well
+1. The server checks if the session's CSRF token matches the CSRF token sent along with the request. If it does then it allows the request, if not it doesn't allow.
 
-There are such things as same site cookies.
-
-## Purpose of nonces
-	- nonce is used to prevent CSRFs
-To stop these attacks you would use a nonce(number only once).
-	- Changes per user and changes every time the server sends back the get.
+Since Site B has no way of knowing this random value(CSRF token), they cannot perform a CSRF attack.

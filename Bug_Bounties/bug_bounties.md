@@ -27,10 +27,11 @@
 - [Bug Bounties](#bug-bounties)
 	- [Table of Contents](#table-of-contents)
 	- [Rules](#rules)
-	- [Links](#links)
+	- [Bug Bounty Platforms](#bug-bounty-platforms)
 	- [What to look out for](#what-to-look-out-for)
 	- [Good attack targets](#good-attack-targets)
 	- [Tools](#tools)
+	- [Tool websites](#tool-websites)
 		- [Need to research](#need-to-research)
 
 <!-- /TOC -->
@@ -40,13 +41,27 @@
 1. Report vulnerabilities without any conditions attached.
 1. Do not share any vulnerabilities to 3rd parties.
 
-## [Links](#table-of-contents)
+## [Bug Bounty Platforms](#table-of-contents)
 - https://www.hackerone.com/
-- https://www.bugcrowd.com/
 - https://www.intigriti.com/
 
+- Bugbounter
+- https://www.bugcrowd.com/
+- NordicDefender Bug Bounty
+- SafeHats
+- HackenProof
+- Synack
+- SecureBug
+- Open Bug Bounty
+- YesWeHack
+- Topcoder, a Wipro company
+
+- Cobalt
+- BountyFactory
+- Zerocopter
+
 ## [What to look out for](#table-of-contents)
--  [Recon](./recon.md)
+- [Recon](./recon.md)
 - Look through source code
 	- Comments with sensitive info
 	- Check for max length of form inputs
@@ -56,19 +71,16 @@
 	- [SQL injection](./sql_injection.md)
 	- NoSQL injection
 - User ids
-	- [IDORs](./idor.md)
+	- [IDORs](./insecure_direct_object_references.md)
 - URL parameters that output to the DOM or User inputs that are saved to the db and can be seen by other users.
 	- [XSS](./cross_site_scripting.md)
-- Unaccessible pages and URL or URL paths as arguments
+- Unaccessible pages and URL/URL paths as arguments
 	- [SSRF](./server_side_request_forgery.md)
 - Login pages
-	- Brute force attack on common usernames and passwords
+	- Brute force attack with common usernames and passwords
 - Malicious action, cookie based session handling, and predictable arguments.
 	- [CSRF](./cross_site_request_forgery.md)
-- Discount codes
-	- Military, 
 
-- Cross site request forgery(CSRF)
 - XML External Entity (XXE)
 - Authoritative Zone Transfer(AXFR) on port 53
 - Default credentials and Insecure server configurations
@@ -80,11 +92,12 @@
 - JWT attacks
 - Broken objects level authorization(BOLA)
 - Broken access control
+- GraphQL attacks
+- 403 bypass
 
-You often need 2 different accounts:
-- Attacker and victim account
-	- Used to test Stored XSS attacks
-	- IDOR vulnerabilities
+You often need 2 accounts in order to perform certain attacks. An attacking account and a victim account.
+- Stored XSS
+- IDORs
 
 ## [Good attack targets](#table-of-contents)
 - Not up to date webpages
@@ -97,6 +110,12 @@ Tools:
 1. Shodan: A database of all open IP addresses.
 1. Wayback machine: A database of snapshots of different URLS from different points in time.
 1. amass: Find subdomains and ip addresses used by domain
+
+## [Tool websites](#table-of-contents)
+- [URL Decoder/Encoder](https://meyerweb.com/eric/tools/dencoder/)
+- [JavaScript Deobfuscator](https://deobfuscate.io/)
+- [ASCII table](https://www.asciitable.com/)
+- [CSRF HTML generator](https://tools.nakanosec.com/csrf/)
 
 ### [Need to research](#table-of-contents)
 - Wireshark

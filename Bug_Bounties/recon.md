@@ -53,6 +53,10 @@ Need to research
 
 	How to output to a file and remove any duplicates?
 
+## Filtering for open sites
+Doesn't return 400s
+Returns 200s
+
 ## Finding open ports and other server
 - https://www.shodan.io/
 	- Search engine that indexes every device connected tot he internet
