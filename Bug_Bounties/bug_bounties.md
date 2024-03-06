@@ -27,6 +27,7 @@
 - [Bug Bounties](#bug-bounties)
 	- [Table of Contents](#table-of-contents)
 	- [Rules](#rules)
+	- [Tips](#tips)
 	- [Bug Bounty Platforms](#bug-bounty-platforms)
 	- [What to look out for](#what-to-look-out-for)
 	- [Good attack targets](#good-attack-targets)
@@ -40,6 +41,10 @@
 1. Testing for vulnerabilities should not degrade, damage, or destroy the application for other users.
 1. Report vulnerabilities without any conditions attached.
 1. Do not share any vulnerabilities to 3rd parties.
+
+## [Tips](#table-of-contents)
+- Spend more time on one target
+- Focus on a single type of security issue
 
 ## [Bug Bounty Platforms](#table-of-contents)
 - https://www.hackerone.com/
@@ -80,8 +85,10 @@
 	- Brute force attack with common usernames and passwords
 - Malicious action, cookie based session handling, and predictable arguments.
 	- [CSRF](./cross_site_request_forgery.md)
+- Client sends XML to server
+	- [XXE](./xml_external_entities.md)
 
-- XML External Entity (XXE)
+- GraphQL attacks
 - Authoritative Zone Transfer(AXFR) on port 53
 - Default credentials and Insecure server configurations
 - Business logic errors(BLEs)
@@ -92,8 +99,11 @@
 - JWT attacks
 - Broken objects level authorization(BOLA)
 - Broken access control
-- GraphQL attacks
 - 403 bypass
+- API Enumeration
+- LFI and RFI
+- Wordpress and CMS
+- How to hack APIs
 
 You often need 2 accounts in order to perform certain attacks. An attacking account and a victim account.
 - Stored XSS

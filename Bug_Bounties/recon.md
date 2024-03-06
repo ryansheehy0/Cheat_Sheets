@@ -62,3 +62,18 @@ Returns 200s
 	- Search engine that indexes every device connected tot he internet
 - nmap domain.com
 - nmap ip address
+
+## Script
+1. Get list of subdomains
+1. Remove any duplicates
+1. Filter out any non loading subdomains
+1. Organize subdomains
+	- Redirects to
+	- Login page
+	- Unique page
+	- Language site
+	- API
+	- 500s/bad request
+	- 400s
+	- Blocked/restricted
+	- * any interesting sites
