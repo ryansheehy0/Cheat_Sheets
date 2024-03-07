@@ -26,25 +26,25 @@
 
 - [Bug Bounties](#bug-bounties)
 	- [Table of Contents](#table-of-contents)
-	- [Rules](#rules)
-	- [Tips](#tips)
+	- [3 Golden Rules](#3-golden-rules)
 	- [Bug Bounty Platforms](#bug-bounty-platforms)
 	- [What to look out for](#what-to-look-out-for)
 	- [Good attack targets](#good-attack-targets)
 	- [Tools](#tools)
-	- [Tool websites](#tool-websites)
+		- [Programs](#programs)
+		- [Tool websites](#tool-websites)
+		- [Browser extentions](#browser-extentions)
 		- [Need to research](#need-to-research)
+	- [Important terms](#important-terms)
 
 <!-- /TOC -->
 
-## [Rules](#table-of-contents)
+## [3 Golden Rules](#table-of-contents)
 1. Testing for vulnerabilities should not degrade, damage, or destroy the application for other users.
 1. Report vulnerabilities without any conditions attached.
 1. Do not share any vulnerabilities to 3rd parties.
 
-## [Tips](#table-of-contents)
-- Spend more time on one target
-- Focus on a single type of security issue
+- Make sure to read all of the requirements before beginning bug bountying.
 
 ## [Bug Bounty Platforms](#table-of-contents)
 - https://www.hackerone.com/
@@ -91,6 +91,7 @@
 - GraphQL attacks
 - Authoritative Zone Transfer(AXFR) on port 53
 - Default credentials and Insecure server configurations
+	- s3 bucket
 - Business logic errors(BLEs)
 - File upload vulnerabilities
 - CNAME takeover
@@ -104,6 +105,7 @@
 - LFI and RFI
 - Wordpress and CMS
 - How to hack APIs
+- LDAP injection
 
 You often need 2 accounts in order to perform certain attacks. An attacking account and a victim account.
 - Stored XSS
@@ -113,19 +115,31 @@ You often need 2 accounts in order to perform certain attacks. An attacking acco
 - Not up to date webpages
 - Powered by a 3rd party company
 	- Wordpress, GoDaddy, Wix
+- Foreign languages. Less people search for bugs there.
 
 ## [Tools](#table-of-contents)
+
+### [Programs](#table-of-contents)
 Tools:
 1. Burp suit: Intercepts requests made from the client to the server.
+- [Burp-UserAgent](https://github.com/codewatchorg/Burp-UserAgent). Certain bug bounties may required info be appended to user agents.
+- Settings -> Tasks -> New resource pool -> Set maximum concurrent requests
 1. Shodan: A database of all open IP addresses.
 1. Wayback machine: A database of snapshots of different URLS from different points in time.
 1. amass: Find subdomains and ip addresses used by domain
 
-## [Tool websites](#table-of-contents)
+### [Tool websites](#table-of-contents)
 - [URL Decoder/Encoder](https://meyerweb.com/eric/tools/dencoder/)
 - [JavaScript Deobfuscator](https://deobfuscate.io/)
 - [ASCII table](https://www.asciitable.com/)
 - [CSRF HTML generator](https://tools.nakanosec.com/csrf/)
+- [get your user agent](https://www.whatsmyua.info/)
+
+### [Browser extentions](#table-of-contents)
+- Wappalyzer
+	- Technologies used to create the website
+- IP Address and Domain Information
+- Multiple Url Opener
 
 ### [Need to research](#table-of-contents)
 - Wireshark
@@ -159,3 +173,9 @@ Tools:
 - gau
 	- get all urls. Uses AlienVault's Open Threat Exchange, wayback machine, common crawl and URLScan
 	- Just accesses database and doesn't crawl(like a spider)
+
+## [Important terms](#table-of-contents)
+
+| Term       | Definition                                                                 |
+|------------|----------------------------------------------------------------------------|
+| User Agent | Information about the user. Such as their OS, browser, and their versions. |

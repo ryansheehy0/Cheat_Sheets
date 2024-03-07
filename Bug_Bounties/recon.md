@@ -19,7 +19,15 @@
 [Home](../README.md)
 
 Need to research:
-https://ivre.rocks/
+- https://ivre.rocks/
+- WHOIS info
+- SSL/TLS certicate details
+- Brute force
+	- ShuffleDNS Standard
+	- ShuffleDNS CeWL
+- Link crawling
+- param miner burp suit
+- Burp suit -> target -> Site map
 
 # Recon
 Finding all the open subdomains and paths that are in scope.
@@ -64,8 +72,15 @@ Returns 200s
 - nmap ip address
 
 ## Script
-1. Get list of subdomains
+1. Get txt file with list of subdomains
+- amass
+- sublist3r
+- assetfinder
+- GetAllUrls(GAU)
+- Certificat Transparency Logs(CTL)
+- subfinder
 1. Remove any duplicates
+`sort file.txt | uniq -u > file.txt`
 1. Filter out any non loading subdomains
 1. Organize subdomains
 	- Redirects to
@@ -77,3 +92,7 @@ Returns 200s
 	- 400s
 	- Blocked/restricted
 	- * any interesting sites
+
+
+- Script that runs command -> regex to extract subdomains -> concat to file -> runs the next commands -> etc.
+- Script which filters out any nonloading sub domains

@@ -86,6 +86,7 @@ Local networks with class A IP Addresses can have 2^(8*3) different devices with
 
 - Domain Name Server(**DNS**) is the server which converts URLs to IP Addresses.
 - Dynamic Host Configuration Protocol(**DHCP**) is how a router assigns it's devices an IP Address, Subnet mask, default gateway, and DNS IP address.
+- Autonomous System Numbers(**ASNs**) are blocks of IP address purchased from ISPs. Large companies tend to use these.
 
 ### [RFC1918](#table-of-contents)
 RFC1918 was a standard in order to not run out of IP Addresses. It introduced Private IP Addresses and NAT.
