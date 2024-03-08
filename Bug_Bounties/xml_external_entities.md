@@ -23,11 +23,11 @@
 XXEs are where an attacker sends a modified XML request to the server which allows the attacker to perform their attacks. Most often this attack would be SSRFs.
 
 ## Terms:
-- **Document Type Definitions(DTDs)** are a set of rules which defines the legal elements for XML. DTDs are defined using the `DOCTYPE` element. An XML can only have 1 DTD.
+- **Document Type Definitions(DTDs)** are a set of rules which defines the legal elements for XML. DTDs are defined using the `DOCTYPE` element. An XML can only have 1 DTD and it's set at the top.
 - **Entities** are ways to define reusable content in XML. These are defined in the DTD.
 	- **General entities** are like variables.
 	- **Parameter entities** are entities which can take in other entities. These can only be used inside the DTD.
-		- Ex: `<!ENTITY % outer "<!ENTITY inner 'John'>">`
+		- Ex: `<!ENTITY % outer "<!ENTITY inner 'John'>">` This is used to call that parameter entity. `%outer;`
 	- **Predefined entities** are entities that are already defined and are used to display special characters, `<>"'&` inside XML elements.
 
 | Character | Entity   | Unicode |
@@ -40,6 +40,8 @@ XXEs are where an attacker sends a modified XML request to the server which allo
 
 - **External entities** are entities that are loaded outside of the DTD. These could be other files or URLs.
 	- Ex: `<!ENTITY subscribe SYSTEM "file.txt">`
+- **External DTDs** are DTDs loaded outside of the main XML document.
+	- Ex: `<!DOCTYPE dtd SYSTEM "external.dtd">`
 
 ## XML Ex:
 
