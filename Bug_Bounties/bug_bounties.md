@@ -85,7 +85,7 @@
 	- Brute force attack with common usernames and passwords
 - Malicious action, cookie based session handling, and predictable arguments.
 	- [CSRF](./cross_site_request_forgery.md)
-- Client sends XML to server
+- Client sends XML to server, XML processed on the server, or accepts XML like files(SVG, DOCX, etc)
 	- [XXE](./xml_external_entities.md)
 
 - GraphQL attacks

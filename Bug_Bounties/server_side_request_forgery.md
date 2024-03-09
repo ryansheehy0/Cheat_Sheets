@@ -83,3 +83,11 @@ Sometime SSRF filter only allow URLs that contain or start with permitted values
 - http://169.254.169.254/latest/meta-data/iam/security-credentials/admin
 	- It might not be admin. It could be any other file name. Maybe try a brute force attack to try all combinations.
 		- Try s3access, role, ec2-instance, web-server, lambda-executor, default-role
+- /etc/hostname
+- /etc/shadow
+- /etc/hosts
+- /etc/resolv.conf
+- /etc/mysql/my.cnf
+- /etc/postgresql/pg_hba.conf
+- /etc/nginx/nginx.conf
+- /etc/apache2/apache2.conf
