@@ -18,6 +18,7 @@ RS Cheat Sheets is licensed under GPLv3. See the COPYING file for details.
         - [Sending Messages](./sending_messages.md)
         - [Advanced Google Searches](./advanced_google_searches.md)
         - [Networking](./networking.md)
+        - [NOT DONE: HTTP](./http.md)
     - HTML/CSS/JS
         - [HTML](./html.md)
             - [NOT DONE: HTML Canvas](./html_canvas.md)

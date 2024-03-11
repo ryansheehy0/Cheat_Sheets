@@ -40,6 +40,11 @@
 - PUT - replaces a specified resource. Update data on the server.
 - DELETE - removes a resource
 - PATCH
+- OPTIONS
+- HEAD
+- CONNECT
+- TRACE
+- PATCH
 
 | method: | Description                     |
 |---------|---------------------------------|

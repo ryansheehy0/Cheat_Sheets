@@ -94,7 +94,7 @@ Sometimes the server requires the `Content-Type: application/json` header to be 
 The server has to set these headers to allow you to set the Content-Type header:
 ```
 Access-Control-Allow-Origin: website
-Access-Control-Allow-headers: Content-Type
+Access-Control-Allow-Headers: Content-Type
 ```
 
 ## [Downsides to SameSite strict cookies and localstorage for sessions](#table-of-contents)

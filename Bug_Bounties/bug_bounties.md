@@ -70,8 +70,6 @@
 - Look through source code
 	- Comments with sensitive info
 	- Check for max length of form inputs
-- Parameters to files
-	- [Path traversal](./path_traversal.md)
 - User input that would use the db
 	- [SQL injection](./sql_injection.md)
 	- NoSQL injection
@@ -79,8 +77,10 @@
 	- [IDORs](./insecure_direct_object_references.md)
 - URL parameters that output to the DOM or User inputs that are saved to the db and can be seen by other users.
 	- [XSS](./cross_site_scripting.md)
-- Unaccessible pages and URL/URL paths as arguments
-	- [SSRF](./server_side_request_forgery.md)
+- URL/URL paths as arguments or parameters to files
+	- [Path traversal](./path_traversal.md)
+	- Unaccessible pages
+		- [SSRF](./server_side_request_forgery.md)
 - Login pages
 	- Brute force attack with common usernames and passwords
 - Malicious action, cookie based session handling, and predictable arguments.
