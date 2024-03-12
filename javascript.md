@@ -46,8 +46,11 @@ JavaScript is the only language that can be run in the browser.
 		- [Logical and for Assignment](#logical-and-for-assignment)
 		- [Nullish coalescing operator ??](#nullish-coalescing-operator-)
 	- [Useful Functions](#useful-functions)
+	- [Sending requests](#sending-requests)
+		- [XMLHttpRequest](#xmlhttprequest)
 		- [Fetch](#fetch)
 			- [Optional Fetch Argument](#optional-fetch-argument)
+		- [Axios](#axios)
 	- [Objects](#objects)
 		- [Updating values in Object](#updating-values-in-object)
 		- [For In](#for-in)
@@ -591,6 +594,20 @@ consol.log(accessLevel) // "value"
 | .toString()                              | Convert a data type to a string.                                                  |
 | Math.pow(A, B) or A ** B                 | A to the power of B. A^B                                                          |
 
+## [Sending requests](#table-of-contents)
+
+### [XMLHttpRequest](#table-of-contents)
+```javascript
+const req = XMLHttpRequest()
+req.open("GET"/*HTTP Method*/, "http://test.com"/*URL */) // Prepares an http request to be sent
+req.withCredentials = true // Include cookies, authorization headers, or TLS client certificates
+req.onload = () => {
+    console.log(req.response)
+    // Probably need to convert JSON to obj
+}
+req.send()
+```
+
 ### [Fetch](#table-of-contents)
 Used to fetch data from a server. Returns a promise of the response.
 
@@ -672,6 +689,9 @@ fetch('api/request', {
     body: JSON.stringify(json),
 })
 ```
+
+### [Axios](#table-of-contents)
+Axios is a library which builds off of XMLHttpRequest to make it more convenient to use.
 
 ## [Objects](#table-of-contents)
 Objects are used to store an unordered list of properties to describe one thing.
