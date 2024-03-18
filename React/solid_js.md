@@ -46,3 +46,9 @@ Ex:
 			// If signal2 is updated and value1 is true, then the createEffect doesn't get run again
 	})
 ```
+
+Downsides of solid js
+- to call with state/signal you need to add the ().
+	- Makes it harder to go from variable to state/signal
+- useEffect/createEffect you can't just list the dependencies like in react
+- can't use prop dereferencing in the arguments

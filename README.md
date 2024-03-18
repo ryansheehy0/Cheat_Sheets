@@ -19,6 +19,7 @@ RS Cheat Sheets is licensed under GPLv3. See the COPYING file for details.
         - [Advanced Google Searches](./advanced_google_searches.md)
         - [Networking](./networking.md)
         - [NOT DONE: HTTP](./http.md)
+    - [NOT DONE: Bug Bounties](./Bug_Bounties/bug_bounties.md)
     - HTML/CSS/JS
         - [HTML](./html.md)
             - [NOT DONE: HTML Canvas](./html_canvas.md)
@@ -35,7 +36,6 @@ RS Cheat Sheets is licensed under GPLv3. See the COPYING file for details.
             - [NOT DONE: React](./React/react.md)
                 - [NOT DONE: React hooks](./React/react_hooks.md)
                 - [NOT DONE: useContext](./React/use_context.md)
-                - [NOT DONE: Solid JS](./React/solid_js.md)
             - [Graph QL](./graphql.md)
         - [NOT DONE: TypeScript](./typescript.md)
             - [Zod](./zod.md)
@@ -53,7 +53,6 @@ RS Cheat Sheets is licensed under GPLv3. See the COPYING file for details.
         - [NOT DONE: Sort Algorithms](./sort_algorithms.md)
         - [NOT DONE: Machine Learning](./Machine_Learning/machine_learning.md)
         - [NOT DONE: Memory Managed Hash Table](./memory_managed_hash_table.md)
-    - [NOT DONE: Bug Bounties](./Bug_Bounties/bug_bounties.md)
 - Math
     - [Taylor Series](./Taylor_Series/taylor_series.md)
     - [Newtons Method](./Newtons_Method/newtons_method.md)

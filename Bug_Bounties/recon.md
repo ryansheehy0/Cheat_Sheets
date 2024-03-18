@@ -28,6 +28,8 @@ Need to research:
 - Link crawling
 - param miner burp suit
 - Burp suit -> target -> Site map
+- ffuf
+	- https://www.youtube.com/watch?v=0v1CTSyRpMU
 
 # Recon
 Finding all the open subdomains and paths that are in scope.

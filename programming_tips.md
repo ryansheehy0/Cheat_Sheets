@@ -18,13 +18,13 @@
 
 [Home](./README.md)
 
-# Advanced Programming Tips
+# Programming Tips
 
 ## Table of Contents
 
 <!-- TOC -->
 
-- [Advanced Programming Tips](#advanced-programming-tips)
+- [Programming Tips](#programming-tips)
 	- [Table of Contents](#table-of-contents)
 	- [GPLv3 License](#gplv3-license)
 		- [How to add GPLv3 License](#how-to-add-gplv3-license)
@@ -45,6 +45,7 @@ If you are making your code open source, then it is recommended to use the GPLv3
 1. Include a copy of the license at the root of your project named `COPYING`
 2. Add a licensing notice at the top of each of your source code files
   - Make sure to replace "THIS PROGRAM" with the name of your program.
+
 ```javascript
 /*
  * This file is part of THIS PROGRAM.
@@ -63,6 +64,7 @@ If you are making your code open source, then it is recommended to use the GPLv3
  * along with THIS PROGRAM. If not, see <https://www.gnu.org/licenses/>.
  */
 ```
+
 3. Add `THIS PROGRAM is licensed under GPLv3. See the COPYING file for details.` to your README.md under `## License`
 4. Include a copy of the license with the distribution of your software.
 
