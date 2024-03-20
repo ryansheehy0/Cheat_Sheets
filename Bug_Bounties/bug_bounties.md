@@ -106,6 +106,8 @@
 - Wordpress and CMS
 - How to hack APIs
 - LDAP injection
+- Email which opened gets ip address/location
+- CDN(Content delivery networks) vulnerabilities?
 
 You often need 2 accounts in order to perform certain attacks. An attacking account and a victim account.
 - Stored XSS
