@@ -1,0 +1,88 @@
+<!--
+ * This file is part of RS Cheat Sheets.
+ *
+ * RS Cheat Sheets is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * RS Cheat Sheets is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with RS Cheat Sheets. If not, see <https://www.gnu.org/licenses/>.
+ */
+-->
+
+[Home](./README.md)
+
+# Orthogonal Arrays
+
+Used to more efficiently optimize a function when you have multiple input variables.
+
+Instead of testing each input on its own, just changing that variable, you can instead test multiple inputs at once and combine their results to effectively give you the same information. Give the same information with much less tests.
+
+Only tells you directly to make changes and doesn't tell you how far.
+
+Ex: A recipe's input is the amount of each ingredient and the time to cook it.
+
+- If you just change one variable at a time you will have to do a lot of experiments in order to test all you variables/inputs.
+- 
+
+Rules:
+- All inputs must be tested an equal number of times.
+- All inputs must be tested against all other tests equally.
+
+
+
+I1 = Input 1
+I2 = Input 2
+I3 = Input 3
+O  = Output
+
+| I1 | I2 | I3 | O |
+|----|----|----|-|
+| 0  | 0  | 0  | 
+| 0  | 1  | 1  |
+| 1  | 0  | 1  |
+| 1  | 1  | 0  |
+
+How can I write a program to generate these tables?
+What if the inputs aren't boolean, but analog?
+	- You can convert them with break points to boolean.
+		- What if I want finer control?
+			- You can add more breakpoints and use trinary, quaternary, etc.
+How can I write a program to generate these tables with any base inputs?
+
+How do you extract the important information form the output of these tests?
+	- Maybe make a simplification where all the inputs have the same base number.
+
+Inputs are trinary.
+
+| I1 | I2 | I3 | I4 |
+|----|----|----|----|
+| 0  | 0  | 0  | 0  |
+| 0  | 1  | 1  | 1  |
+| 0  | 2  | 2  | 2  |
+| 1  | 0  | 1  | 2  |
+| 1  | 1  | 2  | 0  |
+| 1  | 2  | 0  | 1  |
+| 2  | 0  | 2  | 1  |
+| 2  | 1  | 0  | 2  |
+| 2  | 2  | 1  | 0  |
+
+Ex: Making the best cookies.
+Inputs:
+	- Butter
+	- Brown sugar
+	- White sugar
+	- Egg yolk
+	- Egg white
+	- Vanilla
+	- Flour
+	- Cornstarch
+	- Banking soda
+	- salt
+	- time to bake at 350F

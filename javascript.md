@@ -46,6 +46,7 @@ JavaScript is the only language that can be run in the browser.
 		- [Logical and for Assignment](#logical-and-for-assignment)
 		- [Nullish coalescing operator ??](#nullish-coalescing-operator-)
 	- [Useful Functions](#useful-functions)
+	- [Printing with color](#printing-with-color)
 	- [Sending requests](#sending-requests)
 		- [XMLHttpRequest](#xmlhttprequest)
 		- [Fetch](#fetch)
@@ -580,6 +581,7 @@ consol.log(accessLevel) // "value"
 |                                          |                                                                                   |
 |------------------------------------------|-----------------------------------------------------------------------------------|
 | console.log("x is " + x)                 | Prints to the console.                                                            |
+| console.log("x is", x)                   | Prints to the console. "x is x"                                                   |
 | prompt("Message")                        | Shows a pop up with message and allowing user input.                              |
 | alert("Message")                         | Shows an alert to the user. No user input.                                        |
 | confirm("Message")                       | Shows message to user and takes user input as true or false.                      |
@@ -593,6 +595,39 @@ consol.log(accessLevel) // "value"
 | parseInt(str) or parseInt(str, base num) | Converts a string to an int. If it can't then it returns NaN                      |
 | .toString()                              | Convert a data type to a string.                                                  |
 | Math.pow(A, B) or A ** B                 | A to the power of B. A^B                                                          |
+
+## [Printing with color](#table-of-contents)
+
+- Adds these strings to the console log.
+    - Ex: `console.log("\x1b[31mRED")` prints RED in red
+
+| Name       | String      |
+|------------|-------------|
+| Reset      | `\x1b[0m`   |
+| Bright     | `\x1b[1m`   |
+| Dim        | `\x1b[2m`   |
+| Underscore | `\x1b[4m`   |
+| Blink      | `\x1b[5m`   |
+| Reverse    | `\x1b[7m`   |
+| Hidden     | `\x1b[8m`   |
+| FgBlack    | `\x1b[30m`  |
+| FgRed      | `\x1b[31m`  |
+| FgGreen    | `\x1b[32m`  |
+| FgYellow   | `\x1b[33m`  |
+| FgBlue     | `\x1b[34m`  |
+| FgMagenta  | `\x1b[35m`  |
+| FgCyan     | `\x1b[36m`  |
+| FgWhite    | `\x1b[37m`  |
+| FgGray     | `\x1b[90m`  |
+| BgBlack    | `\x1b[40m`  |
+| BgRed      | `\x1b[41m`  |
+| BgGreen    | `\x1b[42m`  |
+| BgYellow   | `\x1b[43m`  |
+| BgBlue     | `\x1b[44m`  |
+| BgMagenta  | `\x1b[45m`  |
+| BgCyan     | `\x1b[46m`  |
+| BgWhite    | `\x1b[47m`  |
+| BgGray     | `\x1b[100m` |
 
 ## [Sending requests](#table-of-contents)
 
