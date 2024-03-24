@@ -73,16 +73,60 @@ Inputs are trinary.
 | 2  | 1  | 0  | 2  |
 | 2  | 2  | 1  | 0  |
 
+- All input need the same base number
+- Start with all 0s
+- 
+
 Ex: Making the best cookies.
 Inputs:
 	- Butter
-	- Brown sugar
-	- White sugar
-	- Egg yolk
-	- Egg white
-	- Vanilla
+	- Sugar
+	- Eggs
 	- Flour
-	- Cornstarch
-	- Banking soda
-	- salt
 	- time to bake at 350F
+	
+	Base 3
+	
+	0 1 2
+	0 2 1
+
+Algorithm:
+- 1st row start with all 0s
+- 2nd row increment all other columns by 1 except the 1st column
+	- repeat for more rows until you reach the end of your base number
+- Increment column 1 by 1. 
+
+1/16 teaspoon of salt, 1/8 tablespoon vanilla extract
+Flip at 4 min. Done at 4+3.
+Butter:
+	0 = 1 tablespoon
+	1 = 0.5 tablespoon
+	2 = 1.5 tablespoon
+Sugar:
+	0 = 0.5 tablespoon
+	1 = 0.25 tablespoon
+	2 = 1 tablespoon
+Eggs:
+	0 = 0.5 egg
+	1 = .25 egg
+	2 = .75 egg
+Flour:
+	0 = 3 tablespoons
+	1 = 2.5 tablespoons
+	2 = 3.5 tablespoons
+
+| Index | Butter | Sugar | Eggs | Flour | O rob | O ryan | O Ed |
+|-------|--------|-------|------|-------|-------|--------|------|
+| 1     | 0      | 0     | 0    | 0     |  1     |  1      |   1   |
+| 2     | 0      | 1     | 1    | 1     |  1     |   2     |  1.5    |
+| 3     | 0      | 2     | 2    | 2     |  2     |   2     |   2   |
+| 4     | 1      | 0     | 1    | 2     |  2     |    1.5    |   2   |
+| 5     | 1      | 1     | 2    | 0     |  1     |    1.75    |  1    |
+
+| 6     | 1      | 2     | 0    | 1     |       |        |      |
+
+| 7     | 2      | 0     | 2    | 1     |       |        |      |
+| 8     | 2      | 2     | 1    | 0     |       |        |      |
+| 9     | 2      | 1     | 0    | 2     |       |        |      |
+
+
