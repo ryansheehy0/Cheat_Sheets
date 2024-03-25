@@ -27,12 +27,21 @@ If the application doesn't parse the filename correctly you could navigate the s
 
 Ex: `GET /image?filename=./file`
 
-Since you don't know what directory the server is checking for you, you can continually try to navigate up the directories and checking if your file is located there.
+Since you don't know what directory the server is checking for you, you can continually try to navigate up the directories and check if your file is located there.
 
 Ex: `GET /image?filename=../file`, `GET /image?filename=../../file`, `GET /image?filename=../../../file`, etc.
+- Try 10 layers deep.
+
+An application may require the filename to start with a specific path. Ex: `filename=/var/www/images/218.png`. It is recommended to start with that path and work your way up. Ex: `filename=/var/www/images/file`, `filename=/var/www/images/../file`, etc.
+
+## Where to find path traversal attack vectors
+- Images in the DOM are `/image?filename=218.png` or something similar
+- Hover over image source and click full image link
+	- This will open a new tab of just the image
+	- This will show the GET request in Burp Suit
 
 ## Different ways of getting around directory parsing
-- Use direct filepath.
+- Use direct filepath
 	- Ex: `/file`
 - `....//` or `....\/` instead of the usual `../`
 	- If the parsing just removes any `../`s or `..\`s
@@ -42,8 +51,11 @@ Ex: `GET /image?filename=../file`, `GET /image?filename=../../file`, `GET /image
 	- `%2e` instead of `.`
 	- `%252f` outputs `%2f`
 	- `%255c` outputs `%5c`
+	- `%252e` outputs `%2e`
+	- `%2e%2e%2f` url encoded
+	- `%252e%252e%252f` double url encoded
 	- Depending upon the encoding used
-		- `%c0%af` can output `/`
+		- `..%c0%af` can output `../`
 		- `..%ef%bc%8f` can output `../`
 - You can use a null byte(`%00`) to remove the file extension
 	- `./file%00.png`
@@ -60,7 +72,6 @@ Ex: `GET /image?filename=../file`, `GET /image?filename=../../file`, `GET /image
 
 ## Prevent file path traversal attacks
 - Avoid passing user input into code that retrieves the file.
-	- If this is unavoidable
-		- Validate user input before processing it
-			- Should compare against a whitelist of permitted values.
-			- Should only contain permitted characters(like alphanumeric characters).
+- Validate user input before processing it.
+	- Should compare against a whitelist of permitted values.
+	- Should only contain permitted characters(like alphanumeric characters).
