@@ -68,9 +68,15 @@
 ## [What to look out for](#table-of-contents)
 - It is important to try all input variations on any attack points, even the low probability ones.
 
-- [Recon](./recon.md)
+Done:
 - URL parameters to files
 	- [Path traversal](./path_traversal.md)
+
+Need more research:
+- URL parameters that output to the DOM or User inputs that are saved to the db and can be seen by other users.
+	- [XSS](./cross_site_scripting.md)
+
+- [Recon](./recon.md)
 - Look through source code
 	- Comments with sensitive info
 	- Check for max length of form inputs
@@ -79,8 +85,6 @@
 	- NoSQL injection
 - User ids
 	- [IDORs](./insecure_direct_object_references.md)
-- URL parameters that output to the DOM or User inputs that are saved to the db and can be seen by other users.
-	- [XSS](./cross_site_scripting.md)
 - URL/URL paths as arguments or parameters to files
 	- Unaccessible pages
 		- [SSRF](./server_side_request_forgery.md)

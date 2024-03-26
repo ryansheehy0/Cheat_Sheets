@@ -34,20 +34,23 @@ R<h1>This is NOT a PDF!</h1> <img src=x onerror=alert(document.cookie)>
 ```
 
 # Cross Site Scripting(XSS)
-Cross site scripting(XSS) allows an attacker to send another user a URL or data which then executes the attacker's javascript code on the victim's browser and thus have access to the victims local storage, cookies, and any other functionally the user can do.
+Cross site scripting(XSS) allows an attacker to get a victim to run malicious code on their browser while looking like it came from a legitimate source.
 
-The reason XSS is bad is because an attacker can look like the legitimate site and yet execute their attack in the victim's browser.
+There are 2 type of XSS attacks.
+- Through URL parameters
+	- When a victim is sent a malicious URL, they may click on it because the base domain comes from a legitimate source.
+		- **Reflected XSS**: Server uses the URL parameter to change the DOM.
+		- **DOM-Based XSS**: Client uses the URL parameter to change the DOM.
+- Through the database
+	- **Stored XSS**: When the victim comes across malicious data stored in the database, that malicious data gets ran on their browser.
+		- Ex: Posting a comment which other users can see.
 
-There are 2 main types of XSS
-- Reflected XSS/DOM-based XSS: Through the URL
-- Stored XSS: Through the database
-
-## Reflected XSS/DOM-Based XSS
-A URL parameter or fragment identifier(#s to html headers) can execute JS code.
-
-**Reflected XSS** sends a request to the server and the server sends back html with the user's input in it.
-
-**DOM-based XSS** happen when the clients's code directly adds the user input into the html of the page.
+## URL parameter XSS
+- The URL parameter has to be used within the DOM.
+- Form input sent via the URL and not the body can be used if it is inserted into the DOM.
+- Fragment identifiers(`#`s in the URL) can be used by the client to change the DOM.
+- Make sure to reload page after you change the URL parameter
+- It may not show up visually in the page, but it is still inserted into the DOM.
 
 Ex:
 ```
@@ -59,27 +62,12 @@ The html output
 	<p>Status: <script>/* Bad stuff here... */</script></p>
 ```
 
-You probably want to reload the page after the XSS input.
+### Common client side code that gets the URL parameters(DOM-Based XSS)
+- document.URL
+- window.location or window.location.search
+- document.location or document.location.search
 
-### Common sinks
-
-Different DOM-Based sinks. Do a ctrl+f:
-- document.write
-- document.domain
-- window.location.search
-- eval()
-- innerHTML
-- outerHTML
-- insertAdjacent
-- insertBefore
-- insertAfter
-- onevent
-
-JQuery sinks:
-- add(), after(), append(), animate(), insertAfter(), insertBefore(), before(), html(), prepend(), replaceAll(), replaceWith(), wrap(), wrapInner(), wrapAll(), has(), constructor(), init(), index(), jQuery.parseHTML(), $.parseHTML()
-
-## Stored XSS
-The attacker inputs their JS code into the database and then the database gives it to a victim. Ex: Posting a comment which other users can see. If that comment contains js code and the site is vulnerable to XSS then the attacker's js code gets ran whenever a victim gets the data from the database.
+Regex search: `(document|window)\.(.*\.)*(location|URL)`
 
 ## Common attacks
 - `<script>print()</script>`
