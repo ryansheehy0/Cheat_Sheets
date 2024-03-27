@@ -88,35 +88,51 @@ Often times it is also good to check if you can access this information
 - `window.origin`
 - `document.cookies`
 
-## Get around common XSS filters
+## Common XSS filters
+- Filtering out tags
+	- Test all the tag
+- Filter out events
+	- Test all the events
+- Filtering out special characters
+	- Test alternatives to special character
+
+See [XXS Tests](./xss_tests.md)
+
 Often times inputs are filtered to remove or replace certain characters. This usually means that that input isn't susceptible to XSS attacks, however the filter might not be set up correctly.
 
-| Filtered symbol | Try instead                               |
-|-----------------|-------------------------------------------|
+| Filtered symbol | Try instead                                      |
+|-----------------|--------------------------------------------------|
 | `"`s or `'`s    | `&quot;`, `&lpar;` and `&rpar;`, `%27`, or `%22` |
-| `<`s            | `&lt;`, `%3C`, or `\x3c`                  |
-| `>`s            | `&gt;`, `%3E`, or `\x3e`                  |
-| `\`s            | `\\`                                      |
-| `(`s and `)`s   |                                           |
-| `&`s            |  `%26` , `&amp;`                                        |
-| `%`s            |                                           |
-| `.`s            |                                           |
-| `=`s            |                                           |
+| `<`s            | `&lt;`, `%3C`, or `\x3c`                         |
+| `>`s            | `&gt;`, `%3E`, or `\x3e`                         |
+| `\`s            | `\\`                                             |
+| `(`s and `)`s   |                                                  |
+| `&`s            | `%26` , `&amp;`                                  |
+| `%`s            |                                                  |
+| `.`s            |                                                  |
+| `=`s            |                                                  |
 
 Sometimes you need to add `">` or `'>` in front of your attacks as an escape sequence.
 
 - It is often times worth try to double URL encode you input.
-- Try URL encoding ascii characters with the hex representation fo the ascii `%hex`
-	- You can try to double URL encode this as well
 
 ## Solutions to XSS attacks
 - Better filters preferably from a library which specializes in such a thing
 - Instead of sending things through the URL, send them though the body.
 
 ## Checklist
-1. Check for common attacks in the browser
-	- Change the payload
-1. If not working, check common symbol filters in burp suite repeater and see if it's in the response.
-	- Filter in burp suite proxy -> HTTP History for NkgM41FlLR then send to repeater
-	- NkgM41FlLR
-1. If nothing else works, execute an automated attack with burp suite intruder with a payload list
+URl Parameter XSS:
+1. Put unique string in URL parameter: `NkgM41FlLR`
+2. Find a URL parameter that puts its output to the DOM.
+	- Do ctrl+f in inspect element DOM to check for hidden DOM elements that contain the parameter.
+3. Search in client JS for code which gets the query parameter.
+4. Filter in Burp Suit for any responses containing the unique string.
+5. Test basic XSS attacks
+6. Figure out which characters are being filtered out and test alternative representations of those characters.
+
+Stored XSS:
+1. Create 2 accounts and log in. One in private browser.
+2. Attacking account posts XSS attack.
+3. 2nd account checks the post to see if it runs.
+
+## All tags
