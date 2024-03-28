@@ -116,10 +116,6 @@ Sometimes you need to add `">` or `'>` in front of your attacks as an escape seq
 
 - It is often times worth try to double URL encode you input.
 
-## Solutions to XSS attacks
-- Better filters preferably from a library which specializes in such a thing
-- Instead of sending things through the URL, send them though the body.
-
 ## Checklist
 URl Parameter XSS:
 1. Put unique string in URL parameter: `NkgM41FlLR`
@@ -135,4 +131,23 @@ Stored XSS:
 2. Attacking account posts XSS attack.
 3. 2nd account checks the post to see if it runs.
 
-## All tags
+## Prevent XSS attacks
+- Prevent passing information through URL parameters. Instead use the body.
+- Filter input as strictly as possible.
+	- Use a whitelist to only allow certain characters or words.
+	- Input into HTML
+		- `&` to `&amp;`
+		- `<` to `&lt;`
+		- `>` to `&gt;`
+		- `"` to `&quot;`
+		- `'` to  `&#x27;`
+	- Input into JS
+		- `&` to `\u0026`
+		- `<` to `\u003c`
+		- `>` to `\u003e`
+		- `"` to  `\u0022`
+		- `'` to  `\u0027`
+- Instead of `element.innerHTML = userInput;` use:
+	- `element.innerText = userInput;`
+	- `let textNode = document.createTextNode(userInput); element.appendChild(textNode);`
+	- Note: These DO NOT work if the element is a script element as the text will be executed as JS.
