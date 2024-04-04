@@ -50,7 +50,8 @@ There are 2 type of XSS attacks.
 - Form input sent via the URL and not the body can be used if it is inserted into the DOM.
 - Fragment identifiers(`#`s in the URL) can be used by the client to change the DOM.
 - Make sure to reload page after you change the URL parameter
-- It may not show up visually in the page, but it is still inserted into the DOM.
+- It may not show up visually in the page, but it is still inserted into the DOM. Ex: Hidden inputs
+- **DOM-based open redirections** are useing DOM XSS to redirect the website to a url the attacker controls. These happen when the sink(where the source goes into) changes the URL.
 
 Ex:
 ```
@@ -62,12 +63,36 @@ The html output
 	<p>Status: <script>/* Bad stuff here... */</script></p>
 ```
 
-### Common client side code that gets the URL parameters(DOM-Based XSS)
-- document.URL
-- window.location or window.location.search
-- document.location or document.location.search
+### Common client side code that gets the URL parameters for DOM-Based XSS(Called sources)
+- `document.URL`
+- `window.location` or `window.location.search`
+- `document.location` or `document.location.search`
+
+- `location.search`
+- `document.referrer`
+- `location.hash`
+- `location`
 
 Regex search: `(document|window)\.(.*\.)*(location|URL)`
+
+- document.cookie
+
+How can DOM based XSS attacks be done through the cookie? How can the attacker set the victim's cookies? Can they set these cookies via the URL?
+
+document.URL
+document.documentURI
+document.URLUnencoded
+document.baseURI
+location
+document.cookie
+document.referrer
+window.name
+history.pushState
+history.replaceState
+localStorage
+sessionStorage
+IndexedDB (mozIndexedDB, webkitIndexedDB, msIndexedDB)
+Database
 
 ## Common attacks
 - `<script>print()</script>`
@@ -151,3 +176,5 @@ Stored XSS:
 	- `element.innerText = userInput;`
 	- `let textNode = document.createTextNode(userInput); element.appendChild(textNode);`
 	- Note: These DO NOT work if the element is a script element as the text will be executed as JS.
+- Use Content-Security Policy(CSPs) which is an additional header in the server or specified in the html which only allows certain 
+	- This only limits what XSS can do. It might not prevent it.
