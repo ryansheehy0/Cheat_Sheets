@@ -48,6 +48,8 @@ RS Cheat Sheets is licensed under GPLv3. See the COPYING file for details.
             - [MongoDB and Mongoose](./mongodb_and_mongoose.md)
     - C/C++
         - [Make Files](./make_files.md)
+        - [C++](./cpp.md)
+        - [C and C++ Compiling](./c_and_cpp_compiling.md)
     - Algorithms
         - [Search Algorithms](./search_algorithms.md)
         - [NOT DONE: Sort Algorithms](./sort_algorithms.md)
