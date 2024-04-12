@@ -20,3 +20,4 @@
 
 # C and C++ compiling
 
+`g++ -Wall yourfile.cpp` display all warnings
