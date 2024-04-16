@@ -28,15 +28,13 @@
 	- [Things to research](#things-to-research)
 	- [main](#main)
 	- [Data Types](#data-types)
+		- [Data type notes](#data-type-notes)
 		- [Modifiers](#modifiers)
 	- [Headers](#headers)
 	- [Namespaces](#namespaces)
 	- [Character escapes](#character-escapes)
 	- [Including libraries](#including-libraries)
 	- [Common libraries](#common-libraries)
-		- [iostream](#iostream)
-		- [string](#string)
-		- [cmath](#cmath)
 	- [Points and addresses](#points-and-addresses)
 	- [Order of operations](#order-of-operations)
 
@@ -83,16 +81,24 @@ The smallest memory unit is 1 byte(8 bits).
 	- long double
 		- 12 bytes/96 bits
 
-You can set multiple variables on one line.
-- `int x = 10, y = 20;`
 
-Names can only use letters, underscores, and digits, and cannot start with digits.
-- C++ is case sensitive
+### [Data type notes](#table-of-contents)
+- You can set multiple variables on one line.
+	- `int x = 10, y = 20;`
+- Names can only use letters, underscores, and digits, and cannot start with digits.
+	- C++ is case sensitive
+- You can use `'` to separate long numbers. Ex: `1'999'999`
+- When dividing, if you want the result to be a float, then one of the values has to be a float. Ex: `1/2` will return `0`, but `1.0/2` or `1/2.0` will return `0.5`
+- `0.0/0.0` outputs not a number(nan), `1.0/0.0` outputs inf, `-1.0/0.0` outputs -inf.
+- You can represent floats in scientific notation `6.08e2` is `6.08 x 10^2` which is `608`. Or `6.08e-2` for `0.0608`
+	- It is recommended to start floats with `0` instead of a `.`
 
 ### [Modifiers](#table-of-contents)
 	- unsigned
 	- signed
 		- By default data types are signed
+	- const
+		- By convention use snake case with all capital letters
 
 ## [Headers](#table-of-contents)
 When you use a function that isn't defined in your code you get 2 errors.
@@ -143,26 +149,17 @@ What's the difference between `<>`s and `""`s for including?
 You can find libraries at `https://cplusplus.com/reference/<library>`
 
 - iostream
+	- `std::cout << "Hello world!";` - Characters out. prints to console
+	- `std::cout << std::endl;` - End line. clears buffer of cout. The next cout will be on a new line.
+	- `std::cin >> var` - Characters in. Gets user input from terminal.
 - string
+	- `std::string test = "test";`
 - cmath
-
-### [iostream](#table-of-contents)
-`#include <iostream>`
-
-`std::cout << "Hello world!";` - Characters out. prints to console
-`std::cout << std::endl;` - End line. clears buffer of cout. The next cout will be on a new line.
-`std::cin >> var` - Characters in. Gets user input from terminal.
-
-### [string](#table-of-contents)
-`#include <string>`
-
-`std::string test = "test";`
-
-### [cmath](#table-of-contents)
-`#include <cmath>`
-
-- C++ doesn't have operator for exponential. `std::pow(base, exponent)`
-- `%` only works for integer based data types
+	- C++ doesn't have operator for exponential. `std::pow(base, exponent)`
+	- `%` only works for integer based data types
+	- Use defined `M_PI` to use pi
+- iomanip
+	- `std::cout << std::fixed << std::setprecision(2) << value;` - Rounds any floats to display with 2 values after the decimal point. Doesn't change value of float.
 
 ## [Points and addresses](#table-of-contents)
 Declaring
