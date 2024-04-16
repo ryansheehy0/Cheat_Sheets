@@ -26,15 +26,25 @@
 - [C++](#c)
 	- [Table of Contents](#table-of-contents)
 	- [Things to research](#things-to-research)
+			- [string vs char* vs char[]](#string-vs-char-vs-char)
 	- [main](#main)
 	- [Data Types](#data-types)
 		- [Data type notes](#data-type-notes)
 		- [Modifiers](#modifiers)
+		- [Casting](#casting)
+			- [static_cast](#static_cast)
 	- [Headers](#headers)
 	- [Namespaces](#namespaces)
 	- [Character escapes](#character-escapes)
-	- [Including libraries](#including-libraries)
 	- [Common libraries](#common-libraries)
+		- [iostream](#iostream)
+		- [string](#string)
+			- [string vs char* vs char[]](#string-vs-char-vs-char)
+		- [cmath](#cmath)
+		- [cstdlib](#cstdlib)
+		- [iomanip](#iomanip)
+		- [vector](#vector)
+		- [regex](#regex)
 	- [Points and addresses](#points-and-addresses)
 	- [Order of operations](#order-of-operations)
 
@@ -42,6 +52,11 @@
 
 ## Things to research
 - `<<` and `>>` operator. Stream operators?
+	- Overloading operators
+- How is string different from char*
+- Fill out regex for c++
+- What's the difference between including with `<>`s and `""`s?
+- string vs char* vs char[]
 
 ## [main](#table-of-contents)
 `main()` is the start of the program.
@@ -60,7 +75,7 @@ The smallest memory unit is 1 byte(8 bits).
 		- Can use `true` and `false` keywords
 	- char
 		- 1 byte
-		- Use `''` for 1 character and `""` for 1 or more characters
+		- Uses `''`
 	- wchar_t
 		- 2 or 4 bytes
 		- Use to represent larger character encoding standards. Usually unicode.
@@ -90,15 +105,56 @@ The smallest memory unit is 1 byte(8 bits).
 - You can use `'` to separate long numbers. Ex: `1'999'999`
 - When dividing, if you want the result to be a float, then one of the values has to be a float. Ex: `1/2` will return `0`, but `1.0/2` or `1/2.0` will return `0.5`
 - `0.0/0.0` outputs not a number(nan), `1.0/0.0` outputs inf, `-1.0/0.0` outputs -inf.
+	- If `0` is in the denominator it will give a runtime error.
 - You can represent floats in scientific notation `6.08e2` is `6.08 x 10^2` which is `608`. Or `6.08e-2` for `0.0608`
 	- It is recommended to start floats with `0` instead of a `.`
+- `%` gives an error when used with floating point values. If the denominator is `0` it gives a runtime error.
+- C++ can perform implicit type conversion for converting between an int and a double when either operand is a double for arithmetic operators(like +, *, etc) or for assigning(4 -> 4.0 or 4.9 -> 4).
+
+
+- Used to get each digit
+```c++
+int temp = val;
+ones = val % 10;
+temp = val / 10;
+
+tens = val % 10;
+temp = val / 10;
+
+hundreds = val % 10;
+```
 
 ### [Modifiers](#table-of-contents)
-	- unsigned
-	- signed
-		- By default data types are signed
-	- const
-		- By convention use snake case with all capital letters
+- unsigned
+- signed
+	- By default data types are signed
+- const
+	- By convention use snake case with all capital letters
+	- By convention declare and init consts before any other variables
+	- Use `const` over `#define`
+		- If necessary, modern compilers do the same thing as substituting and replacing
+		- Gain type checking and syntax checking
+		- Known to the debugger
+		- Scoped to the block where they are defined
+
+### [Casting](#table-of-contents)
+Different types of casting
+	- static_cast
+	- dynamic_cast
+	- const_cast
+	- reinterpret_cast
+	- c style casting
+
+#### [static_cast](#table-of-contents)
+```c++
+int integer1 = 1;
+int integer2 = 2;
+double dbl = static_cast<double>(integer1) / integer2;
+	// Converts one fo the integers to a double so the result will contain decimals
+```
+
+Casting that is done at compile time.
+	- Doesn't perform any runtime checking so it's up to the program to ensure that it's safe.
 
 ## [Headers](#table-of-contents)
 When you use a function that isn't defined in your code you get 2 errors.
@@ -141,25 +197,49 @@ What are namespaces and what are they used for?
 | `\x##`    | hexadecimal output                |
 | `\u####`  | prints unicode. Only works on g++ |
 | `\Nname`  | unicode character from name       |
-
-## [Including libraries](#table-of-contents)
-What's the difference between `<>`s and `""`s for including?
+| `\0`      | Null                              |
 
 ## [Common libraries](#table-of-contents)
 You can find libraries at `https://cplusplus.com/reference/<library>`
 
-- iostream
-	- `std::cout << "Hello world!";` - Characters out. prints to console
-	- `std::cout << std::endl;` - End line. clears buffer of cout. The next cout will be on a new line.
-	- `std::cin >> var` - Characters in. Gets user input from terminal.
-- string
-	- `std::string test = "test";`
-- cmath
-	- C++ doesn't have operator for exponential. `std::pow(base, exponent)`
-	- `%` only works for integer based data types
-	- Use defined `M_PI` to use pi
-- iomanip
-	- `std::cout << std::fixed << std::setprecision(2) << value;` - Rounds any floats to display with 2 values after the decimal point. Doesn't change value of float.
+### [iostream](#table-of-contents)
+- `std::cout << "Hello world!";` - Characters out. prints to console
+	- Doesn't output any trailing zeros when outputting a floating point values. Output 99 not 99.0
+- `std::cout << std::endl;` - End line. clears buffer of cout. The next cout will be on a new line.
+- `std::cin >> var` - Characters in. Gets user input from terminal.
+	- Separates each input by whitespace. Ignores the leading white space. Ex: input `Hi there`, first cin would be `Hi` and second would be `there`.
+
+### [string](#table-of-contents)
+- `std::string test = "test";`
+- `"a"` outputs a null terminated array fo characters, while `'a'` is just that character.
+	- `"a"` is the same as `['a', '\0']`
+- `std::getline(std::cin, str);` - gets all remaining text on the current input line, up to the next newline character which isn't included into str
+	- Includes leading whitespace
+- If not initialized it is automatically initialized to an empty string.
+
+#### [string vs char* vs char[]](#table-of-contents)
+
+### [cmath](#table-of-contents)
+- Math operations for floating point values
+- C++ doesn't have operator for exponential. `std::pow(base, exponent)`
+- `std::sqrt(x)`, `std::fabs(x)` absolute value, `std::ceil(x)` round up, `std::floor(x)` round down, `std::rand()` random integer between `0` and 	`RAND_MAX`.
+	- `std::rand() % 10` between 0-9, `std::rand() % 101` between 0-100, `(std::rand() % 11) + 20` between 20-30
+- Use defined `M_PI` to use pi
+
+### [cstdlib](#table-of-contents)
+- Math operations for integer values and some other functionality
+- `std::abs()`, `std::atoi()` converts strings(like "5") to ints.
+
+### [iomanip](#table-of-contents)
+- `std::cout << std::fixed << std::setprecision(2) << value;` - Rounds any floats to display with 2 values after the decimal point. Doesn't change value of float.
+
+### [vector](#table-of-contents)
+- Dynamic arrays in c++
+- `std::vector<int> nums = {0, 1, 2};`
+- `nums[0] = 10;`
+- `nums.push_back(3);` Adds 3 to the end of the vector
+
+### [regex](#table-of-contents)
 
 ## [Points and addresses](#table-of-contents)
 Declaring
