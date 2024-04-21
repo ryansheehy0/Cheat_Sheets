@@ -26,13 +26,13 @@
 - [C++](#c)
 	- [Table of Contents](#table-of-contents)
 	- [Things to research](#things-to-research)
-			- [string vs char* vs char[]](#string-vs-char-vs-char)
 	- [main](#main)
 	- [Data Types](#data-types)
 		- [Data type notes](#data-type-notes)
 		- [Modifiers](#modifiers)
 		- [Casting](#casting)
 			- [static_cast](#static_cast)
+		- [Auto and typeid](#auto-and-typeid)
 	- [Headers](#headers)
 	- [Namespaces](#namespaces)
 	- [Character escapes](#character-escapes)
@@ -45,6 +45,7 @@
 		- [iomanip](#iomanip)
 		- [vector](#vector)
 		- [regex](#regex)
+		- [typeinfo](#typeinfo)
 	- [Points and addresses](#points-and-addresses)
 	- [Order of operations](#order-of-operations)
 
@@ -95,7 +96,6 @@ The smallest memory unit is 1 byte(8 bits).
 		- 8 bytes/64 bits
 	- long double
 		- 12 bytes/96 bits
-
 
 ### [Data type notes](#table-of-contents)
 - You can set multiple variables on one line.
@@ -156,6 +156,15 @@ double dbl = static_cast<double>(integer1) / integer2;
 Casting that is done at compile time.
 	- Doesn't perform any runtime checking so it's up to the program to ensure that it's safe.
 
+### [Auto and typeid](#table-of-contents)
+`auto` tells the compiler to determine the variable's type by the initial value given. It has to be initialized or else it will throw an error.
+
+This can be useful for more complex data types.
+
+- `auto x = "apple";` gets assigned the type const char*
+- `auto x = 0.01;` gets assigned ot a double
+
+
 ## [Headers](#table-of-contents)
 When you use a function that isn't defined in your code you get 2 errors.
 
@@ -207,15 +216,38 @@ You can find libraries at `https://cplusplus.com/reference/<library>`
 	- Doesn't output any trailing zeros when outputting a floating point values. Output 99 not 99.0
 - `std::cout << std::endl;` - End line. clears buffer of cout. The next cout will be on a new line.
 - `std::cin >> var` - Characters in. Gets user input from terminal.
-	- Separates each input by whitespace. Ignores the leading white space. Ex: input `Hi there`, first cin would be `Hi` and second would be `there`.
+	- Separates each input by whitespace
+	- Ignores the leading white space. Ex: input `Hi there`, first cin would be `Hi` and second would be `there`.
+	- Keeps new lines in the buffer
+	- You can do it on all one line. `std::cin >> var1 >> var2 >> var3;`
+	- Returns false when the input isn't valid into the variable.
+		- Returns false when overflowing input
+
+```c++
+// Infinitely ask the user for input
+int num;
+while(true){
+	cout << "Enter num: " << endl;
+	if(cin >> num){
+		cout << "You entered: " << num << endl;
+	}else{
+		cin.clear();
+		// Remove the new line
+		string temp;
+		getline(cin, temp);
+		cout << "You can't enter that. Please try again." << endl;
+	}
+}
+```
 
 ### [string](#table-of-contents)
 - `std::string test = "test";`
-- `"a"` outputs a null terminated array fo characters, while `'a'` is just that character.
+	- If not initialized it is automatically initialized to an empty string.
+- `"a"` outputs a null terminated array of characters, while `'a'` is just that character.
 	- `"a"` is the same as `['a', '\0']`
-- `std::getline(std::cin, str);` - gets all remaining text on the current input line, up to the next newline character which isn't included into str
+- `std::getline(std::cin, str);` - gets all remaining text on the current input line, up to the next newline character which isn't included into str.
 	- Includes leading whitespace
-- If not initialized it is automatically initialized to an empty string.
+	- Removes the ending new line in the buffer
 
 #### [string vs char* vs char[]](#table-of-contents)
 
@@ -241,6 +273,11 @@ You can find libraries at `https://cplusplus.com/reference/<library>`
 
 ### [regex](#table-of-contents)
 
+### [typeinfo](#table-of-contents)
+- `typeid(var).name()` gives a string of the type of variable.
+	- `d` for double, `c` for char, `i` for integer.
+	- `P` for pointer, `K` for constant
+
 ## [Points and addresses](#table-of-contents)
 Declaring
 - Ex: `int* myPointer`
@@ -260,4 +297,3 @@ Referencing
 | 3     | * / %                      |
 | 4     | + -                        |
 | 5     | left to right              |
-

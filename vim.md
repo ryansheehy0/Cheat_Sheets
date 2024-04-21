@@ -154,6 +154,8 @@
 | shift + f + character             | Go to the previous occurrence of that character in the current line. |
 | s/\(.\)$/\1 add to end of lines/g | Add something to the end of selected lines                           |
 
+- Use `\r` for new line in replace
+
 ## [Macros](#table-of-contents)
 
 |                      |                                 |
