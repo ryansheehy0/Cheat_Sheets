@@ -48,6 +48,7 @@
 		- [typeinfo](#typeinfo)
 	- [Points and addresses](#points-and-addresses)
 	- [Order of operations](#order-of-operations)
+	- [Switch](#switch)
 
 <!-- /TOC -->
 
@@ -102,14 +103,18 @@ The smallest memory unit is 1 byte(8 bits).
 	- `int x = 10, y = 20;`
 - Names can only use letters, underscores, and digits, and cannot start with digits.
 	- C++ is case sensitive
-- You can use `'` to separate long numbers. Ex: `1'999'999`
+
+- Assigning values
+	- You can use `'` to separate long numbers. Ex: `1'999'999`
+	- You can represent floats in scientific notation `6.08e2` is `6.08 x 10^2` which is `608`. Or `6.08e-2` for `0.0608`
+		- It is recommended to start floats with `0` instead of a `.`
+
 - When dividing, if you want the result to be a float, then one of the values has to be a float. Ex: `1/2` will return `0`, but `1.0/2` or `1/2.0` will return `0.5`
-- `0.0/0.0` outputs not a number(nan), `1.0/0.0` outputs inf, `-1.0/0.0` outputs -inf.
+
+- Dividing by 0
+	- `0.0/0.0` outputs not a number(nan), `1.0/0.0` outputs inf, `-1.0/0.0` outputs -inf.
 	- If `0` is in the denominator it will give a runtime error.
-- You can represent floats in scientific notation `6.08e2` is `6.08 x 10^2` which is `608`. Or `6.08e-2` for `0.0608`
-	- It is recommended to start floats with `0` instead of a `.`
-- `%` gives an error when used with floating point values. If the denominator is `0` it gives a runtime error.
-- C++ can perform implicit type conversion for converting between an int and a double when either operand is a double for arithmetic operators(like +, *, etc) or for assigning(4 -> 4.0 or 4.9 -> 4).
+	- `%` gives an error when used with floating point values. If the denominator is `0` it gives a runtime error.
 
 
 - Used to get each digit
@@ -123,6 +128,11 @@ temp = val / 10;
 
 hundreds = val % 10;
 ```
+
+- Comparing
+	- Don't use the `==` operator to compare floating point types due to their imprecision.
+	- You can compare strings. `myString == "test"`
+	- You can use ternary operators: `condition ? value_if_true : value_if_false`
 
 ### [Modifiers](#table-of-contents)
 - unsigned
@@ -144,6 +154,8 @@ Different types of casting
 	- const_cast
 	- reinterpret_cast
 	- c style casting
+
+- C++ can perform implicit type conversion for converting between an int and a double when either operand is a double for arithmetic operators(like +, *, etc) or for assigning(4 -> 4.0 or 4.9 -> 4).
 
 #### [static_cast](#table-of-contents)
 ```c++
@@ -297,3 +309,21 @@ Referencing
 | 3     | * / %                      |
 | 4     | + -                        |
 | 5     | left to right              |
+
+## [Switch](#table-of-contents)
+- Cannot be used with string or floating point types.
+
+```c++
+switch (x) {
+	case 0:
+		break;
+	case 1:
+		break;
+	case 2:
+	case 3:
+		// Falling through
+		break;
+	default:
+		break;
+}
+```
