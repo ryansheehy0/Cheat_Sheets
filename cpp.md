@@ -110,6 +110,17 @@ The smallest memory unit is 1 byte(8 bits).
 		- It is recommended to start floats with `0` instead of a `.`
 
 - When dividing, if you want the result to be a float, then one of the values has to be a float. Ex: `1/2` will return `0`, but `1.0/2` or `1/2.0` will return `0.5`
+- `x += x + 3;` is the same as `x = x + x + 3;`
+- `x = 10` returns 10, `x = 0` returns 0
+
+- You can do if statements on one line without the curly brackets
+```c++
+if(x == 1)
+	cout << x;
+
+// or
+if(x == 1) cout << x;
+```
 
 - Dividing by 0
 	- `0.0/0.0` outputs not a number(nan), `1.0/0.0` outputs inf, `-1.0/0.0` outputs -inf.
@@ -131,6 +142,7 @@ hundreds = val % 10;
 
 - Comparing
 	- Don't use the `==` operator to compare floating point types due to their imprecision.
+		- Use `fabs(x - y) < 0.0001` instead of `x == y`
 	- You can compare strings. `myString == "test"`
 	- You can use ternary operators: `condition ? value_if_true : value_if_false`
 
@@ -175,7 +187,6 @@ This can be useful for more complex data types.
 
 - `auto x = "apple";` gets assigned the type const char*
 - `auto x = 0.01;` gets assigned ot a double
-
 
 ## [Headers](#table-of-contents)
 When you use a function that isn't defined in your code you get 2 errors.
@@ -252,6 +263,10 @@ while(true){
 }
 ```
 
+- `cin.ignore()` used to ignore the next character, usually a `\n` from the input buffer.
+- `cin.get()` gets the next character in the input buffer
+	- Used to get any character from input buffer including an enter.
+
 ### [string](#table-of-contents)
 - `std::string test = "test";`
 	- If not initialized it is automatically initialized to an empty string.
@@ -275,7 +290,34 @@ while(true){
 - `std::abs()`, `std::atoi()` converts strings(like "5") to ints.
 
 ### [iomanip](#table-of-contents)
-- `std::cout << std::fixed << std::setprecision(2) << value;` - Rounds any floats to display with 2 values after the decimal point. Doesn't change value of float.
+- `std::cout << std::fixed << std::setprecision(2) << value;`
+	- Rounds any float to display with 2 values after the decimal point. Doesn't change value of float.
+	- If you don't have fixed it starts counting from the left most digit instead of the decimal place.
+		- If you don't have fixed, and your number is greater than what's set by `setprecision`, it will round and add `e+##`
+			- Ex: `int x = 146.789; cout << setprecision(2);` it will output `1.5e+02`
+	- Active to everything coming after it.
+- `std::cout << std::setw(10) << var << endl;` sets the width of output.
+	- Aligns output with the right side
+	- If the var outputs characters larger than what's in `setw` then the `setw` will be ignored
+	- Active to only the thing after the `<<`
+- `defaultfloat()` resets `setprecision`
+- `std::right` and `std::left` can be used to justify the next output to the left or right.
+
+```c++
+double x = 149.89;
+double y = 24.2;
+double z = 1.783;
+
+cout << setw(10) << setprecision(2) << x << endl;
+cout << defaultfloat();
+cout << setw(10) << y << endl;
+cout << setw(10) << z;
+
+/*
+   1.5e+02
+	 24.2
+*/
+```
 
 ### [vector](#table-of-contents)
 - Dynamic arrays in c++
@@ -304,11 +346,17 @@ Referencing
 
 | Order | Operation                  |
 |-------|----------------------------|
-| 1     | Inside ()s                 |
-| 2     | unary -. Negate a variable |
-| 3     | * / %                      |
-| 4     | + -                        |
-| 5     | left to right              |
+| 1     | x++ x-- function calls     |
+| 2     | Inside ()s                 |
+| 3     | !                          |
+| 4     | unary -. Negate a variable |
+| 5     | * / %                      |
+| 6     | + -                        |
+| 7     | left to right              |
+| 8     | < <= > >=                  |
+| 9     | == !=                      |
+| 10    | &&                         |
+| 11    | \|\|                       |
 
 ## [Switch](#table-of-contents)
 - Cannot be used with string or floating point types.
