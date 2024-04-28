@@ -47,7 +47,7 @@ RS Cheat Sheets is licensed under GPLv3. See the [COPYING file](./COPYING) for d
 - [C](./C_C++/c.md)
 - [C and C++ Compiling](./C_C++/c_and_cpp_compiling.md)
 
-## Website Bug Bounties
+## Bug Bounties
 - [NOT DONE: Bug Bounty overview](./Bug_Bounties/bug_bounties.md)
 - [Recon](./Bug_Bounties/recon.md)
 - [Path traversal](./Bug_Bounties/path_traversal.md)
