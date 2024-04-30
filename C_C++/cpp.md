@@ -146,6 +146,10 @@ hundreds = val % 10;
 	- You can compare strings. `myString == "test"`
 	- You can use ternary operators: `condition ? value_if_true : value_if_false`
 
+- `x++` vs `++x`
+	- `x++` returns `x` then increments it by 1
+	- `++x` increments `x` then returns `x`
+
 ### [Modifiers](#table-of-contents)
 - unsigned
 - signed
@@ -275,6 +279,11 @@ while(true){
 - `std::getline(std::cin, str);` - gets all remaining text on the current input line, up to the next newline character which isn't included into str.
 	- Includes leading whitespace
 	- Removes the ending new line in the buffer
+- `<string>.size()`
+- `<string>.at(index)` returns a char
+- `<string>.replace(index, length, replacement_string)`
+- `<string>.find(string)` gets the starting index of string
+	- returns `string::npos` if nothing was found
 
 #### [string vs char* vs char[]](#table-of-contents)
 

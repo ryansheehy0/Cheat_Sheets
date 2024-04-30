@@ -4,6 +4,15 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
 ## License
 RS Cheat Sheets is licensed under GPLv3. See the [COPYING file](./COPYING) for details.
 
+- [Tools](#tools)
+- [HTML/CSS/JS](#htmlcssjs)
+- [C/C++](#cc)
+- [Bug Bounties](#bug-bounties)
+- [Linux](#linux)
+- [Algorithms](#algorithms)
+- [Math](#math)
+- [Physics](#physics)
+
 ## Tools
 - [Vim](./Tools/vim.md)
 - [Markdown](./Tools/markdown.md)
