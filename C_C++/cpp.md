@@ -49,6 +49,7 @@
 	- [Points and addresses](#points-and-addresses)
 	- [Order of operations](#order-of-operations)
 	- [Switch](#switch)
+	- [Functions](#functions)
 
 <!-- /TOC -->
 
@@ -103,6 +104,7 @@ The smallest memory unit is 1 byte(8 bits).
 	- `int x = 10, y = 20;`
 - Names can only use letters, underscores, and digits, and cannot start with digits.
 	- C++ is case sensitive
+	- Ex: `_this_is_a_valid_variable_name`
 
 - Assigning values
 	- You can use `'` to separate long numbers. Ex: `1'999'999`
@@ -111,15 +113,19 @@ The smallest memory unit is 1 byte(8 bits).
 
 - When dividing, if you want the result to be a float, then one of the values has to be a float. Ex: `1/2` will return `0`, but `1.0/2` or `1/2.0` will return `0.5`
 - `x += x + 3;` is the same as `x = x + x + 3;`
-- `x = 10` returns 10, `x = 0` returns 0
+- `x = 10` returns 10, `x = 0` returns 0, `x = 2'147'483'648` returns -2147483648
+	- `(x = #)` returns `x` not `#`.
 
-- You can do if statements on one line without the curly brackets
+- You can do if statements and if-else on one line without the curly brackets
 ```c++
-if(x == 1)
+if (x == 1)
 	cout << x;
 
 // or
-if(x == 1) cout << x;
+if (x == 1) cout << x;
+
+if (x != 1) cout << "false";
+else cout << x;
 ```
 
 - Dividing by 0
@@ -300,7 +306,7 @@ while(true){
 
 ### [iomanip](#table-of-contents)
 - `std::cout << std::fixed << std::setprecision(2) << value;`
-	- Rounds any float to display with 2 values after the decimal point. Doesn't change value of float.
+	- Rounds any float/double to display with 2 values after the decimal point. Doesn't change value of float.
 	- If you don't have fixed it starts counting from the left most digit instead of the decimal place.
 		- If you don't have fixed, and your number is greater than what's set by `setprecision`, it will round and add `e+##`
 			- Ex: `int x = 146.789; cout << setprecision(2);` it will output `1.5e+02`
@@ -384,3 +390,20 @@ switch (x) {
 		break;
 }
 ```
+
+You tend to make the cases constants.
+
+```c++
+const int ZERO = 0;
+
+switch (x) {
+	case ZERO:
+		break;
+	// etc
+}
+```
+
+## [Functions](#table-of-contents)
+- Functions cannot be declared within functions
+- You have to declare a function before using it.
+	- There is no hoisting
