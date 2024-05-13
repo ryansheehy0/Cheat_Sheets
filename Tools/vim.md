@@ -31,12 +31,14 @@
 	- [Save/Quit](#savequit)
 	- [Comment/Uncomment](#commentuncomment)
 	- [Increment numbers](#increment-numbers)
+	- [Uppercase and Lowercase](#uppercase-and-lowercase)
 	- [Modes](#modes)
 	- [Delete](#delete)
 	- [Change](#change)
 	- [Undo and redo](#undo-and-redo)
 	- [Copy, Paste, and Cut](#copy-paste-and-cut)
 	- [Find on page/Search](#find-on-pagesearch)
+		- [Special characters in replace](#special-characters-in-replace)
 	- [Macros](#macros)
 	- [Swp files](#swp-files)
 
@@ -93,6 +95,12 @@
 | select numbers then ctrl + x        | decrement number by 1                      |
 | select numbers then g then ctrl + a | progressively increment. 1 2 3 4 etc.      |
 | select number then g then ctrl + x  | progressively decrement. 4 3 2 1 etc.      |
+
+## [Uppercase and Lowercase](#table-of-contents)
+|               |           |
+|---------------|-----------|
+| select then U | Uppercase |
+| select then U | Lowercase |
 
 ## [Modes](#table-of-contents)
 
@@ -154,7 +162,13 @@
 | shift + f + character             | Go to the previous occurrence of that character in the current line. |
 | s/\(.\)$/\1 add to end of lines/g | Add something to the end of selected lines                           |
 
-- Use `\r` for new line in replace
+
+### [Special characters in replace](#table-of-contents)
+
+|      |                                   |
+|------|-----------------------------------|
+| `\r` | New line                          |
+| `\u` | Uppercase the following character |
 
 ## [Macros](#table-of-contents)
 

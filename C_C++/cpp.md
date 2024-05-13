@@ -50,6 +50,7 @@
 	- [Order of operations](#order-of-operations)
 	- [Switch](#switch)
 	- [Functions](#functions)
+	- [Scope](#scope)
 
 <!-- /TOC -->
 
@@ -407,3 +408,17 @@ switch (x) {
 - Functions cannot be declared within functions
 - You have to declare a function before using it.
 	- There is no hoisting
+
+## [Scope](#table-of-contents)
+- You can use `{}`s to define scope
+
+```c++
+{
+	int x = 10;
+	cout << x << endl;
+}
+{
+	double x = 10.1;
+	cout << x << endl;
+}
+```
