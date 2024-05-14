@@ -79,7 +79,7 @@ P(A) = P(B') and P(B) = P(A')
 
 P(A\|E) = P(B\|E') and P(B\|E) = P(A\|E')
 
-$P(A|E) = \frac{P(A) * P(E|A)}{P(A) * P(E|A) + P(B) * P(E|B)}$
+$P(A\|E) = \frac{P(A) * P(E\|A)}{P(A) * P(E\|A) + P(B) * P(E\|B)}$
 
 ### [Example:](#table-of-contents)
 There is a meek and tidy person. Are they more likely to be a librarian or a farmer?
