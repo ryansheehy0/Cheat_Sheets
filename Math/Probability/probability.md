@@ -55,9 +55,9 @@ A the number of outcomes for a probabilistic event goes to infinity the outcomes
 Ex: If you flip a coin an infinite amount of times, 50% of the outcomes will be heads and 50% tails.
 
 ## [Conditional Probability](#table-of-contents)
-If P(A) = P(A|B) then B doesn't effect the probability of A.
+If P(A) = P(A\|B) then B doesn't effect the probability of A.
 
-If P(B) = P(B|A) then A doesn't effect the probability of B.
+If P(B) = P(B\|A) then A doesn't effect the probability of B.
 
 | Name        | Calculation                           | Description                             |
 |-------------|---------------------------------------|-----------------------------------------|
@@ -77,7 +77,7 @@ Bayes theorem is a formula that is used to help you update your believes based u
 
 P(A) = P(B') and P(B) = P(A')
 
-P(A|E) = P(B|E') and P(B|E) = P(A|E')
+P(A\|E) = P(B\|E') and P(B\|E) = P(A\|E')
 
 $P(A|E) = \frac{P(A) * P(E|A)}{P(A) * P(E|A) + P(B) * P(E|B)}$
 
@@ -96,7 +96,7 @@ E = They are a meek and tidy person
 | P(E\|A) | Probability of someone who is meek and tidy being a librarian | 4/10            | 40% of librarians are meek and tidy             |
 | P(E\|B) | Probability of someone who is meek and tidy being a farmer    | 1/10            | 10% of farmers are meek and tidy                |
 
-What is P(A|E)? What's the probability of the meek and tidy person being a librarian?
+What is P(A\|E)? What's the probability of the meek and tidy person being a librarian?
 
 $P(A|E) = \frac{.04761 * .4}{.04761 * .4 + .95239 * .1} = .16667$
 
