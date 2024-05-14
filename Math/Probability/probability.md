@@ -98,10 +98,10 @@ E = They are a meek and tidy person
 
 What is P(A\|E)? What's the probability of the meek and tidy person being a librarian?
 
-$P(A|E) = \frac{.04761 * .4}{.04761 * .4 + .95239 * .1} = .16667$
+$P(A\|E) = \frac{.04761 * .4}{.04761 * .4 + .95239 * .1} = .16667$
 
 or
 
-$P(A|E) = \frac{1 * .4}{1 * .4 + (21 - 1) * .1} = .16667$
+$P(A\|E) = \frac{1 * .4}{1 * .4 + (21 - 1) * .1} = .16667$
 
 Even if librarians are 4 times more likely to be meek and tidy, it doesn't mean that the person is more likely a librarian.
