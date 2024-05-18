@@ -46,11 +46,19 @@
 		- [vector](#vector)
 		- [regex](#regex)
 		- [typeinfo](#typeinfo)
-	- [Points and addresses](#points-and-addresses)
+		- [fstream](#fstream)
+	- [Pointers, addresses, and references](#pointers-addresses-and-references)
+		- [Function pointers](#function-pointers)
 	- [Order of operations](#order-of-operations)
 	- [Switch](#switch)
 	- [Functions](#functions)
+		- [Reference arguments](#reference-arguments)
+		- [Optional arguments](#optional-arguments)
+		- [Function overloading](#function-overloading)
 	- [Scope](#scope)
+	- [Loops](#loops)
+	- [Global variables](#global-variables)
+	- [Header files](#header-files)
 
 <!-- /TOC -->
 
@@ -348,7 +356,37 @@ cout << setw(10) << z;
 	- `d` for double, `c` for char, `i` for integer.
 	- `P` for pointer, `K` for constant
 
-## [Points and addresses](#table-of-contents)
+### [fstream](#table-of-contents)
+- Reading
+
+```c++
+ifstream file("filename.txt");
+string line;
+file >> line;
+// or
+getline(file, line);
+file.close();
+```
+
+- Creating and writing
+
+```c++
+ofstream file("filename.txt");
+file << "Concatenate";
+file.close();
+```
+
+- Both
+
+```c++
+fstream file("filename.txt");
+file << "Concatenate";
+string line;
+file >> line;
+file.close();
+```
+
+## [Pointers, addresses, and references](#table-of-contents)
 Declaring
 - Ex: `int* myPointer`
 	- myPointer contains enough memory to hold an address and points to an int. It has to point to an int.
@@ -357,6 +395,12 @@ Referencing
 - `&myPointer` gets the address of myPointer.
 - `myPointer` gets the value in myPointer, which is the memory address it holds (the address it points to).
 - `*myPointer` dereferences myPointer and gets the value of the integer variable it points to.
+
+You can reference other variables with `&`
+- `int& x = y;` means that if x is assigned it also changes the value of y.
+
+### [Function pointers](#table-of-contents)
+`void (*name)(int, int) = function`
 
 ## [Order of operations](#table-of-contents)
 
@@ -408,6 +452,42 @@ switch (x) {
 - Functions cannot be declared within functions
 - You have to declare a function before using it.
 	- There is no hoisting
+- `constexpr`, which indicates that the return value of the function is a constant value can be computed at compile time.
+- `inline`
+	- Compiler searches and replaces that function. Can speed up performance because you don't have to call the function
+
+### [Reference arguments](#table-of-contents)
+You can make function arguments pass by reference by setting them as `&`
+- Multiple pass by reference parameters makes sense when the output values are intertwined
+
+```c++
+void assignX(int &x) { // x is a reference parameter
+	// This & is slightly different to the use case of getting the address
+	x = 10;
+}
+
+void assignY(int *y) { // y is a pointer to an int
+	*y = 10;
+}
+
+int x, y;
+assignX(x); // x is now 10
+assignY(&y); // y is now 10
+```
+
+### [Optional arguments](#table-of-contents)
+```c++
+int test(int a, int b = 4, int c = 10){
+	// c is an optional argument
+}
+```
+
+- All default arguments need to be placed at the end.
+
+### [Function overloading](#table-of-contents)
+- Functions with the same name, but different argument types.
+- The compiler determines which function to call based on the argument types.
+- Functions that return the different types, but have the same argument types don't trigger function overloading and give a compiler error.
 
 ## [Scope](#table-of-contents)
 - You can use `{}`s to define scope
@@ -422,3 +502,35 @@ switch (x) {
 	cout << x << endl;
 }
 ```
+
+## [Loops](#table-of-contents)
+- Do While loops are often used to ask the user repeatedly for input
+
+```c++
+int userInput;
+do {
+	cout << "Enter password: ";
+	cin >> userInput;
+} while(userInput != 2023);
+```
+
+- You don't need the {}s for for loops or while loops if they only contain 1 statement.
+
+```c++
+for(int i = 0; i< 10; i++)
+	cout << i << endl;
+
+while (true)
+  cout << "infinity ";
+```
+
+## [Global variables](#table-of-contents)
+- Global variables are variables outside any function
+- Global variables should be used sparingly because they can cause side effects in function.
+	- Side effects are another function updating a variable which effect another function. Like a hidden parameter.
+	- Usually global variables are constants in order to prevent these side effects.
+
+## [Header files](#table-of-contents)
+- Allows you to initialize functions after the main function because all the function definitions are already declared.
+	- Function definitions are also called function prototypes
+		- `void func(int, int);`
