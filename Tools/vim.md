@@ -97,6 +97,7 @@
 | select number then g then ctrl + x  | progressively decrement. 4 3 2 1 etc.      |
 
 ## [Uppercase and Lowercase](#table-of-contents)
+
 |               |           |
 |---------------|-----------|
 | select then U | Uppercase |

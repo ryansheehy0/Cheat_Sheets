@@ -44,6 +44,7 @@ The output should be the sorted input.
 		- [Counting Sort](#counting-sort)
 	- [Hybrid](#hybrid)
 	- [Tim Sort](#tim-sort)
+	- [Selection sort](#selection-sort)
 
 <!-- /TOC -->
 
@@ -242,3 +243,10 @@ console.log(countingSort(input, 0, 4))
 .push()
 
 ## [Tim Sort](#table-of-contents)
+
+## [Selection sort](#table-of-contents)
+- Search through the whole list to find the smallest element.
+- The smallest element gets swaped up front.
+- This continues until the whole list is sorted
+- O(N^2)
+  - (N - 1) * N/2

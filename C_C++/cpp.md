@@ -59,6 +59,7 @@
 	- [Loops](#loops)
 	- [Global variables](#global-variables)
 	- [Header files](#header-files)
+	- [Arrays](#arrays)
 
 <!-- /TOC -->
 
@@ -452,9 +453,16 @@ switch (x) {
 - Functions cannot be declared within functions
 - You have to declare a function before using it.
 	- There is no hoisting
-- `constexpr`, which indicates that the return value of the function is a constant value can be computed at compile time.
-- `inline`
+- `constexpr void func();`, which indicates that the return value of the function is a constant value can be computed at compile time.
+- `inline void func();`
 	- Compiler searches and replaces that function. Can speed up performance because you don't have to call the function
+- Terms
+	- The **header** is the function's return type, name, and arguments.
+		- Ex: `void func(int test)`
+	- The **prototype** is used before main so that you can define it after main.
+		- It doesn't have the argument names.
+		- Ex: `void func(int);`
+	- The **implementation** is the body fo the function
 
 ### [Reference arguments](#table-of-contents)
 You can make function arguments pass by reference by setting them as `&`
@@ -534,3 +542,8 @@ while (true)
 - Allows you to initialize functions after the main function because all the function definitions are already declared.
 	- Function definitions are also called function prototypes
 		- `void func(int, int);`
+
+## [Arrays](#table-of-contents)
+- You don't have to specify the length of the array if you are declaring and initializing it at the same time.
+	- `char name[] = "ryan";`
+	- `int ages[] = {1, 2, 3};`
