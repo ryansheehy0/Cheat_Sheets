@@ -98,10 +98,10 @@
 
 ## [Uppercase and Lowercase](#table-of-contents)
 
-|               |           |
-|---------------|-----------|
-| select then U | Uppercase |
-| select then U | Lowercase |
+|                       |           |
+|-----------------------|-----------|
+| select then shift + u | Uppercase |
+| select then u         | Lowercase |
 
 ## [Modes](#table-of-contents)
 
@@ -150,19 +150,19 @@
 
 ## [Find on page/Search](#table-of-contents)
 
-|                                   |                                                                      |
-|-----------------------------------|----------------------------------------------------------------------|
-| / + regex + enter                 | Search forward on page                                               |
-| ? + regex + enter                 | Search backward on page                                              |
-| n                                 | got to next                                                          |
-| N                                 | go back one                                                          |
-| :noh                              | remove highlight                                                     |
-| :let @/=''                        | remove the current search                                            |
-| :s/regex/replace                  | search and replace. You can also do this for selected text.          |
-| f + character                     | Go to the next occurrence of that character in the current line.     |
-| shift + f + character             | Go to the previous occurrence of that character in the current line. |
-| s/\(.\)$/\1 add to end of lines/g | Add something to the end of selected lines                           |
-
+|                                     |                                                                      |
+|-------------------------------------|----------------------------------------------------------------------|
+| / + regex + enter                   | Search forward on page                                               |
+| ? + regex + enter                   | Search backward on page                                              |
+| n                                   | got to next                                                          |
+| N                                   | go back one                                                          |
+| :noh                                | remove highlight                                                     |
+| :let @/=''                          | remove the current search                                            |
+| :s/regex/replace                    | search and replace. You can also do this for selected text.          |
+| f + character                       | Go to the next occurrence of that character in the current line.     |
+| shift + f + character               | Go to the previous occurrence of that character in the current line. |
+| s/\\(.\\)$/\1 add to end of lines/g | Add something to the end of selected lines                           |
+| s/\\(^.*$\\)$/Begin \1 End/g        | Add something to beginning and  end of selected lines                |
 
 ### [Special characters in replace](#table-of-contents)
 

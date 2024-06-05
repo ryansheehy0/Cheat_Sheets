@@ -88,4 +88,3 @@ RS Cheat Sheets is licensed under GPLv3. See the [COPYING file](./COPYING) for d
 
 ## Physics
 - [Logic Gate Electronic Speed Controller](./Physics/Logic_Gate_Electronic_Speed_Controller/logic_gate_electronic_speed_controller.md)
-- [NOT DONE: Light](./Physics/light.md)

@@ -40,6 +40,7 @@ My personal notes on C++.
 			- [Int vs Float Division](#int-vs-float-division)
 			- [Dividing by zero](#dividing-by-zero)
 			- [Int vs Float Modulus](#int-vs-float-modulus)
+			- [Getting each digit](#getting-each-digit)
 			- [Comparing floats](#comparing-floats)
 			- [Interment post-fix vs pre-fix](#interment-post-fix-vs-pre-fix)
 		- [Variable Modifiers](#variable-modifiers)
@@ -59,22 +60,22 @@ My personal notes on C++.
 		- [vector](#vector)
 		- [typeinfo](#typeinfo)
 		- [fstream](#fstream)
+		- [cctype](#cctype)
 	- [Pointers and references](#pointers-and-references)
 		- [Function pointers](#function-pointers)
 	- [Order of operations](#order-of-operations)
 	- [Switch](#switch)
 	- [Functions](#functions)
+		- [Types of functions](#types-of-functions)
 		- [Reference arguments](#reference-arguments)
 		- [Optional arguments](#optional-arguments)
 		- [Function overloading](#function-overloading)
-	- [Scope](#scope)
-	- [Loops](#loops)
-	- [Global variables](#global-variables)
-	- [Header files](#header-files)
+		- [Arrays as arguments](#arrays-as-arguments)
+	- [Custom Scope](#custom-scope)
+	- [Do While loops](#do-while-loops)
+	- [Single line conditions](#single-line-conditions)
+	- [Global and static variables](#global-and-static-variables)
 	- [Arrays](#arrays)
-	- [Conditions and loops on one line](#conditions-and-loops-on-one-line)
-		- [Static variables](#static-variables)
-	- [Getting each digit](#getting-each-digit)
 
 <!-- /TOC -->
 
@@ -89,6 +90,12 @@ My personal notes on C++.
 - Can you overload the main function
 	- You cannot overload main
 - What does replace length do? For string library
+- Header files allows you to initialize functions after the main function because all the function definitions are already declared.
+	- Function definitions are also called function prototypes
+		- `void func(int, int);`
+
+- Segmentation fault
+	- Going outside of your program's segment set by the OS
 
 - `"a"` outputs a null terminated array of characters, while `'a'` is just that character.
 	- `"a"` is the same as `['a', '\0']`
@@ -179,6 +186,19 @@ The smallest memory unit is 1 byte(8 bits).
 #### [Int vs Float Modulus](#table-of-contents)
 - Compiler error if you use modulus with floats/doubles.
 - Modulus can only work with int data types
+
+#### [Getting each digit](#table-of-contents)
+
+```c++
+int temp = val;
+ones = temp % 10;
+temp = temp / 10;
+
+tens = temp % 10;
+temp = temp / 10;
+
+hundreds = temp % 10;
+```
 
 #### [Comparing floats](#table-of-contents)
 - Don't use `x == y` because floats can be imprecise
@@ -383,12 +403,18 @@ while(true) {
 | `fstream file("name.txt");` | Open file           |
 | `file.open("name.txt");`    | Also opens the file |
 | `file.close();`             | Closes a file       |
-| `file.is_open()`            | Checks if it opened |
+| `file.is_open()` and `file` | Checks if it opened |
 
 - A file acts like a regular buffer
 	- `file << "concatenate";`
 	- `file >> input;`
 	- `getline(file, line);`
+
+### [cctype](#table-of-contents)
+
+|                 |                        |
+|-----------------|------------------------|
+| `tolower(char)` | Converts to lower case |
 
 ## [Pointers and references](#table-of-contents)
 
@@ -401,23 +427,24 @@ while(true) {
 | `int& x = y;` | When `x` is assigned `y` also changes   |
 
 ### [Function pointers](#table-of-contents)
-`void (*name)(int, int) = function`
+`void (*name)(int, int) = function;`
 
 ## [Order of operations](#table-of-contents)
 
-| Order | Operation                  |
-|-------|----------------------------|
-| 1     | x++ x-- function calls     |
-| 2     | Inside ()s                 |
-| 3     | !                          |
-| 4     | unary -. Negate a variable |
-| 5     | * / %                      |
-| 6     | + -                        |
-| 7     | left to right              |
-| 8     | < <= > >=                  |
-| 9     | == !=                      |
-| 10    | &&                         |
-| 11    | \|\|                       |
+| Order | Operation              |
+|-------|------------------------|
+| 1     | ()                     |
+| 2     | `::`                   |
+| 3     | x++ x-- function calls |
+| 4     | ++x --x +x -x !        |
+| 5     | * / %                  |
+| 6     | + -                    |
+| 7     | << >>                  |
+| 8     | < <= > >=              |
+| 9     | == !=                  |
+| 10    | &&                     |
+| 11    | \|\|                   |
+| 12    | a?b:c = += -=, etc     |
 
 ## [Switch](#table-of-contents)
 - Cannot be used with string or floating point types.
@@ -437,36 +464,28 @@ switch (x) {
 }
 ```
 
-You tend to make the cases constants.
-
-```c++
-const int ZERO = 0;
-
-switch (x) {
-	case ZERO:
-		break;
-	// etc
-}
-```
-
 ## [Functions](#table-of-contents)
-- Functions cannot be declared within functions
-- You have to declare a function before using it.
-	- There is no hoisting
-- `constexpr void func();`, which indicates that the return value of the function is a constant value can be computed at compile time.
-- `inline void func();`
-	- Compiler searches and replaces that function. Can speed up performance because you don't have to call the function
-- Terms
-	- The **header** is the function's return type, name, and arguments.
-		- Ex: `void func(int test)`
-	- The **prototype** is used before main so that you can define it after main.
-		- It doesn't have the argument names.
-		- Ex: `void func(int);`
-	- The **implementation** is the body fo the function
+- Functions cannot be declared within other functions.
+- You have to declare a function before using it. There is no hoisting
+
+| Term           | Example              |
+|----------------|----------------------|
+| header         | `void func(int arg)` |
+| prototype      | `void func(int);`    |
+| implementation | Body of the func     |
+
+- The purpose of the prototype being put above main is to allow the function definition to be used after the main function.
+
+### [Types of functions](#table-of-contents)
+
+|                          |                                                                       |
+|--------------------------|-----------------------------------------------------------------------|
+| `constexpr void func();` | Return value is consts so it can be evaluated at compile time         |
+| `inline void func();`    | Compiler searches and replaces. Speed up performance, but more memory |
 
 ### [Reference arguments](#table-of-contents)
-You can make function arguments pass by reference by setting them as `&`
-- Multiple pass by reference parameters makes sense when the output values are intertwined
+- You can make function arguments pass by reference by setting them as `&`
+- Reference arguments have to have an address so they cannot be values.
 
 ```c++
 void assignX(int &x) { // x is a reference parameter
@@ -483,29 +502,34 @@ assignX(x); // x is now 10
 assignY(&y); // y is now 10
 ```
 
-- References arguments must have an address so they cannot be `const`s or values.
-- If you do want to pass in a `const` you have to specify in the argument.
-	- Ex: `void assignX(const int &x)`
-	- Adding `const` is promising the compiler that you aren't changing that argument's value.
+- If you want to pass in a `const` you have to specify it in the argument.
+	- Ex: `void assignX(const int &x);`
+- An array argument is equivalent to a pointer to the first element of the array.
+	- `void func(int arr[]);` is the same as `void func(int *arr);`
+	- There is no special syntax in c++ for pass by value for an array argument.
 
 ### [Optional arguments](#table-of-contents)
+- Everything after the first optional arguments must also be optional arguments.
+
 ```c++
 int test(int a, int b = 4, int c = 10){
 	// c is an optional argument
 }
+
+test(1, 2, 3);
+test(1, 2);
+test(1);
 ```
 
-- All default arguments need to be placed at the end.
-	- Everything after a default argument must also have a default
 - If you have a prototype you can only put the default values in the prototype
 
 ### [Function overloading](#table-of-contents)
-- Functions with the same name, but different argument types.
-- The compiler determines which function to call based on the argument types.
-- Functions that return the different types, but have the same argument types don't trigger function overloading and give a compiler error.
+- Function overloading are multiple functions with the same name, but different argument types.
+	- The compiler determines which function to call based on the argument types.
+- Functions that return different types don't overload.
 
-## [Scope](#table-of-contents)
-- You can use `{}`s to define scope
+## [Custom Scope](#table-of-contents)
+- You can use `{}`s to define custom scope
 
 ```c++
 {
@@ -518,60 +542,39 @@ int test(int a, int b = 4, int c = 10){
 }
 ```
 
-## [Loops](#table-of-contents)
-- Do While loops are often used to ask the user repeatedly for input
+## [Do While loops](#table-of-contents)
 
 ```c++
-int userInput;
 do {
-	cout << "Enter password: ";
-	cin >> userInput;
-} while(userInput != 2023);
+} while(true);
 ```
 
-- You don't need the {}s for for loops or while loops if they only contain 1 statement.
+## [Single line conditions](#table-of-contents)
 
 ```c++
-for(int i = 0; i< 10; i++)
+if(true)
+	cout << "true" << endl;
+
+if (true)
+	cout << "true" << endl;
+else
+	cout << "false" << endl;
+
+for(int i = 0; i < 10; i++)
 	cout << i << endl;
 
 while (true)
   cout << "infinity ";
 ```
 
-## [Global variables](#table-of-contents)
-- Global variables are variables outside any function
-- Global variables should be used sparingly because they can cause side effects in function.
-	- Side effects are another function updating a variable which effect another function. Like a hidden parameter.
-	- Usually global variables are constants in order to prevent these side effects.
+## [Global and static variables](#table-of-contents)
+- Global variables are variables outside of any function
+- Global variables are automatically set to 0 if not given a value
+- Global variables should be used sparingly because they can cause side effects, like hidden parameters, in function.
+	- Usually global variables are consts in order to prevent these side effects.
 
-## [Header files](#table-of-contents)
-- Allows you to initialize functions after the main function because all the function definitions are already declared.
-	- Function definitions are also called function prototypes
-		- `void func(int, int);`
+- `static` allows a local variable to persist across function calls.
 
-## [Arrays](#table-of-contents)
-- You don't have to specify the length of the array if you are declaring and initializing it at the same time.
-	- `char name[] = "ryan";`
-	- `int ages[] = {1, 2, 3};`
-
-## [Conditions and loops on one line](#table-of-contents)
-- You can do if statements and if-else on one line without the curly brackets
-```c++
-if (x == 1)
-	cout << x;
-
-// or
-if (x == 1) cout << x;
-
-if (x != 1) cout << "false";
-else cout << x;
-```
-
-### [Static variables](#table-of-contents)
-`static` local variables persist across function calls.
-
-Ex: 
 ```c++
 for(int i = 0; i< 10; i++){
 	callFunc();
@@ -583,23 +586,11 @@ void callFunc() {
 	cout << count << endl;
 }
 ```
-## [Getting each digit](#table-of-contents)
-- Used to get each digit
+
+## [Arrays](#table-of-contents)
+
 ```c++
-int temp = val;
-ones = val % 10;
-temp = val / 10;
-
-tens = val % 10;
-temp = val / 10;
-
-hundreds = val % 10;
+int arr[3]; // Don't know what it's initialized with
+int arr[3] = {1}; // Initialized with {1, 0, 0}
+int arr[] = {1, 0, 0}; // Size is 3
 ```
-
-- Global variables are always init with 0 if you don't give it a value
-- Ex: `int arr[5] = {1};`
-	- The rest will be init to 0
-- Ex: `int arr[5];`
-	- Unknown what's inside the array
-- Segmentation fault
-	- Going outside of your program's segment set by the OS
