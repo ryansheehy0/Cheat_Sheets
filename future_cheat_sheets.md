@@ -113,3 +113,26 @@
 - Mechanical
     - Unpickable lock
     - Delays for small arms
+
+SystemD
+    - sudo dpkg-reconfigure resolveconf
+Github
+Stripe payment processing
+React
+Mongoose
+Null Window Manager
+MUI
+Prevent race conditions for db changes like Google Docs
+React Native
+Docker/Kubernetes
+Breadth first vs depth first
+Nginx
+tRPC
+Accessibility standards
+Database scaling
+express-ws
+Orthogonal(Taguchi arrays)
+Google authentication
+FIDO authentication
+Publish PWA on google play store
+B-trees

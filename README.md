@@ -5,10 +5,9 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
 RS Cheat Sheets is licensed under GPLv3. See the [COPYING file](./COPYING) for details.
 
 - [Tools](#tools)
+- [Bug Bounties](#bug-bounties)
 - [HTML/CSS/JS](#htmlcssjs)
 - [C/C++](#cc)
-- [Bug Bounties](#bug-bounties)
-- [Linux](#linux)
 - [Algorithms](#algorithms)
 - [Math](#math)
 - [Physics](#physics)
@@ -23,6 +22,21 @@ RS Cheat Sheets is licensed under GPLv3. See the [COPYING file](./COPYING) for d
 - [Networking](./Tools/networking.md)
 - [NOT DONE: OOP](./Tools/oop.md)
 - [NOT DONE: Programming Tips](./Tools/programming_tips.md)
+- Linux
+    - [Linux Commands](./Linux/linux_commands.md)
+    - [Bash Scripting](./Linux/bash_scripting.md)
+    - [SystemD](./Linux/systemd.md)
+
+## Bug Bounties
+- [NOT DONE: Bug Bounty overview](./Bug_Bounties/bug_bounties.md)
+- [Recon](./Bug_Bounties/recon.md)
+- [Path traversal](./Bug_Bounties/path_traversal.md)
+- [XSS](./Bug_Bounties/cross_site_scripting.md)
+- [SQL injection](./Bug_Bounties/sql_injection.md)
+- [IDORs](./Bug_Bounties/insecure_direct_object_references.md)
+- [SSRF](./Bug_Bounties/server_side_request_forgery.md)
+- [CSRF](./Bug_Bounties/cross_site_request_forgery.md)
+- [XXE](./Bug_Bounties/xml_external_entities.md)
 
 ## HTML/CSS/JS
 - [HTML](./HTML_CSS_JS/html.md)
@@ -56,27 +70,11 @@ RS Cheat Sheets is licensed under GPLv3. See the [COPYING file](./COPYING) for d
 - [C](./C_C++/c.md)
 - [C and C++ Compiling](./C_C++/c_and_cpp_compiling.md)
 
-## Bug Bounties
-- [NOT DONE: Bug Bounty overview](./Bug_Bounties/bug_bounties.md)
-- [Recon](./Bug_Bounties/recon.md)
-- [Path traversal](./Bug_Bounties/path_traversal.md)
-- [XSS](./Bug_Bounties/cross_site_scripting.md)
-- [SQL injection](./Bug_Bounties/sql_injection.md)
-- [IDORs](./Bug_Bounties/insecure_direct_object_references.md)
-- [SSRF](./Bug_Bounties/server_side_request_forgery.md)
-- [CSRF](./Bug_Bounties/cross_site_request_forgery.md)
-- [XXE](./Bug_Bounties/xml_external_entities.md)
-
-## Linux
-- [Linux Commands](./Linux/linux_commands.md)
-- [Bash Scripting](./Linux/bash_scripting.md)
-- [SystemD](./Linux/systemd.md)
-
 ## Algorithms
 - [Search Algorithms](./Algorithms/search_algorithms.md)
 - [NOT DONE: Sort Algorithms](./Algorithms/sort_algorithms.md)
 - [NOT DONE: Memory Managed Hash Table](./Algorithms/memory_managed_hash_table.md)
-- [Machine Learning](./Algorithms/Machine_Learning/machine_learning.md)
+- [NOT DONE: Machine Learning](./Algorithms/Machine_Learning/machine_learning.md)
 
 ## Math
 - [Taylor Series](./Math/Taylor_Series/taylor_series.md)

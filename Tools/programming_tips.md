@@ -26,6 +26,7 @@
 
 - [Programming Tips](#programming-tips)
 	- [Table of Contents](#table-of-contents)
+	- [Swapping variables without temp variable](#swapping-variables-without-temp-variable)
 	- [GPLv3 License](#gplv3-license)
 		- [How to add GPLv3 License](#how-to-add-gplv3-license)
 	- [Project Management](#project-management)
@@ -34,6 +35,19 @@
 	- [When to reuse code](#when-to-reuse-code)
 
 <!-- /TOC -->
+
+## [Swapping variables without temp variable](#table-of-contents)
+
+```c++
+// Swap a and b
+int a = 50, b = 10;
+a = a ^ b;
+b = a ^ b;
+a = a ^ b;
+
+cout << "a: " << a << endl;
+cout << "b: " << b << endl;
+```
 
 ## [GPLv3 License](#table-of-contents)
 If you are making your code open source, then it is recommended to use the GPLv3 license in order to prevent other companies from taking your work, adding some feature/modifications, and then selling or distributing their own closed sourced version of your code.

@@ -250,3 +250,5 @@ console.log(countingSort(input, 0, 4))
 - This continues until the whole list is sorted
 - O(N^2)
   - (N - 1) * N/2
+  
+  4

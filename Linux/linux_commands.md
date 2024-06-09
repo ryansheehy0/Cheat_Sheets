@@ -195,6 +195,7 @@ Dependency hell is when one application needs an older version of a library than
 | sudo apt search packageName  | Searches for packageName                                                               |
 | sudo apt purge packageName   | Uninstalls and removes files of packageName                                            |
 | sudo apt autoremove          | Removes all unneeded packages                                                          |
+| sudo apt install --only-upgrade packageName | Only upgrade that package |
 
 ## [File and Directory Manipulation](#table-of-contents)
 Folders and directories are the same thing.
