@@ -5,7 +5,7 @@ The purpose of these cheat sheets is to give concise explanations of the topic a
 RS Cheat Sheets is licensed under GPLv3. See the [COPYING file](./COPYING) for details.
 
 - [Tools](#tools)
-- [Bug Bounties](#bug-bounties)
+- [Web Cybersecurity](#web-cybersecurity)
 - [HTML/CSS/JS](#htmlcssjs)
 - [C/C++](#cc)
 - [Algorithms](#algorithms)
@@ -27,7 +27,7 @@ RS Cheat Sheets is licensed under GPLv3. See the [COPYING file](./COPYING) for d
     - [Bash Scripting](./Linux/bash_scripting.md)
     - [SystemD](./Linux/systemd.md)
 
-## Bug Bounties
+## Web Cybersecurity
 - [NOT DONE: Bug Bounty overview](./Bug_Bounties/bug_bounties.md)
 - [Recon](./Bug_Bounties/recon.md)
 - [Path traversal](./Bug_Bounties/path_traversal.md)
@@ -67,8 +67,8 @@ RS Cheat Sheets is licensed under GPLv3. See the [COPYING file](./COPYING) for d
 ## C/C++
 - [Make Files](./C_C++/make_files.md)
 - [C++](./C_C++/cpp.md)
-- [C](./C_C++/c.md)
-- [C and C++ Compiling](./C_C++/c_and_cpp_compiling.md)
+- [NOT DONE: C](./C_C++/c.md)
+- [NOT DONE: C and C++ Compiling](./C_C++/c_and_cpp_compiling.md)
 
 ## Algorithms
 - [Search Algorithms](./Algorithms/search_algorithms.md)

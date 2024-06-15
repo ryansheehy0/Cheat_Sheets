@@ -55,6 +55,7 @@ My personal notes on C++.
 		- [string](#string)
 		- [cmath](#cmath)
 			- [Random numbers](#random-numbers)
+			- [ctime](#ctime)
 		- [cstdlib](#cstdlib)
 		- [iomanip](#iomanip)
 		- [vector](#vector)
@@ -70,12 +71,12 @@ My personal notes on C++.
 		- [Reference arguments](#reference-arguments)
 		- [Optional arguments](#optional-arguments)
 		- [Function overloading](#function-overloading)
-		- [Arrays as arguments](#arrays-as-arguments)
 	- [Custom Scope](#custom-scope)
 	- [Do While loops](#do-while-loops)
 	- [Single line conditions](#single-line-conditions)
 	- [Global and static variables](#global-and-static-variables)
 	- [Arrays](#arrays)
+	- [Range based for loop](#range-based-for-loop)
 
 <!-- /TOC -->
 
@@ -293,8 +294,13 @@ You can find libraries at `https://cplusplus.com/reference/<library>`
 |                            | If user enters an invalid input it returns false    |
 |                            | Keeps new lines in the buffer                       |
 | `std::cin >> var1 >> var2` | Multiple inputs on one line                         |
-| `std::cin.ignore()`        | Ignores the next character                          |
-| `std::cin.get()`           | Gets the next character in the buffer including new |
+| `.ignore()`                | Ignores the next character                          |
+| `.get(ch)`                 | Gets the next character in the buffer including new |
+| `.clear()`                 | Clears the flags include end of file(eof) flag      |
+
+- `.seekg(offset, std::ios_base::beg)`
+	- Sets the position of the input pointer for the stream
+	- Ex: `file.seekg(0, ios_base::beg);`
 
 #### [Repeatedly ask for user input](#table-of-contents)
 
@@ -344,6 +350,11 @@ while(true) {
 - `std::rand() % 10` between 0-9
 - `(std::rand() % 11) + 20` between 20-30
 
+#### [ctime](#table-of-contents)
+- `#include <ctime>`
+- `srand(time(0));`
+	- Sets the seed for random number
+
 ### [cstdlib](#table-of-contents)
 - Integer math operations
 
@@ -366,7 +377,6 @@ while(true) {
 |                                  | Value larger than `setw` then it ignored     |
 | `cout << std::right;`            | Justify right                                |
 | `cout << std::left;`             | Justify left                                 |
-
 
 - `cout << setprecision(2) << 9.99999;`
 	- Ex: `10`
@@ -593,4 +603,29 @@ void callFunc() {
 int arr[3]; // Don't know what it's initialized with
 int arr[3] = {1}; // Initialized with {1, 0, 0}
 int arr[] = {1, 0, 0}; // Size is 3
+```
+
+- The name of the array is like a constant pointer.
+	- It always points to the first element of the array.
+
+```c++
+const int arr[3] = {0, 1, 2}
+// Have to initialize it
+// Can't change any of the values in the array
+```
+
+## [Range based for loop](#table-of-contents)
+- It isn't recommended to use because it has some restrictions
+	- Can only be used in the same scope where the array is created
+
+```c++
+int arr[] = {1, 2, 3, 4};
+
+for(int &num : arr) {
+	num++;
+}
+
+for(int num : arr) {
+	cout << num << endl;
+}
 ```
