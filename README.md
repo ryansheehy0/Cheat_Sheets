@@ -28,10 +28,12 @@ RS Cheat Sheets is licensed under GPLv3. See the [COPYING file](./COPYING) for d
     - [SystemD](./Linux/systemd.md)
 
 ## Web Cybersecurity
+- [XSS](./Bug_Bounties/cross_site_scripting.md)
+
+
 - [NOT DONE: Bug Bounty overview](./Bug_Bounties/bug_bounties.md)
 - [Recon](./Bug_Bounties/recon.md)
 - [Path traversal](./Bug_Bounties/path_traversal.md)
-- [XSS](./Bug_Bounties/cross_site_scripting.md)
 - [SQL injection](./Bug_Bounties/sql_injection.md)
 - [IDORs](./Bug_Bounties/insecure_direct_object_references.md)
 - [SSRF](./Bug_Bounties/server_side_request_forgery.md)

@@ -32,6 +32,10 @@ x=Ë
 R
 R<h1>This is NOT a PDF!</h1> <img src=x onerror=alert(document.cookie)>
 ```
+- document.cookies for XSS
+- non-HTML-based sinks? Like setTimeout. What does that mean?
+- Content security policy to prevent XSS?
+- Dangling markup injections?
 
 # Cross Site Scripting(XSS)
 Cross site scripting(XSS) allows an attacker to get a victim to run malicious code on their browser while looking like it came from a legitimate source.
@@ -158,15 +162,16 @@ Stored XSS:
 
 ## Prevent XSS attacks
 - Prevent passing information through URL parameters. Instead use the body.
+- Don't use react's `dangerouslySetInnerHTML`
 - Filter input as strictly as possible.
 	- Use a whitelist to only allow certain characters or words.
-	- Input into HTML
+	- Search and replace with HTML
 		- `&` to `&amp;`
 		- `<` to `&lt;`
 		- `>` to `&gt;`
 		- `"` to `&quot;`
 		- `'` to  `&#x27;`
-	- Input into JS
+	- Search and replace with JS
 		- `&` to `\u0026`
 		- `<` to `\u003c`
 		- `>` to `\u003e`
@@ -176,5 +181,10 @@ Stored XSS:
 	- `element.innerText = userInput;`
 	- `let textNode = document.createTextNode(userInput); element.appendChild(textNode);`
 	- Note: These DO NOT work if the element is a script element as the text will be executed as JS.
-- Use Content-Security Policy(CSPs) which is an additional header in the server or specified in the html which only allows certain 
+
+- Use Content-Security Policy(CSPs)
+	- Can distinguish between legitimate inputs and injected JS code
+	- 
+
+which is an additional header in the server or specified in the html which only allows certain 
 	- This only limits what XSS can do. It might not prevent it.
