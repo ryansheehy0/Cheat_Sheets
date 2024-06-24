@@ -96,6 +96,7 @@ Need more research:
 	- [XXE](./xml_external_entities.md)
 
 - GraphQL attacks
+- Improper access control
 - Authoritative Zone Transfer(AXFR) on port 53
 - Default credentials and Insecure server configurations
 	- s3 bucket

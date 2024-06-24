@@ -98,3 +98,7 @@ Returns 200s
 
 - Script that runs command -> regex to extract subdomains -> concat to file -> runs the next commands -> etc.
 - Script which filters out any nonloading sub domains
+
+- List tech stacks for each subdomain with wappalyzer
+	- Different tech tacks communicating together may be areas with higher amounts of vulnerabilities
+- List subdomains for attack vectors like XSS

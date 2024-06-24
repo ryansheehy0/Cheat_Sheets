@@ -51,6 +51,10 @@ The output should be the sorted input.
 ## [Quadratic](#table-of-contents)
 
 ### [Bubble Sort](#table-of-contents)
+- Goes through the array and swaps adjacent elements to be in order
+- Loop again if there was a swap
+
+
 Goes through one element at a time, compares the adjacent element, and swaps them if they are in the wrong order.
 - O(n^2)
   - Small datasets ok-ish
@@ -75,6 +79,22 @@ Compare 1 and 2
   1 is less than 2 so move to the next element(2)
 2 is at the end so move back to the beginning(1)
 1 is at the end and at the beginning so sorting is done
+
+```c++
+void bubbleSort(int arr[], int len){
+  bool swap = true;
+  while(swap){
+    swap = false;
+    for(int i = 0; i < len - 1; i++){
+      if(arr[i] > arr[i+1]){
+        int temp = arr[i];
+        arr[i] = arr[i+1];
+        arr[i+1] = arr[i];
+      }
+    }
+  }
+}
+```
 
 ```javascript
 const input = [1, 4, 2, 3]
@@ -245,10 +265,12 @@ console.log(countingSort(input, 0, 4))
 ## [Tim Sort](#table-of-contents)
 
 ## [Selection sort](#table-of-contents)
+- Search through the list to find the smallest
+- Move the smallest to the front
+- Repeat until there is no more of the list to check
+
 - Search through the whole list to find the smallest element.
 - The smallest element gets swaped up front.
 - This continues until the whole list is sorted
 - O(N^2)
   - (N - 1) * N/2
-  
-  4

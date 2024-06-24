@@ -405,15 +405,16 @@ while(true) {
 ### [fstream](#table-of-contents)
 - Reading and writing to files
 
-|                             |                     |
-|-----------------------------|---------------------|
-| `ifstream`                  | Reading file        |
-| `ofstream`                  | Writing file        |
-| `fstream`                   | Reading and writing |
-| `fstream file("name.txt");` | Open file           |
-| `file.open("name.txt");`    | Also opens the file |
-| `file.close();`             | Closes a file       |
-| `file.is_open()` and `file` | Checks if it opened |
+|                             |                                  |
+|-----------------------------|----------------------------------|
+| `ifstream`                  | Reading file                     |
+| `ofstream`                  | Writing file                     |
+|                             | Don't need to check if it's open |
+| `fstream`                   | Reading and writing              |
+| `fstream file("name.txt");` | Open file                        |
+| `file.open("name.txt");`    | Also opens the file              |
+| `file.close();`             | Closes a file                    |
+| `file.is_open()` and `file` | Checks if it opened              |
 
 - A file acts like a regular buffer
 	- `file << "concatenate";`
