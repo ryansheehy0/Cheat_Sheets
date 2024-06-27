@@ -102,3 +102,8 @@ Returns 200s
 - List tech stacks for each subdomain with wappalyzer
 	- Different tech tacks communicating together may be areas with higher amounts of vulnerabilities
 - List subdomains for attack vectors like XSS
+
+- Script to list out site map from from lastmod first.
+	- Good to look at older websites first
+	- /sitemap.xml
+	- /sitemap_index.xml

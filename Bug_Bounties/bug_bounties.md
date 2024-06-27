@@ -20,6 +20,8 @@
 
 # Bug Bounties
 
+- There is a lack of organization for the knowledge of bug bounties
+
 ## Table of Contents
 
 <!-- TOC -->
