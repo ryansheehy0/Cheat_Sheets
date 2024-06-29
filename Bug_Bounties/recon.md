@@ -107,3 +107,39 @@ Returns 200s
 	- Good to look at older websites first
 	- /sitemap.xml
 	- /sitemap_index.xml
+
+- Look for custom js files
+	- They are less likely to be tested
+
+- List tech stacks for subdomains from wappalizer
+	- Different tech stacks usually means different teams which may mean different vulnerabilities.
+
+- Payload lists for fuzzing
+	- URI-hex
+		- %00 -> %ff
+	- Unicode
+	- Double URI-hex
+		- %2500 -> %25ff
+
+- Sometimes react files aren't excluded from the build
+	- Look in debugger sources
+
+- How to take notes:
+	- List every sub-domain with their web stacks
+	- List attack vectors
+		- Ex: `GET -> https://www.website.com?search=ryan`
+	- List what attack and what input and outputs map to for that attack
+		- Ex: `"` -> %22
+
+`allow pasting` into console to allow pasting stuff into there
+
+- Sanative for malicious characters
+- Check the input type
+	- Expecting a string, but getting an obj(transferred prototype pollution)
+- Length of the input
+
+Do 4 things every day
+- Learn something new
+- Do a controlled lab
+- Read an already disclosed exploit
+- Test on real world application

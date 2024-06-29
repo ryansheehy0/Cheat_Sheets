@@ -38,7 +38,36 @@ R<h1>This is NOT a PDF!</h1> <img src=x onerror=alert(document.cookie)>
 - Dangling markup injections?
 - Why double url encode?
 - Is there a way to do a URI based XSS when the link has `?` in front?
-	- `<a href="?javascript:alert()"` doesn't work
+	- I was getting this reflected in the DOM: `<a href="?myinput&page=2">`
+	- I tried: `<a href="?javascript:alert();//&page=2">`, but that didn't work
+	- I don't know if it's possible to escape the `?` that's in front
+	- I couldn't escape the attribute with `"`s because it was being URL encoded
+
+	- https://www.rei.com/events/search?
+
+- __proto__
+- constructor
+- prototype
+
+- Compensating controls
+	- Prevent weaponization of XSS
+		1. Cookie flags
+		2. Browser security headers
+		3. Content Security Policy(CSP)
+	- Prevent attack in the first place
+		4. Web Application Firewall(WAF)
+			- Can create a false sense of security
+			- Usually prevent the site from loading at all and gives error page
+		5. Client-Side Validation
+		6. Server-Side Validation
+		7. Output Encoding
+
+- What's a polygot?
+	- Messy set of characters to find if something is breaks out?
+	- String that's designed to execute in multiple different environments
+	- Headless browser for DOM based XSS
+		- Use console.log XSS attacks and see if any pop up
+		- Can't use burp because it's on the client
 
 - Todo
 	- HTML encoding(Ex: change `<`s to `&lt;`) vs HTML sanitization(Allowing some html elements, but not all)
@@ -52,8 +81,9 @@ R<h1>This is NOT a PDF!</h1> <img src=x onerror=alert(document.cookie)>
 		- [Inside html elements](#inside-html-elements)
 		- [Inside html attributes](#inside-html-attributes)
 			- [Uniform Resource IdentifierURIs](#uniform-resource-identifieruris)
-		- [Inside Javascript](#inside-javascript)
+		- [Inside JavascriptClient side javascript inject](#inside-javascriptclient-side-javascript-inject)
 		- [Inside CSS](#inside-css)
+		- [Inside JSON](#inside-json)
 	- [Easy ways to prevent XSS](#easy-ways-to-prevent-xss)
 		- [Content Security Policy CSPs](#content-security-policy-csps)
 	- [Bypassing common XSS filters](#bypassing-common-xss-filters)
@@ -74,6 +104,9 @@ Todo
 	- Javascript
 		- innerHTML
 	- CSS
+
+- Content security policy
+	- Content-Security-Policy-Report-Only:
 
 - HTML encoding(search and replace) vs HTML sanitization(Allowing some elements)
 
@@ -163,7 +196,7 @@ In order to prevent URI attacks there should be a whitelist of acceptable URIs a
 	- There are lots of non-standard URIs for different browser
 	- There could be more unsafe URIs in the future
 	- There can be unique ways of encoding URIs
-		- Ex: `jAvAsCrIpT:`, `javas%09cript:`,	`javas]]<![CDATA[cript:`, `javascript:javascript:`
+		- Ex: `jAvAsCrIpT:`, `javas%09cript:`, `javas]]<![CDATA[cript:`, `javascript:javascript:`
 			- `%09`, `%00`, `%20`, `%10`, or `\0`
 			- `?javascript:` does not work
 - Common whitelist used by Wordpress
@@ -180,8 +213,12 @@ In order to prevent URI attacks there should be a whitelist of acceptable URIs a
 	}
 ```
 
-### Inside Javascript
+### Inside Javascript(Client side javascript inject)
 - Ex:
+
+How do you find these?
+	- Searching in the js code takes a while
+		- Does Burp's DOM Injection find all of them?
 
 ```javascript
 const params = new URLSearchParams(window.location.search)
@@ -196,12 +233,21 @@ const param2 = params.get('param2')
 	- JQuery: `.parseParams()`
 - Sinks
 	- innerHTML
+		- Doesn't work with script tag
+		- Use img or iframe
+		- Written to the page after all the js is loaded and ran, therefore script tags won't work
+	- eval(input)
 
 	Avoid using `element.innerHTML = userInput;` and instead use `element.innerText = userInput;`
 		- This doesn't work if the element is a script?
 
 ### Inside CSS
 	- Not very common
+
+### Inside JSON
+	- Have to escape the "s
+	- Inject another key and value
+	- Can you also execute javascript of html?
 
 ## Easy ways to prevent XSS
 - Pass information through the body instead of through URL parameters
@@ -237,6 +283,9 @@ See [XXS Tests](./xss_tests.md)
 
 - It is often times worth try to double URL encode you input.
 	- Why?
+
+- Try to avoid attack vectors where everyone will try XSS
+	- The 1st search box on the home page
 
 ## Weaponizing XSS payloads
 
@@ -299,3 +348,4 @@ document.addEventListener('keydown', (event) => {
 | `>`    | `&gt;`    | `&#62;`   | `%3E` |
 | `\`    |           | `&#92;`   | `%5C` |
 | `#`    |           | `&#35;`   | `%23` |
+| `?`    |           | `&#63;`   | `%3F` |

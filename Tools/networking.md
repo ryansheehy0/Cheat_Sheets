@@ -223,6 +223,20 @@ You can buy to own domain names and top level domains together. Ex: `website.com
 | app                | Used for histing web apps                    |
 | beta               | beta features                                |
 
+| Special Character | Description                           |
+|-------------------|---------------------------------------|
+| `?`               | Starts parameters                     |
+| `&`               | Separates different parameters        |
+| `=`               | Assigns parameter value               |
+| `+`               | Space for parameter names or values   |
+| `/`               | Separates different paths             |
+| `#`               | Starts a fragment identifier(anchors) |
+| `%`               | Start of URL encoded character        |
+
+What do these do?
+@
+:
+
 ## [DNS](#table-of-contents)
 The Domain Name System(**DNS**) is used to figure out the IP Address of a domain name and any other associated information that the server may need to know which site you want.
 
