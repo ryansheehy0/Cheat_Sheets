@@ -18,40 +18,49 @@
 
 [Home](../README.md)
 
-# Bug Bounties
+# Web Cybersecurity
 
-- There is a lack of organization for the knowledge of bug bounties
+These notes help to solve the problem of a lack of comprehensive organization for web cybersecurity.
 
 ## Table of Contents
 
 <!-- TOC -->
 
-- [Bug Bounties](#bug-bounties)
+- [Web Cybersecurity](#web-cybersecurity)
 	- [Table of Contents](#table-of-contents)
-	- [3 Golden Rules](#3-golden-rules)
+	- [Need to study resources](#need-to-study-resources)
 	- [Bug Bounty Platforms](#bug-bounty-platforms)
-	- [What to look out for](#what-to-look-out-for)
-	- [Good attack targets](#good-attack-targets)
+	- [Attacks](#attacks)
 	- [Tools](#tools)
-		- [Programs](#programs)
-		- [Tool websites](#tool-websites)
-		- [Browser extentions](#browser-extentions)
 		- [Need to research](#need-to-research)
+		- [Websites](#websites)
+		- [Browser extensions](#browser-extensions)
 	- [Important terms](#important-terms)
 
 <!-- /TOC -->
 
-## [3 Golden Rules](#table-of-contents)
-1. Testing for vulnerabilities should not degrade, damage, or destroy the application for other users.
-1. Report vulnerabilities without any conditions attached.
-1. Do not share any vulnerabilities to 3rd parties.
-
-- Make sure to read all of the requirements before beginning bug bountying.
+## [Need to study resources](#table-of-contents)
+- Labs:
+	- https://app.hackinghub.io/hubs
+	- https://portswigger.net/web-security/dashboard
+	- https://tryhackme.com/
+	- https://www.hackthebox.com/
+- Prevent XSS: https://www.geeksforgeeks.org/cross-site-scripting-xss-prevention-techniques/
+- OWASP(Open Web Application Security Project) cheat sheet: https://cheatsheetseries.owasp.org/
+- Reddit XSS: https://www.reddit.com/r/xss/
+- Rs0n:
+	- Website: https://ars0nsecurity.com/
+	- Github notes: https://github.com/R-s0n
+- Github seclist: https://github.com/danielmiessler/SecLists
+- Javascript for hackers book: https://www.realmit.eu/storage/bookdumpo/Gareth_Heyes_-_JavaScript_for_hackers_Learn_to_think_like_a_hacker_2022_Lean_Publishing.pdf
+- Get around firebase: https://github.com/0xbigshaq/firepwn-tool
+- Pico CTFs: https://www.picoctf.org/
+- XSS Validator: https://github.com/PortSwigger/xss-validator
 
 ## [Bug Bounty Platforms](#table-of-contents)
-- https://www.hackerone.com/
-- https://www.intigriti.com/
+- https://hackerone.com/opportunities/all
 
+- https://www.intigriti.com/
 - Bugbounter
 - https://www.bugcrowd.com/
 - NordicDefender Bug Bounty
@@ -62,26 +71,18 @@
 - Open Bug Bounty
 - YesWeHack
 - Topcoder, a Wipro company
-
 - Cobalt
 - BountyFactory
 - Zerocopter
 
-## [What to look out for](#table-of-contents)
-- It is important to try all input variations on any attack points, even the low probability ones.
-
-Done:
-- URL parameters to files
-	- [Path traversal](./path_traversal.md)
-
-Need more research:
-- URL parameters that output to the DOM or User inputs that are saved to the db and can be seen by other users.
-	- [XSS](./cross_site_scripting.md)
-
-- [Recon](./recon.md)
+## [Attacks](#table-of-contents)
 - Look through source code
 	- Comments with sensitive info
-	- Check for max length of form inputs
+	- Check for max length on form inputs
+- URL parameters to files
+	- [Path traversal](./path_traversal.md)
+- URL parameters that output to the DOM or User inputs that are saved to the db and can be seen by other users.
+	- [XSS](./cross_site_scripting.md)
 - User input that would use the db
 	- [SQL injection](./sql_injection.md)
 	- NoSQL injection
@@ -123,35 +124,7 @@ You often need 2 accounts in order to perform certain attacks. An attacking acco
 - Stored XSS
 - IDORs
 
-## [Good attack targets](#table-of-contents)
-- Not up to date webpages
-- Powered by a 3rd party company
-	- Wordpress, GoDaddy, Wix
-- Foreign languages. Less people search for bugs there.
-
 ## [Tools](#table-of-contents)
-
-### [Programs](#table-of-contents)
-Tools:
-1. Burp suit: Intercepts requests made from the client to the server.
-- [Burp-UserAgent](https://github.com/codewatchorg/Burp-UserAgent). Certain bug bounties may required info be appended to user agents.
-- Settings -> Tasks -> New resource pool -> Set maximum concurrent requests
-1. Shodan: A database of all open IP addresses.
-1. Wayback machine: A database of snapshots of different URLS from different points in time.
-1. amass: Find subdomains and ip addresses used by domain
-
-### [Tool websites](#table-of-contents)
-- [URL Decoder/Encoder](https://meyerweb.com/eric/tools/dencoder/)
-- [JavaScript Deobfuscator](https://deobfuscate.io/)
-- [ASCII table](https://www.asciitable.com/)
-- [CSRF HTML generator](https://tools.nakanosec.com/csrf/)
-- [get your user agent](https://www.whatsmyua.info/)
-
-### [Browser extentions](#table-of-contents)
-- Wappalyzer
-	- Technologies used to create the website
-- IP Address and Domain Information
-- Multiple Url Opener
 
 ### [Need to research](#table-of-contents)
 - Wireshark
@@ -185,6 +158,29 @@ Tools:
 - gau
 	- get all urls. Uses AlienVault's Open Threat Exchange, wayback machine, common crawl and URLScan
 	- Just accesses database and doesn't crawl(like a spider)
+- Shodan
+	- Database of all open IP addresses
+- Wayback machine
+	- Database of snapshots of deferent URLs from different points in time
+- amass
+	- Finds subdomains and ip addresses used by domain
+
+### [Websites](#table-of-contents)
+- [URL Decoder/Encoder](https://meyerweb.com/eric/tools/dencoder/)
+- [JavaScript Deobfuscator](https://deobfuscate.io/)
+- [HTML character code table](https://www.rapidtables.com/web/html/html-codes.html)
+- [CSRF HTML generator](https://tools.nakanosec.com/csrf/)
+- [Get your user agent](https://www.whatsmyua.info/)
+- [JSFuck](https://jsfuck.com/)
+
+### [Browser extensions](#table-of-contents)
+- Google translate
+- Quick source viewer
+- React Developer Tools
+- Wappalizer
+
+- IP Address and Domain Information
+- Multiple Url Opener
 
 ## [Important terms](#table-of-contents)
 

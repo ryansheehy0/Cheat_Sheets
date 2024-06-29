@@ -143,3 +143,9 @@ Do 4 things every day
 - Do a controlled lab
 - Read an already disclosed exploit
 - Test on real world application
+
+## [Good attack targets](#table-of-contents)
+- Not up to date webpages
+- Powered by a 3rd party company
+	- Wordpress, GoDaddy, Wix
+- Foreign languages. Less people search for bugs there.

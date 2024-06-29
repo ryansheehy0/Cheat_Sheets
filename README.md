@@ -28,17 +28,17 @@ RS Cheat Sheets is licensed under GPLv3. See the [COPYING file](./COPYING) for d
     - [SystemD](./Linux/systemd.md)
 
 ## Web Cybersecurity
-- [XSS](./Bug_Bounties/cross_site_scripting.md)
+- [XSS](./Web_Cybersecurity/cross_site_scripting.md)
 
 
-- [NOT DONE: Bug Bounty overview](./Bug_Bounties/bug_bounties.md)
-- [Recon](./Bug_Bounties/recon.md)
-- [Path traversal](./Bug_Bounties/path_traversal.md)
-- [SQL injection](./Bug_Bounties/sql_injection.md)
-- [IDORs](./Bug_Bounties/insecure_direct_object_references.md)
-- [SSRF](./Bug_Bounties/server_side_request_forgery.md)
-- [CSRF](./Bug_Bounties/cross_site_request_forgery.md)
-- [XXE](./Bug_Bounties/xml_external_entities.md)
+- [NOT DONE: Web Cybersecurity](./Web_Cybersecurity/web_cybersecurity.md)
+- [Recon](./Web_Cybersecurity/recon.md)
+- [Path traversal](./Web_Cybersecurity/path_traversal.md)
+- [SQL injection](./Web_Cybersecurity/sql_injection.md)
+- [IDORs](./Web_Cybersecurity/insecure_direct_object_references.md)
+- [SSRF](./Web_Cybersecurity/server_side_request_forgery.md)
+- [CSRF](./Web_Cybersecurity/cross_site_request_forgery.md)
+- [XXE](./Web_Cybersecurity/xml_external_entities.md)
 
 ## HTML/CSS/JS
 - [HTML](./HTML_CSS_JS/html.md)

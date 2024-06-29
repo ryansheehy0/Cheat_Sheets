@@ -18,9 +18,37 @@
 
 [Home](../README.md)
 
-Need to research:
-https://github.com/PortSwigger/xss-validator
-Uploading .html file
+# Cross Site Scripting(XSS)
+Cross site scripting(XSS) allows an attacker to get a victim to run malicious code on their browser while looking like it came from a legitimate source.
+
+There are 2 type of XSS attacks.
+- Through URL parameters
+	- When a victim is sent a malicious URL, they may click on it because the base domain comes from a legitimate source.
+		- **Reflected XSS**: Server uses the URL parameter to change the DOM.
+		- **DOM-Based XSS**: Client uses the URL parameter to change the DOM.
+- Through the database
+	- **Stored XSS**: When the victim comes across malicious data stored in the database, that malicious data gets ran on their browser.
+		- Ex: Posting a comment which other users can see.
+
+## Todo
+- Content Security Policy(CSP)s
+	- https://web.dev/articles/csp
+	- Content-Security-Policy-Report-Only:
+- Cross origin resource sharing(CORS)
+- HTML encoding(Ex: change `<`s to `&lt;`) vs HTML sanitization(Allowing some html elements, but not all)
+- Javascript sinks
+- CSS sinks
+- XSS through PDFs
+- XSS through SVGs
+- XSS through XML
+- Why double url encode?
+- Polygots
+	- Messy set of characters to find if something is breaks out
+	- String that's designed to execute in multiple different environments
+	- Headless browser for DOM based XSS
+		- Use console.log XSS attacks and see if any pop up
+		- Can't use burp because it's on the client
+
 ```
 %PDF-1.4
 %Ã¤Ã¼Ã¶Ã
@@ -32,22 +60,23 @@ x=Ë
 R
 R<h1>This is NOT a PDF!</h1> <img src=x onerror=alert(document.cookie)>
 ```
-- document.cookies for XSS
-- non-HTML-based sinks? Like setTimeout. What does that mean?
-- Content security policy to prevent XSS?
-- Dangling markup injections?
-- Why double url encode?
+
 - Is there a way to do a URI based XSS when the link has `?` in front?
 	- I was getting this reflected in the DOM: `<a href="?myinput&page=2">`
 	- I tried: `<a href="?javascript:alert();//&page=2">`, but that didn't work
 	- I don't know if it's possible to escape the `?` that's in front
 	- I couldn't escape the attribute with `"`s because it was being URL encoded
-
 	- https://www.rei.com/events/search?
 
+## Need to research
 - __proto__
 - constructor
 - prototype
+- document.cookies for XSS
+- non-HTML-based sinks? Like setTimeout. What does that mean?
+- Dangling markup injections?
+
+
 
 - Compensating controls
 	- Prevent weaponization of XSS
@@ -62,19 +91,11 @@ R<h1>This is NOT a PDF!</h1> <img src=x onerror=alert(document.cookie)>
 		6. Server-Side Validation
 		7. Output Encoding
 
-- What's a polygot?
-	- Messy set of characters to find if something is breaks out?
-	- String that's designed to execute in multiple different environments
-	- Headless browser for DOM based XSS
-		- Use console.log XSS attacks and see if any pop up
-		- Can't use burp because it's on the client
-
-- Todo
-	- HTML encoding(Ex: change `<`s to `&lt;`) vs HTML sanitization(Allowing some html elements, but not all)
-
 <!-- TOC -->
 
 - [Cross Site ScriptingXSS](#cross-site-scriptingxss)
+	- [Todo](#todo)
+	- [Need to research](#need-to-research)
 	- [URL parameter XSS](#url-parameter-xss)
 	- [Common payloads](#common-payloads)
 	- [Different types of Sinks - Where user input is used](#different-types-of-sinks---where-user-input-is-used)
@@ -97,36 +118,6 @@ R<h1>This is NOT a PDF!</h1> <img src=x onerror=alert(document.cookie)>
 	- [Reference table](#reference-table)
 
 <!-- /TOC -->
-
---------------------------------------------------------------------------------
-Todo
-- Different types Sinks
-	- Javascript
-		- innerHTML
-	- CSS
-
-- Content security policy
-	- Content-Security-Policy-Report-Only:
-
-- HTML encoding(search and replace) vs HTML sanitization(Allowing some elements)
-
-- File upload vulnerabilities
-	- SVGs
-	- PDFs
-
---------------------------------------------------------------------------------
-
-# Cross Site Scripting(XSS)
-Cross site scripting(XSS) allows an attacker to get a victim to run malicious code on their browser while looking like it came from a legitimate source.
-
-There are 2 type of XSS attacks.
-- Through URL parameters
-	- When a victim is sent a malicious URL, they may click on it because the base domain comes from a legitimate source.
-		- **Reflected XSS**: Server uses the URL parameter to change the DOM.
-		- **DOM-Based XSS**: Client uses the URL parameter to change the DOM.
-- Through the database
-	- **Stored XSS**: When the victim comes across malicious data stored in the database, that malicious data gets ran on their browser.
-		- Ex: Posting a comment which other users can see.
 
 ## URL parameter XSS
 - The URL parameter have to be used somewhere within the DOM.
