@@ -32,12 +32,10 @@ There are 2 type of XSS attacks.
 
 ## Todo
 - Content Security Policy(CSP)s
-	- https://web.dev/articles/csp
-	- Content-Security-Policy-Report-Only:
 - Cross origin resource sharing(CORS)
 - HTML encoding(Ex: change `<`s to `&lt;`) vs HTML sanitization(Allowing some html elements, but not all)
 - Javascript sinks
-- CSS sinks
+- CSS injection
 - XSS through PDFs
 - XSS through SVGs
 - XSS through XML
@@ -76,8 +74,6 @@ R<h1>This is NOT a PDF!</h1> <img src=x onerror=alert(document.cookie)>
 - non-HTML-based sinks? Like setTimeout. What does that mean?
 - Dangling markup injections?
 
-
-
 - Compensating controls
 	- Prevent weaponization of XSS
 		1. Cookie flags
@@ -106,7 +102,7 @@ R<h1>This is NOT a PDF!</h1> <img src=x onerror=alert(document.cookie)>
 		- [Inside CSS](#inside-css)
 		- [Inside JSON](#inside-json)
 	- [Easy ways to prevent XSS](#easy-ways-to-prevent-xss)
-		- [Content Security Policy CSPs](#content-security-policy-csps)
+		- [Content Security Policies CSPs](#content-security-policies-csps)
 	- [Bypassing common XSS filters](#bypassing-common-xss-filters)
 	- [Weaponizing XSS payloads](#weaponizing-xss-payloads)
 		- [Stealing information](#stealing-information)
@@ -248,10 +244,97 @@ const param2 = params.get('param2')
 - Use whitelists and/or blacklists for allowable data
 - Use Content Security Policy
 
-### Content Security Policy (CSPs)
+### Content Security Policies (CSPs)
+- Content Security Policies are a browser/client protection which allows the server to specify which sources can be used for 
+	- It can be used to mitigate XSS attacks.
+- CSPs are set by the server through a response header
+
+- Doesn't block HTML injection?
+- Used to create a whitelist on allowed sources for each content?
+
+- Can't use CSPs for inline JS code because it can't be distinguished from user injected js code.
+	- All CSS and JS have to be included with the `<script src="">` or `<link href="">`
+	- You can mark code that is inline by using the `nonce` attribute
+		- The server usually takes a hash of the code with a secret password and uses that as the nonce
+
+```javascript
+// On the server
+let jsCode = `
+	console.log("Testing nonce")
+`
+
+<script
+	nonce={hash(jsCode, password)}
+	dangerouslySetInnerHTML={{__html: jsCode}}
+></script>
+```
+
+```
+Content-Security-Policy: script-src 'self'; report-uri 'capture-data.php';
+[        Header        ][   Name  ][Source][   Name  ][     Source       ]
+                        [    Directive    ][          Directive          ]
+                        [                     Value                      ]
+```
+
+	What are directives?
+- Directives - Separated by `;`s
+	- Resource "fetch" policies - Specifies trusted locations for source code and other resources
+	- Document policies
+	- Navigation policies - Decide where the user can be sent and who can frame the site
+	- Reporting policies - Allows violations to be reported to the dev team
+	- Other
+
+	What are names?
+- Names - Specifies which resource is being whitelisted. One per directive.
+	- script-src
+	- style-src
+	- default-src
+	- img-src
+	- connect-src
+	- form-action
+	- font-src
+	- frame-src
+
+- Different types of Sources:
+
+- Directives
+	- Name value pairs which are space delimited
+	- Blockers
+
+- script-src 'self' https://www.example.com;
+	- Scripts can be downloaded from self and https://www.example.com
+
+- Names
+- Example sources
+	- none - Disables any resources
+	- self - The same domain
+	- URL - Another domain
+	- Usually used for legacy code
+		- Nonce - A random number assigned to the script by the server. Changes upon each refresh.
+		- Digest - A hash of the code included in the page. Doesn't change on refresh.
+
+- script-src
+- 'self';
+- report-uri
+- 'capture-data.php';
+
+- Can you set multiple nonces in the CSP header?
+	- Do you have one nonce for all the inline script files?
+	- How would that prevent DOM based XSS?
+
+
+- Sets of Headers in every response which tell the browser what resources are allowed or disabled.
+
+- CSPs help to midigate the damage done from refelced or stored XSS?
+
+- How can CSPs prevent DOM based XSS?
+
 - Sent by server in the header in every response
 - Allows us to specify exactly what sources are trusted and disable any inline resources
 - Can distinguish between legitimate inputs and injected JS code
+
+	- https://web.dev/articles/csp
+	- Content-Security-Policy-Report-Only:
 
 ## Bypassing common XSS filters
 - Trying the same character multiple times(replace vs replaceAll)
