@@ -45,6 +45,7 @@ These notes help to solve the problem of a lack of comprehensive organization fo
 	- https://portswigger.net/web-security/dashboard
 	- https://tryhackme.com/
 	- https://www.hackthebox.com/
+	- https://capturetheflag.withgoogle.com/
 - Prevent XSS: https://www.geeksforgeeks.org/cross-site-scripting-xss-prevention-techniques/
 - OWASP(Open Web Application Security Project) cheat sheet: https://cheatsheetseries.owasp.org/
 - Reddit XSS: https://www.reddit.com/r/xss/

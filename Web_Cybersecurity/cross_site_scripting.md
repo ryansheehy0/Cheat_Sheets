@@ -247,7 +247,7 @@ const param2 = params.get('param2')
 ### Content Security Policies (CSPs)
 - Content Security Policies are a browser/client protection which allows the server to specify which sources can be used for 
 	- It can be used to mitigate XSS attacks.
-- CSPs are set by the server through a response header
+- CSPs are set by the server through a response header called `Content-Security-Policy:`.
 
 - Doesn't block HTML injection?
 - Used to create a whitelist on allowed sources for each content?
@@ -285,51 +285,31 @@ Content-Security-Policy: script-src 'self'; report-uri 'capture-data.php';
 	- Other
 
 	What are names?
-- Names - Specifies which resource is being whitelisted. One per directive.
-	- script-src
-	- style-src
+- Names - Specifies the element or attribute which is being whitelisted. One per directive.
+	- script-src - script elements
+	- style-src - style attributes
 	- default-src
-	- img-src
+	- img-src - img elements
 	- connect-src
 	- form-action
 	- font-src
 	- frame-src
+	- report-uri
 
-- Different types of Sources:
-
-- Directives
-	- Name value pairs which are space delimited
-	- Blockers
-
-- script-src 'self' https://www.example.com;
-	- Scripts can be downloaded from self and https://www.example.com
-
-- Names
-- Example sources
+- Sources - Specifies which resources can be used for the element or attribute. Can have multiple per directive.
 	- none - Disables any resources
 	- self - The same domain
 	- URL - Another domain
-	- Usually used for legacy code
-		- Nonce - A random number assigned to the script by the server. Changes upon each refresh.
-		- Digest - A hash of the code included in the page. Doesn't change on refresh.
+	- Nonce - A random number assigned to the script by the server. Changes upon each refresh.
+	- Digest - A hash of the code included in the page. Doesn't change on refresh.
 
-- script-src
-- 'self';
-- report-uri
-- 'capture-data.php';
+- script-src 'self' https://www.example.com;
+	- Scripts can be downloaded from self or https://www.example.com
 
-- Can you set multiple nonces in the CSP header?
-	- Do you have one nonce for all the inline script files?
-	- How would that prevent DOM based XSS?
+- Nonces protect against Reflected XSS
+- Digests protect against DOM XSS
 
 
-- Sets of Headers in every response which tell the browser what resources are allowed or disabled.
-
-- CSPs help to midigate the damage done from refelced or stored XSS?
-
-- How can CSPs prevent DOM based XSS?
-
-- Sent by server in the header in every response
 - Allows us to specify exactly what sources are trusted and disable any inline resources
 - Can distinguish between legitimate inputs and injected JS code
 
