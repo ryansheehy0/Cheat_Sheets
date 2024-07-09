@@ -52,6 +52,7 @@ To make a file execute using node you can add `#!/usr/bin/env node` to the begin
 	- [Path](#path)
 	- [Node-fetch](#node-fetch)
 	- [Executing terminal commands](#executing-terminal-commands)
+	- [Debugger](#debugger)
 
 <!-- /TOC -->
 
@@ -227,3 +228,8 @@ exec("ls", (err, stdout, stderr) => {
 const data = execSync("ls") // Outputs as buffer instead of a string
 console.log(data.toString())
 ```
+
+## [Debugger](#table-of-contents)
+- Add `debugger` anywhere in your code
+- Run `node --inspect ./yourScript.js`
+- Go to the local ip given in the terminal

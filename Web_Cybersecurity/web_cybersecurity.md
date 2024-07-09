@@ -55,8 +55,12 @@ These notes help to solve the problem of a lack of comprehensive organization fo
 - Github seclist: https://github.com/danielmiessler/SecLists
 - Javascript for hackers book: https://www.realmit.eu/storage/bookdumpo/Gareth_Heyes_-_JavaScript_for_hackers_Learn_to_think_like_a_hacker_2022_Lean_Publishing.pdf
 - Get around firebase: https://github.com/0xbigshaq/firepwn-tool
-- Pico CTFs: https://www.picoctf.org/
+- CTFs
+	- Pico CTFs: https://www.picoctf.org/
+	- CTFTime: https://ctftime.org/
 - XSS Validator: https://github.com/PortSwigger/xss-validator
+- CompTIA certificate yt channel: https://www.youtube.com/@professormesser/videos
+- IP over Carrier Pigeons: https://en.wikipedia.org/wiki/IP_over_Avian_Carriers
 
 ## [Bug Bounty Platforms](#table-of-contents)
 - https://hackerone.com/opportunities/all
