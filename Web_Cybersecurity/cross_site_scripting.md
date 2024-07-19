@@ -106,6 +106,9 @@ R<h1>This is NOT a PDF!</h1> <img src=x onerror=alert(document.cookie)>
 		- [Inside JSON](#inside-json)
 	- [Easy ways to prevent XSS](#easy-ways-to-prevent-xss)
 		- [Content Security Policies CSPs](#content-security-policies-csps)
+			- [Directive Names](#directive-names)
+			- [Directive Sources](#directive-sources)
+			- [Implementing CSPs in Express](#implementing-csps-in-express)
 	- [Bypassing common XSS filters](#bypassing-common-xss-filters)
 	- [Weaponizing XSS payloads](#weaponizing-xss-payloads)
 		- [Stealing information](#stealing-information)
@@ -153,8 +156,9 @@ Common payload content
 ### [Inside html elements](#table-of-contents)
 - Ex: `<p>userInput</p>`
 
-In order to perform an attack on this sink you can just include the html attack.
-- Ex: `<p><script>print()</script></p>`
+In order to perform an attack on this sink you can:
+- Include the html
+	- Ex: `<p><script>print()</script></p>`
 
 In order to prevent this any `<`s should be filtered out
 - Ex: `userInput = userInput.replaceAll("<", "&lt;")`
@@ -164,10 +168,14 @@ In order to prevent this any `<`s should be filtered out
 - Ex: `<a src="userInput">Link</a>`
 - Ex 2: `<input value="userInput">`
 
-In order to perform an attack on this sink you can either use URIs or escape the attribute and add another attribute or your html attack.
-- Ex URI: `<a src="javascript:print()">Link</a>`
-- Ex escape and add another attribute: `<a src="" onclick=print()>Link</a>`
-- Ex escape and add html: `<a src="" ></a><script>print()</script><a>Link</a>`
+In order to perform an attack on this sink you can:
+- Use URIs
+	- Ex: `<a src="javascript:print()">Link</a>`
+- Escape the attribute
+	- Add another attribute
+		- Ex: `<a src="" onclick=print()>Link</a>`
+	- Add html
+		- Ex: `<a src="" ></a><script>print()</script><a>Link</a>`
 
 In order to prevent this any `<`s and `"`s should be filtered out and there should be a whitelist of URIs.
 - Ex: `userInput = userInput.replaceAll("<", "&lt;").replaceAll('"', "&quot;")`
@@ -281,37 +289,62 @@ const param2 = params.get('param2')
 - Use Content Security Policy
 
 ### [Content Security Policies (CSPs)](#table-of-contents)
-- Content Security Policies are a browser/client protection which allows the server to specify which sources can be used for
-	- It can be used to mitigate XSS attacks.
-- CSPs are set by the server through a response header called `Content-Security-Policy:`.
-	- That isn't the only header
+- Content Security Policy allows the browser/client to whitelist what sources are allowed to be used for scripts, styles, images, and other elements.
+	- They are used to help mitigate XSS attacks
+- CSPs are set by the server through a header called `Content-Security-Policy:` or `Content-Security-Policy-Report-Only:`
+- By default Content Security Policy is opt in. Meaning it has to be set in order to work.
 
-- Doesn't block HTML injection?
-- Used to create a whitelist on allowed sources for each content?
-
-- Can't use CSPs for inline JS code because it can't be distinguished from user injected js code.
-	- All CSS and JS have to be included with the `<script src="">` or `<link href="">`
-	- You can mark code that is inline by using the `nonce` attribute
-		- The server usually takes a hash of the code with a secret password and uses that as the nonce
-
-```javascript
-// On the server
-let jsCode = `
-	console.log("Testing nonce")
-`
-
-<script
-	nonce={hash(jsCode, password)}
-	dangerouslySetInnerHTML={{__html: jsCode}}
-></script>
+Example:
+```
+Content-Security-Policy: script-src 'self' https://www.example.com; report-uri 'https://www.example.com';
+[        Header        ][   Name  ][Source][       Source 2       ][  Name   ][          Source         ]
+                        [               Directive                 ][              Directive             ]
+                        [                                      Value                                    ]
 ```
 
-```
-Content-Security-Policy: script-src 'self'; report-uri 'capture-data.php';
-[        Header        ][   Name  ][Source][   Name  ][     Source       ]
-                        [    Directive    ][          Directive          ]
-                        [                     Value                      ]
-```
+#### [Directive Names](#table-of-contents)
+- The names of the directives specifies the element or attribute which is being whitelisted.
+
+Resources/Fetch directives
+| Directive Name  | Description                                                                 |
+|-----------------|-----------------------------------------------------------------------------|
+| default-src     | Sets the default policy for undefined names                                 |
+| script-src      | Specifies valid sources for script elements. Javascript                     |
+| style-src       | Specifies valid `href`s for link elements. CSS                              |
+| img-src         | Specifies valid `src`s for img elements.                                    |
+| connect-src     |                                                                             |
+| font-src        | Specifies valid sources for fonts                                           |
+| object-src      | Specifies valid sources for object, embed, and applet elements              |
+| media-src       | Specifies valid sources for audio, and video elements                       |
+| frame-src       | Specifies valid sources for iframe elements                                 |
+| child-src       |                                                                             |
+| worker-src      | Specifies valid sources for Worker, SharedWorker, and ServiceWorker scripts |
+| manifest-src    | Valid sources for web manifests                                             |
+| frame-ancestors |                                                                             |
+| form-action     | Specifies valid actions for form submissions                                |
+| base-uri        | Specifies sources for base elements                                         |
+
+
+Document Directives
+| plugin-types | Specifies the plugins for the application |
+| sandbox | |
+
+Reporting Directives
+| report-uri | |
+| report-to | |
+
+Other Directives
+| block-all-mixed-content | Blocks http when the page is https |
+| upgrade-insecure-requests | |
+| require-sri-for | |
+
+- What does the connect-src do?
+- What does the object, embed, and applet elements do?
+- What is the difference between frame-src and child-src?
+- What is worker, sharedWorker, and service worker
+- What do web manifests do again?
+- What is the base element?
+- Does block-all-mixed-content block https when the page is http?
 
 	What are directives?
 - Directives - Separated by `;`s
@@ -331,27 +364,63 @@ Content-Security-Policy: script-src 'self'; report-uri 'capture-data.php';
 	- form-action
 	- font-src
 	- frame-src
-	- report-uri
+- report-uri
+
+#### [Directive Sources](#table-of-contents)
+- The source of the directives specifies the whitelist for the element or attribute.
+
+| Source | Description |
+| 'self' | The source of the same origin as the document itself |
+| 'none' | Disallows any sources |
+| 'unsafe-inline' | Allows inline resources such as javascript or the style attribute |
+| 'unsafe-eval' | |
+| 'strict-dynamic' | |
+| 'wasm-unsafe-eval' | 
+
+- What's the difference between unsafe-line and unsafe-eval
+	- Is it just the eval function?
+
 
 - Sources - Specifies which resources can be used for the element or attribute. Can have multiple per directive.
 	- none - Disables any resources
 	- self - The same domain
 	- URL - Another domain
-	- Nonce - A random number assigned to the script by the server. Changes upon each refresh.
-	- Digest - A hash of the code included in the page. Doesn't change on refresh.
+	- Used for inline code
+		- Nonce - A random number assigned to the script by the server. Changes upon each refresh.
+			- Prevent reflected XSS
+		- Digest - A hash of the code included in the page. Doesn't change on refresh.
+			- Prevent DOM XSS
 
-- script-src 'self' https://www.example.com;
-	- Scripts can be downloaded from self or https://www.example.com
-
-- Nonces protect against Reflected XSS
-- Digests protect against DOM XSS
 
 
 - Allows us to specify exactly what sources are trusted and disable any inline resources
 - Can distinguish between legitimate inputs and injected JS code
 
 	- https://web.dev/articles/csp
-	- Content-Security-Policy-Report-Only:
+
+- Doesn't block HTML injection?
+	- Blocks script injections
+
+- Can't use CSPs for inline JS code because it can't be distinguished from user injected js code.
+	- All CSS and JS have to be included with the `<script src="">` or `<link href="">`
+	- You can mark code that is inline by using the `nonce` attribute
+		- The server usually takes a hash of the code with a secret password and uses that as the nonce
+
+```javascript
+// On the server
+let jsCode = `
+	console.log("Testing nonce")
+`
+
+<script
+	nonce={hash(jsCode, password)}
+	dangerouslySetInnerHTML={{__html: jsCode}}
+></script>
+```
+
+#### [Implementing CSPs in Express](#table-of-contents)
+
+- Set default-src to 'none' first
 
 ## [Bypassing common XSS filters](#table-of-contents)
 - Trying the same character multiple times(replace vs replaceAll)
