@@ -84,6 +84,7 @@ These notes help to solve the problem of a lack of comprehensive organization fo
 - Look through source code
 	- Comments with sensitive info
 	- Check for max length on form inputs
+	- Check for redirection links
 - URL parameters to files
 	- [Path traversal](./path_traversal.md)
 - URL parameters that output to the DOM or User inputs that are saved to the db and can be seen by other users.

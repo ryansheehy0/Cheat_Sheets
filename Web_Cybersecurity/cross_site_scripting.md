@@ -177,6 +177,9 @@ In order to perform an attack on this sink you can:
 	- Add html
 		- Ex: `<a src="" ></a><script>print()</script><a>Link</a>`
 
+`<script src="data:text/plain,alert()"></script>`
+This does an alert
+
 In order to prevent this any `<`s and `"`s should be filtered out and there should be a whitelist of URIs.
 - Ex: `userInput = userInput.replaceAll("<", "&lt;").replaceAll('"', "&quot;")`
 	- How do you prevent URI based XSS attacks?
@@ -247,6 +250,9 @@ In order to prevent URI attacks there should be a whitelist of acceptable URIs a
 ### [Inside Javascript(Client side javascript inject)](#table-of-contents)
 - Ex:
 
+Javascript evaluates functions that are inside other function and there is no limit to the amount of arguments.
+- Ex: `startTimer('userInput')` you can do user input of `', alert(), '` resulting in `startTimer('', alert(), '')` and the alert will be rand first.
+
 How do you find these?
 	- Searching in the js code takes a while
 		- Does Burp's DOM Injection find all of them?
@@ -258,9 +264,10 @@ const param2 = params.get('param2')
 ```
 
 - May need escaping
-- Common js code to get URL parameters and fragment identifies(`#`)
+- Common js code to get URL parameters and fragment identifiers(`#`)
 	- `document.URL`, `document.documentURI`, `document.baseURI`
 	- Location(these are all the same obj): `window.location`, `document.location`, `location`
+	- `location.hash` to get fragment identifiers(`#`)
 	- JQuery: `.parseParams()`
 - Sinks
 	- innerHTML
@@ -268,9 +275,11 @@ const param2 = params.get('param2')
 		- Use img or iframe
 		- Written to the page after all the js is loaded and ran, therefore script tags won't work
 	- eval(input)
+	- jQuery: `$("element").html("innerHtml")`
 
 	Avoid using `element.innerHTML = userInput;` and instead use `element.innerText = userInput;`
 		- This doesn't work if the element is a script?
+
 
 ### [Inside CSS](#table-of-contents)
 	- Not very common
