@@ -137,3 +137,12 @@ FIDO authentication
 Publish PWA on google play store
 B-trees
 Sorting algorithms
+Machine learning
+Neural networks
+Gradient Descent
+
+Algorithms
+- Memory managed hash table
+    - Arrays are slow to retrieve data(high computations), but take up only the memory that is needed(low memory).
+    - Hash tables are fast at retrieving data(low computations), but take up a lot of memory to allow all possible states of the hash output(high memory).
+    - What if you could put the data in an array(low memory) and encode the position of that data in an equation. Then when retrieving the data you just have to run the equation(low computations) to get the exact position.

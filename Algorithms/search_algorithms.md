@@ -19,9 +19,7 @@
 [Home](../README.md)
 
 # Search Algorithms
-This cheatsheet is referring to input as the input data structure(usually an array), the value as the value you're being asked to find in the input data structure, and the output as the index of the value in the input.
-
-If no value is found in the input the search algorithm usually returns -1
+Search algorithms find the index of a specific value in an array. If the value is not found, they return -1.
 
 ## Table of Contents
 
@@ -41,23 +39,19 @@ Linear search goes through each element and checks to see if it's the value.
   - Slow for large input sizes
   - Good for small/medium input sizes
 - Input doesn't need to be sorted
-- Good for inputs without random access like linked lists
+- Good for inputs that don't allow random access like linked lists
 
 ```javascript
-const array = [9, 1, 8, 2, 7, 3, 6, 4, 5]
-
-function linearSearch(input, value){
-  for(let i = 0; i < input.length; i++){
-    if(input[i] === value) return i
+function linearSearch(arr, value){
+  for(let i = 0; i < arr.length; i++){
+    if(arr[i] === value) return i
   }
   return -1
 }
-
-console.log(linearSearch(array, 4)) // 7
 ```
 
 ## [Binary Search](#table-of-contents)
-Binary search splits the input array in half and repeats this until there is only 1 value left. If you are dividing an odd lengthed array you tend to round down.
+Binary search splits the search space in half depending if the middle of the array is less than or grater than the value. This repeats until the middle equals the value.
 - O(log n)
   - Slow for small input sizes
   - Fast for large input sizes
@@ -65,15 +59,13 @@ Binary search splits the input array in half and repeats this until there is onl
 - Input data structure needs to support random access like arrays
 
 ```javascript
-const array = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-function binarySearch(input, value){
+function binarySearch(arr, value){
   let left = 0
-  let right = input.length - 1
+  let right = arr.length - 1
 
   while(left <= right){
     const mid = Math.floor((left + right) / 2)
-    const midValue = input[mid]
+    const midValue = arr[mid]
 
     if(midValue === value) return mid
 
@@ -85,18 +77,16 @@ function binarySearch(input, value){
   }
   return -1
 }
-
-console.log(binarySearch(array, 4)) // 3
 ```
 
 ## [Interpolation Search](#table-of-contents)
-An interpolation search is the binary search, but instead of checking the center it makes an educated guess(probe) where the value would be in the input.
+Interpolation search is binary search, but instead of checking the center it makes an educated guess(probe) where the value would be in the input.
 
 This best guess(probe) is gotten by using linear interpolation.
 - The Y is the indexes of the array. The X is the values in the array.
-  - $y_1$ = left, $x_1$ = input[left]
-  - $y_2$ = right, $x_2$ = input[right]
-  - $x$ = value, $y$ = probe
+  - $y_1$ = left, $x_1$ = arr[left]
+  - $y_2$ = right, $x_2$ = arr[right]
+  - $x$ = value, $y$ = probeIndex
 - First, find the slope. $m = \frac{y_1 - y_2}{x_1 - x_2}$
 - Second, make a line from the slope. $y = y_1 + m(x-x_1)$
 - The equation for a slope and the line are combined to form the equation for probe.
@@ -108,28 +98,27 @@ Linear interpolation is best used for uniformly distributed inputs.
 - Input data structure needs to support random access like arrays
 
 ```javascript
-const array = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-function interpolationSearch(input, value){
+function interpolationSearch(arr, value){
   let left = 0
-  let right = input.length - 1
+  let right = arr.length - 1
 
   while(left <= right){
-    const probe = left + (left - right) * (value - input[left]) / (input[left] - input[right])
-    const probeValue = input[probe]
+    const y1 = left, x1 = arr[left]
+    const y2 = right, x2 = arr[right]
+    const m = (y1 - y2)/(x1 - x2)
+    const probeIndex = y1 + m * (value - x1)
+    const probeValue = arr[probeIndex]
 
-    if(probeValue === value) return probe
+    if(probeValue === value) return probeIndex
 
     if(probeValue < value){
-      left = probe + 1
+      left = probeIndex + 1
     }else{
-      right = probe - 1
+      right = probeIndex - 1
     }
   }
   return -1
 }
-
-console.log(binarySearch(array, 4)) // 3
 ```
 
-- Instead of linear interpolation, if you know the input follows a different patter, you can use other equations instead of a line.
+- If the pattern of the array follows something other than a line, you can use other equations besides linear interpolation.

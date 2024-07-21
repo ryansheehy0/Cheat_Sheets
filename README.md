@@ -78,9 +78,7 @@ RS Cheat Sheets is licensed under GPLv3. See the [COPYING file](./COPYING) for d
 
 ## Algorithms
 - [Search Algorithms](./Algorithms/search_algorithms.md)
-- [NOT DONE: Sort Algorithms](./Algorithms/sort_algorithms.md)
-- [NOT DONE: Memory Managed Hash Table](./Algorithms/memory_managed_hash_table.md)
-- [NOT DONE: Machine Learning](./Algorithms/Machine_Learning/machine_learning.md)
+- [Sort Algorithms](./Algorithms/sort_algorithms.md)
 
 ## Math
 - [Taylor Series](./Math/Taylor_Series/taylor_series.md)
