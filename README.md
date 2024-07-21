@@ -26,6 +26,7 @@ RS Cheat Sheets is licensed under GPLv3. See the [COPYING file](./COPYING) for d
     - [Linux Commands](./Linux/linux_commands.md)
     - [Bash Scripting](./Linux/bash_scripting.md)
     - [SystemD](./Linux/systemd.md)
+- [How A CPU Works](./Tools/How%20A%20CPU%20Works/how_a_cpu_works.md)
 
 ## Web Cybersecurity
 - [XSS](./Web_Cybersecurity/cross_site_scripting.md)
@@ -71,6 +72,9 @@ RS Cheat Sheets is licensed under GPLv3. See the [COPYING file](./COPYING) for d
 - [C++](./C_C++/cpp.md)
 - [NOT DONE: C](./C_C++/c.md)
 - [NOT DONE: C and C++ Compiling](./C_C++/c_and_cpp_compiling.md)
+
+## Malware
+- [Malware](./Malware/malware.md)
 
 ## Algorithms
 - [Search Algorithms](./Algorithms/search_algorithms.md)

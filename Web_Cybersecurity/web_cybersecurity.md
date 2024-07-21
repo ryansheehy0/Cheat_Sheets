@@ -83,6 +83,7 @@ These notes help to solve the problem of a lack of comprehensive organization fo
 ## [Attacks](#table-of-contents)
 - Look through source code
 	- Comments with sensitive info
+	- Hidden url paths
 	- Check for max length on form inputs
 	- Check for redirection links
 - URL parameters to files

