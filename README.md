@@ -79,6 +79,7 @@ RS Cheat Sheets is licensed under GPLv3. See the [COPYING file](./COPYING) for d
 ## Algorithms
 - [Search Algorithms](./Algorithms/search_algorithms.md)
 - [Sort Algorithms](./Algorithms/sort_algorithms.md)
+- [Unique Permutations](./Algorithms/unique_permutations.md)
 
 ## Math
 - [Taylor Series](./Math/Taylor_Series/taylor_series.md)

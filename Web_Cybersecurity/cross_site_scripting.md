@@ -440,6 +440,9 @@ let jsCode = `
 		- `javascript:`
 - Avoid using `()`s
 	- alert\`\`, print\`\`, confirm\`\`
+- Try the same URL parameter multiple times
+	- Useful for getting around Web Access Firewalls(WAFs)
+	- Ex: `https://www.website.com?param=userInput&param=userInput
 
 - Filtering out tags
 	- Test all the tag
