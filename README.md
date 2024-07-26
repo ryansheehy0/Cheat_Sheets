@@ -26,7 +26,7 @@ RS Cheat Sheets is licensed under GPLv3. See the [COPYING file](./COPYING) for d
     - [Linux Commands](./Linux/linux_commands.md)
     - [Bash Scripting](./Linux/bash_scripting.md)
     - [SystemD](./Linux/systemd.md)
-- [How A CPU Works](./Tools/How%20A%20CPU%20Works/how_a_cpu_works.md)
+- [How A CPU Works](./Tools/How_A_CPU_Works/how_a_cpu_works.md)
 
 ## Web Cybersecurity
 - [XSS](./Web_Cybersecurity/cross_site_scripting.md)
