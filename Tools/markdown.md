@@ -48,30 +48,33 @@
 | \[Link Text](URL)        | Link                   |
 | \[Text](#header-name)    | Link to \# Header Name |
 | \!\[Alt Text](URL)       | Video/Image            |
-| ---                      | Horizontal Line        |
+| `---`                    | Horizontal Line        |
 | \\                       | Escape character       |
-| \<!-- Text -->           | Comments               |
+| `<!-- Text -->`           | Comments               |
 | \` Text `                | Inline Code            |
-| \``` Text ```            | Code Block             |
+| \`\`\` Text ```          | Code Block             |
 | > Text                   | Blockquote             |
 | >> Text                  | Nested Blockquote      |
 
 ## [Emphasis](#table-of-contents)
+
 |               |                |
 |---------------|----------------|
-| \*\*Text*\*   | Bold           |
-| \_Text_       | Italics        |
-| \~\~Text\~~    | Strike through |
+| \*\*Text\*\*  | Bold           |
+| \_Text\_      | Italics        |
+| \~\~Text\~\~  | Strike through |
 | \<u>Text\</u> | Underline      |
 
 ## [Lists](#table-of-contents)
 ### [Unordered Lists](#table-of-contents)
+
 ```
 - Start
     - Indented
 ```
 
 ### [Ordered Lists](#table-of-contents)
+
 ```
 1. First
 2. Second
@@ -80,12 +83,14 @@
 ```
 
 - You can have all your ordered lists be set to 1. to automatically number them
+
 ```
 1. First
 1. Second
 1. Third
 1. etc
 ```
+
 ### [More Complex Lists](#table-of-contents)
 - If you are doing anything that involves complex lists it is recommended to use HTML
 
@@ -100,6 +105,7 @@
 ```
 
 - If you want to start an unordered list indented you use html
+
 ```
 <ul>
     <ul>
@@ -115,17 +121,17 @@
 Text
 
 | Title 1  | Title 2  | Title 3 | etc |
-| -------- | -------- | ------  | --  |
+| -------- | -------- | ------  | --- |
 | Cell 1   | Cell 2   | Cell 3  | etc |
 
 Text
 ```
 
-|     |              |
-|-----|--------------|
-| --- | Left align   |
-| --: | Right align  |
-| :-: | Center align |
+|       |              |
+|-------|--------------|
+| `---` | Left align   |
+| `--:` | Right align  |
+| `:-:` | Center align |
 
 ## [Math](#table-of-contents)
 - You need a new line on top and below for multi-line math mode
