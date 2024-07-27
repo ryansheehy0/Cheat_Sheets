@@ -16,7 +16,7 @@
  */
 -->
 
-[Home](../README.md)
+[Home](../../README.md)
 
 # How A CPU Works
 - Notes from [Ben Eater's youtube series on building an 8-bit computer](https://www.youtube.com/playlist?list=PLowKtXNTBypGqImE405J2565dvjafglHU).
@@ -33,7 +33,10 @@
 	- [D Latch and D Flip-Flop](#d-latch-and-d-flip-flop)
 		- [D Latch](#d-latch)
 		- [D Flip-Flop](#d-flip-flop)
-			- [Edge detection circuits](#edge-detection-circuits)
+			- [Edge detectors](#edge-detectors)
+	- [Bus](#bus)
+		- [Floating output](#floating-output)
+	- [Register](#register)
 
 <!-- /TOC -->
 
@@ -43,6 +46,8 @@ The clock signal is like the heart beat of the computer. It is a repeating patte
 - They can also be constructed using a 555 timer as seen from Ben Eater's videos.
 
 <img src="./clock.jpeg" width="250">
+
+- The HLT signal is used to stop the clock.
 
 ## [Logic Gates](#table-of-contents)
 Logic gates are used to perform the logic within the computer. Modules are constructed from many of these logic gates in order to perform specialized operations.
@@ -102,9 +107,14 @@ The D latch is a modification to the SR latch to allow for one input(D) to set a
 
 ### [D Flip-Flop](#table-of-contents)
 The D Flip-Flop is like the D Latch, but only activates when the clock signal goes from low to high.
-- In order to detect when the clock goes from low to high, you need an edge detection circuit.
+- They can be used to store 1 bit of information
 
-#### [Edge detection circuits](#table-of-contents)
+|                                           |                                                  |
+|-------------------------------------------|--------------------------------------------------|
+| <img src="d_flip_flop.jpeg" width="350" > | <img src="d_flip_flop_symbol.jpeg" width="150" > |
+
+#### [Edge detectors](#table-of-contents)
+In order to detect when the clock goes from low to high, you need an edge detection circuit.
 
 <img src="edge_detection.jpeg" width="350" >
 
@@ -114,5 +124,34 @@ The D Flip-Flop is like the D Latch, but only activates when the clock signal go
 
 - You may need to use multiple NOT gates in series in order to create a significant enough delay.
 
-2. Capacitor and resistor in series
+2. Capacitor, resistor, and diode
 
+<img src="cap_res_diode_edge_detection.jpeg" width="250" >
+
+## [Bus](#table-of-contents)
+A bus is used for communication between different modules of a CPU. It is a collection of wires, usually the same number as the base of the computer, which connects to all other modules.
+
+<img src="bus.jpeg" width="700" >
+
+- A module can either put data onto the bus(Enable), read memory from the bus(Load), or neither.
+
+| Enable | Load | Description            |
+|--------|------|------------------------|
+| 0      | 0    | Neither/Floating       |
+| 1      | 0    | Put data onto the bus  |
+| 0      | 1    | Read data from the bus |
+| 1      | 1    | Never used             |
+
+- When one module puts data onto the bus and the other reads data from the bus, that module passed information to the other module.
+- The CLK signal are shared between each module to allow them to be synced
+
+### [Floating output](#table-of-contents)
+In order to have a floating output(not set to 1 or 0) you need to decouple it from the bus.
+- These are called tri-state gates
+
+|                                              |                                              |
+|----------------------------------------------|----------------------------------------------|
+| <img src="tri_state_gate.jpeg" width="250" > | <img src="tri_state_symbol.jpeg" width="250" > |
+
+## [Register](#table-of-contents)
+A register is used to 
