@@ -21,6 +21,12 @@
 # How A CPU Works
 - Notes from [Ben Eater's youtube series on building an 8-bit computer](https://www.youtube.com/playlist?list=PLowKtXNTBypGqImE405J2565dvjafglHU).
 
+- A **word** is fixed size of data that a computer can process in a single operation.
+- The **base of a computer** is the amount of bits a word is for that computer.
+	- Today, the most common is base 64 where a word is 64 bits.
+	- `X`s on any diagram represent the amount of connections equal to the base of the computer.
+		- For example, in an 8-bit computer X represents 8 connections, or in a 64-bit computer X represents 64 connections.
+
 ## Table of Contents
 <!-- TOC -->
 
@@ -37,6 +43,10 @@
 	- [Bus](#bus)
 		- [Floating output](#floating-output)
 	- [Register](#register)
+	- [Arithmetic logic unitALU](#arithmetic-logic-unitalu)
+		- [Twos complement](#twos-complement)
+		- [Full adder](#full-adder)
+		- [Adder and Subtractor](#adder-and-subtractor)
 
 <!-- /TOC -->
 
@@ -154,4 +164,78 @@ In order to have a floating output(not set to 1 or 0) you need to decouple it fr
 | <img src="tri_state_gate.jpeg" width="250" > | <img src="tri_state_symbol.jpeg" width="250" > |
 
 ## [Register](#table-of-contents)
-A register is used to 
+A register is a module that is used to to store a word, same bits as the computer base, of memory inside the CPU.
+- The D Flip-Flop is used to store one bit of information
+
+<img src="register_bit.jpeg" width="250" >
+
+## [Arithmetic logic unit(ALU)](#table-of-contents)
+The arithmetic logic unit (ALU) is the module in the CPU which does mathematical and logical operations. It is connected to registers and can transfer the results to the bus.
+
+<img src="alu_overview.jpeg" width="350" >
+
+| Input | Description           |
+|-------|-----------------------|
+| AI    | A register In/Load    |
+| AO    | A register Out/Enable |
+| EO    | Sum Out/Enable        |
+| SU    | Subtract              |
+| BI    | B register In/Load    |
+| BO    | B register Out/Enable |
+
+- The X symbolizes the amount of connections equal to the base of the computer.
+
+### [Twos complement](#table-of-contents)
+Twos complement is a protocol for converting binary numbers to base 10 numbers. This protocol allows for binary addition and subtraction to translate into base 10 addition and subtraction.
+- If the leading bit is 1 then it's negative and if it's 0 it's positive.
+
+| Binary | Base 10 | Binary | Base 10 |
+|--------|---------|--------|---------|
+| 1000   | -8      | 0000   | 0       |
+| 1001   | -7      | 0001   | 1       |
+| 1010   | -6      | 0010   | 2       |
+| 1011   | -5      | 0011   | 3       |
+| 1100   | -4      | 0100   | 4       |
+| 1101   | -3      | 0101   | 5       |
+| 1110   | -2      | 0110   | 6       |
+| 1111   | -1      | 0111   | 7       |
+
+- Ex calculation:
+```
+  -5  ->   1011
++  5  -> + 0101
+-----    -------
+   0  <-  10000
+
+  -7  ->   1001
++  2  -> + 0010
+-----    -------
+  -5  <-   1011
+```
+
+To convert a number between negative and positive(and vise versa) in two's complement, you first invert all the bits and then add 1.
+
+```
+-7  ->  1001   Convert to binary
+1001 -> 0110   Invert/Flip bits
+0110 -> 0111   Binary Add 1
+0111  -> 7     Convert to decimal
+```
+
+### [Full adder](#table-of-contents)
+A full adder is used to add two bits together. The Carry In(CI) input is used to allow for the inclusion of a carry bit from another addition. The Carry Out(CO) output is set to 1 when the addition results in a carry output and 0 when it's not.
+
+|                                                |                                                 |
+|------------------------------------------------|-------------------------------------------------|
+| <img src="full_adder_gates.jpeg" width="350" > | <img src="full_adder_symbol.jpeg" width="350" > |
+
+### [Adder and Subtractor](#table-of-contents)
+Full adders are strung together to do addition on the full word of a computer.
+
+- 4-bit computer adder example:
+
+<img src="4_bit_adder.jpeg" width="350" >
+
+- In order to subtract(SU to 1) with the 2s compliment then you have to invert, which is done with the XORs, and then add one, which is done by connecting to the carry in(CI) input to the adder.
+
+<img src="4_bit_alu.jpeg" width="350" >

@@ -40,15 +40,14 @@
 
 ```c++
 // Swap a and b
-unsigned int a = 50, b = 10;
+int a = 50, b = 10;
+
 a = a ^ b;
 b = a ^ b;
 a = a ^ b;
 
 cout << "a: " << a << endl;
 cout << "b: " << b << endl;
-
-// Doesn't work if a or b are negative
 ```
 
 ## [GPLv3 License](#table-of-contents)
