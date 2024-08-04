@@ -130,3 +130,8 @@ It is better to change the same code in multiple places then it is to pass more 
 It is better to change the same code in multiple places then it is to completely reorganize your code in order to add a new feature.
   - This is especially important when it comes to re-using separate components/classes.
   - Over time small changes become larger and larger. This creates more and more complexity as the reused component it given more and more information to distinguish between its different roles.
+
+## Never use inheritance
+- You cannot use inheritance in Neo-C
+	- https://www.youtube.com/watch?v=hxGOiiR9ZKg
+	- Maybe instead of you cannot, you should not.

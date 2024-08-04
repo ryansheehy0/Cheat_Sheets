@@ -68,10 +68,10 @@ RS Cheat Sheets is licensed under GPLv3. See the [COPYING file](./COPYING) for d
     - [MongoDB and Mongoose](./HTML_CSS_JS/mongodb_and_mongoose.md)
 
 ## C/C++
-- [Make Files](./C_C++/make_files.md)
 - [C++](./C_C++/cpp.md)
-- [NOT DONE: C](./C_C++/c.md)
-- [NOT DONE: C and C++ Compiling](./C_C++/c_and_cpp_compiling.md)
+- [C++ Standard Libraries](./C_C++/cpp_standard_libraries.md)
+- [C++ Compiling](./C_C++/c_and_cpp_compiling.md)
+- [Make Files](./C_C++/make_files.md)
 
 ## Malware
 - [Malware](./Malware/malware.md)
