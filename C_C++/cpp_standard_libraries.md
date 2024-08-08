@@ -21,6 +21,9 @@
 # C++ Standard Libraries
 You can find libraries at `https://cplusplus.com/reference/<library>`
 
+The standard libraries are any library that uses namespace std.
+- It's assumed that `using std namespace;` is being used.
+
 ## Table of Contents
 <!-- TOC -->
 
@@ -38,24 +41,25 @@ You can find libraries at `https://cplusplus.com/reference/<library>`
 	- [typeinfo](#typeinfo)
 	- [fstream](#fstream)
 	- [cctype](#cctype)
+	- [optional](#optional)
 
 <!-- /TOC -->
 
 ## [iostream](#table-of-contents)
 
-|                            |                                                     |
-|----------------------------|-----------------------------------------------------|
-| `std::cout << "string";`   | Output to console                                   |
-|                            | Floats don't output `.0`. `99` not `99.0`           |
-| `std::cout << std::endl;`  | Outputs new line. Same as `\n`                      |
-| `std::cin >> var`          | User input from console                             |
-|                            | Inputs are separated by white spaces                |
-|                            | If user enters an invalid input it returns false    |
-|                            | Keeps new lines in the buffer                       |
-| `std::cin >> var1 >> var2` | Multiple inputs on one line                         |
-| `.ignore()`                | Ignores the next character                          |
-| `.get(ch)`                 | Gets the next character in the buffer including new |
-| `.clear()`                 | Clears the flags include end of file(eof) flag      |
+|                       |                                                     |
+|-----------------------|-----------------------------------------------------|
+| `cout << "string";`   | Output to console                                   |
+|                       | Floats don't output `.0`. `99` not `99.0`           |
+| `cout << endl;`       | Outputs new line. Same as `\n`                      |
+| `cin >> var`          | User input from console                             |
+|                       | Inputs are separated by white spaces                |
+|                       | If user enters an invalid input it returns false    |
+|                       | Keeps new lines in the buffer                       |
+| `cin >> var1 >> var2` | Multiple inputs on one line                         |
+| `.ignore()`           | Ignores the next character                          |
+| `.get(ch)`            | Gets the next character in the buffer including new |
+| `.clear()`            | Clears the flags include end of file(eof) flag      |
 
 - `.seekg(offset, std::ios_base::beg)`
 	- Sets the position of the input pointer for the stream
@@ -81,8 +85,8 @@ while(true) {
 
 |                                    |                                               |
 |------------------------------------|-----------------------------------------------|
-| `std::string str = "str";`         | If not initialized it will be an empty string |
-| `std::getline(std::cin, str);`     | Gets all remaining text in the current buffer |
+| `string str = "str";`              | If not initialized it will be an empty string |
+| `getline(cin, str);`               | Gets all remaining text in the current buffer |
 |                                    | Gets up to the next new line                  |
 |                                    | Doesn't include the new line in str           |
 |                                    | Removes the ending new line in the buffer     |
@@ -95,19 +99,19 @@ while(true) {
 ## [cmath](#table-of-contents)
 - Floating point math operations
 
-|                            |                                    |
-|----------------------------|------------------------------------|
-| `std::pow(base, exponent)` |                                    |
-| `std::sqrt(x)`             |                                    |
-| `std::fabs(x)`             | absolute value                     |
-| `std::ceil(x)`             | Round up                           |
-| `std::floor(x)`            | Round down                         |
-| `std::rand()`              | Random int from `0` and `RAND_MAX` |
-| `M_PI`                     |                                    |
+|                       |                                    |
+|-----------------------|------------------------------------|
+| `pow(base, exponent)` |                                    |
+| `sqrt(x)`             |                                    |
+| `fabs(x)`             | absolute value                     |
+| `ceil(x)`             | Round up                           |
+| `floor(x)`            | Round down                         |
+| `rand()`              | Random int from `0` and `RAND_MAX` |
+| `M_PI`                |                                    |
 
 ### [Random numbers](#table-of-contents)
-- `std::rand() % 10` between 0-9
-- `(std::rand() % 11) + 20` between 20-30
+- `rand() % 10` between 0-9
+- `(rand() % 11) + 20` between 20-30
 
 ### [ctime](#table-of-contents)
 - `#include <ctime>`
@@ -117,25 +121,25 @@ while(true) {
 ## [cstdlib](#table-of-contents)
 - Integer math operations
 
-|               |                        |
-|---------------|------------------------|
-| `std::abs()`  |                        |
-| `std::atoi()` | Converts string to int |
+|          |                        |
+|----------|------------------------|
+| `abs()`  |                        |
+| `atoi()` | Converts string to int |
 
 ## [iomanip](#table-of-contents)
 
-|                                  |                                              |
-|----------------------------------|----------------------------------------------|
-| `cout << std::fixed`             | `setprecision` counts after decimal point    |
-| `cout << std::setprecision(num)` | Limits float digits                          |
-|                                  | Continually active                           |
-|                                  | Rounds the output                            |
-| `cout << std::setw(10)`          | Sets width of output                         |
-|                                  | Only valid for the value directly after `<<` |
-|                                  | Aligns output to the right side              |
-|                                  | Value larger than `setw` then it ignored     |
-| `cout << std::right;`            | Justify right                                |
-| `cout << std::left;`             | Justify left                                 |
+|                             |                                              |
+|-----------------------------|----------------------------------------------|
+| `cout << fixed`             | `setprecision` counts after decimal point    |
+| `cout << setprecision(num)` | Limits float digits                          |
+|                             | Continually active                           |
+|                             | Rounds the output                            |
+| `cout << setw(10)`          | Sets width of output                         |
+|                             | Only valid for the value directly after `<<` |
+|                             | Aligns output to the right side              |
+|                             | Value larger than `setw` then it ignored     |
+| `cout << right;`            | Justify right                                |
+| `cout << left;`             | Justify left                                 |
 
 - `cout << setprecision(2) << 9.99999;`
 	- Ex: `10`
@@ -146,7 +150,7 @@ while(true) {
 
 ## [vector](#table-of-contents)
 - Dynamic arrays in c++
-- `std::vector<int> nums = {0, 1, 2};`
+- `vector<int> nums = {0, 1, 2};`
 - `nums[0] = 10;`
 - `nums.push_back(3);` Adds 3 to the end of the vector
 
@@ -185,3 +189,31 @@ while(true) {
 |                 |                        |
 |-----------------|------------------------|
 | `tolower(char)` | Converts to lower case |
+
+## [optional](#table-of-contents)
+Optional is used when there is the possiility that you cannot get any code back?
+
+```C++
+optional<string> openFile(string fileName) {
+	fstream file(fileName);
+	if (!file) return {} // No data
+
+	string contents;
+	stringstream contents_stream;
+	contents_stream << file.rdbuf();
+	contents = contents_stream.str();
+	file.close();
+
+	return contents;
+}
+
+int main() {
+	optional<fstream> file = openFile("test.cpp");
+	if (!file){
+		cout << "Error opening test.cpp" << endl;
+		return 1;
+	}
+}
+```
+
+- There's the `optionalVar.value_or(value)` which returns the value in optionalVar if it's there or the value inside the `()`s if it's not.

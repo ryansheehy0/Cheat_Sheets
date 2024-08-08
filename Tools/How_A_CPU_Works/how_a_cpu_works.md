@@ -159,15 +159,24 @@ A bus is used for communication between different modules of a CPU. It is a coll
 In order to have a floating output(not set to 1 or 0) you need to decouple it from the bus.
 - These are called tri-state gates
 
-|                                              |                                              |
-|----------------------------------------------|----------------------------------------------|
-| <img src="tri_state_gate.jpeg" width="250" > | <img src="tri_state_symbol.jpeg" width="250" > |
+| In | En | Out           |
+|----|----|---------------|
+| 0  | 0  | Hi-Z/Floating |
+| 1  | 0  | Hi-Z/Floating |
+| 0  | 1  | 0             |
+| 1  | 1  | 1             |
+
+|                                              |                                              | |
+|----------------------------------------------|----------------------------------------------|-|
+| <img src="tri_state_gate.jpeg" width="250" > | <img src="tri_state_symbol.jpeg" width="250" > | <img src="tri_state_gates.jpeg" width="250" > |
 
 ## [Register](#table-of-contents)
 A register is a module that is used to to store a word, same bits as the computer base, of memory inside the CPU.
 - The D Flip-Flop is used to store one bit of information
 
-<img src="register_bit.jpeg" width="250" >
+|                                            |                                                   |
+|--------------------------------------------|---------------------------------------------------|
+| <img src="register_bit.jpeg" width="250" > | <img src="register_bit_symbol.jpeg" width="250" > |
 
 ## [Arithmetic logic unit(ALU)](#table-of-contents)
 The arithmetic logic unit (ALU) is the module in the CPU which does mathematical and logical operations. It is connected to registers and can transfer the results to the bus.
@@ -201,6 +210,7 @@ Twos complement is a protocol for converting binary numbers to base 10 numbers. 
 | 1111   | -1      | 0111   | 7       |
 
 - Ex calculation:
+
 ```
   -5  ->   1011
 +  5  -> + 0101
