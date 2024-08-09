@@ -66,7 +66,7 @@ Logic gates are used to perform the logic within the computer. Modules are const
 | Inverse gates         | <img src="inverse_gates.jpeg" width="445">         |
 | Selective input gates | <img src="selective_input_gates.jpeg" width="500"> |
 
-### [Logic Gates from Transistors](#table-of-contents)
+### [Logic Gates from Transistors](#how-a-cpu-works)
 Logic gates can be created from transitions/digital switches. The most commonly used transistors are MOSFETS.
 
 |                      |                                   |                    |                                   |
