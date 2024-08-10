@@ -20,23 +20,20 @@
 
 # Programming Tips
 
-## Table of Contents
-
 <!-- TOC -->
 
-- [Programming Tips](#programming-tips)
-	- [Table of Contents](#table-of-contents)
-	- [Swapping variables without temp variable](#swapping-variables-without-temp-variable)
-	- [GPLv3 License](#gplv3-license)
-		- [How to add GPLv3 License](#how-to-add-gplv3-license)
-	- [Project Management](#project-management)
-	- [Formatting and Rules](#formatting-and-rules)
-	- [Code Organization](#code-organization)
-	- [When to reuse code](#when-to-reuse-code)
+- [Swapping variables without temp variable](#swapping-variables-without-temp-variable)
+- [GPLv3 License](#gplv3-license)
+	- [How to add GPLv3 License](#how-to-add-gplv3-license)
+- [Project Management](#project-management)
+- [Formatting and Rules](#formatting-and-rules)
+- [Code Organization](#code-organization)
+- [When to reuse code](#when-to-reuse-code)
+- [Never use inheritance](#never-use-inheritance)
 
 <!-- /TOC -->
 
-## [Swapping variables without temp variable](#table-of-contents)
+## [Swapping variables without temp variable](#programming-tips)
 
 ```c++
 // Swap a and b
@@ -50,13 +47,13 @@ cout << "a: " << a << endl;
 cout << "b: " << b << endl;
 ```
 
-## [GPLv3 License](#table-of-contents)
+## [GPLv3 License](#programming-tips)
 If you are making your code open source, then it is recommended to use the GPLv3 license in order to prevent other companies from taking your work, adding some feature/modifications, and then selling or distributing their own closed sourced version of your code.
 - Why open source is good?
   - Prevent undiscovered bugs. More reliable applications.
   - Allows for anyone to contribute to your project.
 
-### [How to add GPLv3 License](#table-of-contents)
+### [How to add GPLv3 License](#programming-tips)
 1. Include a copy of the license at the root of your project named `COPYING`
 2. Add a licensing notice at the top of each of your source code files
   - Make sure to replace "THIS PROGRAM" with the name of your program.
@@ -83,7 +80,7 @@ If you are making your code open source, then it is recommended to use the GPLv3
 3. Add `THIS PROGRAM is licensed under GPLv3. See the COPYING file for details.` to your README.md under `## License`
 4. Include a copy of the license with the distribution of your software.
 
-## [Project Management](#table-of-contents)
+## [Project Management](#programming-tips)
 - Have a well detailed end goal app idea
   - A full write up on how all the features are going to work and how each page of the app will look and work
 - Develop in stages of Minimum Viable Products(MVPs)
@@ -93,7 +90,7 @@ If you are making your code open source, then it is recommended to use the GPLv3
 - Delegate tasks and every few days or week have a group meeting on the progress of those tasks
   - If one member is falling behind then put more resources to help them catch up
 
-## [Formatting and Rules](#table-of-contents)
+## [Formatting and Rules](#programming-tips)
 - No space between ()s and {s
 - Use 's instead of "s
 - When assigning variables use spaces between the `=`s
@@ -102,11 +99,12 @@ If you are making your code open source, then it is recommended to use the GPLv3
   - Sometimes it maybe necessary to write your pseudo-code before beginning, but if done the unnecessary comments should be removed after the code is done.
   - If you need to use comments have no spaces between comments and code
 
-## [Code Organization](#table-of-contents)
+## [Code Organization](#programming-tips)
 It is almost always better to get started coding with bad organization and then organize your code when you can clearly see the patterns.
 
 - Use function to re-use code
 - If a class has a lot of methods brake out those methods into separate classes in a folder called main_subclasses
+
 ```
 item
   item.js
@@ -114,6 +112,7 @@ item
     events.js
 ```
 - If 2 or more classes share a significant amount of code use inheritance in a folder called main_children
+
 ```
 item
   item.js
@@ -122,7 +121,7 @@ item
     card.js
 ```
 
-## [When to reuse code](#table-of-contents)
+## [When to reuse code](#programming-tips)
 Always be hesitant to re-use code.
 
 It is better to change the same code in multiple places then it is to pass more and more information between the parent and child.

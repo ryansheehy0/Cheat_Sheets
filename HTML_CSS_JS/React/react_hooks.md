@@ -45,27 +45,23 @@ Not frequently used so maybe not put in
 | useFormStatus       |                                                                 |
 | useOptimistic       |                                                                 |
 
-## Table of Contents
-
 <!-- TOC -->
 
-- [React hooks](#react-hooks)
-	- [Table of Contents](#table-of-contents)
-	- [Custom hooks](#custom-hooks)
-	- [useState](#usestate)
-	- [useEffect](#useeffect)
-	- [useRef](#useref)
-		- [React.forwardRef](#reactforwardref)
-	- [useMemo](#usememo)
-	- [useReducer](#usereducer)
-	- [useCallback](#usecallback)
+- [Custom hooks](#custom-hooks)
+- [useState](#usestate)
+- [useEffect](#useeffect)
+- [useRef](#useref)
+	- [React.forwardRef](#reactforwardref)
+- [useMemo](#usememo)
+- [useReducer](#usereducer)
+- [useCallback](#usecallback)
 
 <!-- /TOC -->
 
-## [Custom hooks](#table-of-contents)
+## [Custom hooks](#react-hooks)
 
 
-## [useState](#table-of-contents)
+## [useState](#react-hooks)
 State is used for variables that when changed should cause a re-render on the screen. These tend to be variables that are different for each client who visits the site.
 
 `useState` tells React that something has changed so react can re-render the DOM.
@@ -104,7 +100,7 @@ export default function Counter() {
 }
 ```
 
-## [useEffect](#table-of-contents)
+## [useEffect](#react-hooks)
 useEffect is used to run code based upon some variable changing or upon the component rendering.
 
 useEffect is often used for things in the app that need to interact with the external world like API requests, localstorage, etc. These are called sideEffects.
@@ -145,12 +141,12 @@ export default Component
 
 Why does useEffect [] run twice on reload when useStrick is being used on your react app.
 
-## [useRef](#table-of-contents)
+## [useRef](#react-hooks)
 When a reference is changed it doesn't cause your component to re-render.
 
 References can be used to store values and keep them the same upon rerender.
 
-### [React.forwardRef](#table-of-contents)
+### [React.forwardRef](#react-hooks)
 React forward ref on a component allows you to use ref as a function in a parent component. This is useful for creating an array of refs in the parent component.
 
 ```javascript
@@ -168,7 +164,7 @@ return (
 )
 ```
 
-## [useMemo](#table-of-contents)
+## [useMemo](#react-hooks)
 When you have slow functions that don't need to be called frequently you can useMemo in order to store the value.
 
 It is not recommended to use useMemo when it isn't needed because it will take up more memory and decrease performance.
@@ -191,7 +187,7 @@ export default Component
 
 If you are returning an object and you want the reference to that object not to change you can also use useMemo.
 
-## [useReducer](#table-of-contents)
+## [useReducer](#react-hooks)
 Another way to manager state in react.
 
 Why use over useState:
@@ -242,7 +238,7 @@ export default function Component(){
 }
 ```
 
-## [useCallback](#table-of-contents)
+## [useCallback](#react-hooks)
 Functions in functional components are remade every time the component is re-rendered. To keep the same function you can use useCallback.
 
 useMemo returns the value of the function while useCallback returns the function itself.

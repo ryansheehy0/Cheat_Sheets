@@ -46,31 +46,28 @@ The store is immutable which makes it easier to debug. You know which components
 If you were to throw an event when the button is clicked and add an event listener to the component you want to change when the button is clicked, then in a more complex application this can be very difficult to keep track of all your events and interactions between components.
   - With the redux design patter you don't need to worry about adding addEventLister s
 
-## Table of Contents
 <!-- TOC -->
 
-- [useContext](#usecontext)
-	- [Table of Contents](#table-of-contents)
-	- [Questions](#questions)
-	- [Installation](#installation)
-	- [Context](#context)
-		- [Creating a Context](#creating-a-context)
-		- [Providing the context](#providing-the-context)
-		- [Consuming the state from the provider](#consuming-the-state-from-the-provider)
-		- [Redux patter with Context](#redux-patter-with-context)
-			- [Actions](#actions)
-			- [Reducers](#reducers)
-			- [useReducer](#usereducer)
-			- [Dispatching an action](#dispatching-an-action)
+- [Questions](#questions)
+- [Installation](#installation)
+- [Context](#context)
+	- [Creating a Context](#creating-a-context)
+	- [Providing the context](#providing-the-context)
+	- [Consuming the state from the provider](#consuming-the-state-from-the-provider)
+	- [Redux patter with Context](#redux-patter-with-context)
+		- [Actions](#actions)
+		- [Reducers](#reducers)
+		- [useReducer](#usereducer)
+		- [Dispatching an action](#dispatching-an-action)
 
 <!-- /TOC -->
 
 ## Questions
 
-## [Installation](#table-of-contents)
+## [Installation](#usecontext)
 `npm install @reduxjs/toolkit react-redux`
 
-## [Context](#table-of-contents)
+## [Context](#usecontext)
 Context is built into React which allows you to share state globally across components without explicitly passing props. It follows the Redux design pattern.
 
 - A **Provider** is a Context component that wraps children elements and allows them to share state and other information.
@@ -81,7 +78,7 @@ You can make a provider wrap around you whole application to allow for global st
 
 Instead of passing the state through each of the consumer's props you can instead directly use the state from the consumer itself.
 
-### [Creating a Context](#table-of-contents)
+### [Creating a Context](#usecontext)
 The `value` attribute for a provider allows anything in it to be used by consumers.
 
 In utils/UserContext.jsx
@@ -113,7 +110,7 @@ export default function UserProvider({children}){
 }
 ```
 
-### [Providing the context](#table-of-contents)
+### [Providing the context](#usecontext)
 
 In App.jsx
 
@@ -130,7 +127,7 @@ export default App(){
 }
 ```
 
-### [Consuming the state from the provider](#table-of-contents)
+### [Consuming the state from the provider](#usecontext)
 
 In ./components/ChildComponent.jsx
 
@@ -150,9 +147,9 @@ export default function ChildComponent(){
 }
 ```
 
-### [Redux patter with Context](#table-of-contents)
+### [Redux patter with Context](#usecontext)
 
-#### [Actions](#table-of-contents)
+#### [Actions](#usecontext)
 The utils/actions.js file is a small file tht lists the actions as strings and sets them for variables. This is only used to make autocompletion for your IDE easier.
 
 In utils/actions.js
@@ -161,7 +158,7 @@ In utils/actions.js
 export const TOGGLE_THEME = 'TOGGLE_THEME'
 ```
 
-#### [Reducers](#table-of-contents)
+#### [Reducers](#usecontext)
 Reducers provide a more organized way to change state in your application.
 
 In utils/reducer.js
@@ -185,7 +182,7 @@ export const reducer = (state, action) => {
 }
 ```
 
-#### [useReducer](#table-of-contents)
+#### [useReducer](#usecontext)
 The useReducer creates one large state object for you application. This large state object is called the state tree.
 
 The state tree is modified in the reducer file.
@@ -209,7 +206,7 @@ export default function ThemeProvider(props) {
 }
 ```
 
-#### [Dispatching an action](#table-of-contents)
+#### [Dispatching an action](#usecontext)
 
 In a consumer component
 

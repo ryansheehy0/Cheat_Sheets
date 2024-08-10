@@ -24,28 +24,25 @@ You can find libraries at `https://cplusplus.com/reference/<library>`
 The standard libraries are any library that uses namespace std.
 - It's assumed that `using std namespace;` is being used.
 
-## Table of Contents
 <!-- TOC -->
 
-- [C++ Standard Libraries](#c-standard-libraries)
-	- [Table of Contents](#table-of-contents)
-	- [iostream](#iostream)
-		- [Repeatedly ask for user input](#repeatedly-ask-for-user-input)
-	- [string](#string)
-	- [cmath](#cmath)
-		- [Random numbers](#random-numbers)
-		- [ctime](#ctime)
-	- [cstdlib](#cstdlib)
-	- [iomanip](#iomanip)
-	- [vector](#vector)
-	- [typeinfo](#typeinfo)
-	- [fstream](#fstream)
-	- [cctype](#cctype)
-	- [optional](#optional)
+- [iostream](#iostream)
+	- [Repeatedly ask for user input](#repeatedly-ask-for-user-input)
+- [string](#string)
+- [cmath](#cmath)
+	- [Random numbers](#random-numbers)
+	- [ctime](#ctime)
+- [cstdlib](#cstdlib)
+- [iomanip](#iomanip)
+- [vector](#vector)
+- [typeinfo](#typeinfo)
+- [fstream](#fstream)
+- [cctype](#cctype)
+- [optional](#optional)
 
 <!-- /TOC -->
 
-## [iostream](#table-of-contents)
+## [iostream](#c-standard-libraries)
 
 |                       |                                                     |
 |-----------------------|-----------------------------------------------------|
@@ -65,7 +62,7 @@ The standard libraries are any library that uses namespace std.
 	- Sets the position of the input pointer for the stream
 	- Ex: `file.seekg(0, ios_base::beg);`
 
-### [Repeatedly ask for user input](#table-of-contents)
+### [Repeatedly ask for user input](#c-standard-libraries)
 
 ```c++
 while(true) {
@@ -81,7 +78,7 @@ while(true) {
 }
 ```
 
-## [string](#table-of-contents)
+## [string](#c-standard-libraries)
 
 |                                    |                                               |
 |------------------------------------|-----------------------------------------------|
@@ -96,7 +93,7 @@ while(true) {
 | `str.find(str2)`                   | Gets the starting index of the string         |
 |                                    | Returns `string::npos` if nothing was found   |
 
-## [cmath](#table-of-contents)
+## [cmath](#c-standard-libraries)
 - Floating point math operations
 
 |                       |                                    |
@@ -109,16 +106,16 @@ while(true) {
 | `rand()`              | Random int from `0` and `RAND_MAX` |
 | `M_PI`                |                                    |
 
-### [Random numbers](#table-of-contents)
+### [Random numbers](#c-standard-libraries)
 - `rand() % 10` between 0-9
 - `(rand() % 11) + 20` between 20-30
 
-### [ctime](#table-of-contents)
+### [ctime](#c-standard-libraries)
 - `#include <ctime>`
 - `srand(time(0));`
 	- Sets the seed for random number
 
-## [cstdlib](#table-of-contents)
+## [cstdlib](#c-standard-libraries)
 - Integer math operations
 
 |          |                        |
@@ -126,7 +123,7 @@ while(true) {
 | `abs()`  |                        |
 | `atoi()` | Converts string to int |
 
-## [iomanip](#table-of-contents)
+## [iomanip](#c-standard-libraries)
 
 |                             |                                              |
 |-----------------------------|----------------------------------------------|
@@ -148,13 +145,13 @@ while(true) {
 - If no fixed and exceeds bounds of `setprecision`, then it's outputted in scientific notation
 	- Ex: `cout << setprecision(2) << 146.789;` outputs `1.5e+02`
 
-## [vector](#table-of-contents)
+## [vector](#c-standard-libraries)
 - Dynamic arrays in c++
 - `vector<int> nums = {0, 1, 2};`
 - `nums[0] = 10;`
 - `nums.push_back(3);` Adds 3 to the end of the vector
 
-## [typeinfo](#table-of-contents)
+## [typeinfo](#c-standard-libraries)
 - `typeid(var).name()` gives a string of the type of variable.
 
 | returned | Type     |
@@ -165,7 +162,7 @@ while(true) {
 | `P`      | pointer  |
 | `K`      | constant |
 
-## [fstream](#table-of-contents)
+## [fstream](#c-standard-libraries)
 - Reading and writing to files
 
 |                             |                                  |
@@ -184,13 +181,13 @@ while(true) {
 	- `file >> input;`
 	- `getline(file, line);`
 
-## [cctype](#table-of-contents)
+## [cctype](#c-standard-libraries)
 
 |                 |                        |
 |-----------------|------------------------|
 | `tolower(char)` | Converts to lower case |
 
-## [optional](#table-of-contents)
+## [optional](#c-standard-libraries)
 Optional is used when there is the possiility that you cannot get any code back?
 
 ```C++

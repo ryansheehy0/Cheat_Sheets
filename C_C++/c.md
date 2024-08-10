@@ -21,25 +21,22 @@
 # C
 This cheat sheet is not for explaining all the concepts in C, but to explain some of the concepts that are hard to remember.
 
-## Table of Contents
 <!-- TOC -->
 
-- [C](#c)
-	- [Table of Contents](#table-of-contents)
-	- [Standard Libraries](#standard-libraries)
-	- [Command Line Arguments](#command-line-arguments)
-	- [Interacting with files](#interacting-with-files)
-	- [Unions](#unions)
-	- [Printf format specifiers](#printf-format-specifiers)
-		- [Format specifiers flags](#format-specifiers-flags)
-	- [Pointers](#pointers)
-	- [Arrays](#arrays)
-	- [Header Guards](#header-guards)
-	- [stdlib functions](#stdlib-functions)
+- [Standard Libraries](#standard-libraries)
+- [Command Line Arguments](#command-line-arguments)
+- [Interacting with files](#interacting-with-files)
+- [Unions](#unions)
+- [Printf format specifiers](#printf-format-specifiers)
+	- [Format specifiers flags](#format-specifiers-flags)
+- [Pointers](#pointers)
+- [Arrays](#arrays)
+- [Header Guards](#header-guards)
+- [stdlib functions](#stdlib-functions)
 
 <!-- /TOC -->
 
-## [Standard Libraries](#table-of-contents)
+## [Standard Libraries](#c)
 
 `#include <library.h>`
 
@@ -55,7 +52,7 @@ This cheat sheet is not for explaining all the concepts in C, but to explain som
 | threads      | Managing thread functions.                                                                 |
 | stdarg       | Allows functions to accept an indefinite number of arguments.                              |
 
-## [Command Line Arguments](#table-of-contents)
+## [Command Line Arguments](#c)
 
 ```
 int main(int argc, char* argv[]){
@@ -65,7 +62,7 @@ int main(int argc, char* argv[]){
 }
 ```
 
-## [Interacting with files](#table-of-contents)
+## [Interacting with files](#c)
 ```
 #include <stdio.h>
 
@@ -102,10 +99,10 @@ char fgetc(FILE *stream);
     // Gets the next character from the file stream.
 ```
 
-## [Unions](#table-of-contents)
+## [Unions](#c)
 Unions allow a single variable to hold different types with only one member active at a time. All members in a union share the same memory space and assigning a value to one member overwrites the values of the other members. The size of the union is the size of the largest member.
 
-## [Printf format specifiers](#table-of-contents)
+## [Printf format specifiers](#c)
 
 | Specifier | Print a                                                                       |
 |-----------|-------------------------------------------------------------------------------|
@@ -122,7 +119,7 @@ Unions allow a single variable to hold different types with only one member acti
 | %lu       | unsigned long                                                                 |
 | %%        | % character                                                                   |
 
-### [Format specifiers flags](#table-of-contents)
+### [Format specifiers flags](#c)
 - %.1 decimal precision with floats
 
 ```
@@ -140,7 +137,7 @@ printf("X is:%8.2f", x); // X is:   10.12
 
 - %- left aligned.
 
-## [Pointers](#table-of-contents)
+## [Pointers](#c)
 
 ```
 // An array of pointers
@@ -151,11 +148,11 @@ printf("X is:%8.2f", x); // X is:   10.12
     (*pointer_to_an_array)[] // de-ref 
 ```
 
-## [Arrays](#table-of-contents)
+## [Arrays](#c)
 - Get size of arrays:`sizeof(array) / sizeof(type)`
     - Doesn't work with pass by reference.
 
-## [Header Guards](#table-of-contents)
+## [Header Guards](#c)
 
 ```
 #pragma once
@@ -172,7 +169,7 @@ printf("X is:%8.2f", x); // X is:   10.12
 
 #enif HEADER_NAME_H
 ```
-## [stdlib functions](#table-of-contents)
+## [stdlib functions](#c)
 
 |       |                              |
 |-------|------------------------------|

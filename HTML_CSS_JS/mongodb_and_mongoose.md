@@ -34,55 +34,51 @@ MongoDb organizes things in these terms:
 | Documents         | Documents are BSON documents that usually hold related data. Like files or objects in JS. |
 | Embedded Document | An object in a document.                                                                  |
 
-## Table of Contents
-
 <!-- TOC -->
 
-- [MongoDB and Mongoose](#mongodb-and-mongoose)
-	- [Table of Contents](#table-of-contents)
-	- [Installing](#installing)
-	- [Starting and Stopping](#starting-and-stopping)
-	- [MongoDB Shell](#mongodb-shell)
-	- [Questions](#questions)
-		- [Ids](#ids)
-		- [Connecting](#connecting)
-		- [Create](#create)
-		- [Get](#get)
-		- [Update](#update)
-		- [Delete](#delete)
-		- [Dollar Signs $](#dollar-signs-)
-		- [Embedded Documents](#embedded-documents)
-		- [Sort Skip Limit](#sort-skip-limit)
-	- [Mongoose](#mongoose)
-		- [Connecting](#connecting)
-		- [Schema and Model](#schema-and-model)
-		- [Mongoose CRUD](#mongoose-crud)
-			- [Mongoose Create](#mongoose-create)
-			- [Mongoose Read](#mongoose-read)
-				- [Populate](#populate)
-				- [Aggregate](#aggregate)
-			- [Mongoose Update](#mongoose-update)
-			- [Mongoose Delete](#mongoose-delete)
-		- [Instance Methods/Virtuals](#instance-methodsvirtuals)
-			- [Instance Methods](#instance-methods)
-			- [Virtuals](#virtuals)
-		- [Mongoose Embedded Documents](#mongoose-embedded-documents)
+- [Installing](#installing)
+- [Starting and Stopping](#starting-and-stopping)
+- [MongoDB Shell](#mongodb-shell)
+- [Questions](#questions)
+	- [Ids](#ids)
+	- [Connecting](#connecting)
+	- [Create](#create)
+	- [Get](#get)
+	- [Update](#update)
+	- [Delete](#delete)
+	- [Dollar Signs $](#dollar-signs-)
+	- [Embedded Documents](#embedded-documents)
+	- [Sort Skip Limit](#sort-skip-limit)
+- [Mongoose](#mongoose)
+	- [Connecting](#connecting)
+	- [Schema and Model](#schema-and-model)
+	- [Mongoose CRUD](#mongoose-crud)
+		- [Mongoose Create](#mongoose-create)
+		- [Mongoose Read](#mongoose-read)
+			- [Populate](#populate)
+			- [Aggregate](#aggregate)
+		- [Mongoose Update](#mongoose-update)
+		- [Mongoose Delete](#mongoose-delete)
+	- [Instance Methods/Virtuals](#instance-methodsvirtuals)
+		- [Instance Methods](#instance-methods)
+		- [Virtuals](#virtuals)
+	- [Mongoose Embedded Documents](#mongoose-embedded-documents)
 
 <!-- /TOC -->
 
 
-## [Installing](#table-of-contents)
+## [Installing](#mongodb-and-mongoose)
 - Install MongoDb [here](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/#install-mongodb-community-edition)
 - Install Mongo Compass [here](https://www.mongodb.com/docs/compass/current/install/).
 
-## [Starting and Stopping](#table-of-contents)
+## [Starting and Stopping](#mongodb-and-mongoose)
 Start: `sudo service mongod start`
 
 Verify it's started: `sudo service mongod status`
 
 Stop: `sudo service mongod stop`
 
-## [MongoDB Shell](#table-of-contents)
+## [MongoDB Shell](#mongodb-and-mongoose)
 
 | Shell command                                                  | Description                                           |
 |----------------------------------------------------------------|-------------------------------------------------------|
@@ -108,7 +104,7 @@ Stop: `sudo service mongod stop`
 - What does the required function do?
 - How can you change your schema in MongoDB
 
-### [Ids](#table-of-contents)
+### [Ids](#mongodb-and-mongoose)
 Each document is automatically given a unique id called `_id`
 
 The `ObjectId()` function ensures that the id is unique across the whole DB.
@@ -120,7 +116,7 @@ const documentId = new mongoose.Types.ObjectId("unique id string")
 const documentTimestamp = documentId.getTimestamp() // YYYY-MM-DD HH:mm:ss
 ```
 
-### [Connecting](#table-of-contents)
+### [Connecting](#mongodb-and-mongoose)
 
 ```javascript
 const { MongoClient, ObjectId } = require("mongodb")
@@ -148,7 +144,7 @@ async function seedDBAndStartServer() {
 seedDBAndStartServer();
 ```
 
-### [Create](#table-of-contents)
+### [Create](#mongodb-and-mongoose)
 
 ```javascript
 db.collection("collectionName").insertOne( // Creates a document in the collection
@@ -165,7 +161,7 @@ db.collection("petCollection").insertMany([ // Creates many documents in the col
   .catch(err => console.error(err))
 ```
 
-### [Get](#table-of-contents)
+### [Get](#mongodb-and-mongoose)
 
 ```javascript
 db.collection("collectionName")
@@ -182,7 +178,7 @@ db.collection("collectionName")
   .catch(err => console.error(err))
 ```
 
-### [Update](#table-of-contents)
+### [Update](#mongodb-and-mongoose)
 
 ```javascript
 const filter = { _id: new mongoose.Types.ObjectId('unique id string') } // Chooses which document
@@ -202,7 +198,7 @@ db.collection("collectionName").updateOne(filter, update);
 | $addToSet            | Adds an element to an array field if it doesn't exist |
 | $pop                 | Removes the first or last element of an array field   |
 
-### [Delete](#table-of-contents)
+### [Delete](#mongodb-and-mongoose)
 
 ```javascript
 db.collection("collectionName").deleteOne({_id: new mongoose.Types.ObjectId("unique id string")})
@@ -213,7 +209,7 @@ db.collection("collectionName").deleteOne({_id: new mongoose.Types.ObjectId("uni
 db.collection("collectionName").deleteMany({})
 ```
 
-### [Dollar Signs $](#table-of-contents)
+### [Dollar Signs $](#mongodb-and-mongoose)
 
 ```javascript
 db.collection("collectionName")
@@ -236,7 +232,7 @@ db.collection("collectionName")
 | $type                 | Matches documents with a specific data type     |
 | $regex                | Matches documents based on a regular expression |
 
-### [Embedded Documents](#table-of-contents)
+### [Embedded Documents](#mongodb-and-mongoose)
 You can select based upon an object/embedded documents
 
 ```javascript
@@ -247,7 +243,7 @@ db.collection("collectionName")
   .catch(err => console.error(err))
 ```
 
-### [Sort Skip Limit](#table-of-contents)
+### [Sort Skip Limit](#mongodb-and-mongoose)
 
 | Method                | Description                                                       |
 |-----------------------|-------------------------------------------------------------------|
@@ -255,12 +251,12 @@ db.collection("collectionName")
 | .sort({field: "asc"}) | Sort in "ascending"/"asc"/1 order or "descending"/"desc"/-1 order |
 | .skip(number)         | Skips just the first number of documents returned                 |
 
-## [Mongoose](#table-of-contents)
+## [Mongoose](#mongodb-and-mongoose)
 MongoDb ORM to add additional features and make things easier.
 
 Allows for schemas.
 
-### [Connecting](#table-of-contents)
+### [Connecting](#mongodb-and-mongoose)
 
 Don't need to import mongodb in your node package.
 
@@ -288,7 +284,7 @@ db.once("open", () => {
 })
 ```
 
-### [Schema and Model](#table-of-contents)
+### [Schema and Model](#mongodb-and-mongoose)
 A schema defines how a document should laid out.
 
 A model is a constructor function that is used to create, read, update, and delete documents based on that schema. Models apply the schema to the documents.
@@ -373,10 +369,10 @@ module.exports = { ModelName };
 
 BSON Supports the data types String, Boolean, Number(Integer, Float, Long, Decimal128, ...), Array, null, Date, BinData
 
-### [Mongoose CRUD](#table-of-contents)
+### [Mongoose CRUD](#mongodb-and-mongoose)
 https://mongoosejs.com/docs/queries.html
 
-#### [Mongoose Create](#table-of-contents)
+#### [Mongoose Create](#mongodb-and-mongoose)
 Create a new document from a model
 
 ```javascript
@@ -408,7 +404,7 @@ const newDoc = await ModelInstance.insertMany({
 newDoc.save()
 ```
 
-#### [Mongoose Read](#table-of-contents)
+#### [Mongoose Read](#mongodb-and-mongoose)
 
 ```javascript
 ModelInstance.find({}) // Finds all the documents that follow that schema
@@ -439,7 +435,7 @@ const documents = await query.exec()
 Model.findOneAndDelete({_id: mongoose.Types.ObjectId("unique id string")})
 ```
 
-##### [Populate](#table-of-contents)
+##### [Populate](#mongodb-and-mongoose)
 `.populate` is used to replace a specific field(which is a reference to another model) with the actual document from the referenced model.
 
 ```javascript
@@ -448,7 +444,7 @@ Book.findOne({title: "Book Title"})
   .exec()
 ```
 
-##### [Aggregate](#table-of-contents)
+##### [Aggregate](#mongodb-and-mongoose)
 Group things together and then get statistics about that group.
 
 The Aggregate pipeline describes the idea of a pipeline with stages. Each stage transforms the output and passes it to the next stage.
@@ -493,7 +489,7 @@ const pipeline = [{
 { "_id": "Marketing", "totalEmployees": 1, "averageSalary": 60000 }
 ```
 
-#### [Mongoose Update](#table-of-contents)
+#### [Mongoose Update](#mongodb-and-mongoose)
 
 ```javascript
 const filter = { name: "Ryan Sheehy"} // Get documents with name being Ryan Sheehy
@@ -505,7 +501,7 @@ Model.findOneAndUpdate(filter, update, { new: true }) // Returns the updated doc
 Model.updateMany(filter, update)
 ```
 
-#### [Mongoose Delete](#table-of-contents)
+#### [Mongoose Delete](#mongodb-and-mongoose)
 
 ```javascript
 Model.deleteMany(filter)
@@ -514,9 +510,9 @@ Model.deleteOne(filter)
 Model.findOneAndDelete(filter, { new: true })
 ```
 
-### [Instance Methods/Virtuals](#table-of-contents)
+### [Instance Methods/Virtuals](#mongodb-and-mongoose)
 
-#### [Instance Methods](#table-of-contents)
+#### [Instance Methods](#mongodb-and-mongoose)
 Instance methods are methods that belong to the schema and are used to perform certain functions.
 
 In your schema
@@ -541,7 +537,7 @@ docName.get("key") // Gets the value fo the key
 docName.get("key", String) // Gets the value fo the key as a string
 ```
 
-#### [Virtuals](#table-of-contents)
+#### [Virtuals](#mongodb-and-mongoose)
 Virtuals are like instance methods, but they are treated like any other value in the model. They aren't stored in the database, but are instead calculated when the virtual is called.
 
 In your schema
@@ -561,7 +557,7 @@ const docName = new Model({
 console.log(docName.newCustomVirtual) // ryan sheehy
 ```
 
-### [Mongoose Embedded Documents](#table-of-contents)
+### [Mongoose Embedded Documents](#mongodb-and-mongoose)
 Schema for nested objects.
 
 ```javascript

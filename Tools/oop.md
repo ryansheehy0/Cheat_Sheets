@@ -24,76 +24,72 @@ Procedural programming is having functions that take in data, manipulate it, the
 
 The reason to use OOP is to prevent functions from having extremely long arguments and it allows for better organization by group together variables and functions.
 
-## Table of Contents
-
 <!-- TOC -->
 
-- [Object Oriented ProgrammingOOP](#object-oriented-programmingoop)
-	- [Table of Contents](#table-of-contents)
-	- [Problems with Procedural Programming](#problems-with-procedural-programming)
-	- [4 Pillars of OOP](#4-pillars-of-oop)
-		- [Encapsulation](#encapsulation)
-		- [Abstraction](#abstraction)
-		- [Inheritance](#inheritance)
-		- [Polymorphism](#polymorphism)
-	- [Dependency Injection](#dependency-injection)
-	- [Static methods](#static-methods)
-	- [Set and Get methods](#set-and-get-methods)
-	- [Design Patterns](#design-patterns)
-		- [Decorator](#decorator)
-		- [Singletons](#singletons)
-		- [Factory](#factory)
-		- [Builder Design Pattern](#builder-design-pattern)
-		- [Model View ControllerMVC](#model-view-controllermvc)
-		- [Observer](#observer)
-	- [Other](#other)
-	- [Use Builder pattern](#use-builder-pattern)
+- [Problems with Procedural Programming](#problems-with-procedural-programming)
+- [4 Pillars of OOP](#4-pillars-of-oop)
+	- [Encapsulation](#encapsulation)
+	- [Abstraction](#abstraction)
+	- [Inheritance](#inheritance)
+	- [Polymorphism](#polymorphism)
+- [Dependency Injection](#dependency-injection)
+- [Static methods](#static-methods)
+- [Set and Get methods](#set-and-get-methods)
+- [Design Patterns](#design-patterns)
+	- [Decorator](#decorator)
+	- [Singletons](#singletons)
+	- [Factory](#factory)
+	- [Builder Design Pattern](#builder-design-pattern)
+	- [Model View ControllerMVC](#model-view-controllermvc)
+	- [Observer](#observer)
+- [Other](#other)
+- [Use Builder pattern](#use-builder-pattern)
 
 <!-- /TOC -->
 
-## [Problems with Procedural Programming](#table-of-contents)
+## [Problems with Procedural Programming](#object-oriented-programmingoop)
 - You end up having many different functions all over the place that are hard to group together into folders and files.
 - There are a lot of dependencies from one function to another. If you change one function it may brake other functions.
 - More complex functions end up having more and more arguments.
 
-## [4 Pillars of OOP](#table-of-contents)
+## [4 Pillars of OOP](#object-oriented-programmingoop)
 
-### [Encapsulation](#table-of-contents)
+### [Encapsulation](#object-oriented-programmingoop)
 Grouping related variables(properties) and functions(methods) that manipulate those variables into a unit called an object.
 
-### [Abstraction](#table-of-contents)
+### [Abstraction](#object-oriented-programmingoop)
 Hide the details and complexity behind an interface.
 
 Public and Private properties and methods.
 
 - This reduces the impact of change so if you change a private method or property it doesn't effect anything else on the outside.
 
-### [Inheritance](#table-of-contents)
+### [Inheritance](#object-oriented-programmingoop)
 Allows you to eliminate redundant code by reusing classes.
 
-### [Polymorphism](#table-of-contents)
+### [Polymorphism](#object-oriented-programmingoop)
 Methods can have the same name, but different arguments. This reduces code which would check for certain conditions.
 
 Any children which inherit a class can change how a function work for themselves.
 
-## [Dependency Injection](#table-of-contents)
+## [Dependency Injection](#object-oriented-programmingoop)
 
-## [Static methods](#table-of-contents)
+## [Static methods](#object-oriented-programmingoop)
 Methods that are associated with the class itself rather than the object of the class. Meaning you can call the static methods directly on the class without needing to create an instance(object) of the class.
 
-## [Set and Get methods](#table-of-contents)
+## [Set and Get methods](#object-oriented-programmingoop)
 A Set and Get method are used when you want to make a variable public, but also want to apply additional logic when that variable is modified or returned.
 
 By default it is recommended to use Set and Get methods incase you want to add additional logic in the future without having to modify your interface thus saving you from re-writing other code.
 
-## [Design Patterns](#table-of-contents)
-### [Decorator](#table-of-contents)
-### [Singletons](#table-of-contents)
+## [Design Patterns](#object-oriented-programmingoop)
+### [Decorator](#object-oriented-programmingoop)
+### [Singletons](#object-oriented-programmingoop)
 A single object that is shared in your program.
 
-### [Factory](#table-of-contents)
+### [Factory](#object-oriented-programmingoop)
 - Put all arguments in at once
-### [Builder Design Pattern](#table-of-contents)
+### [Builder Design Pattern](#object-oriented-programmingoop)
 Instead of passing values into the contractor you can use Set methods instead.
   - These Set methods should return the object itself(`this`) to allow for chaining of these setter methods.
 
@@ -101,14 +97,14 @@ This has several advantages:
 - It is clear what values you are setting because you call them through a setter
 - It cuts down on unnecessary code because you don't need a long list of this.privateVar = argument
 
-### [Model View Controller(MVC)](#table-of-contents)
+### [Model View Controller(MVC)](#object-oriented-programmingoop)
 Models folder contains data
 Controller is the logic.
 The view is getting data to G
 
-### [Observer](#table-of-contents)
+### [Observer](#object-oriented-programmingoop)
 
-## [Other](#table-of-contents)
+## [Other](#object-oriented-programmingoop)
 - A pure function is one that doesn't have any side effect.
   - Always produces the same output with the same inputs
   - Doesn't use any global variables. Doesn't set or get
@@ -121,7 +117,8 @@ The view is getting data to G
 Classes are used to create objects from a template.
 An object is an unordered collection of related variables and/or functions.
 
-## [Use Builder pattern](#table-of-contents)
+## [Use Builder pattern](#object-oriented-programmingoop)
+
 ```javascript
 function Class({arg1, arg2}, {optionalArg1} = {}) {
 

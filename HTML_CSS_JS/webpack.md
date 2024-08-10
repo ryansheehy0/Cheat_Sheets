@@ -26,27 +26,23 @@ Why use webpack
 - Don't have to load all your client side javascript files in your html in the correct order.
 - Allow for hot reloading. Don't have to manually reload browser to see changes.
 
-## Table of Contents
-
 <!-- TOC -->
 
-- [Webpack](#webpack)
-  - [Table of Contents](#table-of-contents)
-  - [webpack.config.js](#webpackconfigjs)
-  - [Separate HTML file](#separate-html-file)
-  - [Separate CSS file](#separate-css-file)
-  - [Favicon](#favicon)
-  - [Hot Reloading](#hot-reloading)
-  - [Include Service Worker](#include-service-worker)
-    - [GenerateSW](#generatesw)
-      - [Runtime Caching](#runtime-caching)
-    - [Inject Manifest](#inject-manifest)
-  - [Babel](#babel)
-  - [PWA Manifest](#pwa-manifest)
+- [webpack.config.js](#webpackconfigjs)
+- [Separate HTML file](#separate-html-file)
+- [Separate CSS file](#separate-css-file)
+- [Favicon](#favicon)
+- [Hot Reloading](#hot-reloading)
+- [Include Service Worker](#include-service-worker)
+	- [GenerateSW](#generatesw)
+		- [Runtime Caching](#runtime-caching)
+	- [Inject Manifest](#inject-manifest)
+- [Babel](#babel)
+- [PWA Manifest](#pwa-manifest)
 
 <!-- /TOC -->
 
-## [webpack.config.js](#table-of-contents)
+## [webpack.config.js](#webpack)
 `npm install webpack webpack-cli --save-dev`
 
 ```javascript
@@ -83,7 +79,7 @@ You don't need to include your css or js in your html.
 
 Run `npm run build` or `npx webpack` in order to build the webpack.
 
-## [Separate HTML file](#table-of-contents)
+## [Separate HTML file](#webpack)
 `npm install html-webpack-plugin --save-dev`
 
 ```javascript
@@ -98,7 +94,7 @@ plugins: [
 ]
 ```
 
-## [Separate CSS file](#table-of-contents)
+## [Separate CSS file](#webpack)
 `npm install style-loader css-loader mini-css-extract-plugin --save-dev`
 
 The reason to extract the css in a different file is to load the JS and the CSS at the same time.
@@ -121,7 +117,7 @@ rules: [
 ]
 ```
 
-## [Favicon](#table-of-contents)
+## [Favicon](#webpack)
 `npm install favicons-webpack-plugin --save-dev`
 
 ```javascript
@@ -136,7 +132,7 @@ plugins: [
 ]
 ```
 
-## [Hot Reloading](#table-of-contents)
+## [Hot Reloading](#webpack)
 `npm install webpack-dev-server --save-dev`
 
 ```javascript
@@ -162,7 +158,7 @@ if(module.hot){
 }
 ```
 
-## [Include Service Worker](#table-of-contents)
+## [Include Service Worker](#webpack)
 `npm install workbox-webpack-plugin --save-dev`
 
 ```javascript
@@ -170,7 +166,7 @@ if(module.hot){
 const WorkboxPlugin = require("workbox-webpack-plugin")
 ```
 
-### [GenerateSW](#table-of-contents)
+### [GenerateSW](#webpack)
 
 ```javascript
 // plugins
@@ -179,7 +175,7 @@ plugins: [
 ]
 ```
 
-#### [Runtime Caching](#table-of-contents)
+#### [Runtime Caching](#webpack)
 Runtime caching is used to prevent too much pre-caching which will download a lot of content that the user may never see. This pre-caching may cause things to slow down when the site first loads.
 
 These are often used with images because they take up a lot of space.
@@ -200,7 +196,7 @@ plugins: [
 ]
 ```
 
-### [Inject Manifest](#table-of-contents)
+### [Inject Manifest](#webpack)
 Inject manifest function is used to give more customization to your service worker.
 
 ```javascript
@@ -218,7 +214,7 @@ plugins: [
 ```javascript
 ```
 
-## [Babel](#table-of-contents)
+## [Babel](#webpack)
 Babel is used to convert ES6 to ES5 to allow for your app to work in older browsers.
 
 Babel allows modern js to be able to run on old browsers.
@@ -241,7 +237,7 @@ rule: [
 ]
 ```
 
-## [PWA Manifest](#table-of-contents)
+## [PWA Manifest](#webpack)
 `npm install webpack-pwa-manifest --save-dev`
 
 ```javascript

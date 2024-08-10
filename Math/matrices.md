@@ -37,37 +37,33 @@ Rows($R$) and columns($C$) all start at 1 and when specifying the size of a matr
 
 - Matrices are often used to represent vectors. A vector has a starting point, ending point, and a direction. They can represent many types of data.
 
-## Table Of Contents
-
 <!-- TOC -->
 
-- [Matrices](#matrices)
-	- [Table Of Contents](#table-of-contents)
-	- [Adding/Subtracting:](#addingsubtracting)
-		- [Example:](#example)
-	- [Multiplying:](#multiplying)
-		- [Example of multiplying by a constant:](#example-of-multiplying-by-a-constant)
-		- [Example of multiplying 2 matrices:](#example-of-multiplying-2-matrices)
-		- [Examples of scaling and rotating:](#examples-of-scaling-and-rotating)
-	- [Inverse:](#inverse)
-		- [Steps:](#steps)
-		- [Example:](#example)
-	- [Row Echelon Form:](#row-echelon-form)
-		- [Example:](#example)
-	- [Eigenvectors and Eigenvalues:](#eigenvectors-and-eigenvalues)
-		- [Calculating the Eigenvectors and Eigenvalues:](#calculating-the-eigenvectors-and-eigenvalues)
-		- [Example:](#example)
-	- [Dividing:](#dividing)
-	- [Dot product:](#dot-product)
-	- [Cross product:](#cross-product)
-	- [Kernels/Image Filters:](#kernelsimage-filters)
+- [Adding/Subtracting:](#addingsubtracting)
+	- [Example:](#example)
+- [Multiplying:](#multiplying)
+	- [Example of multiplying by a constant:](#example-of-multiplying-by-a-constant)
+	- [Example of multiplying 2 matrices:](#example-of-multiplying-2-matrices)
+	- [Examples of scaling and rotating:](#examples-of-scaling-and-rotating)
+- [Inverse:](#inverse)
+	- [Steps:](#steps)
+	- [Example:](#example)
+- [Row Echelon Form:](#row-echelon-form)
+	- [Example:](#example)
+- [Eigenvectors and Eigenvalues:](#eigenvectors-and-eigenvalues)
+	- [Calculating the Eigenvectors and Eigenvalues:](#calculating-the-eigenvectors-and-eigenvalues)
+	- [Example:](#example)
+- [Dividing:](#dividing)
+- [Dot product:](#dot-product)
+- [Cross product:](#cross-product)
+- [Kernels/Image Filters:](#kernelsimage-filters)
 
 <!-- /TOC -->
 
-## [Adding/Subtracting:](#table-of-contents)
+## [Adding/Subtracting:](#matrices)
 - Only matrices of the same size can be added/subtracted
 
-### [Example:](#table-of-contents)
+### [Example:](#matrices)
 
 $$
 \begin{array}{}
@@ -117,7 +113,7 @@ $$
 \end{array}
 $$
 
-## [Multiplying:](#table-of-contents)
+## [Multiplying:](#matrices)
 
 - The number of columns in the 1st matrix must be equal to the number of rows in the 2nd matrix
 - The result of the multiplication is the rows of the 1st matrix and the column of the 2nd matrix.
@@ -151,10 +147,10 @@ $$
 \end{array}
 $$
 
-### [Example of multiplying by a constant:](#table-of-contents)
+### [Example of multiplying by a constant:](#matrices)
 
 $$
-	4 * 	
+	4 *
 	\begin{bmatrix}
 		1 & 2 \\
 		3 & 4 \\
@@ -173,15 +169,15 @@ $$
 	\end{bmatrix}
 $$
 
-### [Example of multiplying 2 matrices:](#table-of-contents)
+### [Example of multiplying 2 matrices:](#matrices)
 
 $$
-2\text{x}3\quad A = 
+2\text{x}3\quad A =
 \begin{bmatrix}
 	1 & 2 & 3\\
 	4 & 5 & 6\\
 \end{bmatrix}\qquad\quad
-3\text{x}4\quad B = 
+3\text{x}4\quad B =
 \begin{bmatrix}
 	7  & 8  & 9  & 10\\
 	11 & 12 & 13 & 14\\
@@ -209,7 +205,7 @@ $$
 
 - $B * A$ cannot be calculated because the number of columns in $B$ doesn't equal the number of rows in $A$.
 
-### [Examples of scaling and rotating:](#table-of-contents)
+### [Examples of scaling and rotating:](#matrices)
 - This matrix rotates a vector by 90 degrees counter-clockwise:
 
 $$
@@ -230,7 +226,7 @@ $$
 \end{bmatrix}
 $$
 
-## [Inverse:](#table-of-contents)
+## [Inverse:](#matrices)
 $A^{-1} = \frac{1}{\text{determinant}(A)} * \text{adjugate}(A)$
 
 With $A$ being the matrix and $A^{-1}$ being the inverse.
@@ -239,7 +235,7 @@ With $A$ being the matrix and $A^{-1}$ being the inverse.
 - If the determinant is 0 then the matrix cannot be inverted.
 - If Matrix $A$ is multiplied by $A^{-1}$ the result is the identity matrix($I$) of the same size which has $1\text{s}$ on its left diagonal and $0\text{s}$ everywhere else.
 
-### [Steps:](#table-of-contents)
+### [Steps:](#matrices)
 
 1. Get the **adjugate**:
 	1. Get the **matrix of minors**
@@ -313,12 +309,12 @@ $$
 </ol>
 
 $$
-\text{Left diagonal} = 
+\text{Left diagonal} =
 \begin{bmatrix}
 	\underline{\space\space} & \space\space \\
 	\space\space & \underline{\space\space} \\
 \end{bmatrix} \qquad
-\text{Right diagonal} = 
+\text{Right diagonal} =
 \begin{bmatrix}
 	\space\space & \underline{\space\space} \\
 	\underline{\space\space} & \space\space \\
@@ -333,7 +329,7 @@ $$
 			</ul>
 		</ul>
     </ul>
-</ul> 
+</ul>
 
 $$
 \begin{bmatrix}
@@ -377,18 +373,18 @@ $$
 		<ul>
 		<li>Ex:</li>
 		</ul>
-	</ul> 
-</ul> 
+	</ul>
+</ul>
 
 $$
 \begin{bmatrix}
 	2 & 1 \\
 	1 & 1 \\
-\end{bmatrix} * 
+\end{bmatrix} *
 \begin{bmatrix}
 	+ & - \\
 	- & + \\
-\end{bmatrix} = 
+\end{bmatrix} =
 \begin{bmatrix}
 	2 & -1 \\
 	-1 & 1 \\
@@ -433,22 +429,22 @@ A =
 	2 & 3 & 4 \\
 	7 & 4 & 5 \\
 \end{bmatrix} \qquad
-\text{adj} = 
+\text{adj} =
 \begin{bmatrix}
 	-1 & 7 & -5 \\
 	18 & -16 & 2 \\
 	-13 & 3 & 1 \\
-\end{bmatrix} 
+\end{bmatrix}
 $$
 
 $$(1 * -1) + (1 * 7) + (3 * -5) = -9$$
 
 3. Plug **determinant** and **adjugate** into the equation.
 
-### [Example:](#table-of-contents)
+### [Example:](#matrices)
 
 $$
-A = 
+A =
 \begin{bmatrix}
 	1 & 0 & 1 \\
 	0 & 2 & 1 \\
@@ -461,11 +457,11 @@ $$
 	\begin{bmatrix}
 		2 & 1 \\
 		1 & 1 \\
-	\end{bmatrix} & 
+	\end{bmatrix} &
 	\begin{bmatrix}
 		0 & 1 \\
 		1 & 1 \\
-	\end{bmatrix} & 
+	\end{bmatrix} &
 	\begin{bmatrix}
 		0 & 2 \\
 		1 & 1 \\
@@ -473,11 +469,11 @@ $$
 	\begin{bmatrix}
 		0 & 1 \\
 		1 & 1 \\
-	\end{bmatrix} & 
+	\end{bmatrix} &
 	\begin{bmatrix}
 		1 & 1 \\
 		1 & 1 \\
-	\end{bmatrix} & 
+	\end{bmatrix} &
 	\begin{bmatrix}
 		1 & 0 \\
 		1 & 1 \\
@@ -485,11 +481,11 @@ $$
 	\begin{bmatrix}
 		0 & 1 \\
 		2 & 1 \\
-	\end{bmatrix} & 
+	\end{bmatrix} &
 	\begin{bmatrix}
 		1 & 1 \\
 		0 & 1 \\
-	\end{bmatrix} & 
+	\end{bmatrix} &
 	\begin{bmatrix}
 		1 & 0 \\
 		0 & 2 \\
@@ -498,7 +494,7 @@ $$
 $$
 
 $$
-\text{Matrix of minors} = 
+\text{Matrix of minors} =
 \begin{bmatrix}
 	1 & -1 & -2 \\
 	-1 & 0 & 1  \\
@@ -507,7 +503,7 @@ $$
 $$
 
 $$
-\text{Matrix of cofactors} = 
+\text{Matrix of cofactors} =
 \begin{bmatrix}
 	1 & -1 & -2 \\
 	-1 & 0 & 1  \\
@@ -526,7 +522,7 @@ $$
 $$
 
 $$
-\text{adjugate} = 
+\text{adjugate} =
 \begin{bmatrix}
 	1 & 1 & -2 \\
 	1 & 0 & -1  \\
@@ -537,12 +533,12 @@ $$
 $$\text{determinant} = (1 * 1) + (0 * 1) + (1 * -2) = -1$$
 
 $$
-A^{-1} = \frac{1}{-1} * 
+A^{-1} = \frac{1}{-1} *
 \begin{bmatrix}
 	1 & 1 & -2 \\
 	1 & 0 & -1  \\
 	-2 & -1 & 2  \\
-\end{bmatrix} = 
+\end{bmatrix} =
 \begin{bmatrix}
 	-1 & -1 & 2 \\
 	-1 & 0 & 1  \\
@@ -583,7 +579,7 @@ $$
 </ul>
 
 $$
-A = 
+A =
 \begin{bmatrix}
 	3 & -2 \\
 	-1 & 4 \\
@@ -591,11 +587,11 @@ A =
 \begin{bmatrix}
 	4 & -1 \\
 	-2 & 3 \\
-\end{bmatrix} * 
+\end{bmatrix} *
 \begin{bmatrix}
 	+ & - \\
 	- & + \\
-\end{bmatrix} = 
+\end{bmatrix} =
 \begin{bmatrix}
 	4 & 1 \\
 	2 & 3 \\
@@ -611,7 +607,7 @@ $$
 $$
 
 $$
-A^{-1} = 
+A^{-1} =
 \frac{1}{10} *
 \begin{bmatrix}
 	4 & 2 \\
@@ -631,7 +627,7 @@ $$
 \begin{bmatrix}
 	1 \\
 	3 \\
-\end{bmatrix} = 
+\end{bmatrix} =
 \begin{bmatrix}
 	1 \\
 	1 \\
@@ -642,11 +638,11 @@ $$
 x = 1 \qquad y = 1
 $$
 
-## [Row Echelon Form:](#table-of-contents)
+## [Row Echelon Form:](#matrices)
 - Row echelon form is used to solve system of equations easier.
 - Row echelon form consists of modifying rows with equations consisting of other rows.
 
-### [Example:](#table-of-contents)
+### [Example:](#matrices)
 
 $$x + y - z = -2$$
 
@@ -765,8 +761,8 @@ $$z=2$$
 
 $$y=-1 \text{ and } x=1$$
 
-## [Eigenvectors and Eigenvalues:](#table-of-contents)
-- Any vector that is only scaled by a matrix and not rotated is called an Eigenvector of that matrix. How much that vector is scaled by is called the Eigenvalue. 
+## [Eigenvectors and Eigenvalues:](#matrices)
+- Any vector that is only scaled by a matrix and not rotated is called an Eigenvector of that matrix. How much that vector is scaled by is called the Eigenvalue.
 - Only square matrices have eigenvectors and eigenvalues.
 - Each Eigenvector has one Eigenvalue associated with it.
 - Eigenvectors cannot be $\vec{0}$ because that would just result in $\vec{0}$ and give no valuable information.
@@ -777,7 +773,7 @@ $$A \vec{v} = \lambda \vec{v}$$
 
 - Where $A$ is the matrix, $\vec{v}$ is the Eigenvector, and $\lambda$ is the Eigenvalue.
 
-### [Calculating the Eigenvectors and Eigenvalues:](#table-of-contents)
+### [Calculating the Eigenvectors and Eigenvalues:](#matrices)
 
 $$A \vec{v} - \lambda \vec{v} = \vec{0} $$
 
@@ -801,7 +797,7 @@ $$\text{determinant}(A - \lambda I) = 0$$
 	- Each Eigenvalue($\lambda$) is used to calculate its Eigenvector($\vec{v}$) using $(A - \lambda I) \vec{v} = 0$ and translated into its row echelon form and then translated into an equation. Assuming one of the variables is 1 the other can be calculated and the Eigenvector($\vec{v}$) can be calculated.
 	- This has to be done for each Eigenvalue($\lambda$) separately
 
-### [Example:](#table-of-contents)
+### [Example:](#matrices)
 
 $$.8(h_1) + .1(z_1) = h_2$$
 
@@ -823,7 +819,7 @@ $$
 \begin{bmatrix}
 .8 & .1 \\
 .2 & .9 \\
-\end{bmatrix} - 
+\end{bmatrix} -
 \lambda
 \begin{bmatrix}
 1 & 0 \\
@@ -840,19 +836,19 @@ $$
 \begin{bmatrix}
 .8 & .1 \\
 .2 & .9 \\
-\end{bmatrix} - 
+\end{bmatrix} -
 \begin{bmatrix}
 \lambda & 0 \\
 0 & \lambda \\
 \end{bmatrix}
-\right) = 
+\right) =
 \text{determinant}
 \left(
 \begin{bmatrix}
 .8-\lambda & .1 \\
 .2 & .9-\lambda \\
-\end{bmatrix} 
-\right) = 
+\end{bmatrix}
+\right) =
 $$
 
 $$((.8-\lambda)(.9-\lambda)) - (.2 * .1) = \lambda^2 - 1.7\lambda + 0.7 = 0$$
@@ -865,7 +861,7 @@ $$
 \begin{bmatrix}
 .8-1 & .1 \\
 .2 & .9-1 \\
-\end{bmatrix} = 
+\end{bmatrix} =
 \begin{bmatrix}
 -.2 & .1 \\
 .2 & -.1 \\
@@ -888,7 +884,7 @@ $$
 \begin{bmatrix}
 h \\
 z \\
-\end{bmatrix} = 
+\end{bmatrix} =
 \begin{bmatrix}
 0 \\
 0 \\
@@ -900,7 +896,7 @@ $$-0.2h + .1z = 0$$
 $$h = 1 \text{\quad and \quad} z = 2$$
 
 $$
-\vec{v_1} = 
+\vec{v_1} =
 \begin{bmatrix}
 1 \\
 2 \\
@@ -913,7 +909,7 @@ $$
 \begin{bmatrix}
 .8-.7 & .1 \\
 .2 & .9-.7 \\
-\end{bmatrix} = 
+\end{bmatrix} =
 \begin{bmatrix}
 .1 & .1 \\
 .2 & .2 \\
@@ -936,7 +932,7 @@ $$
 \begin{bmatrix}
 h \\
 z \\
-\end{bmatrix} = 
+\end{bmatrix} =
 \begin{bmatrix}
 0 \\
 0 \\
@@ -948,14 +944,14 @@ $$.1h + .1z = 0$$
 $$h = 1 \text{\quad and \quad} z = -1$$
 
 $$
-\vec{v_2} = 
+\vec{v_2} =
 \begin{bmatrix}
 1 \\
 -1 \\
 \end{bmatrix}
 $$
 
-## [Dividing:](#table-of-contents)
-## [Dot product:](#table-of-contents)
-## [Cross product:](#table-of-contents)
-## [Kernels/Image Filters:](#table-of-contents)
+## [Dividing:](#matrices)
+## [Dot product:](#matrices)
+## [Cross product:](#matrices)
+## [Kernels/Image Filters:](#matrices)

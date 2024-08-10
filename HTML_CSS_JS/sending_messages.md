@@ -20,17 +20,14 @@
 
 # Messages
 
-## Table of Contents
 <!-- TOC -->
 
-- [Messages](#messages)
-	- [Table of Contents](#table-of-contents)
-	- [EmailJS](#emailjs)
-		- [EmailJS in React](#emailjs-in-react)
+- [EmailJS](#emailjs)
+	- [EmailJS in React](#emailjs-in-react)
 
 <!-- /TOC -->
 
-## [EmailJS](#table-of-contents)
+## [EmailJS](#messages)
 1. Sign Up or Login
 1. Email Services -> Add New Service
 1. Connect Account-> Login into your email.
@@ -44,7 +41,7 @@
 | Template Id | Email Templates -> Click your template -> Settings |
 | Public Key  | Account                                            |
 
-### [EmailJS in React](#table-of-contents)
+### [EmailJS in React](#messages)
 `npm install @emailjs/browser`
 
 ```javascript

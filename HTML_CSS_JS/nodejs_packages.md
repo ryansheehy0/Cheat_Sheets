@@ -22,44 +22,41 @@
 
 Useful npm packages
 
-## Table of Contents
 <!-- TOC -->
 
-- [NodeJS Packages](#nodejs-packages)
-	- [Table of Contents](#table-of-contents)
-	- [Packages](#packages)
-		- [inquirer](#inquirer)
-		- [express](#express)
-			- [Express HTTP Methods](#express-http-methods)
-			- [Parameters](#parameters)
-			- [Routers](#routers)
-			- [Middleware Functions](#middleware-functions)
-			- [View Engines](#view-engines)
-				- [Handlebars](#handlebars)
-			- [Definitions](#definitions)
-			- [Custom Helpers](#custom-helpers)
-			- [Front end and Back end](#front-end-and-back-end)
-		- [jest](#jest)
-		- [mysql2](#mysql2)
-			- [mysql2 with Promises](#mysql2-with-promises)
-			- [Prevent SQL Injections](#prevent-sql-injections)
-		- [dotenv](#dotenv)
-		- [bcrypt](#bcrypt)
-			- [Creating a Hash](#creating-a-hash)
-			- [Comparing a Password](#comparing-a-password)
-		- [tailwindcss](#tailwindcss)
-		- [express-session](#express-session)
-			- [Authentication](#authentication)
-			- [Server Side](#server-side)
-			- [Storing and Retrieving](#storing-and-retrieving)
-				- [Storing data](#storing-data)
-				- [Retrieving data](#retrieving-data)
-			- [Destroying session](#destroying-session)
-		- [cookie-parser](#cookie-parser)
+- [Packages](#packages)
+	- [inquirer](#inquirer)
+	- [express](#express)
+		- [Express HTTP Methods](#express-http-methods)
+		- [Parameters](#parameters)
+		- [Routers](#routers)
+		- [Middleware Functions](#middleware-functions)
+		- [View Engines](#view-engines)
+			- [Handlebars](#handlebars)
+		- [Definitions](#definitions)
+		- [Custom Helpers](#custom-helpers)
+		- [Front end and Back end](#front-end-and-back-end)
+	- [jest](#jest)
+	- [mysql2](#mysql2)
+		- [mysql2 with Promises](#mysql2-with-promises)
+		- [Prevent SQL Injections](#prevent-sql-injections)
+	- [dotenv](#dotenv)
+	- [bcrypt](#bcrypt)
+		- [Creating a Hash](#creating-a-hash)
+		- [Comparing a Password](#comparing-a-password)
+	- [tailwindcss](#tailwindcss)
+	- [express-session](#express-session)
+		- [Authentication](#authentication)
+		- [Server Side](#server-side)
+		- [Storing and Retrieving](#storing-and-retrieving)
+			- [Storing data](#storing-data)
+			- [Retrieving data](#retrieving-data)
+		- [Destroying session](#destroying-session)
+	- [cookie-parser](#cookie-parser)
 
 <!-- /TOC -->
 
-## [Packages](#table-of-contents)
+## [Packages](#nodejs-packages)
 
 | Package         | Description                                                            |
 |-----------------|------------------------------------------------------------------------|
@@ -72,7 +69,7 @@ Useful npm packages
 | tailwindcss     | Use tailwind inside nodeJS.                                            |
 | express-session | Handle session which are info about the user across multiple requests. |
 
-### [inquirer](#table-of-contents)
+### [inquirer](#nodejs-packages)
 Used to simply get user input from the terminal.
 
 Use  `npm install inquirer@8.2.4` to use require with inquirer.
@@ -117,7 +114,7 @@ function validationFunction(input){
 }
 ```
 
-### [express](#table-of-contents)
+### [express](#nodejs-packages)
 Simplifies HTTP-related tasks usually for making APIs. It's a framework for handling http requests.
 
 ```javascript
@@ -156,7 +153,7 @@ app.listen(port, () => {
 
 - Always start your listening after you have defined all of your routes so the server can start with routes already defined.
 
-#### [Express HTTP Methods](#table-of-contents)
+#### [Express HTTP Methods](#nodejs-packages)
 Making/Receiving an http method uses the format of `app.httpMethod("path", callbackFunction)`
 - The path is what is after the URL. By default the path is "/".
   - Ex: https://www.rscheatsheets.com/
@@ -202,7 +199,7 @@ Your http methods need to return something, even an empty response, to indicate 
 
 You can change the default header type by `res.header("Content-Type", "application/javascript")`
 
-#### [Parameters](#table-of-contents)
+#### [Parameters](#nodejs-packages)
 Parameters are data sent through the URL. This can include regular parameters like `/api/test/${id}` or query parameters like `/api/test?id=${id}`
 
 ```javascript
@@ -221,7 +218,7 @@ app.get("/api/test", (req, res) => {
 
 - Often times parameters are set to `.toLowerCase()` to make them case insensitive. .toLowerCase is used over .toUpperCase because it is slightly faster.
 
-#### [Routers](#table-of-contents)
+#### [Routers](#nodejs-packages)
 Routers are used to help you organize your routes and the code for those routes.
 
 In your main express file (usually server.js) you need to add:
@@ -257,7 +254,7 @@ tipsRouter.get("/", (req, res) => { // This path is /api/tips/
 module.exports = tipsRouter
 ```
 
-#### [Middleware Functions](#table-of-contents)
+#### [Middleware Functions](#nodejs-packages)
 
 ```javascript
 const middleware = (req, res, next) => {
@@ -277,7 +274,7 @@ const withAuth = (req, res, next) => {
 }
 ```
 
-#### [View Engines](#table-of-contents)
+#### [View Engines](#nodejs-packages)
 View engines allow you to change the html from the server before it is sent.
 
 View engines offer ___ inside of html
@@ -290,7 +287,7 @@ This allows you to keep your view and your controller separated.
 
 `/views/layouts/main.handlebars` is the default location for where handlebars will look for.
 
-##### [Handlebars](#table-of-contents)
+##### [Handlebars](#nodejs-packages)
 
 ```javascript
 const exphbs = require("express-handlebars")
@@ -373,7 +370,7 @@ View File Example:
 
 {% endraw %}
 
-#### [Definitions](#table-of-contents)
+#### [Definitions](#nodejs-packages)
 
 - **Layouts** are used to make a consistent structure for multiple pages
   - You can pass in templates into layouts by using `{{{ body }}}`
@@ -387,7 +384,7 @@ View File Example:
 Particles are placed into layouts in order to make a completed page.
 
 
-#### [Custom Helpers](#table-of-contents)
+#### [Custom Helpers](#nodejs-packages)
 
 In your handlebars file: `{{custom_helper arg1}}` to use the helper function
 
@@ -408,9 +405,9 @@ const helperJSFile = require("./utils/helpers")
 const hbs = exphbs.create({helperJSFile})
 ```
 
-#### [Front end and Back end](#table-of-contents)
+#### [Front end and Back end](#nodejs-packages)
 When using links in the font end with express you should use `/`s and then crete an express source to render that page.
-### [jest](#table-of-contents)
+### [jest](#nodejs-packages)
 Used for tests inside node.
 
 Tests are used to test your code usually before sending them towards production. Install jest as a dev package.
@@ -448,7 +445,7 @@ describe("test title" () => {
 - expect is used instead of if statements to make code cleaner and less lines.
 - Each test/it is run in a separate instance so if an error is thrown in one of them it will still run the other tests/its.
 
-### [mysql2](#table-of-contents)
+### [mysql2](#nodejs-packages)
 
 ```javascript
 const mysql = require("mysql2")
@@ -468,7 +465,7 @@ db.query(`SELECT * FROM table_name;`, (err, results) => {
 })
 ```
 
-#### [mysql2 with Promises](#table-of-contents)
+#### [mysql2 with Promises](#nodejs-packages)
 
 ```javascript
 const mysql = require("mysql2/promise")
@@ -493,7 +490,7 @@ async function asyncQuery(){
 }
 ```
 
-#### [Prevent SQL Injections](#table-of-contents)
+#### [Prevent SQL Injections](#nodejs-packages)
 You can use the `?` in you SQL query to prevent SQL injections.
 
 ```javascript
@@ -515,7 +512,7 @@ async function safe(){
 }
 ```
 
-### [dotenv](#table-of-contents)
+### [dotenv](#nodejs-packages)
 Used to work with environment variables so that you don't have your passwords or keys stored in plane text.
 
 Environment variables are variables that are local on your server or computer. Usually environment variables are all capitalized.
@@ -539,14 +536,14 @@ API_KEY=08fe01a78943266193fc7a23625f68fa
 DB_PASSWORD=password
 ```
 
-### [bcrypt](#table-of-contents)
+### [bcrypt](#nodejs-packages)
 Used to hash passwords. Bcrypt automatically creates the salt.
 
 ```javascript
 const bcrypt = require('bcrypt')
 ```
 
-#### [Creating a Hash](#table-of-contents)
+#### [Creating a Hash](#nodejs-packages)
 
 ```javascript
 const saltRounds = 14 // Number of times the hash is applied. This sets the time to make the hash
@@ -569,7 +566,7 @@ let hash = bcrypt.hashSync(`password`, saltRounds)
 
 ```
 
-#### [Comparing a Password](#table-of-contents)
+#### [Comparing a Password](#nodejs-packages)
 
 ```javascript
 const hash = `$2b$07$i7vcjUJXJbczMVmbiJiQBOHEtZHk/N93Sh1H862iC9iKxVqIveihG`
@@ -592,7 +589,7 @@ let isPassword = await bcrypt.compare(password, hash)
 let isPassword = bcrypt.compareSync(password, hash)
 ```
 
-### [tailwindcss](#table-of-contents)
+### [tailwindcss](#nodejs-packages)
 Tailwindcss goes through all your HTM, JS, and any other files to find which tailwind classes are being used and then creates one css file which is used.
 
 `npm install -D tailwindcss`
@@ -633,7 +630,7 @@ module.exports = {
   - If you need to make quick changes or development it is much faster to use the CDN
     - `<script src="https://cdn.tailwindcss.com"></script>`
 
-### [express-session](#table-of-contents)
+### [express-session](#nodejs-packages)
 Express middleware which manges sessions and cookies across multiple requests.
 
 
@@ -652,14 +649,14 @@ Express middleware which manges sessions and cookies across multiple requests.
 
 When a session is created a cookie with that session's id and hash is sent to the client.
 
-#### [Authentication](#table-of-contents)
+#### [Authentication](#nodejs-packages)
   Sessions and cookies are used for authentication.
 
   Client sends username and password -> Server checks username and password in database -> Server logs in client, creates a new session(user specific data) for them, and sends a cookie with the session id to the client.
 
   If the user logs out the session is destroyed on the server.
 
-#### [Server Side](#table-of-contents)
+#### [Server Side](#nodejs-packages)
 
 ```javascript
 const session = require("express-session")
@@ -682,10 +679,10 @@ app.use(session({
 }))
 ```
 
-#### [Storing and Retrieving](#table-of-contents)
+#### [Storing and Retrieving](#nodejs-packages)
 express-session stores the session data in the `req.session` object which can be used inside express endpoints.
 
-##### [Storing data](#table-of-contents)
+##### [Storing data](#nodejs-packages)
 
 ```javascript
 app.get('/login', (req, res) => {
@@ -695,7 +692,7 @@ app.get('/login', (req, res) => {
 });
 ```
 
-##### [Retrieving data](#table-of-contents)
+##### [Retrieving data](#nodejs-packages)
 
 ```javascript
 app.get('/dashboard', (req, res) => {
@@ -708,7 +705,7 @@ app.get('/dashboard', (req, res) => {
 });
 ```
 
-#### [Destroying session](#table-of-contents)
+#### [Destroying session](#nodejs-packages)
 
 ```javascript
 app.get('/logout', (req, res) => {
@@ -723,4 +720,4 @@ app.get('/logout', (req, res) => {
 });
 ```
 
-### [cookie-parser](#table-of-contents)
+### [cookie-parser](#nodejs-packages)

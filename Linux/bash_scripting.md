@@ -26,34 +26,30 @@ Add `#!/bin/bash` to the start of bash script files. Bash script files what the 
 
 `#`s are comments in bash
 
-## Table of Contents
-
 <!-- TOC -->
 
-- [Bash Scripting](#bash-scripting)
-	- [Table of Contents](#table-of-contents)
-	- [Running](#running)
-	- [Variables](#variables)
-	- [Special parameters](#special-parameters)
-	- [Math](#math)
-	- [If statements](#if-statements)
-		- [Conditionals](#conditionals)
-	- [Exit](#exit)
-	- [Reading user input](#reading-user-input)
-	- [While](#while)
-	- [For loop](#for-loop)
-	- [Case statements](#case-statements)
-	- [Running other scripts](#running-other-scripts)
+- [Running](#running)
+- [Variables](#variables)
+- [Special parameters](#special-parameters)
+- [Math](#math)
+- [If statements](#if-statements)
+	- [Conditionals](#conditionals)
+- [Exit](#exit)
+- [Reading user input](#reading-user-input)
+- [While](#while)
+- [For loop](#for-loop)
+- [Case statements](#case-statements)
+- [Running other scripts](#running-other-scripts)
 
 <!-- /TOC -->
 
-## [Running](#table-of-contents)
+## [Running](#bash-scripting)
 - To run a bash script first make it an executable. `sudo chmod +x script.sh`
 - Then either run `./script.sh` or `. ./script.sh`
   - `./script.sh` just runs the script
   - `. ./script.sh` is the same as `source ./script.sh`. This allows the variables to be used after the script is ran.
 
-## [Variables](#table-of-contents)
+## [Variables](#bash-scripting)
 Variables in bash are case sensitive.
 
 It is convention to use camel case in bash for variable names.
@@ -81,7 +77,7 @@ currentDir=$(pwd)
 - You can use 1 or 0 for boolean variables
 - When working with file path variables make sure to put them inside `"$var"`s so that spaces don't effect the execution of commands.
 
-## [Special parameters](#table-of-contents)
+## [Special parameters](#bash-scripting)
 Special parameters are parameters set by the shell itself.
 
 | Parameter   | Description                                                                     |
@@ -91,7 +87,7 @@ Special parameters are parameters set by the shell itself.
 | $$          | Process id of the current script                                                |
 | $?          | The exit status of the last executed command                                    |
 
-## [Math](#table-of-contents)
+## [Math](#bash-scripting)
 
 ```bash
 x=4
@@ -124,7 +120,7 @@ b=$((a = 15))
 echo $b #15
 ```
 
-## [If statements](#table-of-contents)
+## [If statements](#bash-scripting)
 
 ```bash
 # Has to be a space between the condition and the brackets
@@ -137,7 +133,7 @@ else
 fi
 ```
 
-### [Conditionals](#table-of-contents)
+### [Conditionals](#bash-scripting)
 
 | Conditional   | Description                  |
 |---------------|------------------------------|
@@ -155,12 +151,12 @@ fi
 | -f "fileName" | true if the file exists      |
 | -d "dirName"  | true if the directory exists |
 
-## [Exit](#table-of-contents)
+## [Exit](#bash-scripting)
 Use `exit #` to exit the script.
 
 A non-zero status indicates an error, and 0 indicates a success.
 
-## [Reading user input](#table-of-contents)
+## [Reading user input](#bash-scripting)
 
 ```bash
 # This takes multiple inputs
@@ -174,7 +170,7 @@ read -p "Please enter variable A: " varA
 read -ep "Please enter a file path: " varB
 ```
 
-## [While](#table-of-contents)
+## [While](#bash-scripting)
 
 ```bash
 num=10
@@ -186,7 +182,7 @@ while [[ condition ]]; do
 done
 ```
 
-## [For loop](#table-of-contents)
+## [For loop](#bash-scripting)
 
 ```bash
 for i in {1...5}; do
@@ -196,7 +192,7 @@ for i in {1...5}; do
 done
 ```
 
-## [Case statements](#table-of-contents)
+## [Case statements](#bash-scripting)
 
 ```bash
 case $var in
@@ -211,7 +207,7 @@ case $var in
 esac
 ```
 
-## [Running other scripts](#table-of-contents)
+## [Running other scripts](#bash-scripting)
 This allows you to run another script from your script that's in the same directory.
 
 ```bash

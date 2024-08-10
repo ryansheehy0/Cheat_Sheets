@@ -21,89 +21,86 @@
 # JavaScript
 JavaScript is the only language that can be run in the browser.
 
-## Table of Contents
 <!-- TOC -->
 
-- [JavaScript](#javascript)
-	- [Table of Contents](#table-of-contents)
-	- [Comments](#comments)
-	- [Primitive Data Types](#primitive-data-types)
-	- [Sets](#sets)
-	- [Variables](#variables)
-	- [Strings](#strings)
-		- [String Functions](#string-functions)
-		- [Concatenation with numbers](#concatenation-with-numbers)
-	- [Arrays](#arrays)
-		- [Array Functions](#array-functions)
-		- [For of](#for-of)
-	- [Equality Operators](#equality-operators)
-	- [Switch Block](#switch-block)
-	- [Functions](#functions)
-		- [This Keyword](#this-keyword)
-		- [Tagged Templates](#tagged-templates)
-	- [Logical Or for Fallbacks](#logical-or-for-fallbacks)
-	- [&& and ?? for Assignment](#-and--for-assignment)
-		- [Logical and for Assignment](#logical-and-for-assignment)
-		- [Nullish coalescing operator ??](#nullish-coalescing-operator-)
-	- [Useful Functions](#useful-functions)
-	- [Printing with color](#printing-with-color)
-	- [Sending requests](#sending-requests)
-		- [XMLHttpRequest](#xmlhttprequest)
-		- [Fetch](#fetch)
-			- [Optional Fetch Argument](#optional-fetch-argument)
-		- [Axios](#axios)
-	- [Objects](#objects)
-		- [Updating values in Object](#updating-values-in-object)
-		- [For In](#for-in)
-		- [JavaScript Object NotationJSON](#javascript-object-notationjson)
-		- [Spread Operator](#spread-operator)
-		- [Object to Array](#object-to-array)
-		- [Optional Chaining](#optional-chaining)
-	- [Template Literals](#template-literals)
-	- [Import and Export](#import-and-export)
-	- [Errors](#errors)
-		- [Error Handling/Try Catch](#error-handlingtry-catch)
-		- [Throwing Errors](#throwing-errors)
-	- [Promises](#promises)
-		- [Promise.all, Promise.race, Promise.allSettled, Promise.any](#promiseall-promiserace-promiseallsettled-promiseany)
-	- [Async/Await](#asyncawait)
-	- [DOM Manipulation](#dom-manipulation)
-		- [Accessing Elements](#accessing-elements)
-		- [Modifying Elements](#modifying-elements)
-		- [Creating and Appending Elements](#creating-and-appending-elements)
-			- [Insert Adjacent Element](#insert-adjacent-element)
-		- [Event Handling](#event-handling)
-			- [Commonly Used Events](#commonly-used-events)
-			- [Default Events](#default-events)
-			- [Custom Events](#custom-events)
-				- [Sending Custom Event](#sending-custom-event)
-				- [Receiving Custom Event](#receiving-custom-event)
-		- [Traversing the DOM](#traversing-the-dom)
-	- [This](#this)
-	- [Timing](#timing)
-	- [+/-/++/-- Operators](#----operators)
-	- [Local/Session Storage](#localsession-storage)
-	- [Common APIs](#common-apis)
-		- [Dayjs](#dayjs)
-	- [URL of Webpage](#url-of-webpage)
-		- [Redirect URL](#redirect-url)
-		- [Reload page](#reload-page)
-	- [Regex](#regex)
-	- [Object Oriented](#object-oriented)
-		- [Class Constructors](#class-constructors)
-		- [Prototype](#prototype)
-	- [Debugging](#debugging)
-	- [Labels](#labels)
-	- [Symbols](#symbols)
-	- [Symbol.iterator](#symboliterator)
-		- [Adding Symbol.iterator to object](#adding-symboliterator-to-object)
-	- [Generator functions](#generator-functions)
-	- [Async iterators](#async-iterators)
-	- [UUIDs](#uuids)
+- [Comments](#comments)
+- [Primitive Data Types](#primitive-data-types)
+- [Sets](#sets)
+- [Variables](#variables)
+- [Strings](#strings)
+	- [String Functions](#string-functions)
+	- [Concatenation with numbers](#concatenation-with-numbers)
+- [Arrays](#arrays)
+	- [Array Functions](#array-functions)
+	- [For of](#for-of)
+- [Equality Operators](#equality-operators)
+- [Switch Block](#switch-block)
+- [Functions](#functions)
+	- [This Keyword](#this-keyword)
+	- [Tagged Templates](#tagged-templates)
+- [Logical Or for Fallbacks](#logical-or-for-fallbacks)
+- [&& and ?? for Assignment](#-and--for-assignment)
+	- [Logical and for Assignment](#logical-and-for-assignment)
+	- [Nullish coalescing operator ??](#nullish-coalescing-operator-)
+- [Useful Functions](#useful-functions)
+- [Printing with color](#printing-with-color)
+- [Sending requests](#sending-requests)
+	- [XMLHttpRequest](#xmlhttprequest)
+	- [Fetch](#fetch)
+		- [Optional Fetch Argument](#optional-fetch-argument)
+	- [Axios](#axios)
+- [Objects](#objects)
+	- [Updating values in Object](#updating-values-in-object)
+	- [For In](#for-in)
+	- [JavaScript Object NotationJSON](#javascript-object-notationjson)
+	- [Spread Operator](#spread-operator)
+	- [Object to Array](#object-to-array)
+	- [Optional Chaining](#optional-chaining)
+- [Template Literals](#template-literals)
+- [Import and Export](#import-and-export)
+- [Errors](#errors)
+	- [Error Handling/Try Catch](#error-handlingtry-catch)
+	- [Throwing Errors](#throwing-errors)
+- [Promises](#promises)
+	- [Promise.all, Promise.race, Promise.allSettled, Promise.any](#promiseall-promiserace-promiseallsettled-promiseany)
+- [Async/Await](#asyncawait)
+- [DOM Manipulation](#dom-manipulation)
+	- [Accessing Elements](#accessing-elements)
+	- [Modifying Elements](#modifying-elements)
+	- [Creating and Appending Elements](#creating-and-appending-elements)
+		- [Insert Adjacent Element](#insert-adjacent-element)
+	- [Event Handling](#event-handling)
+		- [Commonly Used Events](#commonly-used-events)
+		- [Default Events](#default-events)
+		- [Custom Events](#custom-events)
+			- [Sending Custom Event](#sending-custom-event)
+			- [Receiving Custom Event](#receiving-custom-event)
+	- [Traversing the DOM](#traversing-the-dom)
+- [This](#this)
+- [Timing](#timing)
+- [+/-/++/-- Operators](#----operators)
+- [Local/Session Storage](#localsession-storage)
+- [Common APIs](#common-apis)
+	- [Dayjs](#dayjs)
+- [URL of Webpage](#url-of-webpage)
+	- [Redirect URL](#redirect-url)
+	- [Reload page](#reload-page)
+- [Regex](#regex)
+- [Object Oriented](#object-oriented)
+	- [Class Constructors](#class-constructors)
+	- [Prototype](#prototype)
+- [Debugging](#debugging)
+- [Labels](#labels)
+- [Symbols](#symbols)
+- [Symbol.iterator](#symboliterator)
+	- [Adding Symbol.iterator to object](#adding-symboliterator-to-object)
+- [Generator functions](#generator-functions)
+- [Async iterators](#async-iterators)
+- [UUIDs](#uuids)
 
 <!-- /TOC -->
 
-## [Comments](#table-of-contents)
+## [Comments](#javascript)
 
 ```javascript
 // Inline comment
@@ -113,7 +110,7 @@ JavaScript is the only language that can be run in the browser.
 */
 ```
 
-## [Primitive Data Types](#table-of-contents)
+## [Primitive Data Types](#javascript)
 - Dynamically typed. A variable can be assigned to multiple types.
 - By default all objects and array are pass by reference. In order to do a pass by value you have to use the spread operator.`[...array]`. However, getting one element is pass by value. `array[0]` is pass by value.
 - `typeof operand` can be used to get a string of the type
@@ -139,7 +136,7 @@ JavaScript is the only language that can be run in the browser.
         - Support integers of arbitrary size
         - `123n` or `BigInt(123)`
 
-## [Sets](#table-of-contents)
+## [Sets](#javascript)
 - Only can store unique values. If you attempt to add a duplicate it will be ignored.
 - There is no specific ordering.
 - `new Set()`
@@ -151,7 +148,7 @@ const array = [1, 2, 3, 4, 1, 2]
 const removedDuplicates = [...new Set(array)]
 ```
 
-## [Variables](#table-of-contents)
+## [Variables](#javascript)
 `var` - Can be used through your whole function or program if declared outside a function.
 
 `let` - Only used within the scope of where you declared it
@@ -194,7 +191,7 @@ console.log(a) // undefined
 a = 1
 ```
 
-## [Strings](#table-of-contents)
+## [Strings](#javascript)
 Strings can start with "s, 's, or `s
 
 Escape sequences: \\", \\', \\`, \\ \\
@@ -209,7 +206,7 @@ Escape sequences: \\", \\', \\`, \\ \\
 
 Strings are immutable. Once a string is created its value cannot be changed. If the value is changed what is happening is that a new string is being made and assigned.
 
-### [String Functions](#table-of-contents)
+### [String Functions](#javascript)
 - `.length`
     - Size of the string
 - `.slice(start, end)` or `.slice(start)`
@@ -235,7 +232,7 @@ Strings are immutable. Once a string is created its value cannot be changed. If 
 - `.includes("substring")`
     - Is the substring included in the string?
 
-### [Concatenation with numbers](#table-of-contents)
+### [Concatenation with numbers](#javascript)
 When you use the `+` keyword with a string and a number, the number is converted to a string and they are concatenated.
 
 ```javascript
@@ -243,10 +240,10 @@ When you use the `+` keyword with a string and a number, the number is converted
 '10' + 10 // '1010
 ```
 
-## [Arrays](#table-of-contents)
+## [Arrays](#javascript)
 Arrays allow you to store several pieces of data in the same place. Elements can be any data type and arrays are mutable.
 
-### [Array Functions](#table-of-contents)
+### [Array Functions](#javascript)
 - `.length`
 - `.join(string_separator)`
     - Converts an array to a string with the string separators between each element.
@@ -363,7 +360,7 @@ const hasEven = numbers.some((number) => {
     - This is the same as using the `[]` syntax, but also allows for negative numbers.
     - Instead of `array[array.length - 1]` you can instead use `array.at(-1)`
 
-### [For of](#table-of-contents)
+### [For of](#javascript)
 Used to loop through each element in an array.
 
 This is better than using `.forEach` because this still allows you to break and return from the loop.
@@ -386,7 +383,7 @@ for(const [i, value] of myArray.entries()){
 }
 ```
 
-## [Equality Operators](#table-of-contents)
+## [Equality Operators](#javascript)
 - `===` `!==` strict operator
     - Doesn't do the type conversion
 - `==` `!=`
@@ -400,7 +397,7 @@ for(const [i, value] of myArray.entries()){
 3 == '3' // true
 ```
 
-## [Switch Block](#table-of-contents)
+## [Switch Block](#javascript)
 
 ```javascript
 let x = 10
@@ -423,7 +420,7 @@ switch(x) {
 
 You can create a new scope in a case block using '{}'s which will prevent variable naming conflicts.
 
-## [Functions](#table-of-contents)
+## [Functions](#javascript)
 - If you don't return anything then the return value is undefined
     - Can be declared below their use. This is called hoisting and is unique to JS.
 ```javascript
@@ -462,7 +459,7 @@ You can directly return results with the arrow function. You don't need the `{}`
 const test = () => 5 // function returns 5
 ```
 
-### [This Keyword](#table-of-contents)
+### [This Keyword](#javascript)
 
 ```javascript
 function regularFunction(){
@@ -505,7 +502,7 @@ The function keyword inherits `this` when it is called.
 })()
 ```
 
-### [Tagged Templates](#table-of-contents)
+### [Tagged Templates](#javascript)
 You can pass template literals into functions without the need of ()s
 
 ```javascript
@@ -518,7 +515,7 @@ const name = "World"
 myFunction`Hello, ${name}!`
 ```
 
-## [Logical Or for Fallbacks](#table-of-contents)
+## [Logical Or for Fallbacks](#javascript)
 You can have fallback values incase your first value is falsy(null, undefined, 0, empty string, etc).
 
 ```javascript
@@ -532,9 +529,9 @@ If B is falsy then use C
 */
 ```
 
-## [&& and ?? for Assignment](#table-of-contents)
+## [&& and ?? for Assignment](#javascript)
 
-### [Logical and for Assignment](#table-of-contents)
+### [Logical and for Assignment](#javascript)
 The Logical And can be used to conditionally assign a variable based upon the condition.
 
 If the condition is true it assigns the variable to the valueIfTrue.
@@ -557,7 +554,7 @@ const variable = condition && valueIfTrue
 consol.log(accessLevel) // undefined
 ```
 
-### [Nullish coalescing operator ??](#table-of-contents)
+### [Nullish coalescing operator ??](#javascript)
 If the nullish coalescing operator is the opposite of &&.
 
 If the condition is null or undefined it assigns the variable to the valueIfFalse.
@@ -576,7 +573,7 @@ const variable = condition ?? valueIfNullOrUndefined
 consol.log(accessLevel) // "value"
 ```
 
-## [Useful Functions](#table-of-contents)
+## [Useful Functions](#javascript)
 
 |                                          |                                                                                   |
 |------------------------------------------|-----------------------------------------------------------------------------------|
@@ -596,7 +593,7 @@ consol.log(accessLevel) // "value"
 | .toString()                              | Convert a data type to a string.                                                  |
 | Math.pow(A, B) or A ** B                 | A to the power of B. A^B                                                          |
 
-## [Printing with color](#table-of-contents)
+## [Printing with color](#javascript)
 
 - Adds these strings to the console log.
     - Ex: `console.log("\x1b[31mRED")` prints RED in red
@@ -629,9 +626,9 @@ consol.log(accessLevel) // "value"
 | BgWhite    | `\x1b[47m`  |
 | BgGray     | `\x1b[100m` |
 
-## [Sending requests](#table-of-contents)
+## [Sending requests](#javascript)
 
-### [XMLHttpRequest](#table-of-contents)
+### [XMLHttpRequest](#javascript)
 ```javascript
 const req = XMLHttpRequest()
 req.open("GET"/*HTTP Method*/, "http://test.com"/*URL */) // Prepares an http request to be sent
@@ -643,7 +640,7 @@ req.onload = () => {
 req.send()
 ```
 
-### [Fetch](#table-of-contents)
+### [Fetch](#javascript)
 Used to fetch data from a server. Returns a promise of the response.
 
 ```javascript
@@ -676,7 +673,7 @@ fetch("URL", {
     })
 ```
 
-#### [Optional Fetch Argument](#table-of-contents)
+#### [Optional Fetch Argument](#javascript)
 
 | method: | Description                     |
 |---------|---------------------------------|
@@ -725,10 +722,10 @@ fetch('api/request', {
 })
 ```
 
-### [Axios](#table-of-contents)
+### [Axios](#javascript)
 Axios is a library which builds off of XMLHttpRequest to make it more convenient to use.
 
-## [Objects](#table-of-contents)
+## [Objects](#javascript)
 Objects are used to store an unordered list of properties to describe one thing.
 
 Literal object notation is an object created with key-value pairs.
@@ -804,7 +801,7 @@ console.log(var1) // ele1
 console.log(var2) // ele2
 ```
 
-### [Updating values in Object](#table-of-contents)
+### [Updating values in Object](#javascript)
 
 ```javascript
 let obj = {
@@ -832,7 +829,7 @@ Output:
 */
 ```
 
-### [For In](#table-of-contents)
+### [For In](#javascript)
 - You need to do [] when referencing properties in a for in loop in case the property has a space in it.
 
 ```javascript
@@ -846,7 +843,7 @@ for (const property in object) {
 // "c: 3"
 ```
 
-### [JavaScript Object Notation(JSON)](#table-of-contents)
+### [JavaScript Object Notation(JSON)](#javascript)
 - The last key-value pair cannot end with ,s
 - Convert JSON to an object
     - `JSON.parse(json)`
@@ -870,7 +867,7 @@ console.log(obj) // "first name": "Ryan", "last name": "Mr. Sheehy"
         - the 2nd argument is like running a map function before making the json
         - the 3rd argument specifies the space for indentation. In this case it is 2 spaces.
 
-### [Spread Operator](#table-of-contents)
+### [Spread Operator](#javascript)
 - Used to spread out an array or an object
 
 ```javascript
@@ -897,10 +894,10 @@ const obj3 = {...obj1, ...obj2}
 
 It can be used to create an array from something that isn't an array. `[...nonArray]`
 
-### [Object to Array](#table-of-contents)
+### [Object to Array](#javascript)
 `Object.values(obj)` converts the obj to an array with their values in the array.
 
-### [Optional Chaining](#table-of-contents)
+### [Optional Chaining](#javascript)
 Optionals chaining allows you to only access a field if the previous field is there. Otherwise it will return undefined.
 
 ```javascript
@@ -919,7 +916,7 @@ let horsepower = car?.engine?.horsepower
 // If any of these are false then return undefined
 ```
 
-## [Template Literals](#table-of-contents)
+## [Template Literals](#javascript)
 Used to make complete string with embedded JS.
 - Starts with \`s
 - It allows you to have multi-line strings with a newline inserted.
@@ -933,7 +930,7 @@ console.log(`Hello, my name is ${person.name}!
 I am ${person.age} years old.`)
 ```
 
-## [Import and Export](#table-of-contents)
+## [Import and Export](#javascript)
 Use `export` to export the var/function
     - Ex: `export const name = "Ryan Sheehy"`
     - There can be a default export for a file. There can only be 1 default export.
@@ -963,9 +960,9 @@ window.test = test
 window.test()
 ```
 
-## [Errors](#table-of-contents)
+## [Errors](#javascript)
 
-### [Error Handling/Try Catch](#table-of-contents)
+### [Error Handling/Try Catch](#javascript)
 Error handling is used to keep the code running even when there is an error.
 
 ```javascript
@@ -984,12 +981,12 @@ try{
 }
 ```
 
-### [Throwing Errors](#table-of-contents)
+### [Throwing Errors](#javascript)
 Errors stop the execution of the code. You can throw a custom error by doing
 
 `throw new Error("Name of error")`
 
-## [Promises](#table-of-contents)
+## [Promises](#javascript)
 Used to handle asynchronous(code can be run in parallel) operations. Can only return either a resolve or a reject.
 
 Returning a new promise is most commonly used to convert a async callback function to an async/await.
@@ -1019,7 +1016,7 @@ promise().then((message) => {
 })
 ```
 
-### [Promise.all, Promise.race, Promise.allSettled, Promise.any](#table-of-contents)
+### [Promise.all, Promise.race, Promise.allSettled, Promise.any](#javascript)
 `Promise.all` type of functions allow you to run async function in parallel instead of 1 at a time. This makes things faster.
 
 Short circuiting is .
@@ -1051,7 +1048,7 @@ Short circuit just means it returns the result.
 | Promise.race       | When the first input value is settled(resolved or rejected) it returns the result.                      |
 | Promise.any        | When the first input value is resolved it returns the result.                                           |
 
-## [Async/Await](#table-of-contents)
+## [Async/Await](#javascript)
 Used to make promises easier to work with. Only works with asynchronous functions. Await waits for the Promise to resolve.
 
 All async function return a promise. It is recommended that if you manually return a new promise then you put it in an async function.
@@ -1098,12 +1095,12 @@ async func_name = () => {
 
 If a sub function returns a promise and you want to await it you have to make all functions async.
 
-## [DOM Manipulation](#table-of-contents)
+## [DOM Manipulation](#javascript)
 The DOM is the Document Object Model.
 
 The `window` is an object that have internal functions and data that can be accessed. `document` is an object part of the window and is the DOM. `document` allows JavaScript to access different elements of the HTML page.
 
-### [Accessing Elements](#table-of-contents)
+### [Accessing Elements](#javascript)
 
 |                                          |                                                            |
 |------------------------------------------|------------------------------------------------------------|
@@ -1122,7 +1119,7 @@ const div = document.querySelector("div")
 const divDirectChild = div.querySelectorAll(":scope > *") // Gets any direct children of the div
 ```
 
-### [Modifying Elements](#table-of-contents)
+### [Modifying Elements](#javascript)
 
 |                                            |                                                                           |
 |--------------------------------------------|---------------------------------------------------------------------------|
@@ -1137,7 +1134,7 @@ const divDirectChild = div.querySelectorAll(":scope > *") // Gets any direct chi
 | element.classList.toggle('class')          | Toggles the presence of a CSS class on the element                        |
 | element.dataset.name = "name"              | Searches the html attributes for data-name and sets its contents to name. |
 
-### [Creating and Appending Elements](#table-of-contents)
+### [Creating and Appending Elements](#javascript)
 
 |                                                      |                                                                     |
 |------------------------------------------------------|---------------------------------------------------------------------|
@@ -1148,7 +1145,7 @@ const divDirectChild = div.querySelectorAll(":scope > *") // Gets any direct chi
 | parentElement.removeChild(childElement)              | Removes a specified child element from its parent                   |
 | element.remove()                                     | Removes that element form the dom.                                  |
 
-#### [Insert Adjacent Element](#table-of-contents)
+#### [Insert Adjacent Element](#javascript)
 `element.insertAdjacentElement("position", newElement)` or `element.insertAdjacentHTML("position", "html")`
 
 | Position Name | Description    |
@@ -1158,7 +1155,7 @@ const divDirectChild = div.querySelectorAll(":scope > *") // Gets any direct chi
 | beforebegin   | Before element |
 | beforeend     | Last child     |
 
-### [Event Handling](#table-of-contents)
+### [Event Handling](#javascript)
 
 |                                                     |                                                                                          |
 |-----------------------------------------------------|------------------------------------------------------------------------------------------|
@@ -1180,7 +1177,7 @@ const divDirectChild = div.querySelectorAll(":scope > *") // Gets any direct chi
   })
 ```
 
-#### [Commonly Used Events](#table-of-contents)
+#### [Commonly Used Events](#javascript)
 
 | Event         | Description                                                                                   |
 |---------------|-----------------------------------------------------------------------------------------------|
@@ -1199,7 +1196,7 @@ const divDirectChild = div.querySelectorAll(":scope > *") // Gets any direct chi
 | transitionend | Triggered when a CSS transition ends.                                                         |
 | error         | Triggered when an error occurs during loading of an external file.                            |
 
-#### [Default Events](#table-of-contents)
+#### [Default Events](#javascript)
 
 - click <a>
     - Automatically changes the URL and goes to that URL.
@@ -1208,9 +1205,9 @@ const divDirectChild = div.querySelectorAll(":scope > *") // Gets any direct chi
     - Clears form inputs
     - Changes URL
 
-#### [Custom Events](#table-of-contents)
+#### [Custom Events](#javascript)
 
-##### [Sending Custom Event](#table-of-contents)
+##### [Sending Custom Event](#javascript)
 
 ```javascript
 const customEvent = new CustomEvent("customEvent", {
@@ -1222,7 +1219,7 @@ const customEvent = new CustomEvent("customEvent", {
 document.dispatchEvent(customEvent)
 ```
 
-##### [Receiving Custom Event](#table-of-contents)
+##### [Receiving Custom Event](#javascript)
 
 ```javascript
 document.addEventListener("customEvent", (event) => {
@@ -1230,7 +1227,7 @@ document.addEventListener("customEvent", (event) => {
 })
 ```
 
-### [Traversing the DOM](#table-of-contents)
+### [Traversing the DOM](#javascript)
 
 |                         |                                                            |
 |-------------------------|------------------------------------------------------------|
@@ -1242,7 +1239,7 @@ document.addEventListener("customEvent", (event) => {
 | element.previousSibling | Returns the previous sibling element of the current element|
 | element.children[index] | Gets the child of the element at the index.                |
 
-## [This](#table-of-contents)
+## [This](#javascript)
 The `this` keyword is used to refer to the current object.
 
 - By default the `this` keyword is in the window object.
@@ -1257,7 +1254,7 @@ let planet = {
 }
 ```
 
-## [Timing](#table-of-contents)
+## [Timing](#javascript)
 
 |                                          |                                                                                               |
 |------------------------------------------|-----------------------------------------------------------------------------------------------|
@@ -1268,7 +1265,7 @@ let planet = {
 
 1000 Milliseconds = 1 Second
 
-## [+/-/++/-- Operators](#table-of-contents)
+## [+/-/++/-- Operators](#javascript)
 
 ```javascript
 let variable = 5
@@ -1286,7 +1283,7 @@ console.log(-"3" - -"5") // 2
 console.log(-"-3" + -"5") // -2
 ```
 
-## [Local/Session Storage](#table-of-contents)
+## [Local/Session Storage](#javascript)
 Local storage is information stored locally on the browser.
 
 Session storage is information stored locally to that tab.
@@ -1308,7 +1305,7 @@ localStorage.clear()
 ```
 - Never store passwords, even hashed passwords, in the local storage or session storage.
 
-## [Common APIs](#table-of-contents)
+## [Common APIs](#javascript)
 
 |           |                                                                                                    |
 |-----------|----------------------------------------------------------------------------------------------------|
@@ -1318,7 +1315,7 @@ localStorage.clear()
 | jQuery UI | Makes manipulating things easier. Can work with bootstrap. |
 | [Axios](https://axios-http.com/docs/intro)     | ajax in jQuery, but without the jQuery. |
 
-### [Dayjs](#table-of-contents)
+### [Dayjs](#javascript)
 
 Provides more powerful formatting than the inbuilt Date() in JS
 
@@ -1330,12 +1327,12 @@ today.format('[This is the day: ] ddd')
 
 Unix time is the number of seconds from Jan 1st, 1970(epoch time).
 
-## [URL of Webpage](#table-of-contents)
+## [URL of Webpage](#javascript)
 Use `document.location` to get properties of the current webpage's URL.
 
 You can get everything after the ? in the URL(query string) by doing `document.location.search`
 
-### [Redirect URL](#table-of-contents)
+### [Redirect URL](#javascript)
 `document.location.href = newURL`
 
 ```javascript
@@ -1344,10 +1341,10 @@ document.location.href = "/new-page"
 document.location.href = "https://www.newwebsite.com"
 ```
 
-### [Reload page](#table-of-contents)
+### [Reload page](#javascript)
 `location.reload()`
 
-## [Regex](#table-of-contents)
+## [Regex](#javascript)
 Used to match patterns.
 
 ```javascript
@@ -1375,9 +1372,9 @@ function validate(input){
 }
 ```
 
-## [Object Oriented](#table-of-contents)
+## [Object Oriented](#javascript)
 
-### [Class Constructors](#table-of-contents)
+### [Class Constructors](#javascript)
 You can create objects with object literals or using the `new` keyword on classes/constructor functions
 
 - Constructors tend to start with capital letters as JS convention.
@@ -1432,7 +1429,7 @@ class Car extends Vehicle {
 }
 ```
 
-### [Prototype](#table-of-contents)
+### [Prototype](#javascript)
 Adds a variable or function to a class or constructor function.
 
 `Car.prototype.moreInfo = () => {console.log("moreInfo")}`
@@ -1440,10 +1437,10 @@ Adds a variable or function to a class or constructor function.
 
 This can be used to have inheritance with constructor functions.
 
-## [Debugging](#table-of-contents)
+## [Debugging](#javascript)
 Just put `debugger` in your js code and in your inspect element it should allow you to debug
 
-## [Labels](#table-of-contents)
+## [Labels](#javascript)
 Labels are useful when you have nested for loops and you want to break out of both for loops.
 
 You can use `break label` or `continue label`
@@ -1459,14 +1456,14 @@ outerLoop: for (let i = 0; i < 5; i++) {
 }
 ```
 
-## [Symbols](#table-of-contents)
+## [Symbols](#javascript)
 All symbols are unique, guaranteed by javascript runtime.
 
 To create a symbol do `Symbol()` or `Symbol("description")`
 
 In order to create a symbol across the global symbol registry do `Symbol.for("globalKey")`.  In order to access this symbol in other places in your code you can use `Symbol.keyFor("globalKey")`
 
-## [Symbol.iterator](#table-of-contents)
+## [Symbol.iterator](#javascript)
 The iterator protocol requires the field of `Symbol.iterator` to return an object with a `next()` function which returns an object with `value` and `done` properties.
 - `value` is the value returned
 - `done` is true when there are no more values. When done is true it doesn't return a value, but instead is just `{ done: true }`
@@ -1482,7 +1479,7 @@ console.log(iterator.next()) // { value: 3, done: false }
 console.log(iterator.next()) // { done: true }
 ```
 
-### [Adding Symbol.iterator to object](#table-of-contents)
+### [Adding Symbol.iterator to object](#javascript)
 In order to use a for of loop with any object, that object needs a `Symbol.iterator` function as a property.
 
 This `Symbol.iterator` function returns an object with a callback `next` function property.
@@ -1509,7 +1506,7 @@ for(const value of iterableObj){
 }
 ```
 
-## [Generator functions](#table-of-contents)
+## [Generator functions](#javascript)
 Generator functions allow you to create iterators.
 
 To create a generator function use `function* generatorFunc(){}`.
@@ -1530,7 +1527,7 @@ console.log(iterator.next()) // { value: 4, done: false }
 console.log(iterator.next()) // { done: true }
 ```
 
-## [Async iterators](#table-of-contents)
+## [Async iterators](#javascript)
 Async iterators allow you to execute a list of async tasks sequentially. Await for first promise, await for 2nd promise, etc.
 
 The async iterator protocol requires the field of `Symbol.asyncIterator` to return an object with a `next()` function which returns a promise whcih resolves with an object with the properties of `value` and `done`.
@@ -1571,7 +1568,7 @@ const asyncIterableObj = {
 }
 ```
 
-## [UUIDs](#table-of-contents)
+## [UUIDs](#javascript)
 You can generate a new uuid with `crypto.randomUUID()`.
 - This only works on the client
 - You have to import crypto if you want to use it in node

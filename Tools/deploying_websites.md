@@ -20,31 +20,28 @@
 
 # Deploying Websites
 
-## Table of Contents
 <!-- TOC -->
 
-- [Deploying Websites](#deploying-websites)
-	- [Table of Contents](#table-of-contents)
-	- [Github Pages](#github-pages)
-		- [Github Pages Adding Domain Name](#github-pages-adding-domain-name)
-	- [Heroku](#heroku)
-		- [Website](#website)
-		- [Terminal](#terminal)
-		- [Using keys](#using-keys)
-		- [MySQL](#mysql)
-		- [Heroku Adding Domain Name](#heroku-adding-domain-name)
-	- [Netlify](#netlify)
-		- [Netlify Adding Domain Name](#netlify-adding-domain-name)
-	- [Vercel](#vercel)
-		- [Vercel adding domains](#vercel-adding-domains)
-	- [MongoDB Atlas](#mongodb-atlas)
-		- [Making a new project](#making-a-new-project)
-		- [Deleting a new project](#deleting-a-new-project)
-	- [Domain Names](#domain-names)
+- [Github Pages](#github-pages)
+	- [Github Pages Adding Domain Name](#github-pages-adding-domain-name)
+- [Heroku](#heroku)
+	- [Website](#website)
+	- [Terminal](#terminal)
+	- [Using keys](#using-keys)
+	- [MySQL](#mysql)
+	- [Heroku Adding Domain Name](#heroku-adding-domain-name)
+- [Netlify](#netlify)
+	- [Netlify Adding Domain Name](#netlify-adding-domain-name)
+- [Vercel](#vercel)
+	- [Vercel adding domains](#vercel-adding-domains)
+- [MongoDB Atlas](#mongodb-atlas)
+	- [Making a new project](#making-a-new-project)
+	- [Deleting a new project](#deleting-a-new-project)
+- [Domain Names](#domain-names)
 
 <!-- /TOC -->
 
-## [Github Pages](#table-of-contents)
+## [Github Pages](#deploying-websites)
 1. Push your code to git. Have your deployable code in the "docs" folder
   - Make sure it is all correct because it maybe hard to change the website once it is deployed
 1. Go to "Settings" tab and click "Pages" on the left side
@@ -54,7 +51,7 @@
   - Any new pushes to that branch should be automatically deployed
   - If any new changes are taking a very long time to deploy then you need to create a new repo with your code and deploy from that.
 
-### [Github Pages Adding Domain Name](#table-of-contents)
+### [Github Pages Adding Domain Name](#deploying-websites)
 1. On github go to user -> Settings -> Pages
 1. Click Add a domain
 1. Put your domain name in and follow the direction(Adding A TXT DNS record).
@@ -79,9 +76,9 @@ On Porkbun
 You have to wait around 30 mins.
 - After around 30 min on your github pages repo click Check Again under your Custom domain
 
-## [Heroku](#table-of-contents)
+## [Heroku](#deploying-websites)
 
-### [Website](#table-of-contents)
+### [Website](#deploying-websites)
 1. Login or create Heroku account at `https://id.heroku.com/login`
 1. Click on top right "New" and click "Create new app"
 1. Give an app name of `{github username}-{github repo name}`
@@ -91,7 +88,7 @@ You have to wait around 30 mins.
 1. Go to "Deploy" tab and set your deployment method to github and connect your github repo
 1. Got to "Settings" tab and set your buildpack to what your app is using.
 
-### [Terminal](#table-of-contents)
+### [Terminal](#deploying-websites)
 1. Make sure to have the Heroku CLI installed at this link https://devcenter.heroku.com/articles/heroku-cli
   - On Linux: `curl https://cli-assets.heroku.com/install-ubuntu.sh | sh`
 1. Run `heroku login` in the terminal
@@ -102,16 +99,16 @@ You have to wait around 30 mins.
 1. Run `git subtree push --prefix my-subdirectory heroku master`, but replace my-subdirectory with your root directory and replace master with your branch you want to deploy from.
   - This will make Heroku use my-subdirectory as the root directory
 
-### [Using keys](#table-of-contents)
+### [Using keys](#deploying-websites)
 - On the Heroku website go to Settings and click Show Config Vars
 - In nodeJS use the package dotenv and use the Keys that are in your Config Vars
 
-### [MySQL](#table-of-contents)
+### [MySQL](#deploying-websites)
 1. Go to Resources
 1. Search for JawsDB MySQL
 1. JAWSDB_URL should be automatically added in your config vars
 
-### [Heroku Adding Domain Name](#table-of-contents)
+### [Heroku Adding Domain Name](#deploying-websites)
 1. On heroku website go to Settings
 1. Click Add domain
 1. Paste your domain name
@@ -126,12 +123,12 @@ On Porkbun
 1. Set type to ALIAS, leave Host blank, and past your heroku DNS target link under Answer. Then Click Add
 1. Set type to CNAME, under Host put *, and past your heroku DNS target link under Answer. Then Click Add
 
-## [Netlify](#table-of-contents)
+## [Netlify](#deploying-websites)
 1. `npm run build` to get a dist folder
 2. Go to [netlify](https://app.netlify.com/)
 3. Drag and drop dist folder into sites in netlify
 
-### [Netlify Adding Domain Name](#table-of-contents)
+### [Netlify Adding Domain Name](#deploying-websites)
 1. Domain management
 1. Add domain name
 1. Type your registered domain name -> Add domain (There should be something saying it was already registered) -> Add domain again
@@ -140,10 +137,10 @@ On Porkbun
 
 On your register website(Not netlify) paste those ~4 domain name servers in.
 
-## [Vercel](#table-of-contents)
+## [Vercel](#deploying-websites)
 Vercel doesn't allow you to make monetary transactions on the free tear.
 
-### [Vercel adding domains](#table-of-contents)
+### [Vercel adding domains](#deploying-websites)
 1. Top left ryansheehy0's projects
 2. Click the 3 dots to the left of your project
 3. Manage domains
@@ -151,10 +148,10 @@ Vercel doesn't allow you to make monetary transactions on the free tear.
 5. Add CNAME record to DNS on porkbun
 When adding domain names add the A records and the C
 
-## [MongoDB Atlas](#table-of-contents)
+## [MongoDB Atlas](#deploying-websites)
 [MongoDB Atlas](https://www.mongodb.com/atlas)
 
-### [Making a new project](#table-of-contents)
+### [Making a new project](#deploying-websites)
 1. Top left project dropdown -> + New Project
 1. Name your project
 1. Create Project
@@ -173,7 +170,7 @@ When adding domain names add the A records and the C
 1. Replace `<password>` with the password from your user you saved.
 1. You can now connect to the db with this link
 
-### [Deleting a new project](#table-of-contents)
+### [Deleting a new project](#deploying-websites)
 1. Left side -> Under the green Deployment header -> Database
 1. Click on cluster name link in blue
 1. Right side 3 dot buttons
@@ -182,6 +179,6 @@ When adding domain names add the A records and the C
 1. Top left project dropdown -> View All Projects
 1. Delete your project with the trash button
 
-## [Domain Names](#table-of-contents)
+## [Domain Names](#deploying-websites)
 - [Porkbun](https://porkbun.com/)
   - Under your domain name. Small red NS and paste in.

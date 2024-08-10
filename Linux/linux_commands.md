@@ -21,55 +21,51 @@
 # Linux Commands
 Linux terminal commands
 
-## Table of Contents
-
 <!-- TOC -->
 
-- [Linux Commands](#linux-commands)
-	- [Table of Contents](#table-of-contents)
-	- [Pipes](#pipes)
-	- [Navigation](#navigation)
-		- [Files types](#files-types)
-	- [Changing Permissions](#changing-permissions)
-		- [usermod](#usermod)
-	- [Miscellaneous](#miscellaneous)
-	- [Installation](#installation)
-	- [Package Manager](#package-manager)
-		- [Advanced package toolapt](#advanced-package-toolapt)
-	- [File and Directory Manipulation](#file-and-directory-manipulation)
-	- [Find](#find)
-	- [Computer commands](#computer-commands)
-		- [ps, kill](#ps-kill)
-		- [job, bg, fg](#job-bg-fg)
-		- [Mount and Unmount drive](#mount-and-unmount-drive)
-		- [Recursive size of folders in a directory](#recursive-size-of-folders-in-a-directory)
-	- [Compression](#compression)
-		- [gzip](#gzip)
-		- [tar](#tar)
-			- [tar and gzip combined](#tar-and-gzip-combined)
-		- [zip files](#zip-files)
-	- [sed](#sed)
-	- [awk](#awk)
-	- [Networking](#networking)
-		- [ping](#ping)
-		- [httprobe](#httprobe)
-		- [curl](#curl)
-	- [grep](#grep)
-	- [sort and uniq](#sort-and-uniq)
-	- [head and tail](#head-and-tail)
-	- [Redirection operations](#redirection-operations)
-	- [alias](#alias)
+- [Pipes](#pipes)
+- [Navigation](#navigation)
+	- [Files types](#files-types)
+- [Changing Permissions](#changing-permissions)
+	- [usermod](#usermod)
+- [Miscellaneous](#miscellaneous)
+- [Installation](#installation)
+- [Package Manager](#package-manager)
+	- [Advanced package toolapt](#advanced-package-toolapt)
+- [File and Directory Manipulation](#file-and-directory-manipulation)
+- [Find](#find)
+- [Computer commands](#computer-commands)
+	- [ps, kill](#ps-kill)
+	- [job, bg, fg](#job-bg-fg)
+	- [Mount and Unmount drive](#mount-and-unmount-drive)
+	- [Recursive size of folders in a directory](#recursive-size-of-folders-in-a-directory)
+- [Compression](#compression)
+	- [gzip](#gzip)
+	- [tar](#tar)
+		- [tar and gzip combined](#tar-and-gzip-combined)
+	- [zip files](#zip-files)
+- [sed](#sed)
+- [awk](#awk)
+- [Networking](#networking)
+	- [ping](#ping)
+	- [httprobe](#httprobe)
+	- [curl](#curl)
+- [grep](#grep)
+- [sort and uniq](#sort-and-uniq)
+- [head and tail](#head-and-tail)
+- [Redirection operations](#redirection-operations)
+- [alias](#alias)
 
 <!-- /TOC -->
 
-## [Pipes](#table-of-contents)
+## [Pipes](#linux-commands)
 Pipes allow you to input the output of one command into another.
 
 `command1 | command2`
 
 The outputs of command1 go into the inputs of command2
 
-## [Navigation](#table-of-contents)
+## [Navigation](#linux-commands)
 
 | Command | Description                               |
 |---------|-------------------------------------------|
@@ -106,7 +102,7 @@ File types
 | ~        | Home directory       |
 | ../      | One directory up     |
 
-### [Files types](#table-of-contents)
+### [Files types](#linux-commands)
 
 | File type | Description                                                                                             |
 |-----------|---------------------------------------------------------------------------------------------------------|
@@ -119,7 +115,7 @@ File types
 | s         | Socket. Communication endpoints for inter-process communication.                                        |
 | w         | Whiteout. Used for union file systems to mark entries which should be hidden.                           |
 
-## [Changing Permissions](#table-of-contents)
+## [Changing Permissions](#linux-commands)
 
 | Command                     | Description                                                              |
 |-----------------------------|--------------------------------------------------------------------------|
@@ -128,7 +124,7 @@ File types
 | chmod ### fileName          | Change permissions. r(4) w(2) x(1) -(0)                                  |
 | chmod +x fileName           | Change file to be an executable                                          |
 
-### [usermod](#table-of-contents)
+### [usermod](#linux-commands)
 `usermod` is used to change account properties.
 
 | Flags                      | Description                  |
@@ -138,7 +134,7 @@ File types
 | -g newGID username         | Changes primary group id     |
 | -aG group username         | Adds the username to a group |
 
-## [Miscellaneous](#table-of-contents)
+## [Miscellaneous](#linux-commands)
 
 | Command              | Description                                               |
 |----------------------|-----------------------------------------------------------|
@@ -158,14 +154,14 @@ File types
 | clear                | Clears the contents of the terminal                       |
 | dirname filePath     | Gets the directory portion of a file path                 |
 
-## [Installation](#table-of-contents)
+## [Installation](#linux-commands)
 
 | Command                 | Description                 |
 |-------------------------|-----------------------------|
 | sudo dpkg -i ./file.deb | Install .deb files          |
 | dpkg -l                 | List all installed packages |
 
-## [Package Manager](#table-of-contents)
+## [Package Manager](#linux-commands)
 - apt
   - debian based package manager
   - Installs .deb files which share dependencies
@@ -184,7 +180,7 @@ File types
 
 Dependency hell is when one application needs an older version of a library than another application. You might have to install both the older version and the newer one.
 
-### [Advanced package tool(apt)](#table-of-contents)
+### [Advanced package tool(apt)](#linux-commands)
 
 | Command                      | Description                                                                            |
 |------------------------------|----------------------------------------------------------------------------------------|
@@ -197,7 +193,7 @@ Dependency hell is when one application needs an older version of a library than
 | sudo apt autoremove          | Removes all unneeded packages                                                          |
 | sudo apt install --only-upgrade packageName | Only upgrade that package |
 
-## [File and Directory Manipulation](#table-of-contents)
+## [File and Directory Manipulation](#linux-commands)
 Folders and directories are the same thing.
 
 | Command                     | Description                                              |
@@ -217,7 +213,7 @@ Folders and directories are the same thing.
 | mv ./* dirPath              | Move all contents of current folder to another directory |
 | gio trash dirName/          | Moves directory or file to trash.                        |
 
-## [Find](#table-of-contents)
+## [Find](#linux-commands)
 Used for finding files or directories
 
 | Command                          | Description                                                  |
@@ -238,7 +234,7 @@ Examples:
 - `find . -type f -exec chown user:group {} \;` Recursively changes the owner of each file in a directory.
 - `find . -type f -maxdepth 1 -name "*.jpg" -exec rm {} \;` Removes all .jpg files from a directory.
 
-## [Computer commands](#table-of-contents)
+## [Computer commands](#linux-commands)
 
 | Command              | Description                                     |
 |----------------------|-------------------------------------------------|
@@ -246,7 +242,7 @@ Examples:
 | sudo shutdown -h now | Shutdown's computer                             |
 | lspci -k             | List drivers                                    |
 
-### [ps, kill](#table-of-contents)
+### [ps, kill](#linux-commands)
 ps is used to show different process running.
 
 | Command                | Description                                     |
@@ -261,7 +257,7 @@ ps is used to show different process running.
 | killall programName    | Terminate all processes with that name          |
 | killall -9 programName | Kill all processes with that name               |
 
-### [job, bg, fg](#table-of-contents)
+### [job, bg, fg](#linux-commands)
 
 | Commands  | Description                                                |
 |-----------|------------------------------------------------------------|
@@ -271,7 +267,7 @@ ps is used to show different process running.
 | bg jobNum | Runs a job in the background                               |
 | command & | Run command in the background                              |
 
-### [Mount and Unmount drive](#table-of-contents)
+### [Mount and Unmount drive](#linux-commands)
 With some linux distros this happens automatically
 
 1. Plug in drive
@@ -279,13 +275,13 @@ With some linux distros this happens automatically
 1. `sudo mount filePathFromFdisk filePathMountFolder` mounts the drive
 1. `sudo umount filePathMountFolder` unmounts the drive
 
-### [Recursive size of folders in a directory](#table-of-contents)
+### [Recursive size of folders in a directory](#linux-commands)
 
 `du --max-depth=1 -h ./`
 
-## [Compression](#table-of-contents)
+## [Compression](#linux-commands)
 
-### [gzip](#table-of-contents)
+### [gzip](#linux-commands)
 gzip is used to compress only 1 file at a time.
 
 | Command              | Description                                               |
@@ -293,7 +289,7 @@ gzip is used to compress only 1 file at a time.
 | gzip -k fileName.txt | Compresses one file with .gz and keeps the original file. |
 | gzip -d fileName.gz  | Decompresses a .gz file                                   |
 
-### [tar](#table-of-contents)
+### [tar](#linux-commands)
 tar is used to create an archive, a grouping of multiple files into a single file.
 
 | Command                         | Description                          |
@@ -310,14 +306,14 @@ tar is used to create an archive, a grouping of multiple files into a single fil
 | -t           | Just view what's in the archive   |
 | -C directory | Specifies an extraction directory |
 
-#### [tar and gzip combined](#table-of-contents)
+#### [tar and gzip combined](#linux-commands)
 
 | Command                             | Description                                 |
 |-------------------------------------|---------------------------------------------|
 | tar -czf archive.tar.gz file1 file2 | Create an archive and compress it with gzip |
 | tar -xf archive.tar.gz -C dirPath   | Extracts a .tar.gz file                     |
 
-### [zip files](#table-of-contents)
+### [zip files](#linux-commands)
 `unzip` is used to decompress .zip files
 
 | unzip Flags    | Description                                       |
@@ -332,7 +328,7 @@ Examples:
 - `zip -r compressionName.zip dirPath`
   - Compresses files as a .zip file
 
-## [sed](#table-of-contents)
+## [sed](#linux-commands)
 Stream editor which is used to find and replace things inside files using regex.
 
 sed {options} {script} {optional file}
@@ -368,7 +364,7 @@ man sed | sed '/replace/s/the/The/g'
     The lines that have "replace" on them have the "the"s changed to "The"s.
 ```
 
-## [awk](#table-of-contents)
+## [awk](#linux-commands)
 Awk is used to run a command on inputs that are separated by some pattern. The default field separator is a space. It can also be used to run commands on each line of a file.
 
 Columns are defined with teh field separator. Rows are defined by new lines.
@@ -387,9 +383,9 @@ Examples:
 - `echo "[" && awk '{print "\""$1"\""","}' ./text.txt && echo "]" > text.json`
   - Converts a text file of lines of data into an array in a json file
 
-## [Networking](#table-of-contents)
+## [Networking](#linux-commands)
 
-### [ping](#table-of-contents)
+### [ping](#linux-commands)
 Ping is used to message a server and see if you are getting a response.
 
 | Flags | Description                                   |
@@ -399,12 +395,12 @@ Ping is used to message a server and see if you are getting a response.
 - You can use ip `8.8.8.8` which is google's dns server to check if you have an internet connection.
 - Ping uses ICMP network requests and some servers maybe configured to block this traffic.
 
-### [httprobe](#table-of-contents)
+### [httprobe](#linux-commands)
 httprobe is used to take a list of domains and probe for working HTTP and HTTPS servers.
 
 `cat domains.txt | httprobe > results.txt`
 
-### [curl](#table-of-contents)
+### [curl](#linux-commands)
 Used to get the return information from websites/apis. Makes a get request form a URL.
 
 `curl https://api.github.com/users`
@@ -415,7 +411,7 @@ Used to get the return information from websites/apis. Makes a get request form 
 | -I      | Returns just the headers                   |
 | -X HTTP | Used to make http commands other than GET. |
 
-## [grep](#table-of-contents)
+## [grep](#linux-commands)
 Grep is used for searching text in a file. Grep returns the lines that match a pattern, or the files that contain the pattern.
 
 `grep -Flags pattern fileName`
@@ -443,7 +439,7 @@ Examples:
 - `grep -wirl "grep" .` Searches for files that contain the word "grep"
 - `grep -wirc "grep" . | grep -v :0$` Search for files that contain the word "grep" and how many matches they have to the word "grep"
 
-## [sort and uniq](#table-of-contents)
+## [sort and uniq](#linux-commands)
 `sort` is used to sort an input by alphabetical order or numerical order.
 
 | Flags | Description                |
@@ -465,14 +461,14 @@ uniq is often used with sort. Sort groups the same lines together and uniq remov
 Example:
 `sort favFlavors.txt | uniq -c | sort -nr` Gets the favorite flavors from most popular to least
 
-## [head and tail](#table-of-contents)
+## [head and tail](#linux-commands)
 `head` and `tail` are used to output on the first or last lines of a file.
 
 | Flags | Description                         |
 |-------|-------------------------------------|
 | -n #  | Number of lines. The default is 10. |
 
-## [Redirection operations](#table-of-contents)
+## [Redirection operations](#linux-commands)
 
 | Command           | Description                                                                               |
 |-------------------|-------------------------------------------------------------------------------------------|
@@ -495,7 +491,7 @@ delimiter
 echo "Append to beginning" | cat - file.txt > temp && mv temp file.txt
 ```
 
-## [alias](#table-of-contents)
+## [alias](#linux-commands)
 alias is used to create shortcuts to commands so you don't have to always type them out.
 
 | Commands                   | Description                                                                                  |

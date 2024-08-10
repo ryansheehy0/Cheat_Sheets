@@ -21,39 +21,36 @@
 # Git Cheat Sheet
 A version control system that manages changes to files.
 
-## Table of Contents
 <!-- TOC -->
 
-- [Git Cheat Sheet](#git-cheat-sheet)
-	- [Table of Contents](#table-of-contents)
-	- [Cloning and Initializing](#cloning-and-initializing)
-	- [Committing](#committing)
-		- [Resetting Commits](#resetting-commits)
-		- [Reverting Commits](#reverting-commits)
-		- [Commit Logs](#commit-logs)
-	- [Pushing](#pushing)
-	- [Pulling](#pulling)
-	- [Branches](#branches)
-	- [Stashing](#stashing)
-	- [Setting Personal Access Tokens](#setting-personal-access-tokens)
-	- [First push](#first-push)
-	- [Rebasing](#rebasing)
-	- [Pull Requests](#pull-requests)
-		- [When your branch says behind main](#when-your-branch-says-behind-main)
-	- [Setting up with SSH](#setting-up-with-ssh)
-	- [Adding a warning when pushing to main/master from another branch](#adding-a-warning-when-pushing-to-mainmaster-from-another-branch)
-	- [Git Ignore](#git-ignore)
+- [Cloning and Initializing](#cloning-and-initializing)
+- [Committing](#committing)
+	- [Resetting Commits](#resetting-commits)
+	- [Reverting Commits](#reverting-commits)
+	- [Commit Logs](#commit-logs)
+- [Pushing](#pushing)
+- [Pulling](#pulling)
+- [Branches](#branches)
+- [Stashing](#stashing)
+- [Setting Personal Access Tokens](#setting-personal-access-tokens)
+- [First push](#first-push)
+- [Rebasing](#rebasing)
+- [Pull Requests](#pull-requests)
+	- [When your branch says behind main](#when-your-branch-says-behind-main)
+- [Setting up with SSH](#setting-up-with-ssh)
+- [Adding a warning when pushing to main/master from another branch](#adding-a-warning-when-pushing-to-mainmaster-from-another-branch)
+- [Git Ignore](#git-ignore)
 
 <!-- /TOC -->
 
-## [Cloning and Initializing](#table-of-contents)
+## [Cloning and Initializing](#git-cheat-sheet)
 
 |                   |                                             |
 |-------------------|---------------------------------------------|
 | git clone {https} | Pulls github repository and initializes it. |
 | git init          | Creates .git file to allow for pushing.     |
 
-## [Committing](#table-of-contents)
+## [Committing](#git-cheat-sheet)
 
 |                                            |                                                                                                                                                                                                                                                  |
 |--------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -62,7 +59,7 @@ A version control system that manages changes to files.
 | git add -A                                 | Tracks and stages all the files and folders listed in status.                                                                                                                                                                                    |
 | git commit -m ”{Title}” -m ”{Description}” | Commits staged files. It is recommended to have your Title be in the present tense. Ex: "Adds some stuff"                                                                                                                                      |
 
-### [Resetting Commits](#table-of-contents)
+### [Resetting Commits](#git-cheat-sheet)
 
 |                               |                                                                       |
 |-------------------------------|-----------------------------------------------------------------------|
@@ -70,20 +67,20 @@ A version control system that manages changes to files.
 | git reset {commit hash}       | Resets to commit specified and unstages changes.                      |
 | git reset -soft {commit hash} | Resets to commit specified, but leaves files staged.                  |
 
-### [Reverting Commits](#table-of-contents)
+### [Reverting Commits](#git-cheat-sheet)
 
 |                          |                                                                                                                            |
 |--------------------------|----------------------------------------------------------------------------------------------------------------------------|
 | git revert {commit hash} | Makes a new commit that undos the changes from the commit hash. Does the opposite of the changes made in that commit hash. |
 
-### [Commit Logs](#table-of-contents)
+### [Commit Logs](#git-cheat-sheet)
 
 |                  |                                                            |
 |------------------|------------------------------------------------------------|
 | git log          | Lists commit history. This can tell you the commit hashes. |
 | git log {branch} | Lists commit history for that branch.                      |
 
-## [Pushing](#table-of-contents)
+## [Pushing](#git-cheat-sheet)
 
 |                                   |                                                         |
 |-----------------------------------|---------------------------------------------------------|
@@ -92,7 +89,7 @@ A version control system that manages changes to files.
 | git remote add {location} {https} | Adds a location you can push to.                        |
 | git remote remove {location}      | Removes a location you can push to.
 
-## [Pulling](#table-of-contents)
+## [Pulling](#git-cheat-sheet)
 
 |                               |                                                                                                                |
 |-------------------------------|----------------------------------------------------------------------------------------------------------------|
@@ -101,7 +98,7 @@ A version control system that manages changes to files.
 | git fetch                     | Fetches all the branches.                                                                                      |
 | git merge {location}/{branch} | Incorporate the changes from fetch into the specified branch. This downloads the changes from the remote repo. |
 
-## [Branches](#table-of-contents)
+## [Branches](#git-cheat-sheet)
 
 |                          |                                              |
 |--------------------------|----------------------------------------------|
@@ -110,7 +107,7 @@ A version control system that manages changes to files.
 | git checkout {branch}    | Switches branch.                             |
 | git branch -d {branch}   | Deletes branch.                              |
 
-## [Stashing](#table-of-contents)
+## [Stashing](#git-cheat-sheet)
 
 |                        |                                                                                      |
 |------------------------|--------------------------------------------------------------------------------------|
@@ -121,7 +118,7 @@ A version control system that manages changes to files.
 | git stash drop         | Removes the last stash.                                                              |
 | git stash drop {index} | Removes the stash at the index.                                                      |
 
-## [Setting Personal Access Tokens](#table-of-contents)
+## [Setting Personal Access Tokens](#git-cheat-sheet)
 
 Settings $\rightarrow$ Developer settings $\rightarrow$ Personal access tokens $\rightarrow$ Generate new tokens
 
@@ -132,7 +129,7 @@ Settings $\rightarrow$ Developer settings $\rightarrow$ Personal access tokens $
 |-------------------------------------------------------------------------------------------------------------------------|-------------------------------------|
 | git remote set-url {location} https://{username}:{personal access token}@github.com/{owner's username}/{repository}.git | Gives permissions for the location. |
 
-## [First push](#table-of-contents)
+## [First push](#git-cheat-sheet)
 1. git init
 1. git add -A
 1. git commit -m "{Title}" -m "{Description}"
@@ -141,13 +138,13 @@ Settings $\rightarrow$ Developer settings $\rightarrow$ Personal access tokens $
 1. git push {location} {branch}
 - The recommended {location} is origin and the recommended {branch} is master/main.
 
-## [Rebasing](#table-of-contents)
+## [Rebasing](#git-cheat-sheet)
 
 |                     |                                                                                    |
 |---------------------|------------------------------------------------------------------------------------|
 | git rebase {branch} | Takes the commits from current branch and puts them ontop of the specified branch. |
 
-## [Pull Requests](#table-of-contents)
+## [Pull Requests](#git-cheat-sheet)
 - A pull request is a request to make changes to a branch from another branch.
 - A merge is the combining changes from one branch to another.
 
@@ -157,7 +154,7 @@ Settings $\rightarrow$ Developer settings $\rightarrow$ Personal access tokens $
 | Squash and merge      | Combines all the changes from the source branch and makes a commit to the target branch with the changes. This removes the source branch. Doesn't preserve the history. |
 | Rebase and merge      | Commits all the previous commits in the source branch and adds them to the target branch. This removes the source branch. Preserves the history.                        |
 
-### [When your branch says behind main](#table-of-contents)
+### [When your branch says behind main](#git-cheat-sheet)
 - This means that there are new commits in the main branch that aren't in your branch.
 1. Ensure your changes are committed
     - git status
@@ -174,6 +171,7 @@ Settings $\rightarrow$ Developer settings $\rightarrow$ Personal access tokens $
 1. Resolve any conflicts
     - Git will tell you which files. If 2 or more people changed the same file then there will be conflicts..
     - Inside the conflicting files
+
 ```
 <<<<<<< HEAD
 // Your changes in the current branch
@@ -181,6 +179,7 @@ Settings $\rightarrow$ Developer settings $\rightarrow$ Personal access tokens $
 // Changes from the branch you are merging with
 >>>>>>> branch-name
 ```
+
 <ol start="7">
     <li>Once resolved commit and push your update</li>
     <ul>
@@ -197,7 +196,7 @@ Settings $\rightarrow$ Developer settings $\rightarrow$ Personal access tokens $
     </ul>
 </ol>
 
-## [Setting up with SSH](#table-of-contents)
+## [Setting up with SSH](#git-cheat-sheet)
 1. `ssh-keygen -t ed25519 -C {github email}`
     - Used to generate a public and private key pair.
         - Private key is in: .ssh/id_ed25519 (Don't share with anyone)
@@ -223,7 +222,7 @@ Settings $\rightarrow$ Developer settings $\rightarrow$ Personal access tokens $
     - If this doesn't work then you may need to run `eval "$(ssh-agent -s)"` in order to start the ssh-agent
 1. To use with SSH make sure your github repo locations are SSHs(they starts with git@github.com)
 
-## [Adding a warning when pushing to main/master from another branch](#table-of-contents)
+## [Adding a warning when pushing to main/master from another branch](#git-cheat-sheet)
 - Put this code inside .git/hooks/pre-push
     - Not pre-push.sample
 
@@ -250,7 +249,7 @@ exit 0
 
 - Make it executable with `chmod +x ./.git/hooks/pre-push`
 
-## [Git Ignore](#table-of-contents)
+## [Git Ignore](#git-cheat-sheet)
 A file called `.gitignore` which is used to ignore folders or files when pushed to github.
 
 Git ignores use regexes.

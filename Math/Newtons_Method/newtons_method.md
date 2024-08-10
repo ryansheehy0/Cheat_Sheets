@@ -47,6 +47,7 @@ $\qquad g_{n+1} = \frac{g_nf^1(g_n) - f(g_n)}{f^1(g_n)}$
 $\qquad g_{n+1} = g_n - \frac{f(g_n)}{f^1(g_n)}$
 
 ---
+
 ## Steps:
 1. Use algebra to find $f(x)$ that when equaling 0 gives you your answer
 1. Find $f^1(x)$ using $f(x)$

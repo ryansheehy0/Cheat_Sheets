@@ -50,26 +50,16 @@ Example: * means a file has changed.
 1. Add rules
 1. Run `make` when ready to compile
 
-## Table of Contents
-
 <!-- TOC -->
 
-- [Make files](#make-files)
-	- [Table of Contents](#table-of-contents)
-- [Comments](#comments)
-- [Rules](#rules)
-- [Clean](#clean)
-- [Variables](#variables)
-- [Conditional execution](#conditional-execution)
-	- [List of ifs](#list-of-ifs)
-- [Full Example](#full-example)
+- [List of ifs](#list-of-ifs)
 
 <!-- /TOC -->
 
-# [Comments](#table-of-contents)
+# [Comments](#make-files)
 Comments start with #
 
-# [Rules](#table-of-contents)
+# [Rules](#make-files)
 - If the dependency changes then the command is run to regenerate the target
 
 ```
@@ -81,7 +71,7 @@ file1.o: file1.c
     gcc file1.c
 ```
 
-# [Clean](#table-of-contents)
+# [Clean](#make-files)
 There is often a clean target that usually removes the .o files and the executable.
 - To use clean just run `make clean`
 
@@ -90,14 +80,14 @@ clean:
     rm -f *.o executable
 ```
 
-# [Variables](#table-of-contents)
+# [Variables](#make-files)
 
 |                  |              |
 |------------------|--------------|
 | VAR_NAME = value | Creating var |
 | $(VAR_NAME)      | Using var    |
 
-# [Conditional execution](#table-of-contents)
+# [Conditional execution](#make-files)
 
 ```
 ifeq ($(VAR_NAME), value)
@@ -109,7 +99,7 @@ else
 endif
 ```
 
-## [List of ifs](#table-of-contents)
+## [List of ifs](#make-files)
 
 |        |                                     |
 |--------|-------------------------------------|
@@ -118,12 +108,12 @@ endif
 | ifdef  | if a variable is defined(non-empty) |
 | ifndef | if a variable is not defined        |
 
-# [Full Example](#table-of-contents)
+# [Full Example](#make-files)
 
 ```
 CC = gcc
 CFLAGS =
-LIBS = 
+LIBS =
 
 executable: file1.o file2.o
     $(CC) $(CFLAGS) file1.o file2.o -o executable $(LIBS)

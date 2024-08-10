@@ -20,39 +20,36 @@
 
 # Android
 
-## Table Of Contents
 <!-- TOC -->
 
-- [Android](#android)
-	- [Table Of Contents](#table-of-contents)
-	- [Links](#links)
-	- [Packages](#packages)
-	- [Manifest](#manifest)
-		- [@s](#s)
-	- [Permissions](#permissions)
-		- [Most Common Permissions](#most-common-permissions)
-	- [Gradle](#gradle)
-	- [APK files](#apk-files)
-	- [Location](#location)
-	- [Location to Address](#location-to-address)
-	- [Rest](#rest)
-	- [Login Screen](#login-screen)
-		- [Google signing](#google-signing)
-	- [Questions](#questions)
-	- [Data Extraction Rules](#data-extraction-rules)
-	- [Backup Rules](#backup-rules)
-	- [Themes](#themes)
-	- [Intents](#intents)
+- [Links](#links)
+- [Packages](#packages)
+- [Manifest](#manifest)
+	- [@s](#s)
+- [Permissions](#permissions)
+	- [Most Common Permissions](#most-common-permissions)
+- [Gradle](#gradle)
+- [APK files](#apk-files)
+- [Location](#location)
+- [Location to Address](#location-to-address)
+- [Rest](#rest)
+- [Login Screen](#login-screen)
+	- [Google signing](#google-signing)
+- [Questions](#questions)
+- [Data Extraction Rules](#data-extraction-rules)
+- [Backup Rules](#backup-rules)
+- [Themes](#themes)
+- [Intents](#intents)
 
 <!-- /TOC -->
 
-## [Links](#table-of-contents)
+## [Links](#android)
 - https://developer.android.com/
 - https://developers.google.com/android
 
-## [Packages](#table-of-contents)
+## [Packages](#android)
 
-## [Manifest](#table-of-contents)
+## [Manifest](#android)
 AndroidManifest.xml file provides info about the app to the Android Operating system.
 
 Such info can include
@@ -100,7 +97,7 @@ Example of AndroidManifest.xml:
 </manifest>
 ```
 
-### [@s](#table-of-contents)
+### [@s](#android)
 The @s in the AndroidManifest.xml refer to a specific type of resource and Android knows where to look based on that type. Each @ type is referring to a specific XML vocabulary.
 
 | Type name | Description                                     | Default File/Folder path                    |
@@ -126,10 +123,10 @@ The different files in the mipmap folder refers to different screen densities(nu
 
 The version of the app icon that is used depends on the device's screen density and the Android version it's running. If it is running version 26 or greater the anydpi-v26 is used.
 
-## [Permissions](#table-of-contents)
-### [Most Common Permissions](#table-of-contents)
+## [Permissions](#android)
+### [Most Common Permissions](#android)
 
-## [Gradle](#table-of-contents)
+## [Gradle](#android)
 The gradle is a tool to automate the building process for android.
 
 It is used to:
@@ -138,34 +135,34 @@ It is used to:
 - Managing plugins
 - Generating APK files
 
-## [APK files](#table-of-contents)
+## [APK files](#android)
 Android 
-## [Location](#table-of-contents)
+## [Location](#android)
 
-## [Location to Address](#table-of-contents)
+## [Location to Address](#android)
 
 content providers - Abstract the way for how data is stored and retrieved from your app to other apps.
   - Content providers work through URIs
   - FLAG_GRANT_READ_URI_PERMISSION
 Android permissions
 
-## [Rest](#table-of-contents)
+## [Rest](#android)
 Communicating using HTTP requests
 
-## [Login Screen](#table-of-contents)
-### [Google signing](#table-of-contents)
+## [Login Screen](#android)
+### [Google signing](#android)
 
-## [Questions](#table-of-contents)
+## [Questions](#android)
   - Build vs run app
   - Sync gradle. What is teh gradle
   - SDK Manager. What are SDKs?
   - Device Manager
 
-## [Data Extraction Rules](#table-of-contents)
+## [Data Extraction Rules](#android)
 Rules for data extraction during backup and restore operations
 Which data should be extracted from your app during the backup process, and how it should be handled when restoring the app's data.
 
-## [Backup Rules](#table-of-contents)
+## [Backup Rules](#android)
 <full-backup-content>
     <exclude domain="no-backup" />
     <exclude domain="cache" />
@@ -173,8 +170,8 @@ Which data should be extracted from your app during the backup process, and how 
     <!-- Additional rules as needed -->
 </full-backup-content>
 
-## [Themes](#table-of-contents)
+## [Themes](#android)
 How do you work with themes?
 
-## [Intents](#table-of-contents)
+## [Intents](#android)
 Intents are used for sending data from one app to another.

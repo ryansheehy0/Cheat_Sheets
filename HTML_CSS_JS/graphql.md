@@ -23,40 +23,37 @@ Graph QL allows the front end/client to retrieve the exact data it wants instead
 
 Graph QL is a query language which the front end can use to only get back the data it needs instead of too much data or too little data.
 
-## Table of Contents
 <!-- TOC -->
 
-- [Graph QL](#graph-ql)
-	- [Table of Contents](#table-of-contents)
-	- [Questions](#questions)
-	- [File Structure](#file-structure)
-	- [NPM](#npm)
-	- [Querying and Mutating data with Graph QL](#querying-and-mutating-data-with-graph-ql)
-	- [Useful Scripts](#useful-scripts)
-	- [Server using Apollo Server](#server-using-apollo-server)
-		- [Apollo with Express Server](#apollo-with-express-server)
-		- [Authorization with JWTs](#authorization-with-jwts)
-		- [TypeDefs](#typedefs)
-		- [Resolvers](#resolvers)
-			- [Query Resolver](#query-resolver)
-			- [Mutation Resolver](#mutation-resolver)
-	- [Client using Apollo](#client-using-apollo)
-		- [Customizing Vite](#customizing-vite)
-		- [Client Boilerplate with JWTs](#client-boilerplate-with-jwts)
-		- [useQuery](#usequery)
-		- [useMutation](#usemutation)
-		- [Login Form Component Example](#login-form-component-example)
+- [Questions](#questions)
+- [File Structure](#file-structure)
+- [NPM](#npm)
+- [Querying and Mutating data with Graph QL](#querying-and-mutating-data-with-graph-ql)
+- [Useful Scripts](#useful-scripts)
+- [Server using Apollo Server](#server-using-apollo-server)
+	- [Apollo with Express Server](#apollo-with-express-server)
+	- [Authorization with JWTs](#authorization-with-jwts)
+	- [TypeDefs](#typedefs)
+	- [Resolvers](#resolvers)
+		- [Query Resolver](#query-resolver)
+		- [Mutation Resolver](#mutation-resolver)
+- [Client using Apollo](#client-using-apollo)
+	- [Customizing Vite](#customizing-vite)
+	- [Client Boilerplate with JWTs](#client-boilerplate-with-jwts)
+	- [useQuery](#usequery)
+	- [useMutation](#usemutation)
+	- [Login Form Component Example](#login-form-component-example)
 
 <!-- /TOC -->
 
-## [Questions](#table-of-contents)
+## [Questions](#graph-ql)
 - interface
 - type Comment implements Node? What does implements mean?
 - scalar
 - Authentication with Apollo Server?
   - JWTs
 
-## [File Structure](#table-of-contents)
+## [File Structure](#graph-ql)
 
 ```
 node_modules
@@ -93,13 +90,13 @@ server
 package.json
 ```
 
-## [NPM](#table-of-contents)
+## [NPM](#graph-ql)
 - Client:
   - `npm install @apollo/client graphql`
 - Server:
   - `npm install @apollo/server graphql`
 
-## [Querying and Mutating data with Graph QL](#table-of-contents)
+## [Querying and Mutating data with Graph QL](#graph-ql)
 Queries are described with a syntax that is like the returned JSON.
 
 ```javascript
@@ -150,7 +147,7 @@ mutation deleteClass($id: ID!){
 // You have to specify which keys you want back from what deleteClass returns.
 ```
 
-## [Useful Scripts](#table-of-contents)
+## [Useful Scripts](#graph-ql)
 These scripts can be put into your root's package.json
 
 ```javascript
@@ -161,7 +158,7 @@ These scripts can be put into your root's package.json
     "build": "cd client && npm run build"
 ```
 
-## [Server using Apollo Server](#table-of-contents)
+## [Server using Apollo Server](#graph-ql)
 Apollo Server runs on the server side. It
 - Intercepts the incoming Graph QL
 - Validates the query based on the schema
@@ -171,7 +168,7 @@ Apollo Server runs on the server side. It
 
 Graph QL uses a different schema than the underlying database. This allows for abstractions and security to prevent manipulation attacks on the database.
 
-### [Apollo with Express Server](#table-of-contents)
+### [Apollo with Express Server](#graph-ql)
 In your server/server.js
 
 ```javascript
@@ -224,7 +221,7 @@ async function startApolloServer(){
 startApolloServer()
 ```
 
-### [Authorization with JWTs](#table-of-contents)
+### [Authorization with JWTs](#graph-ql)
 In ./utils/Auth
 
 ```javascript
@@ -274,7 +271,7 @@ module.exports = {
 }
 ```
 
-### [TypeDefs](#table-of-contents)
+### [TypeDefs](#graph-ql)
 Type Defs are string representation of the GraphQL Schema. They define the types, relationships between those types, and the operations that can be performed.
 
 **Types** defines the shape of the data that can be queried.
@@ -326,7 +323,7 @@ const typeDefs = `
 module.exports = typeDefs
 ```
 
-### [Resolvers](#table-of-contents)
+### [Resolvers](#graph-ql)
 Resolvers tell Apollo Server how to link the Graph QL Schema with the data. That data can come from the backend database, 3rd party APIs, the server itself, etc.
 
 Resolver functions can have 4 arguments
@@ -360,7 +357,7 @@ query {
 
 There are 2 main types of resolvers. Query and Mutations
 
-#### [Query Resolver](#table-of-contents)
+#### [Query Resolver](#graph-ql)
 The query resolver is used to get data.
 
 ```javascript
@@ -392,7 +389,7 @@ const resolvers = {
 module.exports = resolvers
 ```
 
-#### [Mutation Resolver](#table-of-contents)
+#### [Mutation Resolver](#graph-ql)
 The mutation resolver is used to make any changes to the database. This includes adding, deleting, and updating data.
 
 ```javascript
@@ -414,10 +411,9 @@ const resolvers = {
 module.exports = resolvers
 ```
 
+## [Client using Apollo](#graph-ql)
 
-## [Client using Apollo](#table-of-contents)
-
-### [Customizing Vite](#table-of-contents)
+### [Customizing Vite](#graph-ql)
 Add this to vite.config.js in `server: {}`
 
 ```javascript
@@ -432,7 +428,7 @@ Add this to vite.config.js in `server: {}`
 
 This allows the front end to make API calls to the running server which is on a different port.
 
-### [Client Boilerplate with JWTs](#table-of-contents)
+### [Client Boilerplate with JWTs](#graph-ql)
 In App.jsx
 
 ```javascript
@@ -522,7 +518,7 @@ class AuthService {
 export default new AuthService()
 ```
 
-### [useQuery](#table-of-contents)
+### [useQuery](#graph-ql)
 Allows react to make a Graph QL query to the server.
 
 In utils/queries
@@ -605,7 +601,7 @@ export default function Home(){
 }
 ```
 
-### [useMutation](#table-of-contents)
+### [useMutation](#graph-ql)
 useMutation is used to allow React to send Graph QL mutations
 
 In utils/mutations
@@ -705,7 +701,7 @@ export default function Component(){
 }
 ```
 
-### [Login Form Component Example](#table-of-contents)
+### [Login Form Component Example](#graph-ql)
 
 ```javascript
 import { useState } from 'react';

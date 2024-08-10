@@ -31,47 +31,43 @@ Why use react over vanilla JS:
   - Updates are bundled as to not repaint the page too much
   - React is very efficient for very complex UIs, but tends to be less efficient for apps where the DOM isn't being updated as much.
 
-## Table of Contents
-
 <!-- TOC -->
 
-- [React](#react)
-	- [Table of Contents](#table-of-contents)
-	- [Questions:](#questions)
-	- [Single Page App vs Multi Page App](#single-page-app-vs-multi-page-app)
-	- [Virtual DOM](#virtual-dom)
-	- [JavaScript XMLJSX](#javascript-xmljsx)
-		- [Fragments](#fragments)
-	- [Vite](#vite)
-		- [vite-plugin-svgr](#vite-plugin-svgr)
-		- [vite-plugin-pwa](#vite-plugin-pwa)
-	- [File Structure](#file-structure)
-	- [Components](#components)
-		- [CSS in Components](#css-in-components)
-		- [Props](#props)
-			- [Props as embedded children](#props-as-embedded-children)
-	- [Conditional Rendering](#conditional-rendering)
-		- [React Router](#react-router)
-			- [useParams](#useparams)
-	- [Map function in React](#map-function-in-react)
-	- [Event handling in React](#event-handling-in-react)
-	- [Tailwind in React](#tailwind-in-react)
-		- [Changing Tailwind with State](#changing-tailwind-with-state)
-	- [Forms in React](#forms-in-react)
-	- [Testing with vite](#testing-with-vite)
-	- [setTimeout in React](#settimeout-in-react)
-	- [awaiting a react component](#awaiting-a-react-component)
+- [Questions:](#questions)
+- [Single Page App vs Multi Page App](#single-page-app-vs-multi-page-app)
+- [Virtual DOM](#virtual-dom)
+- [JavaScript XMLJSX](#javascript-xmljsx)
+	- [Fragments](#fragments)
+- [Vite](#vite)
+	- [vite-plugin-svgr](#vite-plugin-svgr)
+	- [vite-plugin-pwa](#vite-plugin-pwa)
+- [File Structure](#file-structure)
+- [Components](#components)
+	- [CSS in Components](#css-in-components)
+	- [Props](#props)
+		- [Props as embedded children](#props-as-embedded-children)
+- [Conditional Rendering](#conditional-rendering)
+	- [React Router](#react-router)
+		- [useParams](#useparams)
+- [Map function in React](#map-function-in-react)
+- [Event handling in React](#event-handling-in-react)
+- [Tailwind in React](#tailwind-in-react)
+	- [Changing Tailwind with State](#changing-tailwind-with-state)
+- [Forms in React](#forms-in-react)
+- [Testing with vite](#testing-with-vite)
+- [setTimeout in React](#settimeout-in-react)
+- [awaiting a react component](#awaiting-a-react-component)
 
 <!-- /TOC -->
 
 ## Questions:
   Higher order component: Wraps the whole app to allow for functionality
 
-## [Single Page App vs Multi Page App](#table-of-contents)
+## [Single Page App vs Multi Page App](#react)
 - **Single Page Apps(SPAs)** are apps where page changes are handled by javascript and don't require a full page reload.
 - **Multi Page Apps(MPAs)** are apps where each page is a different html file which requires a reload to change between pages.
 
-## [Virtual DOM](#table-of-contents)
+## [Virtual DOM](#react)
 The Virtual DOM is an object in memory that represents the real DOM.
 
 When the virtual DOM is synced with the DOM it is called reconciliation.
@@ -80,7 +76,7 @@ When the virtual DOM is synced with the DOM it is called reconciliation.
 - These differences are then batched/bundled to decrease the DOM from repainting the page too much
 - React then updates the DOM with the batched differences
 
-## [JavaScript XML(JSX)](#table-of-contents)
+## [JavaScript XML(JSX)](#react)
 JSX allows you to write html like code in JavaScript.
 
 You can use normal html elements and component elements inside JSX. Component elements always start with capital letters while html elements start with lowercase letters.
@@ -97,12 +93,12 @@ Every tag needs to be closed or self closed with </>s or />. Can't have non clos
 
 Instead of using the `class` attribute in html use the `className` attribute instead. This is to prevent any conflicts with the class keyword in JS.
 
-### [Fragments](#table-of-contents)
+### [Fragments](#react)
 Fragments are empty tags <></> that go around all the JSX components.
 
 Functions can only return 1 value. The fragments allow you to return multiple component values as 1 single value to allow it to be returned.
 
-## [Vite](#table-of-contents)
+## [Vite](#react)
 Vite is the build tool for react
 - Fast Development Server
 - On Demand compilation
@@ -134,12 +130,13 @@ export default defineCOnfig({
 
 If you do `npx vite --host` allows you to view your React app on mobile as long as you allow port forwarding. In the terminal the location should look like this: `Network: http://...`
 
-### [vite-plugin-svgr](#table-of-contents)
+### [vite-plugin-svgr](#react)
 Used to allow svg files to be used as react components.
 
 `npm install vite-plugin-svgr`
 
 Add to vite.config.ts
+
 ```javascript
 import svgr from "vite-plugin-svgr"
 
@@ -149,6 +146,7 @@ export default defineConfig({
 ```
 
 In your react component.
+
 ```javascript
 // You have to add the ?react at the end
 import svgIcon from "/path/to/svgfile.svg?react"
@@ -159,12 +157,13 @@ import svgIcon from "/path/to/svgfile.svg?react"
 
 You cannot add react refs to these svg component. Instead wrap the svg component in a div and put the reference on the div.
 
-### [vite-plugin-pwa](#table-of-contents)
+### [vite-plugin-pwa](#react)
 Used to add pwa manifest file to vite. Once deployed, the service worker should be added automatically.
 
 `npm install vite-plugin-pwa`
 
 Add to vite.config.ts
+
 ```javascript
 import { VitePWA } from "vite-plugin-pwa"
 import manifest from "./manifest"
@@ -175,6 +174,7 @@ export default defineConfig({
 ```
 
 In the manifest.js file
+
 ```javascript
 const manifest = {
   manifest: {
@@ -187,7 +187,7 @@ const manifest = {
 export default manifest
 ```
 
-## [File Structure](#table-of-contents)
+## [File Structure](#react)
 
 ```
 public
@@ -202,7 +202,7 @@ src // React development
 index.html // React inserts into <div id="root"></div> and loads main.jsx
 ```
 
-## [Components](#table-of-contents)
+## [Components](#react)
 Each component tends to go in its own file.
 
 ```javascript
@@ -221,7 +221,7 @@ function HelloReact(){
 export default HelloReact
 ```
 
-### [CSS in Components](#table-of-contents)
+### [CSS in Components](#react)
 
 ```javascript
 // You can also set the className to style in css or put the css in the component itself
@@ -249,7 +249,7 @@ function Card() {
 export default Card;
 ```
 
-### [Props](#table-of-contents)
+### [Props](#react)
 Props are arguments into react components.
 
 Data in the parent components is passed to the child component through arguments/props.
@@ -314,7 +314,7 @@ Attributes can be set with {}s or ""s
   - `className={/*JavaScript*/}`
   - `className="string"`
 
-#### [Props as embedded children](#table-of-contents)
+#### [Props as embedded children](#react)
 React allows you to pass JSX as an embedded argument into components and which can be used with `props.children`
 
 ```javascript
@@ -334,7 +334,7 @@ export default function Component(props){
 }
 ```
 
-## [Conditional Rendering](#table-of-contents)
+## [Conditional Rendering](#react)
 Since you can't put if statements in JSX you have to use ternary operators
 
 ```javascript
@@ -354,7 +354,7 @@ Since you can't put if statements in JSX you have to use ternary operators
   )}
 ```
 
-### [React Router](#table-of-contents)
+### [React Router](#react)
 Conditionally render content based upon what's in the url filepath.
 
 Ex:
@@ -405,7 +405,7 @@ export default function Routes(){
 | useParams     | Get the parameters of the url                     |
 | useRouteMatch |                                                   |
 
-#### [useParams](#table-of-contents)
+#### [useParams](#react)
 
 ```javascript
 // Example path: /user/:id
@@ -424,7 +424,7 @@ export default User(){
 }
 ```
 
-## [Map function in React](#table-of-contents)
+## [Map function in React](#react)
 Map in react allows you to render more than 1 of the same element.
 
 Since map returns an array it gets converted. forEach doesn't return anything so it won't work.
@@ -458,7 +458,7 @@ It can also be useful to skip any values that aren't valid.
 - Switching components or removing them from the DOM causes the destruction of their state
   - Unless they have the same key value in a map function
 
-## [Event handling in React](#table-of-contents)
+## [Event handling in React](#react)
 Events in react are done thought attributes.
 
 ```javascript
@@ -493,7 +493,7 @@ function Component(){
 | onContextMenu |             |
 | onTouchStart  |             |
 
-## [Tailwind in React](#table-of-contents)
+## [Tailwind in React](#react)
 
 1. `npm install tailwindcss postcss autoprefixer --save-dev`
 2. Generate Tailwind Css config files `npx tailwindcss init -p`
@@ -514,7 +514,7 @@ function Component(){
 @tailwind utilities;
 ```
 
-### [Changing Tailwind with State](#table-of-contents)
+### [Changing Tailwind with State](#react)
 
 Tailwind will only include classes with the full name of that class meaning you cannot use string concatenation inside a className.
 
@@ -539,7 +539,7 @@ const width = "200px"
 // This will work
 ```
 
-## [Forms in React](#table-of-contents)
+## [Forms in React](#react)
 States are used to update the values in forms as to allow for setState to update the form.
 
 If you didn't have `value={state}` then the values in the form won't be set with `setState("")` and instead be left to their original inputs.
@@ -597,7 +597,7 @@ function Form() {
 export default Form;
 ```
 
-## [Testing with vite](#table-of-contents)
+## [Testing with vite](#react)
 vitest
 npx vitest
 happy-dom
@@ -634,7 +634,7 @@ ReactDOM.render(<App />, document.querySelector("#root")) // Puts app component 
 ReactDOM.unmountComponentAtNode(container)
 ```
 
-## [setTimeout in React](#table-of-contents)
+## [setTimeout in React](#react)
 
 ```javascript
 import { useEffect } from "react"
@@ -651,7 +651,7 @@ export default function Component(){
 }
 ```
 
-## [awaiting a react component](#table-of-contents)
+## [awaiting a react component](#react)
 
 ```javascript
 // This component awaits for the return value from awaitFunc before loading

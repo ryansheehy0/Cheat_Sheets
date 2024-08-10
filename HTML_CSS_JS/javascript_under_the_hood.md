@@ -21,34 +21,30 @@
 # JavaScript Under the Hood
 Javascript is single threaded language. The thread has a call stack and memory heap. This cheat sheet goes through how those things work and other things on how javascript works under the hood.
 
-## Table of Contents
-
 <!-- TOC -->
 
-- [JavaScript Under the Hood](#javascript-under-the-hood)
-	- [Table of Contents](#table-of-contents)
-	- [LIFO/FIFO](#lifofifo)
-	- [Call Stack](#call-stack)
-		- [Example 1](#example-1)
-		- [Example 2](#example-2)
-	- [Callback Queue and Event Loop](#callback-queue-and-event-loop)
-	- [Global and Function Execution Context](#global-and-function-execution-context)
-	- [Use Strick](#use-strick)
-	- [Useful terms](#useful-terms)
-	- [Closures](#closures)
-		- [Var/Let trick question](#varlet-trick-question)
-	- [Big O Notation](#big-o-notation)
-	- [Progressive Web Apps PWAs](#progressive-web-apps-pwas)
-		- [Manifest](#manifest)
-		- [Service worker](#service-worker)
-			- [Push notifications](#push-notifications)
-		- [Importing and Exporting](#importing-and-exporting)
-	- [Lighthouse](#lighthouse)
-	- [Client-Server Folder Layout](#client-server-folder-layout)
+- [LIFO/FIFO](#lifofifo)
+- [Call Stack](#call-stack)
+	- [Example 1](#example-1)
+	- [Example 2](#example-2)
+- [Callback Queue and Event Loop](#callback-queue-and-event-loop)
+- [Global and Function Execution Context](#global-and-function-execution-context)
+- [Use Strick](#use-strick)
+- [Useful terms](#useful-terms)
+- [Closures](#closures)
+	- [Var/Let trick question](#varlet-trick-question)
+- [Big O Notation](#big-o-notation)
+- [Progressive Web Apps PWAs](#progressive-web-apps-pwas)
+	- [Manifest](#manifest)
+	- [Service worker](#service-worker)
+		- [Push notifications](#push-notifications)
+	- [Importing and Exporting](#importing-and-exporting)
+- [Lighthouse](#lighthouse)
+- [Client-Server Folder Layout](#client-server-folder-layout)
 
 <!-- /TOC -->
 
-## [LIFO/FIFO](#table-of-contents)
+## [LIFO/FIFO](#javascript-under-the-hood)
 **LIFO** - Last in first out.
 - The last thing added is going to be the first thing out.
 - Like a stack of plates where you take one from the top.
@@ -57,10 +53,10 @@ Javascript is single threaded language. The thread has a call stack and memory h
 - The first thing added is going to be the first thing out.
 - Like a queue of people. The person who was first in line gets pulled out first.
 
-## [Call Stack](#table-of-contents)
+## [Call Stack](#javascript-under-the-hood)
 The call stack is LIFO and is a list of functions that need to be ran. The bottom is always the Global Execution Context.
 
-### [Example 1](#table-of-contents)
+### [Example 1](#javascript-under-the-hood)
 
 ```javascript
 function first(){console.log("first")}
@@ -79,7 +75,7 @@ third -> | second     | -> first
          | Global EV  |
 ```
 
-### [Example 2](#table-of-contents)
+### [Example 2](#javascript-under-the-hood)
 When you have functions inside functions it is added to the call stack.
 
 ```javascript
@@ -107,7 +103,7 @@ first()
 | first      |
 | Global EC  |
 
-## [Callback Queue and Event Loop](#table-of-contents)
+## [Callback Queue and Event Loop](#javascript-under-the-hood)
 [This](https://www.youtube.com/watch?v=8aGhZQkoFbQ&list=WL&index=3) is a good resource.
 
 When an `async` function is called it runs synchronously like any other function. If an `await` is encountered, it passes the code to the webAPI or the NodeAPI.
@@ -120,12 +116,12 @@ The event loop checks if the callback stack is empty. If it is empty it checks f
 
 The synchronous functions always have higher priority than any function in the callback queue.
 
-## [Global and Function Execution Context](#table-of-contents)
+## [Global and Function Execution Context](#javascript-under-the-hood)
 The global execution context is the outermost scope in JS.
 
 The function execution context is created when a function is invoked and variables declared in the function can only be used in the function.
 
-## [Use Strick](#table-of-contents)
+## [Use Strick](#javascript-under-the-hood)
 Use strick is used to convert bad syntax to errors.
 
 To use use strick you can either put `"use strick"` at the top of your js file or put `"use strick"` at the top of functions to just use strick for that function.
@@ -138,16 +134,16 @@ To use use strick you can either put `"use strick"` at the top of your js file o
 - `this` is undefined for functions that aren't methods
 - Can't use `with` or `eval` keyword
 
-## [Useful terms](#table-of-contents)
+## [Useful terms](#javascript-under-the-hood)
 
 | Term                   | Definition                                  |
 |------------------------|---------------------------------------------|
 | Higher order functions | Functions with other functions as arguments |
 | Shallow copy           | Pass by reference                           |
 | Deep copy              | Pass by value                               |
-| Lexical Envurornemrn   |                                             |
+| Lexical Environnement  |                                             |
 
-## [Closures](#table-of-contents)
+## [Closures](#javascript-under-the-hood)
 Closures are functions that are returned from another function, that allow you to access private variables in the outer function.
 
 When a function is returned a closure, in the backend, is made which holds the private variables.
@@ -167,7 +163,7 @@ function bankAccount() {
 
 Factory functions are like closures, but are given arguments.
 
-### [Var/Let trick question](#table-of-contents)
+### [Var/Let trick question](#javascript-under-the-hood)
 
 ```javascript
 // var is scoped to the global scope therefore it doesn't change closures
@@ -184,7 +180,7 @@ for(var i = 0; i < 3; i++){
 // This will output 3 3 3
 ```
 
-## [Big O Notation](#table-of-contents)
+## [Big O Notation](#javascript-under-the-hood)
 Because an increasingly complex computer can run any algorithm faster, in order to compare algorithms we use a standard notation called Big O Notation.
 
 Big O Notation removes any constants and only accounts for the number of inputs so you don't have to worry about different computers.
@@ -200,7 +196,7 @@ The Big O of a nested for loop in another for loop is O(n^2)
 
 Big O notation is always the worst case scenario
 
-## [Progressive Web Apps (PWAs)](#table-of-contents)
+## [Progressive Web Apps (PWAs)](#javascript-under-the-hood)
 A progressive web app(PWA) is a web application that performs like a native app.
 - Installable on the device
   - Run in a headless browser
@@ -242,7 +238,7 @@ if("contacts" in navigator && "ContactsManager" in window){
 // etc
 ```
 
-### [Manifest](#table-of-contents)
+### [Manifest](#javascript-under-the-hood)
 Meta data and settings for the PWA.
 
 https://developer.mozilla.org/en-US/docs/Web/Manifest/
@@ -286,7 +282,7 @@ const WebpackPwaManifest = require('webpack-pwa-manifest')
   })
 ```
 
-### [Service worker](#table-of-contents)
+### [Service worker](#javascript-under-the-hood)
 The service worker is a separate thread that runs in the background which allows for offline functionality, push notification, and background synchronization(app keeps running even if its not on the screen).
 
 The 3 steps for service worker.
@@ -367,9 +363,9 @@ self.addEventListener("fetch", event => {
 })
 ```
 
-#### [Push notifications](#table-of-contents)
+#### [Push notifications](#javascript-under-the-hood)
 
-### [Importing and Exporting](#table-of-contents)
+### [Importing and Exporting](#javascript-under-the-hood)
 
 ```javascript
 // You can either import the defaulted export(without the {}s) or just the exported value(with the {}s)
@@ -388,12 +384,12 @@ export const obj ={
 }
 ```
 
-## [Lighthouse](#table-of-contents)
+## [Lighthouse](#javascript-under-the-hood)
 Test the performance, accessability, SEO, and other things for your web app.
 
 Inspect element and Lighthouse tab.
 
-## [Client-Server Folder Layout](#table-of-contents)
+## [Client-Server Folder Layout](#javascript-under-the-hood)
 You want to separate the package.json/dependencies into separate client and server side for organization reasons.
 
 ```

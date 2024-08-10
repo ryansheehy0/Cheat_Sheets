@@ -32,57 +32,54 @@ selector{
 */
 ```
 
-## Table of contents
 <!-- TOC -->
 
-- [Cascading Style SheetsCSS](#cascading-style-sheetscss)
-	- [Table of contents](#table-of-contents)
-	- [Miscellaneous](#miscellaneous)
-	- [Background](#background)
-		- [Linear Gradient](#linear-gradient)
-	- [Text](#text)
-	- [Sizing](#sizing)
-		- [Box Sizing](#box-sizing)
-	- [Margin/Padding/Border/Outline](#marginpaddingborderoutline)
-		- [Border Styles](#border-styles)
-	- [Positioning](#positioning)
-		- [Static](#static)
-		- [Relative](#relative)
-		- [Absolute](#absolute)
-		- [Fixed](#fixed)
-		- [Sticky](#sticky)
-	- [Display](#display)
-		- [Flex](#flex)
-			- [flex-wrap](#flex-wrap)
-			- [flex-direction](#flex-direction)
-			- [justify/align -content/-items/-self](#justifyalign--content-items-self)
-		- [Grid](#grid)
-			- [Grid Template](#grid-template)
-				- [Grid Template Areas](#grid-template-areas)
-	- [Overflow](#overflow)
-	- [Visibility](#visibility)
-	- [Units](#units)
-	- [Adaptive Screen Width](#adaptive-screen-width)
-	- [Transform](#transform)
-		- [Transform Functions](#transform-functions)
-	- [Pseudo Classes/Elements](#pseudo-classeselements)
-		- [Pseudo Classes](#pseudo-classes)
-			- [Custom JavaScript Pseudo Class](#custom-javascript-pseudo-class)
-		- [Pseudo Elements](#pseudo-elements)
-	- [CSS Reset](#css-reset)
-	- [CSS Selectors](#css-selectors)
-		- [CSS Combinators](#css-combinators)
-		- [CSS Attribute Selectors](#css-attribute-selectors)
-		- [Selector Specificity](#selector-specificity)
-	- [Variables in CSS](#variables-in-css)
-	- [JASS](#jass)
-	- [How to hide scrollbar](#how-to-hide-scrollbar)
-	- [Tailwind](#tailwind)
-		- [Resetting button styling](#resetting-button-styling)
+- [Miscellaneous](#miscellaneous)
+- [Background](#background)
+	- [Linear Gradient](#linear-gradient)
+- [Text](#text)
+- [Sizing](#sizing)
+	- [Box Sizing](#box-sizing)
+- [Margin/Padding/Border/Outline](#marginpaddingborderoutline)
+	- [Border Styles](#border-styles)
+- [Positioning](#positioning)
+	- [Static](#static)
+	- [Relative](#relative)
+	- [Absolute](#absolute)
+	- [Fixed](#fixed)
+	- [Sticky](#sticky)
+- [Display](#display)
+	- [Flex](#flex)
+		- [flex-wrap](#flex-wrap)
+		- [flex-direction](#flex-direction)
+		- [justify/align -content/-items/-self](#justifyalign--content-items-self)
+	- [Grid](#grid)
+		- [Grid Template](#grid-template)
+			- [Grid Template Areas](#grid-template-areas)
+- [Overflow](#overflow)
+- [Visibility](#visibility)
+- [Units](#units)
+- [Adaptive Screen Width](#adaptive-screen-width)
+- [Transform](#transform)
+	- [Transform Functions](#transform-functions)
+- [Pseudo Classes/Elements](#pseudo-classeselements)
+	- [Pseudo Classes](#pseudo-classes)
+		- [Custom JavaScript Pseudo Class](#custom-javascript-pseudo-class)
+	- [Pseudo Elements](#pseudo-elements)
+- [CSS Reset](#css-reset)
+- [CSS Selectors](#css-selectors)
+	- [CSS Combinators](#css-combinators)
+	- [CSS Attribute Selectors](#css-attribute-selectors)
+	- [Selector Specificity](#selector-specificity)
+- [Variables in CSS](#variables-in-css)
+- [JASS](#jass)
+- [How to hide scrollbar](#how-to-hide-scrollbar)
+- [Tailwind](#tailwind)
+	- [Resetting button styling](#resetting-button-styling)
 
 <!-- /TOC -->
 
-## [Miscellaneous](#table-of-contents)
+## [Miscellaneous](#cascading-style-sheetscss)
 - Everything in CSS is a box.
 - Browser can use GPU to render things.
 - `margin: 0 auto;`
@@ -96,7 +93,7 @@ selector{
 - `box-shadow: h-offset v-offset blur spread color inset;`
     - inset creates and inset shadow so it appears to be inside the element.
 
-## [Background](#table-of-contents)
+## [Background](#cascading-style-sheetscss)
 
 | CSS Name                                                                | What it does                                                       |
 |-------------------------------------------------------------------------|--------------------------------------------------------------------|
@@ -108,13 +105,13 @@ selector{
 | background-position                                                     | Sets the position of the background image. Usually `center center` |
 | background: linear-gradient(direction, color stop 1, color stop 2, ...) | Creates a gradient that can be between 2 or more colors.           |
 
-### [Linear Gradient](#table-of-contents)
+### [Linear Gradient](#cascading-style-sheetscss)
 - Direction
     - to top/right/bottom/left
     - They can be combined. Ex: `to top right`
     - Angles can be used.
 
-## [Text](#table-of-contents)
+## [Text](#cascading-style-sheetscss)
 
 | CSS Name        | What it does                                                                                            |
 |-----------------|---------------------------------------------------------------------------------------------------------|
@@ -129,7 +126,7 @@ selector{
 | line-height     | Specifies the height of the line. This includes vertical spacing between lines and highlighting height. |
 | user-select     | Controls if the user can select/highlight the text.                                                     |
 
-## [Sizing](#table-of-contents)
+## [Sizing](#cascading-style-sheetscss)
 
 | CSS Name      | What it does                                                             |
 |---------------|--------------------------------------------------------------------------|
@@ -147,7 +144,7 @@ In order for a percentage height or width to work properly, the parent container
 - `height: fit-content;` means the height changes based upon the content up to the size of its parent container.
     - The element's overflow property will take into effect.
 
-### [Box Sizing](#table-of-contents)
+### [Box Sizing](#cascading-style-sheetscss)
 `box-sizing:` is used to control how the width and height are calculated, taking into account the element's padding and border.
 
 |             |                                                        |
@@ -155,7 +152,7 @@ In order for a percentage height or width to work properly, the parent container
 | content-box | The default value. width/height changes the content.   |
 | border-box  | width/height changes the content, padding, and border. |
 
-## [Margin/Padding/Border/Outline](#table-of-contents)
+## [Margin/Padding/Border/Outline](#cascading-style-sheetscss)
 
 ```
 -----------------------------------
@@ -181,7 +178,7 @@ In order for a percentage height or width to work properly, the parent container
 border: {size} {style} {color};
 ```
 
-### [Border Styles](#table-of-contents)
+### [Border Styles](#cascading-style-sheetscss)
 
 ```
 border-style: {type}
@@ -202,22 +199,26 @@ border-left-style: {type}
 - none
 - hidden
 
-## [Positioning](#table-of-contents)
+## [Positioning](#cascading-style-sheetscss)
 
 `position: {type}`
 
-### [Static](#table-of-contents)
+### [Static](#cascading-style-sheetscss)
 Default behavior.
-### [Relative](#table-of-contents)
+
+### [Relative](#cascading-style-sheetscss)
 Relative to the normal position. Allows for top, right, bottom, left. Doesn't change the other elements. Still in the document flow.
-### [Absolute](#table-of-contents)
+
+### [Absolute](#cascading-style-sheetscss)
 Moves relative to the nearest position ancestor or the body if none is specified. In order to position to the nearest ancestor it needs to have a `position: relative`. Take it out of the flow of the document. Other elements ignore it.
-### [Fixed](#table-of-contents)
+
+### [Fixed](#cascading-style-sheetscss)
 Moves relative to the view port.
-### [Sticky](#table-of-contents)
+
+### [Sticky](#cascading-style-sheetscss)
 Absolute positioning, but will stick to the side of the screen if the content moves.
 
-## [Display](#table-of-contents)
+## [Display](#cascading-style-sheetscss)
 
 `display: {display name}`
 
@@ -229,7 +230,7 @@ Absolute positioning, but will stick to the side of the screen if the content mo
 | inline-block | Block of text but stuff can be on either side. Not styled the same as the other inline stuff. |
 | initial      | Reverts the display to its defualt state.                                                     |
 
-### [Flex](#table-of-contents)
+### [Flex](#cascading-style-sheetscss)
 Put `display: flex;` on parent.
 - On parent is referring to the element that is containing the flex elements
 - On child is referring to the element that the flex is being applied to.
@@ -256,18 +257,18 @@ Each wrap creates a new item. The content includes all the items/lines.
 |----------------------------------------------|-------------------------------------------------------------------------------------------|-----------------------|
 | flex: {flex-grow} {flex-shrink} {flex-basis} | flex-basis is the initial size of the flex item before any available space is distributed.| On child              |
 
-#### [flex-wrap](#table-of-contents)
+#### [flex-wrap](#cascading-style-sheetscss)
 - wrap
 - wrap-reverse
 
-#### [flex-direction](#table-of-contents)
+#### [flex-direction](#cascading-style-sheetscss)
 Can change the main axis and the cross axis.
 - row
 - row-reverse
 - column
 - column-reverse
 
-#### [justify/align -content/-items/-self](#table-of-contents)
+#### [justify/align -content/-items/-self](#cascading-style-sheetscss)
 - center
 - left
 - right
@@ -281,7 +282,7 @@ Can change the main axis and the cross axis.
 Flex box froggy Game
     - https://flexboxfroggy.com/
 
-### [Grid](#table-of-contents)
+### [Grid](#cascading-style-sheetscss)
 Similar to flex-box/display flex, but for 2 dimensions instead of 1.
 
 Put `display: grid` on parent.
@@ -310,7 +311,7 @@ Example:
 }
 ```
 
-#### [Grid Template](#table-of-contents)
+#### [Grid Template](#cascading-style-sheetscss)
 - Fractional units can be used to set the grid templates to take up the available space.
 
 ```
@@ -323,7 +324,7 @@ div{
 - The repeat command can be used instead of writing out all the lengths one at a time. `repeat(4, 100px)` is the same as `100px 100px 100px 100px`.
 - `grid-auto-rows: minmax(150px, auto)` can be used to prevent overflows.
 
-##### [Grid Template Areas](#table-of-contents)
+##### [Grid Template Areas](#cascading-style-sheetscss)
 Used to define named grid areas in a grid container.
 
 ```
@@ -340,7 +341,7 @@ div div{
 
 ```
 
-## [Overflow](#table-of-contents)
+## [Overflow](#cascading-style-sheetscss)
 Overflow controls what happens when content overflows the boundaries. Use `overflow: property value` to set the overflow type.
 
 | property value | Description                                                                   |
@@ -352,7 +353,7 @@ Overflow controls what happens when content overflows the boundaries. Use `overf
 
 - You can use `overflow-x:` or `overflow-y` to set the overflow property per axis.
 
-## [Visibility](#table-of-contents)
+## [Visibility](#cascading-style-sheetscss)
 
 `visibility: {visibility name}`
 
@@ -361,7 +362,7 @@ Overflow controls what happens when content overflows the boundaries. Use `overf
 | visible         | Default.                          |
 | hidden          | Hides an element. Takes up space. |
 
-## [Units](#table-of-contents)
+## [Units](#cascading-style-sheetscss)
 
 |     |                             |
 |-----|-----------------------------|
@@ -371,7 +372,7 @@ Overflow controls what happens when content overflows the boundaries. Use `overf
 | vh  | Screen height               |
 | rem | Relative to root font size usually defined by the browser. |
 
-## [Adaptive Screen Width](#table-of-contents)
+## [Adaptive Screen Width](#cascading-style-sheetscss)
 
 ```
 // Change css when screen width is 1000px or less
@@ -386,18 +387,18 @@ or
 
 You can also do min-height or max-height
 
-## [Transform](#table-of-contents)
+## [Transform](#cascading-style-sheetscss)
 `transform: {function}`
 
-### [Transform Functions](#table-of-contents)
+### [Transform Functions](#cascading-style-sheetscss)
 - skew(deg) or skew(x, y) or skewX() or skewY()
 - rotate(deg)
 - scale(x) or scale(x, y) or scaleX() or scaleY()
 - translateX() or translateY() or translate(x, y)
 
-## [Pseudo Classes/Elements](#table-of-contents)
+## [Pseudo Classes/Elements](#cascading-style-sheetscss)
 
-### [Pseudo Classes](#table-of-contents)
+### [Pseudo Classes](#cascading-style-sheetscss)
 Pseudo classes allow you to style an element based on a specific state or condition.
 
 Pseudo classes take the format of {selector}:{pseudo-class}
@@ -419,7 +420,7 @@ These are the most common pseudo classes.
 - not()
     - Negation selector
 
-#### [Custom JavaScript Pseudo Class](#table-of-contents)
+#### [Custom JavaScript Pseudo Class](#cascading-style-sheetscss)
 The JavaScript is used to create a custom state or condition.
 
 ```
@@ -442,7 +443,7 @@ myClassElements.forEach((element) => {
 }
 ```
 
-### [Pseudo Elements](#table-of-contents)
+### [Pseudo Elements](#cascading-style-sheetscss)
 In order for the pseudo elements to show the content has to be set. Usually `content: ""`
 
 Pseudo elements have the format of {selector}::{pseudo-element-name}
@@ -457,12 +458,12 @@ These are the most common pseudo element.
     - after
         - Inserts content after the element.
 
-## [CSS Reset](#table-of-contents)
+## [CSS Reset](#cascading-style-sheetscss)
 The browser applies some CSS by default. The CSS reset is used to remove this default CSS so that your website will look the same on all browsers.
 
 Your custom CSS has to be applied after the CSS reset so that the custom CSS overwrites the CSS reset.
 
-## [CSS Selectors](#table-of-contents)
+## [CSS Selectors](#cascading-style-sheetscss)
 CSS selectors are used to select an element in order to apply styling to it.
 
 |                  |                                                 |
@@ -475,7 +476,7 @@ CSS selectors are used to select an element in order to apply styling to it.
 | element, element | Selects all elements of both elements           |
 | *                | Selects all elements of any type                |
 
-### [CSS Combinators](#table-of-contents)
+### [CSS Combinators](#cascading-style-sheetscss)
 CSS combinators are special characters that are used to select specific elements with relations to another element.
 
 |       |                                                          |
@@ -504,7 +505,7 @@ div + p     /* Selects Par 3*/
 div ~ p     /* Selects Par 3 and Par 3*/
 ```
 
-### [CSS Attribute Selectors](#table-of-contents)
+### [CSS Attribute Selectors](#cascading-style-sheetscss)
 CSS attribute selectors select elements based upon attributes and attribute values.
 
 |                       |                                                                                                      |
@@ -549,7 +550,7 @@ CSS attribute selectors select elements based upon attributes and attribute valu
 }
 ```
 
-### [Selector Specificity](#table-of-contents)
+### [Selector Specificity](#cascading-style-sheetscss)
 - The CSS selector that is more specific will be applied.
     - Specificity is calculated based upon 4 components in the order of more specificity to less specificity.
         - !important is the most specific. `property: property value !important;`
@@ -580,7 +581,7 @@ h1 {
 }
 ```
 
-## [Variables in CSS](#table-of-contents)
+## [Variables in CSS](#cascading-style-sheetscss)
 
 ```
 /* Declare vars*/
@@ -611,11 +612,11 @@ document.documentElement.style.setProperty("--var", "10px")
 }
 ```
 
-## [JASS](#table-of-contents)
+## [JASS](#cascading-style-sheetscss)
 
 Often times a jass.css file is used which has a lot of CSS utility classes which can be added and removed with JS to apply custom CSS easily.
 
-## [How to hide scrollbar](#table-of-contents)
+## [How to hide scrollbar](#cascading-style-sheetscss)
 
 ```javascript
 .remove-scrollbar {
@@ -627,6 +628,6 @@ Often times a jass.css file is used which has a lot of CSS utility classes which
 }
 ```
 
-## [Tailwind](#table-of-contents)
+## [Tailwind](#cascading-style-sheetscss)
 
-### [Resetting button styling](#table-of-contents)
+### [Resetting button styling](#cascading-style-sheetscss)

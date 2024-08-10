@@ -34,43 +34,40 @@ XML allows you to define your own custom elements and attributes, but in order t
 
 The `xmlns:xlink="http://www.w3.org/1999/xlink"` attribute allow you to use links and use in your svg.
 
-## Table of Contents
 <!-- TOC -->
 
-- [SVGs](#svgs)
-	- [Table of Contents](#table-of-contents)
-	- [Width, Height, and viewBox attributes](#width-height-and-viewbox-attributes)
-	- [Attributes for all SVG elements](#attributes-for-all-svg-elements)
-		- [stroke-dasharray and stroke-dashoffset](#stroke-dasharray-and-stroke-dashoffset)
-		- [transform](#transform)
-	- [Line](#line)
-	- [Rectangle](#rectangle)
-	- [Polygon](#polygon)
-	- [Polyline](#polyline)
-	- [Circle](#circle)
-	- [Ellipse](#ellipse)
-	- [Path](#path)
-	- [Text](#text)
-	- [Text path](#text-path)
-	- [Group](#group)
-	- [Link](#link)
-	- [Use](#use)
-	- [defs](#defs)
-	- [Image](#image)
-	- [ClipPath](#clippath)
-	- [Mask](#mask)
-	- [Linear Gradient](#linear-gradient)
-	- [Radial Gradient](#radial-gradient)
-	- [Pattern](#pattern)
-	- [Filter](#filter)
-	- [Information Elements](#information-elements)
-		- [Metadata](#metadata)
-		- [Description](#description)
-		- [Title](#title)
+- [Width, Height, and viewBox attributes](#width-height-and-viewbox-attributes)
+- [Attributes for all SVG elements](#attributes-for-all-svg-elements)
+	- [stroke-dasharray and stroke-dashoffset](#stroke-dasharray-and-stroke-dashoffset)
+	- [transform](#transform)
+- [Line](#line)
+- [Rectangle](#rectangle)
+- [Polygon](#polygon)
+- [Polyline](#polyline)
+- [Circle](#circle)
+- [Ellipse](#ellipse)
+- [Path](#path)
+- [Text](#text)
+- [Text path](#text-path)
+- [Group](#group)
+- [Link](#link)
+- [Use](#use)
+- [defs](#defs)
+- [Image](#image)
+- [ClipPath](#clippath)
+- [Mask](#mask)
+- [Linear Gradient](#linear-gradient)
+- [Radial Gradient](#radial-gradient)
+- [Pattern](#pattern)
+- [Filter](#filter)
+- [Information Elements](#information-elements)
+	- [Metadata](#metadata)
+	- [Description](#description)
+	- [Title](#title)
 
 <!-- /TOC -->
 
-## [Width, Height, and viewBox attributes](#table-of-contents)
+## [Width, Height, and viewBox attributes](#svgs)
 
 The width and height properties define the width and height of the viewPort. The viewPort allows you to see a portion of an svg. Like looking through a window.
 - The default units for width and height are pixels.
@@ -84,7 +81,7 @@ When defining the viewBox attribute it uses this format: `viewBox="min-x min-y w
 	- with/height < width/height attributes then zoom int
 - You should only use the viewBox attribute when the width and height attributes are defined.
 
-## [Attributes for all SVG elements](#table-of-contents)
+## [Attributes for all SVG elements](#svgs)
 - fill: Defines the fill color
 - stroke: Defines the stroke color
 - stroke-width
@@ -96,7 +93,7 @@ When defining the viewBox attribute it uses this format: `viewBox="min-x min-y w
 	- onclick, onmouseover, onmouseout, onload, etc
 - accessible rich internet applications(aria-)
 
-### [stroke-dasharray and stroke-dashoffset](#table-of-contents)
+### [stroke-dasharray and stroke-dashoffset](#svgs)
 **stroke-dasharray** is an array of values which defines the lengths of alternating dashes and gaps. It follows the pattern of line length then gap length.
 
 - Ex 1: `stroke-dasharray="10 5"` line length of 10 followed by gap length of 5. This repeats for the whole SVG element.
@@ -104,7 +101,7 @@ When defining the viewBox attribute it uses this format: `viewBox="min-x min-y w
 
 **stroke-dashoffset** rotates the lines and gaps. If it's positive it rotates it clockwise, if negative counter clockwise.
 
-### [transform](#table-of-contents)
+### [transform](#svgs)
 
 - translate(x, y)
 	- Moves the svg according to the top left
@@ -122,13 +119,13 @@ The order of transforms matters
 - `transform="rotate(45) translate(10, 10)`
 	- Rotates from the original origin and then translates. The translation is also rotated.
 
-## [Line](#table-of-contents)
+## [Line](#svgs)
 `<line x1="" y1="" x2="" y2=""/>`
 
-## [Rectangle](#table-of-contents)
+## [Rectangle](#svgs)
 `<rect x="" y="" width="" height="" />`
 
-## [Polygon](#table-of-contents)
+## [Polygon](#svgs)
 Used to create a closed shape by connecting the first and last points.
 
 - Polygon automatically connects the first and last points.
@@ -138,18 +135,18 @@ Used to create a closed shape by connecting the first and last points.
 - Lines are drawn at each of the points.
 - Ex: `<polygon points="10,10 10,50 50,50"/>` draws a triangle
 
-## [Polyline](#table-of-contents)
+## [Polyline](#svgs)
 Used to create an open shape. There is no connecting between the last and first points.
 
 `<polyline points="x1,y1 x2,y2 x3,y3 />`
 
-## [Circle](#table-of-contents)
+## [Circle](#svgs)
 `<circle cx="" cy="" r="" />`
 
-## [Ellipse](#table-of-contents)
+## [Ellipse](#svgs)
 `<ellipse cx="" cy="" rx="" ry="" />`
 
-## [Path](#table-of-contents)
+## [Path](#svgs)
 Used to draw lines, arcs, quadratics, and cubic bezier curves.
 
 - The path element used a virtual pen. Move the pen then draw with the pen. When a drawing element is used, it moves the virtual pen.
@@ -186,7 +183,7 @@ Used to draw lines, arcs, quadratics, and cubic bezier curves.
 "/>
 ```
 
-## [Text](#table-of-contents)
+## [Text](#svgs)
 
 ```HTML
 <text x="" y="">
@@ -204,7 +201,7 @@ You can have other attributes:
 
 Tspan is used to style text independently from the other text.
 
-## [Text path](#table-of-contents)
+## [Text path](#svgs)
 Sets a path where text can be rendered. This allows text to be curved.
 
 ```HTML
@@ -213,7 +210,7 @@ Sets a path where text can be rendered. This allows text to be curved.
 </text>
 ```
 
-## [Group](#table-of-contents)
+## [Group](#svgs)
 The group elements allows you to group different svg elements together in order to style them together.
 
 ```HTML
@@ -222,7 +219,7 @@ The group elements allows you to group different svg elements together in order 
 </g>
 ```
 
-## [Link](#table-of-contents)
+## [Link](#svgs)
 Allows you to have a hyperlink inside your svg. You need the xmlns:xlink attribute set in your svg in order for this to work.
 
 ```HTML
@@ -231,12 +228,12 @@ Allows you to have a hyperlink inside your svg. You need the xmlns:xlink attribu
 </a>
 ```
 
-## [Use](#table-of-contents)
+## [Use](#svgs)
 References another SVG element defined with the id attribute. You need the xmlns:xlink attribute set in your svg in order for this to work.
 
 `<use xlink:href="#existingElement" />`
 
-## [defs](#table-of-contents)
+## [defs](#svgs)
 Defines reusable SVG elements. In order to give the definition a nation you have to use the id attribute.
 
 ```HTML
@@ -249,12 +246,12 @@ Defines reusable SVG elements. In order to give the definition a nation you have
 <ellipse cx="100" cy="70" rx="85" ry="55" fill="url(#grad1)" />
 ```
 
-## [Image](#table-of-contents)
+## [Image](#svgs)
 Displays raster images
 
 `<image x="" y="" width="" height="" href="" />`
 
-## [ClipPath](#table-of-contents)
+## [ClipPath](#svgs)
 Creates a path which can hide or show portions of other elements.
 
 ```HTML
@@ -263,7 +260,7 @@ Creates a path which can hide or show portions of other elements.
 </clipPath>
 ```
 
-## [Mask](#table-of-contents)
+## [Mask](#svgs)
 Defines an image mask which can hide or show portions of other elements.
 
 ```HTML
@@ -274,7 +271,7 @@ Defines an image mask which can hide or show portions of other elements.
 
 What is the difference between clipPath and mask?
 
-## [Linear Gradient](#table-of-contents)
+## [Linear Gradient](#svgs)
 
 ```HTML
 <linearGradient x1="0%" y1="0%" x2="100%" y2="0%">
@@ -287,7 +284,7 @@ What is the difference between clipPath and mask?
 - x2 and y2 define the end point
 - The linear gradient flows from the first point to the end point
 
-## [Radial Gradient](#table-of-contents)
+## [Radial Gradient](#svgs)
 
 ```HTML
 <radialGradient cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
@@ -298,7 +295,7 @@ What is the difference between clipPath and mask?
 
 What is fx and fy?
 
-## [Pattern](#table-of-contents)
+## [Pattern](#svgs)
 A pattern element which can be redrawn at repeated x and y coordinates intervals(tiled).
 
 ```HTML
@@ -311,7 +308,7 @@ A pattern element which can be redrawn at repeated x and y coordinates intervals
 <circle cx="50" cy="50" r="50" fill="url(#star)" />
 ```
 
-## [Filter](#table-of-contents)
+## [Filter](#svgs)
 Apply a filter, defined by grouping filter primitives, to svg elements.
 
 ```HTML
@@ -342,9 +339,9 @@ Apply a filter, defined by grouping filter primitives, to svg elements.
 | feTile              |             |
 | feTurbulence        |             |
 
-## [Information Elements](#table-of-contents)
+## [Information Elements](#svgs)
 
-### [Metadata](#table-of-contents)
+### [Metadata](#svgs)
 
 ```HTML
 <metadata>
@@ -352,11 +349,11 @@ Apply a filter, defined by grouping filter primitives, to svg elements.
 </metadata>
 ```
 
-### [Description](#table-of-contents)
+### [Description](#svgs)
 
 `<desc>This is an example SVG document.</desc>`
 
-### [Title](#table-of-contents)
+### [Title](#svgs)
 
 `<title>SVG Document Title</title>`
 

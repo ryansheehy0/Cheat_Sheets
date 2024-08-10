@@ -21,30 +21,26 @@
 # Vim commands
 - This will only cover the commands I use the most
 
-## Table of Contents
-
 <!-- TOC -->
 
-- [Vim commands](#vim-commands)
-	- [Table of Contents](#table-of-contents)
-	- [Movement](#movement)
-	- [Save/Quit](#savequit)
-	- [Comment/Uncomment](#commentuncomment)
-	- [Increment numbers](#increment-numbers)
-	- [Uppercase and Lowercase](#uppercase-and-lowercase)
-	- [Modes](#modes)
-	- [Delete](#delete)
-	- [Change](#change)
-	- [Undo and redo](#undo-and-redo)
-	- [Copy, Paste, and Cut](#copy-paste-and-cut)
-	- [Find on page/Search](#find-on-pagesearch)
-		- [Special characters in replace](#special-characters-in-replace)
-	- [Macros](#macros)
-	- [Swp files](#swp-files)
+- [Movement](#movement)
+- [Save/Quit](#savequit)
+- [Comment/Uncomment](#commentuncomment)
+- [Increment numbers](#increment-numbers)
+- [Uppercase and Lowercase](#uppercase-and-lowercase)
+- [Modes](#modes)
+- [Delete](#delete)
+- [Change](#change)
+- [Undo and redo](#undo-and-redo)
+- [Copy, Paste, and Cut](#copy-paste-and-cut)
+- [Find on page/Search](#find-on-pagesearch)
+	- [Special characters in replace](#special-characters-in-replace)
+- [Macros](#macros)
+- [Swp files](#swp-files)
 
 <!-- /TOC -->
 
-## [Movement](#table-of-contents)
+## [Movement](#vim-commands)
 
 |            |                                           |
 |------------|-------------------------------------------|
@@ -68,7 +64,7 @@
 | g + $      | End of line without the line break        |
 | e          | Move to the end of a word                 |
 
-## [Save/Quit](#table-of-contents)
+## [Save/Quit](#vim-commands)
 
 |      |                       |
 |------|-----------------------|
@@ -77,7 +73,7 @@
 | :wq  | save and quit         |
 | :wq! | force a save and quit |
 
-## [Comment/Uncomment](#table-of-contents)
+## [Comment/Uncomment](#vim-commands)
 
 |           |              |
 |-----------|--------------|
@@ -85,7 +81,7 @@
 | shift + i | comment      |
 | esc       |              |
 
-## [Increment numbers](#table-of-contents)
+## [Increment numbers](#vim-commands)
 
 |                                     |                                            |
 |-------------------------------------|--------------------------------------------|
@@ -96,14 +92,14 @@
 | select numbers then g then ctrl + a | progressively increment. 1 2 3 4 etc.      |
 | select number then g then ctrl + x  | progressively decrement. 4 3 2 1 etc.      |
 
-## [Uppercase and Lowercase](#table-of-contents)
+## [Uppercase and Lowercase](#vim-commands)
 
 |                       |           |
 |-----------------------|-----------|
 | select then shift + u | Uppercase |
 | select then u         | Lowercase |
 
-## [Modes](#table-of-contents)
+## [Modes](#vim-commands)
 
 |     |                              |
 |-----|------------------------------|
@@ -114,14 +110,14 @@
 | esc | back to command/normal mode  |
 | v   | visual mode                  |
 
-## [Delete](#table-of-contents)
+## [Delete](#vim-commands)
 
 |    |                                               |
 |----|-----------------------------------------------|
 | dd | delete line and copy line to default register |
 | x  | delete where your cursor is at                |
 
-## [Change](#table-of-contents)
+## [Change](#vim-commands)
 
 |           |                |
 |-----------|----------------|
@@ -129,7 +125,7 @@
 | c + i + w | change in word |
 | r         | replace letter |
 
-## [Undo and redo](#table-of-contents)
+## [Undo and redo](#vim-commands)
 
 |          |                    |
 |----------|--------------------|
@@ -137,7 +133,7 @@
 | ctrl + r | redo               |
 | .        | redo command again |
 
-## [Copy, Paste, and Cut](#table-of-contents)
+## [Copy, Paste, and Cut](#vim-commands)
 
 |              |                               |
 |--------------|-------------------------------|
@@ -148,7 +144,7 @@
 | " + char + p | paste from char register      |
 | " + +        | clipboard register            |
 
-## [Find on page/Search](#table-of-contents)
+## [Find on page/Search](#vim-commands)
 
 |                                     |                                                                      |
 |-------------------------------------|----------------------------------------------------------------------|
@@ -164,21 +160,21 @@
 | s/\\(.\\)$/\1 add to end of lines/g | Add something to the end of selected lines                           |
 | s/\\(^.*$\\)$/Begin \1 End/g        | Add something to beginning and  end of selected lines                |
 
-### [Special characters in replace](#table-of-contents)
+### [Special characters in replace](#vim-commands)
 
 |      |                                   |
 |------|-----------------------------------|
 | `\r` | New line                          |
 | `\u` | Uppercase the following character |
 
-## [Macros](#table-of-contents)
+## [Macros](#vim-commands)
 
 |                      |                                 |
 |----------------------|---------------------------------|
 | q + macro + keys + q | record keys and put it in macro |
 | @ + macro            | play macro                      |
 
-## [Swp files](#table-of-contents)
+## [Swp files](#vim-commands)
 
 |           |                                                                                                                     |
 |-----------|---------------------------------------------------------------------------------------------------------------------|

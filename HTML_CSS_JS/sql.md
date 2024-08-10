@@ -21,52 +21,45 @@
 # SQL
 A programming language to manage relational databases.
 
-# Table of Contents
-
 <!-- TOC -->
 
-- [SQL](#sql)
-- [Table of Contents](#table-of-contents)
-- [Relational Databases](#relational-databases)
-	- [Atomicity Consistency Isolation DurabilityACID](#atomicity-consistency-isolation-durabilityacid)
-	- [Attribute Properties](#attribute-properties)
-		- [Data types](#data-types)
-- [Structured Query LanguageSQL](#structured-query-languagesql)
-	- [Database Commands](#database-commands)
-	- [Table Commands](#table-commands)
-	- [Insert Command](#insert-command)
-	- [Select Command](#select-command)
-	- [Update Command](#update-command)
-	- [Deleting Elements](#deleting-elements)
-	- [Where](#where)
-		- [Like](#like)
-	- [Join](#join)
-		- [Cross Join](#cross-join)
-		- [Inner Join](#inner-join)
-		- [Outer Join](#outer-join)
-			- [Full Outer Join](#full-outer-join)
-			- [Left Outer Join](#left-outer-join)
-			- [Right Outer Join](#right-outer-join)
-		- [Natural Join](#natural-join)
-		- [Excluding Join](#excluding-join)
-			- [Outer Excluding Join](#outer-excluding-join)
-			- [Left Excluding Join](#left-excluding-join)
-			- [Right Excluding Join](#right-excluding-join)
-		- [Dereferencing](#dereferencing)
-	- [Functions](#functions)
-	- [Group By](#group-by)
-		- [Having](#having)
-	- [Alias Tables](#alias-tables)
-	- [Variables](#variables)
-	- [Indexes](#indexes)
-	- [Types of Relationships](#types-of-relationships)
-- [Relational Database Management SystemRDBMS](#relational-database-management-systemrdbms)
-	- [MySQL](#mysql)
-		- [Installation](#installation)
+- [Atomicity Consistency Isolation DurabilityACID](#atomicity-consistency-isolation-durabilityacid)
+- [Attribute Properties](#attribute-properties)
+	- [Data types](#data-types)
+- [Database Commands](#database-commands)
+- [Table Commands](#table-commands)
+- [Insert Command](#insert-command)
+- [Select Command](#select-command)
+- [Update Command](#update-command)
+- [Deleting Elements](#deleting-elements)
+- [Where](#where)
+	- [Like](#like)
+- [Join](#join)
+	- [Cross Join](#cross-join)
+	- [Inner Join](#inner-join)
+	- [Outer Join](#outer-join)
+		- [Full Outer Join](#full-outer-join)
+		- [Left Outer Join](#left-outer-join)
+		- [Right Outer Join](#right-outer-join)
+	- [Natural Join](#natural-join)
+	- [Excluding Join](#excluding-join)
+		- [Outer Excluding Join](#outer-excluding-join)
+		- [Left Excluding Join](#left-excluding-join)
+		- [Right Excluding Join](#right-excluding-join)
+	- [Dereferencing](#dereferencing)
+- [Functions](#functions)
+- [Group By](#group-by)
+	- [Having](#having)
+- [Alias Tables](#alias-tables)
+- [Variables](#variables)
+- [Indexes](#indexes)
+- [Types of Relationships](#types-of-relationships)
+- [MySQL](#mysql)
+	- [Installation](#installation)
 
 <!-- /TOC -->
 
-# [Relational Databases](#table-of-contents)
+# [Relational Databases](#sql)
 Relational databases organize things into tables with each element in the table having a unique id/primary key. Elements in these tables can connect to elements from other tables by having a column of that connection's unique id.
 
 Rows are called elements and columns are called attributes. Each cell contains one value of a specific data type.
@@ -97,7 +90,7 @@ Table 2
 - A **query** is a search in the database in order to read information.
 - **Create Read Update Delete(CRUD)** are the 4 main operation when dealing with databases.
 
-## [Atomicity Consistency Isolation Durability(ACID)](#table-of-contents)
+## [Atomicity Consistency Isolation Durability(ACID)](#sql)
 One of the fundamental guarantees a transaction(Sequence of CRUD operations) must satisfy for a database.
 
 **Atomicity** means that a transaction either executes entirely or not at all. If part of the transaction doesn't work then the database is not changed.
@@ -108,7 +101,7 @@ One of the fundamental guarantees a transaction(Sequence of CRUD operations) mus
 
 **Durability** means that once a database is changed those changes will persist and not be lost. This may include some form of backups.
 
-## [Attribute Properties](#table-of-contents)
+## [Attribute Properties](#sql)
 Attributes(columns) have various properties that define their behavior/internal rules.
 
 - **Nullable** defines if an attribute contain NULL value or not.
@@ -118,7 +111,7 @@ Attributes(columns) have various properties that define their behavior/internal 
 - **Auto Increment** allows the column to automatically generate a unique value and is often used for primary keys.
 - **Unsigned** used for numerical data types and decides if they can have signed or unsigned values.
 
-### [Data types](#table-of-contents)
+### [Data types](#sql)
 
 | Most Common Data Types | Description                                                        |
 |------------------------|--------------------------------------------------------------------|
@@ -143,7 +136,7 @@ time DATETIME DEFAULT CURRENT_TIMESTAMP,
 
 VARCHAR(255) is often used over TEXT because it takes up less space.
 
-# [Structured Query Language(SQL)](#table-of-contents)
+# [Structured Query Language(SQL)](#sql)
 SQL is a language used to interact with relational databases. Tends to retrieve data very fast.
 
 - SQL keywords are not case sensitive, however capital letters for the commands are recommended.
@@ -152,7 +145,7 @@ SQL is a language used to interact with relational databases. Tends to retrieve 
 - Commands in SQL end in semi-columns. ;s
 - `--`s and `/**/`s are used for comments in SQL
 
-## [Database Commands](#table-of-contents)
+## [Database Commands](#sql)
 
 ```SQL
 -- Creating a new database
@@ -176,7 +169,7 @@ DROP DATABASE IF EXISTS sample_db;
 CREATE DATABASE sample_db;
 ```
 
-## [Table Commands](#table-of-contents)
+## [Table Commands](#sql)
 
 ```SQL
 -- Creating 2 new table
@@ -216,7 +209,7 @@ DESCRIBE table_name;
 DROP TABLE table_name;
 ```
 
-## [Insert Command](#table-of-contents)
+## [Insert Command](#sql)
 
 ```SQL
 -- Adding elements
@@ -226,7 +219,7 @@ VALUES
   ('2nd element in column 1', NULL);
 ```
 
-## [Select Command](#table-of-contents)
+## [Select Command](#sql)
 
 ```SQL
 -- Gets all attributes and all elements for that table.
@@ -272,7 +265,7 @@ UNION ( -- Adds onto another query
 );
 ```
 
-## [Update Command](#table-of-contents)
+## [Update Command](#sql)
 
 ```SQL
 -- Updating elements
@@ -281,7 +274,7 @@ SET column_1 = 'name'
 WHERE id = 1;
 ```
 
-## [Deleting Elements](#table-of-contents)
+## [Deleting Elements](#sql)
 
 ```SQL
 -- Deletes the first element from a table
@@ -292,7 +285,7 @@ WHERE id = 1;
 DELETE FROM table_name;
 ```
 
-## [Where](#table-of-contents)
+## [Where](#sql)
 Used to filter rows/elements based upon specific conditions.
 
 | Operator | Description              |
@@ -310,7 +303,7 @@ Used to filter rows/elements based upon specific conditions.
 | BETWEEN  | BETWEEN 2000 AND 2018;   |
 | LIKE     | Search for pattern.      |
 
-### [Like](#table-of-contents)
+### [Like](#sql)
 `LIKE` is used to search for a specific string pattern.
 
 `%` means zero or more characters.
@@ -327,7 +320,7 @@ SELECT * FROM customers
 WHERE customer_name LIKE '_____' OR customer_name = 'Bob';
 ```
 
-## [Join](#table-of-contents)
+## [Join](#sql)
 The JOIN command is used to get data from 2 or more tables.
 
 Types of JOIN commands:
@@ -363,7 +356,7 @@ tableB
 | C    | cucumber |
 | D    | dill     |
 
-### [Cross Join](#table-of-contents)
+### [Cross Join](#sql)
 For every row in tableB all rows from tableA are added.
 
 ```SQL
@@ -391,7 +384,7 @@ CROSS JOIN tableB;
 | 1    | apple    | D    | dill     |
 
 
-### [Inner Join](#table-of-contents)
+### [Inner Join](#sql)
 Mergers only the matching rows in both tables.
 
 By default join is an inner join.
@@ -413,9 +406,9 @@ ON tableA.name = tableB.name;
 |    1 | apple    | A    | apple    |
 |    4 | cucumber | C    | cucumber |
 
-### [Outer Join](#table-of-contents)
+### [Outer Join](#sql)
 
-#### [Full Outer Join](#table-of-contents)
+#### [Full Outer Join](#sql)
 Returns matched and unmatched rows from both tables. If there is no match the other side will contain null.
 
 ```SQL
@@ -441,7 +434,7 @@ WHERE tableA.name IS NULL;
 | NULL | NULL     | B    | banana   |
 | NULL | NULL     | D    | dill     |
 
-#### [Left Outer Join](#table-of-contents)
+#### [Left Outer Join](#sql)
 Returns all rows from the left table(tableA) with the matching rows from the right table(tableB) or null.
 
 ```SQL
@@ -457,7 +450,7 @@ ON tableA.name = tableB.name;
 | 3    | tomato   | NULL | NULL     |
 | 4    | cucumber | C    | cucumber |
 
-#### [Right Outer Join](#table-of-contents)
+#### [Right Outer Join](#sql)
 Returns all rows from the right table(tableB) with the matching rows from the left table(tableA) or null.
 
 ```SQL
@@ -473,7 +466,7 @@ ON tableA.name = tableB.name;
 | NULL | NULL     | B    | banana   |
 | NULL | NULL     | D    | dill     |
 
-### [Natural Join](#table-of-contents)
+### [Natural Join](#sql)
 Columns with the same values appear only once.
 
 ```SQL
@@ -486,9 +479,9 @@ NATURAL JOIN tableB;
 | apple    |    1 | A    |
 | cucumber |    4 | C    |
 
-### [Excluding Join](#table-of-contents)
+### [Excluding Join](#sql)
 
-#### [Outer Excluding Join](#table-of-contents)
+#### [Outer Excluding Join](#sql)
 Returns all the rows in tableA and tableB that don't match.
 
 ```SQL
@@ -505,7 +498,7 @@ WHERE tableA.name IS NULL tableB.name IS NULL;
 | NULL | NULL     | B    | banana   |
 | NULL | NULL     | D    | dill     |
 
-#### [Left Excluding Join](#table-of-contents)
+#### [Left Excluding Join](#sql)
 Returns all the rows in tableA that don't match any rows in tableB.
 
 ```SQL
@@ -520,7 +513,7 @@ WHERE tableB.name IS NULL;
 | 2    | orange   | NULL | NULL     |
 | 3    | tomato   | NULL | NULL     |
 
-#### [Right Excluding Join](#table-of-contents)
+#### [Right Excluding Join](#sql)
 Returns all the rows in tableB that don't match any rows in tableA.
 
 ```SQL
@@ -535,7 +528,7 @@ WHERE tableA.name IS NULL;
 | NULL | NULL     | B    | banana   |
 | NULL | NULL     | D    | dill     |
 
-### [Dereferencing](#table-of-contents)
+### [Dereferencing](#sql)
 You can use join to dereference references. Whenever you have columns with the same name for different tables you need to specify which one you are referring to.
 
 ```SQL
@@ -555,7 +548,7 @@ This returns the table:
 | 4    | 'Nightmare'               | 2010         | 'Avenged Sevenfold' |
 ```
 
-## [Functions](#table-of-contents)
+## [Functions](#sql)
 Functions are almost always slower than doing checks(=, !=, >, <, etc) with hard coded data values. This is because the database can quickly find the row in which the hard coded data is in.
 
 | Name         | Type        | Description                                  |
@@ -592,7 +585,7 @@ SELECT COUNT(release_year) FROM albums;
   -- 4
 ```
 
-## [Group By](#table-of-contents)
+## [Group By](#sql)
 Takes all the rows and groups them by a single column. If there are 2 rows that have the same value in a column group by combines them.
 
 This is often used with `COUNT` in order to count how many rows are in each column.
@@ -613,7 +606,7 @@ This returns the table:
 
 ```
 
-### [Having](#table-of-contents)
+### [Having](#sql)
 The `HAVING` is the same as where, but happens after the `GROUP BY` so you can use data before an aggravate function.
 
 ```SQL
@@ -625,7 +618,7 @@ GROUP BY b.id
 HAVING num_albums = 1;
 ```
 
-## [Alias Tables](#table-of-contents)
+## [Alias Tables](#sql)
 Alias tables are temporary names given to a table or column in order to resolve naming conflicts.
 
 This is often used to de-reference an internal reference in a table.
@@ -641,7 +634,7 @@ FROM bands b
 LEFT JOIN albums a;
 ```
 
-## [Variables](#table-of-contents)
+## [Variables](#sql)
 You can have variables(user defined values) in sql by using the `@` symbol.
 
 ```SQL
@@ -650,7 +643,7 @@ SET @var = 1;
 SELECT @var FROM table_name; -- Gets teh 1st column from table_name
 ```
 
-## [Indexes](#table-of-contents)
+## [Indexes](#sql)
 Indexes are used to speed up queries in exchange for taking up more memory and increasing times to create data.
 
 ```SQL
@@ -693,7 +686,7 @@ Is x == 5?
         etc.
 ```
 
-## [Types of Relationships](#table-of-contents)
+## [Types of Relationships](#sql)
 - One-to-One
   - One row in a table is associated with exactly one row in another table. This is enforced with unique.
   - Ex: A `User` has one `Profile` and a `Profile` belongs to one `User`
@@ -704,17 +697,17 @@ Is x == 5?
   - An intermediate table(junction table) that has columns which references both tables. This junction table is used to link the 2 tables.
   - Ex: `Students` can belong to many `Courses` and each `Course` can have many `Students`
 
-# [Relational Database Management System(RDBMS)](#table-of-contents)
+# [Relational Database Management System(RDBMS)](#sql)
 A special software program used to create and maintain a database.
 
 Databases are usually kept on separate servers than your http endpoints(NodeJS and Express) because it is much easier to scale the database, secure the database, backup and recover the database, etc.
 
-## [MySQL](#table-of-contents)
+## [MySQL](#sql)
 The default port for MySQL is 3306.
 
 `SOURCE schema.sql` allows you to run a sql file in MySQL.
 
-### [Installation](#table-of-contents)
+### [Installation](#sql)
 1. `sudo apt update`
 1. `sudo apt install mysql-server`
 1. `sudo mysql -u root -p`

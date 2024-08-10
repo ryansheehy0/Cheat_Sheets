@@ -23,22 +23,19 @@
 Useful features for more advanced searches in google search engine.
 - You can use ()s to group together certain operations
 
-## Table of Contents
 <!-- TOC -->
 
-- [Advanced Google Searches](#advanced-google-searches)
-	- [Table of Contents](#table-of-contents)
-	- [Matching Operators](#matching-operators)
-	- [Date Operators](#date-operators)
-	- [Source Operators](#source-operators)
-	- [Boolean operators](#boolean-operators)
-	- [INURL/Title/Text/Anchor Operators](#inurltitletextanchor-operators)
-	- [Utility Operators](#utility-operators)
-	- [Links](#links)
+- [Matching Operators](#matching-operators)
+- [Date Operators](#date-operators)
+- [Source Operators](#source-operators)
+- [Boolean operators](#boolean-operators)
+- [INURL/Title/Text/Anchor Operators](#inurltitletextanchor-operators)
+- [Utility Operators](#utility-operators)
+- [Links](#links)
 
 <!-- /TOC -->
 
-## [Matching Operators](#table-of-contents)
+## [Matching Operators](#advanced-google-searches)
 
 | Operator              | Description                                                                                                 |
 |-----------------------|-------------------------------------------------------------------------------------------------------------|
@@ -49,7 +46,7 @@ Useful features for more advanced searches in google search engine.
 
 - The wildcard(*) is useful when you have a local directory that you want to exclude in your search.
 
-## [Date Operators](#table-of-contents)
+## [Date Operators](#advanced-google-searches)
 
 | Operator | Description                   |
 |----------|-------------------------------|
@@ -60,7 +57,7 @@ Useful features for more advanced searches in google search engine.
 - You can also specify a range with `...`. Ex: `2016...2018`
   - These don't have to be used for dates. Ex: `"top 7...10 fact"`
 
-## [Source Operators](#table-of-contents)
+## [Source Operators](#advanced-google-searches)
 
 | Operator         | Description                                                 |
 |------------------|-------------------------------------------------------------|
@@ -70,14 +67,14 @@ Useful features for more advanced searches in google search engine.
 | blogurl:name.net | Filters by blogs of that site                               |
 | cache:name.net   | If the site is down it gets the cached version of the site. |
 
-## [Boolean operators](#table-of-contents)
+## [Boolean operators](#advanced-google-searches)
 
 | Operator | Description                                                            |
 |----------|------------------------------------------------------------------------|
 | OR       | Searches for something or something else. This increases your results. |
 | AND | |
 
-## [IN(URL/Title/Text/Anchor) Operators](#table-of-contents)
+## [IN(URL/Title/Text/Anchor) Operators](#advanced-google-searches)
 
 | Operator  | Description                         |
 |-----------|-------------------------------------|
@@ -89,7 +86,7 @@ Useful features for more advanced searches in google search engine.
 - `allin` can be used instead of `in` and it means it only contains the results with all of the following terms.
   - Ex: `allintitle:this is an example` only results with `this is an example` in the title
 
-## [Utility Operators](#table-of-contents)
+## [Utility Operators](#advanced-google-searches)
 
 
 | Operator         | Description                                  |
@@ -105,7 +102,7 @@ Useful features for more advanced searches in google search engine.
 | calc             | Pulls up calculator                          |
 | tip calculator | |
 
-## [Links](#table-of-contents)
+## [Links](#advanced-google-searches)
 - https://images.google.com/
   - Reverse image search -> Click the colored camera
 - https://scholar.google.com/

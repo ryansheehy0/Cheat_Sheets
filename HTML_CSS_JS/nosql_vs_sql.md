@@ -22,14 +22,10 @@
 
 This will be coving the styles of NoSQL and SQL databases and not any particular databases or querying languages.
 
-## Table of Contents
 <!-- TOC -->
 
-- [NoSQL vs SQL](#nosql-vs-sql)
-	- [Table of Contents](#table-of-contents)
-	- [Deep vs Broad](#deep-vs-broad)
-	- [Reading](#reading)
-- [For heavily nested data it is easier to do CRUD operations with NoSQL](#for-heavily-nested-data-it-is-easier-to-do-crud-operations-with-nosql)
+- [Deep vs Broad](#deep-vs-broad)
+- [Reading](#reading)
 
 <!-- /TOC -->
 

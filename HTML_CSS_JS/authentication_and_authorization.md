@@ -41,28 +41,25 @@ In order for the server to make sure the Session ID isn't tamped with, the serve
 
 If an attack were to try to change the Session ID, because they don't have the server's Secret Key, they cannot generate the right hash and thus they won't be authorized.
 
-## Table of Contents
 <!-- TOC -->
 
-- [Authentication And Authorization](#authentication-and-authorization)
-	- [Table of Contents](#table-of-contents)
-	- [Cookies](#cookies)
-	- [JSON Web TokensJWTs](#json-web-tokensjwts)
-		- [Using JWTs on the Server](#using-jwts-on-the-server)
-		- [Using JWTs on the Client](#using-jwts-on-the-client)
+- [Cookies](#cookies)
+- [JSON Web TokensJWTs](#json-web-tokensjwts)
+	- [Using JWTs on the Server](#using-jwts-on-the-server)
+	- [Using JWTs on the Client](#using-jwts-on-the-client)
 
 <!-- /TOC -->
 
 Express Sessions
 
-## [Cookies](#table-of-contents)
+## [Cookies](#authentication-and-authorization)
 Cookies are just a way for the client to store information that is then automatically sent back to the server upon requests.
 
 This is useful for authorization because you don't have to manually send the session ID.
 
 Sometimes cookies aren't preferable to local storage because the cookies are sent on every request, event requests that might not need it.
 
-## [JSON Web Tokens(JWTs)](#table-of-contents)
+## [JSON Web Tokens(JWTs)](#authentication-and-authorization)
 JWT is only used for authorization.
 
 With JWTs, instead of the server storing the user's session info, the JWT itself caries all the user's session information.
@@ -116,7 +113,7 @@ HMACSHA256(
 )
 ```
 
-### [Using JWTs on the Server](#table-of-contents)
+### [Using JWTs on the Server](#authentication-and-authorization)
 `npm install jsonwebtoken`
 
 ```javascript
@@ -142,7 +139,7 @@ function verifyJWT(token){ // Sees if the token is valid
 module.exports = createJWT
 ```
 
-### [Using JWTs on the Client](#table-of-contents)
+### [Using JWTs on the Client](#authentication-and-authorization)
 
 ```javascript
 

@@ -20,14 +20,11 @@
 
 # Ui Component Libraries
 
-## Table of Contents
 <!-- TOC -->
 
-- [Ui Component Libraries](#ui-component-libraries)
-	- [Table of Contents](#table-of-contents)
-	- [Shadcn UI](#shadcn-ui)
-		- [Installation with Solid JS](#installation-with-solid-js)
-	- [Material UIMUI](#material-uimui)
+- [Shadcn UI](#shadcn-ui)
+	- [Installation with Solid JS](#installation-with-solid-js)
+- [Material UIMUI](#material-uimui)
 
 <!-- /TOC -->
 

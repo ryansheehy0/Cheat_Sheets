@@ -25,23 +25,20 @@ Zod is a typescript validator which checks for types at runtime.
 
 When using zod just include `import { z } from 'zod'`
 
-## Table of Contents
 <!-- TOC -->
 
-- [Zod](#zod)
-	- [Table of Contents](#table-of-contents)
-	- [DataTypes](#datatypes)
-	- [Coerce](#coerce)
-	- [Parsing](#parsing)
-	- [Infer](#infer)
-	- [String validations](#string-validations)
-	- [Number validations](#number-validations)
-	- [Objects](#objects)
-	- [Arrays](#arrays)
+- [DataTypes](#datatypes)
+- [Coerce](#coerce)
+- [Parsing](#parsing)
+- [Infer](#infer)
+- [String validations](#string-validations)
+- [Number validations](#number-validations)
+- [Objects](#objects)
+- [Arrays](#arrays)
 
 <!-- /TOC -->
 
-## [DataTypes](#table-of-contents)
+## [DataTypes](#zod)
 
 | Data Types      | Description                                                                              |
 |-----------------|------------------------------------------------------------------------------------------|
@@ -79,7 +76,7 @@ const nullableString = stringSchema.nullable()
 nullableString.unwrap() === stringSchema // true
 ```
 
-## [Coerce](#table-of-contents)
+## [Coerce](#zod)
 Zod allows input variables to be easily converted to the type.
 
 ```javascript
@@ -89,7 +86,7 @@ schema.parse(12) // => "12"
 schema.parse(true) // => "true"
 ```
 
-## [Parsing](#table-of-contents)
+## [Parsing](#zod)
 Parsing allows you to check if a variable or value of of that type at runtime.
 
 ```javascript
@@ -106,12 +103,12 @@ schema.safeParse(var)
   */
 ```
 
-## [Infer](#table-of-contents)
+## [Infer](#zod)
 Used to infer the typescript type from a zod schema.
 
 `z.infer<typeof Schema>`
 
-## [String validations](#table-of-contents)
+## [String validations](#zod)
 These are used to add some more limitations to strings. `z.string().validation()` or `z.string().transformation()`
 
 | .validation()       | Description                                                                                 |
@@ -141,7 +138,7 @@ You can also do some transformation with strings.
 You can also put error message if the parse fails
 `z.string().min(5, { message: "Must be 5 or more characters long" })`
 
-## [Number validations](#table-of-contents)
+## [Number validations](#zod)
 
 | .validation()            | Description                                                                |
 |--------------------------|----------------------------------------------------------------------------|
@@ -158,7 +155,7 @@ You can also put error message if the parse fails
 | z.number().finite()      | Not Infinity or -Infinity                                                  |
 | z.number().safe()        | This ensures that ints don't go outside the range their memory can handle. |
 
-## [Objects](#table-of-contents)
+## [Objects](#zod)
 
 ```javascript
 // All properties are required by default
@@ -184,7 +181,7 @@ const Dog = z.object({
 | .strip()               | Reset object schema to default behavior when parsing                                |
 | .catchall(schema)      | Allows anything of the type schema to pass through                                  |
 
-## [Arrays](#table-of-contents)
+## [Arrays](#zod)
 
 | Array methods | Description                         |
 |---------------|-------------------------------------|

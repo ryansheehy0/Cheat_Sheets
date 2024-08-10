@@ -21,19 +21,15 @@
 # Search Algorithms
 Search algorithms find the index of a specific value in an array. If the value is not found, they return -1.
 
-## Table of Contents
-
 <!-- TOC -->
 
-- [Search Algorithms](#search-algorithms)
-	- [Table of Contents](#table-of-contents)
-	- [Linear Search](#linear-search)
-	- [Binary Search](#binary-search)
-	- [Interpolation Search](#interpolation-search)
+- [Linear Search](#linear-search)
+- [Binary Search](#binary-search)
+- [Interpolation Search](#interpolation-search)
 
 <!-- /TOC -->
 
-## [Linear Search](#table-of-contents)
+## [Linear Search](#search-algorithms)
 Linear search goes through each element and checks to see if it's the value.
 - O(n) linear time
   - Slow for large input sizes
@@ -50,7 +46,7 @@ function linearSearch(arr, value){
 }
 ```
 
-## [Binary Search](#table-of-contents)
+## [Binary Search](#search-algorithms)
 Binary search splits the search space in half depending if the middle of the array is less than or grater than the value. This repeats until the middle equals the value.
 - O(log n)
   - Slow for small input sizes
@@ -79,7 +75,7 @@ function binarySearch(arr, value){
 }
 ```
 
-## [Interpolation Search](#table-of-contents)
+## [Interpolation Search](#search-algorithms)
 Interpolation search is binary search, but instead of checking the center it makes an educated guess(probe) where the value would be in the input.
 
 This best guess(probe) is gotten by using linear interpolation.

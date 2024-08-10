@@ -21,20 +21,16 @@
 # Sort Algorithms
 Sorting algorithms take in an array and sorts them from lowest to highest, highest to lowest, alphabetical, or any other such way.
 
-## Table of Contents
-
 <!-- TOC -->
 
-- [Sort Algorithms](#sort-algorithms)
-	- [Table of Contents](#table-of-contents)
-	- [Common sorting algorithm](#common-sorting-algorithm)
-	- [Bubble Sort](#bubble-sort)
-	- [Selection Sort](#selection-sort)
-	- [Quick Sort](#quick-sort)
+- [Common sorting algorithm](#common-sorting-algorithm)
+- [Bubble Sort](#bubble-sort)
+- [Selection Sort](#selection-sort)
+- [Quick Sort](#quick-sort)
 
 <!-- /TOC -->
 
-## [Common sorting algorithm](#table-of-contents)
+## [Common sorting algorithm](#sort-algorithms)
 - O(n^2)
   - Bubble sort
   - Selection sort
@@ -54,7 +50,7 @@ Sorting algorithms take in an array and sorts them from lowest to highest, highe
   - Bucket sort
   - Radix Sort
 
-## [Bubble Sort](#table-of-contents)
+## [Bubble Sort](#sort-algorithms)
 Loop through each element, compares adjacent elements, and swaps them if they are in the wrong order. This continues until no more swaps are needed.
 
 ```javascript
@@ -76,7 +72,7 @@ function bubbleSort(arr){
 }
 ```
 
-## [Selection Sort](#table-of-contents)
+## [Selection Sort](#sort-algorithms)
 Finds the largest(or smallest) element in the unsorted section of the array, swaps it with the first unsorted element, and continues this gradually building a sorted portion at the beginning of the array.
 
 ```javascript
@@ -103,7 +99,7 @@ function selectionSort(arr){
 }
 ```
 
-## [Quick Sort](#table-of-contents)
+## [Quick Sort](#sort-algorithms)
 Select a pivot(usually the last element) and splits the array in two, according to whether they are less than or greater than the pivot. These sub-arrays are recursively sorted, and the results are combined to make the sorted array.
 
 ```javascript

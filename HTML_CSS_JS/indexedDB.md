@@ -50,29 +50,25 @@ IndexedDB allows for
 IDB is a library that makes it easier to work with indexedDB. Instead of callbacks it uses promises. `npm install idb`
 - idb is cross browser compliant
 
-## Table of Contents
-
 <!-- TOC -->
 
-- [IndexedDB/idb](#indexeddbidb)
-	- [Table of Contents](#table-of-contents)
-	- [Initializing DB](#initializing-db)
-		- [IndexedDB initializing](#indexeddb-initializing)
-		- [idb initializing](#idb-initializing)
-	- [CRUD Operations](#crud-operations)
-		- [Seeding data](#seeding-data)
-		- [IndexedDB CRUD](#indexeddb-crud)
-		- [idb CRUD](#idb-crud)
-	- [Indexes](#indexes)
-	- [Cursor](#cursor)
-	- [Dexie.js](#dexiejs)
-		- [Using dexie with react](#using-dexie-with-react)
+- [Initializing DB](#initializing-db)
+	- [IndexedDB initializing](#indexeddb-initializing)
+	- [idb initializing](#idb-initializing)
+- [CRUD Operations](#crud-operations)
+	- [Seeding data](#seeding-data)
+	- [IndexedDB CRUD](#indexeddb-crud)
+	- [idb CRUD](#idb-crud)
+- [Indexes](#indexes)
+- [Cursor](#cursor)
+- [Dexie.js](#dexiejs)
+	- [Using dexie with react](#using-dexie-with-react)
 
 <!-- /TOC -->
 
-## [Initializing DB](#table-of-contents)
+## [Initializing DB](#indexeddbidb)
 
-### [IndexedDB initializing](#table-of-contents)
+### [IndexedDB initializing](#indexeddbidb)
 
 ```javascript
 // Get the indexedDB which will be different depending upon the platform.
@@ -105,7 +101,7 @@ request.onupgradeneeded = function(){
 }
 ```
 
-### [idb initializing](#table-of-contents)
+### [idb initializing](#indexeddbidb)
 
 ```javascript
 import {openDB} from "idb"
@@ -124,7 +120,7 @@ async function initDB(){
 }
 ```
 
-## [CRUD Operations](#table-of-contents)
+## [CRUD Operations](#indexeddbidb)
 
 | Method Name                   | Description                                               |
 |-------------------------------|-----------------------------------------------------------|
@@ -139,7 +135,7 @@ async function initDB(){
 
 You can do `deleteObjectStore("objectStoreName")` to delete object stores.
 
-### [Seeding data](#table-of-contents)
+### [Seeding data](#indexeddbidb)
 
 ```javascript
 const data = [
@@ -159,7 +155,7 @@ data.forEach(book => {
 })
 ```
 
-### [IndexedDB CRUD](#table-of-contents)
+### [IndexedDB CRUD](#indexeddbidb)
 This is the boilerplate code needed to make any CRUD operation
 
 ```javascript
@@ -194,7 +190,7 @@ request.onerror = (event) => {
 }
 ```
 
-### [idb CRUD](#table-of-contents)
+### [idb CRUD](#indexeddbidb)
 This is the boilerplate code needed to make any CRUD operation
 
 ```javascript
@@ -231,7 +227,7 @@ async function(db){
 }
 ```
 
-## [Indexes](#table-of-contents)
+## [Indexes](#indexeddbidb)
 To get more complex queries you have to use indexes.
 
 ```javascript
@@ -247,7 +243,7 @@ const index = objectStore.index(indexName)
 objectStore.deleteIndex(indexName)
 ```
 
-## [Cursor](#table-of-contents)
+## [Cursor](#indexeddbidb)
 A cursor allows you to iterate over multiple objects in an object store or index.
 
 ```javascript
@@ -268,7 +264,7 @@ cursor.continue()
 cursor.close()
 ```
 
-## [Dexie.js](#table-of-contents)
+## [Dexie.js](#indexeddbidb)
 Dexie is a library to make working with indexedDb easier to use.
 
 `npm install dexie`
@@ -327,7 +323,7 @@ await db.table1.clear()
 await db.delete("table1")
 ```
 
-### [Using dexie with react](#table-of-contents)
+### [Using dexie with react](#indexeddbidb)
 You can have something like state in react that updates whenever the db updates.
 
 `npm install dexie-react-hooks`

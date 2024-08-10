@@ -22,24 +22,20 @@
 
 These notes help to solve the problem of a lack of comprehensive organization for web cybersecurity.
 
-## Table of Contents
-
 <!-- TOC -->
 
-- [Web Cybersecurity](#web-cybersecurity)
-	- [Table of Contents](#table-of-contents)
-	- [Need to study resources](#need-to-study-resources)
-	- [Bug Bounty Platforms](#bug-bounty-platforms)
-	- [Attacks](#attacks)
-	- [Tools](#tools)
-		- [Need to research](#need-to-research)
-		- [Websites](#websites)
-		- [Browser extensions](#browser-extensions)
-	- [Important terms](#important-terms)
+- [Need to study resources](#need-to-study-resources)
+- [Bug Bounty Platforms](#bug-bounty-platforms)
+- [Attacks](#attacks)
+- [Tools](#tools)
+	- [Need to research](#need-to-research)
+	- [Websites](#websites)
+	- [Browser extensions](#browser-extensions)
+- [Important terms](#important-terms)
 
 <!-- /TOC -->
 
-## [Need to study resources](#table-of-contents)
+## [Need to study resources](#web-cybersecurity)
 - Labs:
 	- https://app.hackinghub.io/hubs
 	- https://portswigger.net/web-security/dashboard
@@ -62,7 +58,7 @@ These notes help to solve the problem of a lack of comprehensive organization fo
 - CompTIA certificate yt channel: https://www.youtube.com/@professormesser/videos
 - IP over Carrier Pigeons: https://en.wikipedia.org/wiki/IP_over_Avian_Carriers
 
-## [Bug Bounty Platforms](#table-of-contents)
+## [Bug Bounty Platforms](#web-cybersecurity)
 - https://hackerone.com/opportunities/all
 
 - https://www.intigriti.com/
@@ -80,7 +76,7 @@ These notes help to solve the problem of a lack of comprehensive organization fo
 - BountyFactory
 - Zerocopter
 
-## [Attacks](#table-of-contents)
+## [Attacks](#web-cybersecurity)
 - Look through source code
 	- Comments with sensitive info
 	- Hidden url paths
@@ -131,9 +127,9 @@ You often need 2 accounts in order to perform certain attacks. An attacking acco
 - Stored XSS
 - IDORs
 
-## [Tools](#table-of-contents)
+## [Tools](#web-cybersecurity)
 
-### [Need to research](#table-of-contents)
+### [Need to research](#web-cybersecurity)
 - Wireshark
 - John the ripper(Brute force attacker)
 - sqlmap
@@ -172,7 +168,7 @@ You often need 2 accounts in order to perform certain attacks. An attacking acco
 - amass
 	- Finds subdomains and ip addresses used by domain
 
-### [Websites](#table-of-contents)
+### [Websites](#web-cybersecurity)
 - [URL Decoder/Encoder](https://meyerweb.com/eric/tools/dencoder/)
 - [JavaScript Deobfuscator](https://deobfuscate.io/)
 - [HTML character code table](https://www.rapidtables.com/web/html/html-codes.html)
@@ -180,7 +176,7 @@ You often need 2 accounts in order to perform certain attacks. An attacking acco
 - [Get your user agent](https://www.whatsmyua.info/)
 - [JSFuck](https://jsfuck.com/)
 
-### [Browser extensions](#table-of-contents)
+### [Browser extensions](#web-cybersecurity)
 - Google translate
 - Quick source viewer
 - React Developer Tools
@@ -189,7 +185,7 @@ You often need 2 accounts in order to perform certain attacks. An attacking acco
 - IP Address and Domain Information
 - Multiple Url Opener
 
-## [Important terms](#table-of-contents)
+## [Important terms](#web-cybersecurity)
 
 | Term       | Definition                                                                 |
 |------------|----------------------------------------------------------------------------|

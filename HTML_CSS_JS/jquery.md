@@ -31,33 +31,29 @@ A JavaScript library to make HTML document traversal and manipulation, event han
 
 See [here](https://releases.jquery.com/) for any up to date links.
 
-## Table of Contents
-
 <!-- TOC -->
 
-- [jQuery](#jquery)
-	- [Table of Contents](#table-of-contents)
-	- [Selecting Elements](#selecting-elements)
-	- [Changing HTML](#changing-html)
-	- [Modifying/Getting Contents](#modifyinggetting-contents)
-	- [Changing CSS](#changing-css)
-	- [Manipulating Attributes](#manipulating-attributes)
-	- [Handling Events](#handling-events)
-	- [Traversing the DOM](#traversing-the-dom)
-	- [Animations](#animations)
-		- [Optional Animation Arguments](#optional-animation-arguments)
-	- [AJAX Requests](#ajax-requests)
-	- [Useful Functions](#useful-functions)
-	- [jQuery UI](#jquery-ui)
-		- [Interactions](#interactions)
-			- [Droppable](#droppable)
-		- [Widgets](#widgets)
-			- [Autocomplete](#autocomplete)
-		- [Effects](#effects)
+- [Selecting Elements](#selecting-elements)
+- [Changing HTML](#changing-html)
+- [Modifying/Getting Contents](#modifyinggetting-contents)
+- [Changing CSS](#changing-css)
+- [Manipulating Attributes](#manipulating-attributes)
+- [Handling Events](#handling-events)
+- [Traversing the DOM](#traversing-the-dom)
+- [Animations](#animations)
+	- [Optional Animation Arguments](#optional-animation-arguments)
+- [AJAX Requests](#ajax-requests)
+- [Useful Functions](#useful-functions)
+- [jQuery UI](#jquery-ui)
+	- [Interactions](#interactions)
+		- [Droppable](#droppable)
+	- [Widgets](#widgets)
+		- [Autocomplete](#autocomplete)
+	- [Effects](#effects)
 
 <!-- /TOC -->
 
-## [Selecting Elements](#table-of-contents)
+## [Selecting Elements](#jquery)
 
 |             |                                                                        |
 |-------------|------------------------------------------------------------------------|
@@ -65,7 +61,7 @@ See [here](https://releases.jquery.com/) for any up to date links.
 
 It is recommended to wrap any jQuery in `$(document).ready(` or `$(function () {` so that the code only executes once the DOM has fully loaded.
 
-## [Changing HTML](#table-of-contents)
+## [Changing HTML](#jquery)
 
 |                   |                                                                           |
 |-------------------|---------------------------------------------------------------------------|
@@ -75,7 +71,7 @@ It is recommended to wrap any jQuery in `$(document).ready(` or `$(function () {
 | .remove()         | Removes the element.                                                      |
 | .empty()          | Removes all the children of the element.                                  |
 
-## [Modifying/Getting Contents](#table-of-contents)
+## [Modifying/Getting Contents](#jquery)
 
 |                |                                              |
 |----------------|----------------------------------------------|
@@ -83,7 +79,7 @@ It is recommended to wrap any jQuery in `$(document).ready(` or `$(function () {
 | .html(content) | Sets or gets the HTML content of an element. |
 | .val(value)    | Sets or gets the value of form elements.     |
 
-## [Changing CSS](#table-of-contents)
+## [Changing CSS](#jquery)
 
 |                                    |                                               |
 |------------------------------------|-----------------------------------------------|
@@ -101,14 +97,14 @@ $(selector).css({
 })
 ```
 
-## [Manipulating Attributes](#table-of-contents)
+## [Manipulating Attributes](#jquery)
 
 |                                 |                                              |
 |---------------------------------|----------------------------------------------|
 | .attr("attributeName", "value") | Sets or gets the value of an attribute.      |
 | .removeAttr(attributeName)      | Removes an attribute from selected elements. |
 
-## [Handling Events](#table-of-contents)
+## [Handling Events](#jquery)
 
 |                          |                                                      |
 |--------------------------|------------------------------------------------------|
@@ -125,7 +121,7 @@ $(Selector that is already created).on("event name", ".class", function(event){
 })
 ```
 
-## [Traversing the DOM](#table-of-contents)
+## [Traversing the DOM](#jquery)
 
 |                              |                                                     |
 |------------------------------|-----------------------------------------------------|
@@ -138,7 +134,7 @@ You can use `.eq(index)` to get the element with the index. Ex: `$("#id").childr
 
 .eq returns a jQuery instance and not a normal DOM element like with []
 
-## [Animations](#table-of-contents)
+## [Animations](#jquery)
 
 |               |                                                 |
 |---------------|-------------------------------------------------|
@@ -152,7 +148,7 @@ You can use `.eq(index)` to get the element with the index. Ex: `$("#id").childr
 | .slideUp()    | Animates the height from default to 0.          |
 | .slideToggle()    | Toggles .slideDown and .slideUp          |
 
-### [Optional Animation Arguments](#table-of-contents)
+### [Optional Animation Arguments](#jquery)
 
 ```
 $(selector).animation(duration, "easing", callback)
@@ -164,7 +160,7 @@ $(selector).animation(duration, "easing", callback)
 | easing   | Acceleration/deceleration effect of the animation.          |
 | callback | A callback function is run when the animation is completed. |
 
-## [AJAX Requests](#table-of-contents)
+## [AJAX Requests](#jquery)
 
 |                            |                                        |
 |----------------------------|----------------------------------------|
@@ -202,14 +198,14 @@ $.get("https://api.example.com/data", { id: 123 }, function(response) {});
 $.post("https://api.example.com/data", { name: "John", age: 25 }, function(response) {});
 ```
 
-## [Useful Functions](#table-of-contents)
+## [Useful Functions](#jquery)
 
 |                                              |                                                   |
 |----------------------------------------------|---------------------------------------------------|
 | $.each(element, function(index, element) {}) | Does something for each of the selected elements. |
 | location.reload()                            | Reloads the page.                                 |
 
-## [jQuery UI](#table-of-contents)
+## [jQuery UI](#jquery)
 
 [jQuery UI](https://jqueryui.com/)
 
@@ -220,7 +216,7 @@ $.post("https://api.example.com/data", { name: "John", age: 25 }, function(respo
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 ```
 
-### [Interactions](#table-of-contents)
+### [Interactions](#jquery)
 
 | Interactions  | Description                                                                         |
 |---------------|-------------------------------------------------------------------------------------|
@@ -230,7 +226,7 @@ $.post("https://api.example.com/data", { name: "John", age: 25 }, function(respo
 | .selectable() | Can select elements individually or grouped by clicking and dragging.               |
 | .sortable()   | Can drag and drop a items in a list.                                                |
 
-#### [Droppable](#table-of-contents)
+#### [Droppable](#jquery)
 
 ```
 $( "#draggable" ).draggable()
@@ -242,7 +238,7 @@ $( "#droppable" ).droppable({
 });
 ```
 
-### [Widgets](#table-of-contents)
+### [Widgets](#jquery)
 
 | Widget                    | Description                                                                     |
 |---------------------------|---------------------------------------------------------------------------------|
@@ -261,7 +257,7 @@ $( "#droppable" ).droppable({
 | .tabs()                   | Sets of tabs.                                                                   |
 | .tooltip()                | A small tooltip                                                                 |
 
-#### [Autocomplete](#table-of-contents)
+#### [Autocomplete](#jquery)
 
 ```
 var availableTags = [
@@ -276,6 +272,6 @@ $("#tags").autocomplete({
 });
 ```
 
-### [Effects](#table-of-contents)
+### [Effects](#jquery)
 
 A list of effects can be found [here](https://jqueryui.com/effect/).

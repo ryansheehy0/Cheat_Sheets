@@ -21,28 +21,24 @@
 # Sequelize
 Sequelize is an ORM(Object Relational Mappings). Sequelize is used to interaction with SQL databases using something similar to javascript objects instead of SQL.
 
-## Table of Contents
-
 <!-- TOC -->
 
-- [Sequelize](#sequelize)
-	- [Table of Contents](#table-of-contents)
-	- [Connecting](#connecting)
-		- [Syncing](#syncing)
-		- [Modals](#modals)
-		- [Associations](#associations)
-			- [Association Functions](#association-functions)
-		- [Seeding data](#seeding-data)
-		- [Querying data](#querying-data)
-			- [Arguments Querying Functions](#arguments-querying-functions)
-			- [Create Update and Destroy](#create-update-and-destroy)
-			- [Hooks](#hooks)
-	- [Sessions](#sessions)
+- [Connecting](#connecting)
+	- [Syncing](#syncing)
+	- [Modals](#modals)
+	- [Associations](#associations)
+		- [Association Functions](#association-functions)
+	- [Seeding data](#seeding-data)
+	- [Querying data](#querying-data)
+		- [Arguments Querying Functions](#arguments-querying-functions)
+		- [Create Update and Destroy](#create-update-and-destroy)
+		- [Hooks](#hooks)
+- [Sessions](#sessions)
 
 <!-- /TOC -->
 
 
-## [Connecting](#table-of-contents)
+## [Connecting](#sequelize)
 Sequelize can work with multiple different SQL databases so you need to install `mysql2` as well if you are using mysql.
 
 ./connection.js file:
@@ -63,7 +59,7 @@ const sequelize = process.env.JAWSDB_URL
 module.exports = sequelize
 ```
 
-### [Syncing](#table-of-contents)
+### [Syncing](#sequelize)
 Syncing is connecting to your sql server with sequelize.
 
 In your server file:
@@ -87,7 +83,7 @@ sequelize.sync({force: true}).then(() => {
 })
 ```
 
-### [Modals](#table-of-contents)
+### [Modals](#sequelize)
 Modals are JS classes that define a table's schema.
 
 ```javascript
@@ -166,12 +162,12 @@ const ModalName = sequelize.define('modal_name', {
 const Book = require(`./Book`) // This invokes the init method and thus connect to sequelize.
 ```
 
-### [Associations](#table-of-contents)
+### [Associations](#sequelize)
 When using references within a modal you have to use a function to define that reference. These functions define relationships between models.
 
 Association functions create a new column(or use an already existing column) that is a foreign key reference to another table.
 
-#### [Association Functions](#table-of-contents)
+#### [Association Functions](#sequelize)
 - Module1.hasOne(Module2)
   - Creates a foreign key `Module1Id` inside the `Module2` table that references the primary key of the `Module1` table.
   - `Module1Id` has to be unique inside the `Module2` table.
@@ -224,7 +220,7 @@ Courses.belongsToMany(Students, {
   })
 ```
 
-### [Seeding data](#table-of-contents)
+### [Seeding data](#sequelize)
 Seeding data is putting data into the database.
 
 ```javascript
@@ -249,7 +245,7 @@ Book.bulkCreate([
 ])
 ```
 
-### [Querying data](#table-of-contents)
+### [Querying data](#sequelize)
 
 | Function Name      | Description                                                         |
 |--------------------|---------------------------------------------------------------------|
@@ -276,7 +272,7 @@ const dishData = await Dish.findAll()
 cost dishes = dishData.map(dish => dish.get({plain: true}))
 ```
 
-#### [Arguments Querying Functions](#table-of-contents)
+#### [Arguments Querying Functions](#sequelize)
 
 | Argument   | Description                                                                          |
 |------------|--------------------------------------------------------------------------------------|
@@ -310,7 +306,7 @@ Book.findAll({
 .catch(error => console.error(error))
 ```
 
-#### [Create Update and Destroy](#table-of-contents)
+#### [Create Update and Destroy](#sequelize)
 
 ```javascript
 Book.create({
@@ -343,7 +339,7 @@ Book.destroy({
 .catch(error => console.error(error))
 ```
 
-#### [Hooks](#table-of-contents)
+#### [Hooks](#sequelize)
 Used to filter data before some modification to the database.
 
 The hook is used when creating your schema.
@@ -366,7 +362,7 @@ hooks: {
 If you are using bulk commands like `bulkCreate`, `update`, etc you have to set the property `individualHooks = true`
 
 
-## [Sessions](#table-of-contents)
+## [Sessions](#sequelize)
 Storing sessions in a database. This is useful if you need to restart you server, but you don't want to loose your session information.
 
 ```javascript

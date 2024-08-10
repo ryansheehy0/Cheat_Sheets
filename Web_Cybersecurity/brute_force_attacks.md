@@ -30,18 +30,14 @@ Select username and password
 
 Often it isn't practical to do brute force attack and that's why dictionary attacks are used instead.
 
-## Table of Contents
-
 <!-- TOC -->
 
-- [Brute Force Attacks](#brute-force-attacks)
-	- [Table of Contents](#table-of-contents)
-	- [Hydra](#hydra)
-	- [Wpscan](#wpscan)
+- [Hydra](#hydra)
+- [Wpscan](#wpscan)
 
 <!-- /TOC -->
 
-## [Hydra](#table-of-contents)
+## [Hydra](#brute-force-attacks)
 Hydra is a tool for doing dictionary attacks on websites.
 
 If an http form prevents default and submits via javascript then hydra won't work.
@@ -84,4 +80,4 @@ Example:
   sudo hydra -L ./SecLists/Usernames/top-usernames-shortlist.txt -P ./SecLists/Passwords/Leaked-Databases/rockyou-75.txt -u -f example.com http-post-form "/path:user=^USER^&password=^PASS^:F=<form name='login'"
 ```
 
-## [Wpscan](#table-of-contents)
+## [Wpscan](#brute-force-attacks)

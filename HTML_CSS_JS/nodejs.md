@@ -25,43 +25,39 @@ Somethings work differently when using JS in NodeJS then in the browser. This ch
 
 To make a file execute using node you can add `#!/usr/bin/env node` to the beginning of it.
 
-## Table Of Contents
-
 <!-- TOC -->
 
-- [NodeJS](#nodejs)
-	- [Table Of Contents](#table-of-contents)
-	- [Getting Started](#getting-started)
-	- [Node Package ManagerNPM](#node-package-managernpm)
-		- [Scripts](#scripts)
-		- [Importing](#importing)
-		- [Exporting](#exporting)
-	- [Miscellaneous](#miscellaneous)
-	- [Things that don't work](#things-that-dont-work)
-	- [this keyword](#this-keyword)
-	- [Global Variables](#global-variables)
-		- [Process](#process)
-			- [Arguments from the Terminal](#arguments-from-the-terminal)
-	- [Events](#events)
-		- [Emitting Events](#emitting-events)
-		- [Receiving Events](#receiving-events)
-	- [File System](#file-system)
-		- [Reading to Files](#reading-to-files)
-		- [Writing to Files](#writing-to-files)
-		- [Appending to Files](#appending-to-files)
-	- [Path](#path)
-	- [Node-fetch](#node-fetch)
-	- [Executing terminal commands](#executing-terminal-commands)
-	- [Debugger](#debugger)
+- [Getting Started](#getting-started)
+- [Node Package ManagerNPM](#node-package-managernpm)
+	- [Scripts](#scripts)
+	- [Importing](#importing)
+	- [Exporting](#exporting)
+- [Miscellaneous](#miscellaneous)
+- [Things that don't work](#things-that-dont-work)
+- [this keyword](#this-keyword)
+- [Global Variables](#global-variables)
+	- [Process](#process)
+		- [Arguments from the Terminal](#arguments-from-the-terminal)
+- [Events](#events)
+	- [Emitting Events](#emitting-events)
+	- [Receiving Events](#receiving-events)
+- [File System](#file-system)
+	- [Reading to Files](#reading-to-files)
+	- [Writing to Files](#writing-to-files)
+	- [Appending to Files](#appending-to-files)
+- [Path](#path)
+- [Node-fetch](#node-fetch)
+- [Executing terminal commands](#executing-terminal-commands)
+- [Debugger](#debugger)
 
 <!-- /TOC -->
 
-## [Getting Started](#table-of-contents)
+## [Getting Started](#nodejs)
 Run `node -v` to see what version of node you have. If you don't have node you can install it from [here](https://nodejs.org/en).
 
 You can run `node script.js` or `node script` to run a JS file.
 
-## [Node Package Manager(NPM)](#table-of-contents)
+## [Node Package Manager(NPM)](#nodejs)
 NPM is used to install dependencies/packages for NodeJS code.
 
 |                           |                                                                                                             |
@@ -79,7 +75,7 @@ package-lock.json locks the versions of the packages so that new version don't b
 
 - devDependencies are dependencies that are only applied when developing and not in the production release of the app.
 
-### [Scripts](#table-of-contents)
+### [Scripts](#nodejs)
 Inside the package.json
 
 ```javascript
@@ -92,7 +88,7 @@ Inside the package.json
 Running a script
 `npm run scriptName`
 
-### [Importing](#table-of-contents)
+### [Importing](#nodejs)
 To import the exported variable you can do `const module = require("./filepath.js")`
 
 In order to import from a package you do `const package = require("packageName")`
@@ -101,7 +97,7 @@ You can import json directly `const json = require("./file.json")`
 
 To use the regular importing syntax you can do `npm install @types/node --save-dev`.
 
-### [Exporting](#table-of-contents)
+### [Exporting](#nodejs)
 To export you use the module.exports object
 
 ```javascript
@@ -111,20 +107,20 @@ module.exports = {
 }
 ```
 
-## [Miscellaneous](#table-of-contents)
+## [Miscellaneous](#nodejs)
 - Functions that end in "sync" are blocking functions which means they force the other code to wait until it it done.
 - index.js is the default location for node.
     - If you run `node ./` it will look for index.js first.
 - You can exit the program without throwing an error with `process.exit(1)`
 
-## [Things that don't work](#table-of-contents)
+## [Things that don't work](#nodejs)
 - window global variable
 - alert, prompt, and confirm
 
-## [this keyword](#table-of-contents)
+## [this keyword](#nodejs)
 - In order to use the this keyword you have to be inside a function.
 
-## [Global Variables](#table-of-contents)
+## [Global Variables](#nodejs)
 
 |           |                                                                                       |
 |-----------|---------------------------------------------------------------------------------------|
@@ -135,14 +131,14 @@ module.exports = {
 | Buffer    | Used to handle binary data.                                                           |
 | __dirname | Specifies the absolute path of the currently running JS file.                         |
 
-### [Process](#table-of-contents)
+### [Process](#nodejs)
 `process.platform` get what platform the node is running on like linux.
 
 `process.env.NAME` get the environment variable called NAME
 
 `server.address().port` gets the current port the server is running on.
 
-#### [Arguments from the Terminal](#table-of-contents)
+#### [Arguments from the Terminal](#nodejs)
 process.argv is an array that contains the command-line arguments.
 
 ```
@@ -157,9 +153,10 @@ Console:
 ]
 ```
 
-## [Events](#table-of-contents)
+## [Events](#nodejs)
 
-### [Emitting Events](#table-of-contents)
+### [Emitting Events](#nodejs)
+
 ```javascript
 const { EventEmitter } = require('events')
 const eventEmitter = new EventEmitter
@@ -167,16 +164,17 @@ const eventEmitter = new EventEmitter
 eventEmitter.emit("eventName")
 ```
 
-### [Receiving Events](#table-of-contents)
+### [Receiving Events](#nodejs)
+
 ```javascript
 eventEmitter.on("eventName", () => {
 })
 ```
 
-## [File System](#table-of-contents)
+## [File System](#nodejs)
 `const fs = require('fs')` or with premisses `const fs = require('fs').promises`
 
-### [Reading to Files](#table-of-contents)
+### [Reading to Files](#nodejs)
 
 ```javascript
 const encodingType = "utf8"
@@ -193,29 +191,29 @@ async function loadFile() {
 }
 ```
 
-### [Writing to Files](#table-of-contents)
+### [Writing to Files](#nodejs)
 
 ```javascript
 fs.writeFile("./filepath.txt", "Written data", error => {error ? console.log(error) : false})
 ```
 
-### [Appending to Files](#table-of-contents)
+### [Appending to Files](#nodejs)
 
 ```javascript
 fs.appendFile("./filepath.txt", "Written data", error => {error ? console.log(error) : false})
 ```
 
-## [Path](#table-of-contents)
+## [Path](#nodejs)
 Used to make working with file paths easier.
 
 `const path = require("path")`
 
-## [Node-fetch](#table-of-contents)
+## [Node-fetch](#nodejs)
 Allows you to use the fetch function in node
 
 `const fetch = require('node-fetch')`
 
-## [Executing terminal commands](#table-of-contents)
+## [Executing terminal commands](#nodejs)
 
 ```javascript
 const {exec, execSync} = require("child_process")
@@ -229,7 +227,7 @@ const data = execSync("ls") // Outputs as buffer instead of a string
 console.log(data.toString())
 ```
 
-## [Debugger](#table-of-contents)
+## [Debugger](#nodejs)
 - Add `debugger` anywhere in your code
 - Run `node --inspect ./yourScript.js`
 - Go to the local ip given in the terminal

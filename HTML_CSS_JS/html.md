@@ -21,33 +21,29 @@
 # HTML
 - The purpose of this cheat sheet is to provide an overview of the most useful HTML elements.
 
-## Table of Contents
-
 <!-- TOC -->
 
-- [HTML](#html)
-	- [Table of Contents](#table-of-contents)
-	- [Start of HTML](#start-of-html)
-	- [Text Formatting](#text-formatting)
-	- [Linking and Embedding](#linking-and-embedding)
-		- [Map](#map)
-	- [Lists](#lists)
-	- [Tables](#tables)
-	- [Forms](#forms)
-	- [Grouping](#grouping)
-	- [Self Closing Tags](#self-closing-tags)
-	- [Comments](#comments)
-	- [Details](#details)
-	- [Dialog](#dialog)
-	- [HTML entities](#html-entities)
-	- [Attributes](#attributes)
-	- [Inline elements vs block elements](#inline-elements-vs-block-elements)
-	- [CSS in HTML](#css-in-html)
-	- [JavaScript in HTML](#javascript-in-html)
+- [Start of HTML](#start-of-html)
+- [Text Formatting](#text-formatting)
+- [Linking and Embedding](#linking-and-embedding)
+	- [Map](#map)
+- [Lists](#lists)
+- [Tables](#tables)
+- [Forms](#forms)
+- [Grouping](#grouping)
+- [Self Closing Tags](#self-closing-tags)
+- [Comments](#comments)
+- [Details](#details)
+- [Dialog](#dialog)
+- [HTML entities](#html-entities)
+- [Attributes](#attributes)
+- [Inline elements vs block elements](#inline-elements-vs-block-elements)
+- [CSS in HTML](#css-in-html)
+- [JavaScript in HTML](#javascript-in-html)
 
 <!-- /TOC -->
 
-## [Start of HTML](#table-of-contents)
+## [Start of HTML](#html)
 
 ```HTML
 <!DOCTYPE html>
@@ -68,7 +64,7 @@ You can add an favicon in the top of the tab by adding this to the head:
 <link rel="icon" href="/favicon.svg" >
 ```
 
-## [Text Formatting](#table-of-contents)
+## [Text Formatting](#html)
 
 ```HTML
 <h1>Heading</h1>        <!-- Headings from 1 to 6 -->
@@ -83,7 +79,7 @@ You can add an favicon in the top of the tab by adding this to the head:
 <mark>Highlighting</mark>
 ```
 
-## [Linking and Embedding](#table-of-contents)
+## [Linking and Embedding](#html)
 
 ```HTML
 <a href="URL/filepath">Link</a>
@@ -98,7 +94,7 @@ You can add an favicon in the top of the tab by adding this to the head:
 <embed src="/pdfFile.pdf" type="application/pdf"/>
 ```
 
-### [Map](#table-of-contents)
+### [Map](#html)
 
 Map allows you to click in specific spots inside of an image and go to a specific link.
 
@@ -112,7 +108,7 @@ Map allows you to click in specific spots inside of an image and go to a specifi
 </map>
 ```
 
-## [Lists](#table-of-contents)
+## [Lists](#html)
 
 ```HTML
 <ul>                 <!-- Unordered list -->
@@ -137,7 +133,7 @@ Map allows you to click in specific spots inside of an image and go to a specifi
 </ul>
 ```
 
-## [Tables](#table-of-contents)
+## [Tables](#html)
 
 ```HTML
 <table>              <!-- Defines a table -->
@@ -152,7 +148,7 @@ Map allows you to click in specific spots inside of an image and go to a specifi
 </table>
 ```
 
-## [Forms](#table-of-contents)
+## [Forms](#html)
 
 ```HTML
 <form action="/submit" method="post">  <!-- Defines a form. Method can only be get and post. -->
@@ -195,7 +191,7 @@ Map allows you to click in specific spots inside of an image and go to a specifi
 
 Forms by default send a http POST request with the endpoint in action. The server responds with a html page to be loaded after the submission of the post.
 
-## [Grouping](#table-of-contents)
+## [Grouping](#html)
 
 ```HTML
 <div>Container</div>
@@ -210,7 +206,7 @@ Forms by default send a http POST request with the endpoint in action. The serve
 <button>Click Me!!!</button>
 ```
 
-## [Self Closing Tags](#table-of-contents)
+## [Self Closing Tags](#html)
 
 ```HTML
 <br>    <!-- Line break -->
@@ -218,13 +214,13 @@ Forms by default send a http POST request with the endpoint in action. The serve
 <wbr>   <!-- Word break. The browser can line wrap at that point if necessary. -->
 ```
 
-## [Comments](#table-of-contents)
+## [Comments](#html)
 
 ```HTML
 <!-- Comments -->
 ```
 
-## [Details](#table-of-contents)
+## [Details](#html)
 Small dropdown that can be opened and closed.
 
 ```HTML
@@ -234,7 +230,7 @@ Small dropdown that can be opened and closed.
 </details>
 ```
 
-## [Dialog](#table-of-contents)
+## [Dialog](#html)
 Dialogs are used for modals
 
 ```HTML
@@ -265,7 +261,7 @@ closeButton.addEventListener("click", () => {
 })
 ```
 
-## [HTML entities](#table-of-contents)
+## [HTML entities](#html)
 - Used to represent reserved characters within HTML.
 
 | Text    | Symbol                 |
@@ -280,7 +276,7 @@ closeButton.addEventListener("click", () => {
 | &deg\;  | &deg;                  |
 | &emsp\; | tab that doesn't break |
 
-## [Attributes](#table-of-contents)
+## [Attributes](#html)
 
 |          |                                                                          |
 |----------|--------------------------------------------------------------------------|
@@ -290,20 +286,20 @@ closeButton.addEventListener("click", () => {
 | title    | Additional info that is often displayed as a tooltip.                    |
 | disabled | Disables user interaction.                                               |
 
-## [Inline elements vs block elements](#table-of-contents)
+## [Inline elements vs block elements](#html)
 - Block elements take up the whole line
 - Inline elements just are inline
 - You can force inline or block with CSS
 
-## [CSS in HTML](#table-of-contents)
+## [CSS in HTML](#html)
 - Put into the `<head>` of the HTML so the browser can style before it paints the page.
 
 ```HTML
 <link rel="stylesheet" type="text/css" href="style.css" />
 ```
 
-## [JavaScript in HTML](#table-of-contents)
-- Put at the very end of the HTML `<body>` so the JavaScript can interact with the HTML elements. 
+## [JavaScript in HTML](#html)
+- Put at the very end of the HTML `<body>` so the JavaScript can interact with the HTML elements.
 
 ```HTML
 <script src="script.js"></script>

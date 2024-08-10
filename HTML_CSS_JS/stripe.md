@@ -24,19 +24,17 @@ Stripe is used for payment processing
 On the server
 `npm install stripe`
 
-## Table of Contents
 <!-- TOC -->
 
-- [Stripe](#stripe)
-	- [Table of Contents](#table-of-contents)
-	- [Server](#server)
-	- [Front end](#front-end)
-	- [Automating when payment goes through](#automating-when-payment-goes-through)
+- [Server](#server)
+- [Front end](#front-end)
+- [Automating when payment goes through](#automating-when-payment-goes-through)
 
 <!-- /TOC -->
 
 
-## [Server](#table-of-contents)
+## [Server](#stripe)
+
 ```javascript
 const stripe = require('stripe')('your-secret-key') // Make sure to put the secret key in the .env file
 
@@ -80,7 +78,7 @@ Fake credit card for testing
 Expiration: Any date in the future
 CVV: Anything
 
-## [Front end](#table-of-contents)
+## [Front end](#stripe)
 
 ```javascript
 import { useEffect } from 'react';
@@ -133,7 +131,7 @@ const Cart = () => {
 
   function submitCheckout() {
     getCheckout({
-      variables: { 
+      variables: {
         products: [...state.cart],
       },
     });
@@ -187,7 +185,7 @@ export default Cart;
 ```
 
 
-## [Automating when payment goes through](#table-of-contents)
+## [Automating when payment goes through](#stripe)
 You get an email from stripe that the payment went through.
 
 Yes, you can implement a system where Stripe sends a webhook to your server when a payment is successfully processed, and your server, in turn, updates your database or unlocks a feature in your application.

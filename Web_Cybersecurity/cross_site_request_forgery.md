@@ -28,20 +28,17 @@ Steps for CSRFs:
 
 This is especially bad if Site B can guarantee some users from Site A, like, for example, posting Site B's link in the comment section on Site A.
 
-## Table of Contents
 <!-- TOC -->
 
-- [Cross Site Request ForgeryCSRF](#cross-site-request-forgerycsrf)
-	- [Table of Contents](#table-of-contents)
-	- [Things required for CSRFs](#things-required-for-csrfs)
-	- [Why form over fetch](#why-form-over-fetch)
-	- [Sending JSON through form](#sending-json-through-form)
-	- [Downsides to SameSite strict cookies and localstorage for sessions](#downsides-to-samesite-strict-cookies-and-localstorage-for-sessions)
-	- [CSRF tokens](#csrf-tokens)
+- [Things required for CSRFs](#things-required-for-csrfs)
+- [Why form over fetch](#why-form-over-fetch)
+- [Sending JSON through form](#sending-json-through-form)
+- [Downsides to SameSite strict cookies and localstorage for sessions](#downsides-to-samesite-strict-cookies-and-localstorage-for-sessions)
+- [CSRF tokens](#csrf-tokens)
 
 <!-- /TOC -->
 
-## [Things required for CSRFs](#table-of-contents)
+## [Things required for CSRFs](#cross-site-request-forgerycsrf)
 1. **Malicious action**: An action that the attacker would want to perform as another user.
 1. **Cookie based session handling**: The server relies solely on the cookie session to identify the user who made the request. If the cookie has SameSite set to strict then CSRFs aren't possible.
 1. **Predictable arguments**: The request doesn't contain any arguments that an attacker doesn't know or can't guess.
@@ -74,14 +71,14 @@ Often times the malicious request is sent to Site A through a hidden html form.
 </html>
 ```
 
-## [Why form over fetch](#table-of-contents)
+## [Why form over fetch](#cross-site-request-forgerycsrf)
 Fetch requires CORS(cross origin resource sharing) which doesn't allow cross domain cookies from being automatically added to the request.
 
 Forms use `Sec-Fetch-Mode: navigate` header which does automatically add the headers.
 
 I think AJAX does work though.
 
-## [Sending JSON through form](#table-of-contents)
+## [Sending JSON through form](#cross-site-request-forgerycsrf)
 Form sends data through key value pairs not json.
 
 Ex: `data=value`
@@ -97,7 +94,7 @@ Access-Control-Allow-Origin: website
 Access-Control-Allow-Headers: Content-Type
 ```
 
-## [Downsides to SameSite strict cookies and localstorage for sessions](#table-of-contents)
+## [Downsides to SameSite strict cookies and localstorage for sessions](#cross-site-request-forgerycsrf)
 localstorage:
 - Divided between HTTP and HTTPS
 - Divided between subdomains
@@ -113,7 +110,7 @@ SameSite strict cookies:
 
 This would be undesirable if, for example, you want the user to continue their sign in from one subdomain to another. Like docs.google.com and drive.google.com
 
-## [CSRF tokens](#table-of-contents)
+## [CSRF tokens](#cross-site-request-forgerycsrf)
 1. Server sends a random value(CSRF token) to the client along with there cookie session.
 1. The client stores this CSRF token in a local variable.
 1. Whenever the client sends a request back to the serve that CSRF token has to be sent as well

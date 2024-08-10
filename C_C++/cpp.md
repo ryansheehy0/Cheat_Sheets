@@ -22,48 +22,45 @@
 
 My personal notes on C++.
 
-## Table of Contents
 <!-- TOC -->
 
-- [C++](#c)
-	- [Table of Contents](#table-of-contents)
-	- [Things to research](#things-to-research)
-	- [main](#main)
-	- [Data Types](#data-types)
-		- [Int based data types](#int-based-data-types)
-		- [Float based data types](#float-based-data-types)
-		- [Data type notes](#data-type-notes)
-			- [Truthy and Falsy](#truthy-and-falsy)
-			- [Multiple variables on one line](#multiple-variables-on-one-line)
-			- [Variable names / Identifiers](#variable-names--identifiers)
-			- [Assigning values](#assigning-values)
-			- [Int vs Float Division](#int-vs-float-division)
-			- [Dividing by zero](#dividing-by-zero)
-			- [Int vs Float Modulus](#int-vs-float-modulus)
-			- [Getting each digit](#getting-each-digit)
-			- [Comparing floats](#comparing-floats)
-			- [Interment post-fix vs pre-fix](#interment-post-fix-vs-pre-fix)
-		- [Variable Modifiers](#variable-modifiers)
-		- [Casting](#casting)
-		- [Auto and typeid](#auto-and-typeid)
-	- [Headers](#headers)
-	- [Namespaces](#namespaces)
-	- [Character escapes](#character-escapes)
-	- [Pointers and references](#pointers-and-references)
-		- [Function pointers](#function-pointers)
-	- [Order of operations](#order-of-operations)
-	- [Switch](#switch)
-	- [Functions](#functions)
-		- [Types of functions](#types-of-functions)
-		- [Reference arguments](#reference-arguments)
-		- [Optional arguments](#optional-arguments)
-		- [Function overloading](#function-overloading)
-	- [Custom Scope](#custom-scope)
-	- [Do While loops](#do-while-loops)
-	- [Single line conditions](#single-line-conditions)
-	- [Global and static variables](#global-and-static-variables)
-	- [Arrays](#arrays)
-	- [Range based for loop](#range-based-for-loop)
+- [Things to research](#things-to-research)
+- [main](#main)
+- [Data Types](#data-types)
+	- [Int based data types](#int-based-data-types)
+	- [Float based data types](#float-based-data-types)
+	- [Data type notes](#data-type-notes)
+		- [Truthy and Falsy](#truthy-and-falsy)
+		- [Multiple variables on one line](#multiple-variables-on-one-line)
+		- [Variable names / Identifiers](#variable-names--identifiers)
+		- [Assigning values](#assigning-values)
+		- [Int vs Float Division](#int-vs-float-division)
+		- [Dividing by zero](#dividing-by-zero)
+		- [Int vs Float Modulus](#int-vs-float-modulus)
+		- [Getting each digit](#getting-each-digit)
+		- [Comparing floats](#comparing-floats)
+		- [Interment post-fix vs pre-fix](#interment-post-fix-vs-pre-fix)
+	- [Variable Modifiers](#variable-modifiers)
+	- [Casting](#casting)
+	- [Auto and typeid](#auto-and-typeid)
+- [Headers](#headers)
+- [Namespaces](#namespaces)
+- [Character escapes](#character-escapes)
+- [Pointers and references](#pointers-and-references)
+	- [Function pointers](#function-pointers)
+- [Order of operations](#order-of-operations)
+- [Switch](#switch)
+- [Functions](#functions)
+	- [Types of functions](#types-of-functions)
+	- [Reference arguments](#reference-arguments)
+	- [Optional arguments](#optional-arguments)
+	- [Function overloading](#function-overloading)
+- [Custom Scope](#custom-scope)
+- [Do While loops](#do-while-loops)
+- [Single line conditions](#single-line-conditions)
+- [Global and static variables](#global-and-static-variables)
+- [Arrays](#arrays)
+- [Range based for loop](#range-based-for-loop)
 
 <!-- /TOC -->
 
@@ -88,7 +85,7 @@ My personal notes on C++.
 - `"a"` outputs a null terminated array of characters, while `'a'` is just that character.
 	- `"a"` is the same as `['a', '\0']`
 
-## [main](#table-of-contents)
+## [main](#c)
 `main()` is the start of the program.
 
 `int main(int argc, char **argv){}`
@@ -96,10 +93,10 @@ My personal notes on C++.
 - `return 0;` tells the program that main returned without any errors.
 - `return 1;` tells the program that main returned with an error.
 
-## [Data Types](#table-of-contents)
+## [Data Types](#c)
 The smallest memory unit is 1 byte(8 bits).
 
-### [Int based data types](#table-of-contents)
+### [Int based data types](#c)
 
 | Name      | Bytes  | Notes                                        |
 |-----------|--------|----------------------------------------------|
@@ -110,7 +107,7 @@ The smallest memory unit is 1 byte(8 bits).
 | int       | 2 or 4 | Bytes depends on the platform                |
 | long long | 8      | Same as `long long int`                      |
 
-### [Float based data types](#table-of-contents)
+### [Float based data types](#c)
 
 | Name        | Bytes |
 |-------------|-------|
@@ -118,9 +115,9 @@ The smallest memory unit is 1 byte(8 bits).
 | double      | 8     |
 | long double | 12    |
 
-### [Data type notes](#table-of-contents)
+### [Data type notes](#c)
 
-#### [Truthy and Falsy](#table-of-contents)
+#### [Truthy and Falsy](#c)
 - Anything positive or negative is truthy
 - `0` is not falsy
 - `(x = #)` returns `x` not `#`
@@ -128,7 +125,7 @@ The smallest memory unit is 1 byte(8 bits).
 	- Ex: `x = 0` returns `0`
 	- Ex: `x = 2'147'483'648` returns `-2147483648`
 
-#### [Multiple variables on one line](#table-of-contents)
+#### [Multiple variables on one line](#c)
 - Declaring multiple variables on one line
 	- `int x, y;`
 - Setting multiple variables on one line
@@ -139,12 +136,12 @@ The smallest memory unit is 1 byte(8 bits).
 - Command equals multiple variables
 	- `x += x + 3;` is the same as `x = x + x + 3;`
 
-#### [Variable names / Identifiers](#table-of-contents)
+#### [Variable names / Identifiers](#c)
 - Variable names can only use letters, underscores, and digits, and cannot start with digits.
 	- Ex: `_this_is_a_valid_variable_name`
 - Variable names are case sensitive
 
-#### [Assigning values](#table-of-contents)
+#### [Assigning values](#c)
 - You can use `'` to separate long numbers.
 	- Ex: `1'999'999`
 - You can assign floats using scientific notation.
@@ -152,7 +149,7 @@ The smallest memory unit is 1 byte(8 bits).
 	- `6.08e-2` = `0.0608`
 - It is recommended to start floats with `0` instead of a `.`
 
-#### [Int vs Float Division](#table-of-contents)
+#### [Int vs Float Division](#c)
 - Integer division
 	- Division without the remainder
 - Float division
@@ -163,7 +160,7 @@ The smallest memory unit is 1 byte(8 bits).
 - Ex: `1/2.0` will return `0.5`
 - Ex: `1.0/2.0` will return `0.5`
 
-#### [Dividing by zero](#table-of-contents)
+#### [Dividing by zero](#c)
 - Integer division
 	- Gives a compiler error
 - Float division
@@ -171,11 +168,11 @@ The smallest memory unit is 1 byte(8 bits).
 	- `1.0/0.0` outputs inf
 	- `-1.0/0.0` outputs -inf
 
-#### [Int vs Float Modulus](#table-of-contents)
+#### [Int vs Float Modulus](#c)
 - Compiler error if you use modulus with floats/doubles.
 - Modulus can only work with int data types
 
-#### [Getting each digit](#table-of-contents)
+#### [Getting each digit](#c)
 
 ```c++
 int temp = val;
@@ -188,15 +185,15 @@ temp = temp / 10;
 hundreds = temp % 10;
 ```
 
-#### [Comparing floats](#table-of-contents)
+#### [Comparing floats](#c)
 - Don't use `x == y` because floats can be imprecise
 - Use `fabs(x - y) < 0.0001` instead
 
-#### [Interment post-fix vs pre-fix](#table-of-contents)
+#### [Interment post-fix vs pre-fix](#c)
 - `x++` returns `x` then increments it by 1
 - `++x` increments `x` then returns `x`
 
-### [Variable Modifiers](#table-of-contents)
+### [Variable Modifiers](#c)
 - `unsigned`
 - `signed`
 	- By default data types are signed
@@ -209,7 +206,7 @@ hundreds = temp % 10;
 		- `const` is known to debuggers
 		- `const` can be scoped to the block
 
-### [Casting](#table-of-contents)
+### [Casting](#c)
 - Casting is done at compiler time so it's up to the programmer to make sure they are casting correctly
 - `static_cast<data type>(variable)`
 - Int value gets cast to a double
@@ -217,13 +214,13 @@ hundreds = temp % 10;
 - Float values get cast to an int by removing everything after the decimal
 	- Ex: `1.9 -> 1`
 
-### [Auto and typeid](#table-of-contents)
+### [Auto and typeid](#c)
 - `auto` tells the compiler to determine the variable's type by the initial value given
 	- Ex: `auto x = "apple";` gets assigned const char*
 	- Ex: `auto x = 0.01;` gets assigned double
 - Has to be initialized or else it will throw an error
 
-## [Headers](#table-of-contents)
+## [Headers](#c)
 When you use a function that isn't defined in your code you get 2 errors.
 
 First, a compile time error because the function isn't declared.
@@ -239,14 +236,14 @@ Header files
 - allow any functions to be declared for compile time.
 - specifies an interface for using a .cpp file.
 
-## [Namespaces](#table-of-contents)
+## [Namespaces](#c)
 What are namespaces and what are they used for?
 
 `using namespace std;`
 
 - To access a namespace use the `namespace::command`.
 
-## [Character escapes](#table-of-contents)
+## [Character escapes](#c)
 
 | Character | Description                       |
 |-----------|-----------------------------------|
@@ -267,7 +264,7 @@ What are namespaces and what are they used for?
 | `\0`      | Null                              |
 
 
-## [Pointers and references](#table-of-contents)
+## [Pointers and references](#c)
 
 |               |                                         |
 |---------------|-----------------------------------------|
@@ -277,10 +274,10 @@ What are namespaces and what are they used for?
 | `*ptr`        | Dereferences ptr                        |
 | `int& x = y;` | When `x` is assigned `y` also changes   |
 
-### [Function pointers](#table-of-contents)
+### [Function pointers](#c)
 `void (*name)(int, int) = function;`
 
-## [Order of operations](#table-of-contents)
+## [Order of operations](#c)
 
 | Order | Operation              |
 |-------|------------------------|
@@ -297,7 +294,7 @@ What are namespaces and what are they used for?
 | 11    | \|\|                   |
 | 12    | a?b:c = += -=, etc     |
 
-## [Switch](#table-of-contents)
+## [Switch](#c)
 - Cannot be used with string or floating point types.
 
 ```c++
@@ -315,7 +312,7 @@ switch (x) {
 }
 ```
 
-## [Functions](#table-of-contents)
+## [Functions](#c)
 - Functions cannot be declared within other functions.
 - You have to declare a function before using it. There is no hoisting
 
@@ -327,14 +324,14 @@ switch (x) {
 
 - The purpose of the prototype being put above main is to allow the function definition to be used after the main function.
 
-### [Types of functions](#table-of-contents)
+### [Types of functions](#c)
 
 |                          |                                                                       |
 |--------------------------|-----------------------------------------------------------------------|
 | `constexpr void func();` | Return value is consts so it can be evaluated at compile time         |
 | `inline void func();`    | Compiler searches and replaces. Speed up performance, but more memory |
 
-### [Reference arguments](#table-of-contents)
+### [Reference arguments](#c)
 - You can make function arguments pass by reference by setting them as `&`
 - Reference arguments have to have an address so they cannot be values.
 
@@ -359,7 +356,7 @@ assignY(&y); // y is now 10
 	- `void func(int arr[]);` is the same as `void func(int *arr);`
 	- There is no special syntax in c++ for pass by value for an array argument.
 
-### [Optional arguments](#table-of-contents)
+### [Optional arguments](#c)
 - Everything after the first optional arguments must also be optional arguments.
 
 ```c++
@@ -374,12 +371,12 @@ test(1);
 
 - If you have a prototype you can only put the default values in the prototype
 
-### [Function overloading](#table-of-contents)
+### [Function overloading](#c)
 - Function overloading are multiple functions with the same name, but different argument types.
 	- The compiler determines which function to call based on the argument types.
 - Functions that return different types don't overload.
 
-## [Custom Scope](#table-of-contents)
+## [Custom Scope](#c)
 - You can use `{}`s to define custom scope
 
 ```c++
@@ -393,14 +390,14 @@ test(1);
 }
 ```
 
-## [Do While loops](#table-of-contents)
+## [Do While loops](#c)
 
 ```c++
 do {
 } while(true);
 ```
 
-## [Single line conditions](#table-of-contents)
+## [Single line conditions](#c)
 
 ```c++
 if(true)
@@ -418,7 +415,7 @@ while (true)
   cout << "infinity ";
 ```
 
-## [Global and static variables](#table-of-contents)
+## [Global and static variables](#c)
 - Global variables are variables outside of any function
 - Global variables are automatically set to 0 if not given a value
 - Global variables should be used sparingly because they can cause side effects, like hidden parameters, in function.
@@ -438,7 +435,7 @@ void callFunc() {
 }
 ```
 
-## [Arrays](#table-of-contents)
+## [Arrays](#c)
 
 ```c++
 int arr[3]; // Don't know what it's initialized with
@@ -455,7 +452,7 @@ const int arr[3] = {0, 1, 2}
 // Can't change any of the values in the array
 ```
 
-## [Range based for loop](#table-of-contents)
+## [Range based for loop](#c)
 - It isn't recommended to use because it has some restrictions
 	- Can only be used in the same scope where the array is created
 

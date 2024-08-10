@@ -20,21 +20,17 @@
 
 # HTTP
 
-## Table Of Contents
-
 <!-- TOC -->
 
-- [HTTP](#http)
-	- [Table Of Contents](#table-of-contents)
-	- [Status Codes](#status-codes)
-	- [HTTP Methods/Verbs](#http-methodsverbs)
+- [Status Codes](#status-codes)
+- [HTTP Methods/Verbs](#http-methodsverbs)
 
 <!-- /TOC -->
 
-## [Status Codes](#table-of-contents)
+## [Status Codes](#http)
 - 404
 
-## [HTTP Methods/Verbs](#table-of-contents)
+## [HTTP Methods/Verbs](#http)
 - GET - retrieves data
 - POST - submits data. Give data
 - PUT - replaces a specified resource. Update data on the server.

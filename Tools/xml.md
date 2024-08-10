@@ -21,23 +21,19 @@
 # Extensible Markup Language(XML)
 XML is markup language that allows you to define your own elements in order to be both human readable and machine readable. It is often used to communicate information between systems.
 
-## Table of Contents
-
 <!-- TOC -->
 
-- [Extensible Markup LanguageXML](#extensible-markup-languagexml)
-	- [Table of Contents](#table-of-contents)
-	- [Rules](#rules)
-	- [Comments](#comments)
-	- [Attributes](#attributes)
-	- [Character References](#character-references)
-	- [Prolog](#prolog)
-	- [Namespaces](#namespaces)
-	- [Vocabularies or Domains](#vocabularies-or-domains)
+- [Rules](#rules)
+- [Comments](#comments)
+- [Attributes](#attributes)
+- [Character References](#character-references)
+- [Prolog](#prolog)
+- [Namespaces](#namespaces)
+- [Vocabularies or Domains](#vocabularies-or-domains)
 
 <!-- /TOC -->
 
-## [Rules](#table-of-contents)
+## [Rules](#extensible-markup-languagexml)
 - XML must contain one root element that is the parent of all other elements.
 - All elements in XML must have a closing tag
 - Tags are case sensitive. `<Letter>` is different from `<letter>`
@@ -45,27 +41,27 @@ XML is markup language that allows you to define your own elements in order to b
   - `<b><i>Test</i></b>` and not `<b><i>Test</b></i>`
 - Whitespace is preserved
 
-## [Comments](#table-of-contents)
+## [Comments](#extensible-markup-languagexml)
 `<!-- Comment -->`
 
-## [Attributes](#table-of-contents)
+## [Attributes](#extensible-markup-languagexml)
 Attributes are used to provide additional information about your element.
 `<element attribute="contents of attribute"></element>`
 
 - The attributes `xmlns` and `id` are used to mean something else.
 - Attribute names cannot contain spaces
 
-## [Character References](#table-of-contents)
+## [Character References](#extensible-markup-languagexml)
 
-|        |   |
-|--------|---|
+|         |   |
+|---------|---|
 | &lt\;   | < |
 | &gt\;   | > |
 | &amp\;  | & |
 | &apos\; | ' |
 | &quot\; | " |
 
-## [Prolog](#table-of-contents)
+## [Prolog](#extensible-markup-languagexml)
 The prolog is used to define the version of XML, the character encoding, and other optional attributes.
 
 The prolog is optional. If it is there it needs to be at the start of the document
@@ -76,10 +72,11 @@ The prolog is optional. If it is there it needs to be at the start of the docume
   - Extendible Stylesheet Language(XSL) is a language to convert XML to other formats such as HTML.
 `<?xml-stylesheet type="text/xsl" href="styles.xsl"?>`
 
-## [Namespaces](#table-of-contents)
+## [Namespaces](#extensible-markup-languagexml)
 XML namespaces are used to avoid naming conflict between different elements in different vocabularies or domains.
 
 You can declare a XML namespace like this
+
 ```xml
 <element xmlns:namespace="http://example.com/namespace">
   <namespace:child>Element from namespace</namespace:child>
@@ -88,7 +85,7 @@ You can declare a XML namespace like this
 
 - Namespaces can also be applied to attributes for the same reasons
 
-## [Vocabularies or Domains](#table-of-contents)
+## [Vocabularies or Domains](#extensible-markup-languagexml)
 Vocabularies are different protocols for specific xml element names. For example: HTML or SVGs have their own vocabularies.
 
 Domains are just different domains of information. Just used for categorizing information. For example: You might want to separate information about Science and Math.

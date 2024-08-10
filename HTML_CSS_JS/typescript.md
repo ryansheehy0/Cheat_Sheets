@@ -29,51 +29,48 @@ Typescript gets compiled into javascript.
 
 `let variableName: type = value`
 
-## Table of Contents
 <!-- TOC -->
 
-- [Typescript](#typescript)
-	- [Table of Contents](#table-of-contents)
-	- [Installation](#installation)
-	- [Basic Types](#basic-types)
-		- [Literal Types](#literal-types)
-		- [Special function return types](#special-function-return-types)
-		- [DOM types](#dom-types)
-	- [Type Aliases](#type-aliases)
-		- [Intersection Types](#intersection-types)
-	- [Casting](#casting)
-		- [Non-null assertion](#non-null-assertion)
-		- [as const](#as-const)
-	- [Interfaces](#interfaces)
-		- [Declaration merging](#declaration-merging)
-		- [Extending interfaces](#extending-interfaces)
-		- [Arrays](#arrays)
-	- [Advanced typing](#advanced-typing)
-		- [Index signatures](#index-signatures)
-		- [Mapped types](#mapped-types)
-		- [Conditional Types](#conditional-types)
-		- [Generics](#generics)
-		- [lookup types](#lookup-types)
-		- [keyof](#keyof)
-	- [Utility Types](#utility-types)
-		- [Mapped Types](#mapped-types)
-	- [Use instead of enums](#use-instead-of-enums)
-	- [Type guards](#type-guards)
-		- [typeof as a guard](#typeof-as-a-guard)
-		- [in](#in)
-		- [instanceof](#instanceof)
-		- [Type Guard function](#type-guard-function)
-	- [React](#react)
-	- [Need to understand these syntaxes](#need-to-understand-these-syntaxes)
-	- [Phantom Types](#phantom-types)
+- [Installation](#installation)
+- [Basic Types](#basic-types)
+	- [Literal Types](#literal-types)
+	- [Special function return types](#special-function-return-types)
+	- [DOM types](#dom-types)
+- [Type Aliases](#type-aliases)
+	- [Intersection Types](#intersection-types)
+- [Casting](#casting)
+	- [Non-null assertion](#non-null-assertion)
+	- [as const](#as-const)
+- [Interfaces](#interfaces)
+	- [Declaration merging](#declaration-merging)
+	- [Extending interfaces](#extending-interfaces)
+	- [Arrays](#arrays)
+- [Advanced typing](#advanced-typing)
+	- [Index signatures](#index-signatures)
+	- [Mapped types](#mapped-types)
+	- [Conditional Types](#conditional-types)
+	- [Generics](#generics)
+	- [lookup types](#lookup-types)
+	- [keyof](#keyof)
+- [Utility Types](#utility-types)
+	- [Mapped Types](#mapped-types)
+- [Use instead of enums](#use-instead-of-enums)
+- [Type guards](#type-guards)
+	- [typeof as a guard](#typeof-as-a-guard)
+	- [in](#in)
+	- [instanceof](#instanceof)
+	- [Type Guard function](#type-guard-function)
+- [React](#react)
+- [Need to understand these syntaxes](#need-to-understand-these-syntaxes)
+- [Phantom Types](#phantom-types)
 
 <!-- /TOC -->
 
-## [Installation](#table-of-contents)
+## [Installation](#typescript)
 `sudo npm install -g typescript`
 - Use `tsc typescriptFile.ts` to compile typescript files into javascript.
 
-## [Basic Types](#table-of-contents)
+## [Basic Types](#typescript)
 - number
 - string
 - boolean
@@ -118,14 +115,14 @@ let variable: number = 10
 let variable = 10
 ```
 
-### [Literal Types](#table-of-contents)
+### [Literal Types](#typescript)
 Literal types allow you to set a type to only be certain predefined values.
 
 ```typescript
 let variable: "Name" | "Username" | "Email"
 ```
 
-### [Special function return types](#table-of-contents)
+### [Special function return types](#typescript)
 - void
   - function don't return any value
 
@@ -145,9 +142,9 @@ function func(): never {
 }
 ```
 
-### [DOM types](#table-of-contents)
+### [DOM types](#typescript)
 
-## [Type Aliases](#table-of-contents)
+## [Type Aliases](#typescript)
 Used to define a type which you can use again and again.
 
 ```typescript
@@ -168,7 +165,7 @@ function (user: User): User{
 }
 ```
 
-### [Intersection Types](#table-of-contents)
+### [Intersection Types](#typescript)
 Intersection types allows you to combine different types together.
 
 ```typescript
@@ -183,7 +180,7 @@ type cardDate = {
 type cardDetails = cardNumber & cardDate
 ```
 
-## [Casting](#table-of-contents)
+## [Casting](#typescript)
 I typescript you can cast between types using the `as` keyword. This is useful when you know more about the variable type than typescript does.
 
 ```typescript
@@ -194,7 +191,7 @@ let length: number = (variable as string).length
 let length: number = (<string>variable).length
 ```
 
-### [Non-null assertion](#table-of-contents)
+### [Non-null assertion](#typescript)
 `!.` is used when you know that a variable isn't null or undefined.
 
 ```typescript
@@ -207,16 +204,16 @@ let id = 10
 console.log(id!) // This tells typescript that id isn't null
 ```
 
-### [as const](#table-of-contents)
+### [as const](#typescript)
 
-## [Interfaces](#table-of-contents)
+## [Interfaces](#typescript)
 Type alias are very similar to interfaces and it is almost always recommended to use type aliases.
 
 Use interfaces if you want to use declaration merging.
 
 Interfaces can only describe objects.
 
-### [Declaration merging](#table-of-contents)
+### [Declaration merging](#typescript)
 Declaration merging is having an interface with the same name which adds onto an interface.
 
 ```typescript
@@ -237,7 +234,7 @@ const button: ButtonProps = {
 }
 ```
 
-### [Extending interfaces](#table-of-contents)
+### [Extending interfaces](#typescript)
 Extending interfaces allows you to extend an interface with another interface. This is like declaration merging, but with interfaces with different names.
 
 ```typescript
@@ -259,7 +256,7 @@ const button: MoreButtonProps = {
 }
 ```
 
-### [Arrays](#table-of-contents)
+### [Arrays](#typescript)
 
 ```typescript
 interface Names {
@@ -270,9 +267,9 @@ interface Names {
 type Names: string[]
 ```
 
-## [Advanced typing](#table-of-contents)
+## [Advanced typing](#typescript)
 
-### [Index signatures](#table-of-contents)
+### [Index signatures](#typescript)
 Index signatures allow you to define a type for the properties in an object or array when you don't know their names.
 
 ```typescript
@@ -299,7 +296,7 @@ type ObjArray = {
 }
 ```
 
-### [Mapped types](#table-of-contents)
+### [Mapped types](#typescript)
 
 ```typescript
 type Flags = {
@@ -312,7 +309,7 @@ type ReadonlyFlags = {
 };
 ```
 
-### [Conditional Types](#table-of-contents)
+### [Conditional Types](#typescript)
 Conditional types allows you to create a type based upon other types.
 
 `T extends U ? X : Y`
@@ -328,7 +325,7 @@ type Result1 = CheckNumber<42>        // 'Is a number'
 type Result2 = CheckNumber<'hello'>   // 'Not a number'
 ```
 
-### [Generics](#table-of-contents)
+### [Generics](#typescript)
 Generics are used for when the exact type is not known beforehand and you want the user to be able to specify the type dynamically.
 
 `T` is the convention for when you want to use a generic type, but generic types can be any name.
@@ -349,7 +346,7 @@ const example2Obj: Example2 = {
 }
 ```
 
-### [lookup types](#table-of-contents)
+### [lookup types](#typescript)
 Lookup types are used ot get the type of a field in an object type.
 
 ```typescript
@@ -362,14 +359,14 @@ type x = Point.x
 type y = Point.["y"]
 ```
 
-### [keyof](#table-of-contents)
+### [keyof](#typescript)
 `keyof objType` is used to get the keys of an obj type as a union of strings
 
 ```typescript
 type MyKeys = keyof { name: string; age: number }; // MyKeys is "name" | "age"
 ```
 
-## [Utility Types](#table-of-contents)
+## [Utility Types](#typescript)
 Utility types allow you to apply certain transformations or combinations on object types to produce other types.
 
 | Type name                           | Description                                                                                               |
@@ -435,7 +432,7 @@ type One = "one" | 1 | "uno"
 type StringOnes = Extract<string, One>
 ```
 
-### [Mapped Types](#table-of-contents)
+### [Mapped Types](#typescript)
 Mapped types allow you to create your own utility types.
 
 The syntax is `[Key in UnionType]`. They key loops through all the values in the union type.
@@ -458,7 +455,7 @@ type ReadonlyPoint = {
 - Often times the mapped type is used with the `keyof` operator to get a union of keys from an Object Type. Like `[K in keyof ObjType]`.
 - Often times you can use the Key as a lookup type. Like `[K in "a" | "b" | "c" ]: ObjType[K]`. This sets the keys to be the same time as `ObjType[Key]`.
 
-## [Use instead of enums](#table-of-contents)
+## [Use instead of enums](#typescript)
 Enums have some weird behaviors which may cause some issues. Instead you can use these alternatives instead.
 
 ```typescript
@@ -481,11 +478,11 @@ function logRole(role: UserRole): never{
 }
 ```
 
-## [Type guards](#table-of-contents)
+## [Type guards](#typescript)
 Type guards are used to ensure that a variable is a certain type.
 
 
-### [typeof as a guard](#table-of-contents)
+### [typeof as a guard](#typescript)
 Gets the type of a variable as a string.
 
 ```typescript
@@ -495,7 +492,7 @@ if(typeof x === "number"){
 }
 ```
 
-### [in](#table-of-contents)
+### [in](#typescript)
 Checks if a field exists in an object.
 
 ```typescript
@@ -505,7 +502,7 @@ if("prop" in obj){
 }
 ```
 
-### [instanceof](#table-of-contents)
+### [instanceof](#typescript)
 Check if an object is an instance of a class.
 
 ```typescript
@@ -516,7 +513,7 @@ if(obj instanceof MyClass){
 }
 ```
 
-### [Type Guard function](#table-of-contents)
+### [Type Guard function](#typescript)
 A type guard function is used to check if a value is a certain type at runtime.
 
 A type guard function returns a type predicate, which takes the form of `parameterName is Type`
@@ -540,7 +537,7 @@ if(isString(x)){
 }
 ```
 
-## [React](#table-of-contents)
+## [React](#typescript)
 
 ```javascript
 import React, { ReactNode } from 'react'
@@ -578,4 +575,4 @@ type Parameters<Type extends (...args: any[]) => any> = Type extends (...args: i
 
 - infer
 
-## [Phantom Types](#table-of-contents)
+## [Phantom Types](#typescript)

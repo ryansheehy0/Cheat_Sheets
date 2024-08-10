@@ -22,25 +22,21 @@
 - Markdown is a lightweight markup language that can be converted to HTML
     - Valid HTML can be used within markdown
 
-## Table Of Contents
-
 <!-- TOC -->
 
-- [Markdown](#markdown)
-	- [Table Of Contents](#table-of-contents)
-	- [Links and Etc](#links-and-etc)
-	- [Emphasis](#emphasis)
-	- [Lists](#lists)
-		- [Unordered Lists](#unordered-lists)
-		- [Ordered Lists](#ordered-lists)
-		- [More Complex Lists](#more-complex-lists)
-	- [Tables](#tables)
-	- [Math](#math)
-	- [Automatically create table of contents](#automatically-create-table-of-contents)
+- [Links and Etc](#links-and-etc)
+- [Emphasis](#emphasis)
+- [Lists](#lists)
+	- [Unordered Lists](#unordered-lists)
+	- [Ordered Lists](#ordered-lists)
+	- [More Complex Lists](#more-complex-lists)
+- [Tables](#tables)
+- [Math](#math)
+- [Automatically create table of contents](#automatically-create-table-of-contents)
 
 <!-- /TOC -->
 
-## [Links and Etc](#table-of-contents)
+## [Links and Etc](#markdown)
 
 |                          |                        |
 |--------------------------|------------------------|
@@ -56,7 +52,7 @@
 | > Text                   | Blockquote             |
 | >> Text                  | Nested Blockquote      |
 
-## [Emphasis](#table-of-contents)
+## [Emphasis](#markdown)
 
 |               |                |
 |---------------|----------------|
@@ -65,15 +61,15 @@
 | \~\~Text\~\~  | Strike through |
 | \<u>Text\</u> | Underline      |
 
-## [Lists](#table-of-contents)
-### [Unordered Lists](#table-of-contents)
+## [Lists](#markdown)
+### [Unordered Lists](#markdown)
 
 ```
 - Start
     - Indented
 ```
 
-### [Ordered Lists](#table-of-contents)
+### [Ordered Lists](#markdown)
 
 ```
 1. First
@@ -91,7 +87,7 @@
 1. etc
 ```
 
-### [More Complex Lists](#table-of-contents)
+### [More Complex Lists](#markdown)
 - If you are doing anything that involves complex lists it is recommended to use HTML
 
 ```
@@ -114,7 +110,7 @@
 </ul>
 ```
 
-## [Tables](#table-of-contents)
+## [Tables](#markdown)
 - You need a new line on top and below
 
 ```
@@ -133,7 +129,7 @@ Text
 | `--:` | Right align  |
 | `:-:` | Center align |
 
-## [Math](#table-of-contents)
+## [Math](#markdown)
 - You need a new line on top and below for multi-line math mode
 
 |                               |                 |
@@ -144,7 +140,7 @@ Text
 | x^2                           | Superscript     |
 | \frac{Numerator}{Denominator} | Fractions       |
 
-## [Automatically create table of contents](#table-of-contents)
+## [Automatically create table of contents](#markdown)
 
 `sudo npm install -g doctoc`
 
