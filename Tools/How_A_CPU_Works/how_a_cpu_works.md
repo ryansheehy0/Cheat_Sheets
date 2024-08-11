@@ -44,6 +44,8 @@
 	- [Twos complement](#twos-complement)
 	- [Full adder](#full-adder)
 	- [Adder and Subtractor](#adder-and-subtractor)
+	- [RAM](#ram)
+		- [DRAM vs SRAM](#dram-vs-sram)
 
 <!-- /TOC -->
 
@@ -168,12 +170,15 @@ In order to have a floating output(not set to 1 or 0) you need to decouple it fr
 | <img src="tri_state_gate.jpeg" width="250" > | <img src="tri_state_symbol.jpeg" width="250" > | <img src="tri_state_gates.jpeg" width="250" > |
 
 ## [Register](#how-a-cpu-works)
-A register is a module that is used to to store a word, same bits as the computer base, of memory inside the CPU.
+A register is a module that is used to store a word, same bits as the computer base, of memory inside the CPU.
 - The D Flip-Flop is used to store one bit of information
 
 |                                            |                                                   |
 |--------------------------------------------|---------------------------------------------------|
 | <img src="register_bit.jpeg" width="250" > | <img src="register_bit_symbol.jpeg" width="250" > |
+
+- Synchronous memory only reads in memory when the clock goes from low to high.
+- Asynchronous memory operates independently from the clock.
 
 ## [Arithmetic logic unit(ALU)](#how-a-cpu-works)
 The arithmetic logic unit (ALU) is the module in the CPU which does mathematical and logical operations. It is connected to registers and can transfer the results to the bus.
@@ -246,3 +251,28 @@ Full adders are strung together to do addition on the full word of a computer.
 - In order to subtract(SU to 1) with the 2s compliment then you have to invert, which is done with the XORs, and then add one, which is done by connecting to the carry in(CI) input to the adder.
 
 <img src="4_bit_alu.jpeg" width="350" >
+
+### [RAM](#how-a-cpu-works)
+Random Access Memory (RAM) is a sequence of memory locations used to store data, usually the size of a word.
+
+Ex: 4 bit register, 4 bit word
+
+<img src="4_bit_ram.jpeg" width="350" >
+
+- In order to map an address to the WR or EN pins you can use and gates.
+
+<img src="ram_address_mapper.jpeg" width="350" >
+
+#### [DRAM vs SRAM](#how-a-cpu-works)
+- Dynamic RAM(DRAM)
+	- Uses capacitors to store one bit
+	- Requires constant refreshing. Less performant.
+	- Cheaper
+- Static RAM(SRAM)
+	- Uses D Flip-Flops to store one bit like registers
+	- Doesn't require refreshing. More performant.
+	- More expensive
+
+| DRAM | SRAM                                       |
+|------|--------------------------------------------|
+|      | <img src="register_bit.jpeg" width="250" > |
