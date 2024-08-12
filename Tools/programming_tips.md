@@ -19,21 +19,44 @@
 [Home](../README.md)
 
 # Programming Tips
+Instructions for common operations in programming. This uses C++, but can be applied to any language.
 
 <!-- TOC -->
 
-- [Swapping variables without temp variable](#swapping-variables-without-temp-variable)
-- [GPLv3 License](#gplv3-license)
-	- [How to add GPLv3 License](#how-to-add-gplv3-license)
-- [Project Management](#project-management)
-- [Formatting and Rules](#formatting-and-rules)
-- [Code Organization](#code-organization)
-- [When to reuse code](#when-to-reuse-code)
-- [Never use inheritance](#never-use-inheritance)
+- [Organization tips](#organization-tips)
+- [Repeatedly ask for user input](#repeatedly-ask-for-user-input)
+- [Swapping variables without a temp variable](#swapping-variables-without-a-temp-variable)
+- [Getting each digit of an int](#getting-each-digit-of-an-int)
+- [Comparing floats](#comparing-floats)
+- [Getting random numbers](#getting-random-numbers)
 
 <!-- /TOC -->
 
-## [Swapping variables without temp variable](#programming-tips)
+## [Organization tips](#programming-tips)
+- Use composition over inheritance
+  - Composition is putting a parent object in the child class.
+	- https://www.youtube.com/watch?v=hxGOiiR9ZKg
+- Design in Minimum Viable Products(MVP) stages.
+  - Finish priority features instead of working on features you want to work on
+- It is almost always better to start coding then to worry too much about how to organize the code.
+
+## [Repeatedly ask for user input](#programming-tips)
+Ask for user input, validate it, and if it isn't correct ask again.
+
+```c++
+int input;
+while (true) {
+  cout << "User input: ";
+  if (!(cin >> input) || !(/*Check if input is valid*/)) {
+    cout << "Please try again.\n";
+    cin.clear(); // Clear error flags
+    continue;
+  }
+  break;
+}
+```
+
+## [Swapping variables without a temp variable](#programming-tips)
 
 ```c++
 // Swap a and b
@@ -47,90 +70,31 @@ cout << "a: " << a << endl;
 cout << "b: " << b << endl;
 ```
 
-## [GPLv3 License](#programming-tips)
-If you are making your code open source, then it is recommended to use the GPLv3 license in order to prevent other companies from taking your work, adding some feature/modifications, and then selling or distributing their own closed sourced version of your code.
-- Why open source is good?
-  - Prevent undiscovered bugs. More reliable applications.
-  - Allows for anyone to contribute to your project.
+## [Getting each digit of an int](#programming-tips)
 
-### [How to add GPLv3 License](#programming-tips)
-1. Include a copy of the license at the root of your project named `COPYING`
-2. Add a licensing notice at the top of each of your source code files
-  - Make sure to replace "THIS PROGRAM" with the name of your program.
+```c++
+int var = 12345;
+vector<int> digits;
 
-```javascript
-/*
- * This file is part of THIS PROGRAM.
- *
- * THIS PROGRAM is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * THIS PROGRAM is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with THIS PROGRAM. If not, see <https://www.gnu.org/licenses/>.
- */
+int temp = var;
+for (int i = 0; temp != 0; i++) {
+  digits.push_back(temp % 10);
+  temp /= 10;
+}
 ```
 
-3. Add `THIS PROGRAM is licensed under GPLv3. See the COPYING file for details.` to your README.md under `## License`
-4. Include a copy of the license with the distribution of your software.
+## [Comparing floats](#programming-tips)
+- You cannot use `x == y` because floats are imprecise.
+- Use `fabs(x - y) < 0.0001` instead.
 
-## [Project Management](#programming-tips)
-- Have a well detailed end goal app idea
-  - A full write up on how all the features are going to work and how each page of the app will look and work
-- Develop in stages of Minimum Viable Products(MVPs)
-  - MVP 1, MVP 2, etc. Keep adding MVPs until you reach all the features in the end goal app idea
-  - The 1st MVP should be the most bare bones features as possible. Just the minimum to make it somewhat usable.
-  - The last 20-10% of your MVP will be integration hell and finding any edge cases where you code breaks
-- Delegate tasks and every few days or week have a group meeting on the progress of those tasks
-  - If one member is falling behind then put more resources to help them catch up
+## [Getting random numbers](#programming-tips)
+Getting a random number from a range using a function that generates numbers from 0 to 1, `rand()`.
 
-## [Formatting and Rules](#programming-tips)
-- No space between ()s and {s
-- Use 's instead of "s
-- When assigning variables use spaces between the `=`s
-- Use guard clauses when possible
-- When possible use variables and self explanatory code instead of comments
-  - Sometimes it maybe necessary to write your pseudo-code before beginning, but if done the unnecessary comments should be removed after the code is done.
-  - If you need to use comments have no spaces between comments and code
-
-## [Code Organization](#programming-tips)
-It is almost always better to get started coding with bad organization and then organize your code when you can clearly see the patterns.
-
-- Use function to re-use code
-- If a class has a lot of methods brake out those methods into separate classes in a folder called main_subclasses
-
-```
-item
-  item.js
-  item_subclasses
-    events.js
-```
-- If 2 or more classes share a significant amount of code use inheritance in a folder called main_children
-
-```
-item
-  item.js
-  item_children
-    list.js
-    card.js
+```c++
+int getRandomNum(int start, int end) { // Both are inclusive
+  return (rand() % (end - start + 1)) + start;
+}
 ```
 
-## [When to reuse code](#programming-tips)
-Always be hesitant to re-use code.
-
-It is better to change the same code in multiple places then it is to pass more and more information between the parent and child.
-
-It is better to change the same code in multiple places then it is to completely reorganize your code in order to add a new feature.
-  - This is especially important when it comes to re-using separate components/classes.
-  - Over time small changes become larger and larger. This creates more and more complexity as the reused component it given more and more information to distinguish between its different roles.
-
-## Never use inheritance
-- You cannot use inheritance in Neo-C
-	- https://www.youtube.com/watch?v=hxGOiiR9ZKg
-	- Maybe instead of you cannot, you should not.
+- `rand() % 10` between 0-9
+- `(rand() % 11) + 20` between 20-30

@@ -38,7 +38,7 @@
 	- [D Flip-Flop](#d-flip-flop)
 		- [Edge detectors](#edge-detectors)
 - [Bus](#bus)
-	- [Floating output](#floating-output)
+	- [Floating output/Tri state gates](#floating-outputtri-state-gates)
 - [Register](#register)
 - [Arithmetic logic unitALU](#arithmetic-logic-unitalu)
 	- [Twos complement](#twos-complement)
@@ -154,7 +154,7 @@ A bus is used for communication between different modules of a CPU. It is a coll
 - When one module puts data onto the bus and the other reads data from the bus, that module passed information to the other module.
 - The CLK signal are shared between each module to allow them to be synced
 
-### [Floating output](#how-a-cpu-works)
+### [Floating output/Tri state gates](#how-a-cpu-works)
 In order to have a floating output(not set to 1 or 0) you need to decouple it from the bus.
 - These are called tri-state gates
 
@@ -255,13 +255,15 @@ Full adders are strung together to do addition on the full word of a computer.
 ### [RAM](#how-a-cpu-works)
 Random Access Memory (RAM) is a sequence of memory locations used to store data, usually the size of a word.
 
-Ex: 4 bit register, 4 bit word
+Ex: 4 bit register, 4 bit word. The tops and bottoms are connected to the bus with tri-state gates.
 
 <img src="4_bit_ram.jpeg" width="350" >
 
-- In order to map an address to the WR or EN pins you can use and gates.
+- In order to map an address to the WR or EN pins you can use AND gates.
 
 <img src="ram_address_mapper.jpeg" width="350" >
+
+- When the address is 0000 and the EN/WR pin is 1, EN0/WR0 is 1 to allow the memory to read/write onto/from the bus.
 
 #### [DRAM vs SRAM](#how-a-cpu-works)
 - Dynamic RAM(DRAM)

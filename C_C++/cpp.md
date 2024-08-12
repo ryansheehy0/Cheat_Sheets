@@ -32,19 +32,17 @@ My personal notes on C++.
 	- [Data type notes](#data-type-notes)
 		- [Truthy and Falsy](#truthy-and-falsy)
 		- [Multiple variables on one line](#multiple-variables-on-one-line)
-		- [Variable names / Identifiers](#variable-names--identifiers)
+		- [Variable names/Identifiers](#variable-namesidentifiers)
 		- [Assigning values](#assigning-values)
 		- [Int vs Float Division](#int-vs-float-division)
 		- [Dividing by zero](#dividing-by-zero)
 		- [Int vs Float Modulus](#int-vs-float-modulus)
-		- [Getting each digit](#getting-each-digit)
-		- [Comparing floats](#comparing-floats)
-		- [Interment post-fix vs pre-fix](#interment-post-fix-vs-pre-fix)
-	- [Variable Modifiers](#variable-modifiers)
+		- [post-fix vs pre-fix increment](#post-fix-vs-pre-fix-increment)
+	- [Const](#const)
 	- [Casting](#casting)
 	- [Auto and typeid](#auto-and-typeid)
 - [Headers](#headers)
-- [Namespaces](#namespaces)
+- [Namespaces and using](#namespaces-and-using)
 - [Character escapes](#character-escapes)
 - [Pointers and references](#pointers-and-references)
 	- [Function pointers](#function-pointers)
@@ -61,35 +59,32 @@ My personal notes on C++.
 - [Global and static variables](#global-and-static-variables)
 - [Arrays](#arrays)
 - [Range based for loop](#range-based-for-loop)
+- [Exception/Error handling](#exceptionerror-handling)
 
 <!-- /TOC -->
 
 ## Things to research
-- `<<` and `>>` operator. Stream operators?
-	- Overloading operators
-- How is string different from char*
-- Fill out regex for c++
-- What's the difference between including with `<>`s and `""`s?
-- string vs char* vs char[]
-- reference vs pointer
-- Can you overload the main function
-	- You cannot overload main
-- What does replace length do? For string library
-- Header files allows you to initialize functions after the main function because all the function definitions are already declared.
-	- Function definitions are also called function prototypes
-		- `void func(int, int);`
-
-- Segmentation fault
-	- Going outside of your program's segment set by the OS
+- Header files
+- Error/Exception handling
+- typedef
+- friend and operator keywords?
+- Operator overloading
+- Singletons
+- Regex in C++
+- Casting
+	- `const_cast`, `static_cast`, `reinterpret_cast`, `dynamic_cast`
+	- Why not use C style casting
+- typeid
 
 - `"a"` outputs a null terminated array of characters, while `'a'` is just that character.
 	- `"a"` is the same as `['a', '\0']`
 
 ## [main](#c)
-`main()` is the start of the program.
+`int main()` is the start of the program.
 
-`int main(int argc, char **argv){}`
-
+- `int main(int argc, char *argv[]){}`
+	- `int argc` is the number of arguments passed to the program via the terminal, including the program name.
+	- `char **argv` is an array of strings of the arguments separated by spaces, including the program name.
 - `return 0;` tells the program that main returned without any errors.
 - `return 1;` tells the program that main returned with an error.
 
@@ -118,8 +113,7 @@ The smallest memory unit is 1 byte(8 bits).
 ### [Data type notes](#c)
 
 #### [Truthy and Falsy](#c)
-- Anything positive or negative is truthy
-- `0` is not falsy
+- Anything positive or negative is truthy and `0` is falsy.
 - `(x = #)` returns `x` not `#`
 	- Ex: `x = 10` returns `10`
 	- Ex: `x = 0` returns `0`
@@ -136,13 +130,13 @@ The smallest memory unit is 1 byte(8 bits).
 - Command equals multiple variables
 	- `x += x + 3;` is the same as `x = x + x + 3;`
 
-#### [Variable names / Identifiers](#c)
+#### [Variable names/Identifiers](#c)
 - Variable names can only use letters, underscores, and digits, and cannot start with digits.
 	- Ex: `_this_is_a_valid_variable_name`
 - Variable names are case sensitive
 
 #### [Assigning values](#c)
-- You can use `'` to separate long numbers.
+- You can use `'` to separate very long numbers.
 	- Ex: `1'999'999`
 - You can assign floats using scientific notation.
 	- `6.08e2` = `6.08 x 10^2` = `608`
@@ -150,19 +144,15 @@ The smallest memory unit is 1 byte(8 bits).
 - It is recommended to start floats with `0` instead of a `.`
 
 #### [Int vs Float Division](#c)
-- Integer division
-	- Division without the remainder
-- Float division
-	- Division with the remainder
-	- In order to get float division, either the numerator or denominator has to be a float/double.
+- Integer division is truncated
+- In order to get float division, either the numerator or denominator has to be a float/double.
 - Ex: `1/2` will return `0`
 - Ex: `1.0/2` will return `0.5`
 - Ex: `1/2.0` will return `0.5`
 - Ex: `1.0/2.0` will return `0.5`
 
 #### [Dividing by zero](#c)
-- Integer division
-	- Gives a compiler error
+- Dividing by zero in integer division gives a compiler error
 - Float division
 	- `0.0/0.0` outputs not a number(nan)
 	- `1.0/0.0` outputs inf
@@ -172,47 +162,23 @@ The smallest memory unit is 1 byte(8 bits).
 - Compiler error if you use modulus with floats/doubles.
 - Modulus can only work with int data types
 
-#### [Getting each digit](#c)
-
-```c++
-int temp = val;
-ones = temp % 10;
-temp = temp / 10;
-
-tens = temp % 10;
-temp = temp / 10;
-
-hundreds = temp % 10;
-```
-
-#### [Comparing floats](#c)
-- Don't use `x == y` because floats can be imprecise
-- Use `fabs(x - y) < 0.0001` instead
-
-#### [Interment post-fix vs pre-fix](#c)
+#### [post-fix vs pre-fix increment](#c)
 - `x++` returns `x` then increments it by 1
 - `++x` increments `x` then returns `x`
 
-### [Variable Modifiers](#c)
-- `unsigned`
-- `signed`
-	- By default data types are signed
-- `const`
-	- By convention use snake case with all capital letters
-	- By convention declare before any other variables
-	- Use `const` over `#define`
-		- Modern compilers do the same thing as `#define`
-		- `const` has type checking and syntax checking
-		- `const` is known to debuggers
-		- `const` can be scoped to the block
+### [Const](#c)
+- By convention use snake case with all capital letters
+- By convention declare before any other variables
+- Use `const` over `#define`
+	- Modern compilers do the same thing as `#define`
+	- `const` has type checking and syntax checking
+	- `const` is known to debuggers
+	- `const` can be scoped to the block
 
 ### [Casting](#c)
 - Casting is done at compiler time so it's up to the programmer to make sure they are casting correctly
 - `static_cast<data type>(variable)`
-- Int value gets cast to a double
-	- Ex: `1 -> 1.0`
-- Float values get cast to an int by removing everything after the decimal
-	- Ex: `1.9 -> 1`
+- When a float gets cast to an int the decimal is truncated. `1.9 -> 1`
 
 ### [Auto and typeid](#c)
 - `auto` tells the compiler to determine the variable's type by the initial value given
@@ -236,7 +202,14 @@ Header files
 - allow any functions to be declared for compile time.
 - specifies an interface for using a .cpp file.
 
-## [Namespaces](#c)
+## [Namespaces and using](#c)
+
+```C++
+namespace namespaceName {
+	// Group 
+}
+```
+
 What are namespaces and what are they used for?
 
 `using namespace std;`
@@ -467,3 +440,11 @@ for(int num : arr) {
 	cout << num << endl;
 }
 ```
+
+## [Exception/Error handling](#c)
+- Why is it necessary?
+	- A module that detects an error is not often the module that handles that error
+	- `throw` is essentially a multilevel return
+	- You can return an error that isn't the same type as the return type of the function.
+
+- Destructor is called when an object goes out of scope

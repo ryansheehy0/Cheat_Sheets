@@ -27,10 +27,8 @@ The standard libraries are any library that uses namespace std.
 <!-- TOC -->
 
 - [iostream](#iostream)
-	- [Repeatedly ask for user input](#repeatedly-ask-for-user-input)
 - [string](#string)
 - [cmath](#cmath)
-	- [Random numbers](#random-numbers)
 	- [ctime](#ctime)
 - [cstdlib](#cstdlib)
 - [iomanip](#iomanip)
@@ -62,22 +60,6 @@ The standard libraries are any library that uses namespace std.
 	- Sets the position of the input pointer for the stream
 	- Ex: `file.seekg(0, ios_base::beg);`
 
-### [Repeatedly ask for user input](#c-standard-libraries)
-
-```c++
-while(true) {
-	if(!(cin >> input) || /*input isn't valid*/) {
-		cout << "Please try again" << endl;
-		cin.clear(); // Clears cin errors
-		while (cin.get() != '\n'); // Removes the previous input
-		continue;
-	}
-
-	// Do stuff
-	break;
-}
-```
-
 ## [string](#c-standard-libraries)
 
 |                                    |                                               |
@@ -105,10 +87,6 @@ while(true) {
 | `floor(x)`            | Round down                         |
 | `rand()`              | Random int from `0` and `RAND_MAX` |
 | `M_PI`                |                                    |
-
-### [Random numbers](#c-standard-libraries)
-- `rand() % 10` between 0-9
-- `(rand() % 11) + 20` between 20-30
 
 ### [ctime](#c-standard-libraries)
 - `#include <ctime>`
