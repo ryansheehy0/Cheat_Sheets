@@ -40,25 +40,27 @@ My personal notes on C++.
 		- [post-fix vs pre-fix increment](#post-fix-vs-pre-fix-increment)
 	- [Const](#const)
 	- [Casting](#casting)
-	- [Auto and typeid](#auto-and-typeid)
+	- [Auto](#auto)
 - [Headers](#headers)
 - [Namespaces and using](#namespaces-and-using)
 - [Character escapes](#character-escapes)
 - [Pointers and references](#pointers-and-references)
 	- [Function pointers](#function-pointers)
+	- [Constants with pointers](#constants-with-pointers)
+	- [Arrays](#arrays)
 - [Order of operations](#order-of-operations)
-- [Switch](#switch)
+- [Loops and Conditions](#loops-and-conditions)
+	- [Switch](#switch)
+	- [Do While loops](#do-while-loops)
+	- [Single line conditions](#single-line-conditions)
+	- [Range based for loop](#range-based-for-loop)
 - [Functions](#functions)
 	- [Types of functions](#types-of-functions)
 	- [Reference arguments](#reference-arguments)
 	- [Optional arguments](#optional-arguments)
 	- [Function overloading](#function-overloading)
 - [Custom Scope](#custom-scope)
-- [Do While loops](#do-while-loops)
-- [Single line conditions](#single-line-conditions)
 - [Global and static variables](#global-and-static-variables)
-- [Arrays](#arrays)
-- [Range based for loop](#range-based-for-loop)
 - [Exception/Error handling](#exceptionerror-handling)
 
 <!-- /TOC -->
@@ -75,6 +77,22 @@ My personal notes on C++.
 	- `const_cast`, `static_cast`, `reinterpret_cast`, `dynamic_cast`
 	- Why not use C style casting
 - typeid
+- `new` and `delete`
+- Dereferencing pointers with `->`
+- Templates
+- `virtual` keyword for functions?
+	- Virtual means it maybe defined later in a class derived from this one.
+	- `= 0` says that it has to be implemented by a child class
+	- Can be used to create an interface
+	- Has to determine which function to use at runtime. Uses a virtual function table to do this.
+- Deconstructors
+	- Destructor is called when an object goes out of scope
+- Inheritance
+	- `:public `
+- Classes
+	- You can also define methods outside of classes with `void Class::func() {/*Define func*/}`
+- `typeid`
+- Iterators
 
 - `"a"` outputs a null terminated array of characters, while `'a'` is just that character.
 	- `"a"` is the same as `['a', '\0']`
@@ -180,13 +198,18 @@ The smallest memory unit is 1 byte(8 bits).
 - `static_cast<data type>(variable)`
 - When a float gets cast to an int the decimal is truncated. `1.9 -> 1`
 
-### [Auto and typeid](#c)
-- `auto` tells the compiler to determine the variable's type by the initial value given
-	- Ex: `auto x = "apple";` gets assigned const char*
-	- Ex: `auto x = 0.01;` gets assigned double
-- Has to be initialized or else it will throw an error
+### [Auto](#c)
+`auto` tells the compiler to determine the variable's type by the initial value given.
+- Ex: `auto x = "apple";` gets assigned const char*
+- Ex: `auto x = 0.01;` gets assigned double
+- Ex: `auto x` gives an error
 
 ## [Headers](#c)
+Why header files?
+- Allows for separate code compilation
+- 
+
+Header fil
 When you use a function that isn't defined in your code you get 2 errors.
 
 First, a compile time error because the function isn't declared.
@@ -216,6 +239,16 @@ What are namespaces and what are they used for?
 
 - To access a namespace use the `namespace::command`.
 
+- You can define a function outside of the namespace itself.
+
+```C++
+namespace Namespace {
+	void func1() {/*Define func1*/}
+}
+// You can also do
+void Namespace::func2() {/*Define func2*/}
+```
+
 ## [Character escapes](#c)
 
 | Character | Description                       |
@@ -236,7 +269,6 @@ What are namespaces and what are they used for?
 | `\Nname`  | unicode character from name       |
 | `\0`      | Null                              |
 
-
 ## [Pointers and references](#c)
 
 |               |                                         |
@@ -249,6 +281,22 @@ What are namespaces and what are they used for?
 
 ### [Function pointers](#c)
 `void (*name)(int, int) = function;`
+
+### [Constants with pointers](#c)
+- A pointer to a constant
+- A constant pointer to a data
+
+### [Arrays](#c)
+Arrays in C++ store a sequences of variables in contiguous memory. The array name is a pointer to the first element of the array.Accessing an element with `arr[index]` is equivalent to dereferencing the pointer at the memory location `*(arrPtr + index)`.
+
+- Define with random data
+	- Ex: `int arr[3];`
+- Initialize with zeros
+	- Ex: `int arr[3] = {1};` initializes with 1, 0, 0
+- You don't have to specify the size
+	- Ex: `int arr[] = {0, 0, 0};` the size is 3
+- Constants with array
+	- Ex: `const int arr[3]` means that it's an array of constant ints.
 
 ## [Order of operations](#c)
 
@@ -267,7 +315,9 @@ What are namespaces and what are they used for?
 | 11    | \|\|                   |
 | 12    | a?b:c = += -=, etc     |
 
-## [Switch](#c)
+## [Loops and Conditions](#c)
+
+### [Switch](#c)
 - Cannot be used with string or floating point types.
 
 ```c++
@@ -275,13 +325,46 @@ switch (x) {
 	case 0:
 		break;
 	case 1:
-		break;
 	case 2:
-	case 3:
 		// Falling through
 		break;
 	default:
 		break;
+}
+```
+
+### [Do While loops](#c)
+
+```c++
+do {
+} while (true);
+```
+
+### [Single line conditions](#c)
+
+```c++
+if (true) cout << "true" << endl;
+
+if (true)
+	cout << "true" << endl;
+else
+	cout << "false" << endl;
+
+for (int i = 0; i < 10; i++)
+	cout << i << endl;
+
+while (true)
+  cout << "infinity ";
+```
+
+### [Range based for loop](#c)
+- The list has to have an iterator in order to work.
+
+```c++
+vector<int> arr = {1, 2, 3, 4};
+
+for(int num : arr) {
+	cout << num << endl;
 }
 ```
 
@@ -363,31 +446,6 @@ test(1);
 }
 ```
 
-## [Do While loops](#c)
-
-```c++
-do {
-} while(true);
-```
-
-## [Single line conditions](#c)
-
-```c++
-if(true)
-	cout << "true" << endl;
-
-if (true)
-	cout << "true" << endl;
-else
-	cout << "false" << endl;
-
-for(int i = 0; i < 10; i++)
-	cout << i << endl;
-
-while (true)
-  cout << "infinity ";
-```
-
 ## [Global and static variables](#c)
 - Global variables are variables outside of any function
 - Global variables are automatically set to 0 if not given a value
@@ -408,43 +466,60 @@ void callFunc() {
 }
 ```
 
-## [Arrays](#c)
-
-```c++
-int arr[3]; // Don't know what it's initialized with
-int arr[3] = {1}; // Initialized with {1, 0, 0}
-int arr[] = {1, 0, 0}; // Size is 3
-```
-
-- The name of the array is like a constant pointer.
-	- It always points to the first element of the array.
-
-```c++
-const int arr[3] = {0, 1, 2}
-// Have to initialize it
-// Can't change any of the values in the array
-```
-
-## [Range based for loop](#c)
-- It isn't recommended to use because it has some restrictions
-	- Can only be used in the same scope where the array is created
-
-```c++
-int arr[] = {1, 2, 3, 4};
-
-for(int &num : arr) {
-	num++;
-}
-
-for(int num : arr) {
-	cout << num << endl;
-}
-```
-
 ## [Exception/Error handling](#c)
+
+```C++
+#include <iostream>
+#include <stdexcept>
+using std::cerr, std::runtime_error;
+
+try {
+	throw runtime_error("An error occurred");
+} catch (const runtime_error& e) {
+	cerr << e.what() << "\n";
+} catch (...) {
+	// Default catch
+}
+```
+
+- Using cerr and exit
+- What do you do when you want to continue runing if you have an error
+- You can return a value that you know is an error
+- There are two problems with this
+	- Complicated return types
+	- Handling the error on multiple levels. Bubbling up errors.
+		- You can separate code that handles errors with the code that runs the algorithm
+- The solution is error handling
+	- What happens when a block of code can throw multiple different types of errors?
+		- You have another catch block for each type of exception/error
+	- How do you know which code actually threw the error?
+		- You either but a try block on each code that can throw an error or you look at what exception is returned
+	- What happens if you never catch an error and just continue your code?
+		- It crashes the program.
+
+- There is a hierarchy of exceptions in c++
+- exception
+	- logic error
+		- out_of_range
+	- bad_alloc
+	- runtime_error
+- Exceptions are caught in order, so you should catch more specific exceptions before less specific ones.
+- Putting error handling into one function
+	- 
+
+The alternative it returning a value that you know is an error.
+There are two main reasons to use error handling
+- It simplifies your return type
+	- Instead of returning optional<string>
+	- It allows you to pass more information with your error then just one value
+- It allows you to handle the error in one place
+
+You can also just do `cerr << ; exit(1)` anywhere in your program.
+
+
 - Why is it necessary?
 	- A module that detects an error is not often the module that handles that error
 	- `throw` is essentially a multilevel return
 	- You can return an error that isn't the same type as the return type of the function.
 
-- Destructor is called when an object goes out of scope
+- Is there any performance penalty for using error handling?
