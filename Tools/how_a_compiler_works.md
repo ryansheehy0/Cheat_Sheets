@@ -19,20 +19,37 @@
 [Home](../README.md)
 
 # How A Compiler Works
-A compiler translates code from one programming language to another, usually machine code.
+A **compiler** translates code from one programming language to another, usually machine code.
+
+An **interpreter** directly translates and executes code line by line. It is usually slower than a compiler, but can give better feedback to the programer because they can directly see their code changes.
 
 Steps for a compiler:
+
+- Analysis(Front end) - Creates syntax tree, symbol table, and checks them for errors.
+	- **Lexical Analyzer/Tokenizer**               - Outputs a sequences of tokens in order
+	- **Syntax Analyzer/Parser**                   - Creates a syntax tree and symbol table from the tokens
+	- **Semantic Analyzer**                        - Checks the syntax tree and symbol table for any semantic errors
+- Synthesis(Back end) - Constructs target program from syntax tree and symbol table.
+	- Intermediate Code Generator                  - Create machine independent code from the syntax tree and symbol table
+	- Machine-Independent Code Optimizer           - Optimizes this machine independent code
+	- Code Generator                               - Generates machine code for the particular platform
+	- Machine-Dependent Code Optimizer             - Optimizes the machine code
 
 <!-- TOC -->
 
 - [Lexical Analyzer/Tokenizer](#lexical-analyzertokenizer)
-- [Syntax Analysis/Parser](#syntax-analysisparser)
-- [Semantic Analysis](#semantic-analysis)
-- [Generate output code](#generate-output-code)
+- [Syntax Analyzer/Parser](#syntax-analyzerparser)
+- [Semantic Analyzer](#semantic-analyzer)
+- [Code Generator](#code-generator)
 
 <!-- /TOC -->
 
 ## [Lexical Analyzer/Tokenizer](#how-a-compiler-works)
-## [Syntax Analysis/Parser](#how-a-compiler-works)
-## [Semantic Analysis](#how-a-compiler-works)
-## [Generate output code](#how-a-compiler-works)
+The lexical analyzer reads the source code and groups characters together called tokens.
+
+- A token is composed of two parts, the **token type** and the **attribute value**.
+	- The **attribute value** points to an entry in the symbol table.
+
+## [Syntax Analyzer/Parser](#how-a-compiler-works)
+## [Semantic Analyzer](#how-a-compiler-works)
+## [Code Generator](#how-a-compiler-works)
