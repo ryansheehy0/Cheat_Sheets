@@ -468,6 +468,101 @@ void callFunc() {
 ```
 
 ## [Exception/Error handling](#c)
+If your program has an error and you want to crash you can do: `std::cerr << "An error occured\n"` which prints an error and `exit(1);` which exits the program with a 1. But what if you want to continue running your code even when there's an error?
+
+In C, you commonly return `-1` or `NULL` to show there was an error, but there are two main problems with this.
+
+1. Complicated return types
+- Let's say you have a function that reads a file and returns a string, but that function has an error. You could return `"-1"`, but that could be confused with the contents of the file. You could wrap the return string in an optional and return `{}` when there's an error, but that is very messy. You could pass in a reference parameter that gets set when there's an error, but that is also messy. All of these solutions aren't ideal.
+
+2. Bubbling up errors
+- Let's say you have func1 which calls func2 which calls func3. And let's say there's an error in fun3 and it returns `-1`. In order for func1 to get the error, there has to be error handling code in func2 which checks for the error and returns it to func1 if it's there. This is very annoying, especially if the error has to bubble through many many functions.
+
+In order to solve these two problems specific error handling keywords were introduced: `try`, `catch`, and `throw`.
+
+1. Solves complicated return types
+- Instead of all the messy solutions to return your error, you can instead `throw` an error and it doesn't have to match the type the function is returning.
+- Simplifies the return types for your functions.
+
+2. Solves bubbling up errors
+- Instead of having special error handling code in all your functions, a thrown error automatically bubbles up until it reaches a `catch` block for it's error type.
+- Separates your algorithm code from your error handling code.
+
+
+<table>
+<tr>
+	<th>Without <code>try</code>, <code>catch</code>, and <code>throw</code></th>
+	<th>With <code>try</code>, <code>catch</code>, and <code>throw</code></th>
+<tr>
+<td>
+
+```C++
+int func3() {
+	bool error = true;
+	if (error) {
+		return -1;
+	}
+}
+
+int func2() {
+	int error = func3();
+	if (error == -1) {
+		return -1;
+	}
+}
+
+void func1() {
+	int error = func2();
+	if (error == -1) {
+		// Handle error
+	}
+}
+```
+
+</td>
+<td>
+
+```C++
+void func3() {
+	bool error = true;
+	if (error) {
+		throw -1;
+	}
+}
+
+void func2() {
+	func3();
+}
+
+void func1() {
+	try {
+		func2();
+	} catch (int error) {
+		// Handle error
+	}
+}
+```
+
+</td>
+
+- If an error is thrown and not cached, the program crashes.
+- Answer questions
+
+- Hierarchy of errors
+
+- Error handling functions/Default catch block
+
+
+```C++
+#include <iostream>
+#include <cstdlib>
+
+void func() {
+	bool error = true;
+	if (error) {
+	}
+}
+```
 
 ```C++
 #include <iostream>
@@ -507,6 +602,8 @@ try {
 - Exceptions are caught in order, so you should catch more specific exceptions before less specific ones.
 - Putting error handling into one function
 	- 
+
+- `catch (...)`
 
 The alternative it returning a value that you know is an error.
 There are two main reasons to use error handling
