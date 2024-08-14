@@ -62,7 +62,6 @@ My personal notes on C++.
 - [Custom Scope](#custom-scope)
 - [Global and static variables](#global-and-static-variables)
 - [Exception/Error handling](#exceptionerror-handling)
-- [- Putting error handling into one function](#--putting-error-handling-into-one-function)
 
 <!-- /TOC -->
 
@@ -468,33 +467,33 @@ void callFunc() {
 ```
 
 ## [Exception/Error handling](#c)
-If your program has an error and you want to crash you can do: `std::cerr << "An error occured\n"` which prints an error and `exit(1);` which exits the program with a 1. But what if you want to continue running your code even when there's an error?
+If your program has an error and you want to crash you can do: `std::cerr << "An error occured\n"` which prints an error and `exit(1);` which exits the program with a 1(`#include <stdio.h>`). But what if you want to continue running your code even when there's an error?
 
 In C, you commonly return `-1` or `NULL` to show there was an error, but there are two main problems with this.
 
 1. Complicated return types
-- Let's say you have a function that reads a file and returns a string, but that function has an error. You could return `"-1"`, but that could be confused with the contents of the file. You could wrap the return string in an optional and return `{}` when there's an error, but that is very messy. You could pass in a reference parameter that gets set when there's an error, but that is also messy. All of these solutions aren't ideal.
+- Let's say you have a function that reads a file and returns a string of the contents of that file, but that function has an error. You could return `"-1"`, but that could be confused with the contents of the file. You could wrap the return string in an optional and return `{}` when there's an error, but that is very messy. You could pass in a reference parameter that gets set when there's an error, but that is also messy. All of these solutions aren't ideal.
 
 2. Bubbling up errors
-- Let's say you have func1 which calls func2 which calls func3. And let's say there's an error in fun3 and it returns `-1`. In order for func1 to get the error, there has to be error handling code in func2 which checks for the error and returns it to func1 if it's there. This is very annoying, especially if the error has to bubble through many many functions.
+- Let's say you have func1 which calls func2 which calls func3. And let's say there's an error in fun3 and it returns `-1`. In order for func1 to get the error, there has to be error handling code in func2 which checks for the error and returns it to func1 if it's there. This is very annoying, especially if the error has to bubble through many function layers.
 
 In order to solve these two problems specific error handling keywords were introduced: `try`, `catch`, and `throw`.
 
 1. Solves complicated return types
 - Instead of all the messy solutions to return your error, you can instead `throw` an error and it doesn't have to match the type the function is returning.
-- Simplifies the return types for your functions.
+- It simplifies the return types for your functions and return additional information along with the error.
 
 2. Solves bubbling up errors
-- Instead of having special error handling code in all your functions, a thrown error automatically bubbles up until it reaches a `catch` block for it's error type.
+- Instead of having special error handling code in all your functions, a thrown error automatically bubbles up until it reaches a `catch` block for it's error type. `throw` is essentially a multi-level return.
 - Separates your algorithm code from your error handling code.
-
 
 <table>
 <tr>
 	<th>Without <code>try</code>, <code>catch</code>, and <code>throw</code></th>
 	<th>With <code>try</code>, <code>catch</code>, and <code>throw</code></th>
+</tr>
 <tr>
-<td>
+	<td>
 
 ```C++
 int func3() {
@@ -544,82 +543,46 @@ void func1() {
 ```
 
 </td>
+</tr>
+</table>
 
-- If an error is thrown and not cached, the program crashes.
-- Answer questions
-
-- Hierarchy of errors
-
-- Error handling functions/Default catch block
-
+- If an error is thrown and not caught, the program crashes.
+- `catch` blocks can be strung together and are caught in order, so you should catch more specific exceptions before less specific ones.
+- There is a hierarchy of C++ errors.
+	- std::exception
+		- std::bad_alloc - When memory allocation fails
+		- std::bad_cast - When failing to dynamically cast using `dynamic_cast`
+		- etc.
+		- std::logic_error
+			- std::domain_error - When a function receives an arg outside its domain.(Like `sqrt` receiving a negative num.)
+			- std::invalid_argument - When the arguments to a function are invalid
+			- std::length_error - When an operation exceeds the allocated size
+			- std::out_of_range - When trying to access an element outside the valid range.
+		- std::runtime_error
+			- std::range_error - When a computation results in a value outside the valid range. Function expects to return in a certain range, but the computation is outside of that range.
+			- std::overflow_error - When an arithmetic operation results in an overflow.
+			- std::underflow_error - When an arithmetic operation results in an underflow.
+			- std::ios_base::failure - When the input/output operations fail. Common if a file can't read or write.
 
 ```C++
-#include <iostream>
-#include <cstdlib>
+void handleErrors() {
+	try {
+		throw; // Throws the last error
+	} catch (const std::bad_alloc& e) {
+
+	} catch (const std::invalid_argument& e) {
+
+	} catch (const std::exception& e) {
+
+	}
+}
 
 void func() {
-	bool error = true;
-	if (error) {
+	try {
+			// Code that may throw an exception
+	} catch (...) {
+			// Catches all errors
+			handleErrors();
 	}
 }
 ```
-
-```C++
-#include <iostream>
-#include <stdexcept>
-using std::cerr, std::runtime_error;
-
-try {
-	throw runtime_error("An error occurred");
-} catch (const runtime_error& e) {
-	cerr << e.what() << "\n";
-} catch (...) {
-	// Default catch
-}
-```
-
-- Using cerr and exit
-- What do you do when you want to continue runing if you have an error
-- You can return a value that you know is an error
-- There are two problems with this
-	- Complicated return types
-	- Handling the error on multiple levels. Bubbling up errors.
-		- You can separate code that handles errors with the code that runs the algorithm
-- The solution is error handling
-	- What happens when a block of code can throw multiple different types of errors?
-		- You have another catch block for each type of exception/error
-	- How do you know which code actually threw the error?
-		- You either but a try block on each code that can throw an error or you look at what exception is returned
-	- What happens if you never catch an error and just continue your code?
-		- It crashes the program.
-
-- There is a hierarchy of exceptions in c++
-- exception
-	- logic error
-		- out_of_range
-	- bad_alloc
-	- runtime_error
-- Exceptions are caught in order, so you should catch more specific exceptions before less specific ones.
-- Putting error handling into one function
-	- 
-
-- `catch (...)`
-
-The alternative it returning a value that you know is an error.
-There are two main reasons to use error handling
-- It simplifies your return type
-	- Instead of returning optional<string>
-	- It allows you to pass more information with your error then just one value
-- It allows you to handle the error in one place
-
-You can also just do `cerr << ; exit(1)` anywhere in your program.
-
-- Is there a performance penalty for exception handling in c++?
-
-
-- Why is it necessary?
-	- A module that detects an error is not often the module that handles that error
-	- `throw` is essentially a multilevel return
-	- You can return an error that isn't the same type as the return type of the function.
-
-- Is there any performance penalty for using error handling?
