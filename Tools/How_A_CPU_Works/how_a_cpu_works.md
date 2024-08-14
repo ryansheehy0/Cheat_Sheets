@@ -44,8 +44,10 @@
 	- [Twos complement](#twos-complement)
 	- [Full adder](#full-adder)
 	- [Adder and Subtractor](#adder-and-subtractor)
-	- [RAM](#ram)
-		- [DRAM vs SRAM](#dram-vs-sram)
+- [RAM](#ram)
+	- [DRAM vs SRAM](#dram-vs-sram)
+	- [Address mapper](#address-mapper)
+	- [RAM overview](#ram-overview)
 
 <!-- /TOC -->
 
@@ -185,14 +187,14 @@ The arithmetic logic unit (ALU) is the module in the CPU which does mathematical
 
 <img src="alu_overview.jpeg" width="350" >
 
-| Input | Description           |
-|-------|-----------------------|
-| AI    | A register In/Load    |
-| AO    | A register Out/Enable |
-| EO    | Sum Out/Enable        |
-| SU    | Subtract              |
-| BI    | B register In/Load    |
-| BO    | B register Out/Enable |
+| Input  | Description           |
+|--------|-----------------------|
+| **AI** | A register In/Load    |
+| **AO** | A register Out/Enable |
+| **EO** | Sum Out/Enable        |
+| **SU** | Subtract              |
+| **BI** | B register In/Load    |
+| **BO** | B register Out/Enable |
 
 - The X symbolizes the amount of connections equal to the base of the computer.
 
@@ -252,20 +254,14 @@ Full adders are strung together to do addition on the full word of a computer.
 
 <img src="4_bit_alu.jpeg" width="350" >
 
-### [RAM](#how-a-cpu-works)
+## [RAM](#how-a-cpu-works)
 Random Access Memory (RAM) is a sequence of memory locations used to store data, usually the size of a word.
 
-Ex: 4 bit register, 4 bit word. The tops and bottoms are connected to the bus with tri-state gates.
+Ex: 4 bit address and 4 bit word memory. The tops and bottoms are connected to the bus with tri-state gates.
 
 <img src="4_bit_ram.jpeg" width="350" >
 
-- In order to map an address to the WR or EN pins you can use AND gates.
-
-<img src="ram_address_mapper.jpeg" width="350" >
-
-- When the address is 0000 and the EN/WR pin is 1, EN0/WR0 is 1 to allow the memory to read/write onto/from the bus.
-
-#### [DRAM vs SRAM](#how-a-cpu-works)
+### [DRAM vs SRAM](#how-a-cpu-works)
 - Dynamic RAM(DRAM)
 	- Uses capacitors to store one bit
 	- Requires constant refreshing. Less performant.
@@ -278,3 +274,20 @@ Ex: 4 bit register, 4 bit word. The tops and bottoms are connected to the bus wi
 | DRAM | SRAM                                       |
 |------|--------------------------------------------|
 |      | <img src="register_bit.jpeg" width="250" > |
+
+### [Address mapper](#how-a-cpu-works)
+The address mapper is used to map the address to the corresponding WR/EN pins. This can be done with multi-input AND gates.
+
+<img src="ram_address_mapper.jpeg" width="350" >
+
+- When the address is 0000 and the EN/WR pin is 1, EN0/WR0 is 1 to allow the memory to read/write onto/from the bus.
+
+### [RAM overview](#how-a-cpu-works)
+The RAM connects to the Address register. Both are connected to the bus.
+
+<img src="ram_overview.jpeg" width="300" >
+
+- `A` is the Address size. In this CPU architecture the address size is assumed to be less than the word of the computer to allow one operation to set the address and instruction code.
+- **MI** - Memory Address In
+- **RI** - RAM In
+- **RO** - RAM Out

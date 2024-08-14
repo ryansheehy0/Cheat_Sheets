@@ -62,6 +62,7 @@ My personal notes on C++.
 - [Custom Scope](#custom-scope)
 - [Global and static variables](#global-and-static-variables)
 - [Exception/Error handling](#exceptionerror-handling)
+- [- Putting error handling into one function](#--putting-error-handling-into-one-function)
 
 <!-- /TOC -->
 
@@ -515,6 +516,8 @@ There are two main reasons to use error handling
 - It allows you to handle the error in one place
 
 You can also just do `cerr << ; exit(1)` anywhere in your program.
+
+- Is there a performance penalty for exception handling in c++?
 
 
 - Why is it necessary?
