@@ -83,6 +83,8 @@ My personal notes on C++.
 	- `template<class T> class Stack`
 	- `template<class T> void Stack<T>::push(T c)`
 	- Do templates always have to have class in them? Why?
+	- How to do size for a template?
+	- Done at compile time?
 - `virtual` keyword for functions?
 	- Virtual means it maybe defined later in a class derived from this one.
 	- `= 0` says that it has to be implemented by a child class

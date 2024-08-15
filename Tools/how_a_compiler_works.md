@@ -39,17 +39,51 @@ Steps for a compiler:
 
 - [Lexical Analyzer/Tokenizer](#lexical-analyzertokenizer)
 - [Syntax Analyzer/Parser](#syntax-analyzerparser)
+	- [Shunting yard algorithm](#shunting-yard-algorithm)
 - [Semantic Analyzer](#semantic-analyzer)
 - [Code Generator](#code-generator)
 
 <!-- /TOC -->
+
+
+position = init + rate * 60
+            |
+	     Lexical Analyzer
+			      v
+(id, 1) (=) (id, 2) (+) (id, 3) (*) (60)
+            |
+				Syntax Analyzer
+				    v
 
 ## [Lexical Analyzer/Tokenizer](#how-a-compiler-works)
 The lexical analyzer reads the source code and groups characters together called tokens.
 
 - A token is composed of two parts, the **token type** and the **attribute value**.
 	- The **attribute value** points to an entry in the symbol table.
+- Spaces separate the tokens/lexemes
 
 ## [Syntax Analyzer/Parser](#how-a-compiler-works)
+
+### [Shunting yard algorithm](#how-a-compiler-works)
+- Input expression
+- Holding stack
+- Output
+- Solve stack
+
+- If literal put to output
+- If operator put onto holding stack if they are higher president then what's on the stack
+- If operator not higher or equal president, then put holding stack onto output until operator is of higher precedence.
+- If nothing then empty holding stack to output
+- Once input and holding stack are empty
+	- If literal put on solve stack
+	- If operator, computer the two past operators in the solve stack and put output on the solve stack.
+
 ## [Semantic Analyzer](#how-a-compiler-works)
 ## [Code Generator](#how-a-compiler-works)
+
+Problems:
+- How to tokenize?
+	- Handle spaces? How do I enforce spaces?
+	- How to handle all the different types f tokenization in C++?
+- How to parse more complicated code?
+- How to organize the code?

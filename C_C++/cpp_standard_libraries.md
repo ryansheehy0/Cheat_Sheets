@@ -37,6 +37,14 @@ The standard libraries are any library that uses namespace std.
 - [fstream](#fstream)
 - [cctype](#cctype)
 - [optional](#optional)
+- [Data Containers](#data-containers)
+	- [array](#array)
+	- [vector](#vector)
+	- [list](#list)
+	- [[deque]](#deque)
+	- [set](#set)
+	- [map](#map)
+- [Algorithms](#algorithms)
 
 <!-- /TOC -->
 
@@ -192,3 +200,71 @@ int main() {
 ```
 
 - There's the `optionalVar.value_or(value)` which returns the value in optionalVar if it's there or the value inside the `()`s if it's not.
+
+## [Data Containers](#c-standard-libraries)
+
+| Operation    | Speed                 |
+|--------------|-----------------------|
+| Reading      | Fast                  |
+| Inserting    | Slow                  |
+| Appending    | Fast                  |
+| Getting size | Done at compiler time |
+
+### [array](#c-standard-libraries)
+`std::array<type, size>` is used to store a block of continuous memory. This has advantages over the regular C style arrays because it supports iterators, error handing for reading/writing out of bounds, and allows you to easily get the size(Size is calculated at compile time).
+- Advantages
+	- Fast random access
+	- Automatically stored on the stack
+- Disadvantages
+	- Can't change size
+	- Slow to insert/delete
+
+### [vector](#c-standard-libraries)
+`std::vector<type>` is an array that can grow in size. First a fixed size array is stored in the heap. If an insert would overflow the array, a new larger fixed size array is created else where in the heap, and all the contents of the smaller array are moved to the larger array.
+- Advantages
+	- Fast random access
+	- Can change size
+- Disadvantages
+	- You can't have a pointer to an element in the vector because it can change locations if the vector grows in size.
+	- Slow to insert/delete
+		- Can have reallocation costs
+
+### [list](#c-standard-libraries)
+`std::list<type>` is a doubly linked list stored in the heap. Each node stores a pointer to its parent and child node.
+- Advantages
+	- Quick to insert/remove
+	- Can change size
+	- Easily splice multiple lists together
+- Disadvantages
+	- Slow random access
+	- High memory overhead
+
+### [deque]
+`std::deque<type>` is a linked list of arrays. This sort of mixes the advantages and disadvantages of a list and vector.
+- Advantages
+	- Can change size
+	- Quick to 
+	- Fast memory access
+- Disadvantages
+	- High memory overhead
+
+- Double ended que
+- Index table. Does the required calculations to convert a direct access index to the correct location in the deque.
+
+### [set](#c-standard-libraries)
+`std::set<type>` and `std::unordered_set<type>` are used to store a list of unique elements. Set automatically sorts the elements as they go in, but unordered doesn't.
+
+.insert()
+.find()
+
+### [map](#c-standard-libraries)
+`std::map<keyType, valueType>` and `std::unordered_map<keyType, valueType>` are used to store a list of key value pairs.
+
+```C++
+mp["key"] = value;
+```
+
+- They return a `std::pair` which has two properties of `.first` and `.second`.
+
+## [Algorithms](#c-standard-libraries)
+- std::algorithm
