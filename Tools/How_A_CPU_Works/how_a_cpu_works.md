@@ -46,7 +46,7 @@
 	- [Adder and Subtractor](#adder-and-subtractor)
 - [RAM](#ram)
 	- [DRAM vs SRAM](#dram-vs-sram)
-	- [Address mapper](#address-mapper)
+	- [Address mapper/Binary Decoder](#address-mapperbinary-decoder)
 	- [RAM overview](#ram-overview)
 
 <!-- /TOC -->
@@ -257,9 +257,12 @@ Full adders are strung together to do addition on the full word of a computer.
 ## [RAM](#how-a-cpu-works)
 Random Access Memory (RAM) is a sequence of memory locations used to store data, usually the size of a word.
 
-Ex: 4 bit address and 4 bit word memory. The tops and bottoms are connected to the bus with tri-state gates.
+Ex: 4 bit address and 4 bit word memory. The tops and bottoms are connected to the bus with tri-state gates. Separate tri-state gates are used to determine if it should input or output to/from the bus.
 
 <img src="4_bit_ram.jpeg" width="350" >
+
+- Bitlines are the input/output lines that run vertically.
+- Wordlines are the read/write lines that run horizontally.
 
 ### [DRAM vs SRAM](#how-a-cpu-works)
 - Dynamic RAM(DRAM)
@@ -271,19 +274,25 @@ Ex: 4 bit address and 4 bit word memory. The tops and bottoms are connected to t
 	- Doesn't require refreshing. More performant.
 	- More expensive
 
-| DRAM | SRAM                                       |
-|------|--------------------------------------------|
-|      | <img src="register_bit.jpeg" width="250" > |
+| DRAM                              | SRAM                                       |
+|-----------------------------------|--------------------------------------------|
+| <img src="dram.jpeg" width="350"> | <img src="register_bit.jpeg" width="250" > |
 
-### [Address mapper](#how-a-cpu-works)
-The address mapper is used to map the address to the corresponding WR/EN pins. This can be done with multi-input AND gates.
+- DRAM
+	- A charged capacitor represents a 1, while a discharged represents a 0.
+	- Because reading the data removes the charge in the capacitor, sense amplifiers are used to detect the charge of the cap, store it in a register, and write it back to the cap so it keeps its charge.
+	- Separate tri-state gates are used to determine if it should input or output to/from the bus.
+	- Charged capacitors discharge over time so they have to be constantly refreshed which consists of reading in and writing the same memory back to the capacitors. There is usually done by separate circuitry.
+
+### [Address mapper/Binary Decoder](#how-a-cpu-works)
+The address mapper/binary decoder is used to map the address to the corresponding WR/EN pins. This can be done with multi-input AND gates.
 
 <img src="ram_address_mapper.jpeg" width="350" >
 
 - When the address is 0000 and the EN/WR pin is 1, EN0/WR0 is 1 to allow the memory to read/write onto/from the bus.
+- For SRAM separate address mappers are used for WR and EN. For DRAM the WR/EN pins are connected.
 
 ### [RAM overview](#how-a-cpu-works)
-The RAM connects to the Address register. Both are connected to the bus.
 
 <img src="ram_overview.jpeg" width="300" >
 

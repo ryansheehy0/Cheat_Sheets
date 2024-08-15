@@ -80,6 +80,9 @@ My personal notes on C++.
 - `new` and `delete`
 - Dereferencing pointers with `->`
 - Templates
+	- `template<class T> class Stack`
+	- `template<class T> void Stack<T>::push(T c)`
+	- Do templates always have to have class in them? Why?
 - `virtual` keyword for functions?
 	- Virtual means it maybe defined later in a class derived from this one.
 	- `= 0` says that it has to be implemented by a child class
@@ -91,8 +94,12 @@ My personal notes on C++.
 	- `:public `
 - Classes
 	- You can also define methods outside of classes with `void Class::func() {/*Define func*/}`
+	- Are classes essentially their own namespace? Is that why enum class works?
 - `typeid`
 - Iterators
+- type fields? An instance of an enum?
+	- A variable that can only have the types specified in the enum.
+- Multi-threading
 
 - `"a"` outputs a null terminated array of characters, while `'a'` is just that character.
 	- `"a"` is the same as `['a', '\0']`
