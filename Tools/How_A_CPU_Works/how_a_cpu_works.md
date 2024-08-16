@@ -48,6 +48,9 @@
 	- [DRAM vs SRAM](#dram-vs-sram)
 	- [Address mapper/Binary Decoder](#address-mapperbinary-decoder)
 	- [RAM overview](#ram-overview)
+- [Program Counter](#program-counter)
+	- [JK Flip Flop](#jk-flip-flop)
+	- [Master Slave JK Flip Flop](#master-slave-jk-flip-flop)
 
 <!-- /TOC -->
 
@@ -92,12 +95,12 @@ Once the SR Latch is set to 1 or 0 it maintains its state, unlike logic gates.
 - Set(S) is used to latch the output(Q) to 1.
 - Reset(R) is used to latch the output(Q) to 0.
 
-| S | R | Q | !Q |
-|---|---|---|----|
-| 0 | 0 | Q | !Q |
-| 0 | 1 | 0 | 1  |
-| 1 | 0 | 1 | 0  |
-| 1 | 1 | 0 | 0  |
+| S | R | Q       | !Q      |
+|---|---|---------|---------|
+| 0 | 0 | Q       | !Q      |
+| 0 | 1 | 0       | 1       |
+| 1 | 0 | 1       | 0       |
+| 1 | 1 | Unknown | Unknown |
 
 |                                           |                                           |
 |-------------------------------------------|-------------------------------------------|
@@ -123,6 +126,12 @@ The D Flip-Flop is like the D Latch, but only activates when the clock signal go
 |                                           |                                                  |
 |-------------------------------------------|--------------------------------------------------|
 | <img src="d_flip_flop.jpeg" width="350" > | <img src="d_flip_flop_symbol.jpeg" width="150" > |
+
+| CLK    | D   | Q | !Q |
+|--------|-----|---|----|
+| X      | 0/1 | Q | !Q |
+| 0 to 1 | 0   | 0 | 1  |
+| 0 to 1 | 1   | 1 | 0  |
 
 #### [Edge detectors](#how-a-cpu-works)
 In order to detect when the clock goes from low to high, you need an edge detection circuit.
@@ -300,3 +309,25 @@ The address mapper/binary decoder is used to map the address to the correspondin
 - **MI** - Memory Address In
 - **RI** - RAM In
 - **RO** - RAM Out
+
+## [Program Counter](#how-a-cpu-works)
+The program counter counts by 1 every operation?
+
+### [JK Flip Flop](#how-a-cpu-works)
+The JK Flip Flop is like the SR Latch, but when both the inputs are high it toggles the state instead of putting it in an unknown state.
+
+| CLK    | J   | K   | Q      | !Q     |
+|--------|-----|-----|--------|--------|
+| X      | 0/1 | 0/1 | Q      | !Q     |
+| 0 to 1 | 0   | 0   | Q      | !Q     |
+| 0 to 1 | 0   | 1   | 0      | 1      |
+| 0 to 1 | 1   | 0   | 1      | 0      |
+| 0 to 1 | 1   | 1   | Toggle | Toggle |
+
+<img src="jk_flip_flop.jpeg" width="350">
+
+- The problem with the JK Flip Flop is that when J and K are both 1, and the CLK signal goes from 0 to 1, there's a race condition toggling the output. If Q goes to 1, that causes Q to go to 0, which causes Q to go to 1, etc until the clock pulse ends.
+
+<img src="jk_flip_flop_race_condition.jpeg" width="350">
+
+### [Master Slave JK Flip Flop](#how-a-cpu-works)
