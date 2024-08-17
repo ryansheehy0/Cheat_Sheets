@@ -51,6 +51,7 @@
 - [Program Counter](#program-counter)
 	- [JK Flip Flop](#jk-flip-flop)
 	- [Master Slave JK Flip Flop](#master-slave-jk-flip-flop)
+	- [Binary Counter](#binary-counter)
 
 <!-- /TOC -->
 
@@ -104,7 +105,7 @@ Once the SR Latch is set to 1 or 0 it maintains its state, unlike logic gates.
 
 |                                           |                                           |
 |-------------------------------------------|-------------------------------------------|
-| <img src="sr_latch_gates.jpeg" width="200"> | <img src="sr_latch_symbol.jpeg" width="200"> |
+| <img src="sr_latch_gates.jpeg" width="200"> | <img src="sr_latch_symbol.jpeg" width="150"> |
 
 ## [D Latch and D Flip-Flop](#how-a-cpu-works)
 
@@ -186,7 +187,7 @@ A register is a module that is used to store a word, same bits as the computer b
 
 |                                            |                                                   |
 |--------------------------------------------|---------------------------------------------------|
-| <img src="register_bit.jpeg" width="250" > | <img src="register_bit_symbol.jpeg" width="250" > |
+| <img src="register_bit.jpeg" width="250" > | <img src="register_bit_symbol.jpeg" width="200" > |
 
 - Synchronous memory only reads in memory when the clock goes from low to high.
 - Asynchronous memory operates independently from the clock.
@@ -250,7 +251,7 @@ A full adder is used to add two bits together. The Carry In(CI) input is used to
 
 |                                                |                                                 |
 |------------------------------------------------|-------------------------------------------------|
-| <img src="full_adder_gates.jpeg" width="350" > | <img src="full_adder_symbol.jpeg" width="350" > |
+| <img src="full_adder_gates.jpeg" width="300" > | <img src="full_adder_symbol.jpeg" width="150" > |
 
 ### [Adder and Subtractor](#how-a-cpu-works)
 Full adders are strung together to do addition on the full word of a computer.
@@ -331,3 +332,28 @@ The JK Flip Flop is like the SR Latch, but when both the inputs are high it togg
 <img src="jk_flip_flop_race_condition.jpeg" width="350">
 
 ### [Master Slave JK Flip Flop](#how-a-cpu-works)
+The Master Slave JK Flip Flop is used to solve this race condition problem with the toggle.
+
+|                                                        |                                                               |
+|--------------------------------------------------------|---------------------------------------------------------------|
+| <img src="master_slave_jk_flip_flop.jpeg" width="350"> | <img src="master_slave_jk_flip_flop_symbol.jpeg" width="150"> |
+
+- When the CLK goes from 1 to 0, the 2nd SR latch is set.
+- When J and K are 1, Q toggles on and off with the CLK signal. This has the same effect as dividing the CLK frequency by 2.
+
+<img src="master_slave_jk_flip_flop_frequency_divide.jpeg" width="350">
+
+### [Binary Counter](#how-a-cpu-works)
+The binary counter is used to count 1, in binary, whenever the CLK goes from low to high.
+
+<img src="binary_counter.jpeg" width="350">
+
+| Bit4  | Bit3  | Bit2  | Bit1  |
+|-------|-------|-------|-------|
+| $2^3$ | $2^2$ | $2^1$ | $2^0$ |
+| 0     | 0     | 0     | 0     |
+| 0     | 0     | 0     | 1     |
+| 0     | 0     | 1     | 0     |
+| 0     | 0     | 1     | 1     |
+| 0     | 1     | 0     | 0     |
+| etc   | etc   | etc   | etc   |

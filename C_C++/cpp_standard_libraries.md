@@ -210,14 +210,18 @@ int main() {
 | Appending    | Fast                  |
 | Getting size | Done at compiler time |
 
+- Is there a linked list of arrays?
+
 ### [array](#c-standard-libraries)
-`std::array<type, size>` is used to store a block of continuous memory. This has advantages over the regular C style arrays because it supports iterators, error handing for reading/writing out of bounds, and allows you to easily get the size(Size is calculated at compile time).
+`std::array<type, size>` is used to store a block of continuous memory. This has advantages over the regular C style arrays because it supports iterators, error handing for reading/writing out of bounds, and allows you to easily get the size(size is calculated at compile time).
 - Advantages
 	- Fast random access
 	- Automatically stored on the stack
 - Disadvantages
 	- Can't change size
 	- Slow to insert/delete
+
+.
 
 ### [vector](#c-standard-libraries)
 `std::vector<type>` is an array that can grow in size. First a fixed size array is stored in the heap. If an insert would overflow the array, a new larger fixed size array is created else where in the heap, and all the contents of the smaller array are moved to the larger array.
@@ -228,6 +232,21 @@ int main() {
 	- You can't have a pointer to an element in the vector because it can change locations if the vector grows in size.
 	- Slow to insert/delete
 		- Can have reallocation costs
+
+.push_back()
+.size()
+.pop_back()
+.empty()
+.clear()
+.insert(iterator pos, element)
+.erase(iterator pos)
+.resize()
+.reserve()
+.capacity() - returns the number of elements that the vector can hold before needing to allocate more memory
+.data() vs &vec[0]?
+
+.begin() vs .front()
+.end() vs .back()
 
 ### [list](#c-standard-libraries)
 `std::list<type>` is a doubly linked list stored in the heap. Each node stores a pointer to its parent and child node.
@@ -247,6 +266,9 @@ int main() {
 	- Fast memory access
 - Disadvantages
 	- High memory overhead
+
+.push_back
+.push_front
 
 - Double ended que
 - Index table. Does the required calculations to convert a direct access index to the correct location in the deque.
