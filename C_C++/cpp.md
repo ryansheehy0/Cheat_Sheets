@@ -102,6 +102,8 @@ My personal notes on C++.
 - type fields? An instance of an enum?
 	- A variable that can only have the types specified in the enum.
 - Multi-threading
+- Modules?
+	- `import` how does this effect header files
 
 - `"a"` outputs a null terminated array of characters, while `'a'` is just that character.
 	- `"a"` is the same as `['a', '\0']`

@@ -80,10 +80,3 @@ The lexical analyzer reads the source code and groups characters together called
 
 ## [Semantic Analyzer](#how-a-compiler-works)
 ## [Code Generator](#how-a-compiler-works)
-
-Problems:
-- How to tokenize?
-	- Handle spaces? How do I enforce spaces?
-	- How to handle all the different types f tokenization in C++?
-- How to parse more complicated code?
-- How to organize the code?

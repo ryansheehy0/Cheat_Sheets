@@ -221,8 +221,6 @@ int main() {
 	- Can't change size
 	- Slow to insert/delete
 
-.
-
 ### [vector](#c-standard-libraries)
 `std::vector<type>` is an array that can grow in size. First a fixed size array is stored in the heap. If an insert would overflow the array, a new larger fixed size array is created else where in the heap, and all the contents of the smaller array are moved to the larger array.
 - Advantages

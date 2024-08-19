@@ -52,6 +52,7 @@
 	- [JK Flip Flop](#jk-flip-flop)
 	- [Master Slave JK Flip Flop](#master-slave-jk-flip-flop)
 	- [Binary Counter](#binary-counter)
+	- [Program Counter Overview](#program-counter-overview)
 
 <!-- /TOC -->
 
@@ -266,6 +267,7 @@ Full adders are strung together to do addition on the full word of a computer.
 
 ## [RAM](#how-a-cpu-works)
 Random Access Memory (RAM) is a sequence of memory locations used to store data, usually the size of a word.
+- The code that is executed by the CPU is stored in the RAM.
 
 Ex: 4 bit address and 4 bit word memory. The tops and bottoms are connected to the bus with tri-state gates. Separate tri-state gates are used to determine if it should input or output to/from the bus.
 
@@ -312,7 +314,7 @@ The address mapper/binary decoder is used to map the address to the correspondin
 - **RO** - RAM Out
 
 ## [Program Counter](#how-a-cpu-works)
-The program counter counts by 1 every operation?
+The program counter is used to keep track of which address in RAM is being currently ran.
 
 ### [JK Flip Flop](#how-a-cpu-works)
 The JK Flip Flop is like the SR Latch, but when both the inputs are high it toggles the state instead of putting it in an unknown state.
@@ -346,7 +348,7 @@ The Master Slave JK Flip Flop is used to solve this race condition problem with 
 ### [Binary Counter](#how-a-cpu-works)
 The binary counter is used to count 1, in binary, whenever the CLK goes from low to high.
 
-<img src="binary_counter.jpeg" width="350">
+<img src="binary_counter.jpeg" width="450">
 
 | Bit4  | Bit3  | Bit2  | Bit1  |
 |-------|-------|-------|-------|
@@ -357,3 +359,17 @@ The binary counter is used to count 1, in binary, whenever the CLK goes from low
 | 0     | 0     | 1     | 1     |
 | 0     | 1     | 0     | 0     |
 | etc   | etc   | etc   | etc   |
+
+- The CLK signal is inverted so it counts when going from low to high instead of the usual high to low.
+
+### [Program Counter Overview](#how-a-cpu-works)
+
+|                                                       |                                                       |
+|-------------------------------------------------------|-------------------------------------------------------|
+| <img src="program_counter_diagram.jpeg" width="350"> | <img src="program_counter_overview.jpeg" width="250"> |
+
+| Input  | Description             |
+|--------|-------------------------|
+| **CO** | Program Counter Out     |
+| **J**  | Jump/Program Counter In |
+| **CE** | Count enable/Increment  |
