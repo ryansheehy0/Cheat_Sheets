@@ -45,6 +45,7 @@ The standard libraries are any library that uses namespace std.
 	- [set](#set)
 	- [map](#map)
 - [Algorithms](#algorithms)
+- [Characters functions](#characters-functions)
 
 <!-- /TOC -->
 
@@ -202,6 +203,10 @@ int main() {
 - There's the `optionalVar.value_or(value)` which returns the value in optionalVar if it's there or the value inside the `()`s if it's not.
 
 ## [Data Containers](#c-standard-libraries)
+- Single linked lists
+- Hash tables
+- Linked list of arrays?
+- B-tree?
 
 | Operation    | Speed                 |
 |--------------|-----------------------|
@@ -287,4 +292,46 @@ mp["key"] = value;
 - They return a `std::pair` which has two properties of `.first` and `.second`.
 
 ## [Algorithms](#c-standard-libraries)
-- std::algorithm
+`#include <algorithms>`
+- All functions are assumed to be part of the std namespace.
+
+| Usage                            | Description                                                                              |
+|----------------------------------|------------------------------------------------------------------------------------------|
+| `sort(v.begin(), v.end())`       | Sorts a list in O(nlogn). Tends to use introsort algorithm(quicksort + heap sort)        |
+| `sort(v.begin(), v.end(), func)` | You can also sort with a function which takes in 2 args and returns the element you want |
+| `stable_sort`                    | Same as `sort`, but equivalent elements are guaranteed to keep the same order            |
+| `binary_search(v.begin(), v.end(), search)` | O(logn). Returns true if the value is in the sorted list. |
+| `binary_search(v.begin(), v.end(), search, func)` | When list is sorted differently. func can be greater for reverse sorted lists. |
+| `lower_bound` | Like binary_search, but returns the first equal to or the next greatest element |
+| `upper_bound` | Same, but just gives the next greatest element |
+| `reverse()` | O(n) will reverse a list |
+| `reverse
+
+- std::find
+- std::lower_bound / std::upper_bound
+- std::copy
+- std::reverse
+- std::fill
+- std::transform
+- std::count
+- std::remove / std::remove_if
+- std::unique
+- std
+
+## [Characters functions](#c-standard-libraries)
+`#include <cctype>`
+- All of these functions take in char arguments.
+
+| Function        | Description                                            |
+|-----------------|--------------------------------------------------------|
+| `std::toupper`  | Convert to upper case                                  |
+| `std::tolower`  | Convert to lower case                                  |
+| `std::isxdigit` | Is hexadecimal numeric character                       |
+| `std::isupper`  | Is upper case character                                |
+| `std::isspace`  | Is a whitespace character. Spaces, tabs, and new lines |
+| `std::ispunct`  | Is a punctuation/special character                     |
+| `std::islower`  | Is lower case character                                |
+| `std::isdigit`  | Is a digit                                             |
+| `std::isblank`  | Is a space or tab                                      |
+| `std::isalpha`  | Is lower or upper case letter                          |
+| `std::isalnum`  | Is lower, upper, or number                             |
