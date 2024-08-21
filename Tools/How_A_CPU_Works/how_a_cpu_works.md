@@ -53,6 +53,8 @@
 	- [Master Slave JK Flip Flop](#master-slave-jk-flip-flop)
 	- [Binary Counter](#binary-counter)
 	- [Program Counter Overview](#program-counter-overview)
+- [Control Unit](#control-unit)
+- [CPU Overview](#cpu-overview)
 
 <!-- /TOC -->
 
@@ -198,14 +200,15 @@ The arithmetic logic unit (ALU) is the module in the CPU which does mathematical
 
 <img src="alu_overview.jpeg" width="350" >
 
-| Input  | Description           |
-|--------|-----------------------|
-| **AI** | A register In/Load    |
-| **AO** | A register Out/Enable |
-| **EO** | Sum Out/Enable        |
-| **SU** | Subtract              |
-| **BI** | B register In/Load    |
-| **BO** | B register Out/Enable |
+| Control Signal | Description           |
+|----------------|-----------------------|
+| **AI**         | A register In/Load    |
+| **AO**         | A register Out/Enable |
+| **CY**         | Carry Bit             |
+| **EO**         | Sum Out/Enable        |
+| **SU**         | Subtract              |
+| **BI**         | B register In/Load    |
+| **BO**         | B register Out/Enable |
 
 - The X symbolizes the amount of connections equal to the base of the computer.
 
@@ -309,9 +312,12 @@ The address mapper/binary decoder is used to map the address to the correspondin
 <img src="ram_overview.jpeg" width="300" >
 
 - `A` is the Address size. In this CPU architecture the address size is assumed to be less than the word of the computer to allow one operation to set the address and instruction code.
-- **MI** - Memory Address In
-- **RI** - RAM In
-- **RO** - RAM Out
+
+| Control Signal | Description       |
+|----------------|-------------------|
+| **MI**         | Memory Address In |
+| **RI**         | RAM In            |
+| **RO**         | RAM Out           |
 
 ## [Program Counter](#how-a-cpu-works)
 The program counter is used to keep track of which address in RAM is being currently ran.
@@ -368,8 +374,19 @@ The binary counter is used to count 1, in binary, whenever the CLK goes from low
 |-------------------------------------------------------|-------------------------------------------------------|
 | <img src="program_counter_diagram.jpeg" width="350"> | <img src="program_counter_overview.jpeg" width="250"> |
 
-| Input  | Description             |
-|--------|-------------------------|
-| **CO** | Program Counter Out     |
-| **J**  | Jump/Program Counter In |
-| **CE** | Count enable/Increment  |
+| Control Signal | Description             |
+|----------------|-------------------------|
+| **CO**         | Program Counter Out     |
+| **J**          | Jump/Program Counter In |
+| **CE**         | Count enable/Increment  |
+
+## [Control Unit](#how-a-cpu-works)
+The control unit maps instructions, stored in the instruction register, to control signals for each of the modules of the computer.
+- You can use a sequence of logic gates to do this mapping, commonly called combinational logic circuits, but that tends to require a lot of logic gates.
+	- You can instead use Electronically Erasable Programmable Read Only Memory(EEPROMs). They are like a large programmable truth table.
+- Some of the control signals are activated when they are set low. These signals are ran through an inverter so they become active when they're high. This isn't necessary, but it makes it easer to think through.
+
+## [CPU Overview](#how-a-cpu-works)
+- Feedback loop makes computer turing complete
+
+- Image overview of each of the CPU components
