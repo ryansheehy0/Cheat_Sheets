@@ -32,20 +32,10 @@ The standard libraries are any library that uses namespace std.
 	- [ctime](#ctime)
 - [cstdlib](#cstdlib)
 - [iomanip](#iomanip)
-- [vector](#vector)
 - [typeinfo](#typeinfo)
 - [fstream](#fstream)
-- [cctype](#cctype)
 - [optional](#optional)
-- [Data Containers](#data-containers)
-	- [array](#array)
-	- [vector](#vector)
-	- [list](#list)
-	- [[deque]](#deque)
-	- [set](#set)
-	- [map](#map)
-- [Algorithms](#algorithms)
-- [Characters functions](#characters-functions)
+- [characters functions](#characters-functions)
 
 <!-- /TOC -->
 
@@ -132,12 +122,6 @@ The standard libraries are any library that uses namespace std.
 - If no fixed and exceeds bounds of `setprecision`, then it's outputted in scientific notation
 	- Ex: `cout << setprecision(2) << 146.789;` outputs `1.5e+02`
 
-## [vector](#c-standard-libraries)
-- Dynamic arrays in c++
-- `vector<int> nums = {0, 1, 2};`
-- `nums[0] = 10;`
-- `nums.push_back(3);` Adds 3 to the end of the vector
-
 ## [typeinfo](#c-standard-libraries)
 - `typeid(var).name()` gives a string of the type of variable.
 
@@ -168,12 +152,6 @@ The standard libraries are any library that uses namespace std.
 	- `file >> input;`
 	- `getline(file, line);`
 
-## [cctype](#c-standard-libraries)
-
-|                 |                        |
-|-----------------|------------------------|
-| `tolower(char)` | Converts to lower case |
-
 ## [optional](#c-standard-libraries)
 Optional is used when there is the possiility that you cannot get any code back?
 
@@ -202,123 +180,7 @@ int main() {
 
 - There's the `optionalVar.value_or(value)` which returns the value in optionalVar if it's there or the value inside the `()`s if it's not.
 
-## [Data Containers](#c-standard-libraries)
-- Single linked lists
-- Hash tables
-- Linked list of arrays?
-- B-tree?
-
-| Operation    | Speed                 |
-|--------------|-----------------------|
-| Reading      | Fast                  |
-| Inserting    | Slow                  |
-| Appending    | Fast                  |
-| Getting size | Done at compiler time |
-
-- Is there a linked list of arrays?
-
-### [array](#c-standard-libraries)
-`std::array<type, size>` is used to store a block of continuous memory. This has advantages over the regular C style arrays because it supports iterators, error handing for reading/writing out of bounds, and allows you to easily get the size(size is calculated at compile time).
-- Advantages
-	- Fast random access
-	- Automatically stored on the stack
-- Disadvantages
-	- Can't change size
-	- Slow to insert/delete
-
-### [vector](#c-standard-libraries)
-`std::vector<type>` is an array that can grow in size. First a fixed size array is stored in the heap. If an insert would overflow the array, a new larger fixed size array is created else where in the heap, and all the contents of the smaller array are moved to the larger array.
-- Advantages
-	- Fast random access
-	- Can change size
-- Disadvantages
-	- You can't have a pointer to an element in the vector because it can change locations if the vector grows in size.
-	- Slow to insert/delete
-		- Can have reallocation costs
-
-.push_back()
-.size()
-.pop_back()
-.empty()
-.clear()
-.insert(iterator pos, element)
-.erase(iterator pos)
-.resize()
-.reserve()
-.capacity() - returns the number of elements that the vector can hold before needing to allocate more memory
-.data() vs &vec[0]?
-
-.begin() vs .front()
-.end() vs .back()
-
-### [list](#c-standard-libraries)
-`std::list<type>` is a doubly linked list stored in the heap. Each node stores a pointer to its parent and child node.
-- Advantages
-	- Quick to insert/remove
-	- Can change size
-	- Easily splice multiple lists together
-- Disadvantages
-	- Slow random access
-	- High memory overhead
-
-### [deque]
-`std::deque<type>` is a linked list of arrays. This sort of mixes the advantages and disadvantages of a list and vector.
-- Advantages
-	- Can change size
-	- Quick to 
-	- Fast memory access
-- Disadvantages
-	- High memory overhead
-
-.push_back
-.push_front
-
-- Double ended que
-- Index table. Does the required calculations to convert a direct access index to the correct location in the deque.
-
-### [set](#c-standard-libraries)
-`std::set<type>` and `std::unordered_set<type>` are used to store a list of unique elements. Set automatically sorts the elements as they go in, but unordered doesn't.
-
-.insert()
-.find()
-
-### [map](#c-standard-libraries)
-`std::map<keyType, valueType>` and `std::unordered_map<keyType, valueType>` are used to store a list of key value pairs.
-
-```C++
-mp["key"] = value;
-```
-
-- They return a `std::pair` which has two properties of `.first` and `.second`.
-
-## [Algorithms](#c-standard-libraries)
-`#include <algorithms>`
-- All functions are assumed to be part of the std namespace.
-
-| Usage                            | Description                                                                              |
-|----------------------------------|------------------------------------------------------------------------------------------|
-| `sort(v.begin(), v.end())`       | Sorts a list in O(nlogn). Tends to use introsort algorithm(quicksort + heap sort)        |
-| `sort(v.begin(), v.end(), func)` | You can also sort with a function which takes in 2 args and returns the element you want |
-| `stable_sort`                    | Same as `sort`, but equivalent elements are guaranteed to keep the same order            |
-| `binary_search(v.begin(), v.end(), search)` | O(logn). Returns true if the value is in the sorted list. |
-| `binary_search(v.begin(), v.end(), search, func)` | When list is sorted differently. func can be greater for reverse sorted lists. |
-| `lower_bound` | Like binary_search, but returns the first equal to or the next greatest element |
-| `upper_bound` | Same, but just gives the next greatest element |
-| `reverse()` | O(n) will reverse a list |
-| `reverse
-
-- std::find
-- std::lower_bound / std::upper_bound
-- std::copy
-- std::reverse
-- std::fill
-- std::transform
-- std::count
-- std::remove / std::remove_if
-- std::unique
-- std
-
-## [Characters functions](#c-standard-libraries)
+## [characters functions](#c-standard-libraries)
 `#include <cctype>`
 - All of these functions take in char arguments.
 

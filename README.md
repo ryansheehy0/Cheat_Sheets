@@ -70,6 +70,7 @@ RS Cheat Sheets is licensed under GPLv3. See the [COPYING file](./COPYING) for d
 ## C/C++
 - [C++](./C_C++/cpp.md)
 - [C++ Standard Libraries](./C_C++/cpp_standard_libraries.md)
+- [C++ Data Structures, Iterators, and Algorithms](./C_C++/cpp_data_structures_iterators_and_algorithms.md)
 - [C++ Compiling](./C_C++/c_and_cpp_compiling.md)
 - [Make Files](./C_C++/make_files.md)
 

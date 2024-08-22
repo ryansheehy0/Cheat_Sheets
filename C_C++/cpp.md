@@ -62,9 +62,6 @@ My personal notes on C++.
 - [Custom Scope](#custom-scope)
 - [Global and static variables](#global-and-static-variables)
 - [Exception/Error handling](#exceptionerror-handling)
-- [Iterators](#iterators)
-	- [[Constant iterators]](#constant-iterators)
-	- [Different types of iterators](#different-types-of-iterators)
 
 <!-- /TOC -->
 
@@ -97,16 +94,21 @@ My personal notes on C++.
 	- Destructor is called when an object goes out of scope
 - Inheritance
 	- `:public `
+- Interfaces
+- string functions
+- array functions
 - Classes
 	- You can also define methods outside of classes with `void Class::func() {/*Define func*/}`
 	- Are classes essentially their own namespace? Is that why enum class works?
 - `typeid`
-- Iterators
 - type fields? An instance of an enum?
 	- A variable that can only have the types specified in the enum.
 - Multi-threading
 - Modules?
 	- `import` how does this effect header files
+- Debugging c++ in vs code
+	- Multiple files
+	- Multiple 
 
 - `"a"` outputs a null terminated array of characters, while `'a'` is just that character.
 	- `"a"` is the same as `['a', '\0']`
@@ -600,46 +602,3 @@ void func() {
 	}
 }
 ```
-
-## [Iterators](#c)
-Iterators are used to standardize access to elements across different underlying data structures. `.begin()` returns an iterator to the first element of the container, and `.end()` returns an iterator to one element past the last element of the container.
-- You cannot access `.end()` because it isn't pointing to any element.
-
-- Why iterators instead of []s?
-	- Good for linked lists. You can keep track of the current position instead of continuously going through the whole list each time you are searching for an element.
-	- This is why in c++ you can't access the index for ranged based for loops.
-
-```C++
-template<typename T>
-void printElems(const T& v) {
-	for (typename T::iterator pos = v.begin(); pos != v.end(); pos++) {
-		std::cout << *pos << "\n";
-	}
-}
-```
-- `++` is redefined to move to the next element. This is different depending upon the underlying data structure.
-- You can iterate through different data structures with the same code, allowing templates to be done through compile time instead of run time.
-
-### [Constant iterators](#c)
-- `const_iterator` type means you cannot modify the underlying data.
-	- `.cbegin()` and `.cend()` is like `.begin()` and `.end()`, but returns a const iterator so you can use `auto`.
-
-### [Different types of iterators](#c)
-- Different types of data structures have iterators which allow for different types of operations. Certain operations are restricted because they aren't performant for the underlying data structure.
-	- Random access iterators(**RanIt**) - Data structure where you can jump to and compare with any other position.
-		- Operators:       =, *, ++, ==, !=, --, +=, -=, <, <=, [], -
-		- std data types:  vector, array, deque, strings, c-style arrays
-	- Bidirectional iterators(**BidIt**) - 
-		- Operators:       =, *, ++, ==, !=, --
-		- std data types:  list, associative containers(set, map, etc.)
-	- Forward iterators(**FwdIt**) - 
-		- Operators:       =, *, ++, ==, !=
-		- std data types:  forward_list, unordered containers(hash tables, etc)
-	- Input iterators(**InIt**) - 
-		- Operators:       Can read elements only once
-		- std data types:  istream_iterator
-	- Output iterators(**OutIt**) - 
-
-- What are all of the std iterator data structures?
-- What are all of the different types of iterators
-- OutIt?
