@@ -53,8 +53,11 @@
 	- [Master Slave JK Flip Flop](#master-slave-jk-flip-flop)
 	- [Binary Counter](#binary-counter)
 	- [Program Counter Overview](#program-counter-overview)
-- [Control Unit](#control-unit)
 - [CPU Overview](#cpu-overview)
+- [Control Unit](#control-unit)
+- [Fetch, Decode, and Execute](#fetch-decode-and-execute)
+- [Conditional Jumps](#conditional-jumps)
+- [Instruction](#instruction)
 
 <!-- /TOC -->
 
@@ -380,13 +383,45 @@ The binary counter is used to count 1, in binary, whenever the CLK goes from low
 | **J**          | Jump/Program Counter In |
 | **CE**         | Count enable/Increment  |
 
+## [CPU Overview](#how-a-cpu-works)
+- Feedback loop makes computer turing complete
+
+- Image overview of each of the CPU components
+
 ## [Control Unit](#how-a-cpu-works)
+The control unit gets a CPU instruction and outputs the correct control signals in the correct order to execute that instruction in the CPU.
+	- Explain control unit
+	- Control unit overview
 The control unit maps instructions, stored in the instruction register, to control signals for each of the modules of the computer.
 - You can use a sequence of logic gates to do this mapping, commonly called combinational logic circuits, but that tends to require a lot of logic gates.
 	- You can instead use Electronically Erasable Programmable Read Only Memory(EEPROMs). They are like a large programmable truth table.
 - Some of the control signals are activated when they are set low. These signals are ran through an inverter so they become active when they're high. This isn't necessary, but it makes it easer to think through.
 
-## [CPU Overview](#how-a-cpu-works)
-- Feedback loop makes computer turing complete
 
-- Image overview of each of the CPU components
+## [Fetch, Decode, and Execute](#how-a-cpu-works)
+The Fetch, Decode, and Execute are the steps that need to be taken in order to run code on the CPU. The code is stored in order in RAM. The program counter is used to store the current command that needs to be executed.
+
+1. **Fetch** the current instruction in RAM and put it in the instruction register.
+	1. Move the current command into the RAM Address.
+		- Program Counter Out(**CO**), Memory Address In(**MI**)
+	2. Move the contents of RAM into the instruction register
+		- RAM Out(**RO**), Instruction Register In(**II**)
+	3. Increment the program counter for the next fetch
+		- Increment Program Counter(**CE**)
+2. Have the control unit **decode** the instruction in the instruction register. Get the control signals in order for the particular instruction.
+3. **Execute** the instruction
+
+## [Conditional Jumps](#how-a-cpu-works)
+
+## [Instruction](#how-a-cpu-works)
+- List all common CPU instructions
+	- LDA Address
+	- ADD Address
+	- SUB Address
+	- OUT
+	- JUMP Address
+	- HLT
+	- 
+- Explain assembly is human readable version of these instructions
+	- What features do assembly add?
+		- Memory address labels
