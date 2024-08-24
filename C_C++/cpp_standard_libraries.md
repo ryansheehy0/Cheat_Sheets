@@ -73,6 +73,7 @@ The standard libraries are any library that uses namespace std.
 | `str.replace(index, length, str2)` | Replaces starting at index                    |
 | `str.find(str2)`                   | Gets the starting index of the string         |
 |                                    | Returns `string::npos` if nothing was found   |
+| `std::string(1, char)`             | Convert char to a string one 1                |
 
 ## [cmath](#c-standard-libraries)
 - Floating point math operations
