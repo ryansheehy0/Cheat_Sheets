@@ -53,12 +53,12 @@
 	- [Master Slave JK Flip Flop](#master-slave-jk-flip-flop)
 	- [Binary Counter](#binary-counter)
 	- [Program Counter Overview](#program-counter-overview)
+- [CPU Overview](#cpu-overview)
 - [Control Unit](#control-unit)
 	- [Fetch, Decode, and Execute](#fetch-decode-and-execute)
 	- [Conditional Jumps](#conditional-jumps)
 	- [User Input](#user-input)
 	- [Instructions](#instructions)
-- [CPU Overview](#cpu-overview)
 
 <!-- /TOC -->
 
@@ -384,17 +384,38 @@ The binary counter is used to count 1, in binary, whenever the CLK goes from low
 | **J**          | Jump/Program Counter In |
 | **CE**         | Count enable/Increment  |
 
+## [CPU Overview](#how-a-cpu-works)
+
+- Image overview of each of the CPU components
+
+| Control Signal | Description                      |
+|----------------|----------------------------------|
+| **HT**         | Halt                             |
+| **MI**         | Memory Address In                |
+| **RI**         | RAM In                           |
+| **RO**         | RAM Out                          |
+| **II**         | Instruction Register In          |
+| **IO**         | Instruction Register Out         |
+| **AI**         | A Register In                    |
+| **AO**         | A Register Out                   |
+| **EO**         | Sum Out                          |
+| **SU**         | Subtract                         |
+| **BI**         | B Register In                    |
+| **BO**         | B Register Out                   |
+| **OI**         | Output Register In               |
+| **CE**         | Program Counter Enable/Increment |
+| **CO**         | Program Counter Out              |
+| **J**          | Program Counter In/Jump          |
+| **UO**         | User Input Register In           |
+| **RS**         | Reset Step Counter               |
+
 ## [Control Unit](#how-a-cpu-works)
-The control unit gets a CPU instruction, from the instruction register, and outputs the correct control signals in the correct order to execute that instruction in the CPU.
+The control unit gets a CPU instruction, from the instruction register, and the step count, from the step counter, and outputs the correct control signals to execute that micro-instruction in the CPU.
 - You can use a sequence of logic gates to do this mapping, commonly called combinational logic circuits, but that tends to require a lot of logic gates. You can instead use Electronically Erasable Programmable Read Only Memory(EEPROMs). They are like a large programmable truth table.
 
 <img src="control_unit.jpeg" width="350">
 
 - The control unit needs a separate binary counter, called the step counter, to track the current step for the instruction it’s executing.
-
-| Control Signal | Description |
-| 
-
 
 ### [Fetch, Decode, and Execute](#how-a-cpu-works)
 The Fetch, Decode, and Execute are the steps that need to be taken in order to run code on the CPU. The code is stored in order in RAM. The program counter is used to store the current command that needs to be executed.
@@ -418,15 +439,17 @@ CPU interrupts
 
 
 ### [Instructions](#how-a-cpu-works)
-The instructions are programed into the Control Unit
+The instructions are programed into the Control Unit. They can be whatever the CPU designer wants them to be.
 - The Instruction # and Step Counter are the inputs into the control unit
-- The Control Signal is the output of the control unit
-	- The other control signals are set to 0 when they aren't used
+- The Control Signals are the output from the control unit
+	- The other control signals are set to 0 when they aren't set
 
 | Instruction | Instruction # | Step Counter | Control Signal |
 |-------------|---------------|--------------|----------------|
 | Fetch       | XXXX          | 000          | CO, MI         |
 |             | XXXX          | 001          | RO, II, CE     |
+| NOP         | 0000          | 010          |                |
+|             |               | 011          | RS             |
 | LDA Add     | 0001          | 010          | IO, MI         |
 |             |               | 011          | RO, AI         |
 |             |               | 100          | RS             |
@@ -434,19 +457,16 @@ The instructions are programed into the Control Unit
 |             |               | 011          | RO, BI         |
 |             |               | 100          | EO, AI         |
 |             |               | 101          | RS             |
+| SUB Add     | 0011          | 010          | IO, MI         |
+|             |               | 011          | RO, BI         |
+|             |               | 100          | EO, AI, SU     |
+|             |               | 101          | RS             |
 | OUT         | 1110          | 010          | AO, OI         |
 |             |               | 011          | RS             |
+| HLT         | 1111          | 010          | HT             |
 
 
-- List all common CPU instructions
-	- SUB Address
-	- OUT
-	- JUMP Address
-	- HLT
 - Explain assembly is human readable version of these instructions
 	- What features do assembly add?
 		- Memory address labels
 
-## [CPU Overview](#how-a-cpu-works)
-
-- Image overview of each of the CPU components
