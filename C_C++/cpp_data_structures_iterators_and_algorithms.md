@@ -26,21 +26,35 @@
 	- [array](#array)
 	- [vector](#vector)
 	- [list](#list)
-	- [[deque]](#deque)
+	- [deque](#deque)
 	- [set](#set)
 	- [map](#map)
 - [Iterators](#iterators)
 	- [Constant iterators](#constant-iterators)
 	- [Different types of iterators](#different-types-of-iterators)
+	- [back_inserter](#back_inserter)
 - [Algorithms](#algorithms)
 
 <!-- /TOC -->
 
 ## [Data Structures](#c-data-structures-iterators-and-algorithms)
-- Single linked lists
-- Hash tables
-- Linked list of arrays?
-- B-tree?
+- std::array
+- std::vector
+- Linked lists
+	- std::list
+	- std::forward_list
+- std::deque
+- Sets
+	- std::set
+	- std::unordered_set
+	- std::multiset
+	- std::unordered_multiset
+- Maps(Uses hashing in the background)
+	- std::map
+	- std::unordered_map
+	- std::multimap
+	- std::unordered_multimap
+- std::string
 
 | Operation    | Speed                 |
 |--------------|-----------------------|
@@ -51,7 +65,7 @@
 
 - Is there a linked list of arrays?
 
-### [array](#c-standard-libraries)
+### [array](#c-data-structures-iterators-and-algorithms)
 `std::array<type, size>` is used to store a block of continuous memory. This has advantages over the regular C style arrays because it supports iterators, error handing for reading/writing out of bounds, and allows you to easily get the size(size is calculated at compile time).
 - Advantages
 	- Fast random access
@@ -60,7 +74,7 @@
 	- Can't change size
 	- Slow to insert/delete
 
-### [vector](#c-standard-libraries)
+### [vector](#c-data-structures-iterators-and-algorithms)
 `std::vector<type>` is an array that can grow in size. First a fixed size array is stored in the heap. If an insert would overflow the array, a new larger fixed size array is created else where in the heap, and all the contents of the smaller array are moved to the larger array.
 - Advantages
 	- Fast random access
@@ -90,8 +104,7 @@
 - `nums[0] = 10;`
 - `nums.push_back(3);` Adds 3 to the end of the vector
 
-
-### [list](#c-standard-libraries)
+### [list](#c-data-structures-iterators-and-algorithms)
 `std::list<type>` is a doubly linked list stored in the heap. Each node stores a pointer to its parent and child node.
 - Advantages
 	- Quick to insert/remove
@@ -101,7 +114,7 @@
 	- Slow random access
 	- High memory overhead
 
-### [deque]
+### [deque](#c-data-structures-iterators-and-algorithms)
 `std::deque<type>` is a linked list of arrays. This sort of mixes the advantages and disadvantages of a list and vector.
 - Advantages
 	- Can change size
@@ -116,13 +129,13 @@
 - Double ended que
 - Index table. Does the required calculations to convert a direct access index to the correct location in the deque.
 
-### [set](#c-standard-libraries)
+### [set](#c-data-structures-iterators-and-algorithms)
 `std::set<type>` and `std::unordered_set<type>` are used to store a list of unique elements. Set automatically sorts the elements as they go in, but unordered doesn't.
 
 .insert()
 .find()
 
-### [map](#c-standard-libraries)
+### [map](#c-data-structures-iterators-and-algorithms)
 `std::map<keyType, valueType>` and `std::unordered_map<keyType, valueType>` are used to store a list of key value pairs.
 
 ```C++
@@ -152,35 +165,63 @@ void printElems(const T& v) {
 - `++` is redefined to move to the next element. This is different depending upon the underlying data structure.
 - You can iterate through different data structures with the same code, allowing templates to be done through compile time instead of run time.
 
-### [Constant iterators](#c)
+- Removing algorithms using iterators cannot remove. Why?
+	- Because all the iterator can do is read and write at a specific location.
+	- std::remove gives back the newEnd iterator.
+	- std::ranges::subrange{coll.begin(), newEnd}
+	- coll | std::views::filter(not3)
+
+### [Constant iterators](#c-data-structures-iterators-and-algorithms)
 - `const_iterator` type means you cannot modify the underlying data.
 	- `.cbegin()` and `.cend()` is like `.begin()` and `.end()`, but returns a const iterator so you can use `auto`.
 
-### [Different types of iterators](#c)
+### [Different types of iterators](#c-data-structures-iterators-and-algorithms)
 - Different types of data structures have iterators which allow for different types of operations. Certain operations are restricted because they aren't performant for the underlying data structure.
+	- Contiguous range/iterators(**ContIt**) - All the elements are in continuous memory.
+		- Operators:       =, *, ++, ==, !=, --, +=, -=, <, <=, [], -, iterator can be a raw pointer
+		- std data types:  vector, array, c-style arrays, strings
 	- Random access iterators(**RanIt**) - Data structure where you can jump to and compare with any other position.
 		- Operators:       =, *, ++, ==, !=, --, +=, -=, <, <=, [], -
-		- std data types:  vector, array, deque, strings, c-style arrays
+		- std data types:  deque
 	- Bidirectional iterators(**BidIt**) - Data structures that only support going forward one or back one.
 		- Operators:       =, *, ++, ==, !=, --
 		- std data types:  list(linked lsit), associative containers(set, map, etc.)
 	- Forward iterators(**FwdIt**) - For data structures that only allow you to go forward.
 		- Operators:       =, *, ++, ==, !=
 		- std data types:  forward_list(single linked list), unordered containers(hash tables, etc)
+
 	- Input iterators(**InIt**) - Data structures where you can only read the elements once.
 		- Operators:       
 		- std data types:  istream_iterator
 	- Output iterators(**OutIt**) - 
 
-	- Contiguous range/iterators() - All the elements are in continuous memory
-		- Iterator may be raw pointer, range has std::ranges::data()
-		- vector, array, c-style arrays, strings
-	- Random access iterators
-		- deque
-
 - What are all of the std iterator data structures?
-- What are all of the different types of iterators
-- OutIt?
+
+### [back_inserter](#c-data-structures-iterators-and-algorithms)
+If you just had an iterator, and you wen to the next element, but you were at the end of the memory, you couldn't insert any more.
+The back_insterter automatically does a push_back to expenand the memeory.
+- Useful for the transform algorithm
+
+std::back_insert(data structure)
+
+```C++
+int square(int in) {
+	return in * in;
+}
+
+std::list<int> list = {1, 2, 3, 4, 5};
+std::vector<int> vec; // empty
+
+// Runtime error because transform writes into unavailable data
+std::transform(list.begin(), list.end(),
+							 vec.begin(),
+							 square)
+
+// Doesn't give an error because back insert automatically extends the size of vec
+std::transform(list.begin(), list.end(),
+							 std::back_insert(vec),
+							 square)
+```
 
 ## [Algorithms](#c-data-structures-iterators-and-algorithms)
 `#include <algorithms>`
@@ -210,3 +251,4 @@ void printElems(const T& v) {
 - std::remove / std::remove_if
 - std::unique
 - std::max_element
+- std::erase

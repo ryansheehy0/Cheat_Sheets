@@ -166,3 +166,12 @@ Algorithms
 - Latches and flip flops
 - Logic gates
 - Transistors
+--------------------------------------
+- B-tree
+- Binary tree
+- Binary Search tree
+- AVL Tree
+- Red-Black Tree
+- Graph
+- Trie
+- Priority Queue vs Que?

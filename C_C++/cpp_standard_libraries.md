@@ -24,6 +24,17 @@ You can find libraries at `https://cplusplus.com/reference/<library>`
 The standard libraries are any library that uses namespace std.
 - It's assumed that `using std namespace;` is being used.
 
+- std::stack
+- Queues
+	- std::queue
+	- std::priority_queue
+- std::bitset
+- std::pair
+- std::tuple
+- std::optional
+	- Is this a data type?
+- std::Variant
+
 <!-- TOC -->
 
 - [iostream](#iostream)
