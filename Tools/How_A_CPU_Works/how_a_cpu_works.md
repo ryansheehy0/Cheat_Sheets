@@ -53,12 +53,12 @@
 	- [Master Slave JK Flip Flop](#master-slave-jk-flip-flop)
 	- [Binary Counter](#binary-counter)
 	- [Program Counter Overview](#program-counter-overview)
-- [CPU Overview](#cpu-overview)
 - [Control Unit](#control-unit)
 	- [Fetch, Decode, and Execute](#fetch-decode-and-execute)
 	- [Conditional Jumps](#conditional-jumps)
-	- [User Input](#user-input)
 	- [Instructions](#instructions)
+- [User Input](#user-input)
+- [CPU Overview](#cpu-overview)
 
 <!-- /TOC -->
 
@@ -384,9 +384,13 @@ The binary counter is used to count 1, in binary, whenever the CLK goes from low
 | **J**          | Jump/Program Counter In |
 | **CE**         | Count enable/Increment  |
 
-## [CPU Overview](#how-a-cpu-works)
+## [Control Unit](#how-a-cpu-works)
+The control unit gets a CPU instruction, from the instruction register, and the step count, from the step counter, and outputs the correct control signals to execute that micro-instruction in the CPU.
+- You can use a sequence of logic gates to do this mapping, commonly called combinational logic circuits, but that tends to require a lot of logic gates. You can instead use Electronically Erasable Programmable Read Only Memory(EEPROMs). They are like a large programmable truth table.
 
-- Image overview of each of the CPU components
+<img src="control_unit.jpeg" width="350">
+
+- The control unit needs a separate binary counter, called the step counter, to track the current step for the instruction it’s executing.
 
 | Control Signal | Description                      |
 |----------------|----------------------------------|
@@ -405,38 +409,42 @@ The binary counter is used to count 1, in binary, whenever the CLK goes from low
 | **OI**         | Output Register In               |
 | **CE**         | Program Counter Enable/Increment |
 | **CO**         | Program Counter Out              |
-| **J**          | Program Counter In/Jump          |
+| **CI**         | Program Counter In/Jump          |
 | **UO**         | User Input Register In           |
 | **RS**         | Reset Step Counter               |
 
-## [Control Unit](#how-a-cpu-works)
-The control unit gets a CPU instruction, from the instruction register, and the step count, from the step counter, and outputs the correct control signals to execute that micro-instruction in the CPU.
-- You can use a sequence of logic gates to do this mapping, commonly called combinational logic circuits, but that tends to require a lot of logic gates. You can instead use Electronically Erasable Programmable Read Only Memory(EEPROMs). They are like a large programmable truth table.
-
-<img src="control_unit.jpeg" width="350">
-
-- The control unit needs a separate binary counter, called the step counter, to track the current step for the instruction it’s executing.
-
 ### [Fetch, Decode, and Execute](#how-a-cpu-works)
-The Fetch, Decode, and Execute are the steps that need to be taken in order to run code on the CPU. The code is stored in order in RAM. The program counter is used to store the current command that needs to be executed.
+The Fetch, Decode, and Execute are the steps that need to be taken in order to run code on the CPU. The code is stored in order in RAM. The program counter is used to store the current instruction that needs to be executed.
 
 1. **Fetch** the current instruction in RAM and put it in the instruction register.
-	1. Move the current command into the RAM Address.
+	1. Move the new instruction location into the RAM Address.
 		- Program Counter Out(**CO**), Memory Address In(**MI**)
 	2. Move the contents of RAM into the instruction register
 		- RAM Out(**RO**), Instruction Register In(**II**)
 	3. Increment the program counter for the next fetch
 		- Increment Program Counter(**CE**)
-		- You can do this at the same time as RO,II.
-2. Have the control unit **decode** the instruction in the instruction register. Get the control signals in order for the particular instruction.
+2. The control unit **decodes** the instruction in the instruction register into the appropriate control signals.	
+	- This happens between clock cycles.
 3. **Execute** the instruction
 
 ### [Conditional Jumps](#how-a-cpu-works)
-- Feedback loop makes computer turing complete
+To make a CPU Turing complete, meaning it can compute any algorithm given enough time and memory, it must have a feedback mechanism. This mechanism involves checking the results of a computation and determining the next code to execute based upon those results. Conditional jumps allow for this feedback mechanism. They jump the program counter based upon the results of different flags.
+- **All 0s flag** - Is set to 1 when the ALU output is set to all 0s
+	- This can be used to check if the value in the A register is a certain value by first loading the value in the B register and then subtracting it from the A register. If the All 0s flag is set, then they are equal.
 
-### [User Input](#how-a-cpu-works)
-CPU interrupts
+<img >
 
+- **Negative flag** - Is set to 1 when the ALU output is negative.
+	- This can be used to check if the A register is less than a certain value by first loading the value in the B register and then subtracting it from the A register. If the negative flag is set then the value in A is less than the value in B.
+	- This flag can be gotten by getting the last bit of the ALU.
+- **Positive flag** - Is set to 1 when the ALU output is positive.
+	- This can be used to check if the A register is greater than a certain value.
+	- This is the inverse of the negative flag bit.
+- **Carry flag** - Is set to 1 when the result of the ALU produces a carry bit.
+
+The flags need their own register to make sure they are saved before the calculation is put back in the A register.
+
+<img>
 
 ### [Instructions](#how-a-cpu-works)
 The instructions are programed into the Control Unit. They can be whatever the CPU designer wants them to be.
@@ -444,29 +452,38 @@ The instructions are programed into the Control Unit. They can be whatever the C
 - The Control Signals are the output from the control unit
 	- The other control signals are set to 0 when they aren't set
 
-| Instruction | Instruction # | Step Counter | Control Signal |
-|-------------|---------------|--------------|----------------|
-| Fetch       | XXXX          | 000          | CO, MI         |
-|             | XXXX          | 001          | RO, II, CE     |
-| NOP         | 0000          | 010          |                |
-|             |               | 011          | RS             |
-| LDA Add     | 0001          | 010          | IO, MI         |
-|             |               | 011          | RO, AI         |
-|             |               | 100          | RS             |
-| ADD Add     | 0010          | 010          | IO, MI         |
-|             |               | 011          | RO, BI         |
-|             |               | 100          | EO, AI         |
-|             |               | 101          | RS             |
-| SUB Add     | 0011          | 010          | IO, MI         |
-|             |               | 011          | RO, BI         |
-|             |               | 100          | EO, AI, SU     |
-|             |               | 101          | RS             |
-| OUT         | 1110          | 010          | AO, OI         |
-|             |               | 011          | RS             |
-| HLT         | 1111          | 010          | HT             |
+| Name                       | Instruction | Instruction # | Step Counter | Control Signal |
+|----------------------------|-------------|---------------|--------------|----------------|
+| Fetch                      |             | XXXX          | 000          | CO, MI         |
+|                            |             | XXXX          | 001          | RO, II, CE     |
+| No Operation               | NOP         | 0000          | 010          |                |
+|                            |             |               | 011          | RS             |
+| Load A register            | LDA Address | 0001          | 010          | IO, MI         |
+|                            |             |               | 011          | RO, AI         |
+|                            |             |               | 100          | RS             |
+| Add to A register          | ADD Address | 0010          | 010          | IO, MI         |
+|                            |             |               | 011          | RO, BI         |
+|                            |             |               | 100          | EO, AI         |
+|                            |             |               | 101          | RS             |
+| Subtract from A register   | SUB Address | 0011          | 010          | IO, MI         |
+|                            |             |               | 011          | RO, BI         |
+|                            |             |               | 100          | EO, AI, SU     |
+|                            |             |               | 101          | RS             |
+| Store A register in RAM    | STA Address | 0100          | 010          | IO, MI         |
+|                            |             |               | 011          | AO, RI         |
+|                            |             |               | 100          | RS             |
+| Load Literal in A Register | LDL Literal | 0101          | 010          | IO, AI         |
+|                            |             |               | 011          | RS             |
+| Jump Program Counter       | JMP Address | 0110          | 010          | IO, CI         |
+|                            |             |               | 011          | RS             |
+| Output A Register          | OUT         | 1110          | 010          | AO, OI         |
+|                            |             |               | 011          | RS             |
+| Halt CPU                   | HLT         | 1111          | 010          | HT             |
 
 
-- Explain assembly is human readable version of these instructions
-	- What features do assembly add?
-		- Memory address labels
+## [User Input](#how-a-cpu-works)
+CPU interrupts
 
+## [CPU Overview](#how-a-cpu-works)
+
+<img src="cpu_overview.jpeg" width="350">
