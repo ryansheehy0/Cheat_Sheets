@@ -56,6 +56,7 @@
 - [Control Unit](#control-unit)
 	- [Fetch, Decode, and Execute](#fetch-decode-and-execute)
 	- [Conditional Jumps](#conditional-jumps)
+	- [Control Signals](#control-signals)
 	- [Instructions](#instructions)
 - [User Input](#user-input)
 - [CPU Overview](#cpu-overview)
@@ -204,6 +205,8 @@ The arithmetic logic unit (ALU) is the module in the CPU which does mathematical
 
 <img src="alu_overview.jpeg" width="350" >
 
+- The `X` symbolizes the amount of connections equal to the base of the computer.
+
 | Control Signal | Description           |
 |----------------|-----------------------|
 | **AI**         | A register In/Load    |
@@ -214,7 +217,6 @@ The arithmetic logic unit (ALU) is the module in the CPU which does mathematical
 | **BI**         | B register In/Load    |
 | **BO**         | B register Out/Enable |
 
-- The X symbolizes the amount of connections equal to the base of the computer.
 
 ### [Twos complement](#how-a-cpu-works)
 Twos complement is a protocol for converting binary numbers to base 10 numbers. This protocol allows for binary addition and subtraction to translate into base 10 addition and subtraction.
@@ -390,7 +392,47 @@ The control unit gets a CPU instruction, from the instruction register, and the 
 
 <img src="control_unit.jpeg" width="350">
 
+- The `I` symbolizes the amount of bits used to represent the instruction #. For this CPU, the instructions take up 4 bits.
+- The `S` symbolizes the number of bits used to represent how many steps are necessary to execute an instruction. This is usually 3 bits.
 - The control unit needs a separate binary counter, called the step counter, to track the current step for the instruction it’s executing.
+
+### [Fetch, Decode, and Execute](#how-a-cpu-works)
+The Fetch, Decode, and Execute are the steps that need to be taken in order to run code on the CPU. The code is stored in order in RAM. The program counter is used to store the current instruction that needs to be executed.
+
+1. **Fetch** the current instruction in RAM and put it in the instruction register.
+	1. Move the new instruction location into the RAM Address.
+		- Program Counter Out(**CO**), Memory Address In(**MI**)
+	2. Move the contents of RAM into the instruction register
+		- RAM Out(**RO**), Instruction Register In(**II**)
+	3. Increment the program counter for the next fetch
+		- Increment Program Counter(**CE**)
+2. The control unit **decodes** the instruction in the instruction register into the appropriate control signals.	
+	- This happens between clock cycles.
+3. **Execute** the instruction
+
+### [Conditional Jumps](#how-a-cpu-works)
+To make a CPU Turing complete, meaning it can compute any algorithm given enough time and memory, it must have a feedback mechanism. This mechanism involves checking the results of a computation and determining the next code to execute based upon those results. Conditional jumps allow for this feedback mechanism. They jump the program counter based upon the results of different flags.
+- **All 0s flag** - Is set to 1 when the ALU output is set to all 0s
+	- This can be used to check if the A register is **equal to** a certain value by first loading the value in the B register and then subtracting it from the A register. If the All 0s flag is set, then they are equal.
+
+<img src="all_zeros_flag.jpeg" width="350">
+
+- **Negative flag** - Is set to 1 when the ALU output is negative.
+	- This can be used to check if the A register is **less than** a certain value by first loading the value in the B register and then subtracting it from the A register. If the negative flag is set then the value in A is less than the value in B.
+	- This flag can be gotten by getting the last bit of the ALU.
+- **Carry flag** - Is set to 1 when the result of the ALU produces a carry bit.
+
+The flags need their own register to make sure they are saved before the calculation is put back in the A register.
+
+<img src="flags_register.jpeg" width="450">
+
+| Flag    | Description    |
+|---------|----------------|
+| **CF**  | Carry Flag     |
+| **ZF**  | Zero Flag      |
+| **NF**  | Negative Flag  |
+
+### [Control Signals](#how-a-cpu-works)
 
 | Control Signal | Description                      |
 |----------------|----------------------------------|
@@ -411,78 +453,68 @@ The control unit gets a CPU instruction, from the instruction register, and the 
 | **CO**         | Program Counter Out              |
 | **CI**         | Program Counter In/Jump          |
 | **UO**         | User Input Register In           |
+| **FI**         | Flags Register In                |
 | **RS**         | Reset Step Counter               |
-
-### [Fetch, Decode, and Execute](#how-a-cpu-works)
-The Fetch, Decode, and Execute are the steps that need to be taken in order to run code on the CPU. The code is stored in order in RAM. The program counter is used to store the current instruction that needs to be executed.
-
-1. **Fetch** the current instruction in RAM and put it in the instruction register.
-	1. Move the new instruction location into the RAM Address.
-		- Program Counter Out(**CO**), Memory Address In(**MI**)
-	2. Move the contents of RAM into the instruction register
-		- RAM Out(**RO**), Instruction Register In(**II**)
-	3. Increment the program counter for the next fetch
-		- Increment Program Counter(**CE**)
-2. The control unit **decodes** the instruction in the instruction register into the appropriate control signals.	
-	- This happens between clock cycles.
-3. **Execute** the instruction
-
-### [Conditional Jumps](#how-a-cpu-works)
-To make a CPU Turing complete, meaning it can compute any algorithm given enough time and memory, it must have a feedback mechanism. This mechanism involves checking the results of a computation and determining the next code to execute based upon those results. Conditional jumps allow for this feedback mechanism. They jump the program counter based upon the results of different flags.
-- **All 0s flag** - Is set to 1 when the ALU output is set to all 0s
-	- This can be used to check if the value in the A register is a certain value by first loading the value in the B register and then subtracting it from the A register. If the All 0s flag is set, then they are equal.
-
-<img >
-
-- **Negative flag** - Is set to 1 when the ALU output is negative.
-	- This can be used to check if the A register is less than a certain value by first loading the value in the B register and then subtracting it from the A register. If the negative flag is set then the value in A is less than the value in B.
-	- This flag can be gotten by getting the last bit of the ALU.
-- **Positive flag** - Is set to 1 when the ALU output is positive.
-	- This can be used to check if the A register is greater than a certain value.
-	- This is the inverse of the negative flag bit.
-- **Carry flag** - Is set to 1 when the result of the ALU produces a carry bit.
-
-The flags need their own register to make sure they are saved before the calculation is put back in the A register.
-
-<img>
 
 ### [Instructions](#how-a-cpu-works)
 The instructions are programed into the Control Unit. They can be whatever the CPU designer wants them to be.
-- The Instruction # and Step Counter are the inputs into the control unit
-- The Control Signals are the output from the control unit
-	- The other control signals are set to 0 when they aren't set
+- The Instruction #, Step Counter, and the flags are the inputs into the control unit
+- The Control Signals are the output from the control unit. The other control signals are set to 0 when they aren't set
 
-| Name                       | Instruction | Instruction # | Step Counter | Control Signal |
-|----------------------------|-------------|---------------|--------------|----------------|
-| Fetch                      |             | XXXX          | 000          | CO, MI         |
-|                            |             | XXXX          | 001          | RO, II, CE     |
-| No Operation               | NOP         | 0000          | 010          |                |
-|                            |             |               | 011          | RS             |
-| Load A register            | LDA Address | 0001          | 010          | IO, MI         |
-|                            |             |               | 011          | RO, AI         |
-|                            |             |               | 100          | RS             |
-| Add to A register          | ADD Address | 0010          | 010          | IO, MI         |
-|                            |             |               | 011          | RO, BI         |
-|                            |             |               | 100          | EO, AI         |
-|                            |             |               | 101          | RS             |
-| Subtract from A register   | SUB Address | 0011          | 010          | IO, MI         |
-|                            |             |               | 011          | RO, BI         |
-|                            |             |               | 100          | EO, AI, SU     |
-|                            |             |               | 101          | RS             |
-| Store A register in RAM    | STA Address | 0100          | 010          | IO, MI         |
-|                            |             |               | 011          | AO, RI         |
-|                            |             |               | 100          | RS             |
-| Load Literal in A Register | LDL Literal | 0101          | 010          | IO, AI         |
-|                            |             |               | 011          | RS             |
-| Jump Program Counter       | JMP Address | 0110          | 010          | IO, CI         |
-|                            |             |               | 011          | RS             |
-| Output A Register          | OUT         | 1110          | 010          | AO, OI         |
-|                            |             |               | 011          | RS             |
-| Halt CPU                   | HLT         | 1111          | 010          | HT             |
+| Name                       | Instruction     | Instruction # | Step Counter | CF | ZF | NF | Control Signal |
+|----------------------------|-----------------|---------------|--------------|----|----|----|----------------|
+| Fetch                      |                 | ----          | 000          | -  | -  | -  | CO, MI         |
+|                            |                 | ----          | 001          | -  | -  | -  | RO, II, CE     |
+| No Operation               | NOP             | 0000          | 010          | -  | -  | -  |                |
+|                            |                 |               | 011          | -  | -  | -  | RS             |
+| Load A register            | LDA Address     | 0001          | 010          | -  | -  | -  | IO, MI         |
+|                            |                 |               | 011          | -  | -  | -  | RO, AI         |
+|                            |                 |               | 100          | -  | -  | -  | RS             |
+| Add to A register          | ADD Address     | 0010          | 010          | -  | -  | -  | IO, MI         |
+|                            |                 |               | 011          | -  | -  | -  | RO, BI         |
+|                            |                 |               | 100          | -  | -  | -  | EO, AI, FI     |
+|                            |                 |               | 101          | -  | -  | -  | RS             |
+| Subtract from A register   | SUB Address     | 0011          | 010          | -  | -  | -  | IO, MI         |
+|                            |                 |               | 011          | -  | -  | -  | RO, BI         |
+|                            |                 |               | 100          | -  | -  | -  | EO, AI, SU, FI |
+|                            |                 |               | 101          | -  | -  | -  | RS             |
+| Store A register in RAM    | STA Address     | 0100          | 010          | -  | -  | -  | IO, MI         |
+|                            |                 |               | 011          | -  | -  | -  | AO, RI         |
+|                            |                 |               | 100          | -  | -  | -  | RS             |
+| Load Literal in A Register | LDL Literal     | 0101          | 010          | -  | -  | -  | IO, AI         |
+|                            |                 |               | 011          | -  | -  | -  | RS             |
+| Jump Program Counter       | JMP Address     | 0110          | 010          | -  | -  | -  | IO, CI         |
+|                            |                 |               | 011          | -  | -  | -  | RS             |
+| Jump if Carry Flag         | JC Address      | 0111          | 010          | 1  | -  | -  | IO, CI         |
+|                            |                 |               | 010          | 0  | -  | -  |                |
+|                            |                 |               | 011          | -  | -  | -  | RS             |
+| Jump if Not Carry Flag     | JNC Address     | 1000          | 010          | 0  | -  | -  | IO, CI         |
+|                            |                 |               | 010          | 1  | -  | -  |                |
+|                            |                 |               | 011          | -  | -  | -  | RS             |
+| Jump if Zero/Equal         | JZ/JE Address   | 1001          | 010          | -  | 1  | -  | IO, CI         |
+|                            |                 |               | 010          | -  | 0  | -  |                |
+|                            |                 |               | 011          | -  | -  | -  | RS             |
+| Jump if Not Zero/Not Equal | JNZ/JNE Address | 1010          | 010          | -  | 0  | -  | IO, CI         |
+|                            |                 |               | 010          | -  | 1  | -  |                |
+|                            |                 |               | 011          | -  | -  | -  | RS             |
+| Jump if Negative           | JN Address      | 1011          | 010          | -  | -  | 1  | IO, CI         |
+|                            |                 |               | 010          | -  | -  | 0  |                |
+|                            |                 |               | 011          | -  | -  | -  | RS             |
+| Jump if Positive           | JP Address      | 1100          | 010          | -  | -  | 0  | IO, CI         |
+|                            |                 |               | 010          | -  | -  | 1  |                |
+|                            |                 |               | 011          | -  | -  | -  | RS             |
+| Compare A and B Register   | CMP Address     | 1101          | 010          | -  | -  | -  | IO, MI         |
+|                            |                 |               | 011          | -  | -  | -  | RO, BI         |
+|                            |                 |               | 100          | -  | -  | -  | FI             |
+|                            |                 |               | 101          | -  | -  | -  | RS             |
+| Output A Register          | OUT             | 1110          | 010          | -  | -  | -  | AO, OI         |
+|                            |                 |               | 011          | -  | -  | -  | RS             |
+| Halt CPU                   | HLT             | 1111          | 010          | -  | -  | -  | HT             |
 
+- The CMP instruction is used to set the flags without changing the A register. It is common to do CMP before conditional jump instructions.
 
 ## [User Input](#how-a-cpu-works)
-CPU interrupts
+To get user input while the CPU is running, the user's device can set an interrupt flag, which triggers the execution of code for handling user input. For example, if the user presses a key on the keyboard, the CPU receives an interrupt flag and executes the corresponding keyboard code. Once finished, it then continues from where it left off.
 
 ## [CPU Overview](#how-a-cpu-works)
 
