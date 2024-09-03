@@ -383,7 +383,7 @@ The binary counter is used to count 1, in binary, whenever the CLK goes from low
 | Control Signal | Description             |
 |----------------|-------------------------|
 | **CO**         | Program Counter Out     |
-| **J**          | Jump/Program Counter In |
+| **CI/J**       | Program Counter In/Jump |
 | **CE**         | Count enable/Increment  |
 
 ## [Control Unit](#how-a-cpu-works)
@@ -406,7 +406,7 @@ The Fetch, Decode, and Execute are the steps that need to be taken in order to r
 		- RAM Out(**RO**), Instruction Register In(**II**)
 	3. Increment the program counter for the next fetch
 		- Increment Program Counter(**CE**)
-2. The control unit **decodes** the instruction in the instruction register into the appropriate control signals.	
+2. The control unit **decodes** the instruction in the instruction register into the appropriate control signals.
 	- This happens between clock cycles.
 3. **Execute** the instruction
 
@@ -518,4 +518,4 @@ To get user input while the CPU is running, the user's device can set an interru
 
 ## [CPU Overview](#how-a-cpu-works)
 
-<img src="cpu_overview.jpeg" width="350">
+<img src="cpu_overview.jpeg" width="750">
