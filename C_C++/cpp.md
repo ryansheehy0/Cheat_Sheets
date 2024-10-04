@@ -62,6 +62,9 @@ My personal notes on C++.
 - [Custom Scope](#custom-scope)
 - [Global and static variables](#global-and-static-variables)
 - [Exception/Error handling](#exceptionerror-handling)
+- [Template](#template)
+- [Structs](#structs)
+- [Streams](#streams)
 
 <!-- /TOC -->
 
@@ -294,6 +297,7 @@ void Namespace::func2() {/*Define func2*/}
 | `ptr`         | Gets the value in ptr                   |
 | `*ptr`        | Dereferences ptr                        |
 | `int& x = y;` | When `x` is assigned `y` also changes   |
+| `ptr->`       | Is the same as `(*ptr).`                |
 
 ### [Function pointers](#c)
 `void (*name)(int, int) = function;`
@@ -428,6 +432,9 @@ assignY(&y); // y is now 10
 	- `void func(int arr[]);` is the same as `void func(int *arr);`
 	- There is no special syntax in c++ for pass by value for an array argument.
 
+- If the argument type is small, then do pass by value.
+- If the argument type is large(Greater than 8 bytes), and you don't want to modify, then use `const type& name` as an argument.
+
 ### [Optional arguments](#c)
 - Everything after the first optional arguments must also be optional arguments.
 
@@ -463,6 +470,9 @@ test(1);
 ```
 
 ## [Global and static variables](#c)
+- Static variables have their own memory location and stay in that location for the duration of the program.
+	- Variables defined outside of any functions are global variables and stored in the same location.
+
 - Global variables are variables outside of any function
 - Global variables are automatically set to 0 if not given a value
 - Global variables should be used sparingly because they can cause side effects, like hidden parameters, in function.
@@ -602,3 +612,50 @@ void func() {
 	}
 }
 ```
+
+## [Template](#c)
+- The compiler makes the functions with the types depending on where they are used in the code.
+
+```C++
+template <typename T>
+void print(T value) {
+	std::cout << value << "\n";
+}
+
+print(5) // Defined implicitly based upon the type of the arguments.
+
+template <typename T>
+// Is the same as
+template <class T>
+```
+
+## [Structs](#c)
+Structs are used to group data together. This crates a new type which can be used.
+- Data member - each struct subitem
+- Member access operator - `.`, dot notation
+
+```C++
+struct Point {
+	int x;
+	int y;
+};
+
+Point pt = {10, 20};
+	// or
+Point pt;
+pt.x = 10;
+pt.y = 20;
+// You can also set initial values
+struct Point {
+	int x = 10;
+	int y = 20;
+}
+
+Point pt = {.x=10, .y=20};
+```
+
+Can allow functions to return multiple values.
+
+## [Streams](#c)
+- You get at them in order.
+Different from arrays because they have a pointer/cursor/the current position.

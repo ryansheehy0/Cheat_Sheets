@@ -56,6 +56,7 @@
 | 0          | Move to beginning of line                 |
 | $          | Move to end of line                       |
 | zz         | Center cursor                             |
+| zt         | Put cursor at the top                     |
 | <          | Remove indent                             |
 | >          | Indent                                    |
 | g + j      | Move down one line without the line break |

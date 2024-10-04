@@ -519,3 +519,4 @@ To get user input while the CPU is running, the user's device can set an interru
 ## [CPU Overview](#how-a-cpu-works)
 
 <img src="cpu_overview.jpeg" width="750">
+

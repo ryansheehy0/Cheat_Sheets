@@ -39,6 +39,7 @@ The standard libraries are any library that uses namespace std.
 
 - [iostream](#iostream)
 - [string](#string)
+	- [String Stream](#string-stream)
 - [cmath](#cmath)
 	- [ctime](#ctime)
 - [cstdlib](#cstdlib)
@@ -85,6 +86,22 @@ The standard libraries are any library that uses namespace std.
 | `str.find(str2)`                   | Gets the starting index of the string         |
 |                                    | Returns `string::npos` if nothing was found   |
 | `std::string(1, char)`             | Convert char to a string one 1                |
+
+### [String Stream](#c-standard-libraries)
+`#include <sstream>`
+
+Used to treat a string as a stream. The underlying string doesn't change.
+
+- using namespace std
+
+|                           |                                                                    |
+|---------------------------|--------------------------------------------------------------------|
+| `ostringstream`           | Output string stream. Used for `<<`s                               |
+| `istringstream`           | Input string stream. Used for `>>`s.                               |
+| `stringstream`            | Input and Output string stream                                     |
+| `stringstream ss(string)` | Opens string stream                                                |
+| `ss << "string";`         | Concatenates to the string stream, but not the constructor string. |
+| `ss >> str;`              | Puts the next word into str. Words are separated by spaces.        |
 
 ## [cmath](#c-standard-libraries)
 - Floating point math operations
@@ -148,16 +165,15 @@ The standard libraries are any library that uses namespace std.
 ## [fstream](#c-standard-libraries)
 - Reading and writing to files
 
-|                             |                                  |
-|-----------------------------|----------------------------------|
-| `ifstream`                  | Reading file                     |
-| `ofstream`                  | Writing file                     |
-|                             | Don't need to check if it's open |
-| `fstream`                   | Reading and writing              |
-| `fstream file("name.txt");` | Open file                        |
-| `file.open("name.txt");`    | Also opens the file              |
-| `file.close();`             | Closes a file                    |
-| `file.is_open()` and `file` | Checks if it opened              |
+|                             |                                             |
+|-----------------------------|---------------------------------------------|
+| `ifstream`                  | Reading file                                |
+| `ofstream`                  | Writing file. Opens a new one if not found. |
+| `fstream`                   | Reading and writing                         |
+| `fstream file("name.txt");` | Open file                                   |
+| `file.open("name.txt");`    | Also opens the file                         |
+| `file.close();`             | Closes a file                               |
+| `file.is_open()` and `file` | Checks if it opened                         |
 
 - A file acts like a regular buffer
 	- `file << "concatenate";`
