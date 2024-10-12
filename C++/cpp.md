@@ -1,21 +1,3 @@
-<!--
- * This file is part of RS Cheat Sheets.
- *
- * RS Cheat Sheets is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * RS Cheat Sheets is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with RS Cheat Sheets. If not, see <https://www.gnu.org/licenses/>.
- */
--->
-
 [Home](../README.md)
 
 # C++
@@ -65,6 +47,8 @@ My personal notes on C++.
 - [Template](#template)
 - [Structs](#structs)
 - [Streams](#streams)
+- [Classes](#classes)
+- [new and delete](#new-and-delete)
 
 <!-- /TOC -->
 
@@ -204,13 +188,14 @@ The smallest memory unit is 1 byte(8 bits).
 - `++x` increments `x` then returns `x`
 
 ### [Const](#c)
-- By convention use snake case with all capital letters
+- By convention use SCREAMING_CASE
 - By convention declare before any other variables
 - Use `const` over `#define`
 	- Modern compilers do the same thing as `#define`
 	- `const` has type checking and syntax checking
 	- `const` is known to debuggers
 	- `const` can be scoped to the block
+- A function returning a `const` means that the return value cannot be changed. This is useful if you are returning pointers or references.
 
 ### [Casting](#c)
 - Casting is done at compiler time so it's up to the programmer to make sure they are casting correctly
@@ -224,6 +209,40 @@ The smallest memory unit is 1 byte(8 bits).
 - Ex: `auto x` gives an error
 
 ## [Headers](#c)
+- .h files contain a class's definition
+- .cpp files contain a class's declarations
+- You have to include a files's .h file in the .cpp file
+
+```C++
+// .h
+#pragma once
+
+class StoreItem {
+   public:
+      void weightOunces(int ounces);
+      void Print() const;
+   private:
+      int _weightOunces;
+};
+```
+
+```C++
+// .cpp
+#include <iostream>
+
+#include "StoreItem.h"
+
+void StoreItem::weightOunces(int ounces) {
+   _weightOunces = ounces;
+}
+
+void StoreItem::Print() const {
+   std::cout << "Weight (ounces): " << _weightOunces << std::endl;
+}
+```
+
+- When you want to use the class in another file, include the .h file.
+
 Why header files?
 - Allows for separate code compilation
 - 
@@ -649,7 +668,7 @@ pt.y = 20;
 struct Point {
 	int x = 10;
 	int y = 20;
-}
+};
 
 Point pt = {.x=10, .y=20};
 ```
@@ -659,3 +678,38 @@ Can allow functions to return multiple values.
 ## [Streams](#c)
 - You get at them in order.
 Different from arrays because they have a pointer/cursor/the current position.
+
+## [Classes](#c)
+- Variables can be declared after they are used in a class
+- The `cosnt` after a method says that no member variables are being changed.
+	- `void method() const`
+	- Allows you to call that method on a const object.
+
+```C++
+class Class {
+};
+```
+
+- When you want to modify an object as a parameter passing by pointer is preferred over a pass by reference.
+	- Why? When you call the function, you have to specify the address, which makes it clear that the object is most likely being changed.
+- A very common pattern is to have one class that represents a unit, and another class which has a vector of units. This allows methods to be built that apply to one component and then to all components.
+
+- If a class doesn't define a constructor, then it's given a default constructor.
+- Once a class defines a constructor, then the default constructor isn't automatically created.
+
+- What does `Constructor = default;` mean? How is that different from `Constructor(){}` or `Constructor();`
+
+- Construcotr initializer list `:`
+	- Uses values to initalize any objects instead of creting it and then setting it.
+
+- `this` is a pointer to the current object.
+	- Used to differentiate between a local variable and a member variable. To get the member variable: `this->memberVar`
+
+- When an object is pass by reference or pointer, then the destructor is not automatically called.
+
+## [new and delete](#c)
+- Deleting a ptr which points to null doesn't do anything.
+- new returns a pointer
+
+- The destructor is not called when creating an object with the `new` keyword.
+	- The `delete` keyword calls the destructor and then deallocates the memory.
