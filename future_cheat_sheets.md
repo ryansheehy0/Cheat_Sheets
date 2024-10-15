@@ -1,9 +1,14 @@
 # Future Cheat Sheets
-- Awk
 - Markdown latex on github
+- Trees
+    - Binary Heaps
+- Sliding window
+- Depth first search and breadth first search
+- Hash tables
+- Awk
 - React
-- Newtons method
-- Taylor Series
+- Redo Newtons method
+- Redo Taylor Series
 
 ## Other ideas
 

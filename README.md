@@ -11,6 +11,7 @@
 ## Tools
 - [Vim](./Tools/vim.md)
 - [Markdown](./Tools/markdown.md)
+    - [LaTeX](./Tools/latex.md)
 - [Git](./Tools/git.md)
 - [Regex](./Tools/regex.md)
 - [Advanced Google Searches](./Tools/advanced_google_searches.md)

@@ -14,7 +14,6 @@
 	- [More Complex Lists](#more-complex-lists)
 - [Tables](#tables)
 - [Math](#math)
-- [Automatically create table of contents](#automatically-create-table-of-contents)
 
 <!-- /TOC -->
 
@@ -93,7 +92,7 @@
 ```
 
 ## [Tables](#markdown)
-- You need a new line on top and below
+- You need a new line on top and below any tables
 
 ```
 Text
@@ -112,20 +111,6 @@ Text
 | `:-:` | Center align |
 
 ## [Math](#markdown)
-- You need a new line on top and below for multi-line math mode
-
-|                               |                 |
-|-------------------------------|-----------------|
-| \$Math\$                      | Inline math     |
-| \$$ Math \$$                  | Multi-line math |
-| x_1                           | Subscript       |
-| x^2                           | Superscript     |
-| \frac{Numerator}{Denominator} | Fractions       |
-
-## [Automatically create table of contents](#markdown)
-
-`sudo npm install -g doctoc`
-
-`doctoc file.md`
-
-Adds table of contents to the top of the markdown file.
+- Use `$ LaTeX $` for inline math expressions.
+- Use `$$ LaTeX $$` for block math expressions.
+    - You can also use ` ```math ` as well.

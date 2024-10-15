@@ -78,7 +78,8 @@
 .empty()
 .clear()
 .insert(iterator pos, element)
-.erase(iterator pos)
+- .erase(iterator pos)
+	- `vec.erase(vec.begin() + index);`
 .resize()
 .reserve()
 .capacity() - returns the number of elements that the vector can hold before needing to allocate more memory

@@ -264,28 +264,18 @@ Header files
 - specifies an interface for using a .cpp file.
 
 ## [Namespaces and using](#c)
+Namespaces define a region/scope used to prevent naming conflicts
 
 ```C++
 namespace namespaceName {
-	// Group 
+	int x;
 }
+
+namespaceName::x = 10;
 ```
 
-What are namespaces and what are they used for?
-
-`using namespace std;`
-
-- To access a namespace use the `namespace::command`.
-
-- You can define a function outside of the namespace itself.
-
-```C++
-namespace Namespace {
-	void func1() {/*Define func1*/}
-}
-// You can also do
-void Namespace::func2() {/*Define func2*/}
-```
+- You can have namespaces automatically used with `using namespace namespaceName`.
+	- This isn't recommended because it can result in naming conflicts.
 
 ## [Character escapes](#c)
 
@@ -511,6 +501,9 @@ void callFunc() {
 }
 ```
 
+- `static` means a var is allocated in memory only once during the program.
+	- You can have multiple static variables with the same name as long as they are used in different scopes.
+
 ## [Exception/Error handling](#c)
 If your program has an error and you want to crash you can do: `std::cerr << "An error occured\n"` which prints an error and `exit(1);` which exits the program with a 1(`#include <stdio.h>`). But what if you want to continue running your code even when there's an error?
 
@@ -707,9 +700,14 @@ class Class {
 
 - When an object is pass by reference or pointer, then the destructor is not automatically called.
 
+- static member variables are not attached to the object, but the class itself.
+- static member functions can only access other static member variables/functions.
+
+- The demonstrator should delete any heap memory that was created in the class.
+
 ## [new and delete](#c)
 - Deleting a ptr which points to null doesn't do anything.
-- new returns a pointer
+- new allocated memory on the heap and returns a pointer to that memory
 
-- The destructor is not called when creating an object with the `new` keyword.
+- The destructor is not called automatically when creating an object with the `new` keyword.
 	- The `delete` keyword calls the destructor and then deallocates the memory.
