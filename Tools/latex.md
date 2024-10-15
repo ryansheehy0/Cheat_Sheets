@@ -35,10 +35,10 @@ Used to write math on the computer.
 |---------|-----------|
 | >       | $>$       |
 | <       | $<$       |
-| \leq    | $\leq$     |
-| \geq    | $\geq$     |
+| \leq    | $\leq$    |
+| \geq    | $\geq$    |
 | =       | $=$       |
-| \neq    | $\neq$    |
+| \nequal | $\nequal$ |
 | \approx | $\approx$ |
 
 ## [Special operations](#latex)
