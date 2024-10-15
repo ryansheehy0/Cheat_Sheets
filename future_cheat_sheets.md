@@ -1,5 +1,4 @@
 # Future Cheat Sheets
-- Markdown latex on github
 - Trees
     - Binary Heaps
 - Sliding window
