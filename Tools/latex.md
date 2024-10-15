@@ -38,7 +38,7 @@ Used to write math on the computer.
 | \leq    | $\leq$    |
 | \geq    | $\geq$    |
 | =       | $=$       |
-| \nequal | $\nequal$ |
+| \not = | $\not =$ |
 | \approx | $\approx$ |
 
 ## [Special operations](#latex)
