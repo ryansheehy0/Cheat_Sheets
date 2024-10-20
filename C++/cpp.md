@@ -46,9 +46,14 @@ My personal notes on C++.
 - [Exception/Error handling](#exceptionerror-handling)
 - [Template](#template)
 - [Structs](#structs)
-- [Streams](#streams)
 - [Classes](#classes)
+	- [Operator overloading](#operator-overloading)
+	- [Inheritance](#inheritance)
+		- [Composition over Inheritance](#composition-over-inheritance)
+	- [Copy constructor and overloading the = operator](#copy-constructor-and-overloading-the--operator)
+	- [The rule of 3](#the-rule-of-3)
 - [new and delete](#new-and-delete)
+- [enums](#enums)
 
 <!-- /TOC -->
 
@@ -64,8 +69,6 @@ My personal notes on C++.
 	- `const_cast`, `static_cast`, `reinterpret_cast`, `dynamic_cast`
 	- Why not use C style casting
 - typeid
-- `new` and `delete`
-- Dereferencing pointers with `->`
 - Templates
 	- `template<class T> class Stack`
 	- `template<class T> void Stack<T>::push(T c)`
@@ -74,19 +77,10 @@ My personal notes on C++.
 	- Done at compile time?
 - `virtual` keyword for functions?
 	- Virtual means it maybe defined later in a class derived from this one.
-	- `= 0` says that it has to be implemented by a child class
+	- `= 0` says that it has to be implemented by a child class. Pure virtual functions
 	- Can be used to create an interface
 	- Has to determine which function to use at runtime. Uses a virtual function table to do this.
-- Deconstructors
-	- Destructor is called when an object goes out of scope
-- Inheritance
-	- `:public `
 - Interfaces
-- string functions
-- array functions
-- Classes
-	- You can also define methods outside of classes with `void Class::func() {/*Define func*/}`
-	- Are classes essentially their own namespace? Is that why enum class works?
 - `typeid`
 - type fields? An instance of an enum?
 	- A variable that can only have the types specified in the enum.
@@ -262,6 +256,9 @@ Second, a link time error because the linker cannot find the function.
 Header files
 - allow any functions to be declared for compile time.
 - specifies an interface for using a .cpp file.
+
+- Don't include other header files in a header file.
+	- Create a class declaration instead. `class OtherClass;` instead of `#include "other_class.h"`. Why?
 
 ## [Namespaces and using](#c)
 Namespaces define a region/scope used to prevent naming conflicts
@@ -668,10 +665,6 @@ Point pt = {.x=10, .y=20};
 
 Can allow functions to return multiple values.
 
-## [Streams](#c)
-- You get at them in order.
-Different from arrays because they have a pointer/cursor/the current position.
-
 ## [Classes](#c)
 - Variables can be declared after they are used in a class
 - The `cosnt` after a method says that no member variables are being changed.
@@ -705,9 +698,183 @@ class Class {
 
 - The demonstrator should delete any heap memory that was created in the class.
 
+- Methods can return `*this` in order to chain methods together
+```c++
+MyClass& setY(int y) {
+	_y = y;
+	return *this;
+}
+
+MyClass& setX(int x) {
+	_x = x;
+	return *this;
+}
+
+myObj.setY(10).setX(20);
+```
+
+### [Operator overloading](#c)
+- member function named `operator+`
+	- Only requires the right hand side(rhs) as the parameter because the left is implied to be the object itself.
+
+```C++
+class Time {
+	public:
+		Time operator+(Time rhs);
+		Time operator+(int rhs); // This only works if the right hand side is an int. If the left hand side is an int, then it doesn't work.
+}
+```
+
+- Overloading conditionals
+
+```C++
+class Time {
+	public:
+		bool operator==(const Time& lhs, const Time& rhs);
+		bool operator<(const Time& lhs, const Time& rhs);
+}
+```
+
+- It's common to thoroughly write out the == and < operators and define the other conditional operators off of those two.
+	- `bool operator!=(const Time& lhs, const Time& rhs) { return !(lhs == rhs); }`
+	- `bool operator>(const Time& lhs, const Time& rhs)  { return rhs < lhs; }`
+	- `bool operator<=(const Time& lhs, const Time& rhs) { return !(lhs > rhs); }`
+	- `bool operator>=(const Time& lhs, const Time& rhs) { return !(lhs < rhs); }`
+
+### [Inheritance](#c)
+- abstract class - Guides the design of subclasses, but cannot be instantiated as an object. Same as interfaces.
+	- Any class with one or more pure virtual functions is abstract.
+	- pure virtual function - Virtual function that provides no definition and thus requires all derived classes to override it.
+		- Ex: `virtual void print() const = 0;`
+- concrete class - Not an abstract class.
+- derived class/subclass - A class which inherits another class so that you don't have to duplicate code.
+	- `class Derived : public Base{};`
+		- public: - public members of base class are accessible as public members of derived class and protected members of base class are accessible as protected members of derived class.
+			- public = public and protected = protected
+		- protected: - public = protected and protected = protected
+		- private: - public = private and protected = private
+		- This allows a derived class to control the access level of its inherited base class's member variables, which is especially important if the derived class is further inherited by another class.
+- base class/superclass - A class which gets inherited from.
+- protected: - The derived class can access it, but it's private to any instances of the base class.
+- overriding - Derived class has the exact same function signature.
+	- To call the original method in the overrided method you can do `Base::method`.
+- overloading - Function has different argument types.
+	- If a derived class overloads a base class's public method, then you cannot call that public method from an instance of the derived class. It has to be the exact method that was overloaded.
+
+```C++
+class Base {
+	public:
+		void show(int x) {
+			std::cout << "show(int): " << x << std::endl;
+		}
+};
+
+class Derived : public Base {
+	public:
+		void show(double y) {
+			std::cout << "show(double): " << y << std::endl;
+		}
+};
+
+int main() {
+	Derived d;
+	d.show(3.14);
+	d.show(10); // Error because of overloading
+	d.Base::show(10);  // Calls the base class's show explicitly
+}
+```
+
+- Polymorphism
+	- Compile time polymorphism
+		- Function overloading
+	- Runtime polymorphism
+		- When you call a method on a base class variable. It could either be the base class or the derived class, which is determined at runtime.
+		- Only works if you use virtual and override keywords.
+		- virtual function - member function that may be overridden in a derived class and is used for runtime polymorphism.
+			- The compiler creates a virtual table
+			- If virtual isn't used, then the default method is used based upon what type the compile thinks the object is(the base class).
+		- override - An optional keyword used to indicate that a virtual function is overridden in a derived class.
+			- Ex: `void print() const override {}`
+			- The override keyword is recommended because ti produces a compiler error if virtual is left out from the base class's member function.
+
+#### [Composition over Inheritance](#c)
+Consider a program that catalogs the types of trees in a forest. Each tree object contains the tree's species type, age, location, and estimated size based on age. Each species uses a different formula to estimate size based on age. This program will benefit from an abstract class.
+- Inheritance: Tree class as the parent class. Child classes for each different species of tree.
+- Composition: Tree class which takes in an abstract class/interface of TreeSizeCalculator. You then have to create separate tree size calculator classes for each species.
+
+Composition - One object maybe made up of other object
+
+Is there a useful purpose for inheritance?
+- Pear "is a" Fruit - Inheritance
+- House "has a" door - Composition
+
+### [Copy constructor and overloading the = operator](#c)
+- When you do a pass by value argument for an object that has a pointer member variable, that pointer value is copied to the argument. When this argument goes out of scope, its destructor is called. This destructor can free the pointer memory. This is a problem when the original object, that was passed into the argument, tries to use this pointer again.
+- To solve this problem, you use a copy constructor.
+	- Copy constructor - A constructor that is automatically called when an object of the class is passed by value to a function or when an object is initialized by copying another object.
+	- The copy constructor makes a deep copy, creating new heap variables.
+		- Ex: `void print(obj);`
+		- Ex: `MyClass obj2 = obj1;`
+
+```C++
+class MyClass {
+	public:
+		MyClass() {
+			num = new int;
+		}
+
+		MyClass(const MyClass& obj) {
+			num = new int;
+			*num = *(obj.num);
+		}
+
+		~MyClass() {
+			delete num;
+		}
+
+	private:
+		int* num;
+};
+```
+
+- When you assign an object to another object and it's already initialized, in order to do a deep copy, you need to overload the = operator.
+	Ex: `obj2 = obj1`
+
+```C++
+MyClass& MyClass::operator=(const MyClass& rhs) {
+	if (this != &rhs) { // Don't self assign
+		delete num; // Free old memory
+		num = new int; // Create new memory
+		*num = *(rhs.num); // Assign new memory
+	}
+	return *this;
+}
+```
+
+### [The rule of 3](#c)
+- Any class that uses heap memory should define these 3 member functions.
+	- Destructor
+	- Copy constructor
+	- Overloading the = operator
+
 ## [new and delete](#c)
+- Allows you to define things where you don't know their length until run time.
 - Deleting a ptr which points to null doesn't do anything.
 - new allocated memory on the heap and returns a pointer to that memory
 
 - The destructor is not called automatically when creating an object with the `new` keyword.
 	- The `delete` keyword calls the destructor and then deallocates the memory.
+
+## [enums](#c)
+- enum
+- enum class
+
+```C++
+enum EnumName {
+	VALUE0,
+	VALUE1,
+	VALUE2
+};
+```
+
+- If the enum counts in order, the last enum value can be used to get the length of the enum.

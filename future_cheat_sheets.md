@@ -8,6 +8,66 @@
 - React
 - Redo Newtons method
 - Redo Taylor Series
+- Fourier transform
+    - https://www.youtube.com/watch?v=cDr_y0kGddA
+
+- Machine learning
+
+## Map of machine learning
+- Gradient decent
+- Unsupervised learning, supervised learning, reinforcement learning
+
+- Regression
+- Clustering
+- Classification
+- Dimensionality Reduction
+
+- Kernel
+- LLM
+    - There's some randomness
+
+- Evolutionary algorithm
+- Monte Carlo algorithm
+- Gradient descent
+    - Incremental changes get you closer and closer to the solution
+    - The hill might not be tall enough to solve the problem
+    - Randomness might take you away from the local maxima
+        - What if you increasingly add more and more randomness, until you jump to a new local maxima?
+            - The only solution is to guess and check. Like solving a hash.
+
+- Phase spaces/Multi-dimensions
+    - Configuration space
+    - Can't look at the whole space at once
+    - SAT Solvers
+        - Boolean satisfyability
+        - Z3
+        - How to translate
+        - Edents
+
+- NP vs P
+    - Non-polynomial time
+        - Does this relate to the taylor series
+    - NP = exponential O of time
+    - NP complete = can be reasonably solved for low N values
+
+- You're given a large sequence of data. Data correlated with a score. Use AI to make a patter between the input data and the score. And have that AI tell you which parts of the data are needed to produce a good score.
+    - How could you get the knowledge from the AI?
+- Object classification
+    - And gaining other info about the object
+- LLM
+- Can everything be represented by object classification? Is intelligence just object classification?
+    - How could you apply the idea of object classification to LLMs?
+
+- What's the fundamental problem ML is trying to solve.
+
+- New subject do clarification.
+- ML is used to solve NP problems.
+- There are a whole lot of ways to solve NP problems. What is the best way to solve them?
+    - ML
+    - SAT solvers
+    - What are the things your're trying to optimize?
+        - Translating the problem into another form which can be solved by a computer.
+            - CPU or GPU?
 
 ## Other ideas
 

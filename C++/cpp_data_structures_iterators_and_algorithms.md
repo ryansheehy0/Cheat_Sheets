@@ -16,6 +16,7 @@
 	- [Different types of iterators](#different-types-of-iterators)
 	- [back_inserter](#back_inserter)
 - [Algorithms](#algorithms)
+	- [Sort](#sort)
 
 <!-- /TOC -->
 
@@ -241,3 +242,7 @@ std::transform(list.begin(), list.end(),
 - std::unique
 - std::max_element
 - std::erase
+
+### [Sort](#c-data-structures-iterators-and-algorithms)
+- The data type needs to overload the < operator
+- `sort(dataType.begin(), dataType.end())`
