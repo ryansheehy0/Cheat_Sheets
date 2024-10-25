@@ -260,6 +260,13 @@ Header files
 - Don't include other header files in a header file.
 	- Create a class declaration instead. `class OtherClass;` instead of `#include "other_class.h"`. Why?
 
+```C++
+#ifndef __CLASS_NAME_H__
+#define __CLASS_NAME_H__
+// Header file
+#endif
+```
+
 ## [Namespaces and using](#c)
 Namespaces define a region/scope used to prevent naming conflicts
 
@@ -746,6 +753,7 @@ class Time {
 	- Any class with one or more pure virtual functions is abstract.
 	- pure virtual function - Virtual function that provides no definition and thus requires all derived classes to override it.
 		- Ex: `virtual void print() const = 0;`
+		- Abstract classes don't need to override pure virtual functions. As long as the pure virtual method is eventually overridden by a concrete (non-abstract) class, it will work.
 - concrete class - Not an abstract class.
 - derived class/subclass - A class which inherits another class so that you don't have to duplicate code.
 	- `class Derived : public Base{};`
@@ -754,6 +762,7 @@ class Time {
 		- protected: - public = protected and protected = protected
 		- private: - public = private and protected = private
 		- This allows a derived class to control the access level of its inherited base class's member variables, which is especially important if the derived class is further inherited by another class.
+		- Derived classes cannot use `:`s in their constructor to set their super/base class's member variables.
 - base class/superclass - A class which gets inherited from.
 - protected: - The derived class can access it, but it's private to any instances of the base class.
 - overriding - Derived class has the exact same function signature.
@@ -784,7 +793,7 @@ int main() {
 }
 ```
 
-- Polymorphism
+- Polymorphism - Same name, but a different shape/meaning.
 	- Compile time polymorphism
 		- Function overloading
 	- Runtime polymorphism
@@ -796,6 +805,8 @@ int main() {
 		- override - An optional keyword used to indicate that a virtual function is overridden in a derived class.
 			- Ex: `void print() const override {}`
 			- The override keyword is recommended because ti produces a compiler error if virtual is left out from the base class's member function.
+
+- A vector of heap pointers
 
 #### [Composition over Inheritance](#c)
 Consider a program that catalogs the types of trees in a forest. Each tree object contains the tree's species type, age, location, and estimated size based on age. Each species uses a different formula to estimate size based on age. This program will benefit from an abstract class.

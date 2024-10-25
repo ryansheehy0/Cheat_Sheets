@@ -17,6 +17,7 @@
 - [Advanced Google Searches](./Tools/advanced_google_searches.md)
 - [Deploying Websites](./Tools/deploying_websites.md)
 - [Networking](./Tools/networking.md)
+- [Programming Tips](./Tools/programming_tips.md)
 - Linux
     - [Linux Commands](./Tools/Linux/linux_commands.md)
     - [Bash Scripting](./Tools/Linux/bash_scripting.md)
@@ -41,7 +42,6 @@
 
 ## C++
 - [C++](./C++/cpp.md)
-- [C++ Casting](./C++/cpp_casting.md)
 - [C++ Data Structures, Iterators, and Algorithms](./C++/cpp_data_structures_iterators_and_algorithms.md)
 - [C++ Standard Libraries](./C++/cpp_standard_libraries.md)
 - [C++ Non Standard Libraries](./C++/cpp_non_standard_libraries.md)
