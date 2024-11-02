@@ -73,14 +73,19 @@
 	- Slow to insert/delete
 		- Can have reallocation costs
 
-.push_back()
-.size()
+| Method                            | Description                                                    |
+|-----------------------------------|----------------------------------------------------------------|
+| .at(size_type n)                  | Get reference to element at n index                            |
+| .size()                           | Get how many elements are in the vector                        |
+| .empty()                          | Checks if the vector is empty or not                           |
+| .clear()                          | Removes all the elements                                       |
+| .push_back(const T& x)            | Adds new element to end of vector                              |
+| .erase(iterator pos)              | Removes element. Higher elements are shifted back to fill gap. |
+| .insert(iterator pos, const T& x) | Copies x to element at pos. Higher elements are shifted over.  |
+| .begin()                          | Returns an iterator to the first element.                      |
+| .end()                            | Returns an iterator to one past the last element.              |
+
 .pop_back()
-.empty()
-.clear()
-.insert(iterator pos, element)
-- .erase(iterator pos)
-	- `vec.erase(vec.begin() + index);`
 .resize()
 .reserve()
 .capacity() - returns the number of elements that the vector can hold before needing to allocate more memory

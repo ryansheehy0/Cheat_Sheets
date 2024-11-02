@@ -69,6 +69,13 @@ The standard libraries are any library that uses namespace std.
 |                                    | Returns `string::npos` if nothing was found   |
 | `std::string(1, char)`             | Convert char to a string one 1                |
 
+| Converting to other types |                                    |
+|---------------------------|------------------------------------|
+| `stoi`                    | String to int                      |
+| `stoul`                   | String to unsigned int             |
+| `stod`                    | String to double                   |
+| `to_string`               | Converts an int or float to string |
+
 ### [String Stream](#c-standard-libraries)
 `#include <sstream>`
 

@@ -90,6 +90,8 @@ My personal notes on C++.
 - Debugging c++ in vs code
 	- Multiple files
 	- Multiple 
+- left hand side(lhs) means that it can be assigned to. Can be placed ont he left hand side of the assignment(=) operator.
+- right hand side(rhs) means that it cannot be assigned. Can only be placed on the right hand side of the assignment(=) operator, like a constant.
 
 - `"a"` outputs a null terminated array of characters, while `'a'` is just that character.
 	- `"a"` is the same as `['a', '\0']`
@@ -312,6 +314,9 @@ namespaceName::x = 10;
 | `int& x = y;` | When `x` is assigned `y` also changes   |
 | `ptr->`       | Is the same as `(*ptr).`                |
 
+- `const int* xPtr = &x;` - A pointer to a const int, so you can't change the dereference.
+- `int* const xPtr = &x;` - A pointer to an int, but the pointer cannot be changed.
+
 ### [Function pointers](#c)
 `void (*name)(int, int) = function;`
 
@@ -330,6 +335,13 @@ Arrays in C++ store a sequences of variables in contiguous memory. The array nam
 	- Ex: `int arr[] = {0, 0, 0};` the size is 3
 - Constants with array
 	- Ex: `const int arr[3]` means that it's an array of constant ints.
+
+There are multiple ways of passing arrays to function
+- `void func(int arr[row][col])`
+	- row and col have to be constants
+	- Any array passed into this function needs to have its size be defined at compile time. The size cannot be defined with variables, but with constants.
+- `void func(int arr[], int rows, int cols)`
+	- The size doesn't have to be known at compile time.
 
 ## [Order of operations](#c)
 
@@ -396,10 +408,17 @@ while (true)
 ```c++
 vector<int> arr = {1, 2, 3, 4};
 
-for(int num : arr) {
+for (int num : arr) {
+	cout << num << endl;
+}
+// This is the same as
+for (std::vector<int>::iterator it = arr.begin(); it != arr.end(); it++) {
+	int num = *it;
 	cout << num << endl;
 }
 ```
+
+- If const is used as the data type then `::const_iterator` is used instead.
 
 ## [Functions](#c)
 - Functions cannot be declared within other functions.
@@ -441,12 +460,14 @@ assignY(&y); // y is now 10
 
 - If you want to pass in a `const` you have to specify it in the argument.
 	- Ex: `void assignX(const int &x);`
+	- It is recommended to never use non-const references as function arguments.
 - An array argument is equivalent to a pointer to the first element of the array.
 	- `void func(int arr[]);` is the same as `void func(int *arr);`
 	- There is no special syntax in c++ for pass by value for an array argument.
-
-- If the argument type is small, then do pass by value.
-- If the argument type is large(Greater than 8 bytes), and you don't want to modify, then use `const type& name` as an argument.
+- When to use what style of argument.
+	- If the argument type is small, then do pass by value.
+	- If the argument type is large (greater than 8 bytes), and you don't want to modify it, then use a const reference.
+	- If the argument type is large, and you want to modify it, then use a pointer.
 
 ### [Optional arguments](#c)
 - Everything after the first optional arguments must also be optional arguments.
@@ -793,7 +814,7 @@ int main() {
 }
 ```
 
-- Polymorphism - Same name, but a different shape/meaning.
+- Polymorphism - Same name, but a different meaning. Using a derived classes as base classes, but overriding different methods.
 	- Compile time polymorphism
 		- Function overloading
 	- Runtime polymorphism
@@ -875,6 +896,7 @@ MyClass& MyClass::operator=(const MyClass& rhs) {
 
 - The destructor is not called automatically when creating an object with the `new` keyword.
 	- The `delete` keyword calls the destructor and then deallocates the memory.
+	- To `delete` arrays created on the heap use `delete[] arr`. This allows the compiler to get the size of the array and free each memory location.
 
 ## [enums](#c)
 - enum

@@ -110,3 +110,41 @@ clean:
     rm -f *.o executable
 
 ```
+
+Variables
+
+`$()` Is used to de-reference variables.
+
+| Variables | Description                                                   | Example                     |
+|-----------|---------------------------------------------------------------|-----------------------------|
+| `=`       | Verbatim assignment. Doesn't dereference variables.           | `VAR = val`                 |
+| `:=`      | Simple expansion. Does dereference variables.                 | `VAR := $(VAR2)`            |
+| `!=`      | Shell output into var                                         | `VAR != find . -name '*.c'` |
+| `?=`      | If there isn't a variable then assign with value. Else don't. | `VAR ?= value`              |
+| `+=`      | Append to                                                     | `VAR += another value`      |
+
+You can have spacial keyboard to do things in `$()`.
+- wildcard - Van be used to match files
+    - Ex: `$(wildcard *.c)` gets all the .c files in the current directory
+- shell - Allows you to run shell commands and capture their output.
+    - Ex: `$(shell find . -name '*.c')` gets all the .c files in the current directly.
+- word - 
+- subst find,replace,text
+- patsubst
+- strip
+- findstring
+- filter
+- sort
+- dir
+- notdir
+- suffix
+- basename
+- addsuffic
+- if
+- or
+- realpath
+- abspath
+- add, subtract, multiply, div
+- $@, $<, $^, $+, $?, $*, $%
+- .PHONY, .DEFAULT_GOAL, .SUFFIXES, .SILENT, .EXPORT_ALL_VARIABLES, .DELETE_ON_ERROR
+- 
