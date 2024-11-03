@@ -1,4 +1,6 @@
 # Future Cheat Sheets
+- Optimizations in cpp
+- Evolutionary algorithm
 - Trees
     - Binary Heaps
 - Sliding window
@@ -10,8 +12,13 @@
 - Redo Taylor Series
 - Fourier transform
     - https://www.youtube.com/watch?v=cDr_y0kGddA
-
+- SAT solvers
+- Quantum computers
 - Machine learning
+	- There are certain problems that are so difficult that you can't create an algorithm to solve them, you can only create an algorithm that can create an algorithm to solve the problem.
+	- How do you know if a problem is too complex that you cannot create a relatively simple algorithm to solve it? Are these NP problems?
+- Orthogonal arrays
+- Phase space
 
 ## Map of machine learning
 - Gradient decent
