@@ -90,7 +90,10 @@ for (int row = 0; row < arr.size(); row++) {
 ### [Treating a 1d array as a 2d array](#programming-tips)
 - All the elements in the 1d array are in order.
 - You are given the rows and cols of the 2d array.
-- `arr[col + (cols * row)];` to access an element
+- `arr[(cols * row) + col];` to access an element
+- Convert from an index to it's row and col
+  - `int row = index / colCount;`
+  - `int col = index % colCount;`
 
 ### [Convolutional 2d array](#programming-tips)
 - Loop through each element of the 2d array and get it's nearest neighbors.
@@ -98,12 +101,12 @@ for (int row = 0; row < arr.size(); row++) {
 ```C++
 void nearestNeighbor(int array[rows][cols], int rIndex, int cIndex) {
   int startCol = cIndex - 1;
-  int endCol = startCol + 3;
+  int endCol = startCol + 2;
   if (startCol < 0) startCol = 0;
   if (endCol > cols) endCol = cols;
 
   int startRow = rIndex - 1;
-  int endRow = startRow + 3;
+  int endRow = startRow + 2;
   if (startRow < 0) startRow = 0;
   if (endRow > rows) endRow = rows;
 

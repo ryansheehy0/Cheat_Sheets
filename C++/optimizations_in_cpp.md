@@ -22,3 +22,7 @@
 	- 4 * shifts left by 2
 	- + 3 adds 11
 	- This is the same as bitwize OR with 3
+
+- Modulus
+	- `x % y` is the same as `x & (y - 1)`
+		- Is that true?

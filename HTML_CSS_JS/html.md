@@ -69,8 +69,11 @@ You can add an favicon in the top of the tab by adding this to the head:
 <img src="URL/filepath" alt="Description">
     <!-- "Image of" is said before alt texts. -->
 <audio controls> <!-- Little play bar for playing audio -->
-  <source src="horse.mp3" type="audio/mpeg">
+  <source src="file.mp3" type="audio/mpeg">
 </audio>
+<video controls>
+  <source src="file.mp4" type="video/mp4">
+</video>
 <iframe src="url" title="description"></iframe> <!-- Embed other html in your page -->
 <!-- Used for embedding other files like PDFs -->
 <embed src="/pdfFile.pdf" type="application/pdf"/>

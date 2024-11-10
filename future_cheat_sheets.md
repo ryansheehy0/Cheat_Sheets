@@ -1,6 +1,8 @@
 # Future Cheat Sheets
-- Optimizations in cpp
+- Neural Nets
 - Evolutionary algorithm
+- Hopfield Network
+- Optimizations in cpp
 - Trees
     - Binary Heaps
 - Sliding window

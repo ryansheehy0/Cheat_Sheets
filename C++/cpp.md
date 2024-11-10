@@ -41,6 +41,7 @@ My personal notes on C++.
 	- [Reference arguments](#reference-arguments)
 	- [Optional arguments](#optional-arguments)
 	- [Function overloading](#function-overloading)
+	- [Lambda and functions as arguments](#lambda-and-functions-as-arguments)
 - [Custom Scope](#custom-scope)
 - [Global and static variables](#global-and-static-variables)
 - [Exception/Error handling](#exceptionerror-handling)
@@ -331,6 +332,7 @@ Arrays in C++ store a sequences of variables in contiguous memory. The array nam
 	- Ex: `int arr[3];`
 - Initialize with zeros
 	- Ex: `int arr[3] = {1};` initializes with 1, 0, 0
+	- Ex 2: `int arr[3] = {};` initializes with 0, 0, 0
 - You don't have to specify the size
 	- Ex: `int arr[] = {0, 0, 0};` the size is 3
 - Constants with array
@@ -488,6 +490,14 @@ test(1);
 - Function overloading are multiple functions with the same name, but different argument types.
 	- The compiler determines which function to call based on the argument types.
 - Functions that return different types don't overload.
+
+### [Lambda and functions as arguments](#c)
+- `[&](int arg1, int arg2){}`
+	- Just using `&` in the capture list could cause problems for using consts. It allows you to change values of consts.
+
+- Function as an argument
+	- `#include <functional>`
+	- `void func(function<void(int, int)> operation);`
 
 ## [Custom Scope](#c)
 - You can use `{}`s to define custom scope
@@ -711,10 +721,10 @@ class Class {
 - If a class doesn't define a constructor, then it's given a default constructor.
 - Once a class defines a constructor, then the default constructor isn't automatically created.
 
-- What does `Constructor = default;` mean? How is that different from `Constructor(){}` or `Constructor();`
-
 - Construcotr initializer list `:`
 	- Uses values to initalize any objects instead of creting it and then setting it.
+	- Used to call inherited parent's constructor.
+		- You can't access the parent's protected member variables with this syntax.
 
 - `this` is a pointer to the current object.
 	- Used to differentiate between a local variable and a member variable. To get the member variable: `this->memberVar`
@@ -740,6 +750,8 @@ MyClass& setX(int x) {
 
 myObj.setY(10).setX(20);
 ```
+
+- The default constructor goes away when you have one contractor with arguments. If you still want it, then use `Class() = default;`
 
 ### [Operator overloading](#c)
 - member function named `operator+`
