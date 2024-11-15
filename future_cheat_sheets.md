@@ -22,6 +22,11 @@
 - Orthogonal arrays
 - Phase space
 
+- Statistics
+- Linear algebra
+- Operating systems
+- Advanced algorithms
+
 ## Map of machine learning
 - Gradient decent
 - Unsupervised learning, supervised learning, reinforcement learning

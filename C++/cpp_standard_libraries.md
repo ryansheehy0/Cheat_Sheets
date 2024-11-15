@@ -52,6 +52,7 @@ The standard libraries are any library that uses namespace std.
 - `.seekg(offset, std::ios_base::beg)`
 	- Sets the position of the input pointer for the stream
 	- Ex: `file.seekg(0, ios_base::beg);`
+- `cin >> ws` discards white spaces
 
 ## [string](#c-standard-libraries)
 

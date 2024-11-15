@@ -21,15 +21,13 @@ My personal notes on C++.
 		- [Int vs Float Modulus](#int-vs-float-modulus)
 		- [post-fix vs pre-fix increment](#post-fix-vs-pre-fix-increment)
 	- [Const](#const)
-	- [Casting](#casting)
 	- [Auto](#auto)
 - [Headers](#headers)
-- [Namespaces and using](#namespaces-and-using)
+- [Namespaces](#namespaces)
 - [Character escapes](#character-escapes)
 - [Pointers and references](#pointers-and-references)
-	- [Function pointers](#function-pointers)
-	- [Constants with pointers](#constants-with-pointers)
 	- [Arrays](#arrays)
+		- [Two dimensional arrays](#two-dimensional-arrays)
 - [Order of operations](#order-of-operations)
 - [Loops and Conditions](#loops-and-conditions)
 	- [Switch](#switch)
@@ -59,38 +57,17 @@ My personal notes on C++.
 <!-- /TOC -->
 
 ## Things to research
-- Header files
-- Error/Exception handling
 - typedef
 - friend and operator keywords?
-- Operator overloading
 - Singletons
 - Regex in C++
 - Casting
 	- `const_cast`, `static_cast`, `reinterpret_cast`, `dynamic_cast`
 	- Why not use C style casting
 - typeid
-- Templates
-	- `template<class T> class Stack`
-	- `template<class T> void Stack<T>::push(T c)`
-	- Do templates always have to have class in them? Why?
-	- How to do size for a template?
-	- Done at compile time?
-- `virtual` keyword for functions?
-	- Virtual means it maybe defined later in a class derived from this one.
-	- `= 0` says that it has to be implemented by a child class. Pure virtual functions
-	- Can be used to create an interface
-	- Has to determine which function to use at runtime. Uses a virtual function table to do this.
-- Interfaces
-- `typeid`
-- type fields? An instance of an enum?
-	- A variable that can only have the types specified in the enum.
 - Multi-threading
 - Modules?
 	- `import` how does this effect header files
-- Debugging c++ in vs code
-	- Multiple files
-	- Multiple 
 - left hand side(lhs) means that it can be assigned to. Can be placed ont he left hand side of the assignment(=) operator.
 - right hand side(rhs) means that it cannot be assigned. Can only be placed on the right hand side of the assignment(=) operator, like a constant.
 
@@ -98,13 +75,15 @@ My personal notes on C++.
 	- `"a"` is the same as `['a', '\0']`
 
 ## [main](#c)
-`int main()` is the start of the program.
-
-- `int main(int argc, char *argv[]){}`
-	- `int argc` is the number of arguments passed to the program via the terminal, including the program name.
-	- `char **argv` is an array of strings of the arguments separated by spaces, including the program name.
-- `return 0;` tells the program that main returned without any errors.
-- `return 1;` tells the program that main returned with an error.
+The main function is the entry point of a program.
+- function signature
+	- `int main()` - Doesn't take in command line arguments.
+	- `int main(int argc, char *argv[])` - Allows command line arguments.
+		- `argc` is the number of arguments
+		- `argv` is an array of strings for the arguments. This includes the program name.
+- Return type
+	- `return 0;` - return without any errors
+	- `return 1;` - return with an error
 
 ## [Data Types](#c)
 The smallest memory unit is 1 byte(8 bits).
@@ -119,6 +98,10 @@ The smallest memory unit is 1 byte(8 bits).
 | short     | 2      | Same as `short int`                          |
 | int       | 2 or 4 | Bytes depends on the platform                |
 | long long | 8      | Same as `long long int`                      |
+
+- When you want the size to be clearly defined
+	- int8_t, int16_t, int32_t, int64_t
+	- uint8_t, uint16_t, uint32_t, uint64_t
 
 ### [Float based data types](#c)
 
@@ -135,7 +118,7 @@ The smallest memory unit is 1 byte(8 bits).
 - `(x = #)` returns `x` not `#`
 	- Ex: `x = 10` returns `10`
 	- Ex: `x = 0` returns `0`
-	- Ex: `x = 2'147'483'648` returns `-2147483648`
+	- Ex: `int32_t x = 2'147'483'648` returns `-2147483648`
 
 #### [Multiple variables on one line](#c)
 - Declaring multiple variables on one line
@@ -164,13 +147,13 @@ The smallest memory unit is 1 byte(8 bits).
 #### [Int vs Float Division](#c)
 - Integer division is truncated
 - In order to get float division, either the numerator or denominator has to be a float/double.
-- Ex: `1/2` will return `0`
-- Ex: `1.0/2` will return `0.5`
-- Ex: `1/2.0` will return `0.5`
-- Ex: `1.0/2.0` will return `0.5`
+	- `1/2` will return `0`
+	- `1.0/2` will return `0.5`
+	- `1/2.0` will return `0.5`
+	- `1.0/2.0` will return `0.5`
 
 #### [Dividing by zero](#c)
-- Dividing by zero in integer division gives a compiler error
+- Dividing by zero in integer division gives a runtime error
 - Float division
 	- `0.0/0.0` outputs not a number(nan)
 	- `1.0/0.0` outputs inf
@@ -192,12 +175,7 @@ The smallest memory unit is 1 byte(8 bits).
 	- `const` has type checking and syntax checking
 	- `const` is known to debuggers
 	- `const` can be scoped to the block
-- A function returning a `const` means that the return value cannot be changed. This is useful if you are returning pointers or references.
-
-### [Casting](#c)
-- Casting is done at compiler time so it's up to the programmer to make sure they are casting correctly
-- `static_cast<data type>(variable)`
-- When a float gets cast to an int the decimal is truncated. `1.9 -> 1`
+- A function returning a `const` means that the returned value cannot be modified, but this only really applies to references or pointers.
 
 ### [Auto](#c)
 `auto` tells the compiler to determine the variable's type by the initial value given.
@@ -206,71 +184,44 @@ The smallest memory unit is 1 byte(8 bits).
 - Ex: `auto x` gives an error
 
 ## [Headers](#c)
-- .h files contain a class's definition
-- .cpp files contain a class's declarations
-- You have to include a files's .h file in the .cpp file
+The purpose of header files is to allow you to separate the declaration(.h) and the definitions(.cpp). The declarations(.h) can be shared across multiple files. This has a couple of benefits:
+- It separates the interface(.h) and the implementation(.cpp), so that when using the code you just have to worry about what you can use.
+- If you only change the implementation(.cpp) and not the interface(.h), then the compiler only has to re-compile that implementation(.cpp) and not other implementations(.cpp).
+- If you only change the .cpp file and not the .h file, then the compiler only has to re-compile the .cpp file and not the other .cpp files. Because the interface(.h) didn't change, only the implementation(.cpp).
 
 ```C++
 // .h
 #pragma once
 
-class StoreItem {
-   public:
-      void weightOunces(int ounces);
-      void Print() const;
-   private:
-      int _weightOunces;
+class Class {
+	private:
+		int _x = 0;
+	public:
+		void print();
 };
 ```
 
 ```C++
 // .cpp
+#include "Class.h"
 #include <iostream>
 
-#include "StoreItem.h"
-
-void StoreItem::weightOunces(int ounces) {
-   _weightOunces = ounces;
-}
-
-void StoreItem::Print() const {
-   std::cout << "Weight (ounces): " << _weightOunces << std::endl;
+Class::print() {
+	std::cout << _x << "\n";
 }
 ```
 
-- When you want to use the class in another file, include the .h file.
+- Prevent multiple header file inclusions to prevent multiple declarations.
+	- `#pragma once` - This is newer and is recommended
+	- Or you can use header guards
+	```C++
+	#ifndef __CLASS_NAME_H__
+	#define __CLASS_NAME_H__
+	// Header file
+	#endif
+	```
 
-Why header files?
-- Allows for separate code compilation
-- 
-
-Header fil
-When you use a function that isn't defined in your code you get 2 errors.
-
-First, a compile time error because the function isn't declared.
-- The compiler generates .o files which may have dependencies to other functions defined in libraries.
-
-Second, a link time error because the linker cannot find the function.
-- The linker takes the .o files and combines then and tries to find any unmet dependencies.
-- When linking you have to specify the dynamic linked file or the static linked file.
-	- Dynamic links are needed elsewhere on the computer and when the executable is ran they are gotten.(.so files)
-	- Static links are built into the executable and aren't needed elsewhere on the computer, however they increase the size of your executable.
-
-Header files
-- allow any functions to be declared for compile time.
-- specifies an interface for using a .cpp file.
-
-- Don't include other header files in a header file.
-	- Create a class declaration instead. `class OtherClass;` instead of `#include "other_class.h"`. Why?
-
-```C++
-#ifndef __CLASS_NAME_H__
-#define __CLASS_NAME_H__
-// Header file
-#endif
-```
-
-## [Namespaces and using](#c)
+## [Namespaces](#c)
 Namespaces define a region/scope used to prevent naming conflicts
 
 ```C++
@@ -306,28 +257,19 @@ namespaceName::x = 10;
 
 ## [Pointers and references](#c)
 
-|               |                                         |
-|---------------|-----------------------------------------|
-| `int* ptr;`   | Contains enough memory to store address |
-| `&ptr`        | Gets address of pointer                 |
-| `ptr`         | Gets the value in ptr                   |
-| `*ptr`        | Dereferences ptr                        |
-| `int& x = y;` | When `x` is assigned `y` also changes   |
-| `ptr->`       | Is the same as `(*ptr).`                |
-
-- `const int* xPtr = &x;` - A pointer to a const int, so you can't change the dereference.
-- `int* const xPtr = &x;` - A pointer to an int, but the pointer cannot be changed.
-
-### [Function pointers](#c)
-`void (*name)(int, int) = function;`
-
-### [Constants with pointers](#c)
-- A pointer to a constant
-- A constant pointer to a data
+| Code                    | Description                                                         |
+|-------------------------|---------------------------------------------------------------------|
+| `int* ptr;`             | Creates a pointer pointing to an int. Enough memory for an address. |
+| `*ptr`                  | Dereferences the ptr                                                |
+| `int& x = y;`           | `x` is a reference to `y`. `x` and `y` always have the same value.  |
+| `&ptr`                  | Gets address of ptr.                                                |
+| `ptr`                   | Gets the value in ptr. The address it points to.                    |
+| `ptr->`                 | Is the same as `(*ptr).`                                            |
+| `const int* xPtr = &x;` | Pointer to a const int. Can't change the dereference.               |
+| `int* const xPtr = &x;` | Pointer to an int, but the pointer cannot change.                   |
 
 ### [Arrays](#c)
-Arrays in C++ store a sequences of variables in contiguous memory. The array name is a pointer to the first element of the array.Accessing an element with `arr[index]` is equivalent to dereferencing the pointer at the memory location `*(arrPtr + index)`.
-
+Arrays in C++ store a sequences of variables in contiguous memory. The array is a pointer to the first element of the array. Accessing an element with `arr[index]` is equivalent to dereferencing the pointer at the memory location `*(arrPtr + index)`.
 - Define with random data
 	- Ex: `int arr[3];`
 - Initialize with zeros
@@ -335,32 +277,33 @@ Arrays in C++ store a sequences of variables in contiguous memory. The array nam
 	- Ex 2: `int arr[3] = {};` initializes with 0, 0, 0
 - You don't have to specify the size
 	- Ex: `int arr[] = {0, 0, 0};` the size is 3
-- Constants with array
-	- Ex: `const int arr[3]` means that it's an array of constant ints.
 
-There are multiple ways of passing arrays to function
-- `void func(int arr[row][col])`
-	- row and col have to be constants
-	- Any array passed into this function needs to have its size be defined at compile time. The size cannot be defined with variables, but with constants.
-- `void func(int arr[], int rows, int cols)`
-	- The size doesn't have to be known at compile time.
+#### [Two dimensional arrays](#c)
+Since arrays are stored in continuous memory, a two dimensional array(or more dimensions) can also be reprehended with a one dimensional array.
+- `int twoDArr[row][col]` or `int oneDArr[row * col]` - Creates a 2d array.
+- `arr[row][col]` or `arr[(cols * row) + col]` - Access an element in the 2d array.
+
+Each of these array may contain the same memory, but their data types are different.
+- `int twoDArr[row][col]` type is `int *[col]`
+- `int oneDArr[row * col]` type is `int *`
 
 ## [Order of operations](#c)
+Operations with the same precedence are executed according to their associativity, left to right or right to left.
 
-| Order | Operation              |
-|-------|------------------------|
-| 1     | ()                     |
-| 2     | `::`                   |
-| 3     | x++ x-- function calls |
-| 4     | ++x --x +x -x !        |
-| 5     | * / %                  |
-| 6     | + -                    |
-| 7     | << >>                  |
-| 8     | < <= > >=              |
-| 9     | == !=                  |
-| 10    | &&                     |
-| 11    | \|\|                   |
-| 12    | a?b:c = += -=, etc     |
+| Precedence | Operation                    | Associativity |
+|------------|------------------------------|---------------|
+| 1          | :: - scope                   | Left to right |
+| 2          | x++, x--                     | Left to right |
+|            | type() - functional case     |               |
+|            | func(), arr[]                |               |
+|            | ., ->                        |               |
+| 3          | ++x, --x                     | Right to left |
+|            | +x, -x, !, ~                 |               |
+|            | (type) - C-style case        |               |
+|            | *ptr, &var, sizeof           |               |
+|            | new, new[], delete, delete[] |               |
+| 4          | 
+
 
 ## [Loops and Conditions](#c)
 

@@ -79,3 +79,9 @@ Has the best syntax
 3. static_cast*, then const_cast
 4. reinterpret_cast
 5. reinterpret_cast, then const_cast
+
+
+### [Casting](#c)
+- Casting is done at compiler time so it's up to the programmer to make sure they are casting correctly
+- `static_cast<data type>(variable)`
+- When a float gets cast to an int the decimal is truncated. `1.9 -> 1`

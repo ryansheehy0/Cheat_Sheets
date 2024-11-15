@@ -109,6 +109,30 @@
 	- Slow random access
 	- High memory overhead
 
+- You have two classes. ListNode and List
+- When inserting a new node, you have to assign the new node's next node to the next, and then assign the prev's next node to the new node.
+
+```C++
+// Get each element of the linked list
+ListNode* currNode = _head;
+while (currNode != nullptr) {
+	// So something with currNode
+	currNode = currNode->nextNode();
+}
+```
+
+- Get/Find
+	- Only linear search
+- Delete
+	- Save the prt to the node you want to delete
+	- Assign the prev node's next node to the deleted node's next ptr
+	- Delete the node you want to delete
+- Add
+	- Assign the new node's next node
+	- Assign the prev node's next node to the new node
+- Update
+	- Find and then change value
+
 ### [deque](#c-data-structures-iterators-and-algorithms)
 `std::deque<type>` is a linked list of arrays. This sort of mixes the advantages and disadvantages of a list and vector.
 - Advantages

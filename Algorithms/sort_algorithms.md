@@ -8,6 +8,7 @@ Sorting algorithms take in an array and sorts them from lowest to highest, highe
 - [Common sorting algorithm](#common-sorting-algorithm)
 - [Bubble Sort](#bubble-sort)
 - [Selection Sort](#selection-sort)
+- [Insertion Sort](#insertion-sort)
 - [Quick Sort](#quick-sort)
 
 <!-- /TOC -->
@@ -76,6 +77,23 @@ function selectionSort(arr){
     let temp = arr[i]
     arr[i] = arr[maxIndex]
     arr[maxIndex] = temp
+  }
+  return arr
+}
+```
+
+## [Insertion Sort](#sort-algorithms)
+Insertion sort splits the array into two parts, a sorted and unsorted part. It then repeatedly gets the first element of the unsorted array and keep swapping them with the previous elements in the sorted array, until that element is in the correct position.
+- O(n^2) specifically (n - 1) * n / 2
+
+```javascript
+function insertionSort(arr) {
+  for (let i = 1; i < arr.length; i++){
+    for (let j = i; j > 0 && arr[j] < arr[j-1]; j--) {
+      let temp = arr[j]
+      arr[j] = arr[j-1]
+      arr[j - 1] = temp
+    }
   }
   return arr
 }

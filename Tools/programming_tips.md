@@ -11,7 +11,6 @@ C++ is used for all the examples.
 - [Comparing floats](#comparing-floats)
 - [Getting random numbers](#getting-random-numbers)
 - [Two D arrays](#two-d-arrays)
-	- [Treating a 1d array as a 2d array](#treating-a-1d-array-as-a-2d-array)
 	- [Convolutional 2d array](#convolutional-2d-array)
 - [Rounding with truncation](#rounding-with-truncation)
 
@@ -86,14 +85,6 @@ for (int row = 0; row < arr.size(); row++) {
   }
 }
 ```
-
-### [Treating a 1d array as a 2d array](#programming-tips)
-- All the elements in the 1d array are in order.
-- You are given the rows and cols of the 2d array.
-- `arr[(cols * row) + col];` to access an element
-- Convert from an index to it's row and col
-  - `int row = index / colCount;`
-  - `int col = index % colCount;`
 
 ### [Convolutional 2d array](#programming-tips)
 - Loop through each element of the 2d array and get it's nearest neighbors.

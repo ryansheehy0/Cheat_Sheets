@@ -35,6 +35,7 @@ Useful npm packages
 			- [Retrieving data](#retrieving-data)
 		- [Destroying session](#destroying-session)
 	- [cookie-parser](#cookie-parser)
+	- [http-server](#http-server)
 
 <!-- /TOC -->
 
@@ -703,3 +704,7 @@ app.get('/logout', (req, res) => {
 ```
 
 ### [cookie-parser](#nodejs-packages)
+
+### [http-server](#nodejs-packages)
+http-server for Node.js is a simple, zero-configuration command-line HTTP server that serves static files from a specified directory.
+- So that you don't have to create a express server to serve static files.
