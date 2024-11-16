@@ -1,4 +1,6 @@
 # Future Cheat Sheets
+- GDB - GNU Debugger
+- Make files
 - Neural Nets
 - Evolutionary algorithm
 - Hopfield Network

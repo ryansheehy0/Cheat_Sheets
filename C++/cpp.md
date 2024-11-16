@@ -1,12 +1,11 @@
 [Home](../README.md)
 
 # C++
-
 My personal notes on C++.
 
 <!-- TOC -->
 
-- [Things to research](#things-to-research)
+- [To Do](#to-do)
 - [main](#main)
 - [Data Types](#data-types)
 	- [Int based data types](#int-based-data-types)
@@ -26,6 +25,7 @@ My personal notes on C++.
 - [Namespaces](#namespaces)
 - [Character escapes](#character-escapes)
 - [Pointers and references](#pointers-and-references)
+	- [Function pointers](#function-pointers)
 	- [Arrays](#arrays)
 		- [Two dimensional arrays](#two-dimensional-arrays)
 - [Order of operations](#order-of-operations)
@@ -36,43 +36,51 @@ My personal notes on C++.
 	- [Range based for loop](#range-based-for-loop)
 - [Functions](#functions)
 	- [Types of functions](#types-of-functions)
-	- [Reference arguments](#reference-arguments)
+	- [Pass by value or reference](#pass-by-value-or-reference)
 	- [Optional arguments](#optional-arguments)
 	- [Function overloading](#function-overloading)
-	- [Lambda and functions as arguments](#lambda-and-functions-as-arguments)
-- [Custom Scope](#custom-scope)
+	- [Lambda functions](#lambda-functions)
 - [Global and static variables](#global-and-static-variables)
 - [Exception/Error handling](#exceptionerror-handling)
-- [Template](#template)
+- [Templates](#templates)
+- [new and delete](#new-and-delete)
+- [Enums](#enums)
 - [Structs](#structs)
 - [Classes](#classes)
+	- [Constructors and Destructors](#constructors-and-destructors)
+	- [Operator overloading](#operator-overloading)
+	- [Inheritance](#inheritance)
+		- [Virtual and Override](#virtual-and-override)
+		- [Composition vs Inheritance](#composition-vs-inheritance)
+	- [Using heap memory in classes](#using-heap-memory-in-classes)
+- [Classes](#classes)
+	- [Constructors and destructors](#constructors-and-destructors)
 	- [Operator overloading](#operator-overloading)
 	- [Inheritance](#inheritance)
 		- [Composition over Inheritance](#composition-over-inheritance)
 	- [Copy constructor and overloading the = operator](#copy-constructor-and-overloading-the--operator)
 	- [The rule of 3](#the-rule-of-3)
-- [new and delete](#new-and-delete)
-- [enums](#enums)
 
 <!-- /TOC -->
 
-## Things to research
+## To Do
+- cassert for testing
+- openssl
+- casting
+- How the linker works
+	- dynamic vs static linking
+- Variadic functions
+- thrown error types
 - typedef
 - friend and operator keywords?
 - Singletons
 - Regex in C++
-- Casting
-	- `const_cast`, `static_cast`, `reinterpret_cast`, `dynamic_cast`
-	- Why not use C style casting
 - typeid
 - Multi-threading
 - Modules?
 	- `import` how does this effect header files
 - left hand side(lhs) means that it can be assigned to. Can be placed ont he left hand side of the assignment(=) operator.
 - right hand side(rhs) means that it cannot be assigned. Can only be placed on the right hand side of the assignment(=) operator, like a constant.
-
-- `"a"` outputs a null terminated array of characters, while `'a'` is just that character.
-	- `"a"` is the same as `['a', '\0']`
 
 ## [main](#c)
 The main function is the entry point of a program.
@@ -102,6 +110,7 @@ The smallest memory unit is 1 byte(8 bits).
 - When you want the size to be clearly defined
 	- int8_t, int16_t, int32_t, int64_t
 	- uint8_t, uint16_t, uint32_t, uint64_t
+- `""`s return a `const char*` array that has a null terminating character.
 
 ### [Float based data types](#c)
 
@@ -234,6 +243,7 @@ namespaceName::x = 10;
 
 - You can have namespaces automatically used with `using namespace namespaceName`.
 	- This isn't recommended because it can result in naming conflicts.
+- You can use `{}` to define a new scope.
 
 ## [Character escapes](#c)
 
@@ -267,6 +277,14 @@ namespaceName::x = 10;
 | `ptr->`                 | Is the same as `(*ptr).`                                            |
 | `const int* xPtr = &x;` | Pointer to a const int. Can't change the dereference.               |
 | `int* const xPtr = &x;` | Pointer to an int, but the pointer cannot change.                   |
+
+### [Function pointers](#c)
+
+```C++
+void (*func)(int, int);
+```
+
+You can also use `#include <functional>` and `function<void(int, int)> func;`
 
 ### [Arrays](#c)
 Arrays in C++ store a sequences of variables in contiguous memory. The array is a pointer to the first element of the array. Accessing an element with `arr[index]` is equivalent to dereferencing the pointer at the memory location `*(arrPtr + index)`.
@@ -302,13 +320,26 @@ Operations with the same precedence are executed according to their associativit
 |            | (type) - C-style case        |               |
 |            | *ptr, &var, sizeof           |               |
 |            | new, new[], delete, delete[] |               |
-| 4          | 
-
+| 4          | .*, ->*                      | Left to right |
+| 5          | x*y, x/y, x%y                | Left to right |
+| 6          | x+y, x-y                     | Left to right |
+| 7          | <<, >>                       | Left to right |
+| 8          | <, <=, >, >=                 | Left to right |
+| 9          | ==, !=                       | Left to right |
+| 10         | &                            | Left to right |
+| 11         | ^                            | Left to right |
+| 12         | \|                           | Left to right |
+| 13         | &&                           | Left to right |
+| 14         | \|\|                         | Left to right |
+| 15         | x?y:z, throw, =              | Right to left |
+|            | +=, -=, *=, /=, %=, <<=, >>= |               |
+|            | &=, ^=, \|=                  |               |
+| 16         | ,                            | Left to right |
 
 ## [Loops and Conditions](#c)
 
 ### [Switch](#c)
-- Cannot be used with string or floating point types.
+- Cannot be used with strings or floats.
 
 ```c++
 switch (x) {
@@ -316,7 +347,7 @@ switch (x) {
 		break;
 	case 1:
 	case 2:
-		// Falling through
+		// 1 or 2
 		break;
 	default:
 		break;
@@ -351,15 +382,13 @@ while (true)
 - The list has to have an iterator in order to work.
 
 ```c++
-vector<int> arr = {1, 2, 3, 4};
+std::vector<int> arr = {1, 2, 3, 4};
 
 for (int num : arr) {
-	cout << num << endl;
 }
 // This is the same as
 for (std::vector<int>::iterator it = arr.begin(); it != arr.end(); it++) {
 	int num = *it;
-	cout << num << endl;
 }
 ```
 
@@ -367,203 +396,93 @@ for (std::vector<int>::iterator it = arr.begin(); it != arr.end(); it++) {
 
 ## [Functions](#c)
 - Functions cannot be declared within other functions.
-- You have to declare a function before using it. There is no hoisting
 
 | Term           | Example              |
 |----------------|----------------------|
-| header         | `void func(int arg)` |
 | prototype      | `void func(int);`    |
-| implementation | Body of the func     |
+| header         | `void func(int arg)` |
+| implementation | `{ /* body */ }`       |
 
-- The purpose of the prototype being put above main is to allow the function definition to be used after the main function.
+- The purpose of putting a function's prototype at the top is to allow the function to be used before it is implemented.
 
 ### [Types of functions](#c)
 
-|                          |                                                                       |
-|--------------------------|-----------------------------------------------------------------------|
-| `constexpr void func();` | Return value is consts so it can be evaluated at compile time         |
-| `inline void func();`    | Compiler searches and replaces. Speed up performance, but more memory |
+|                          |                                                                             |
+|--------------------------|-----------------------------------------------------------------------------|
+| `constexpr void func();` | A function can be evaluated at compile time if possible.                    |
+| `inline void func();`    | Compiler searches and replaces. Speed up performance, but uses more memory. |
 
-### [Reference arguments](#c)
-- You can make function arguments pass by reference by setting them as `&`
-- Reference arguments have to have an address so they cannot be values.
+### [Pass by value or reference](#c)
+- If you don't want to change the argument
+	- If the argument is less than 64bits/8bytes
+		- Pass by value `void func(int x)`
+	- Else
+		- Pass by const reference - `void func(const Class& x)`
+- If you do want to change the argument
+	- Pass by pointer - `void func(Class* x)`
 
-```c++
-void assignX(int &x) { // x is a reference parameter
-	// This & is slightly different to the use case of getting the address
-	x = 10;
-}
-
-void assignY(int *y) { // y is a pointer to an int
-	*y = 10;
-}
-
-int x, y;
-assignX(x); // x is now 10
-assignY(&y); // y is now 10
-```
-
-- If you want to pass in a `const` you have to specify it in the argument.
-	- Ex: `void assignX(const int &x);`
-	- It is recommended to never use non-const references as function arguments.
-- An array argument is equivalent to a pointer to the first element of the array.
-	- `void func(int arr[]);` is the same as `void func(int *arr);`
-	- There is no special syntax in c++ for pass by value for an array argument.
-- When to use what style of argument.
-	- If the argument type is small, then do pass by value.
-	- If the argument type is large (greater than 8 bytes), and you don't want to modify it, then use a const reference.
-	- If the argument type is large, and you want to modify it, then use a pointer.
+Following these rules makes it clear that an object is being modified by a function because you have to specify the address when passing it as an argument.
+- For an array you want to change use `int (*arr)[]`
+- For an array you don't want to change use `const int arr[]`
 
 ### [Optional arguments](#c)
-- Everything after the first optional arguments must also be optional arguments.
+- Any argument after an optional argument must also be an optional argument.
 
 ```c++
-int test(int a, int b = 4, int c = 10){
-	// c is an optional argument
-}
+int test(int a, int b = 4, int c = 10){}
 
 test(1, 2, 3);
 test(1, 2);
 test(1);
 ```
 
-- If you have a prototype you can only put the default values in the prototype
+- If you have a function prototype, you can only put the default values in the prototype and not the function header.
 
 ### [Function overloading](#c)
 - Function overloading are multiple functions with the same name, but different argument types.
 	- The compiler determines which function to call based on the argument types.
 - Functions that return different types don't overload.
 
-### [Lambda and functions as arguments](#c)
-- `[&](int arg1, int arg2){}`
-	- Just using `&` in the capture list could cause problems for using consts. It allows you to change values of consts.
-
-- Function as an argument
-	- `#include <functional>`
-	- `void func(function<void(int, int)> operation);`
-
-## [Custom Scope](#c)
-- You can use `{}`s to define custom scope
-
-```c++
-{
-	int x = 10;
-	cout << x << endl;
-}
-{
-	double x = 10.1;
-	cout << x << endl;
-}
-```
+### [Lambda functions](#c)
+Lambda functions allow you to easily pass small functions into another function. They take the form of `[capture list](arguments){function body}`. You can also specify a return type with `[]() -> type {}`
+- The capture list specifies what variables are accessible from the outside scope.
+	- You can use `[&]` to have access to all the variables in the outside scope as pass by reference.
+	- You can use `[=]` to have access to all the variables in the outside scope as pass by value.
 
 ## [Global and static variables](#c)
-- Static variables have their own memory location and stay in that location for the duration of the program.
-	- Variables defined outside of any functions are global variables and stored in the same location.
-
-- Global variables are variables outside of any function
-- Global variables are automatically set to 0 if not given a value
-- Global variables should be used sparingly because they can cause side effects, like hidden parameters, in function.
-	- Usually global variables are consts in order to prevent these side effects.
-
-- `static` allows a local variable to persist across function calls.
-
-```c++
-for(int i = 0; i< 10; i++){
-	callFunc();
-}
-
-void callFunc() {
-	static int count = 0;
-	count++;
-	cout << count << endl;
-}
-```
-
-- `static` means a var is allocated in memory only once during the program.
-	- You can have multiple static variables with the same name as long as they are used in different scopes.
+- Static variable have their memory persist across function calls. They are scoped to the function they are defined in.
+- Global variables are defined outside any function and can be used by any function.
+	- They are automatically set to 0 if not given a value.
+	- Usually global variables are constants in order to prevent these side effects.
 
 ## [Exception/Error handling](#c)
-If your program has an error and you want to crash you can do: `std::cerr << "An error occured\n"` which prints an error and `exit(1);` which exits the program with a 1(`#include <stdio.h>`). But what if you want to continue running your code even when there's an error?
-
-In C, you commonly return `-1` or `NULL` to show there was an error, but there are two main problems with this.
-
-1. Complicated return types
-- Let's say you have a function that reads a file and returns a string of the contents of that file, but that function has an error. You could return `"-1"`, but that could be confused with the contents of the file. You could wrap the return string in an optional and return `{}` when there's an error, but that is very messy. You could pass in a reference parameter that gets set when there's an error, but that is also messy. All of these solutions aren't ideal.
-
-2. Bubbling up errors
-- Let's say you have func1 which calls func2 which calls func3. And let's say there's an error in fun3 and it returns `-1`. In order for func1 to get the error, there has to be error handling code in func2 which checks for the error and returns it to func1 if it's there. This is very annoying, especially if the error has to bubble through many function layers.
-
-In order to solve these two problems specific error handling keywords were introduced: `try`, `catch`, and `throw`.
-
-1. Solves complicated return types
-- Instead of all the messy solutions to return your error, you can instead `throw` an error and it doesn't have to match the type the function is returning.
-- It simplifies the return types for your functions and return additional information along with the error.
-
-2. Solves bubbling up errors
-- Instead of having special error handling code in all your functions, a thrown error automatically bubbles up until it reaches a `catch` block for it's error type. `throw` is essentially a multi-level return.
-- Separates your algorithm code from your error handling code.
-
-<table>
-<tr>
-	<th>Without <code>try</code>, <code>catch</code>, and <code>throw</code></th>
-	<th>With <code>try</code>, <code>catch</code>, and <code>throw</code></th>
-</tr>
-<tr>
-	<td>
+- If you want to exit your program from anywhere you can do `exit(1);`
+- The purpose of throwing errors
+	- When the return type doesn't support errors.
+		- Ex: For the func `int add(int x, int y)` you can't return -1 as an error because it could be a legitimate value.
+	- When you need to bubble up errors through many functions.
+		- You don't have to check for an error and return it. You can just call the function.
 
 ```C++
-int func3() {
-	bool error = true;
-	if (error) {
-		return -1;
-	}
-}
-
-int func2() {
-	int error = func3();
-	if (error == -1) {
-		return -1;
-	}
-}
-
 void func1() {
-	int error = func2();
-	if (error == -1) {
-		// Handle error
-	}
-}
-```
-
-</td>
-<td>
-
-```C++
-void func3() {
-	bool error = true;
-	if (error) {
-		throw -1;
-	}
+	throw "String error";
 }
 
 void func2() {
-	func3();
+	func1();
 }
 
-void func1() {
+void func3() {
 	try {
 		func2();
-	} catch (int error) {
-		// Handle error
+	} catch (const char* error) {
+		// handle error
 	}
 }
 ```
 
-</td>
-</tr>
-</table>
-
-- If an error is thrown and not caught, the program crashes.
-- `catch` blocks can be strung together and are caught in order, so you should catch more specific exceptions before less specific ones.
+- `catch (...)` allows you to catch all errors regardless of their type
+- `throw;` allows you to throw the previously thrown error
 - There is a hierarchy of C++ errors.
 	- std::exception
 		- std::bad_alloc - When memory allocation fails
@@ -580,31 +499,8 @@ void func1() {
 			- std::underflow_error - When an arithmetic operation results in an underflow.
 			- std::ios_base::failure - When the input/output operations fail. Common if a file can't read or write.
 
-```C++
-void handleErrors() {
-	try {
-		throw; // Throws the last error
-	} catch (const std::bad_alloc& e) {
-
-	} catch (const std::invalid_argument& e) {
-
-	} catch (const std::exception& e) {
-
-	}
-}
-
-void func() {
-	try {
-			// Code that may throw an exception
-	} catch (...) {
-			// Catches all errors
-			handleErrors();
-	}
-}
-```
-
-## [Template](#c)
-- The compiler makes the functions with the types depending on where they are used in the code.
+## [Templates](#c)
+Templates are used to allow the same piece of code to use different data types.
 
 ```C++
 template <typename T>
@@ -612,45 +508,105 @@ void print(T value) {
 	std::cout << value << "\n";
 }
 
-print(5) // Defined implicitly based upon the type of the arguments.
-
-template <typename T>
-// Is the same as
-template <class T>
+print(5) // Defined implicitly based upon the type of the argument
+print<char>('a') // Defined explicitly
 ```
 
+- Using `class` is the same as using `typename`
+
+## [new and delete](#c)
+Heap memory is used when teh size is only known at run time.
+- `new` allocates memory on the heap and returns its address.
+- `delete` frees the allocated memory.
+	- Deleting a nullptr does nothing.
+
+```C++
+int* ptr = new int;
+delete ptr;
+// With arrays
+int* arr = new int[10];
+delete[] arr;
+```
+
+## [Enums](#c)
+Enums define a variable's allowed values by restricting it to a predefined set of named constants, improving code clarity and reducing invalid inputs.
+- Enums automatically count up from 0, but they can be changed by assigning them.
+	- Ex: `enum Num {ONE = 1, TWO, THREE}`
+
+```C++
+enum Shape {CIRCLE, SQUARE, TRIANGLE};
+enum class Color {RED, GREEN, BLUE};
+
+Shape s = CIRCLE;
+Color c = Color::RED;
+```
+
+- The values in regular enums are treated as ints, by default, but the values in enum classes are treated as their own types.
+	- Ex: `CIRCLE == 0` is true while `Color::RED == 0` is false.
+- You can change the default enum type by doing `enum Color : char {RED, GREEN, BLUE};`
+
 ## [Structs](#c)
-Structs are used to group data together. This crates a new type which can be used.
-- Data member - each struct subitem
-- Member access operator - `.`, dot notation
+The only difference between structs and classes is that by default structs' members are public. However, the convention is to only use Structs to group variables together.
+- Use the member access operator `.` to get each element in the struct.
 
 ```C++
 struct Point {
 	int x;
-	int y;
+	int y = 10; // Default value
 };
 
 Point pt = {10, 20};
-	// or
+	// Or
 Point pt;
 pt.x = 10;
 pt.y = 20;
-// You can also set initial values
-struct Point {
-	int x = 10;
-	int y = 20;
-};
-
+	// Or
 Point pt = {.x=10, .y=20};
 ```
 
-Can allow functions to return multiple values.
+## [Classes](#c)
+- `const` after methods
+- Definitions vs Declarations
+
+### [Constructors and Destructors](#c)
+- Constructor initializer list `:`
+
+### [Operator overloading](#c)
+
+### [Inheritance](#c)
+
+#### [Virtual and Override](#c)
+
+#### [Composition vs Inheritance](#c)
+- Contains(has-a) relationship vs Belongs to(is-a) relationship.
+	- Ex: A car has a engine so you should use composition.
+	- Ex: A truck is a car so you should use inheritance.
+
+### [Using heap memory in classes](#c)
+- The rule of 3
+	- Destructor
+		- How delete interacts with the destructor.
+	- Copy constructor
+	- Overload the assignment operator
+- Explain copying pointers vs copying the underlying data. That's why you need copy constructor and overload the assignment operator.
+
+
 
 ## [Classes](#c)
-- Variables can be declared after they are used in a class
-- The `cosnt` after a method says that no member variables are being changed.
-	- `void method() const`
-	- Allows you to call that method on a const object.
+
+- `const` after a method says that it doesn't modify any member variables.
+	- Ex: `void method() const`
+	- These methods are allowed to be called by constant objects.
+- Definitions vs Declarations
+
+```C++
+// Definitions
+class Class {
+	private:
+	public:
+}
+```
+
 
 ```C++
 class Class {
@@ -658,7 +614,6 @@ class Class {
 ```
 
 - When you want to modify an object as a parameter passing by pointer is preferred over a pass by reference.
-	- Why? When you call the function, you have to specify the address, which makes it clear that the object is most likely being changed.
 - A very common pattern is to have one class that represents a unit, and another class which has a vector of units. This allows methods to be built that apply to one component and then to all components.
 
 - If a class doesn't define a constructor, then it's given a default constructor.
@@ -695,6 +650,11 @@ myObj.setY(10).setX(20);
 ```
 
 - The default constructor goes away when you have one contractor with arguments. If you still want it, then use `Class() = default;`
+
+### [Constructors and destructors](#c)
+
+- The destructor is not called automatically when creating an object with the `new` keyword.
+	- The `delete` keyword calls the destructor and then deallocates the memory.
 
 ### [Operator overloading](#c)
 - member function named `operator+`
@@ -843,26 +803,3 @@ MyClass& MyClass::operator=(const MyClass& rhs) {
 	- Destructor
 	- Copy constructor
 	- Overloading the = operator
-
-## [new and delete](#c)
-- Allows you to define things where you don't know their length until run time.
-- Deleting a ptr which points to null doesn't do anything.
-- new allocated memory on the heap and returns a pointer to that memory
-
-- The destructor is not called automatically when creating an object with the `new` keyword.
-	- The `delete` keyword calls the destructor and then deallocates the memory.
-	- To `delete` arrays created on the heap use `delete[] arr`. This allows the compiler to get the size of the array and free each memory location.
-
-## [enums](#c)
-- enum
-- enum class
-
-```C++
-enum EnumName {
-	VALUE0,
-	VALUE1,
-	VALUE2
-};
-```
-
-- If the enum counts in order, the last enum value can be used to get the length of the enum.
