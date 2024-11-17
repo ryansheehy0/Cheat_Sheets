@@ -47,15 +47,16 @@ My personal notes on C++.
 - [Enums](#enums)
 - [Structs](#structs)
 - [Classes](#classes)
+	- [Database classes](#database-classes)
+		- [Linked Lists](#linked-lists)
 	- [Constructors and Destructors](#constructors-and-destructors)
 	- [Operator overloading](#operator-overloading)
+		- [Comparison operator overloading](#comparison-operator-overloading)
 	- [Inheritance](#inheritance)
 		- [Virtual and Override](#virtual-and-override)
 		- [Composition vs Inheritance](#composition-vs-inheritance)
 	- [Using heap memory in classes](#using-heap-memory-in-classes)
 - [Classes](#classes)
-	- [Constructors and destructors](#constructors-and-destructors)
-	- [Operator overloading](#operator-overloading)
 	- [Inheritance](#inheritance)
 		- [Composition over Inheritance](#composition-over-inheritance)
 	- [Copy constructor and overloading the = operator](#copy-constructor-and-overloading-the--operator)
@@ -79,8 +80,6 @@ My personal notes on C++.
 - Multi-threading
 - Modules?
 	- `import` how does this effect header files
-- left hand side(lhs) means that it can be assigned to. Can be placed ont he left hand side of the assignment(=) operator.
-- right hand side(rhs) means that it cannot be assigned. Can only be placed on the right hand side of the assignment(=) operator, like a constant.
 
 ## [main](#c)
 The main function is the entry point of a program.
@@ -565,13 +564,137 @@ Point pt = {.x=10, .y=20};
 ```
 
 ## [Classes](#c)
-- `const` after methods
-- Definitions vs Declarations
+Classes are used to combine data and functions that handel that data.
+
+```C++
+// Declarations
+	// These are usually in .h files
+class Point {
+	private:
+		double _x = 0, _y = 0;
+	public:
+		double x() const {return _x;}
+		double y() const {return _y;}
+		double distance(const Point& pt) const;
+};
+// Definitions
+	// These are usually in .cpp files
+double Point::distance(const Point& pt) const {
+	double a = _x - pt.x();
+	double b = _y - pt.y();
+	return std::sqrt(a * a + b * b);
+}
+```
+
+- `const` after the methods means that the method doesn't change any of the internal members for the class.
+	- This allows the method to be called on a const objects.
+- Classes can have `static` members which belong to the class itself rather than any specific object. They can be accessed by using `Class::staticMember`
+	- `static` variables are shared across all instances of the class.
+	- `static` methods can only access `static` variables.
+- The `this` keyword is a pointer to the object itself.
+	- `this` is often used to differentiate between local and member variables. Ex: `this->memberVar`
+	- It is a common pattern for a method to have a return type of `Point&` and then `return *this;`. This allows methods to be chained together.
+		- Ex: `pt.method1().method2();`
+
+### [Database classes](#c)
+A common pattern is to have one class represent what you want to store and another class hold the database(like vector or linked list) of the units.
+- This stores a list of pointers to heap memory of the data you want to store.
+- These classes typically have 3 methods used to get, update, remove, and add.
+
+```C++
+class Points {
+	private:
+		std::vector<Point*> _points;
+	public:
+		~Points();
+		Point*& at(int index) const; // Used to get and update
+		void remove(int index);
+		void add(int index, Point* pt);
+};
+```
+
+#### [Linked Lists](#c)
+- Arrays/vectors are quick at getting and updating, but slow at removing and adding.
+	- If sorted you can use binary or interpolated search which is very fast.
+	- When you add or remove you have to shift elements around so they stay in continuous memory.
+- Linked lists are quick at removing and adding, but slow at getting and updating.
+	- You can only update and get elements with linear search.
+
+```C++
+template<typename T>
+struct Node {
+	T value;
+	Node* nextNode = nullptr;
+};
+
+template<typename T>
+class LinkedList {
+	private:
+		Node<T>* _head = nullptr;
+	public:
+		Node& at(int index) const;
+		void remove(int index);
+		void add(int index, T value);
+};
+
+Node& LinkedList::at(int index) const {
+	Node* currHead = _head;
+	for (int i = 0; currHead->nextNode != nullptr; i++) {
+		if (i == index) return currHead;
+		currHead = currHead->nextNode;
+	}
+	return nullptr;
+}
+```
 
 ### [Constructors and Destructors](#c)
 - Constructor initializer list `:`
+	- Uses values to initialize any objects instead of creating it and then setting it.
+	- Used to call inherited parent's constructor.
+		- You can't access the parent's protected member variables with this syntax.
+- Default constructor
+	- If a class doesn't define a constructor, then it's given a default constructor.
+	- Once a class defines a constructor, then the default constructor isn't automatically created. You have to use `= default`
+	- The default constructor goes away when you have one contractor with arguments. If you still want it, then use `Class() = default;`
+- Destructor
+	- The destructor should delete any heap memory created in the class.
+	- The destructor is not called automatically when creating an object with the `new` keyword.
 
 ### [Operator overloading](#c)
+Left hand side(lhs) means that it can be assigned to, like a variable. The right hand side(rhs) means that i cannot be assigned to, like a literal.
+- Operator overloading allows you to change the operators for an object. The argument is the right hand side, with the left hand side being the object itself.
+
+```C++
+// This is what most operator overloading looks like
+Point Point::operator+(const Point& rhs) const {
+	Point result;
+	result.x() = _x + rhs.x();
+	result.y() = _y + rhs.y();
+	return result;
+}
+```
+
+#### [Comparison operator overloading](#c)
+These compare the left and right hand side and return a bool.
+
+```C++
+bool Point::operator==(const Point& rhs) const {
+	return _x == rhs.x() && _y == rhs.y();
+}
+
+bool Point::operator<(const Point& rhs) const {
+    if (_x == rhs.x()) {
+        return _y < rhs.y();
+    }
+    return _x < rhs.x();
+}
+```
+
+You can define all the other comparisons from just these two(`==` and `<`).
+- `bool operator!=(const Point& rhs) { return !(*this == rhs); }`
+- `bool operator>(const Point& rhs)  { return rhs < *this; }`
+- `bool operator<=(const Point& rhs) { return !(*this > rhs); }`
+- `bool operator>=(const Point& rhs) { return !(*this < rhs); }`
 
 ### [Inheritance](#c)
 
@@ -586,103 +709,13 @@ Point pt = {.x=10, .y=20};
 - The rule of 3
 	- Destructor
 		- How delete interacts with the destructor.
+		- The `delete` keyword calls the destructor and then deallocates the memory.
 	- Copy constructor
 	- Overload the assignment operator
 - Explain copying pointers vs copying the underlying data. That's why you need copy constructor and overload the assignment operator.
 
-
-
+--------------------------------------------------------------------------------
 ## [Classes](#c)
-
-- `const` after a method says that it doesn't modify any member variables.
-	- Ex: `void method() const`
-	- These methods are allowed to be called by constant objects.
-- Definitions vs Declarations
-
-```C++
-// Definitions
-class Class {
-	private:
-	public:
-}
-```
-
-
-```C++
-class Class {
-};
-```
-
-- When you want to modify an object as a parameter passing by pointer is preferred over a pass by reference.
-- A very common pattern is to have one class that represents a unit, and another class which has a vector of units. This allows methods to be built that apply to one component and then to all components.
-
-- If a class doesn't define a constructor, then it's given a default constructor.
-- Once a class defines a constructor, then the default constructor isn't automatically created.
-
-- Construcotr initializer list `:`
-	- Uses values to initalize any objects instead of creting it and then setting it.
-	- Used to call inherited parent's constructor.
-		- You can't access the parent's protected member variables with this syntax.
-
-- `this` is a pointer to the current object.
-	- Used to differentiate between a local variable and a member variable. To get the member variable: `this->memberVar`
-
-- When an object is pass by reference or pointer, then the destructor is not automatically called.
-
-- static member variables are not attached to the object, but the class itself.
-- static member functions can only access other static member variables/functions.
-
-- The demonstrator should delete any heap memory that was created in the class.
-
-- Methods can return `*this` in order to chain methods together
-```c++
-MyClass& setY(int y) {
-	_y = y;
-	return *this;
-}
-
-MyClass& setX(int x) {
-	_x = x;
-	return *this;
-}
-
-myObj.setY(10).setX(20);
-```
-
-- The default constructor goes away when you have one contractor with arguments. If you still want it, then use `Class() = default;`
-
-### [Constructors and destructors](#c)
-
-- The destructor is not called automatically when creating an object with the `new` keyword.
-	- The `delete` keyword calls the destructor and then deallocates the memory.
-
-### [Operator overloading](#c)
-- member function named `operator+`
-	- Only requires the right hand side(rhs) as the parameter because the left is implied to be the object itself.
-
-```C++
-class Time {
-	public:
-		Time operator+(Time rhs);
-		Time operator+(int rhs); // This only works if the right hand side is an int. If the left hand side is an int, then it doesn't work.
-}
-```
-
-- Overloading conditionals
-
-```C++
-class Time {
-	public:
-		bool operator==(const Time& lhs, const Time& rhs);
-		bool operator<(const Time& lhs, const Time& rhs);
-}
-```
-
-- It's common to thoroughly write out the == and < operators and define the other conditional operators off of those two.
-	- `bool operator!=(const Time& lhs, const Time& rhs) { return !(lhs == rhs); }`
-	- `bool operator>(const Time& lhs, const Time& rhs)  { return rhs < lhs; }`
-	- `bool operator<=(const Time& lhs, const Time& rhs) { return !(lhs > rhs); }`
-	- `bool operator>=(const Time& lhs, const Time& rhs) { return !(lhs < rhs); }`
 
 ### [Inheritance](#c)
 - abstract class - Guides the design of subclasses, but cannot be instantiated as an object. Same as interfaces.

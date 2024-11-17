@@ -1,10 +1,17 @@
-# Future Cheat Sheets
-- GDB - GNU Debugger
+# Prioritized future cheat sheets
+- PIDs
 - Make files
+- GDB - GNU Debugger
+- C++ Data Structures, Iterators, and Algorithms
+- C++ Standard Libraries
+- C++ Non Standard Libraries
+- Newtons Method
+
+# Future Cheat Sheets
+- Optimizations in cpp
 - Neural Nets
 - Evolutionary algorithm
 - Hopfield Network
-- Optimizations in cpp
 - Trees
     - Binary Heaps
 - Sliding window
@@ -23,7 +30,6 @@
 	- How do you know if a problem is too complex that you cannot create a relatively simple algorithm to solve it? Are these NP problems?
 - Orthogonal arrays
 - Phase space
-
 - Statistics
 - Linear algebra
 - Operating systems
