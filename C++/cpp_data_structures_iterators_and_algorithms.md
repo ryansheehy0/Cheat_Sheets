@@ -8,6 +8,7 @@
 	- [array](#array)
 	- [vector](#vector)
 	- [list](#list)
+		- [Linked Lists](#linked-lists)
 	- [deque](#deque)
 	- [set](#set)
 	- [map](#map)
@@ -120,6 +121,13 @@ while (currNode != nullptr) {
 	currNode = currNode->nextNode();
 }
 ```
+
+- Arrays/vectors are quick at getting and updating, but slow at removing and adding.
+	- If sorted you can use binary or interpolated search which is very fast.
+	- When you add or remove you have to shift elements around so they stay in continuous memory.
+- Linked lists are quick at removing and adding, but slow at getting and updating.
+	- You can only update and get elements with linear search.
+
 
 - Get/Find
 	- Only linear search
