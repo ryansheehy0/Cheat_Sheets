@@ -292,7 +292,7 @@ Arrays in C++ store a sequences of variables in contiguous memory. The array is 
 	- Ex: `int arr[] = {0, 0, 0};` the size is 3
 
 #### [Two dimensional arrays](#c)
-Since arrays are stored in continuous memory, a two dimensional array(or more dimensions) can also be reprehended with a one dimensional array.
+Since arrays are stored in continuous memory, a two dimensional array(or more dimensions) can also be represented with a one dimensional array.
 - `int twoDArr[row][col]` or `int oneDArr[row * col]` - Creates a 2d array.
 - `arr[row][col]` or `arr[(cols * row) + col]` - Access an element in the 2d array.
 

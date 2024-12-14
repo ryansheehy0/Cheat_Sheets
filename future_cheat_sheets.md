@@ -1,11 +1,21 @@
 # Prioritized future cheat sheets
+- A*
+    - Also include a variable length
 - PIDs
+    - Predict where the robot will be in the future. The D(the rate of change) limits the velocity.
 - Make files
 - GDB - GNU Debugger
 - C++ Data Structures, Iterators, and Algorithms
 - C++ Standard Libraries
 - C++ Non Standard Libraries
 - Newtons Method
+- Simultaneous localization and mapping
+- C++ template meta programming
+- Convolutions
+    - Gaussian blur
+    - Canny edge detections
+    - Some algo to extract useable info
+        - How to get the location of the camera given a new image of a retro-reflective object and a previously known position with a corresponding image?
 
 # Future Cheat Sheets
 - Optimizations in cpp

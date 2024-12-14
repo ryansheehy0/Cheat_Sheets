@@ -26,3 +26,6 @@
 - Modulus
 	- `x % y` is the same as `x & (y - 1)`
 		- Is that true?
+
+- Branchless programming
+- Move things to compile time instead of run time.
