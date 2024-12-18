@@ -8,7 +8,8 @@
 	- [array](#array)
 	- [vector](#vector)
 	- [list](#list)
-		- [Linked Lists](#linked-lists)
+	- [pair](#pair)
+	- [queue](#queue)
 	- [deque](#deque)
 	- [set](#set)
 	- [map](#map)
@@ -101,7 +102,7 @@
 - `nums.push_back(3);` Adds 3 to the end of the vector
 
 ### [list](#c-data-structures-iterators-and-algorithms)
-`std::list<type>` is a doubly linked list stored in the heap. Each node stores a pointer to its parent and child node.
+`std::list<type>` is a doubly linked list stored in the heap.
 - Advantages
 	- Quick to insert/remove
 	- Can change size
@@ -141,6 +142,37 @@ while (currNode != nullptr) {
 - Update
 	- Find and then change value
 
+- push_back() - ads element to the end
+- push_front() - add element to the front
+- front() - returns the first element of the list
+- back() - returns the last element of the list
+- pop_front() - removes the first element.
+- pop_back() - removes the last element.
+- remove(T value) - Goes through and removes any instances of value.
+- size() - returns the number of elements
+
+- `list<int>::iterator iter;`
+	- .begin()
+	- .end()
+
+- insert(iteratorPos, newElem)
+- erase(iteratorPos) or erase(iteratorFirst, iteratorLast)
+
+### [pair](#c-data-structures-iterators-and-algorithms)
+- `#include <utility>`
+- `pair<string, int> newPair = make_pair("First", 2);`
+	- `pair.first` returns `"First"`
+	- `pair.second` return `2`
+
+### [queue](#c-data-structures-iterators-and-algorithms)
+- Supports element insertion at the tail and element retrieve from the head.
+- `queue<T> newQueue;`
+- `push(T value)` - Adds an element to the tail
+- `T front()` - Returns the element at the head.
+- `T back()` - Returns the element at the end.
+- `pop()` - Removes the element at the head.
+	- If the queue is empty, pop() has undefined behavior. The size should be checked before pop.
+
 ### [deque](#c-data-structures-iterators-and-algorithms)
 `std::deque<type>` is a linked list of arrays. This sort of mixes the advantages and disadvantages of a list and vector.
 - Advantages
@@ -157,12 +189,32 @@ while (currNode != nullptr) {
 - Index table. Does the required calculations to convert a direct access index to the correct location in the deque.
 
 ### [set](#c-data-structures-iterators-and-algorithms)
+- Collection of unique elements.
+- `set<T> newSet;`
+- `pair<iterator, bool> insert(T value)`
+	- If it couldn't insert, then it returns a pair with an iterator at the location and false.
+	- If it could insert, then it returns a pair with an iterator at the location of insertion and true.
+- `size_t count(T value)` - 1 if it's in the set or 0 if it's not.
+- `bool erase(T value)` - Remove if the value is in the set.
+- `size_t size()`
+
 `std::set<type>` and `std::unordered_set<type>` are used to store a list of unique elements. Set automatically sorts the elements as they go in, but unordered doesn't.
 
 .insert()
 .find()
 
 ### [map](#c-data-structures-iterators-and-algorithms)
+- `map<K, V> newMap;`
+- `pair<V, bool> emplace(K key, V value)` - Creates a new key value pair if there isn't that key present in the map. It returns a pair. The pair's first value is the value and the pair's second is a bool(1 being successful addition and 0 being unsuccessful addition into map.)
+	- You cannot add two of the same keys in the map.
+- `V at(K key)` - Returns the value from a corresponding key.
+	- You can update the key's value by assigning it with at. `at("Key") = "Value";`
+	- If it doesn't contain the key, it throws an out_of_range exception.
+- `operator[K key]` - Gets the value from the key. If one isn't found, then it create one with the default value.
+- `size_t count(K key)` - Returns 1 if the key is found or 0 if it isn't.
+- `erase(K key)` - Removes the key.
+- `clear()` - Removes all keys.
+
 `std::map<keyType, valueType>` and `std::unordered_map<keyType, valueType>` are used to store a list of key value pairs.
 
 ```C++

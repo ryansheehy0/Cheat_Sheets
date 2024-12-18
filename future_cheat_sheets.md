@@ -16,6 +16,8 @@
     - Canny edge detections
     - Some algo to extract useable info
         - How to get the location of the camera given a new image of a retro-reflective object and a previously known position with a corresponding image?
+- Quantum computers
+- AWK programming langue
 
 # Future Cheat Sheets
 - Optimizations in cpp

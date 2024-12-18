@@ -5,6 +5,7 @@
 - [HTML/CSS/JS](#htmlcssjs)
 - [C++](#c)
 - [Algorithms](#algorithms)
+- [Data Structures](#data-structures)
 
 <!-- /TOC -->
 
@@ -53,3 +54,6 @@
 - [Unique Permutations](./Algorithms/unique_permutations.md)
 - [Newtons Method](./Algorithms/Newtons_Method/newtons_method.md)
 - [Taylor Series](./Algorithms/Taylor_Series/taylor_series.md)
+
+## Data Structures
+- [SQL vs NoSQL](./Data_Structures/sql_vs_no_sql.md)
